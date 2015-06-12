@@ -11,6 +11,8 @@
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
 		A77E865C1B29F09100EABC2D /* TraktKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E865B1B29F09100EABC2D /* TraktKitTests.swift */; };
 		A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
+		A78D13581B2A340100BA2068 /* Television.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13571B2A340100BA2068 /* Television.swift */; };
+		A78D135A1B2A341000BA2068 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Film.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		A77E865A1B29F09100EABC2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77E865B1B29F09100EABC2D /* TraktKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitTests.swift; sourceTree = "<group>"; };
 		A77E86851B29F16C00EABC2D /* TraktManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktManager.swift; sourceTree = "<group>"; };
+		A78D13571B2A340100BA2068 /* Television.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Television.swift; sourceTree = "<group>"; };
+		A78D13591B2A341000BA2068 /* Film.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 			children = (
 				A77E864E1B29F09100EABC2D /* TraktKit.h */,
 				A77E86851B29F16C00EABC2D /* TraktManager.swift */,
+				A78D13571B2A340100BA2068 /* Television.swift */,
+				A78D13591B2A341000BA2068 /* Film.swift */,
 				A77E864C1B29F09100EABC2D /* Supporting Files */,
 			);
 			path = TraktKit;
@@ -213,6 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */,
+				A78D135A1B2A341000BA2068 /* Film.swift in Sources */,
+				A78D13581B2A340100BA2068 /* Television.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
