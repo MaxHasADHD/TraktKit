@@ -65,6 +65,9 @@ public class TraktManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    public typealias arrayCompletionHandler = (objects: Array<Dictionary<String, AnyObject>>!) -> Void
+    public typealias dictionaryCompletionHandler = (dictionary: Dictionary<String, AnyObject>!) -> Void
+    public typealias successCompletionHandler = (success: Bool) -> Void
     
     // MARK: - Lifecycle
     
@@ -248,7 +251,7 @@ public class TraktManager {
     /// :param: Authorization False
     ///
     /// :returns: An array of dictionaries with information about each result
-    public func search(query: String, type: searchType, completion: ((results: Array<Dictionary<String, AnyObject>>!) -> Void)) {
+    public func search(query: String, type: searchType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/search?query=\(query)&type=\(type.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
@@ -269,17 +272,17 @@ public class TraktManager {
             
             if let error = error {
                 println(error)
-                completion(results: nil)
+                completion(objects: nil)
             }
             else {
-                completion(results: array)
+                completion(objects: array)
             }
         }).resume()
     }
     
     // MARK: - Ratings
     
-    public func getRatings(type: watchedType, id: NSNumber, extended: extendedType = .Min, completion: (summary: Dictionary<String, AnyObject>!) -> ()) {
+    public func getRatings(type: watchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/movies/\(id)/ratings"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
@@ -302,17 +305,17 @@ public class TraktManager {
             if let error = error {
                 println(error)
                 
-                completion(summary: nil)
+                completion(dictionary: nil)
             }
             else {
-                completion(summary: dictionary)
+                completion(dictionary: dictionary)
             }
         }).resume()
     }
 
     // MARK: - Sync
     
-    public func lastActivities(completion: ((results: Dictionary<String, AnyObject>!) -> Void)) {
+    public func lastActivities(completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/last_activities"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
@@ -333,15 +336,15 @@ public class TraktManager {
             
             if let error = error {
                 println(error)
-                completion(results: nil)
+                completion(dictionary: nil)
             }
             else {
-                completion(results: dictionary)
+                completion(dictionary: dictionary)
             }
         }).resume()
     }
     
-    public func getWatched(type: watchedType, completion: ((shows: Array<Dictionary<String, AnyObject>>!) -> Void)) {
+    public func getWatched(type: watchedType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/watched/\(type.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
@@ -363,15 +366,15 @@ public class TraktManager {
             
             if let error = error {
                 println(error)
-                completion(shows: nil)
+                completion(objects: nil)
             }
             else {
-                completion(shows: array)
+                completion(objects: array)
             }
         }).resume()
     }
     
-    public func addToHistory(#movies: Array<String>, shows: Array<String>, episodes: Array<String>, completion: ((success: Bool) -> Void)) {
+    public func addToHistory(#movies: Array<String>, shows: Array<String>, episodes: Array<String>, completion: successCompletionHandler) {
         // JSON
         var jsonString = String()
         
@@ -425,7 +428,7 @@ public class TraktManager {
         }).resume()
     }
     
-    public func removeFromHistory(#movies: Array<String>, shows: Array<String>, episodes: Array<String>, completion: ((success: Bool) -> Void)) {
+    public func removeFromHistory(#movies: Array<String>, shows: Array<String>, episodes: Array<String>, completion: successCompletionHandler) {
         // JSON
         var jsonString = String()
         
