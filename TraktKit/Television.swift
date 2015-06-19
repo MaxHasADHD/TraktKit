@@ -9,8 +9,10 @@
 import Foundation
 
 extension TraktManager {
+    
+    
     /// The most popular shows calculated by rating percentage and number of ratings
-    public func popularShows(#page: Int, limit: Int, completion: ((shows: Array<Dictionary<String, AnyObject>>!) -> Void)) {
+    public func popularShows(#page: Int, limit: Int, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/popular?page=\(page)&limit=\(limit)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
@@ -32,10 +34,10 @@ extension TraktManager {
             
             if let error = error {
                 println(error)
-                completion(shows: nil)
+                completion(objects: nil)
             }
             else {
-                completion(shows: array)
+                completion(objects: array)
             }
         }).resume()
     }
@@ -171,7 +173,7 @@ extension TraktManager {
         session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
             var error: NSError?
-            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>!
+            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! [[String: AnyObject]]!
             
             if let error = error {
                 println(error)

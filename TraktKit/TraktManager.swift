@@ -29,6 +29,8 @@ public enum extendedType: String {
     case Full = "full"
     case FullAndImages = "full,images"
     case Metadata = "metadata"
+    case Episodes = "episodes" // For getting all seasons and episodes
+    case FullAndEpisodes = "full,episodes"
 }
 
 private let _SingletonASharedInstance = TraktManager()
