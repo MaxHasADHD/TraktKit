@@ -119,6 +119,9 @@ public class TraktManager {
                 let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                 println(expiresDate)
                 self.accessToken = dictionary["access_token"] as? String
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    NSNotificationCenter.defaultCenter().postNotificationName("signedInToTrakt", object: nil)
+                })
             }
         }).resume()
     }
