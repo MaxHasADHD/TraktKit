@@ -67,8 +67,8 @@ public class TraktManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
-    public typealias arrayCompletionHandler = (objects: Array<Dictionary<String, AnyObject>>!) -> Void
-    public typealias dictionaryCompletionHandler = (dictionary: Dictionary<String, AnyObject>!) -> Void
+    public typealias arrayCompletionHandler = (objects: [[String: AnyObject]]?, error: NSError?) -> Void
+    public typealias dictionaryCompletionHandler = (dictionary: [String: AnyObject]?, error: NSError?) -> Void
     public typealias successCompletionHandler = (success: Bool) -> Void
     
     // MARK: - Lifecycle
@@ -264,6 +264,7 @@ public class TraktManager {
         session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             if error != nil {
                 println(error)
+                completion(objects: nil, error: error)
                 return
             }
             
@@ -272,15 +273,15 @@ public class TraktManager {
                 return
             }
             
-            var error: NSError?
-            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>
+            var jsonSerializationError: NSError?
+            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [[String: AnyObject]]
             
-            if let error = error {
-                println(error)
-                completion(objects: nil)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(objects: nil, error: jsonSerializationError)
             }
             else {
-                completion(objects: array)
+                completion(objects: array, error: nil)
             }
         }).resume()
     }
@@ -296,6 +297,7 @@ public class TraktManager {
             
             if error != nil {
                 println(error)
+                completion(dictionary: nil, error: error)
                 return
             }
             
@@ -304,16 +306,15 @@ public class TraktManager {
                 return
             }
             
-            var error: NSError?
-            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Dictionary<String, AnyObject>
+            var jsonSerializationError: NSError?
+            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [String: AnyObject]
             
-            if let error = error {
-                println(error)
-                
-                completion(dictionary: nil)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(dictionary: nil, error: jsonSerializationError)
             }
             else {
-                completion(dictionary: dictionary)
+                completion(dictionary: dictionary, error: nil)
             }
         }).resume()
     }
@@ -327,7 +328,8 @@ public class TraktManager {
         
         session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             if error != nil {
-                println("ERROR!: \(error)")
+                println("Error getting users last activities: \(error)")
+                completion(dictionary: nil, error: error)
                 return
             }
             
@@ -336,15 +338,15 @@ public class TraktManager {
                 return
             }
             
-            var error: NSError?
-            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Dictionary<String, AnyObject>!
+            var jsonSerializationError: NSError?
+            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [String: AnyObject]
             
-            if let error = error {
-                println(error)
-                completion(dictionary: nil)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(dictionary: nil, error: jsonSerializationError)
             }
             else {
-                completion(dictionary: dictionary)
+                completion(dictionary: dictionary, error: nil)
             }
         }).resume()
     }
@@ -357,24 +359,26 @@ public class TraktManager {
         session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
             if error != nil {
-                println("ERROR!: \(error)")
+                println("Error getting users watched shows: \(error)")
+                completion(objects: nil, error: error)
                 return
             }
             
             if (response as! NSHTTPURLResponse).statusCode != 200 {
                 println(response)
+                completion(objects: [], error: nil)
                 return
             }
             
-            var error: NSError?
-            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>!
+            var jsonSerializationError: NSError?
+            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [[String: AnyObject]]
             
-            if let error = error {
-                println(error)
-                completion(objects: nil)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(objects: nil, error: jsonSerializationError)
             }
             else {
-                completion(objects: array)
+                completion(objects: array, error: nil)
             }
         }).resume()
     }

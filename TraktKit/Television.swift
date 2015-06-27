@@ -10,7 +10,6 @@ import Foundation
 
 extension TraktManager {
     
-    
     /// The most popular shows calculated by rating percentage and number of ratings
     public func popularShows(#page: Int, limit: Int, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/popular?page=\(page)&limit=\(limit)"
@@ -21,6 +20,7 @@ extension TraktManager {
             
             if error != nil {
                 println(error)
+                completion(objects: nil, error: error)
                 return
             }
             
@@ -29,40 +29,51 @@ extension TraktManager {
                 return
             }
             
-            var error: NSError?
-            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>!
+            var jsonSerializationError: NSError?
+            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [[String: AnyObject]]
             
-            if let error = error {
-                println(error)
-                completion(objects: nil)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(objects: nil, error: jsonSerializationError)
             }
             else {
-                completion(objects: array)
+                completion(objects: array, error: nil)
             }
         }).resume()
     }
     
-    public func trendingShows(#page: Int, limit: Int, completion: ((shows: Array<Dictionary<String, AnyObject>>!) -> Void)) {
+    public func trendingShows(#page: Int, limit: Int, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/trending?page=\(page)&limit=\(limit)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
-            var error: NSError?
-            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>!
-            
-            if let error = error {
+            if error != nil {
                 println(error)
-                completion(shows: nil)
+                completion(objects: nil, error: error)
+                return
+            }
+            
+            if (response as! NSHTTPURLResponse).statusCode != 200 {
+                println(response)
+                return
+            }
+            
+            var jsonSerializationError: NSError?
+            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [[String: AnyObject]]
+            
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(objects: nil, error: jsonSerializationError)
             }
             else {
-                completion(shows: array)
+                completion(objects: array, error: nil)
             }
         }).resume()
     }
     
-    public func getShowSummary(traktID: NSNumber, extended: extendedType = .Min, completion: ((summary: Dictionary<String, AnyObject>!) -> Void)) {
+    public func getShowSummary(traktID: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/\(traktID)?extended=\(extended.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
@@ -71,6 +82,7 @@ extension TraktManager {
             
             if error != nil {
                 println(error)
+                completion(dictionary: nil, error: error)
                 return
             }
             
@@ -79,16 +91,16 @@ extension TraktManager {
                 return
             }
             
-            var error: NSError?
-            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Dictionary<String, AnyObject>
+            var jsonSerializationError: NSError?
+            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [String: AnyObject]
             
-            if let error = error {
-                println(error)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
                 
-                completion(summary: nil)
+                completion(dictionary: nil, error: jsonSerializationError)
             }
             else {
-                completion(summary: dictionary)
+                completion(dictionary: dictionary, error: nil)
             }
         }).resume()
     }
@@ -203,7 +215,7 @@ extension TraktManager {
             }
             
             var error: NSError?
-            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Array<Dictionary<String, AnyObject>>!
+            let array = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as? [[String: AnyObject]]
             
             if let error = error {
                 println(error)
