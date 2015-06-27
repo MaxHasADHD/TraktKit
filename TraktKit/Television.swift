@@ -11,6 +11,11 @@ import Foundation
 extension TraktManager {
     
     /// The most popular shows calculated by rating percentage and number of ratings
+    ///
+    /// :param: page Skip to more results
+    /// :param: limit Number of items per page
+    ///
+    /// :returns: Returns popular shows on Trakt.tv
     public func popularShows(#page: Int, limit: Int, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/popular?page=\(page)&limit=\(limit)"
         let url = NSURL(string: urlString)
@@ -229,7 +234,7 @@ extension TraktManager {
     
     // MARK: - Episodes
     
-    public func getEpisodeComments(traktID: NSNumber, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: ((comments: [[String: AnyObject]]?) -> Void)) {
+    public func getEpisodeComments(traktID: NSNumber, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: arrayCompletionHandler) {
         let URLString = "https://api-v2launch.trakt.tv/shows/\(traktID)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/comments"
         let URL = NSURL(string: URLString)
         let request = mutableRequestForURL(URL!, authorization: false, HTTPMethod: "GET")
@@ -237,6 +242,7 @@ extension TraktManager {
         session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if error != nil {
                 println(error)
+                completion(objects: nil, error: error)
                 return
             }
             
@@ -245,20 +251,20 @@ extension TraktManager {
                 return
             }
             
-            var error: NSError?
-            let results = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! [[String: AnyObject]]
+            var jsonSerializationError: NSError?
+            let results = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [[String: AnyObject]]
             
-            if let error = error {
-                println(error)
-                completion(comments: nil)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(objects: nil, error: jsonSerializationError)
             }
             else {
-                completion(comments: results)
+                completion(objects: results, error: nil)
             }
         }).resume()
     }
     
-    public func getEpisodeRatings(traktID: NSNumber, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: ((ratings: [[String: AnyObject]]?) -> Void)) {
+    public func getEpisodeRatings(traktID: NSNumber, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: dictionaryCompletionHandler) {
         let URLString = "https://api-v2launch.trakt.tv/shows/\(traktID)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings"
         let URL = NSURL(string: URLString)
         let request = mutableRequestForURL(URL!, authorization: false, HTTPMethod: "GET")
@@ -266,6 +272,7 @@ extension TraktManager {
         session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if error != nil {
                 println(error)
+                completion(dictionary: nil, error: error)
                 return
             }
             
@@ -274,15 +281,15 @@ extension TraktManager {
                 return
             }
             
-            var error: NSError?
-            let results = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! [[String: AnyObject]]
+            var jsonSerializationError: NSError?
+            let results = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as? [String: AnyObject]
             
-            if let error = error {
-                println(error)
-                completion(ratings: nil)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
+                completion(dictionary: nil, error: jsonSerializationError)
             }
             else {
-                completion(ratings: results)
+                completion(dictionary: results, error: nil)
             }
         }).resume()
     }
