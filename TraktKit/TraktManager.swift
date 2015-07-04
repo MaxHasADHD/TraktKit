@@ -41,7 +41,7 @@ public class TraktManager {
     let clientID = "XXXXX"
     let clientSecret = "YYYYY"
     let callbackURL = "ZZZZZ"
-    let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    lazy var session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     
     // MARK: Public
     public var isSignedIn: Bool {
@@ -50,23 +50,31 @@ public class TraktManager {
         }
     }
     public let oauthURL: NSURL?
+    // Move to app code, make it a delegate
     public var accessToken: String? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("accessToken") as? String
+            if let accessTokenData = MLKeychain.loadData(forKey: "accessToken") {
+                if let accessTokenString = NSString(data: accessTokenData, encoding: NSUTF8StringEncoding) as? String {
+                    return accessTokenString
+                }
+            }
+            
+            return nil
         }
         set {
             // Save somewhere secure
-            println("Saving new access token \(newValue)")
             if newValue == nil {
-                // Remove from user defaults
-                NSUserDefaults.standardUserDefaults().removeObjectForKey("accessToken")
+                // Remove from keychain
+                MLKeychain.deleteItem(forKey: "accessToken")
             }
             else {
-                NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "accessToken")
+                // Save to keychain
+                MLKeychain.setString(newValue!, forKey: "accessToken")
             }
-            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    
+    // Completion handlers
     public typealias arrayCompletionHandler = (objects: [[String: AnyObject]]?, error: NSError?) -> Void
     public typealias dictionaryCompletionHandler = (dictionary: [String: AnyObject]?, error: NSError?) -> Void
     public typealias successCompletionHandler = (success: Bool) -> Void
@@ -467,24 +475,25 @@ public class TraktManager {
         session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
             if error != nil {
-                println("ERROR!: \(error)")
+                println("Error removing items from history: \(error)")
+                completion(success: false)
                 return
             }
             
             if (response as! NSHTTPURLResponse).statusCode != 200 {
                 println(response)
+                completion(success: false)
                 return
             }
             
-            var error: NSError?
-            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as! Dictionary<String, AnyObject>
+            var jsonSerializationError: NSError?
+            let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &jsonSerializationError) as! [String: AnyObject]
             
-            if let error = error {
-                println(error)
+            if let jsonSerializationError = jsonSerializationError {
+                println(jsonSerializationError)
                 completion(success: false)
             }
             else {
-//                println(dictionary)
                 completion(success: true)
             }
         }).resume()

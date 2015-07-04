@@ -83,4 +83,35 @@ class TraktKitTests: XCTestCase {
             }
         })
     }
+    
+    func testKeychain() {
+        let key = "XCTest"
+        let value = "Top Secret"
+        
+        // Save data
+        let savedToKeychain = MLKeychain.setString(value, forKey: key)
+        XCTAssert(savedToKeychain, "Item did not save to keychain successfully")
+        
+        // Load data
+        if let data = MLKeychain.loadData(forKey: key) {
+            if let stringForm = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
+                println("Found this in the keychain: \(stringForm)")
+                XCTAssert(value == stringForm, "Data should be exact")
+            }
+            else {
+                XCTAssert(false, "Data is not a string")
+            }
+        }
+        else {
+            XCTAssert(false, "Keychain did not create data")
+        }
+        
+        // Delete data
+        let deletedFromKeychain = MLKeychain.deleteItem(forKey: key)
+        XCTAssert(deletedFromKeychain, "Data should be deleted from keychain")
+        
+        // Re-check data in keychain
+        let data = MLKeychain.loadData(forKey: key)
+        XCTAssert(data == nil, "Item should not be in the keychain anymore")
+    }
 }
