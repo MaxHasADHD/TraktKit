@@ -33,6 +33,26 @@ public enum extendedType: String {
     case FullAndEpisodes = "full,episodes"
 }
 
+public enum statusCodes: Int {
+    case success = 200
+    case successNewResourceCreated = 201
+    case successNoContentToReturn = 204
+    case badRequestion = 400
+    case unauthorized = 401
+    case forbidden = 403
+    case notFound = 404
+    case methodNotFound = 405
+    case conflict = 409
+    case preconditionFailed = 412
+    case unprocessableEntity = 422
+    case rateLimitExceeded = 429
+    case serverError = 500
+    case serviceOverloaded = 503
+    case cloudflareError = 520
+    case cloudflareError2 = 521
+    case cloudflareError3 = 522
+}
+
 private let _SingletonASharedInstance = TraktManager()
 
 public class TraktManager {
@@ -191,7 +211,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 201 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated.rawValue {
                 println(response)
                 return
             }
@@ -237,7 +257,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 201 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated.rawValue {
                 println(response)
                 return
             }
@@ -276,7 +296,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 println(response)
                 return
             }
@@ -309,7 +329,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 println(response)
                 return
             }
@@ -341,7 +361,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 println(response)
                 return
             }
@@ -372,7 +392,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 println(response)
                 completion(objects: [], error: nil)
                 return
@@ -426,7 +446,7 @@ public class TraktManager {
             }
             
             // A successful post request sends a 201 status code
-            if (response as! NSHTTPURLResponse).statusCode != 201 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated.rawValue {
                 println(response)
                 return
             }
@@ -480,7 +500,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 println(response)
                 completion(success: false)
                 return
