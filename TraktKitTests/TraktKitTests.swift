@@ -29,7 +29,7 @@ class TraktKitTests: XCTestCase {
         
         TraktManager.sharedManager.trendingShows(page: 1, limit: numberOfTrendingShows) { (objects, error) -> Void in
             if let error = error {
-                println("Error getting trending shows: \(error)")
+                print("Error getting trending shows: \(error)")
                 XCTAssert(false, "Error getting trending shows")
             }
             else if let trendingShows = objects {
@@ -42,26 +42,26 @@ class TraktKitTests: XCTestCase {
                                 TraktManager.sharedManager.getShowSummary(traktID, extended: extendedType.Full) { (dictionary, error) -> Void in
                                     count++
                                     if let error = error {
-                                        println("Error getting Show Summary: \(error)")
+                                        print("Error getting Show Summary: \(error)")
                                         XCTAssert(false, "Error getting show summary")
                                     }
                                     else if let summary = dictionary {
                                         let showTitle = summary["title"] as? String
-                                        let showCertification = summary["certification"] as? String ?? "Unknown"
+                                        let _ = summary["certification"] as? String ?? "Unknown"
                                         let showRuntime = summary["runtime"] as? NSNumber
                                         let showOverview = summary["overview"] as? String
-                                        let showCountry = summary["country"] as? String ?? "us"
+                                        let _ = summary["country"] as? String ?? "us"
                                         let showNetwork = summary["network"] as? String
                                         let showStatus = summary["status"] as? String
                                         let showYear = summary["year"] as? NSNumber
-                                        let showLanguage = summary["language"] as? String ?? "en"
+                                        let _ = summary["language"] as? String ?? "en"
                                         
-                                        if let title = showTitle, runtime = showRuntime, overview = showOverview, network = showNetwork, status = showStatus, year = showYear {
-                                            println("Parsed \(title) succesfully!")
+                                        if let title = showTitle, _ = showRuntime, _ = showOverview, _ = showNetwork, _ = showStatus, _ = showYear {
+                                            print("Parsed \(title) succesfully!")
                                             XCTAssert(true, "JSON was parsed correctly")
                                         }
                                         else {
-                                            println("JSON: \(summary)")
+                                            print("JSON: \(summary)")
                                             XCTAssert(false, "JSON was not parsed correctly")
                                         }
                                     }
@@ -79,7 +79,7 @@ class TraktKitTests: XCTestCase {
         
         self.waitForExpectationsWithTimeout(30.0, handler: { (error) -> Void in
             if let error = error {
-                println("Timeout error: \(error)")
+                print("Timeout error: \(error)")
             }
         })
     }
@@ -95,7 +95,7 @@ class TraktKitTests: XCTestCase {
         // Load data
         if let data = MLKeychain.loadData(forKey: key) {
             if let stringForm = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
-                println("Found this in the keychain: \(stringForm)")
+                print("Found this in the keychain: \(stringForm)")
                 XCTAssert(value == stringForm, "Data should be exact")
             }
             else {

@@ -19,9 +19,9 @@ let kSecMatchLimitValue = kSecMatchLimit as String
 let kSecReturnDataValue = kSecReturnData as String
 let kSecMatchLimitOneValue = kSecMatchLimitOne as String
 
-class MLKeychain {
+public class MLKeychain {
     
-    class func setString(value: String, forKey key: String) -> Bool {
+    public class func setString(value: String, forKey key: String) -> Bool {
         let data = value.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         
         let keychainQuery = [
@@ -40,7 +40,7 @@ class MLKeychain {
         return status == noErr
     }
     
-    class func loadData(forKey key: String) -> NSData? {
+    public class func loadData(forKey key: String) -> NSData? {
         let keychainQuery = [
             kSecClassValue: kSecClassGenericPasswordValue,
             kSecAttrAccountValue: key,
@@ -59,7 +59,7 @@ class MLKeychain {
         }
     }
     
-    class func deleteItem(forKey key: String) -> Bool {
+    public class func deleteItem(forKey key: String) -> Bool {
         let query = [
             kSecClass as String       : kSecClassGenericPassword,
             kSecAttrAccount as String : key ]
@@ -69,7 +69,7 @@ class MLKeychain {
         return status == noErr
     }
     
-    class func clear() -> Bool {
+    public class func clear() -> Bool {
         let query = [ kSecClass as String : kSecClassGenericPassword ]
         
         let status: OSStatus = SecItemDelete(query as CFDictionaryRef)
