@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import TraktKit
+@testable import TraktKit
 
 class TraktKitTests: XCTestCase {
     
