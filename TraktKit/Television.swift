@@ -29,7 +29,7 @@ extension TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 print(response)
                 return
             }
@@ -61,7 +61,7 @@ extension TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 print(response)
                 return
             }
@@ -93,7 +93,7 @@ extension TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 print(response)
                 return
             }
@@ -129,7 +129,7 @@ extension TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 print(response)
                 return
             }
@@ -165,7 +165,7 @@ extension TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 print(response)
                 return
             }
@@ -193,6 +193,15 @@ extension TraktManager {
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            if error != nil {
+                print("ERROR!: \(error)")
+                return
+            }
+            
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
+                print(response)
+                return
+            }
             
             do {
                 if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
@@ -221,7 +230,7 @@ extension TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 print(response)
                 return
             }
@@ -255,7 +264,7 @@ extension TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
                 print(response)
                 return
             }
@@ -281,14 +290,15 @@ extension TraktManager {
         let request = mutableRequestForURL(URL!, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
+            guard error == nil else {
                 print(error)
                 completion(dictionary: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
                 print(response)
+                completion(dictionary: nil, error: nil)
                 return
             }
             

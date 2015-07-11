@@ -28,47 +28,57 @@ class TraktKitTests: XCTestCase {
         var count = 0
         
         TraktManager.sharedManager.trendingShows(page: 1, limit: numberOfTrendingShows) { (objects, error) -> Void in
-            if let error = error {
+            guard error == nil else {
                 print("Error getting trending shows: \(error)")
                 XCTAssert(false, "Error getting trending shows")
+                return
             }
-            else if let trendingShows = objects {
-
-                for trendingObject in trendingShows {
-                    if let showDict = trendingObject["show"] as? [String: AnyObject] {
-                        if let showIDs = showDict["ids"] as? [String: AnyObject] {
-                            if let traktID = showIDs["trakt"] as? NSNumber {
+            
+            guard let trendingShows = objects else {
+                XCTAssert(false, "objects is nil")
+                return
+            }
+            
+            for trendingObject in trendingShows {
+                if let showDict = trendingObject["show"] as? [String: AnyObject] {
+                    if let showIDs = showDict["ids"] as? [String: AnyObject] {
+                        if let traktID = showIDs["trakt"] as? NSNumber {
+                            
+                            TraktManager.sharedManager.getShowSummary(traktID, extended: extendedType.Full) { (dictionary, error) -> Void in
+                                count++
                                 
-                                TraktManager.sharedManager.getShowSummary(traktID, extended: extendedType.Full) { (dictionary, error) -> Void in
-                                    count++
-                                    if let error = error {
-                                        print("Error getting Show Summary: \(error)")
-                                        XCTAssert(false, "Error getting show summary")
-                                    }
-                                    else if let summary = dictionary {
-                                        let showTitle = summary["title"] as? String
-                                        let _ = summary["certification"] as? String ?? "Unknown"
-                                        let showRuntime = summary["runtime"] as? NSNumber
-                                        let showOverview = summary["overview"] as? String
-                                        let _ = summary["country"] as? String ?? "us"
-                                        let showNetwork = summary["network"] as? String
-                                        let showStatus = summary["status"] as? String
-                                        let showYear = summary["year"] as? NSNumber
-                                        let _ = summary["language"] as? String ?? "en"
-                                        
-                                        if let title = showTitle, _ = showRuntime, _ = showOverview, _ = showNetwork, _ = showStatus, _ = showYear {
-                                            print("Parsed \(title) succesfully!")
-                                            XCTAssert(true, "JSON was parsed correctly")
-                                        }
-                                        else {
-                                            print("JSON: \(summary)")
-                                            XCTAssert(false, "JSON was not parsed correctly")
-                                        }
-                                    }
-                                    
-                                    if count == numberOfTrendingShows {
-                                        expectation.fulfill()
-                                    }
+                                guard error == nil else {
+                                    print("Error getting Show Summary: \(error)")
+                                    XCTAssert(false, "Error getting show summary")
+                                    return
+                                }
+                                
+                                guard let summary = dictionary else {
+                                    XCTAssert(false, "Error getting show summary")
+                                    return
+                                }
+                                
+                                let showTitle = summary["title"] as? String
+                                let _ = summary["certification"] as? String ?? "Unknown"
+                                let showRuntime = summary["runtime"] as? NSNumber
+                                let showOverview = summary["overview"] as? String
+                                let _ = summary["country"] as? String ?? "us"
+                                let showNetwork = summary["network"] as? String
+                                let showStatus = summary["status"] as? String
+                                let showYear = summary["year"] as? NSNumber
+                                let _ = summary["language"] as? String ?? "en"
+                                
+                                if let title = showTitle, _ = showRuntime, _ = showOverview, _ = showNetwork, _ = showStatus, _ = showYear {
+                                    print("Parsed \(title) succesfully!")
+                                    XCTAssert(true, "JSON was parsed correctly")
+                                }
+                                else {
+                                    print("JSON: \(summary)")
+                                    XCTAssert(false, "JSON was not parsed correctly")
+                                }
+                                
+                                if count == numberOfTrendingShows {
+                                    expectation.fulfill()
                                 }
                             }
                         }
@@ -82,6 +92,26 @@ class TraktKitTests: XCTestCase {
                 print("Timeout error: \(error)")
             }
         })
+    }
+    
+    func testEpisodeRatings() {
+        let expectation = self.expectationWithDescription("High Expectations")
+        
+        TraktManager.sharedManager.getEpisodeRatings(77686, seasonNumber: 1, episodeNumber: 1) { (dictionary, error) -> Void in
+            guard error == nil else {
+                XCTAssert(false, "Error getting episode ratings")
+                return
+            }
+            
+            XCTAssert(true, "Passed!")
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectationsWithTimeout(10) { (error) -> Void in
+            if let error = error {
+                print("Timeout error: \(error)")
+            }
+        }
     }
     
     func testKeychain() {
