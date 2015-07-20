@@ -53,8 +53,6 @@ public enum statusCodes: Int {
     case cloudflareError3 = 522
 }
 
-private let _SingletonASharedInstance = TraktManager()
-
 public class TraktManager {
     
     // MARK: Internal
@@ -64,6 +62,8 @@ public class TraktManager {
     lazy var session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     
     // MARK: Public
+    public static let sharedManager = TraktManager()
+    
     public var isSignedIn: Bool {
         get {
             return accessToken != nil
@@ -101,11 +101,7 @@ public class TraktManager {
     
     // MARK: - Lifecycle
     
-    public class var sharedManager: TraktManager{
-        return _SingletonASharedInstance
-    }
-    
-    init() {
+    private init() {
         oauthURL = NSURL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(callbackURL)")
     }
     
@@ -280,13 +276,11 @@ public class TraktManager {
     
     // MARK: - Search
     
-    /// Searches the Trakt database for a given search type
+    /// Perform a text query that searches titles, descriptions, translated titles, aliases, and people.
+    /// Status Code: 200
     ///
     /// :param: query The string to search by
     /// :param: type The type of search
-    /// :param: Authorization False
-    ///
-    /// :returns: An array of dictionaries with information about each result
     public func search(query: String, type: searchType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/search?query=\(query)&type=\(type.rawValue)"
         let url = NSURL(string: urlString)
@@ -321,6 +315,12 @@ public class TraktManager {
     
     // MARK: - Ratings
     
+    /// Returns rating (between 0 and 10) and distribution for a movie / show / episode.
+    /// Status Code: 200
+    ///
+    /// :param: which type of content to receive
+    /// :param: trakt ID for movie / show / episode
+    /// :param: completion handler
     public func getRatings(type: watchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/movies/\(id)/ratings"
         let url = NSURL(string: urlString)
@@ -355,6 +355,10 @@ public class TraktManager {
 
     // MARK: - Sync
     
+    /// Returns dictionary of dates when content was last updated
+    /// Status Code: 200
+    ///
+    /// :param: completion handler
     public func lastActivities(completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/last_activities"
         let url = NSURL(string: urlString)
@@ -387,6 +391,11 @@ public class TraktManager {
         }?.resume()
     }
     
+    /// Returns all movies or shows a user has watched.
+    /// Status Code: 200
+    ///
+    /// :param: which type of content to receive
+    /// :param: completion handler
     public func getWatched(type: watchedType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/watched/\(type.rawValue)"
         let url = NSURL(string: urlString)
@@ -420,6 +429,13 @@ public class TraktManager {
         }?.resume()
     }
     
+    /// Add items to a user's watch history.
+    /// Status Code: 201
+    ///
+    /// :param: array of movie objects
+    /// :param: array of show objects
+    /// :param: array of episode objects
+    /// :param: completion handler
     public func addToHistory(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) {
         // JSON
         var jsonString = String()
@@ -446,14 +462,20 @@ public class TraktManager {
         request.HTTPBody = jsonData
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print("Error adding shows to history: \(error)")
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(success: false)
                 return
             }
             
             // A successful post request sends a 201 status code
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(success: false)
                 return
             }
             
@@ -463,7 +485,9 @@ public class TraktManager {
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
                 completion(success: false)
             }
             catch {
@@ -472,7 +496,14 @@ public class TraktManager {
         }?.resume()
     }
     
-    public func removeFromHistory(movies movies: Array<String>, shows: Array<String>, episodes: Array<String>, completion: successCompletionHandler) {
+    /// Removes items from a user's watch history including watches, scrobbles, and checkins.
+    /// Status Code: 200
+    ///
+    /// :param: array of movie objects
+    /// :param: array of show objects
+    /// :param: array of episode objects
+    /// :param: completion handler
+    public func removeFromHistory(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) {
         // JSON
         var jsonString = String()
         
@@ -498,14 +529,18 @@ public class TraktManager {
         request.HTTPBody = jsonData
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print("Error removing items from history: \(error)")
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
                 completion(success: false)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
                 completion(success: false)
                 return
             }
@@ -516,7 +551,9 @@ public class TraktManager {
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
                 completion(success: true)
             }
             catch {

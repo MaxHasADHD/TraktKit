@@ -12,20 +12,38 @@ extension TraktManager {
     
     // MARK: - Discovery
     
-    public func popularMovies(page page: Int, limit: Int, completion: ((movies: Array<Dictionary<String, AnyObject>>!) -> Void)) {
+    public func popularMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/movies/popular?page=\(page)&limit=\(limit)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(objects: nil, error: error)
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
+                return
+            }
+            
             do {
                 if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(movies: array)
+                    completion(objects: array, error: nil)
                 }
             }
-            catch let error as NSError {
-                print(error)
-                completion(movies: nil)
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
                 
@@ -33,21 +51,38 @@ extension TraktManager {
         }?.resume()
     }
     
-    public func trendingMovies(page page: Int, limit: Int, completion: ((movies: Array<Dictionary<String, AnyObject>>!) -> Void)) {
+    public func trendingMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/movies/trending?page=\(page)&limit=\(limit)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(objects: nil, error: error)
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
+                return
+            }
             
             do {
                 if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(movies: array)
+                    completion(objects: array, error: nil)
                 }
             }
-            catch let error as NSError {
-                print(error)
-                completion(movies: nil)
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
                 
@@ -57,20 +92,38 @@ extension TraktManager {
     
     // MARK: - Updates
     
-    public func updates(mediaType: watchedType, page: Int, limit: Int, startDate: String, completion: (media: Array<Dictionary<String, AnyObject>>!) -> Void) {
+    public func updates(mediaType: watchedType, page: Int, limit: Int, startDate: String, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/\(mediaType.rawValue)/updates/\(startDate)?page=\(page)&limit=\(limit)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(objects: nil, error: error)
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
+                return
+            }
+            
             do {
                 if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(media: array)
+                    completion(objects: array, error: nil)
                 }
             }
-            catch let error as NSError {
-                print(error)
-                completion(media: nil)
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
                 
@@ -80,30 +133,38 @@ extension TraktManager {
     
     // MARK: - Show summary
     
-    public func getMovieSummary(movieID: NSNumber, extended: extendedType = .Min, completion: (summary: Dictionary<String, AnyObject>!) -> ()) {
+    public func getMovieSummary(movieID: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/movies/\(movieID)?extended=\(extended.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(dictionary: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != 200 {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(dictionary: nil, error: nil)
                 return
             }
             
             do {
                 if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completion(summary: dictionary)
+                    completion(dictionary: dictionary, error: nil)
                 }
             }
-            catch let error as NSError {
-                print(error)
-                completion(summary: nil)
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(dictionary: nil, error: jsonSerializationError)
             }
             catch {
                 

@@ -23,14 +23,19 @@ extension TraktManager {
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
                 completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
                 return
             }
             
@@ -55,14 +60,19 @@ extension TraktManager {
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
                 completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
                 return
             }
             
@@ -87,14 +97,19 @@ extension TraktManager {
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
                 completion(dictionary: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(dictionary: nil, error: nil)
                 return
             }
             
@@ -118,30 +133,36 @@ extension TraktManager {
     /// :param: traktID ID of the Show
     ///
     /// :returns: Returns all top level comments for a show. Most recent comments returned first.
-    public func getShowComments(traktID: NSNumber, completion: ((comments: [[String: AnyObject]]?) -> Void)) {
+    public func getShowComments(traktID: NSNumber, completion: arrayCompletionHandler) {
         let URLString = "https://api-v2launch.trakt.tv/shows/\(traktID)/comments"
         let URL = NSURL(string: URLString)
         let request = mutableRequestForURL(URL!, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
                 return
             }
             
             do {
                 if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(comments: array)
+                    completion(objects: array, error: nil)
                 }
             }
             catch let jsonSerializationError as NSError {
                 print(jsonSerializationError)
-                completion(comments: nil)
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
                 
@@ -154,30 +175,36 @@ extension TraktManager {
     /// :param: traktID ID of the Show
     ///
     /// :returns: Returns rating (between 0 and 10) and distribution for a show.
-    public func getShowRatings(traktID: NSNumber, completion: ((ratings: [[String: AnyObject]]?) -> Void)) {
+    public func getShowRatings(traktID: NSNumber, completion: arrayCompletionHandler) {
         let URLString = "https://api-v2launch.trakt.tv/shows/\(traktID)/ratings"
         let URL = NSURL(string: URLString)
         let request = mutableRequestForURL(URL!, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
                 return
             }
             
             do {
                 if let results = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(ratings: results)
+                    completion(objects: results, error: nil)
                 }
             }
             catch let jsonSerializationError as NSError {
                 print(jsonSerializationError)
-                completion(ratings: nil)
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
                 
@@ -187,30 +214,38 @@ extension TraktManager {
     
     // MARK: - Seasons
     
-    public func getSeasons(showID: NSNumber, extended: extendedType = .Min, completion: (seasons: Array<Dictionary<String, AnyObject>>!) -> Void) {
+    public func getSeasons(showID: NSNumber, extended: extendedType = .Min, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/\(showID)/seasons?extended=\(extended.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print("ERROR!: \(error)")
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
                 return
             }
             
             do {
                 if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(seasons: array)
+                    completion(objects: array, error: nil)
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
-                completion(seasons: nil)
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
                 
@@ -218,31 +253,39 @@ extension TraktManager {
         }?.resume()
     }
     
-    public func getEpisodesForSeason(showID: NSNumber, seasonNumber: NSNumber, extended: extendedType = .Min, completion: (episodes: Array<Dictionary<String, AnyObject>>!) -> Void) {
+    public func getEpisodesForSeason(showID: NSNumber, seasonNumber: NSNumber, extended: extendedType = .Min, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/\(showID)/seasons/\(seasonNumber)?extended=\(extended.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print("ERROR!: \(error)")
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
                 return
             }
             
             do {
                 if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(episodes: array)
+                    completion(objects: array, error: nil)
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
-                completion(episodes: nil)
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
                 
@@ -258,14 +301,19 @@ extension TraktManager {
         let request = mutableRequestForURL(URL!, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
                 completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(objects: nil, error: nil)
                 return
             }
             
@@ -291,13 +339,17 @@ extension TraktManager {
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
-                print(error)
+                #if DEBUG
+                    print(error)
+                #endif
                 completion(dictionary: nil, error: error)
                 return
             }
             
             guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
-                print(response)
+                #if DEBUG
+                    print(response)
+                #endif
                 completion(dictionary: nil, error: nil)
                 return
             }
