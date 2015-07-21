@@ -146,7 +146,7 @@ public class TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Checkin
@@ -210,7 +210,7 @@ public class TraktManager {
                 print(response)
                 return
             }
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Comments
@@ -271,7 +271,7 @@ public class TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Search
@@ -310,7 +310,7 @@ public class TraktManager {
                 print("Something went wrong!")
             }
         
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Ratings
@@ -350,7 +350,7 @@ public class TraktManager {
             catch {
                 print("Something went wrong!")
             }
-        }?.resume()
+        }.resume()
     }
 
     // MARK: - Sync
@@ -388,7 +388,7 @@ public class TraktManager {
             catch {
                 print("Something went wrong!")
             }
-        }?.resume()
+        }.resume()
     }
     
     /// Returns all movies or shows a user has watched.
@@ -426,7 +426,7 @@ public class TraktManager {
             catch {
                 print("Something went wrong!")
             }
-        }?.resume()
+        }.resume()
     }
     
     /// Add items to a user's watch history.
@@ -493,7 +493,7 @@ public class TraktManager {
             catch {
                completion(success: false)
             }
-        }?.resume()
+        }.resume()
     }
     
     /// Removes items from a user's watch history including watches, scrobbles, and checkins.
@@ -559,6 +559,6 @@ public class TraktManager {
             catch {
                 completion(success: false)
             }
-        }?.resume()
+        }.resume()
     }
 }

@@ -48,12 +48,12 @@ class MLKeychain {
             kSecMatchLimitValue: kSecMatchLimitOneValue
         ]
         
-        var dataTypeRef :Unmanaged<AnyObject>?
+        var dataTypeRef: AnyObject?
         
-        let status: OSStatus = SecItemCopyMatching(keychainQuery as CFDictionaryRef, &dataTypeRef)
+        let status: OSStatus = withUnsafeMutablePointer(&dataTypeRef) { SecItemCopyMatching(keychainQuery as CFDictionaryRef, UnsafeMutablePointer($0)) }
         
         if status == noErr {
-            return (dataTypeRef!.takeRetainedValue() as! NSData)
+            return dataTypeRef as? NSData
         }
         else {
             return nil

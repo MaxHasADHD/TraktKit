@@ -48,7 +48,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     public func trendingMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) {
@@ -87,7 +87,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Updates
@@ -128,7 +128,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Show summary
@@ -169,6 +169,6 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
 }

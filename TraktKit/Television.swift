@@ -51,7 +51,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     public func trendingShows(page page: Int, limit: Int, completion: arrayCompletionHandler) {
@@ -88,7 +88,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     public func getShowSummary(traktID: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
@@ -125,7 +125,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     /// Grabs the comments for a Show
@@ -167,7 +167,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     /// Grabs the ratings for a Show
@@ -209,7 +209,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Seasons
@@ -250,7 +250,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     public func getEpisodesForSeason(showID: NSNumber, seasonNumber: NSNumber, extended: extendedType = .Min, completion: arrayCompletionHandler) {
@@ -290,7 +290,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     // MARK: - Episodes
@@ -329,7 +329,7 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
     
     public func getEpisodeRatings(traktID: NSNumber, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: dictionaryCompletionHandler) {
@@ -366,6 +366,6 @@ extension TraktManager {
             catch {
                 
             }
-        }?.resume()
+        }.resume()
     }
 }
