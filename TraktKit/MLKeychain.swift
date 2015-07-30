@@ -32,10 +32,6 @@ public class MLKeychain {
         
         SecItemDelete(keychainQuery as CFDictionaryRef)
         
-        if value == "" {
-            
-        }
-        
         let status: OSStatus = SecItemAdd(keychainQuery as CFDictionaryRef, nil)
         return status == noErr
     }

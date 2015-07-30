@@ -89,7 +89,8 @@ public class TraktManager {
             }
             else {
                 // Save to keychain
-                MLKeychain.setString(newValue!, forKey: "accessToken")
+                let succeeded = MLKeychain.setString(newValue!, forKey: "accessToken")
+                print("Saved access token: \(succeeded)")
             }
         }
     }
@@ -131,6 +132,10 @@ public class TraktManager {
         request.HTTPBody = httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                return
+            }
+            
             do {
                 if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     // TODO: Store the expire date
@@ -138,6 +143,7 @@ public class TraktManager {
 //                    let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                     
                     self.accessToken = dictionary["access_token"] as? String
+                    print(self.accessToken)
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                         NSNotificationCenter.defaultCenter().postNotificationName("signedInToTrakt", object: nil)
                     })
