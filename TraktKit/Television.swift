@@ -170,9 +170,51 @@ extension TraktManager {
         }.resume()
     }
     
+    /// Gets show watched progress
+    ///
+    /// :param: Trakt show ID
+    ///
+    /// :returns: Returns dictionary with progress results
+    public func getShowProgress(traktID: NSNumber, completion: dictionaryCompletionHandler) {
+        let urlString = "https://api-v2launch.trakt.tv/shows/\(traktID)/progress/watched?hidden=false&specials=false"
+        let url = NSURL(string: urlString)
+        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+        
+        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(dictionary: nil, error: error)
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(dictionary: nil, error: nil)
+                return
+            }
+            
+            do {
+                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                    completion(dictionary: dictionary, error: nil)
+                }
+            }
+            catch let jsonSerializationError as NSError {
+                print(jsonSerializationError)
+                completion(dictionary: nil, error: jsonSerializationError)
+            }
+            catch {
+                
+            }
+        }.resume()
+    }
+    
     /// Grabs the ratings for a Show
     ///
-    /// :param: traktID ID of the Show
+    /// :param: Trakt show ID
     ///
     /// :returns: Returns rating (between 0 and 10) and distribution for a show.
     public func getShowRatings(traktID: NSNumber, completion: arrayCompletionHandler) {
@@ -218,6 +260,7 @@ extension TraktManager {
         let urlString = "https://api-v2launch.trakt.tv/shows/\(showID)/seasons?extended=\(extended.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
