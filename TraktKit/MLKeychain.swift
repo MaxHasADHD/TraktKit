@@ -48,6 +48,10 @@ public class MLKeychain {
         
         let status: OSStatus = withUnsafeMutablePointer(&dataTypeRef) { SecItemCopyMatching(keychainQuery as CFDictionaryRef, UnsafeMutablePointer($0)) }
         
+        if status == -34018 {
+            return dataTypeRef as? NSData
+        }
+        
         if status == noErr {
             return dataTypeRef as? NSData
         }
