@@ -59,6 +59,12 @@ public class TraktManager {
     let clientID = "XXXXX"
     let clientSecret = "YYYYY"
     let callbackURL = "ZZZZZ"
+    
+    // Keys
+    let accessTokenKey = "accessToken"
+    let refreshTokenKey = "refreshToken"
+    
+    // Lazy
     lazy var session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     
     // MARK: Public
@@ -70,11 +76,37 @@ public class TraktManager {
         }
     }
     public let oauthURL: NSURL?
-    // Move to app code, make it a delegate
+    
+    // TODO: Move to app code so this framework can be public
     public var accessToken: String? {
         get {
-            if let accessTokenData = MLKeychain.loadData(forKey: "accessToken") {
+            if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
                 if let accessTokenString = NSString(data: accessTokenData, encoding: NSUTF8StringEncoding) as? String {
+                    return accessTokenString
+                }
+            }
+            
+            return nil
+        }
+        set {
+            // Save somewhere secure
+            
+            if newValue == nil {
+                // Remove from keychain
+                MLKeychain.deleteItem(forKey: accessTokenKey)
+            }
+            else {
+                // Save to keychain
+                let succeeded = MLKeychain.setString(newValue!, forKey: accessTokenKey)
+                print("Saved access token: \(succeeded)")
+            }
+        }
+    }
+    
+    public var refreshToken: String? {
+        get {
+            if let refreshTokenData = MLKeychain.loadData(forKey: refreshTokenKey) {
+                if let accessTokenString = NSString(data: refreshTokenData, encoding: NSUTF8StringEncoding) as? String {
                     return accessTokenString
                 }
             }
@@ -85,12 +117,12 @@ public class TraktManager {
             // Save somewhere secure
             if newValue == nil {
                 // Remove from keychain
-                MLKeychain.deleteItem(forKey: "accessToken")
+                MLKeychain.deleteItem(forKey: refreshTokenKey)
             }
             else {
                 // Save to keychain
-                let succeeded = MLKeychain.setString(newValue!, forKey: "accessToken")
-                print("Saved access token: \(succeeded)")
+                let succeeded = MLKeychain.setString(newValue!, forKey: refreshTokenKey)
+                print("Saved refresh token: \(succeeded)")
             }
         }
     }
@@ -122,9 +154,9 @@ public class TraktManager {
         return request
     }
     
-    // MARK: Authentication
+    // MARK: - Authentication
     
-    public func getTokenFromAuthorizationCode(code: String) {
+    public func getTokenFromAuthorizationCode(code: String, completionHandler: successCompletionHandler) {
         let urlString = "https://trakt.tv/oauth/token"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "POST")
@@ -133,24 +165,164 @@ public class TraktManager {
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                
+                completionHandler(success: false)
+                
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(response)")
+                #endif
+                completionHandler(success: false)
                 return
             }
             
             do {
-                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    // TODO: Store the expire date
-//                    let timeInterval = dictionary["expires_in"] as! NSNumber
-//                    let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
+                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     
-                    self.accessToken = dictionary["access_token"] as? String
-                    print(self.accessToken)
+                    #if DEBUG
+                        print(accessTokenDict)
+                    #endif
+                    
+                    self.accessToken = accessTokenDict["access_token"] as? String
+                    self.refreshToken = accessTokenDict["refresh_token"] as? String
+                    
+                    #if DEBUG
+                        print("[\(__FUNCTION__)] Access token is \(self.accessToken)")
+                        print("[\(__FUNCTION__)] Refresh token is \(self.refreshToken)")
+                    #endif
+                    
+                    // Save expiration date
+                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
+                    let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
+                    
+                    NSUserDefaults.standardUserDefaults().setObject(expiresDate, forKey: "accessTokenExpirationDate")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                    
+                    // Post notification
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                         NSNotificationCenter.defaultCenter().postNotificationName("signedInToTrakt", object: nil)
                     })
+                    
+                    completionHandler(success: true)
                 }
             }
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                #endif
+                completionHandler(success: false)
+            }
             catch {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
+                completionHandler(success: false)
+            }
+        }.resume()
+    }
+    
+    // MARK: Refresh access token
+    
+    public func needToRefresh() -> Bool {
+        if let expirationDate = NSUserDefaults.standardUserDefaults().objectForKey("accessTokenExpirationDate") as? NSDate {
+            let today = NSDate()
+            
+            if today.compare(expirationDate) == .OrderedDescending ||
+                today.compare(expirationDate) == .OrderedSame {
+                    return true
+            }
+            else {
+                return false
+            }
+        }
+        
+        return false
+    }
+    
+    public func checkToRefresh() {
+        if let expirationDate = NSUserDefaults.standardUserDefaults().objectForKey("accessTokenExpirationDate") as? NSDate {
+            let today = NSDate()
+            
+            if today.compare(expirationDate) == .OrderedDescending ||
+                today.compare(expirationDate) == .OrderedSame {
+                    print("REFRESH!")
+                    self.getAccessTokenFromRefreshToken()
+            }
+            else {
+                print("[\(__FUNCTION__)] We're good!")
+            }
+        }
+    }
+    
+    public func getAccessTokenFromRefreshToken() {
+        guard let rToken = refreshToken else {
+            #if DEBUG
+                print("[\(__FUNCTION__)] Refresh token is nil")
+            #endif
+            return
+        }
+        
+        let urlString = "https://trakt.tv/oauth/token"
+        let url = NSURL(string: urlString)
+        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "POST")
+        let httpBodyString = "{\"refresh_token\": \"\(rToken)\", \"client_id\": \"\(clientID)\", \"client_secret\": \"\(clientSecret)\", \"redirect_uri\": \"\(callbackURL)\", \"grant_type\": \"refresh_token\" }"
+        request.HTTPBody = httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(response)")
+                #endif
                 
+                return
+            }
+            
+            do {
+                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                    
+                    print(accessTokenDict)
+                    
+                    self.accessToken = accessTokenDict["access_token"] as? String
+                    self.refreshToken = accessTokenDict["refresh_token"] as? String
+                    
+                    print("[\(__FUNCTION__)] Access token is \(self.accessToken)")
+                    print("[\(__FUNCTION__)] Refresh token is \(self.refreshToken)")
+                    
+                    // Save expiration date
+                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
+                    let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
+                    
+                    NSUserDefaults.standardUserDefaults().setObject(expiresDate, forKey: "accessTokenExpirationDate")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                    
+                    // Post notification
+//                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                        NSNotificationCenter.defaultCenter().postNotificationName("signedInToTrakt", object: nil)
+//                    })
+                }
+            }
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                #endif
+            }
+            catch {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
             }
         }.resume()
     }
@@ -253,29 +425,34 @@ public class TraktManager {
         request.HTTPBody = jsonData
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated.rawValue else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(response)")
+                #endif
                 return
             }
             
             do {
                 if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    if let error = error {
-                        print(error)
-//                        completion(results: nil)
-                    }
-                    else {
-//                        completion(results: array)
-                    }
+                    
                 }
             }
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                #endif
+            }
             catch {
-                
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
             }
         }.resume()
     }
@@ -293,14 +470,20 @@ public class TraktManager {
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                
                 completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else  {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(response)")
+                #endif
+                
                 return
             }
             
@@ -309,11 +492,16 @@ public class TraktManager {
                     completion(objects: array, error: nil)
                 }
             }
-            catch let caught as NSError {
-                completion(objects: nil, error: caught)
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
             }
             catch {
-                print("Something went wrong!")
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
             }
         
         }.resume()
@@ -333,14 +521,20 @@ public class TraktManager {
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                
                 completion(dictionary: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error)")
+                #endif
+                
                 return
             }
             
@@ -350,11 +544,15 @@ public class TraktManager {
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                #endif
                 completion(dictionary: nil, error: jsonSerializationError)
             }
             catch {
-                print("Something went wrong!")
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
             }
         }.resume()
     }
@@ -371,14 +569,20 @@ public class TraktManager {
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print("Error getting users last activities: \(error)")
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                
                 completion(dictionary: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(response)")
+                #endif
+                
                 return
             }
             
@@ -388,11 +592,15 @@ public class TraktManager {
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
                 completion(dictionary: nil, error: jsonSerializationError)
             }
             catch {
-                print("Something went wrong!")
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
             }
         }.resume()
     }
@@ -408,14 +616,19 @@ public class TraktManager {
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print("Error getting users watched shows: \(error)")
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
                 completion(objects: nil, error: error)
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.success.rawValue {
-                print(response)
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(response)")
+                #endif
+                
                 completion(objects: [], error: nil)
                 return
             }
@@ -426,11 +639,15 @@ public class TraktManager {
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
                 completion(objects: nil, error: jsonSerializationError)
             }
             catch {
-                print("Something went wrong!")
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
             }
         }.resume()
     }
@@ -470,7 +687,7 @@ public class TraktManager {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print(error)
+                    print("[\(__FUNCTION__)] \(error!)")
                 #endif
                 completion(success: false)
                 return
@@ -497,7 +714,10 @@ public class TraktManager {
                 completion(success: false)
             }
             catch {
-               completion(success: false)
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
+                completion(success: false)
             }
         }.resume()
     }
@@ -537,7 +757,7 @@ public class TraktManager {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print(error)
+                    print("[\(__FUNCTION__)] \(error!)")
                 #endif
                 completion(success: false)
                 return
@@ -563,6 +783,10 @@ public class TraktManager {
                 completion(success: true)
             }
             catch {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
+                
                 completion(success: false)
             }
         }.resume()
