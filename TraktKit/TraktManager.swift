@@ -32,7 +32,7 @@ public enum extendedType: String {
     case Episodes = "episodes" // For getting all seasons and episodes
     case FullAndEpisodes = "full,episodes"
 }
-
+// TODO: Make a struct
 public enum statusCodes: Int {
     case success = 200
     case successNewResourceCreated = 201
