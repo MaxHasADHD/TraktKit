@@ -26,7 +26,7 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -65,7 +65,7 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -106,7 +106,7 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -147,7 +147,7 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif

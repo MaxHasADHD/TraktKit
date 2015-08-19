@@ -32,25 +32,25 @@ public enum extendedType: String {
     case Episodes = "episodes" // For getting all seasons and episodes
     case FullAndEpisodes = "full,episodes"
 }
-// TODO: Make a struct
-public enum statusCodes: Int {
-    case success = 200
-    case successNewResourceCreated = 201
-    case successNoContentToReturn = 204
-    case badRequestion = 400
-    case unauthorized = 401
-    case forbidden = 403
-    case notFound = 404
-    case methodNotFound = 405
-    case conflict = 409
-    case preconditionFailed = 412
-    case unprocessableEntity = 422
-    case rateLimitExceeded = 429
-    case serverError = 500
-    case serviceOverloaded = 503
-    case cloudflareError = 520
-    case cloudflareError2 = 521
-    case cloudflareError3 = 522
+
+public struct statusCodes {
+    public static let success = 200
+    public static let successNewResourceCreated = 201
+    public static let successNoContentToReturn = 204
+    public static let badRequestion = 400
+    public static let unauthorized = 401
+    public static let forbidden = 403
+    public static let notFound = 404
+    public static let methodNotFound = 405
+    public static let conflict = 409
+    public static let preconditionFailed = 412
+    public static let unprocessableEntity = 422
+    public static let rateLimitExceeded = 429
+    public static let serverError = 500
+    public static let serviceOverloaded = 503
+    public static let cloudflareError = 520
+    public static let cloudflareError2 = 521
+    public static let cloudflareError3 = 522
 }
 
 public class TraktManager {
@@ -174,7 +174,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -282,7 +282,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -384,7 +384,7 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated.rawValue {
+            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated {
                 print(response)
                 return
             }
@@ -432,7 +432,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -479,7 +479,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else  {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else  {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -530,7 +530,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(error)")
                 #endif
@@ -578,7 +578,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -624,7 +624,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -694,7 +694,7 @@ public class TraktManager {
             }
             
             // A successful post request sends a 201 status code
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -763,7 +763,7 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success.rawValue else {
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
