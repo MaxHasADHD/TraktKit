@@ -665,13 +665,13 @@ public class TraktManager {
         
         jsonString += "{" // Beginning
         jsonString += "\"movies\": [" // Begin Movies
-        jsonString += ",".join(movies) // Add Movies
+        jsonString += movies.joinWithSeparator(",") // Add Movies
         jsonString += "]," // End Movies
         jsonString += "\"shows\": [" // Begin Shows
-        jsonString += ",".join(shows) // Add Shows
+        jsonString += shows.joinWithSeparator(",") // Add Shows
         jsonString += "]," // End Shows
         jsonString += "\"episodes\": [" // Begin Episodes
-        jsonString += ",".join(episodes) // Add Episodes
+        jsonString += episodes.joinWithSeparator(",") // Add Episodes
         jsonString += "]" // End Episodes
         jsonString += "}" // End
         
@@ -735,13 +735,13 @@ public class TraktManager {
         
         jsonString += "{" // Beginning
         jsonString += "\"movies\": [" // Begin Movies
-        jsonString += ",".join(movies) // Add Movies
+        jsonString += movies.joinWithSeparator(",") // Add Movies
         jsonString += "]," // End Movies
         jsonString += "\"shows\": [" // Begin Shows
-        jsonString += ",".join(shows) // Add Shows
+        jsonString += shows.joinWithSeparator(",") // Add Shows
         jsonString += "]," // End Shows
         jsonString += "\"episodes\": [" // Begin Episodes
-        jsonString += ",".join(episodes) // Add Episodes
+        jsonString += episodes.joinWithSeparator(",") // Add Episodes
         jsonString += "]" // End Episodes
         jsonString += "}" // End
         
