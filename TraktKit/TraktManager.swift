@@ -675,7 +675,9 @@ public class TraktManager {
         jsonString += "]" // End Episodes
         jsonString += "}" // End
         
-        print(jsonString)
+        #if DEBUG
+            print(jsonString)
+        #endif
         let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Request
