@@ -178,7 +178,7 @@ extension TraktManager {
     public func getShowProgress(traktID: NSNumber, completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/shows/\(traktID)/progress/watched?hidden=false&specials=false"
         let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+        let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
