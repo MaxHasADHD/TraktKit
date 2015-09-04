@@ -155,7 +155,7 @@ public class TraktManager {
     
     // MARK: - Authentication
     
-    public func getTokenFromAuthorizationCode(code: String, completionHandler: successCompletionHandler) {
+    public func getTokenFromAuthorizationCode(code: String, completionHandler: successCompletionHandler?) {
         let urlString = "https://trakt.tv/oauth/token"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "POST")
@@ -168,7 +168,7 @@ public class TraktManager {
                     print("[\(__FUNCTION__)] \(error!)")
                 #endif
                 
-                completionHandler(success: false)
+                completionHandler?(success: false)
                 
                 return
             }
@@ -177,7 +177,7 @@ public class TraktManager {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
-                completionHandler(success: false)
+                completionHandler?(success: false)
                 return
             }
             
@@ -208,20 +208,20 @@ public class TraktManager {
                         NSNotificationCenter.defaultCenter().postNotificationName("signedInToTrakt", object: nil)
                     })
                     
-                    completionHandler(success: true)
+                    completionHandler?(success: true)
                 }
             }
             catch let jsonSerializationError as NSError {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(jsonSerializationError)")
                 #endif
-                completionHandler(success: false)
+                completionHandler?(success: false)
             }
             catch {
                 #if DEBUG
                     print("[\(__FUNCTION__)] Catched something")
                 #endif
-                completionHandler(success: false)
+                completionHandler?(success: false)
             }
         }.resume()
     }
