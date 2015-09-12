@@ -18,7 +18,7 @@ extension TraktManager {
     ///
     /// :returns: Returns popular shows on Trakt.tv
     public func popularShows(page page: Int, limit: Int, completion: arrayCompletionHandler) {
-        let urlString = "https://api-v2launch.trakt.tv/shows/popular?page=\(page)&limit=\(limit)"
+        let urlString = "https://api-v2launch.trakt.tv/shows/popular?page=\(page)&limit=\(limit)&extended=full,images"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
@@ -55,7 +55,7 @@ extension TraktManager {
     }
     
     public func trendingShows(page page: Int, limit: Int, completion: arrayCompletionHandler) {
-        let urlString = "https://api-v2launch.trakt.tv/shows/trending?page=\(page)&limit=\(limit)"
+        let urlString = "https://api-v2launch.trakt.tv/shows/trending?page=\(page)&limit=\(limit)&extended=full,images"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
