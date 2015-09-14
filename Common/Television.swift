@@ -21,6 +21,7 @@ extension TraktManager {
         let urlString = "https://api-v2launch.trakt.tv/shows/popular?page=\(page)&limit=\(limit)&extended=full,images"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -58,6 +59,7 @@ extension TraktManager {
         let urlString = "https://api-v2launch.trakt.tv/shows/trending?page=\(page)&limit=\(limit)&extended=full,images"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
