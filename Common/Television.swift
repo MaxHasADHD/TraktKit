@@ -55,13 +55,13 @@ extension TraktManager {
         }.resume()
     }
     
-    public func trendingShows(page page: Int, limit: Int, completion: arrayCompletionHandler) {
+    public func trendingShows(page page: Int, limit: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask {
         let urlString = "https://api-v2launch.trakt.tv/shows/trending?page=\(page)&limit=\(limit)&extended=full,images"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
                     print(error)
@@ -87,10 +87,10 @@ extension TraktManager {
                 print(jsonSerializationError)
                 completion(objects: nil, error: jsonSerializationError)
             }
-            catch {
-                
-            }
-        }.resume()
+        }
+        
+        dataTask.resume()
+        return dataTask
     }
     
     public func getShowSummary(traktID: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {

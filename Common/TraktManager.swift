@@ -477,12 +477,12 @@ public class TraktManager {
     ///
     /// :param: query The string to search by
     /// :param: type The type of search
-    public func search(query: String, type: searchType, completion: arrayCompletionHandler) {
+    public func search(query: String, type: searchType, completion: arrayCompletionHandler) -> NSURLSessionDataTask {
         let urlString = "https://api-v2launch.trakt.tv/search?query=\(query)&type=\(type.rawValue)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(error!)")
@@ -516,8 +516,10 @@ public class TraktManager {
                     print("[\(__FUNCTION__)] Catched something")
                 #endif
             }
+        }
         
-        }.resume()
+        dataTask.resume()
+        return dataTask
     }
     
     // MARK: - Ratings
