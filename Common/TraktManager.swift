@@ -55,9 +55,9 @@ public struct statusCodes {
 public class TraktManager {
     
     // MARK: Internal
-    let clientID = "XXXXX"
-    let clientSecret = "YYYYY"
-    let callbackURL = "ZZZZZ"
+    private var clientID: String?
+    private var clientSecret: String?
+    private var redirectURI: String?
     
     // Keys
     let accessTokenKey = "accessToken"
@@ -97,7 +97,9 @@ public class TraktManager {
             else {
                 // Save to keychain
                 let succeeded = MLKeychain.setString(newValue!, forKey: accessTokenKey)
-                print("Saved access token: \(succeeded)")
+                #if DEBUG
+                    print("Saved access token: \(succeeded)")
+                #endif
             }
         }
     }
@@ -121,7 +123,9 @@ public class TraktManager {
             else {
                 // Save to keychain
                 let succeeded = MLKeychain.setString(newValue!, forKey: refreshTokenKey)
-                print("Saved refresh token: \(succeeded)")
+                #if DEBUG
+                    print("Saved refresh token: \(succeeded)")
+                #endif
             }
         }
     }
@@ -134,7 +138,20 @@ public class TraktManager {
     // MARK: - Lifecycle
     
     private init() {
-        oauthURL = NSURL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(callbackURL)")
+        #if DEBUG
+            assert(clientID == nil, "Client ID needs to be set")
+            assert(clientSecret == nil, "Client secret needs to be set")
+            assert(redirectURI == nil, "Redirect URI needs to be set")
+        #endif
+        oauthURL = NSURL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
+    }
+    
+    // MARK: - Setup
+    
+    public func setClientID(clientID: String, clientSecret secret: String, redirectURI: String) {
+        self.clientID = clientID
+        self.clientSecret = secret
+        self.redirectURI = redirectURI
     }
     
     // MARK: - Actions
@@ -145,7 +162,9 @@ public class TraktManager {
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
+        if let clientID = clientID {
+            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
+        }
         if authorization {
             request.addValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
         }
@@ -156,10 +175,17 @@ public class TraktManager {
     // MARK: - Authentication
     
     public func getTokenFromAuthorizationCode(code: String, completionHandler: successCompletionHandler?) {
+        guard let clientID = clientID,
+            clientSecret = clientSecret,
+            redirectURI = redirectURI else {
+                completionHandler?(success: false)
+                return
+        }
+        
         let urlString = "https://trakt.tv/oauth/token"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "POST")
-        let httpBodyString = "{\"code\": \"\(code)\", \"client_id\": \"\(clientID)\", \"client_secret\": \"\(clientSecret)\", \"redirect_uri\": \"\(callbackURL)\", \"grant_type\": \"authorization_code\" }"
+        let httpBodyString = "{\"code\": \"\(code)\", \"client_id\": \"\(clientID)\", \"client_secret\": \"\(clientSecret)\", \"redirect_uri\": \"\(redirectURI)\", \"grant_type\": \"authorization_code\" }"
         request.HTTPBody = httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
@@ -183,10 +209,6 @@ public class TraktManager {
             
             do {
                 if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    
-                    #if DEBUG
-                        print(accessTokenDict)
-                    #endif
                     
                     self.accessToken = accessTokenDict["access_token"] as? String
                     self.refreshToken = accessTokenDict["refresh_token"] as? String
@@ -214,12 +236,6 @@ public class TraktManager {
             catch let jsonSerializationError as NSError {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-                completionHandler?(success: false)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
                 #endif
                 completionHandler?(success: false)
             }
@@ -264,6 +280,12 @@ public class TraktManager {
     }
     
     public func getAccessTokenFromRefreshToken() {
+        guard let clientID = clientID,
+            clientSecret = clientSecret,
+            redirectURI = redirectURI else {
+                return
+        }
+        
         guard let rToken = refreshToken else {
             #if DEBUG
                 print("[\(__FUNCTION__)] Refresh token is nil")
@@ -274,7 +296,7 @@ public class TraktManager {
         let urlString = "https://trakt.tv/oauth/token"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "POST")
-        let httpBodyString = "{\"refresh_token\": \"\(rToken)\", \"client_id\": \"\(clientID)\", \"client_secret\": \"\(clientSecret)\", \"redirect_uri\": \"\(callbackURL)\", \"grant_type\": \"refresh_token\" }"
+        let httpBodyString = "{\"refresh_token\": \"\(rToken)\", \"client_id\": \"\(clientID)\", \"client_secret\": \"\(clientSecret)\", \"redirect_uri\": \"\(redirectURI)\", \"grant_type\": \"refresh_token\" }"
         request.HTTPBody = httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
@@ -301,8 +323,10 @@ public class TraktManager {
                     self.accessToken = accessTokenDict["access_token"] as? String
                     self.refreshToken = accessTokenDict["refresh_token"] as? String
                     
-                    print("[\(__FUNCTION__)] Access token is \(self.accessToken)")
-                    print("[\(__FUNCTION__)] Refresh token is \(self.refreshToken)")
+                    #if DEBUG
+                        print("[\(__FUNCTION__)] Access token is \(self.accessToken)")
+                        print("[\(__FUNCTION__)] Refresh token is \(self.refreshToken)")
+                    #endif
                     
                     // Save expiration date
                     let timeInterval = accessTokenDict["expires_in"] as! NSNumber
@@ -320,11 +344,6 @@ public class TraktManager {
             catch let jsonSerializationError as NSError {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
                 #endif
             }
         }.resume()
