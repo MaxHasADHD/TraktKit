@@ -13,9 +13,9 @@ extension TraktManager {
     // MARK: - Discovery
     
     public func popularMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) {
-        let urlString = "https://api-v2launch.trakt.tv/movies/popular?page=\(page)&limit=\(limit)"
+        let urlString = "https://api-v2launch.trakt.tv/movies/popular?page=\(page)&limit=\(limit)&extended=full,images"
         let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
+        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -51,12 +51,12 @@ extension TraktManager {
         }.resume()
     }
     
-    public func trendingMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) {
-        let urlString = "https://api-v2launch.trakt.tv/movies/trending?page=\(page)&limit=\(limit)"
+    public func trendingMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask {
+        let urlString = "https://api-v2launch.trakt.tv/movies/trending?page=\(page)&limit=\(limit)&extended=full,images"
         let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
+        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
                     print(error)
@@ -84,10 +84,11 @@ extension TraktManager {
                 #endif
                 completion(objects: nil, error: jsonSerializationError)
             }
-            catch {
-                
-            }
-        }.resume()
+        }
+        
+        dataTask.resume()
+        
+        return dataTask
     }
     
     // MARK: - Updates

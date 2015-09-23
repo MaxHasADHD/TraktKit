@@ -74,7 +74,7 @@ public class TraktManager {
             return accessToken != nil
         }
     }
-    public let oauthURL: NSURL?
+    public var oauthURL: NSURL?
     
     // TODO: Move to app code so this framework can be public
     public var accessToken: String? {
@@ -143,7 +143,7 @@ public class TraktManager {
             assert(clientSecret == nil, "Client secret needs to be set")
             assert(redirectURI == nil, "Redirect URI needs to be set")
         #endif
-        oauthURL = NSURL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
+        
     }
     
     // MARK: - Setup
@@ -152,6 +152,8 @@ public class TraktManager {
         self.clientID = clientID
         self.clientSecret = secret
         self.redirectURI = redirectURI
+        
+        self.oauthURL = NSURL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
     }
     
     // MARK: - Actions
