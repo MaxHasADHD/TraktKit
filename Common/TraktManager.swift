@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum searchType: String {
+public enum SearchType: String {
     case Movie = "movie"
     case Show = "show"
     case Episode = "episode"
@@ -16,7 +16,17 @@ public enum searchType: String {
     case List = "list"
 }
 
-public enum watchedType: String {
+public enum LookupType: String {
+    case TraktMovie = "trakt-movie"
+    case TraktShow = "trakt-show"
+    case TraktEpisode = "trakt-episode"
+    case IMDB = "imdb"
+    case TMDB = "tmdb"
+    case TVDB = "tvdb"
+    case TVRage = "tvrage"
+}
+
+public enum WatchedType: String {
     case Movies = "movies"
     case Shows = "shows"
     case Episodes = "episodes"
@@ -498,8 +508,11 @@ public class TraktManager {
     ///
     /// :param: query The string to search by
     /// :param: type The type of search
-    public func search(query: String, type: searchType, completion: arrayCompletionHandler) -> NSURLSessionDataTask {
-        let urlString = "https://api-v2launch.trakt.tv/search?query=\(query)&type=\(type.rawValue)"
+    public func search(query: String, types: [SearchType], completion: arrayCompletionHandler) -> NSURLSessionDataTask {
+        
+        let typesString = types.map { $0.rawValue }.joinWithSeparator(",")
+        
+        let urlString = "https://api-v2launch.trakt.tv/search?query=\(query)&type=\(typesString)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
         
@@ -543,6 +556,54 @@ public class TraktManager {
         return dataTask
     }
     
+    /// Lookup an item by using a trakt ID or other external ID. This is helpful to get an items info including the trakt ID.
+    /// Status Code: 200
+    public func lookup(id: String, idType: LookupType, completion: arrayCompletionHandler) -> NSURLSessionTask {
+        
+        let urlString = "https://api-v2launch.trakt.tv/search?id_type=\(idType.rawValue)&id=\(id)"
+        let url = NSURL(string: urlString)
+        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+
+        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                
+                completion(objects: nil, error: error)
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else  {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(response)")
+                #endif
+                completion(objects: nil, error: nil)
+                return
+            }
+            
+            do {
+                if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
+                    completion(objects: array, error: nil)
+                }
+            }
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
+            }
+            catch {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Catched something")
+                #endif
+            }
+        }
+        
+        dataTask.resume()
+        return dataTask
+    }
+    
     // MARK: - Ratings
     
     /// Returns rating (between 0 and 10) and distribution for a movie / show / episode.
@@ -551,7 +612,7 @@ public class TraktManager {
     /// :param: which type of content to receive
     /// :param: trakt ID for movie / show / episode
     /// :param: completion handler
-    public func getRatings(type: watchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
+    public func getRatings(type: WatchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/movies/\(id)/ratings"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
@@ -646,7 +707,7 @@ public class TraktManager {
     ///
     /// :param: which type of content to receive
     /// :param: completion handler
-    public func getWatched(type: watchedType, completion: arrayCompletionHandler) {
+    public func getWatched(type: WatchedType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/watched/\(type.rawValue)"
 //        let urlString = "https://api-v2launch.trakt.tv/users/alexalt/watched/shows?extended=full" // Use this to test show sync with
         let url = NSURL(string: urlString)

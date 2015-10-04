@@ -93,7 +93,7 @@ extension TraktManager {
     
     // MARK: - Updates
     
-    public func updates(mediaType: watchedType, page: Int, limit: Int, startDate: String, completion: arrayCompletionHandler) {
+    public func updates(mediaType: WatchedType, page: Int, limit: Int, startDate: String, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/\(mediaType.rawValue)/updates/\(startDate)?page=\(page)&limit=\(limit)"
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
@@ -132,7 +132,7 @@ extension TraktManager {
         }.resume()
     }
     
-    // MARK: - Show summary
+    // MARK: - Movie Information
     
     public func getMovieSummary(movieID: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/movies/\(movieID)?extended=\(extended.rawValue)"
@@ -167,9 +167,46 @@ extension TraktManager {
                 #endif
                 completion(dictionary: nil, error: jsonSerializationError)
             }
-            catch {
-                
-            }
         }.resume()
+    }
+    
+    public func getPeopleForMovie(movieID: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask {
+        let urlString = "https://api-v2launch.trakt.tv/movies/\(movieID)/people?extended=\(extended.rawValue)"
+        let url = NSURL(string: urlString)
+        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+        
+        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print(error)
+                #endif
+                completion(dictionary: nil, error: error)
+                return
+            }
+            
+            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+                #if DEBUG
+                    print(response)
+                #endif
+                completion(dictionary: nil, error: nil)
+                return
+            }
+            
+            do {
+                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                    completion(dictionary: dictionary, error: nil)
+                }
+            }
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(dictionary: nil, error: jsonSerializationError)
+            }
+        }
+        
+        dataTask.resume()
+        
+        return dataTask
     }
 }
