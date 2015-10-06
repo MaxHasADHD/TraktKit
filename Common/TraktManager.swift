@@ -8,6 +8,17 @@
 
 import Foundation
 
+// Errors
+internal let userInfo = [
+    "title": "Trakt",
+    NSLocalizedDescriptionKey: "No data returned",
+    NSLocalizedFailureReasonErrorKey: "",
+    NSLocalizedRecoverySuggestionErrorKey: ""
+]
+let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit", code: -10, userInfo: userInfo)
+
+// Enums
+
 public enum SearchType: String {
     case Movie = "movie"
     case Show = "show"
@@ -166,6 +177,18 @@ public class TraktManager {
         self.oauthURL = NSURL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
     }
     
+    internal func createTraktErrorWithStatusCode(statusCode: Int) -> NSError {
+        let userInfo = [
+            "title": "Trakt",
+            NSLocalizedDescriptionKey: "",
+            NSLocalizedFailureReasonErrorKey: "",
+            NSLocalizedRecoverySuggestionErrorKey: ""
+        ]
+        let TraktKitIncorrectStatusError = NSError(domain: "com.litteral.TraktKit", code: -1400, userInfo: userInfo)
+        
+        return TraktKitIncorrectStatusError
+    }
+    
     // MARK: - Actions
     
     public func mutableRequestForURL(URL: NSURL?, authorization: Bool, HTTPMethod: String) -> NSMutableURLRequest {
@@ -211,7 +234,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -219,8 +244,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completionHandler?(success: false)
+                return
+            }
+            
             do {
-                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     
                     self.accessToken = accessTokenDict["access_token"] as? String
                     self.refreshToken = accessTokenDict["refresh_token"] as? String
@@ -319,7 +350,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -327,8 +360,11 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else { return }
+            
             do {
-                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     
                     print(accessTokenDict)
                     
@@ -418,7 +454,8 @@ public class TraktManager {
                 return
             }
             
-            if (response as! NSHTTPURLResponse).statusCode != statusCodes.successNewResourceCreated {
+            if let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode != statusCodes.successNewResourceCreated {
                 print(response)
                 return
             }
@@ -473,7 +510,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated else {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.successNewResourceCreated else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -481,8 +520,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completionHandler(success: false)
+                return
+            }
+            
             do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     completionHandler(success: true)
                 }
             }
@@ -526,16 +571,31 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else  {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(response)")
-                #endif
-                
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else  {
+                    #if DEBUG
+                        print("[\(__FUNCTION__)] \(response)")
+                    #endif
+                    
+                    if let HTTPResponse = response as? NSHTTPURLResponse {
+                        completion(objects: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
+                    }
+                    else {
+                        completion(objects: nil, error: nil)
+                    }
+
+                    return
+            }
+            
+            // Check data
+            guard let data = data else {
+                completion(objects: nil, error: TraktKitNoDataError)
                 return
             }
             
             do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
+                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
                     completion(objects: array, error: nil)
                 }
             }
@@ -574,7 +634,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else  {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else  {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -582,8 +644,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completion(objects: nil, error: TraktKitNoDataError)
+                return
+            }
+            
             do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
+                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
                     completion(objects: array, error: nil)
                 }
             }
@@ -627,7 +695,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(error)")
                 #endif
@@ -635,8 +705,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completion(dictionary: nil, error: TraktKitNoDataError)
+                return
+            }
+            
             do {
-                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     completion(dictionary: dictionary, error: nil)
                 }
             }
@@ -675,7 +751,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -683,8 +761,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completion(dictionary: nil, error: TraktKitNoDataError)
+                return
+            }
+            
             do {
-                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                    completion(dictionary: dictionary, error: nil)
                 }
             }
@@ -709,7 +793,7 @@ public class TraktManager {
     /// :param: completion handler
     public func getWatched(type: WatchedType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/watched/\(type.rawValue)"
-//        let urlString = "https://api-v2launch.trakt.tv/users/alexalt/watched/shows?extended=full" // Use this to test show sync with
+//        let urlString = "https://api-v2launch.trakt.tv/users/unseenvision/watched/shows?extended=full" // Use this to test show sync with
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
@@ -722,7 +806,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -731,8 +817,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completion(objects: nil, error: TraktKitNoDataError)
+                return
+            }
+            
             do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
+                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
                     completion(objects: array, error: nil)
                 }
             }
@@ -793,8 +885,10 @@ public class TraktManager {
                 return
             }
             
+            // Check response
             // A successful post request sends a 201 status code
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.successNewResourceCreated else {
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.successNewResourceCreated else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -802,8 +896,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completion(success: false)
+                return
+            }
+            
             do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     completion(success: true)
                 }
             }
@@ -863,7 +963,9 @@ public class TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -871,8 +973,14 @@ public class TraktManager {
                 return
             }
             
+            // Check data
+            guard let data = data else {
+                completion(success: false)
+                return
+            }
+            
             do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     completion(success: true)
                 }
             }

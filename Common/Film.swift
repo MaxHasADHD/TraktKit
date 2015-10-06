@@ -26,11 +26,12 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
-                completion(objects: nil, error: nil)
+//                completion(objects: nil, error: nil)
                 return
             }
             
@@ -44,9 +45,6 @@ extension TraktManager {
                     print(jsonSerializationError)
                 #endif
                 completion(objects: nil, error: jsonSerializationError)
-            }
-            catch {
-                
             }
         }.resume()
     }
@@ -65,7 +63,8 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -107,7 +106,8 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -125,9 +125,6 @@ extension TraktManager {
                     print(jsonSerializationError)
                 #endif
                 completion(objects: nil, error: jsonSerializationError)
-            }
-            catch {
-                
             }
         }.resume()
     }
@@ -148,7 +145,8 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
@@ -184,7 +182,8 @@ extension TraktManager {
                 return
             }
             
-            guard (response as! NSHTTPURLResponse).statusCode == statusCodes.success else {
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.success else {
                 #if DEBUG
                     print(response)
                 #endif
