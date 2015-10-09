@@ -97,7 +97,6 @@ public class TraktManager {
     }
     public var oauthURL: NSURL?
     
-    // TODO: Move to app code so this framework can be public
     public var accessToken: String? {
         get {
             if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
