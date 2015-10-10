@@ -421,8 +421,11 @@ extension TraktManager {
     
     public func getEpisodeComments(traktID: NSNumber, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: arrayCompletionHandler) {
         let URLString = "https://api-v2launch.trakt.tv/shows/\(traktID)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/comments"
-        let URL = NSURL(string: URLString)
-        let request = mutableRequestForURL(URL!, authorization: false, HTTPMethod: "GET")
+        guard let URL = NSURL(string: URLString) else {
+            completion(objects: nil, error: TraktKitNoDataError)
+            return
+        }
+        let request = mutableRequestForURL(URL, authorization: false, HTTPMethod: "GET")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -460,7 +463,6 @@ extension TraktManager {
                 }
             }
             catch let jsonSerializationError as NSError {
-                print(jsonSerializationError)
                 completion(objects: nil, error: jsonSerializationError)
             }
         }.resume()
