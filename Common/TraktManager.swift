@@ -413,8 +413,8 @@ public class TraktManager {
             jsonString += episode // Add Episode
             jsonString += "," // End Episode
         }
-        jsonString += "\"app_version\": \"1.0\","
-        jsonString += "\"app_date\": \"YYYY-MM-dd\""
+        jsonString += "\"app_version\": \"1.1\","
+        jsonString += "\"app_date\": \"2015-11-18\""
         jsonString += "}" // End
         
         print(jsonString)
@@ -448,14 +448,12 @@ public class TraktManager {
         let request = mutableRequestForURL(URL!, authorization: true, HTTPMethod: "DELETE")
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
                 return
             }
             
             if let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode != statusCodes.successNewResourceCreated {
-                print(response)
+                where HTTPResponse.statusCode != statusCodes.successNoContentToReturn {
                 return
             }
         }.resume()
@@ -792,7 +790,7 @@ public class TraktManager {
     /// :param: completion handler
     public func getWatched(type: WatchedType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/watched/\(type.rawValue)"
-//        let urlString = "https://api-v2launch.trakt.tv/users/unseenvision/watched/shows?extended=full" // Use this to test show sync with
+//        let urlString = "https://api-v2launch.trakt.tv/users/thedave/watched/shows?extended=full" // Use this to test show sync with
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         

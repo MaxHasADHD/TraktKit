@@ -21,6 +21,7 @@
 		A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		A78D13581B2A340100BA2068 /* Television.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13571B2A340100BA2068 /* Television.swift */; };
 		A78D135A1B2A341000BA2068 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Film.swift */; };
+		A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; settings = {ASSET_TAGS = (); }; };
 		A7C5DA881B5DB3040027920B /* FilmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA871B5DB3040027920B /* FilmTests.swift */; };
 		A7C5DA8A1B5DB30E0027920B /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA891B5DB30E0027920B /* KeychainTests.swift */; };
 		A7C5DA8C1B5DB6B60027920B /* ShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */; };
@@ -60,6 +61,7 @@
 		A77E86851B29F16C00EABC2D /* TraktManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktManager.swift; sourceTree = "<group>"; };
 		A78D13571B2A340100BA2068 /* Television.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Television.swift; sourceTree = "<group>"; };
 		A78D13591B2A341000BA2068 /* Film.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
+		A7AE55AD1BD4560700A5DFFB /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		A7C5DA871B5DB3040027920B /* FilmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTests.swift; sourceTree = "<group>"; };
 		A7C5DA891B5DB30E0027920B /* KeychainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTests.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				A77E86851B29F16C00EABC2D /* TraktManager.swift */,
 				A78D13571B2A340100BA2068 /* Television.swift */,
 				A78D13591B2A341000BA2068 /* Film.swift */,
+				A7AE55AD1BD4560700A5DFFB /* Users.swift */,
 				A76905B51B47B7A6003C7431 /* MLKeychain.swift */,
 			);
 			path = Common;
@@ -383,6 +386,7 @@
 			files = (
 				A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */,
 				A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */,
+				A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */,
 				A78D135A1B2A341000BA2068 /* Film.swift in Sources */,
 				A78D13581B2A340100BA2068 /* Television.swift in Sources */,
 			);
