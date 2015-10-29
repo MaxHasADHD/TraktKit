@@ -376,7 +376,7 @@ public class TraktManager {
                     #endif
                     
                     // Save expiration date
-                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
+                    guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else { return }
                     let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                     
                     NSUserDefaults.standardUserDefaults().setObject(expiresDate, forKey: "accessTokenExpirationDate")
@@ -398,7 +398,7 @@ public class TraktManager {
     
     // MARK: - Checkin
     
-    public func checkIn(movie movie: String?, episode: String?) {
+    public func checkIn(movie movie: String?, episode: String?) { // TODO: Add completion handler
         // JSON
         var jsonString = String()
 
@@ -413,12 +413,12 @@ public class TraktManager {
             jsonString += episode // Add Episode
             jsonString += "," // End Episode
         }
-        jsonString += "\"app_version\": \"1.1\","
+        jsonString += "\"app_version\": \"1.1.1\","
         jsonString += "\"app_date\": \"2015-11-18\""
         jsonString += "}" // End
         
         print(jsonString)
-        /*let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Request
         let URLString = "https://api-v2launch.trakt.tv/checkin"
@@ -427,21 +427,35 @@ public class TraktManager {
         request.HTTPBody = jsonData
         
         session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            if error != nil {
-                print(error)
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
                 return
             }
             
-            if (response as NSHTTPURLResponse).statusCode != 201 {
-                print(response)
-                return
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where (HTTPResponse.statusCode == statusCodes.successNewResourceCreated ||
+                    HTTPResponse.statusCode == statusCodes.conflict) else {
+                        #if DEBUG
+                            print("[\(__FUNCTION__)] \(response)")
+                        #endif
+                        return
+            }
+            
+            if HTTPResponse.statusCode == statusCodes.successNewResourceCreated {
+                // Started watching
+            }
+            else {
+                // Already watching something
+                print("Already watching a show")
             }
             
             
-        }).resume()*/
+        }).resume()
     }
     
-    public func deleteActiveCheckins() {
+    public func deleteActiveCheckins() { // TODO: Add completion handler
         // Request
         let URLString = "https://api-v2launch.trakt.tv/checkin"
         let URL = NSURL(string: URLString)
@@ -449,13 +463,22 @@ public class TraktManager {
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
                 return
             }
             
-            if let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode != statusCodes.successNoContentToReturn {
-                return
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == statusCodes.successNoContentToReturn else {
+                    #if DEBUG
+                        print("[\(__FUNCTION__)] \(response)")
+                    #endif
+                    return
             }
+            
+            print("Cancelled check-in")
         }.resume()
     }
     
