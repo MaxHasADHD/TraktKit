@@ -311,7 +311,9 @@ public class TraktManager {
                     #if DEBUG
                         print("[\(__FUNCTION__)] Refreshing token!")
                     #endif
-                    self.getAccessTokenFromRefreshToken()
+                    self.getAccessTokenFromRefreshToken({ (success) -> Void in
+                        
+                    })
             }
             else {
                 #if DEBUG
@@ -321,7 +323,7 @@ public class TraktManager {
         }
     }
     
-    public func getAccessTokenFromRefreshToken() {
+    public func getAccessTokenFromRefreshToken(completionHandler: successCompletionHandler) {
         guard let clientID = clientID,
             clientSecret = clientSecret,
             redirectURI = redirectURI else {
@@ -332,6 +334,7 @@ public class TraktManager {
             #if DEBUG
                 print("[\(__FUNCTION__)] Refresh token is nil")
             #endif
+            completionHandler(success: false)
             return
         }
         
@@ -346,6 +349,7 @@ public class TraktManager {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(error!)")
                 #endif
+                completionHandler(success: false)
                 return
             }
             
@@ -355,32 +359,41 @@ public class TraktManager {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
-                
+                completionHandler(success: false)
                 return
             }
             
             // Check data
-            guard let data = data else { return }
+            guard let data = data else {
+                completionHandler(success: false)
+                return
+            }
             
             do {
                 if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     
-                    print(accessTokenDict)
+                    
                     
                     self.accessToken = accessTokenDict["access_token"] as? String
                     self.refreshToken = accessTokenDict["refresh_token"] as? String
                     
                     #if DEBUG
+                        print(accessTokenDict)
                         print("[\(__FUNCTION__)] Access token is \(self.accessToken)")
                         print("[\(__FUNCTION__)] Refresh token is \(self.refreshToken)")
                     #endif
                     
                     // Save expiration date
-                    guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else { return }
+                    guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else {
+                        completionHandler(success: false)
+                        return
+                    }
                     let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                     
                     NSUserDefaults.standardUserDefaults().setObject(expiresDate, forKey: "accessTokenExpirationDate")
                     NSUserDefaults.standardUserDefaults().synchronize()
+                    
+                    completionHandler(success: true)
                     
                     // Post notification
 //                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -392,13 +405,15 @@ public class TraktManager {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(jsonSerializationError)")
                 #endif
+                
+                completionHandler(success: false)
             }
         }.resume()
     }
     
     // MARK: - Checkin
     
-    public func checkIn(movie movie: String?, episode: String?) { // TODO: Add completion handler
+    public func checkIn(movie movie: String?, episode: String?, completionHandler: successCompletionHandler) {
         // JSON
         var jsonString = String()
 
@@ -417,7 +432,6 @@ public class TraktManager {
         jsonString += "\"app_date\": \"2015-11-18\""
         jsonString += "}" // End
         
-        print(jsonString)
         let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Request
@@ -431,6 +445,7 @@ public class TraktManager {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(error!)")
                 #endif
+                completionHandler(success: false)
                 return
             }
             
@@ -440,22 +455,27 @@ public class TraktManager {
                         #if DEBUG
                             print("[\(__FUNCTION__)] \(response)")
                         #endif
+                        completionHandler(success: false)
                         return
             }
             
             if HTTPResponse.statusCode == statusCodes.successNewResourceCreated {
                 // Started watching
+                completionHandler(success: true)
             }
             else {
                 // Already watching something
-                print("Already watching a show")
+                #if DEBUG
+                    print("[\(__FUNCTION__)] Already watching a show")
+                #endif
+                completionHandler(success: false)
             }
             
             
         }).resume()
     }
     
-    public func deleteActiveCheckins() { // TODO: Add completion handler
+    public func deleteActiveCheckins(completionHandler: successCompletionHandler) {
         // Request
         let URLString = "https://api-v2launch.trakt.tv/checkin"
         let URL = NSURL(string: URLString)
@@ -466,6 +486,7 @@ public class TraktManager {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(error!)")
                 #endif
+                completionHandler(success: false)
                 return
             }
             
@@ -475,10 +496,13 @@ public class TraktManager {
                     #if DEBUG
                         print("[\(__FUNCTION__)] \(response)")
                     #endif
+                    completionHandler(success: false)
                     return
             }
             
             print("Cancelled check-in")
+            
+            completionHandler(success: true)
         }.resume()
     }
     
