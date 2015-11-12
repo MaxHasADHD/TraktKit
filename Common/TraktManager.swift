@@ -837,7 +837,7 @@ public class TraktManager {
     /// :param: completion handler
     public func getWatched(type: WatchedType, completion: arrayCompletionHandler) {
         let urlString = "https://api-v2launch.trakt.tv/sync/watched/\(type.rawValue)"
-//        let urlString = "https://api-v2launch.trakt.tv/users/fvkey/watched/shows?extended=full" // Use this to test show sync with
+//        let urlString = "https://api-v2launch.trakt.tv/users/Fischey/watched/shows?extended=full" // Use this to test show sync with
         let url = NSURL(string: urlString)
         let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
         
