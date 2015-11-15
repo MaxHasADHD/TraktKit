@@ -37,10 +37,15 @@ public enum LookupType: String {
     case TVRage = "tvrage"
 }
 
-public enum WatchedType: String {
+public enum WatchedType: String, CustomStringConvertible {
     case Movies = "movies"
     case Shows = "shows"
+    case Seasons = "seasons"
     case Episodes = "episodes"
+    
+    public var description: String {
+        return self.rawValue
+    }
 }
 
 public enum extendedType: String {
@@ -192,6 +197,24 @@ public class TraktManager {
     
     public func mutableRequestForURL(URL: NSURL?, authorization: Bool, HTTPMethod: String) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: URL!)
+        request.HTTPMethod = HTTPMethod
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
+        if let clientID = clientID {
+            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
+        }
+        if authorization {
+            request.addValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
+        }
+        
+        return request
+    }
+    
+    public func mutableRequestForURL(path: String, authorization: Bool, HTTPMethod: String) -> NSMutableURLRequest? {
+        let urlString = "https://api-v2launch.trakt.tv/" + path
+        guard let URL = NSURL(string: urlString) else { return nil }
+        let request = NSMutableURLRequest(URL: URL)
         request.HTTPMethod = HTTPMethod
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -435,9 +458,7 @@ public class TraktManager {
         let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Request
-        let URLString = "https://api-v2launch.trakt.tv/checkin"
-        let URL = NSURL(string: URLString)
-        let request = mutableRequestForURL(URL!, authorization: true, HTTPMethod: "POST")
+        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "POST") else { return }
         request.HTTPBody = jsonData
         
         session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
@@ -477,9 +498,9 @@ public class TraktManager {
     
     public func deleteActiveCheckins(completionHandler: successCompletionHandler) {
         // Request
-        let URLString = "https://api-v2launch.trakt.tv/checkin"
-        let URL = NSURL(string: URLString)
-        let request = mutableRequestForURL(URL!, authorization: true, HTTPMethod: "DELETE")
+        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "DELETE") else {
+            return
+        }
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -540,9 +561,9 @@ public class TraktManager {
         let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Request
-        let URLString = "https://api-v2launch.trakt.tv/comments"
-        let URL = NSURL(string: URLString)
-        let request = mutableRequestForURL(URL!, authorization: true, HTTPMethod: "POST")
+        guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: "POST") else {
+            return
+        }
         request.HTTPBody = jsonData
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
@@ -597,13 +618,13 @@ public class TraktManager {
     ///
     /// :param: query The string to search by
     /// :param: type The type of search
-    public func search(query: String, types: [SearchType], completion: arrayCompletionHandler) -> NSURLSessionDataTask {
+    public func search(query: String, types: [SearchType], completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         
         let typesString = types.map { $0.rawValue }.joinWithSeparator(",")
         
-        let urlString = "https://api-v2launch.trakt.tv/search?query=\(query)&type=\(typesString)"
-        let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+        guard let request = mutableRequestForURL("search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: "GET") else {
+            return nil
+        }
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -725,9 +746,10 @@ public class TraktManager {
     /// :param: trakt ID for movie / show / episode
     /// :param: completion handler
     public func getRatings(type: WatchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
-        let urlString = "https://api-v2launch.trakt.tv/movies/\(id)/ratings"
-        let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
+
+        guard let request = mutableRequestForURL("movies/\(id)/ratings", authorization: false, HTTPMethod: "GET") else {
+            return
+        }
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -770,276 +792,6 @@ public class TraktManager {
                 #if DEBUG
                     print("[\(__FUNCTION__)] Catched something")
                 #endif
-            }
-        }.resume()
-    }
-
-    // MARK: - Sync
-    
-    /// Returns dictionary of dates when content was last updated
-    /// Status Code: 200
-    ///
-    /// :param: completion handler
-    public func lastActivities(completion: dictionaryCompletionHandler) {
-        let urlString = "https://api-v2launch.trakt.tv/sync/last_activities"
-        let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
-        
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                
-                completion(dictionary: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(response)")
-                #endif
-                
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(dictionary: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                   completion(dictionary: dictionary, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(dictionary: nil, error: jsonSerializationError)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-            }
-        }.resume()
-    }
-    
-    /// Returns all movies or shows a user has watched.
-    /// Status Code: 200
-    ///
-    /// :param: which type of content to receive
-    /// :param: completion handler
-    public func getWatched(type: WatchedType, completion: arrayCompletionHandler) {
-        let urlString = "https://api-v2launch.trakt.tv/sync/watched/\(type.rawValue)"
-//        let urlString = "https://api-v2launch.trakt.tv/users/Fischey/watched/shows?extended=full" // Use this to test show sync with
-        let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "GET")
-        
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completion(objects: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(response)")
-                #endif
-                
-                completion(objects: [], error: nil)
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(objects: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(objects: array, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(objects: nil, error: jsonSerializationError)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-            }
-        }.resume()
-    }
-    
-    /// Add items to a user's watch history.
-    /// Status Code: 201
-    ///
-    /// :param: array of movie objects
-    /// :param: array of show objects
-    /// :param: array of episode objects
-    /// :param: completion handler
-    public func addToHistory(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) {
-        // JSON
-        var jsonString = String()
-        
-        jsonString += "{" // Beginning
-        jsonString += "\"movies\": [" // Begin Movies
-        jsonString += movies.joinWithSeparator(",") // Add Movies
-        jsonString += "]," // End Movies
-        jsonString += "\"shows\": [" // Begin Shows
-        jsonString += shows.joinWithSeparator(",") // Add Shows
-        jsonString += "]," // End Shows
-        jsonString += "\"episodes\": [" // Begin Episodes
-        jsonString += episodes.joinWithSeparator(",") // Add Episodes
-        jsonString += "]" // End Episodes
-        jsonString += "}" // End
-        
-        #if DEBUG
-            print(jsonString)
-        #endif
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        // Request
-        let urlString = "https://api-v2launch.trakt.tv/sync/history"
-        let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "POST")
-        request.HTTPBody = jsonData
-        
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completion(success: false)
-                return
-            }
-            
-            // Check response
-            // A successful post request sends a 201 status code
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNewResourceCreated else {
-                #if DEBUG
-                    print(response)
-                #endif
-                completion(success: false)
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(success: false)
-                return
-            }
-            
-            do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completion(success: true)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(success: false)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-                completion(success: false)
-            }
-        }.resume()
-    }
-    
-    /// Removes items from a user's watch history including watches, scrobbles, and checkins.
-    /// Status Code: 200
-    ///
-    /// :param: array of movie objects
-    /// :param: array of show objects
-    /// :param: array of episode objects
-    /// :param: completion handler
-    public func removeFromHistory(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) {
-        // JSON
-        var jsonString = String()
-        
-        jsonString += "{" // Beginning
-        jsonString += "\"movies\": [" // Begin Movies
-        jsonString += movies.joinWithSeparator(",") // Add Movies
-        jsonString += "]," // End Movies
-        jsonString += "\"shows\": [" // Begin Shows
-        jsonString += shows.joinWithSeparator(",") // Add Shows
-        jsonString += "]," // End Shows
-        jsonString += "\"episodes\": [" // Begin Episodes
-        jsonString += episodes.joinWithSeparator(",") // Add Episodes
-        jsonString += "]" // End Episodes
-        jsonString += "}" // End
-        
-        print(jsonString)
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        // Request
-        let urlString = "https://api-v2launch.trakt.tv/sync/history/remove"
-        let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: true, HTTPMethod: "POST")
-        request.HTTPBody = jsonData
-        
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completion(success: false)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                #if DEBUG
-                    print(response)
-                #endif
-                completion(success: false)
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(success: false)
-                return
-            }
-            
-            do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completion(success: true)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(success: true)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-                
-                completion(success: false)
             }
         }.resume()
     }

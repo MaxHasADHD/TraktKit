@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A723DA8C1B917EF300CA217C /* TraktKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = A723DA8B1B917EF300CA217C /* TraktKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A723DA931B917EF300CA217C /* TraktKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKitMac.framework */; settings = {ASSET_TAGS = (); }; };
+		A723DA931B917EF300CA217C /* TraktKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKitMac.framework */; };
 		A723DA981B917EF300CA217C /* TraktKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723DA971B917EF300CA217C /* TraktKitMacTests.swift */; };
-		A723DAAD1B917FE300CA217C /* Television.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13571B2A340100BA2068 /* Television.swift */; settings = {ASSET_TAGS = (); }; };
-		A723DAAE1B917FE300CA217C /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Film.swift */; settings = {ASSET_TAGS = (); }; };
-		A723DAAF1B917FE300CA217C /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; settings = {ASSET_TAGS = (); }; };
-		A72B584E1B918044002561A4 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; settings = {ASSET_TAGS = (); }; };
+		A723DAAD1B917FE300CA217C /* Television.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13571B2A340100BA2068 /* Television.swift */; };
+		A723DAAE1B917FE300CA217C /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Film.swift */; };
+		A723DAAF1B917FE300CA217C /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; };
+		A72B584E1B918044002561A4 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; };
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
@@ -21,10 +21,14 @@
 		A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		A78D13581B2A340100BA2068 /* Television.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13571B2A340100BA2068 /* Television.swift */; };
 		A78D135A1B2A341000BA2068 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Film.swift */; };
-		A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; settings = {ASSET_TAGS = (); }; };
+		A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
 		A7C5DA881B5DB3040027920B /* FilmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA871B5DB3040027920B /* FilmTests.swift */; };
 		A7C5DA8A1B5DB30E0027920B /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA891B5DB30E0027920B /* KeychainTests.swift */; };
 		A7C5DA8C1B5DB6B60027920B /* ShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */; };
+		A7CC79A11BF7C36E00A43AD3 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A01BF7C36E00A43AD3 /* Sync.swift */; };
+		A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
+		A7CC79A51BF805DC00A43AD3 /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */; };
+		A7CC79A71BF805E400A43AD3 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A61BF805E400A43AD3 /* People.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,10 @@
 		A7C5DA871B5DB3040027920B /* FilmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTests.swift; sourceTree = "<group>"; };
 		A7C5DA891B5DB30E0027920B /* KeychainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTests.swift; sourceTree = "<group>"; };
+		A7CC79A01BF7C36E00A43AD3 /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
+		A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrobble.swift; sourceTree = "<group>"; };
+		A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
+		A7CC79A61BF805E400A43AD3 /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,10 @@
 				A78D13571B2A340100BA2068 /* Television.swift */,
 				A78D13591B2A341000BA2068 /* Film.swift */,
 				A7AE55AD1BD4560700A5DFFB /* Users.swift */,
+				A7CC79A61BF805E400A43AD3 /* People.swift */,
+				A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */,
+				A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */,
+				A7CC79A01BF7C36E00A43AD3 /* Sync.swift */,
 				A76905B51B47B7A6003C7431 /* MLKeychain.swift */,
 			);
 			path = Common;
@@ -384,10 +396,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7CC79A51BF805DC00A43AD3 /* Recommendations.swift in Sources */,
 				A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */,
+				A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */,
 				A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */,
+				A7CC79A71BF805E400A43AD3 /* People.swift in Sources */,
 				A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */,
 				A78D135A1B2A341000BA2068 /* Film.swift in Sources */,
+				A7CC79A11BF7C36E00A43AD3 /* Sync.swift in Sources */,
 				A78D13581B2A340100BA2068 /* Television.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
