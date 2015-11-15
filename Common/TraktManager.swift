@@ -229,6 +229,126 @@ public class TraktManager {
         return request
     }
     
+    func createJsonData(movies movies: [String], shows: [String], episodes: [String]) -> NSData? {
+        var jsonString = String()
+        
+        jsonString += "{" // Beginning
+        jsonString += "\"movies\": [" // Begin Movies
+        jsonString += movies.joinWithSeparator(",") // Add Movies
+        jsonString += "]," // End Movies
+        jsonString += "\"shows\": [" // Begin Shows
+        jsonString += shows.joinWithSeparator(",") // Add Shows
+        jsonString += "]," // End Shows
+        jsonString += "\"episodes\": [" // Begin Episodes
+        jsonString += episodes.joinWithSeparator(",") // Add Episodes
+        jsonString += "]" // End Episodes
+        jsonString += "}" // End
+        
+        #if DEBUG
+            print(jsonString)
+        #endif
+        return jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+    }
+    
+    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                completion(objects: nil, error: error)
+                return
+            }
+            
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == code else {
+                    #if DEBUG
+                        print(response)
+                    #endif
+                    
+                    if let HTTPResponse = response as? NSHTTPURLResponse {
+                        completion(objects: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
+                    }
+                    else {
+                        completion(objects: nil, error: nil)
+                    }
+                    
+                    return
+            }
+            
+            // Check data
+            guard let data = data else {
+                completion(objects: nil, error: TraktKitNoDataError)
+                return
+            }
+            
+            do {
+                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
+                    completion(objects: array, error: nil)
+                }
+            }
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print(jsonSerializationError)
+                #endif
+                completion(objects: nil, error: jsonSerializationError)
+            }
+        }
+        
+        dataTask.resume()
+        return dataTask
+    }
+    
+    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        let datatask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                completion(dictionary: nil, error: error)
+                return
+            }
+            
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == code else {
+                    #if DEBUG
+                        print(response)
+                    #endif
+                    
+                    if let HTTPResponse = response as? NSHTTPURLResponse {
+                        completion(dictionary: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
+                    }
+                    else {
+                        completion(dictionary: nil, error: nil)
+                    }
+                    return
+            }
+            
+            // Check data
+            guard let data = data else {
+                completion(dictionary: nil, error: TraktKitNoDataError)
+                return
+            }
+            
+            do {
+                if let dict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                    completion(dictionary: dict, error: nil)
+                }
+            }
+            catch let jsonSerializationError as NSError {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                #endif
+                completion(dictionary: nil, error: jsonSerializationError)
+            }
+        }
+        datatask.resume()
+        
+        return datatask
+    }
+    
     // MARK: - Authentication
     
     public func getTokenFromAuthorizationCode(code: String, completionHandler: successCompletionHandler?) {
@@ -429,183 +549,6 @@ public class TraktManager {
                     print("[\(__FUNCTION__)] \(jsonSerializationError)")
                 #endif
                 
-                completionHandler(success: false)
-            }
-        }.resume()
-    }
-    
-    // MARK: - Checkin
-    
-    public func checkIn(movie movie: String?, episode: String?, completionHandler: successCompletionHandler) {
-        // JSON
-        var jsonString = String()
-
-        jsonString += "{" // Beginning
-        if let movie = movie {
-            jsonString += "\"movie\":" // Begin Movie
-            jsonString += movie // Add Movie
-            jsonString += "," // End Movie
-        }
-        else if let episode = episode {
-            jsonString += "\"episode\": " // Begin Episode
-            jsonString += episode // Add Episode
-            jsonString += "," // End Episode
-        }
-        jsonString += "\"app_version\": \"1.1.1\","
-        jsonString += "\"app_date\": \"2015-11-18\""
-        jsonString += "}" // End
-        
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "POST") else { return }
-        request.HTTPBody = jsonData
-        
-        session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completionHandler(success: false)
-                return
-            }
-            
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where (HTTPResponse.statusCode == statusCodes.successNewResourceCreated ||
-                    HTTPResponse.statusCode == statusCodes.conflict) else {
-                        #if DEBUG
-                            print("[\(__FUNCTION__)] \(response)")
-                        #endif
-                        completionHandler(success: false)
-                        return
-            }
-            
-            if HTTPResponse.statusCode == statusCodes.successNewResourceCreated {
-                // Started watching
-                completionHandler(success: true)
-            }
-            else {
-                // Already watching something
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Already watching a show")
-                #endif
-                completionHandler(success: false)
-            }
-            
-            
-        }).resume()
-    }
-    
-    public func deleteActiveCheckins(completionHandler: successCompletionHandler) {
-        // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "DELETE") else {
-            return
-        }
-        
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completionHandler(success: false)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNoContentToReturn else {
-                    #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
-                    #endif
-                    completionHandler(success: false)
-                    return
-            }
-            
-            print("Cancelled check-in")
-            
-            completionHandler(success: true)
-        }.resume()
-    }
-    
-    // MARK: - Comments
-    
-    public func postComment(movie movie: String?, show: String?, episode: String?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) {
-        // JSON
-        var jsonString = String()
-        
-        jsonString += "{" // Beginning
-        if let movie = movie {
-            jsonString += "\"movie\":" // Begin Movie
-            jsonString += movie // Add Movie
-            jsonString += "," // End Movie
-        }
-        else if let show = show {
-            jsonString += "\"show\":" // Begin Show
-            jsonString += show // Add Show
-            jsonString += "," // End Show
-        }
-        else if let episode = episode {
-            jsonString += "\"episode\": " // Begin Episode
-            jsonString += episode // Add Episode
-            jsonString += "," // End Episode
-        }
-        let fixedComment = comment.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
-        jsonString += "\"comment\": \"\(fixedComment)\","
-        jsonString += "\"spoiler\": \(spoiler),"
-        jsonString += "\"review\": \(review)"
-        jsonString += "}" // End
-        
-        #if DEBUG
-            print(jsonString)
-        #endif
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        // Request
-        guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: "POST") else {
-            return
-        }
-        request.HTTPBody = jsonData
-        
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completionHandler(success: false)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNewResourceCreated else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(response)")
-                #endif
-                completionHandler(success: false)
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completionHandler(success: false)
-                return
-            }
-            
-            do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completionHandler(success: true)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-                completionHandler(success: false)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
                 completionHandler(success: false)
             }
         }.resume()

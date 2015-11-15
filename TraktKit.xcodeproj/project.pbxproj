@@ -29,6 +29,10 @@
 		A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
 		A7CC79A51BF805DC00A43AD3 /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */; };
 		A7CC79A71BF805E400A43AD3 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A61BF805E400A43AD3 /* People.swift */; };
+		A7FB7FCC1BF8DD960003BBD7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */; };
+		A7FB7FCE1BF8DD9E0003BBD7 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */; };
+		A7FB7FD01BF8EC990003BBD7 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
+		A7FB7FD21BF8ECA20003BBD7 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrobble.swift; sourceTree = "<group>"; };
 		A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
 		A7CC79A61BF805E400A43AD3 /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
+		A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
+		A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,10 @@
 				A77E86851B29F16C00EABC2D /* TraktManager.swift */,
 				A78D13571B2A340100BA2068 /* Television.swift */,
 				A78D13591B2A341000BA2068 /* Film.swift */,
+				A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */,
+				A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */,
+				A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */,
+				A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */,
 				A7AE55AD1BD4560700A5DFFB /* Users.swift */,
 				A7CC79A61BF805E400A43AD3 /* People.swift */,
 				A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */,
@@ -397,10 +409,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7CC79A51BF805DC00A43AD3 /* Recommendations.swift in Sources */,
+				A7FB7FCC1BF8DD960003BBD7 /* Genres.swift in Sources */,
 				A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */,
 				A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */,
+				A7FB7FCE1BF8DD9E0003BBD7 /* Comments.swift in Sources */,
+				A7FB7FD21BF8ECA20003BBD7 /* Checkin.swift in Sources */,
 				A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */,
 				A7CC79A71BF805E400A43AD3 /* People.swift in Sources */,
+				A7FB7FD01BF8EC990003BBD7 /* Calendars.swift in Sources */,
 				A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */,
 				A78D135A1B2A341000BA2068 /* Film.swift in Sources */,
 				A7CC79A11BF7C36E00A43AD3 /* Sync.swift in Sources */,

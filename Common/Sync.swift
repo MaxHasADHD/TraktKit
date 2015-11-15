@@ -10,27 +10,6 @@ import Foundation
 
 extension TraktManager {
     
-    func createJsonData(movies movies: [String], shows: [String], episodes: [String]) -> NSData? {
-        var jsonString = String()
-        
-        jsonString += "{" // Beginning
-        jsonString += "\"movies\": [" // Begin Movies
-        jsonString += movies.joinWithSeparator(",") // Add Movies
-        jsonString += "]," // End Movies
-        jsonString += "\"shows\": [" // Begin Shows
-        jsonString += shows.joinWithSeparator(",") // Add Shows
-        jsonString += "]," // End Shows
-        jsonString += "\"episodes\": [" // Begin Episodes
-        jsonString += episodes.joinWithSeparator(",") // Add Episodes
-        jsonString += "]" // End Episodes
-        jsonString += "}" // End
-        
-        #if DEBUG
-            print(jsonString)
-        #endif
-        return jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-    }
-    
     /**
      Returns dictionary of dates when content was last updated
      
@@ -48,52 +27,7 @@ extension TraktManager {
             return nil
         }
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                
-                completion(dictionary: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                    #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
-                    #endif
-                    
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(dictionary: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completion(dictionary: dictionary, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(dictionary: nil, error: jsonSerializationError)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-            }
-        }
-        dataTask.resume()
-        
-        return dataTask
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
     // MARK: - Playback
@@ -107,7 +41,7 @@ extension TraktManager {
      
      Status Code: 200
      
-     OAuth: Required
+     🔒 OAuth: Required
      
      - parameter type: Possible Values: .Movies, .Episodes
      */
@@ -116,47 +50,7 @@ extension TraktManager {
             return nil
         }
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                
-                completion(objects: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                    #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
-                    #endif
-                    
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(objects: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(objects: array, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(objects: nil, error: jsonSerializationError)
-            }
-        }
-        dataTask.resume()
-        
-        return dataTask
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
     /**
@@ -164,7 +58,7 @@ extension TraktManager {
      
      Status Code: 204
      
-     OAuth: Required
+     🔒 OAuth: Required
     */
     public func removePlaybackItem(id: NSNumber, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/playback/\(id)", authorization: true, HTTPMethod: "DELETE") else {
@@ -210,54 +104,14 @@ extension TraktManager {
      
      Status Code: 200
      
-     OAuth: Required
+     🔒 OAuth: Required
     */
     public func getCollection(type: WatchedType, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/collection/\(type)", authorization: true, HTTPMethod: "GET") else {
             return nil
         }
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                
-                completion(objects: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                    #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
-                    #endif
-                    
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(objects: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(objects: array, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(objects: nil, error: jsonSerializationError)
-            }
-        }
-        
-        dataTask.resume()
-        return dataTask
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
     /**
@@ -269,7 +123,7 @@ extension TraktManager {
      
      Status Code: 201
      
-     OAuth: Required
+     🔒 OAuth: Required
      */
     public func addToCollection(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/collection", authorization: true, HTTPMethod: "POST") else {
@@ -331,7 +185,7 @@ extension TraktManager {
      
      Status Code: 200
      
-     OAuth: Required
+     🔒 OAuth: Required
      */
     public func removeFromCollection(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/collection", authorization: true, HTTPMethod: "POST") else {
@@ -394,7 +248,7 @@ extension TraktManager {
      
      Status Code: 200
      
-     OAuth: Required
+     🔒 OAuth: Required
      
      - parameter type: which type of content to receive
      
@@ -460,6 +314,8 @@ extension TraktManager {
      Returns movies and episodes that a user has watched, sorted by most recent. You can optionally limit the `type` to `movies` or `episodes`. The `id` in each history item uniquely identifies the event and can be used to remove individual events by using the POST /sync/history/remove method. The action will be set to scrobble, checkin, or watch.
      
      Specify a type and trakt id to limit the history for just that item. If the id is valid, but there is no history, an empty array will be returned.
+    
+    🔒 OAuth: Required
      */
     public func getHistory(type: WatchedType?, traktID: NSNumber?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         var path = "sync/history"
@@ -475,52 +331,7 @@ extension TraktManager {
             return nil
         }
         
-        let dataRequest = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completion(objects: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                    #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
-                    #endif
-                    
-                    completion(objects: [], error: nil)
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(objects: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(objects: array, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(objects: nil, error: jsonSerializationError)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-            }
-        }
-        dataRequest.resume()
-        
-        return dataRequest
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
     /**
@@ -528,7 +339,7 @@ extension TraktManager {
      
      Status Code: 201
      
-     OAuth: Required
+     🔒 OAuth: Required
      
      - parameter movies: array of movie objects
      - parameter shows: array of show objects
@@ -597,7 +408,7 @@ extension TraktManager {
      
      Status Code: 200
      
-     OAuth: Required
+     🔒 OAuth: Required
      
      - parameter movies: array of movie objects
      - parameter shows: array of show objects
@@ -693,52 +504,7 @@ extension TraktManager {
             return nil
         }
         
-        let datatask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completion(dictionary: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                    #if DEBUG
-                        print(response)
-                    #endif
-                    
-                    if let HTTPResponse = response as? NSHTTPURLResponse {
-                        completion(dictionary: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
-                    }
-                    else {
-                        completion(dictionary: nil, error: nil)
-                    }
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(dictionary: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let dict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completion(dictionary: dict, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-                completion(dictionary: nil, error: jsonSerializationError)
-            }
-        }
-        
-        datatask.resume()
-        return datatask
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
     /**
@@ -746,7 +512,7 @@ extension TraktManager {
      
      Status Code: 201
      
-     OAuth: Required
+     🔒 OAuth: Required
     */
     public func addToWatchlist(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
         
@@ -805,7 +571,7 @@ extension TraktManager {
      
      Status Code: 201
      
-     OAuth: Required
+     🔒 OAuth: Required
      */
     public func removeFromWatchlist(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/watchlist/remove", authorization: true, HTTPMethod: "POST") else {
