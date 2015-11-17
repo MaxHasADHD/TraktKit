@@ -13,6 +13,8 @@ extension TraktManager {
     /**
      Returns all shows airing during the time period specified.
      
+     🔒 OAuth: Required
+     
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
@@ -24,6 +26,8 @@ extension TraktManager {
     
     /**
      Returns all new show premieres (season 1, episode 1) airing during the time period specified.
+     
+     🔒 OAuth: Required
      
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
@@ -37,6 +41,8 @@ extension TraktManager {
     /**
      Returns all show premieres (any season, episode 1) airing during the time period specified.
      
+     🔒 OAuth: Required
+     
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
@@ -48,6 +54,8 @@ extension TraktManager {
     
     /**
      Returns all movies with a release date during the time period specified.
+     
+     🔒 OAuth: Required
      
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
