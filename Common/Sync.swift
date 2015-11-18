@@ -255,7 +255,12 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     public func getWatched(type: WatchedType, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        //        let urlString = "https://api-v2launch.trakt.tv/users/Fischey/watched/shows?extended=full" // Use this to test show sync with
+        
+        // Used to check data from another Trakt acount
+//        guard let request = mutableRequestForURL("users/dobwai/watched/shows?extended=full", authorization: true, HTTPMethod: "GET") else {
+//            return nil
+//        }
+        
         guard let request = mutableRequestForURL("sync/watched/\(type.rawValue)", authorization: true, HTTPMethod: "GET") else {
             return nil
         }
