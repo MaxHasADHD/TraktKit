@@ -80,6 +80,10 @@ public struct statusCodes {
 
 public class TraktManager {
     
+    // TODO List:
+    // 1. Convert ID parameters to generics. Currently only accepts the trakt ID
+    // 2. Create a limit object, double check every paginated API call is marked as paginated
+    
     // MARK: Internal
     private var clientID: String?
     private var clientSecret: String?
@@ -552,132 +556,6 @@ public class TraktManager {
                 completionHandler(success: false)
             }
         }.resume()
-    }
-    
-    // MARK: - Search
-    
-    /// Perform a text query that searches titles, descriptions, translated titles, aliases, and people.
-    /// Status Code: 200
-    ///
-    /// :param: query The string to search by
-    /// :param: type The type of search
-    public func search(query: String, types: [SearchType], completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        
-        let typesString = types.map { $0.rawValue }.joinWithSeparator(",")
-        
-        guard let request = mutableRequestForURL("search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: "GET") else {
-            return nil
-        }
-        
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                
-                completion(objects: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else  {
-                    #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
-                    #endif
-                    
-                    if let HTTPResponse = response as? NSHTTPURLResponse {
-                        completion(objects: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
-                    }
-                    else {
-                        completion(objects: nil, error: nil)
-                    }
-
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(objects: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(objects: array, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-                completion(objects: nil, error: jsonSerializationError)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-            }
-        }
-        
-        dataTask.resume()
-        return dataTask
-    }
-    
-    /// Lookup an item by using a trakt ID or other external ID. This is helpful to get an items info including the trakt ID.
-    /// Status Code: 200
-    public func lookup(id: String, idType: LookupType, completion: arrayCompletionHandler) -> NSURLSessionTask {
-        
-        let urlString = "https://api-v2launch.trakt.tv/search?id_type=\(idType.rawValue)&id=\(id)"
-        let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "GET")
-
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                
-                completion(objects: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else  {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(response)")
-                #endif
-                completion(objects: nil, error: nil)
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(objects: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(objects: array, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-                completion(objects: nil, error: jsonSerializationError)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-            }
-        }
-        
-        dataTask.resume()
-        return dataTask
     }
     
     // MARK: - Ratings
