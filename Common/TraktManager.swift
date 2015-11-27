@@ -37,6 +37,15 @@ public enum LookupType: String {
     case TVRage = "tvrage"
 }
 
+public enum Type: String, CustomStringConvertible {
+    case Movies = "movies"
+    case Shows = "shows"
+    
+    public var description: String {
+        return self.rawValue
+    }
+}
+
 public enum WatchedType: String, CustomStringConvertible {
     case Movies = "movies"
     case Shows = "shows"
@@ -46,6 +55,25 @@ public enum WatchedType: String, CustomStringConvertible {
     public var description: String {
         return self.rawValue
     }
+}
+
+public enum Type2: String, CustomStringConvertible {
+    case All = "all"
+    case Movies = "movies"
+    case Shows = "shows"
+    case Seasons = "seasons"
+    case Episodes = "episodes"
+    case Lists = "lists"
+    
+    public var description: String {
+        return self.rawValue
+    }
+}
+
+public enum CommentType: String {
+    case All = "all"
+    case Reviews = "reviews"
+    case Shouts = "shouts"
 }
 
 public enum extendedType: String {
@@ -254,6 +282,8 @@ public class TraktManager {
         return jsonString.dataUsingEncoding(NSUTF8StringEncoding)
     }
     
+    // MARK: Perform Requests
+    
     func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -347,6 +377,36 @@ public class TraktManager {
                 #endif
                 completion(dictionary: nil, error: jsonSerializationError)
             }
+        }
+        datatask.resume()
+        
+        return datatask
+    }
+    
+    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: successCompletionHandler) -> NSURLSessionDataTask? {
+        let datatask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+            guard error == nil else {
+                #if DEBUG
+                    print("[\(__FUNCTION__)] \(error!)")
+                #endif
+                
+                completion(success: false)
+                return
+            }
+            
+            // Check response
+            guard let HTTPResponse = response as? NSHTTPURLResponse
+                where HTTPResponse.statusCode == code else {
+                    #if DEBUG
+                        print("[\(__FUNCTION__)] \(response)")
+                    #endif
+                    
+                    completion(success: false)
+                    
+                    return
+            }
+            
+            completion(success: true)
         }
         datatask.resume()
         

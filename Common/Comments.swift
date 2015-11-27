@@ -17,7 +17,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func postComment(movie movie: String?, show: String?, episode: String?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) {
+    public func postComment(movie movie: String?, show: String?, episode: String?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
         // JSON
         var jsonString = String()
         
@@ -50,74 +50,32 @@ extension TraktManager {
         
         // Request
         guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: "POST") else {
-            return
+            return nil
         }
         request.HTTPBody = jsonData
         
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completionHandler(success: false)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNewResourceCreated else {
-                    #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
-                    #endif
-                    completionHandler(success: false)
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completionHandler(success: false)
-                return
-            }
-            
-            do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completionHandler(success: true)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-                completionHandler(success: false)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
-                completionHandler(success: false)
-            }
-            }.resume()
+        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completionHandler)
     }
     
     /**
      
      */
     public func getComment() {
-        
+        fatalError("\(__FUNCTION__) Not implemented yet")
     }
     
     /**
      
      */
     public func updateComment() {
-        
+        fatalError("\(__FUNCTION__) Not implemented yet")
     }
     
     /**
      
      */
     public func deleteComment() {
-        
+        fatalError("\(__FUNCTION__) Not implemented yet")
     }
     
     // MARK: - Replies
@@ -126,14 +84,14 @@ extension TraktManager {
     
     */
     public func getReplies() {
-        
+        fatalError("\(__FUNCTION__) Not implemented yet")
     }
     
     /**
      
      */
     public func postReply() {
-        
+        fatalError("\(__FUNCTION__) Not implemented yet")
     }
     
     // MARK: - Like
@@ -142,13 +100,13 @@ extension TraktManager {
     
     */
     public func likeComment() {
-        
+        fatalError("\(__FUNCTION__) Not implemented yet")
     }
     
     /**
      
      */
     public func removeLikeOnComment() {
-        
+        fatalError("\(__FUNCTION__) Not implemented yet")
     }
 }

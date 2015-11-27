@@ -26,7 +26,7 @@ class ShowTests: XCTestCase {
         let numberOfTrendingShows = 100
         var count = 0
         
-        TraktManager.sharedManager.trendingShows(page: 1, limit: numberOfTrendingShows) { (objects, error) -> Void in
+        TraktManager.sharedManager.getTrendingShows(page: 1, limit: numberOfTrendingShows) { (objects, error) -> Void in
             guard error == nil else {
                 print("Error getting trending shows: \(error)")
                 XCTAssert(false, "Error getting trending shows")
@@ -43,7 +43,7 @@ class ShowTests: XCTestCase {
                     if let showIDs = showDict["ids"] as? [String: AnyObject] {
                         if let traktID = showIDs["trakt"] as? NSNumber {
                             
-                            TraktManager.sharedManager.getShowSummary(traktID, extended: extendedType.Full) { (dictionary, error) -> Void in
+                            TraktManager.sharedManager.getShowSummary(showID: traktID, extended: extendedType.Full) { (dictionary, error) -> Void in
                                 count++
                                 
                                 guard error == nil else {
