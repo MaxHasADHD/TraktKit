@@ -101,7 +101,7 @@ extension TraktManager {
      **Note**: When getting `full` extended info, the `status` field can have a value of `returning series` (airing right now), `in production` (airing soon), `planned` (in development), `canceled`, or `ended`.
     */
     public func getShowSummary(showID id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return getSummary(.Shows, id: id, completion: completion)
+        return getSummary(.Shows, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Aliases
