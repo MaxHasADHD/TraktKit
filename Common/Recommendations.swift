@@ -26,8 +26,8 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func hideRecommendedMovie(traktID traktID: NSNumber, completion: successCompletionHandler) -> NSURLSessionDataTask? {
-        return hideRecommendation(type: .Movies, traktID: traktID, completion: completion)
+    public func hideRecommendedMovie<T: CustomStringConvertible>(movieID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
+        return hideRecommendation(type: .Movies, id: id, completion: completion)
     }
     
     /**
@@ -44,8 +44,8 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func hideRecommendedShow(traktID traktID: NSNumber, completion: successCompletionHandler) -> NSURLSessionDataTask? {
-        return hideRecommendation(type: .Shows, traktID: traktID, completion: completion)
+    public func hideRecommendedShow<T: CustomStringConvertible>(showID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
+        return hideRecommendation(type: .Shows, id: id, completion: completion)
     }
     
     // MARK: - Private
@@ -60,55 +60,14 @@ extension TraktManager {
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
-    private func hideRecommendation(type type: WatchedType, traktID: NSNumber, completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    private func hideRecommendation<T: CustomStringConvertible>(type type: WatchedType, id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("recommendations/\(type)/\(traktID)", authorization: true, HTTPMethod: "DELETE") else {
+        guard let request = mutableRequestForURL("recommendations/\(type)/\(id)", authorization: true, HTTPMethod: "DELETE") else {
             completion(success: false)
             return nil
         }
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completion(success: false)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNoContentToReturn else {
-                    #if DEBUG
-                        print(response)
-                    #endif
-                    
-                    completion(success: false)
-                    
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(success: false)
-                return
-            }
-            
-            do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [[String: AnyObject]] {
-                    completion(success: true)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(success: false)
-            }
-        }
-        
-        dataTask.resume()
-        return dataTask
+        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
     }
     
 }

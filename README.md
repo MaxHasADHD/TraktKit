@@ -17,6 +17,37 @@ traktAuth.delegate = self
 self.presentViewController(traktAuth, animated: true, completion: nil)
 ```
 
+In AppDelegate.swift
+```
+func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+    let urlString = url.absoluteString
+    
+    let queryDict = url.queryDict() // Parse URL
+            
+    if url.host == "auth" {
+        if let code = queryDict["code"] as? String { // Get authorization code
+            TraktManager.sharedManager.getTokenFromAuthorizationCode(code, completionHandler: nil)
+        }
+    }
+    return true
+}
+```
+
+###Get Show information
+```
+TraktManager.sharedManager.getShowSummary(showID: "the-last-man-on-earth", extended: .FullAndImages) { (dictionary, error) -> Void in        
+            guard error == nil else {
+                // Handle error
+                return
+            }
+            
+            guard let summary = dictionary else {
+                completion(newShow: nil)
+                return
+            }
+        }
+```
+
 ###License
 The MIT License (MIT)
 

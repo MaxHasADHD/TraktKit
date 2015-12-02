@@ -59,7 +59,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
     */
-    public func removePlaybackItem(id: NSNumber, completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func removePlaybackItem<T: CustomStringConvertible>(id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/playback/\(id)", authorization: true, HTTPMethod: "DELETE") else {
             return nil
         }
@@ -156,7 +156,7 @@ extension TraktManager {
     
     🔒 OAuth: Required
      */
-    public func getHistory(type: WatchedType?, traktID: NSNumber?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getHistory<T: CustomStringConvertible>(type: WatchedType?, traktID: T?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         var path = "sync/history"
         if let type = type {
             path += type.rawValue

@@ -72,11 +72,11 @@ extension Users {
      Approve a follower using the `id` of the request. If the `id` is not found, was already approved, or was already denied, a `404` error will be returned.
      
      🔒 OAuth Required
+    
+    - parameter id: ID of the follower request. Example: `123`.
      */
     public func approveFollowRequest(requestID id: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        fatalError("\(__FUNCTION__) not implemented")
         guard let request = mutableRequestForURL("users/requests/\(id)", authorization: true, HTTPMethod: "POST") else { return nil }
-        
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
@@ -84,6 +84,8 @@ extension Users {
      Deny a follower using the `id` of the request. If the `id` is not found, was already approved, or was already denied, a `404` error will be returned.
      
      🔒 OAuth Required
+     
+     - parameter id: ID of the follower request. Example: `123`.
      */
     public func denyFollowRequest(requestID id: NSNumber, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/requests/\(id)", authorization: true, HTTPMethod: "DELETE") else { return nil }
@@ -181,10 +183,30 @@ extension Users {
      Create a new custom list. The `name` is the only required field, but the other info is recommended to ask for.
      
      🔒 OAuth Required
+     
+     - parameter listName: Name of the list.
+     - parameter listDescription: Description for this list.
+     - parameter privacy: `private`, `friends`, or `public`
+     - parameter displayNumbers: Should each item be numbered?
+     - parameter allowComments: Are comments allowed?
      */
-    public func createCustomList(username: String = "me", completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        fatalError("\(__FUNCTION__) not implemented")
-        guard let request = mutableRequestForURL("users/\(username)/lists", authorization: true, HTTPMethod: "POST") else { return nil }
+    public func createCustomList(listName listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        // JSON
+        var jsonString = String()
+        
+        jsonString += "{" // Beginning
+        jsonString += "\"name\": \"\(listName)\","
+        jsonString += "\"description\": \"\(listDescription)\","
+        jsonString += "\"privacy\": \"\(privacy)\","
+        jsonString += "\"display_numbers\": \"\(displayNumbers)\","
+        jsonString += "\"allow_comments\": \"\(allowComments)\""
+        jsonString += "}" // End
+        
+        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        // Request
+        guard let request = mutableRequestForURL("users/me/lists", authorization: true, HTTPMethod: "POST") else { return nil }
+        request.HTTPBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
     }
@@ -231,8 +253,7 @@ extension Users {
     
     🔒 OAuth Required
     */
-    public func likeList(username: String = "me", listID: String, completion: successCompletionHandler) -> NSURLSessionDataTask? {
-        fatalError("\(__FUNCTION__) not implemented")
+    public func likeList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: "POST") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
@@ -243,7 +264,7 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func removeListLike(username: String = "me", listID: String, completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeListLike<T: CustomStringConvertible>(username: String = "me", listID: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: "DELETE") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
@@ -256,7 +277,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getItemsForCustomList(username: String = "me", listID: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
@@ -267,8 +288,11 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func addItemToCustomList() {
-        fatalError("\(__FUNCTION__) not implemented")
+    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: true, HTTPMethod: "POST") else { return nil }
+        request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
+        
+        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
     }
     
     // MARK: - Remove List Items
@@ -278,8 +302,11 @@ extension Users {
     
     🔒 OAuth Required
     */
-    public func removeItemFromCustomList() {
-        fatalError("\(__FUNCTION__) not implemented")
+    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items/remove", authorization: true, HTTPMethod: "POST") else { return nil }
+        request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
+        
+        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
     }
     
     // MARK: - List Comments
@@ -304,7 +331,7 @@ extension Users {
     
     🔒 OAuth Required
     */
-    public func followUser(username: String = "me", completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func followUser(username: String, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/follow", authorization: true, HTTPMethod: "POST") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
@@ -315,7 +342,7 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func unfollowUser(username: String = "me", completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func unfollowUser(username: String, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/follow", authorization: true, HTTPMethod: "DELETE") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
@@ -370,8 +397,20 @@ extension Users {
     🔓 OAuth Optional
     📄 Pagination
     */
-    public func getWatchedHistory() {
+    public func getWatchedHistory<T: CustomStringConvertible>(username: String = "me", type: WatchedType?, id: T?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+        var path = "users/\(username)/history"
         
+        if let type = type {
+            path += "/\(type.rawValue)"
+            
+            if let id = id { // I think a type needs to be provided if an Id was specified
+                path += "/\(id)"
+            }
+        }
+        
+        guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: "GET") else { return nil }
+        
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
     // MARK: - Ratings
@@ -386,7 +425,7 @@ extension Users {
         var path = "users/\(username)/ratings/\(type.rawValue)"
         
         if let rating = rating {
-            path += "\(rating)"
+            path += "/\(rating)"
         }
         
         guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: "GET") else { return nil }
@@ -417,6 +456,8 @@ extension Users {
      🔓 OAuth Optional
      */
     public func getWatching(username: String = "me", completion: watchingCompletionHandler) -> NSURLSessionDataTask? {
+        // Should this function have a special completion handler? If it returns no data it is obvious that the user
+        // is not watching anything, but checking a boolean in the completion block is also nice
         guard let request = mutableRequestForURL("users/\(username)/watching", authorization: true, HTTPMethod: "GET") else { return nil }
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in

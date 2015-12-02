@@ -112,7 +112,7 @@ extension TraktManager {
     /**
     Returns all title aliases for a movie. Includes country where name is different.
     */
-    public func getMovieAliases(movieID id: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         return getAliases(.Movies, id: id, completion: completion)
     }
     
@@ -124,8 +124,15 @@ extension TraktManager {
     - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
     - parameter country: 2 character country code. Example: `us`.
     */
-    public func getMovieReleases(movieID id: String, country: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("", authorization: false, HTTPMethod: "GET") else { return nil }
+    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+        
+        var path = "movies/\(id)/releases"
+        
+        if let country = country {
+            path += "/\(country)"
+        }
+        
+        guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
@@ -135,7 +142,7 @@ extension TraktManager {
     /**
     Returns all translations for a movie, including language and translated values for title, tagline and overview.
     */
-    public func getMovieTranslations(movieID id: String, language: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieTranslations<T: CustomStringConvertible>(movieID id: T, language: String?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         return getTranslations(.Movies, id: id, language: language, completion: completion)
     }
     
@@ -146,7 +153,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getMovieComments(movieID id: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         return getComments(.Movies, id: id, completion: completion)
     }
     
@@ -157,7 +164,7 @@ extension TraktManager {
     
     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
     */
-    public func getPeopleInMovie(movieID id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         return getPeople(.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -166,7 +173,7 @@ extension TraktManager {
     /**
     Returns rating (between 0 and 10) and distribution for a movie.
     */
-    public func getMovieRatings(movieID id: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         return getRatings(.Movies, id: id, completion: completion)
     }
     
@@ -177,7 +184,7 @@ extension TraktManager {
     
     **Note**: We are continuing to improve this algorithm.
     */
-    public func getRelatedMovies(movieID id: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         return getRelated(.Movies, id: id, completion: completion)
     }
     
@@ -186,7 +193,7 @@ extension TraktManager {
     /**
     Returns lots of movie stats.
     */
-    public func getMovieStatistics(movieID id: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieStatistics<T: CustomStringConvertible>(movieID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         return getStatistics(.Movies, id: id, completion: completion)
     }
     
@@ -195,7 +202,7 @@ extension TraktManager {
     /**
     Returns all users watching this movie right now.
     */
-    public func getUsersWatchingMovie(movieID id: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         return getUsersWatching(.Movies, id: id, completion: completion)
     }
 }

@@ -15,9 +15,9 @@ extension TraktManager {
     /**
      Returns a single person's details.
      */
-    public func getPersonDetails(TraktID ID: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(ID)", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("people/\(id)", authorization: false, HTTPMethod: "GET") else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }
@@ -30,8 +30,8 @@ extension TraktManager {
      
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `movie` object.
      */
-    public func getMovieCredits(TraktID ID: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return getCredits(type: WatchedType.Movies, TraktID: ID, completion: completion)
+    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        return getCredits(type: WatchedType.Movies, id: id, completion: completion)
     }
     
     /**
@@ -39,15 +39,15 @@ extension TraktManager {
      
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `show` object.
      */
-    public func getShowCredits(TraktID ID: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return getCredits(type: WatchedType.Shows, TraktID: ID, completion: completion)
+    public func getShowCredits<T: CustomStringConvertible>(movieID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        return getCredits(type: WatchedType.Shows, id: id, completion: completion)
     }
     
     // MARK: - Private
     
-    private func getCredits(type type: WatchedType, TraktID ID: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    private func getCredits<T: CustomStringConvertible>(type type: WatchedType, id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(ID)/\(type)", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("people/\(id)/\(type)", authorization: false, HTTPMethod: "GET") else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }

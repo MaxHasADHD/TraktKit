@@ -109,8 +109,7 @@ public struct statusCodes {
 public class TraktManager {
     
     // TODO List:
-    // 1. Convert ID parameters to generics. Currently only accepts the trakt ID
-    // 2. Create a limit object, double check every paginated API call is marked as paginated
+    // 1. Create a limit object, double check every paginated API call is marked as paginated
     
     // MARK: Internal
     private var clientID: String?
@@ -254,8 +253,14 @@ public class TraktManager {
         if let clientID = clientID {
             request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
         }
+        
         if authorization {
-            request.addValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
+            if let accessToken = accessToken {
+                request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            }
+            else {
+                return nil
+            }
         }
         
         return request

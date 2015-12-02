@@ -87,7 +87,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Summary
     
-    func getSummary(type: WatchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    func getSummary<T: CustomStringConvertible>(type: WatchedType, id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
@@ -95,7 +95,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Aliases
     
-    func getAliases(type: WatchedType, id: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    func getAliases<T: CustomStringConvertible>(type: WatchedType, id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
@@ -103,7 +103,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Translations
     
-    func getTranslations(type: WatchedType, id: String, language: String?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    func getTranslations<T: CustomStringConvertible>(type: WatchedType, id: T, language: String?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         var path = "\(type)/\(id)/translations"
         if let language = language {
             path += "/\(language)"
@@ -116,7 +116,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Comments
     
-    func getComments(type: WatchedType, id: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    func getComments<T: CustomStringConvertible>(type: WatchedType, id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/comments", authorization: false, HTTPMethod: "GET") else {
             return nil
         }
@@ -126,7 +126,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - People
     
-    func getPeople(type: WatchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    func getPeople<T: CustomStringConvertible>(type: WatchedType, id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/people?extended=\(extended.rawValue)", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
@@ -134,7 +134,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Ratings
     
-    func getRatings(type: WatchedType, id: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    func getRatings<T: CustomStringConvertible>(type: WatchedType, id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/ratings", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
@@ -142,7 +142,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Related
     
-    func getRelated(type: WatchedType, id: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    func getRelated<T: CustomStringConvertible>(type: WatchedType, id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/related", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
@@ -150,7 +150,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Stats
     
-    func getStatistics(type: WatchedType, id: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    func getStatistics<T: CustomStringConvertible>(type: WatchedType, id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/stats", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
@@ -158,7 +158,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Watching
     
-    func getUsersWatching(type: WatchedType, id: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    func getUsersWatching<T: CustomStringConvertible>(type: WatchedType, id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/watching", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)

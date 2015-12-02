@@ -96,7 +96,7 @@ class ShowTests: XCTestCase {
     func testEpisodeRatings() {
         let expectation = self.expectationWithDescription("High Expectations")
         
-        TraktManager.sharedManager.getEpisodeRatings(77686, seasonNumber: 1, episodeNumber: 1) { (dictionary, error) -> Void in
+        TraktManager.sharedManager.getEpisodeRatings(showID: 77686, seasonNumber: 1, episodeNumber: 1) { (dictionary, error) -> Void in
             guard error == nil else {
                 XCTAssert(false, "Error getting episode ratings")
                 return
