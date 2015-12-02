@@ -244,11 +244,85 @@ extension TraktManager {
      Send a `rated_at` UTC datetime to mark items as rated in the past. This is useful for syncing ratings from a media center.
      
      🔒 OAuth: Required
+     
+     - parameter rating: Between 1 and 10.
+     - parameter movies: Array of movie ID's
+     - parameter shows: Array of show ID's
+     - parameter episodes: Array of episode ID's
     */
     public func addRatings(rating rating: NSNumber, movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        fatalError("\(__FUNCTION__) not implemented")
+        
+        let ratedAt = NSDate()
+        
+        // JSON
+        var jsonString = String()
+        
+        jsonString += "{" // Beginning
+        // Movies
+        jsonString += "\"movies\": [" // Begin Movies
+        let moviesCount = movies.count
+        for (index, movie) in movies.enumerate() {
+            jsonString += "{"
+            jsonString += "\"rated_at\": \"\(ratedAt)\","
+            jsonString += "\"rating\": \(rating),"
+            jsonString += "\"ids\": {"
+            jsonString += "\"trakt\": \(movie)"
+            jsonString += "}"
+            
+            if index == moviesCount-1 {
+                jsonString += "}"
+            }
+            else {
+                jsonString += "},"
+            }
+        }
+        jsonString += "]," // End Movies
+        
+        // Shows
+        jsonString += "\"shows\": [" // Begin Shows
+        let showsCount = shows.count
+        for (index, show) in shows.enumerate() {
+            jsonString += "{"
+            jsonString += "\"rated_at\": \"\(ratedAt)\","
+            jsonString += "\"rating\": \(rating),"
+            jsonString += "\"ids\": {"
+            jsonString += "\"trakt\": \(show)"
+            jsonString += "}"
+            
+            if index == showsCount-1 {
+                jsonString += "}"
+            }
+            else {
+                jsonString += "},"
+            }
+        }
+        jsonString += "]," // End Shows
+        // Episodes
+        jsonString += "\"episodes\": [" // Begin Episodes
+        let epiodesCount = episodes.count
+        for (index, episode) in episodes.enumerate() {
+            jsonString += "{"
+            jsonString += "\"rated_at\": \"\(ratedAt)\","
+            jsonString += "\"rating\": \(rating),"
+            jsonString += "\"ids\": {"
+            jsonString += "\"trakt\": \(episode)"
+            jsonString += "}"
+            
+            if index == epiodesCount-1 {
+                jsonString += "}"
+            }
+            else {
+                jsonString += "},"
+            }
+        }
+        jsonString += "]" // End Episodes
+        jsonString += "}" // End
+        
+        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        // Request
         guard let request = mutableRequestForURL("sync/ratings", authorization: true, HTTPMethod: "POST") else { return nil }
-//        request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes) // TODO: Body only needs to include the rating and ID's
+        request.HTTPBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
     }
@@ -257,9 +331,16 @@ extension TraktManager {
      Remove ratings for one or more items.
      
      🔒 OAuth: Required
+     
+     - parameter movies: array of movie object JSON strings
+     - parameter shows: array of show object JSON strings
+     - parameter episodes: array of episode object JSON strings
     */
-    public func removeRatings() {
-        fatalError("\(__FUNCTION__) not implemented")
+    public func removeRatings(movies movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("sync/ratings/remove", authorization: true, HTTPMethod: "POST") else { return nil }
+        request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
+        
+        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
     }
     
     // MARK: - Watchlist
