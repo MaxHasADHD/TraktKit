@@ -134,7 +134,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getShowComments<T: CustomStringConvertible>(showID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getShowComments<T: CustomStringConvertible>(showID id: T, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
         return getComments(.Shows, id: id, completion: completion)
     }
     

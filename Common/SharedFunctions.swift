@@ -8,6 +8,46 @@
 
 import Foundation
 
+public struct User {
+    public let username: String
+    public let isPrivate: Bool
+    public let name: String
+    public let isVIP: Bool
+    public let isVIPEP: Bool
+    
+    init(json: [String: AnyObject]) {
+        username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
+        isPrivate = json["private"] as? Bool ?? false
+        name = json["name"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
+        isVIP = json["vip"] as? Bool ?? false
+        isVIPEP = json["vip_ep"] as? Bool ?? false
+    }
+}
+
+public struct Comment {
+    public let id: NSNumber
+    public let parentID: NSNumber
+    public let createdAt: String // TODO: Make NSDate
+    public let comment: String
+    public let spoiler: Bool
+    public let review: Bool
+    public let replies: NSNumber
+    public let userRating: NSNumber
+    public let user: User
+    
+    init(json: [String: AnyObject]) {
+        
+        id = json["id"] as? NSNumber ?? 0
+        parentID = json["parent_id"] as? NSNumber ?? 0
+        createdAt = json["created_at"] as? String ?? ""
+        comment = json["comment"] as? String ?? NSLocalizedString("COMMENTS_UNAVAILABLE", comment: "Comment Unavailable")
+        spoiler = json["spoiler"] as? Bool ?? false
+        review = json["review"] as? Bool ?? false
+        replies = json["replies"] as? NSNumber ?? 0
+        userRating = json["user_rating"] as? NSNumber ?? 0
+        user = User(json: json["user"] as! [String: AnyObject])
+    }
+}
 
 private typealias ShowsAndMovies = TraktManager
 internal extension ShowsAndMovies {
@@ -116,10 +156,8 @@ internal extension ShowsAndMovies {
     
     // MARK: - Comments
     
-    func getComments<T: CustomStringConvertible>(type: WatchedType, id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("\(type)/\(id)/comments", authorization: false, HTTPMethod: "GET") else {
-            return nil
-        }
+    func getComments<T: CustomStringConvertible>(type: WatchedType, id: T, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("\(type)/\(id)/comments", authorization: false, HTTPMethod: "GET") else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }

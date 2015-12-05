@@ -30,7 +30,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/comments", authorization: false, HTTPMethod: "GET") else {
             return nil
         }

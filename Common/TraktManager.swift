@@ -190,6 +190,7 @@ public class TraktManager {
     public typealias arrayCompletionHandler = (objects: [[String: AnyObject]]?, error: NSError?) -> Void
     public typealias dictionaryCompletionHandler = (dictionary: [String: AnyObject]?, error: NSError?) -> Void
     public typealias successCompletionHandler = (success: Bool) -> Void
+    public typealias commentsCompletionHandler = ((comments: [Comment], error: NSError?) -> Void)
     
     // MARK: - Lifecycle
     
@@ -416,6 +417,30 @@ public class TraktManager {
         datatask.resume()
         
         return datatask
+    }
+    
+    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
+        let aCompletion: arrayCompletionHandler = { (objects: [[String: AnyObject]]?, error: NSError?) -> Void in
+            
+            if let objects = objects {
+                var comments: [Comment] = []
+                
+                for jsonComment in objects {
+                    let comment = Comment(json: jsonComment)
+                    
+                    comments.append(comment)
+                }
+                
+                completion(comments: comments, error: error)
+            }
+            else {
+                completion(comments: [], error: error)
+            }
+        }
+        
+        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+        
+        return dataTask
     }
     
     // MARK: - Authentication

@@ -153,7 +153,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
         return getComments(.Movies, id: id, completion: completion)
     }
     
