@@ -104,7 +104,7 @@ extension TraktManager {
     Returns a single movie's details.
     */
     public func getMovieSummary(movieID id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return getSummary(.Movies, id: id, completion: completion)
+        return getSummary(.Movies, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Aliases
