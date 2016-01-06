@@ -187,10 +187,11 @@ public class TraktManager {
     }
     
     // Completion handlers
-    public typealias arrayCompletionHandler = (objects: [[String: AnyObject]]?, error: NSError?) -> Void
-    public typealias dictionaryCompletionHandler = (dictionary: [String: AnyObject]?, error: NSError?) -> Void
-    public typealias successCompletionHandler = (success: Bool) -> Void
-    public typealias commentsCompletionHandler = ((comments: [Comment], error: NSError?) -> Void)
+    public typealias arrayCompletionHandler         = (objects: [[String: AnyObject]]?, error: NSError?) -> Void
+    public typealias dictionaryCompletionHandler    = (dictionary: [String: AnyObject]?, error: NSError?) -> Void
+    public typealias successCompletionHandler       = (success: Bool) -> Void
+    public typealias commentsCompletionHandler      = ((comments: [Comment], error: NSError?) -> Void)
+    public typealias CastCrewCompletionHandler      = ((cast: [CastMember], crew: [CrewMember], error: NSError?) -> Void)
     
     // MARK: - Lifecycle
     
@@ -216,7 +217,7 @@ public class TraktManager {
     internal func createTraktErrorWithStatusCode(statusCode: Int) -> NSError {
         let userInfo = [
             "title": "Trakt",
-            NSLocalizedDescriptionKey: "",
+            NSLocalizedDescriptionKey: "Request Failed: Gateway timed out (\(statusCode))",
             NSLocalizedFailureReasonErrorKey: "",
             NSLocalizedRecoverySuggestionErrorKey: ""
         ]
@@ -435,6 +436,43 @@ public class TraktManager {
             }
             else {
                 completion(comments: [], error: error)
+            }
+        }
+        
+        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+        
+        return dataTask
+    }
+    
+    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
+        let aCompletion: dictionaryCompletionHandler = { (json: [String: AnyObject]?, error: NSError?) -> Void in
+            
+            if let json = json {
+                var crew: [CrewMember] = []
+                var cast: [CastMember] = []
+                
+                // Crew
+                if let jsonCrew = json["crew"] as? [[String: AnyObject]] {
+                    for jsonCrewMember in jsonCrew {
+                        let crewMember = CrewMember(json: jsonCrewMember)
+                        
+                        crew.append(crewMember)
+                    }
+                }
+                
+                // Cast
+                if let jsonCast = json["cast"] as? [[String: AnyObject]] {
+                    for jsonCastMember in jsonCast {
+                        let castMember = CastMember(json: jsonCastMember)
+                        
+                        cast.append(castMember)
+                    }
+                }
+                
+                completion(cast: cast, crew: crew, error: error)
+            }
+            else {
+                completion(cast: [], crew: [], error: error)
             }
         }
         

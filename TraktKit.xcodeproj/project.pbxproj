@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7033F301C3AE3C4000E40F7 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
 		A723DA8C1B917EF300CA217C /* TraktKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = A723DA8B1B917EF300CA217C /* TraktKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A723DA931B917EF300CA217C /* TraktKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKitMac.framework */; };
 		A723DA981B917EF300CA217C /* TraktKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723DA971B917EF300CA217C /* TraktKitMacTests.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A7033F2F1C3AE3C4000E40F7 /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		A723DA891B917EF300CA217C /* TraktKitMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A723DA8B1B917EF300CA217C /* TraktKitMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitMac.h; sourceTree = "<group>"; };
 		A723DA8D1B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				A7CC79A01BF7C36E00A43AD3 /* Sync.swift */,
 				A7AE55AD1BD4560700A5DFFB /* Users.swift */,
 				A77340691C08D82D00A69EA1 /* SharedFunctions.swift */,
+				A7033F2F1C3AE3C4000E40F7 /* Structures.swift */,
 				A76905B51B47B7A6003C7431 /* MLKeychain.swift */,
 				A79163A41C0D46F200E791BC /* Extensions.swift */,
 			);
@@ -435,6 +438,7 @@
 				A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */,
 				A7CC79A71BF805E400A43AD3 /* People.swift in Sources */,
 				A7FB7FD01BF8EC990003BBD7 /* Calendars.swift in Sources */,
+				A7033F301C3AE3C4000E40F7 /* Structures.swift in Sources */,
 				A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */,
 				A78D135A1B2A341000BA2068 /* Movies.swift in Sources */,
 				A77340601C07886500A69EA1 /* Search.swift in Sources */,

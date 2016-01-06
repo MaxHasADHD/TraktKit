@@ -164,7 +164,7 @@ extension TraktManager {
     
     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
     */
-    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
         return getPeople(.Movies, id: id, extended: extended, completion: completion)
     }
     
