@@ -186,12 +186,29 @@ public class TraktManager {
         }
     }
     
-    // Completion handlers
+    // MARK: - Completion handlers
     public typealias arrayCompletionHandler         = (objects: [[String: AnyObject]]?, error: NSError?) -> Void
     public typealias dictionaryCompletionHandler    = (dictionary: [String: AnyObject]?, error: NSError?) -> Void
     public typealias successCompletionHandler       = (success: Bool) -> Void
     public typealias commentsCompletionHandler      = ((comments: [Comment], error: NSError?) -> Void)
     public typealias CastCrewCompletionHandler      = ((cast: [CastMember], crew: [CrewMember], error: NSError?) -> Void)
+    public typealias SearchCompletionHandler        = ((searchResults: [TraktSearchResult], error: NSError?) -> Void)
+    public typealias statsCompletionHandler         = ((stats: TraktStats?, error: NSError?) -> Void)
+    
+    // TV
+    public typealias ShowCompletionHandler          = ((show: TraktShow?, error: NSError?) -> Void)
+    public typealias ShowsCompletionHandler         = ((shows: [TraktShow], error: NSError?) -> Void)
+    public typealias TrendingShowsCompletionHandler = ((trendingShows: [TraktTrendingShow], error: NSError?) -> Void)
+    public typealias MostShowsCompletionHandler     = ((MostShows: [TraktMostShow], error: NSError?) -> Void)
+    public typealias ShowTranslationsCompletionHandler = ((translations: [TraktShowTranslation], error: NSError?) -> Void)
+    public typealias SeasonsCompletionHandler       = ((seasons: [TraktSeason], error: NSError?) -> Void)
+    
+    // Movies
+    public typealias MovieCompletionHandler          = ((movie: TraktMovie?, error: NSError?) -> Void)
+    public typealias MoviesCompletionHandler         = ((movies: [TraktMovie], error: NSError?) -> Void)
+    public typealias TrendingMoviesCompletionHandler = ((trendingMovies: [TraktTrendingMovie], error: NSError?) -> Void)
+    public typealias MostMoviesCompletionHandler     = ((MostMovies: [TraktMostShow], error: NSError?) -> Void)
+    public typealias MovieTranslationsCompletionHandler = ((translations: [TraktMovieTranslation], error: NSError?) -> Void)
     
     // MARK: - Lifecycle
     
@@ -420,30 +437,6 @@ public class TraktManager {
         return datatask
     }
     
-    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
-        let aCompletion: arrayCompletionHandler = { (objects: [[String: AnyObject]]?, error: NSError?) -> Void in
-            
-            if let objects = objects {
-                var comments: [Comment] = []
-                
-                for jsonComment in objects {
-                    let comment = Comment(json: jsonComment)
-                    
-                    comments.append(comment)
-                }
-                
-                completion(comments: comments, error: error)
-            }
-            else {
-                completion(comments: [], error: error)
-            }
-        }
-        
-        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
-        
-        return dataTask
-    }
-    
     func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
         let aCompletion: dictionaryCompletionHandler = { (json: [String: AnyObject]?, error: NSError?) -> Void in
             
@@ -473,6 +466,54 @@ public class TraktManager {
             }
             else {
                 completion(cast: [], crew: [], error: error)
+            }
+        }
+        
+        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+        
+        return dataTask
+    }
+    
+    // Generic array of Trakt objects
+    func performRequest<T: TraktObject>(request request: NSURLRequest,
+        expectingStatusCode code: Int,
+        completion: ((TraktObject: T?, error: NSError?) -> Void)) -> NSURLSessionDataTask? {
+            
+            let aCompletion: dictionaryCompletionHandler = { (json: [String: AnyObject]?, error: NSError?) -> Void in
+                
+                if let json = json {
+                    let traktObject = T(json: json)
+                    completion(TraktObject: traktObject, error: error)
+                }
+                else {
+                    completion(TraktObject: nil, error: error)
+                }
+            }
+            
+            let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+            
+            return dataTask
+    }
+    
+    // Generic array of Trakt objects
+    func performRequest<T: TraktObject>(request request: NSURLRequest,
+        expectingStatusCode code: Int,
+        completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
+            
+        let aCompletion: arrayCompletionHandler = { (objects: [[String: AnyObject]]?, error: NSError?) -> Void in
+            
+            if let objects = objects {
+                var traktObjects: [T] = []
+                
+                for jsonObject in objects {
+                    let trendingShow = T(json: jsonObject)
+                    traktObjects.append(trendingShow)
+                }
+                
+                completion(TraktObjects: traktObjects, error: error)
+            }
+            else {
+                completion(TraktObjects: [], error: error)
             }
         }
         

@@ -17,7 +17,7 @@ extension TraktManager {
      Status Code: 200
      
      */
-    public func search(query: String, types: [SearchType], completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func search(query: String, types: [SearchType], completion: SearchCompletionHandler) -> NSURLSessionDataTask? {
         
         let typesString = types.map { $0.rawValue }.joinWithSeparator(",") // Search with multiple types
         

@@ -17,7 +17,7 @@ extension TraktManager {
     
     📄 Pagination
      */
-    public func getTrendingMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getTrendingMovies(page page: Int, limit: Int, completion: TrendingMoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getTrending(.Movies, page: page, limit: limit, completion: completion)
     }
     
@@ -28,7 +28,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getPopularMovies(page page: Int, limit: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPopularMovies(page page: Int, limit: Int, completion: MoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getPopular(.Movies, page: page, limit: limit, completion: completion)
     }
     
@@ -39,7 +39,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getPlayedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPlayedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> NSURLSessionDataTask? {
         return getPlayed(.Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -50,7 +50,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getWatchedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> NSURLSessionDataTask? {
         return getWatched(.Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -61,7 +61,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getCollectedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCollectedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> NSURLSessionDataTask? {
         return getCollected(.Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -103,7 +103,7 @@ extension TraktManager {
     /**
     Returns a single movie's details.
     */
-    public func getMovieSummary(movieID id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieSummary(movieID id: NSNumber, extended: extendedType = .Min, completion: MovieCompletionHandler) -> NSURLSessionDataTask? {
         return getSummary(.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -142,7 +142,7 @@ extension TraktManager {
     /**
     Returns all translations for a movie, including language and translated values for title, tagline and overview.
     */
-    public func getMovieTranslations<T: CustomStringConvertible>(movieID id: T, language: String?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieTranslations<T: CustomStringConvertible>(movieID id: T, language: String?, completion: MovieTranslationsCompletionHandler) -> NSURLSessionDataTask? {
         return getTranslations(.Movies, id: id, language: language, completion: completion)
     }
     
@@ -193,7 +193,7 @@ extension TraktManager {
     /**
     Returns lots of movie stats.
     */
-    public func getMovieStatistics<T: CustomStringConvertible>(movieID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieStatistics<T: CustomStringConvertible>(movieID id: T, completion: statsCompletionHandler) -> NSURLSessionDataTask? {
         return getStatistics(.Movies, id: id, completion: completion)
     }
     

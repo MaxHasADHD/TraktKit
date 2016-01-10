@@ -23,7 +23,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getTrendingShows(page page: Int, limit: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getTrendingShows(page page: Int, limit: Int, completion: TrendingShowsCompletionHandler) -> NSURLSessionDataTask? {
         return getTrending(.Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -34,7 +34,7 @@ extension TraktManager {
      
      📄 Pagination
     */
-    public func getPopularShows(page page: Int, limit: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPopularShows(page page: Int, limit: Int, completion: ShowsCompletionHandler) -> NSURLSessionDataTask? {
         return getPopular(.Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -45,7 +45,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getPlayedShows(page page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPlayedShows(page page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getPlayed(.Shows, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -56,7 +56,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getWatchedShows(page page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchedShows(page page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getWatched(.Shows, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -67,7 +67,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getCollectedShows(page page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCollectedShows(page page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getCollected(.Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -100,7 +100,7 @@ extension TraktManager {
      
      **Note**: When getting `full` extended info, the `status` field can have a value of `returning series` (airing right now), `in production` (airing soon), `planned` (in development), `canceled`, or `ended`.
     */
-    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: ShowCompletionHandler) -> NSURLSessionDataTask? {
         return getSummary(.Shows, id: id, extended: extended, completion: completion)
     }
     
@@ -123,7 +123,7 @@ extension TraktManager {
     - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
     - parameter language: 2 character language code. Example: `es`
      */
-    public func getShowTranslations<T: CustomStringConvertible>(showID id: T, language: String?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getShowTranslations<T: CustomStringConvertible>(showID id: T, language: String?, completion: ShowTranslationsCompletionHandler) -> NSURLSessionDataTask? {
         return getTranslations(.Shows, id: id, language: language, completion: completion)
     }
     
@@ -200,7 +200,7 @@ extension TraktManager {
     /**
      Returns lots of show stats.
      */
-    public func getShowStatistics<T: CustomStringConvertible>(showID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getShowStatistics<T: CustomStringConvertible>(showID id: T, completion: statsCompletionHandler) -> NSURLSessionDataTask? {
         return getStatistics(.Shows, id: id, completion: completion)
     }
     

@@ -21,7 +21,7 @@ class ShowTests: XCTestCase {
         super.tearDown()
     }
     
-    func testParseShow() {
+    /*func testParseShow() {
         let expectation = self.expectationWithDescription("High Expectations")
         let numberOfTrendingShows = 100
         var count = 0
@@ -111,5 +111,5 @@ class ShowTests: XCTestCase {
                 print("Timeout error: \(error)")
             }
         }
-    }
+    }*/
 }
