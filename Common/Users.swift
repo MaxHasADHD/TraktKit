@@ -234,8 +234,23 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func updateCustomList(username: String = "me", listID: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)", authorization: true, HTTPMethod: "PUT") else { return nil }
+    public func updateCustomList(listID listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        // JSON
+        var jsonString = String()
+        
+        jsonString += "{" // Beginning
+        jsonString += "\"name\": \"\(listName)\","
+        jsonString += "\"description\": \"\(listDescription)\","
+        jsonString += "\"privacy\": \"\(privacy)\","
+        jsonString += "\"display_numbers\": \"\(displayNumbers)\","
+        jsonString += "\"allow_comments\": \"\(allowComments)\""
+        jsonString += "}" // End
+        
+        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        // Request
+        guard let request = mutableRequestForURL("users/me/lists/\(listID)", authorization: true, HTTPMethod: "PUT") else { return nil }
+        request.HTTPBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
