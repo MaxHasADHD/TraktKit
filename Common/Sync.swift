@@ -422,53 +422,13 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func removeFromWatchlist(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeFromWatchlist(movies movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/watchlist/remove", authorization: true, HTTPMethod: "POST") else {
-            completion(success: false)
+            completion(dictionary: nil, error: nil)
             return nil
         }
         request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                completion(success: false)
-                return
-            }
-            
-            // Check response
-            // A successful post request sends a 201 status code
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNewResourceCreated else {
-                    #if DEBUG
-                        print(response)
-                    #endif
-                    completion(success: false)
-                    return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(success: false)
-                return
-            }
-            
-            do {
-                if let _ = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completion(success: true)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print(jsonSerializationError)
-                #endif
-                completion(success: false)
-            }
-        }
-        
-        dataTask.resume()
-        return dataTask
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
 }
