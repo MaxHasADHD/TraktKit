@@ -452,8 +452,9 @@ public class TraktManager {
                 var cast: [CastMember] = []
                 
                 // Crew
-                if let jsonCrew = json["crew"] as? [[String: AnyObject]] {
-                    for jsonCrewMember in jsonCrew {
+                if let jsonCrew = json["crew"] as? [String: AnyObject],
+                    productionCrew = jsonCrew["production"]  as? [[String: AnyObject]] {
+                    for jsonCrewMember in productionCrew {
                         let crewMember = CrewMember(json: jsonCrewMember)
                         
                         crew.append(crewMember)
