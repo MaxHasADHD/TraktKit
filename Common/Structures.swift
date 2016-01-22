@@ -105,6 +105,8 @@ public class TraktImages: TraktObject {
     public let banner: TraktImage?
     public let thumb: TraktImage?
     
+    public let headshot: TraktImage?
+    
     // Initialize
     required public init(json: RawJSON) {
         fanart = TraktImage(optionalJSON: json["fanart"] as? RawJSON)
@@ -113,6 +115,8 @@ public class TraktImages: TraktObject {
         clearArt = TraktImage(optionalJSON: json["clearart"] as? RawJSON)
         banner = TraktImage(optionalJSON: json["banner"] as? RawJSON)
         thumb = TraktImage(optionalJSON: json["thumb"] as? RawJSON)
+        
+        headshot = TraktImage(optionalJSON: json["headshot"] as? RawJSON) // For actors
         
         super.init(json: json)
     }
@@ -488,6 +492,9 @@ public class Person: TraktObject {
     public let birthplace: String?
     public let homepage: NSURL?
     
+    // Extended: Images
+    public let images: TraktImages?
+    
     // Initialize
     required public init(json: RawJSON) {
         // Extended: Min
@@ -519,6 +526,14 @@ public class Person: TraktObject {
         }
         else {
             homepage = nil
+        }
+        
+        // Extended: Images
+        if let imageJSON = json["images"] as? RawJSON {
+            images = TraktImages(json: imageJSON)
+        }
+        else {
+            images = nil
         }
         
         super.init(json: json)
