@@ -222,7 +222,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getCustomList(username: String = "me", listID: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)", authorization: authorization, HTTPMethod: "GET") else { return nil }
         
@@ -327,7 +327,7 @@ extension Users {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items/remove", authorization: true, HTTPMethod: "POST") else { return nil }
         request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
     
     // MARK: - List Comments

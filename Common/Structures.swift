@@ -8,23 +8,426 @@
 
 import Foundation
 
-public struct User {
-    public let username: String
-    public let isPrivate: Bool
-    public let name: String
-    public let isVIP: Bool
-    public let isVIPEP: Bool
-    
-    init(json: [String: AnyObject]) {
-        username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
-        isPrivate = json["private"] as? Bool ?? false
-        name = json["name"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
-        isVIP = json["vip"] as? Bool ?? false
-        isVIPEP = json["vip_ep"] as? Bool ?? false
+public typealias RawJSON = [String: AnyObject] // Dictionary
+
+// Common superclass so generic completion handler works
+public class TraktObject {
+    required public init(json: RawJSON) {
+        
     }
 }
 
-public struct Comment {
+
+// MARK: - TV & Movies
+
+public class ID: TraktObject {
+    public let trakt: Int
+    public let slug: String?
+    public let tvdb: Int?
+    public let imdb: String?
+    public let tmdb: Int?
+    public let tvRage: Int?
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        trakt   = json["trakt"] as? Int ?? 0
+        slug    = json["slug"] as? String
+        tvdb    = json["tvdb"] as? Int
+        imdb    = json["imdb"] as? String
+        tmdb    = json["tmdb"] as? Int
+        tvRage  = json["tvrage"] as? Int
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktSearchResult: TraktObject {
+    public let type: String // Can be movie, show, episode, person, list
+    public let score: Double
+    
+    public let movie: TraktMovie?
+    public let show: TraktShow?
+    public let episode: TraktEpisode?
+    public let person: Person?
+    public let list: TraktList?
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        type = json["type"] as? String ?? "" // Should this fail then?
+        score = json["score"] as? Double ?? 0
+        
+        if let movieJSON = json["movie"] as? RawJSON {
+            movie = TraktMovie(json: movieJSON)
+        }
+        else {
+            movie = nil
+        }
+        
+        if let showJSON = json["show"] as? RawJSON {
+            show = TraktShow(json: showJSON)
+        }
+        else {
+            show = nil
+        }
+        
+        if let episodeJSON = json["episode"] as? RawJSON {
+            episode = TraktEpisode(json: episodeJSON)
+        }
+        else {
+            episode = nil
+        }
+        
+        if let personJSON = json["person"] as? RawJSON {
+            person = Person(json: personJSON)
+        }
+        else {
+            person = nil
+        }
+        
+        if let listJSON = json["list"] as? RawJSON {
+            list = TraktList(json: listJSON)
+        }
+        else {
+            list = nil
+        }
+        
+        super.init(json: json)
+    }
+}
+
+// MARK: - Images
+
+public class TraktImages: TraktObject {
+    public let fanart: TraktImage?
+    public let poster: TraktImage?
+    public let logo: TraktImage?
+    public let clearArt: TraktImage?
+    public let banner: TraktImage?
+    public let thumb: TraktImage?
+    
+    public let headshot: TraktImage?
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        fanart = TraktImage(optionalJSON: json["fanart"] as? RawJSON)
+        poster = TraktImage(optionalJSON: json["poster"] as? RawJSON)
+        logo = TraktImage(optionalJSON: json["logo"] as? RawJSON)
+        clearArt = TraktImage(optionalJSON: json["clearart"] as? RawJSON)
+        banner = TraktImage(optionalJSON: json["banner"] as? RawJSON)
+        thumb = TraktImage(optionalJSON: json["thumb"] as? RawJSON)
+        
+        headshot = TraktImage(optionalJSON: json["headshot"] as? RawJSON) // For actors
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktImage: TraktObject {
+    public let full: NSURL?
+    public let medium: NSURL?
+    public let thumb: NSURL?
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        full = NSURL(string: json["full"] as? String ?? "") ?? nil
+        medium = NSURL(string: json["medium"] as? String ?? "") ?? nil
+        thumb = NSURL(string: json["thumb"] as? String ?? "") ?? nil
+        
+        super.init(json: json)
+    }
+    
+    public init?(optionalJSON: RawJSON?) { // Makes easier to code instead of a bunch of if-lets for TraktImages
+        if let json = optionalJSON {
+            full = NSURL(string: json["full"] as? String ?? "") ?? nil
+            medium = NSURL(string: json["medium"] as? String ?? "") ?? nil
+            thumb = NSURL(string: json["thumb"] as? String ?? "") ?? nil
+            
+            super.init(json: json)
+        }
+        else {
+            full = nil
+            medium = nil
+            thumb = nil
+            super.init(json: [:])
+            return nil
+        }
+    }
+}
+
+// MARK: - Television
+
+public class TraktTrendingShow: TraktObject {
+    // Extended: Min
+    public let watchers: Int
+    public let show: TraktShow
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        watchers    = json["watchers"] as? Int ?? 0
+        show        = TraktShow(json: json["show"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+// Used for most played, watched, and collected shows
+public class TraktMostShow: TraktObject {
+    // Extended: Min
+    public let watcherCount: Int
+    public let playCount: Int
+    public let collectedCount: Int
+    public let collectorCount: Int
+    public let show: TraktShow
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        watcherCount    = json["watcher_count"] as? Int ?? 0
+        playCount       = json["play_count"] as? Int ?? 0
+        collectedCount  = json["collected_count"] as? Int ?? 0
+        collectorCount  = json["collector_count"] as? Int ?? 0
+        show            = TraktShow(json: json["show"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktAnticipatedShow: TraktObject {
+    // Extended: Min
+    public let listCount: Int
+    public let show: TraktShow
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        listCount   = json["list_count"] as? Int ?? 0
+        show        = TraktShow(json: json["show"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktShow: TraktObject {
+    // Extended: Min
+    public let title: String
+    public let year: Int?
+    public let ids: ID
+    
+    // Extended: Full
+    public let overview: String?
+    public let firstAired: String? // TODO: Make NSDate
+    public let airs: RawJSON? // TODO: Make as type
+    public let runtime: Int?
+    public let certification: String?
+    public let network: String?
+    public let country: String?
+    public let trailer: NSURL?
+    public let homepage: NSURL?
+    public let status: String?
+    public let rating: Double?
+    public let votes: Int?
+    public let updatedAt: String? // TODO: Make NSDate
+    public let language: String?
+    public let availableTranslations: [String]?
+    public let genres: [String]?
+    public let airedEpisodes: Int?
+    
+    // Extended: Images
+    public let images: TraktImages?
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        // Extended: Min
+        title   = json["title"] as? String ?? ""
+        year    = json["year"] as? Int
+        ids     = ID(json: json["ids"] as! RawJSON)
+        
+        // Extended: Full
+        overview        = json["overview"] as? String
+        firstAired      = json["first_aired"] as? String
+        airs            = json["airs"] as? RawJSON
+        runtime         = json["runtime"] as? Int
+        certification   = json["certification"] as? String
+        network         = json["network"] as? String
+        country         = json["country"] as? String
+        trailer         = NSURL(string: json["trailer"] as? String ?? "") ?? nil
+        homepage        = NSURL(string: json["homepage"] as? String ?? "") ?? nil
+        status          = json["status"] as? String
+        rating          = json["rating"] as? Double
+        votes           = json["votes"] as? Int
+        updatedAt       = json["updated_at"] as? String
+        language        = json["language"] as? String
+        availableTranslations = json["available_translations"] as? [String]
+        genres          = json["genres"] as? [String]
+        airedEpisodes   = json["aired_episodes"] as? Int
+        
+        // Extended: Images
+        if let imageJSON = json["images"] as? RawJSON {
+            images = TraktImages(json: imageJSON)
+        }
+        else {
+            images = nil
+        }
+        
+        //
+        super.init(json: json)
+    }
+}
+
+public class TraktSeason: TraktObject {
+    // Extended: Min
+    public let show: TraktShow
+    public let number: Int
+    public let ids: ID
+    
+    // Extended: Full
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        fatalError("init(json:) has not been implemented")
+    }
+    
+    public init(json: RawJSON, show: TraktShow) {
+        self.show   = show
+        number      = json["number"] as? Int ?? 0
+        ids         = ID(json: json["ids"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktEpisode: TraktObject {
+    // Extended: Min
+    public let season: TraktSeason
+    public let number: Int
+    public let title: String
+    public let ids: ID
+    
+    // Extended: Full
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        fatalError("init(json:) has not been implemented")
+    }
+    
+    public init(json: RawJSON, season: TraktSeason) {
+        self.season = season
+        number      = json["number"] as? Int ?? 0
+        title       = json["title"] as? String ?? "TBA"
+        ids         = ID(json: json["ids"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktShowTranslation: TraktObject {
+    public let title: String
+    public let overview: String
+    public let language: String
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        title       = json["title"] as? String ?? ""
+        overview    = json["overview"] as? String ?? ""
+        language    = json["language"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
+
+// MARK: - Movies
+
+public class TraktTrendingMovie: TraktObject {
+    // Extended: Min
+    public let watchers: Int
+    public let movie: TraktMovie
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        watchers = json["watchers"] as? Int ?? 0
+        movie = TraktMovie(json: json["movie"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktMovie: TraktObject {
+    // Extended: Min
+    public let title: String
+    public let year: Int?
+    public let ids: ID
+    
+    // Extended: Full
+    public let tagline: String?
+    public let overview: String?
+    public let released: String? // TODO: Make NSDate
+    public let runtime: Int?
+    public let trailer: NSURL?
+    public let homepage: NSURL?
+    public let rating: Double?
+    public let votes: Int?
+    public let updatedAt: String? // TODO: Make NSDate
+    public let language: String?
+    public let availableTranslations: [String]?
+    public let genres: [String]?
+    public let certification: String?
+    
+    // Extended: Images
+    public let images: TraktImages?
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        // Extended: Min
+        title   = json["title"] as? String ?? ""
+        year    = json["year"] as? Int
+        ids     = ID(json: json["ids"] as! RawJSON)
+        
+        // Extended: Full
+        tagline             = json["overview"] as? String
+        overview            = json["overview"] as? String
+        released            = json["released"] as? String
+        runtime             = json["runtime"] as? Int
+        trailer             = NSURL(string: json["trailer"] as? String ?? "") ?? nil
+        homepage            = NSURL(string: json["homepage"] as? String ?? "") ?? nil
+        rating              = json["rating"] as? Double
+        votes               = json["votes"] as? Int
+        updatedAt           = json["updated_at"] as? String
+        language            = json["language"] as? String
+        availableTranslations = json["available_translations"] as? [String]
+        genres              = json["genres"] as? [String]
+        certification       = json["certification"] as? String
+        
+        // Extended: Images
+        if let imageJSON = json["images"] as? RawJSON {
+            images = TraktImages(json: imageJSON)
+        }
+        else {
+            images = nil
+        }
+        
+        //
+        super.init(json: json)
+    }
+}
+
+public class TraktMovieTranslation: TraktObject {
+    public let title: String
+    public let overview: String
+    public let tagline: String
+    public let language: String
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        title       = json["title"] as? String ?? ""
+        overview    = json["overview"] as? String ?? ""
+        tagline     = json["tagline"] as? String ?? ""
+        language    = json["language"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
+
+// MARK: - Comments
+
+public class Comment: TraktObject {
     public let id: NSNumber
     public let parentID: NSNumber
     public let createdAt: String // TODO: Make NSDate
@@ -35,8 +438,8 @@ public struct Comment {
     public let userRating: NSNumber
     public let user: User
     
-    init(json: [String: AnyObject]) {
-        
+    // Initialize
+    required public init(json: RawJSON) {
         id = json["id"] as? NSNumber ?? 0
         parentID = json["parent_id"] as? NSNumber ?? 0
         createdAt = json["created_at"] as? String ?? ""
@@ -45,11 +448,35 @@ public struct Comment {
         review = json["review"] as? Bool ?? false
         replies = json["replies"] as? NSNumber ?? 0
         userRating = json["user_rating"] as? NSNumber ?? 0
-        user = User(json: json["user"] as! [String: AnyObject])
+        user = User(json: json["user"] as! RawJSON)
+        
+        super.init(json: json)
     }
 }
 
-public struct Person {
+// Trakt user
+public class User: TraktObject {
+    public let username: String
+    public let isPrivate: Bool
+    public let name: String
+    public let isVIP: Bool
+    public let isVIPEP: Bool
+    
+    required public init(json: [String: AnyObject]) {
+        username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
+        isPrivate = json["private"] as? Bool ?? false
+        name = json["name"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
+        isVIP = json["vip"] as? Bool ?? false
+        isVIPEP = json["vip_ep"] as? Bool ?? false
+        
+        super.init(json: json)
+    }
+}
+
+// MARK: - People
+
+// Actor/Actress/Crew member
+public class Person: TraktObject {
     // Extended: Min
     public let name: String
     public let idTrakt: NSNumber
@@ -63,10 +490,13 @@ public struct Person {
     public let birthday: String? // TODO: Make NSDate
     public let death: String? // TODO: Make NSDate
     public let birthplace: String?
-    public let homepage: String? // TODO: Make NSURL
+    public let homepage: NSURL?
+    
+    // Extended: Images
+    public let images: TraktImages?
     
     // Initialize
-    init(json: [String: AnyObject]) {
+    required public init(json: RawJSON) {
         // Extended: Min
         name = json["name"] as? String ?? ""
         
@@ -90,26 +520,94 @@ public struct Person {
         birthday = json["birthday"] as? String
         death = json["death"] as? String
         birthplace = json["birthplace"] as? String
-        homepage = json["homepage"] as? String
+        
+        if let homepageString = json["homepage"] as? String {
+            homepage = NSURL(string: homepageString)
+        }
+        else {
+            homepage = nil
+        }
+        
+        // Extended: Images
+        if let imageJSON = json["images"] as? RawJSON {
+            images = TraktImages(json: imageJSON)
+        }
+        else {
+            images = nil
+        }
+        
+        super.init(json: json)
     }
 }
 
-public struct CrewMember {
+public class CrewMember: TraktObject {
     public let job: String
     public let person: Person
     
-    init(json: [String: AnyObject]) {
+    required public init(json: RawJSON) {
         job = json["job"] as? String ?? ""
-        person = Person(json: json["person"] as! [String: AnyObject])
+        person = Person(json: json["person"] as! RawJSON)
+        
+        super.init(json: json)
     }
 }
 
-public struct CastMember {
+public class CastMember: TraktObject {
     public let character: String
     public let person: Person
     
-    init(json: [String: AnyObject]) {
+    required public init(json: RawJSON) {
         character = json["character"] as? String ?? ""
-        person = Person(json: json["person"] as! [String: AnyObject])
+        person = Person(json: json["person"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+// MARK: - List
+
+public class TraktList: TraktObject {
+    public let name: String
+    public let description: String
+    public let privacy: String // TODO: Maybe make a type?
+    public let displayNumbers: Bool
+    public let allowComments: Bool
+    public let id: ID
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        name            = json["name"] as? String ?? ""
+        description     = json["description"] as? String ?? ""
+        privacy         = json["privacy"] as? String ?? ""
+        displayNumbers  = json["display_numbers"] as? Bool ?? false
+        allowComments   = json["allow_comments"] as? Bool ?? false
+        id              = ID(json: json["ids"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
+// MARK: - Stats
+
+public class TraktStats: TraktObject {
+    public let watchers: Int
+    public let plays: Int
+    public let collectors: Int
+    public let collectedEpisodes: Int
+    public let comments: Int
+    public let lists: Int
+    public let votes: Int
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        watchers            = json["watchers"] as? Int ?? 0
+        plays               = json["plays"] as? Int ?? 0
+        collectors          = json["collectors"] as? Int ?? 0
+        collectedEpisodes   = json["collected_episodes"] as? Int ?? 0 // Not included for movie stats
+        comments            = json["comments"] as? Int ?? 0
+        lists               = json["lists"] as? Int ?? 0
+        votes               = json["votes"] as? Int ?? 0
+        
+        super.init(json: json)
     }
 }

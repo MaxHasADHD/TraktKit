@@ -246,7 +246,9 @@ public class TraktManager {
     
     public func mutableRequestForURL(path: String, authorization: Bool, HTTPMethod: String) -> NSMutableURLRequest? {
         let urlString = "https://api-v2launch.trakt.tv/" + path
-        guard let URL = NSURL(string: urlString) else { return nil }
+        guard let URL = NSURL(string: urlString) else {
+            return nil
+        }
         let request = NSMutableURLRequest(URL: URL)
         request.HTTPMethod = HTTPMethod
         
