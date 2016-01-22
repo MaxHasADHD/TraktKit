@@ -15,9 +15,9 @@ extension TraktManager {
     /**
      Returns a single person's details.
      */
-    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("people/\(id)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: "GET") else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }
