@@ -490,9 +490,9 @@ extension Users {
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
+//                #if DEBUG
+//                    print("[\(__FUNCTION__)] \(error!)")
+//                #endif
                 completion(watching: false, dictionary: nil, error: error)
                 return
             }
@@ -501,10 +501,6 @@ extension Users {
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == statusCodes.success ||
                     HTTPResponse.statusCode == statusCodes.successNoContentToReturn else {
-                        #if DEBUG
-                            print(response)
-                        #endif
-                        
                         if let HTTPResponse = response as? NSHTTPURLResponse {
                             completion(watching: false, dictionary: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
                         }
@@ -531,9 +527,9 @@ extension Users {
                 }
             }
             catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
+//                #if DEBUG
+//                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+//                #endif
                 completion(watching: false, dictionary: nil, error: jsonSerializationError)
             }
         }
