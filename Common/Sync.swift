@@ -97,7 +97,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func addToCollection(movies movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func addToCollection(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/collection", authorization: true, HTTPMethod: "POST") else {
             return nil
         }
@@ -113,7 +113,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func removeFromCollection(movies movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeFromCollection(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/collection/remove", authorization: true, HTTPMethod: "POST") else { return nil }
         request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
         
@@ -183,7 +183,7 @@ extension TraktManager {
      - parameter episodes: array of episode objects
      - parameter completion: completion handler
      */
-    public func addToHistory(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func addToHistory(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: successCompletionHandler) -> NSURLSessionDataTask? {
         
         // Request
         guard let request = mutableRequestForURL("sync/history", authorization: true, HTTPMethod: "POST") else {
@@ -206,7 +206,7 @@ extension TraktManager {
      - parameter episodes: array of episode objects
      - parameter completion: completion handler
      */
-    public func removeFromHistory(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeFromHistory(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: successCompletionHandler) -> NSURLSessionDataTask? {
         
         // Request
         guard let request = mutableRequestForURL("sync/history/remove", authorization: true, HTTPMethod: "POST") else {
@@ -336,7 +336,7 @@ extension TraktManager {
      - parameter shows: array of show object JSON strings
      - parameter episodes: array of episode object JSON strings
     */
-    public func removeRatings(movies movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeRatings(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/ratings/remove", authorization: true, HTTPMethod: "POST") else { return nil }
         request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
         
@@ -363,7 +363,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
     */
-    public func addToWatchlist(movies movies: [String], shows: [String], episodes: [String], completion: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func addToWatchlist(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: successCompletionHandler) -> NSURLSessionDataTask? {
         
         // Request
         guard let request = mutableRequestForURL("sync/watchlist", authorization: true, HTTPMethod: "POST") else {
@@ -422,7 +422,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func removeFromWatchlist(movies movies: [String], shows: [String], episodes: [String], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeFromWatchlist(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/watchlist/remove", authorization: true, HTTPMethod: "POST") else {
             completion(dictionary: nil, error: nil)
             return nil

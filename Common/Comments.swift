@@ -17,36 +17,29 @@ extension TraktManager {
     
     🔒 OAuth: Required
     */
-    public func postComment(movie movie: String?, show: String?, episode: String?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
-        // JSON
-        var jsonString = String()
+    public func postComment(movie movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
         
-        jsonString += "{" // Beginning
+        // JSON
+        var json: RawJSON = [
+            "comment": comment,
+            "spoiler": spoiler,
+            "review": review
+        ]
+        
         if let movie = movie {
-            jsonString += "\"movie\":" // Begin Movie
-            jsonString += movie // Add Movie
-            jsonString += "," // End Movie
+            json["movie"] = movie
         }
         else if let show = show {
-            jsonString += "\"show\":" // Begin Show
-            jsonString += show // Add Show
-            jsonString += "," // End Show
+            json["show"] = show
         }
         else if let episode = episode {
-            jsonString += "\"episode\": " // Begin Episode
-            jsonString += episode // Add Episode
-            jsonString += "," // End Episode
+            json["episode"] = episode
         }
-        let fixedComment = comment.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
-        jsonString += "\"comment\": \"\(fixedComment)\","
-        jsonString += "\"spoiler\": \(spoiler),"
-        jsonString += "\"review\": \(review)"
-        jsonString += "}" // End
         
         #if DEBUG
-            print(jsonString)
+            print(json)
         #endif
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
         guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: "POST") else {
@@ -74,14 +67,15 @@ extension TraktManager {
     public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         
         // JSON
-        var jsonString = String()
+        let json: RawJSON = [
+            "comment": newComment,
+            "spoiler": isSpoiler,
+        ]
         
-        jsonString += "{" // Beginning
-        jsonString += "\"comment\": \"\(newComment)\","
-        jsonString += "\"spoiler\": \"\(isSpoiler)\""
-        jsonString += "}" // End
-        
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        #if DEBUG
+            print(json)
+        #endif
+        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
         guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: "PUT") else { return nil }
@@ -122,15 +116,16 @@ extension TraktManager {
     public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         
         // JSON
-        var jsonString = String()
+        let json: RawJSON = [
+            "comment": newComment,
+            "spoiler": isSpoiler,
+        ]
         
-        jsonString += "{" // Beginning
-        jsonString += "\"comment\": \"\(newComment)\","
-        jsonString += "\"spoiler\": \"\(isSpoiler)\""
-        jsonString += "}" // End
-        
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
-        
+        #if DEBUG
+            print(json)
+        #endif
+        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+
         // Request
         guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: "POST") else { return nil }
         request.HTTPBody = jsonData
