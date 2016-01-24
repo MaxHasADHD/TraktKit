@@ -287,25 +287,18 @@ public class TraktManager {
         return request
     }
     
-    func createJsonData(movies movies: [String], shows: [String], episodes: [String]) -> NSData? {
-        var jsonString = String()
+    func createJsonData(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON]) -> NSData? {
         
-        jsonString += "{" // Beginning
-        jsonString += "\"movies\": [" // Begin Movies
-        jsonString += movies.joinWithSeparator(",") // Add Movies
-        jsonString += "]," // End Movies
-        jsonString += "\"shows\": [" // Begin Shows
-        jsonString += shows.joinWithSeparator(",") // Add Shows
-        jsonString += "]," // End Shows
-        jsonString += "\"episodes\": [" // Begin Episodes
-        jsonString += episodes.joinWithSeparator(",") // Add Episodes
-        jsonString += "]" // End Episodes
-        jsonString += "}" // End
+        let json = [
+            "movies": movies,
+            "shows": shows,
+            "episodes": episodes,
+        ]
         
         #if DEBUG
-            print(jsonString)
+            print(json)
         #endif
-        return jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        return try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
     }
     
     // MARK: Perform Requests
