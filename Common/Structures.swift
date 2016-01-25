@@ -612,3 +612,133 @@ public class TraktStats: TraktObject {
     }
 }
 
+// MARK: - Last Activities
+
+public class TraktLastActivities: TraktObject {
+    public let all: String
+    public let movies: TraktLastActivityMovies
+    public let episodes: TraktLastActivityEpisodes
+    public let shows: TraktLastActivityShows
+    public let seasons: TraktLastActivitySeasons
+    public let comments: TraktLastActivityComments
+    public let lists: TraktLastActivityLists
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        let allJSON         = json["all"] as! String
+        let moviesJSON      = json["movies"] as! RawJSON
+        let episodesJSON    = json["episodes"] as! RawJSON
+        let showsJSON       = json["shows"] as! RawJSON
+        let seasonsJSON     = json["seasons"] as! RawJSON
+        let commentsJSON    = json["comments"] as! RawJSON
+        let listsJSON       = json["lists"] as! RawJSON
+        
+        all = allJSON
+        movies = TraktLastActivityMovies(json: moviesJSON)
+        episodes = TraktLastActivityEpisodes(json: episodesJSON)
+        shows = TraktLastActivityShows(json: showsJSON)
+        seasons = TraktLastActivitySeasons(json: seasonsJSON)
+        comments = TraktLastActivityComments(json: commentsJSON)
+        lists = TraktLastActivityLists(json: listsJSON)
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktLastActivityMovies: TraktObject {
+    public let watchedAt: String
+    public let collectedAt: String
+    public let ratedAt: String
+    public let watchlistedAt: String
+    public let commentedAt: String
+    public let pausedAt: String
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        watchedAt = json["watched_at"] as? String ?? ""
+        collectedAt = json["collected_at"] as? String ?? ""
+        ratedAt = json["rated_at"] as? String ?? ""
+        watchlistedAt = json["watchlisted_at"] as? String ?? ""
+        commentedAt = json["commented_at"] as? String ?? ""
+        pausedAt = json["paused_at"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktLastActivityEpisodes: TraktObject {
+    public let watchedAt: String
+    public let collectedAt: String
+    public let ratedAt: String
+    public let watchlistedAt: String
+    public let commentedAt: String
+    public let pausedAt: String
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        watchedAt = json["watched_at"] as? String ?? ""
+        collectedAt = json["collected_at"] as? String ?? ""
+        ratedAt = json["rated_at"] as? String ?? ""
+        watchlistedAt = json["watchlisted_at"] as? String ?? ""
+        commentedAt = json["commented_at"] as? String ?? ""
+        pausedAt = json["paused_at"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktLastActivityShows: TraktObject {
+    public let ratedAt: String
+    public let watchlistedAt: String
+    public let commentedAt: String
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        ratedAt = json["rated_at"] as? String ?? ""
+        watchlistedAt = json["watchlisted_at"] as? String ?? ""
+        commentedAt = json["commented_at"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktLastActivitySeasons: TraktObject {
+    public let ratedAt: String
+    public let watchlistedAt: String
+    public let commentedAt: String
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        ratedAt = json["rated_at"] as? String ?? ""
+        watchlistedAt = json["watchlisted_at"] as? String ?? ""
+        commentedAt = json["commented_at"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktLastActivityComments: TraktObject {
+    public let likedAt: String
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        likedAt = json["liked_at"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktLastActivityLists: TraktObject {
+    public let likedAt: String
+    public let updatedAt: String
+    public let commentedAt: String
+    
+    // Initialization
+    required public init(json: RawJSON) {
+        likedAt = json["liked_at"] as? String ?? ""
+        updatedAt = json["updated_at"] as? String ?? ""
+        commentedAt = json["commented_at"] as? String ?? ""
+        
+        super.init(json: json)
+    }
+}
