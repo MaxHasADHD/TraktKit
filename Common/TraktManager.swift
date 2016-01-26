@@ -110,6 +110,7 @@ public class TraktManager {
     
     // TODO List:
     // 1. Create a limit object, double check every paginated API call is marked as paginated
+    // 2. Call completion with custom error when creating request fails
     
     // MARK: Internal
     private var clientID: String?
@@ -194,6 +195,7 @@ public class TraktManager {
     public typealias CastCrewCompletionHandler      = ((cast: [CastMember], crew: [CrewMember], error: NSError?) -> Void)
     public typealias SearchCompletionHandler        = ((searchResults: [TraktSearchResult], error: NSError?) -> Void)
     public typealias statsCompletionHandler         = ((stats: TraktStats?, error: NSError?) -> Void)
+
     
     // TV
     public typealias ShowCompletionHandler          = ((show: TraktShow?, error: NSError?) -> Void)
@@ -202,6 +204,7 @@ public class TraktManager {
     public typealias MostShowsCompletionHandler     = ((MostShows: [TraktMostShow], error: NSError?) -> Void)
     public typealias ShowTranslationsCompletionHandler = ((translations: [TraktShowTranslation], error: NSError?) -> Void)
     public typealias SeasonsCompletionHandler       = ((seasons: [TraktSeason], error: NSError?) -> Void)
+    public typealias WatchedShowsCompletionHandler  = ((shows: [TraktWatchedShow], error: NSError?) -> Void)
     
     // Movies
     public typealias MovieCompletionHandler          = ((movie: TraktMovie?, error: NSError?) -> Void)
@@ -209,6 +212,10 @@ public class TraktManager {
     public typealias TrendingMoviesCompletionHandler = ((trendingMovies: [TraktTrendingMovie], error: NSError?) -> Void)
     public typealias MostMoviesCompletionHandler     = ((MostMovies: [TraktMostShow], error: NSError?) -> Void)
     public typealias MovieTranslationsCompletionHandler = ((translations: [TraktMovieTranslation], error: NSError?) -> Void)
+    public typealias WatchedMoviesCompletionHandler  = ((shows: [TraktWatchedMovie], error: NSError?) -> Void)
+    
+    // Sync
+    public typealias LastActivitiesCompletionHandler = ((activities: TraktLastActivities?, error: NSError?) -> Void)
     
     // MARK: - Lifecycle
     

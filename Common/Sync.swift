@@ -21,7 +21,7 @@ extension TraktManager {
      
      - returns: NSURLSessionDataTask?
      */
-    public func lastActivities(completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func lastActivities(completion: LastActivitiesCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/last_activities", authorization: true, HTTPMethod: "GET") else {
             return nil
         }
@@ -130,17 +130,33 @@ extension TraktManager {
      🔒 OAuth: Required
      
      - parameter type: which type of content to receive
-     
      - parameter completion: completion handler
      */
-    public func getWatched(type: WatchedType, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        
+    public func getWatchedShows(extended: extendedType = .Min, completion: WatchedShowsCompletionHandler) -> NSURLSessionDataTask? {
         // Used to check data from another Trakt acount
 //        guard let request = mutableRequestForURL("users/USERNAME/watched/shows?extended=full", authorization: true, HTTPMethod: "GET") else {
 //            return nil
 //        }
         
-        guard let request = mutableRequestForURL("sync/watched/\(type.rawValue)", authorization: true, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("sync/watched/shows?extended=\(extended.rawValue)", authorization: true, HTTPMethod: "GET") else {
+            return nil
+        }
+        
+        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+    }
+    
+    /**
+     Returns all movies or shows a user has watched.
+     
+     Status Code: 200
+     
+     🔒 OAuth: Required
+     
+     - parameter type: which type of content to receive
+     - parameter completion: completion handler
+     */
+    public func getWatchedMovies(extended: extendedType = .Min, completion: WatchedMoviesCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("sync/watched/movies?extended=\(extended.rawValue)", authorization: true, HTTPMethod: "GET") else {
             return nil
         }
         

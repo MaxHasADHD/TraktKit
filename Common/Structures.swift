@@ -213,7 +213,7 @@ public class TraktShow: TraktObject {
     
     // Extended: Full
     public let overview: String?
-    public let firstAired: String? // TODO: Make NSDate
+    public let firstAired: NSDate?
     public let airs: RawJSON? // TODO: Make as type
     public let runtime: Int?
     public let certification: String?
@@ -224,7 +224,7 @@ public class TraktShow: TraktObject {
     public let status: String?
     public let rating: Double?
     public let votes: Int?
-    public let updatedAt: String? // TODO: Make NSDate
+    public let updatedAt: NSDate?
     public let language: String?
     public let availableTranslations: [String]?
     public let genres: [String]?
@@ -242,7 +242,7 @@ public class TraktShow: TraktObject {
         
         // Extended: Full
         overview        = json["overview"] as? String
-        firstAired      = json["first_aired"] as? String
+        firstAired      = NSDate.dateFromString(json["first_aired"] as? String)
         airs            = json["airs"] as? RawJSON
         runtime         = json["runtime"] as? Int
         certification   = json["certification"] as? String
@@ -253,7 +253,7 @@ public class TraktShow: TraktObject {
         status          = json["status"] as? String
         rating          = json["rating"] as? Double
         votes           = json["votes"] as? Int
-        updatedAt       = json["updated_at"] as? String
+        updatedAt       = NSDate.dateFromString(json["updated_at"] as? String)
         language        = json["language"] as? String
         availableTranslations = json["available_translations"] as? [String]
         genres          = json["genres"] as? [String]
@@ -333,6 +333,68 @@ public class TraktShowTranslation: TraktObject {
     }
 }
 
+// MARK: Watched progress
+
+public class TraktWatchedShow: TraktObject {
+    // Extended: Min
+    public let plays: Int // Total number of plays
+    public let lastWatchedAt: NSDate
+    public let show: TraktShow
+    public let seasons: [TraktWatchedSeason]
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        plays = json["plays"] as? Int ?? 0
+        lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String) ?? NSDate()
+        show = TraktShow(json: json["show"] as! RawJSON)
+        
+        var tempSeasons: [TraktWatchedSeason] = []
+        let jsonSeasons = json["seasons"] as? [RawJSON] ?? []
+        for jsonSeason in jsonSeasons {
+            tempSeasons.append(TraktWatchedSeason(json: jsonSeason))
+        }
+        seasons = tempSeasons
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktWatchedSeason: TraktObject {
+    // Extended: Min
+    public let number: Int // Season number
+    public let episodes: [TraktWatchedEpisodes]
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        number = json["number"] as? Int ?? 0
+        
+        var tempEpisodes: [TraktWatchedEpisodes] = []
+        let jsonEpisodes = json["episodes"] as? [RawJSON] ?? []
+        for jsonEpisode in jsonEpisodes {
+            tempEpisodes.append(TraktWatchedEpisodes(json: jsonEpisode))
+        }
+        episodes = tempEpisodes
+        
+        super.init(json: json)
+    }
+}
+
+public class TraktWatchedEpisodes: TraktObject {
+    // Extended: Min
+    public let number: Int // Episode number
+    public let plays: Int // Number of plays
+    public let lastWatchedAt: NSDate
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        number = json["number"] as? Int ?? 0
+        plays = json["plays"] as? Int ?? 0
+        lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String) ?? NSDate()
+        
+        super.init(json: json)
+    }
+}
+
 // MARK: - Movies
 
 public class TraktTrendingMovie: TraktObject {
@@ -358,13 +420,13 @@ public class TraktMovie: TraktObject {
     // Extended: Full
     public let tagline: String?
     public let overview: String?
-    public let released: String? // TODO: Make NSDate
+    public let released: NSDate?
     public let runtime: Int?
     public let trailer: NSURL?
     public let homepage: NSURL?
     public let rating: Double?
     public let votes: Int?
-    public let updatedAt: String? // TODO: Make NSDate
+    public let updatedAt: NSDate?
     public let language: String?
     public let availableTranslations: [String]?
     public let genres: [String]?
@@ -383,13 +445,13 @@ public class TraktMovie: TraktObject {
         // Extended: Full
         tagline             = json["overview"] as? String
         overview            = json["overview"] as? String
-        released            = json["released"] as? String
+        released            = NSDate.dateFromString(json["released"] as? String)
         runtime             = json["runtime"] as? Int
         trailer             = NSURL(string: json["trailer"] as? String ?? "") ?? nil
         homepage            = NSURL(string: json["homepage"] as? String ?? "") ?? nil
         rating              = json["rating"] as? Double
         votes               = json["votes"] as? Int
-        updatedAt           = json["updated_at"] as? String
+        updatedAt           = NSDate.dateFromString(json["updated_at"] as? String)
         language            = json["language"] as? String
         availableTranslations = json["available_translations"] as? [String]
         genres              = json["genres"] as? [String]
@@ -425,12 +487,30 @@ public class TraktMovieTranslation: TraktObject {
     }
 }
 
+// MARK: Watched progress
+
+public class TraktWatchedMovie: TraktObject {
+    // Extended: Min
+    public let plays: Int // Total number of plays
+    public let lastWatchedAt: NSDate
+    public let movie: TraktMovie
+    
+    // Initialize
+    required public init(json: RawJSON) {
+        plays = json["plays"] as? Int ?? 0
+        lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String) ?? NSDate()
+        movie = TraktMovie(json: json["movie"] as! RawJSON)
+        
+        super.init(json: json)
+    }
+}
+
 // MARK: - Comments
 
 public class Comment: TraktObject {
     public let id: NSNumber
     public let parentID: NSNumber
-    public let createdAt: String // TODO: Make NSDate
+    public let createdAt: NSDate // TODO: Make NSDate
     public let comment: String
     public let spoiler: Bool
     public let review: Bool
@@ -440,15 +520,15 @@ public class Comment: TraktObject {
     
     // Initialize
     required public init(json: RawJSON) {
-        id = json["id"] as? NSNumber ?? 0
-        parentID = json["parent_id"] as? NSNumber ?? 0
-        createdAt = json["created_at"] as? String ?? ""
-        comment = json["comment"] as? String ?? NSLocalizedString("COMMENTS_UNAVAILABLE", comment: "Comment Unavailable")
-        spoiler = json["spoiler"] as? Bool ?? false
-        review = json["review"] as? Bool ?? false
-        replies = json["replies"] as? NSNumber ?? 0
-        userRating = json["user_rating"] as? NSNumber ?? 0
-        user = User(json: json["user"] as! RawJSON)
+        id          = json["id"] as? NSNumber ?? 0
+        parentID    = json["parent_id"] as? NSNumber ?? 0
+        createdAt   = NSDate.dateFromString(json["created_at"] as? String) ?? NSDate()
+        comment     = json["comment"] as? String ?? NSLocalizedString("COMMENTS_UNAVAILABLE", comment: "Comment Unavailable")
+        spoiler     = json["spoiler"] as? Bool ?? false
+        review      = json["review"] as? Bool ?? false
+        replies     = json["replies"] as? NSNumber ?? 0
+        userRating  = json["user_rating"] as? NSNumber ?? 0
+        user        = User(json: json["user"] as! RawJSON)
         
         super.init(json: json)
     }
@@ -487,8 +567,8 @@ public class Person: TraktObject {
     
     // Extended: Full
     public let biography: String?
-    public let birthday: String? // TODO: Make NSDate
-    public let death: String? // TODO: Make NSDate
+    public let birthday: NSDate?
+    public let death: NSDate?
     public let birthplace: String?
     public let homepage: NSURL?
     
@@ -516,10 +596,10 @@ public class Person: TraktObject {
         }
         
         // Extended: Full
-        biography = json["biography"] as? String
-        birthday = json["birthday"] as? String
-        death = json["death"] as? String
-        birthplace = json["birthplace"] as? String
+        biography   = json["biography"] as? String
+        birthday    = NSDate.dateFromString(json["birthday"] as? String)
+        death       = NSDate.dateFromString(json["death"] as? String)
+        birthplace  = json["birthplace"] as? String
         
         if let homepageString = json["homepage"] as? String {
             homepage = NSURL(string: homepageString)
@@ -545,8 +625,8 @@ public class CrewMember: TraktObject {
     public let person: Person
     
     required public init(json: RawJSON) {
-        job = json["job"] as? String ?? ""
-        person = Person(json: json["person"] as! RawJSON)
+        job     = json["job"] as? String ?? ""
+        person  = Person(json: json["person"] as! RawJSON)
         
         super.init(json: json)
     }
@@ -615,7 +695,7 @@ public class TraktStats: TraktObject {
 // MARK: - Last Activities
 
 public class TraktLastActivities: TraktObject {
-    public let all: String
+    public let all: NSDate
     public let movies: TraktLastActivityMovies
     public let episodes: TraktLastActivityEpisodes
     public let shows: TraktLastActivityShows
@@ -633,7 +713,7 @@ public class TraktLastActivities: TraktObject {
         let commentsJSON    = json["comments"] as! RawJSON
         let listsJSON       = json["lists"] as! RawJSON
         
-        all = allJSON
+        all = NSDate.dateFromString(allJSON)!
         movies = TraktLastActivityMovies(json: moviesJSON)
         episodes = TraktLastActivityEpisodes(json: episodesJSON)
         shows = TraktLastActivityShows(json: showsJSON)
@@ -646,98 +726,98 @@ public class TraktLastActivities: TraktObject {
 }
 
 public class TraktLastActivityMovies: TraktObject {
-    public let watchedAt: String
-    public let collectedAt: String
-    public let ratedAt: String
-    public let watchlistedAt: String
-    public let commentedAt: String
-    public let pausedAt: String
+    public let watchedAt: NSDate
+    public let collectedAt: NSDate
+    public let ratedAt: NSDate
+    public let watchlistedAt: NSDate
+    public let commentedAt: NSDate
+    public let pausedAt: NSDate
     
     // Initialization
     required public init(json: RawJSON) {
-        watchedAt = json["watched_at"] as? String ?? ""
-        collectedAt = json["collected_at"] as? String ?? ""
-        ratedAt = json["rated_at"] as? String ?? ""
-        watchlistedAt = json["watchlisted_at"] as? String ?? ""
-        commentedAt = json["commented_at"] as? String ?? ""
-        pausedAt = json["paused_at"] as? String ?? ""
+        watchedAt       = NSDate.dateFromString(json["watched_at"] as? String)!
+        collectedAt     = NSDate.dateFromString(json["collected_at"] as? String)!
+        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
+        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
+        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
+        pausedAt        = NSDate.dateFromString(json["paused_at"] as? String)!
         
         super.init(json: json)
     }
 }
 
 public class TraktLastActivityEpisodes: TraktObject {
-    public let watchedAt: String
-    public let collectedAt: String
-    public let ratedAt: String
-    public let watchlistedAt: String
-    public let commentedAt: String
-    public let pausedAt: String
+    public let watchedAt: NSDate
+    public let collectedAt: NSDate
+    public let ratedAt: NSDate
+    public let watchlistedAt: NSDate
+    public let commentedAt: NSDate
+    public let pausedAt: NSDate
     
     // Initialization
     required public init(json: RawJSON) {
-        watchedAt = json["watched_at"] as? String ?? ""
-        collectedAt = json["collected_at"] as? String ?? ""
-        ratedAt = json["rated_at"] as? String ?? ""
-        watchlistedAt = json["watchlisted_at"] as? String ?? ""
-        commentedAt = json["commented_at"] as? String ?? ""
-        pausedAt = json["paused_at"] as? String ?? ""
+        watchedAt       = NSDate.dateFromString(json["watched_at"] as? String)!
+        collectedAt     = NSDate.dateFromString(json["collected_at"] as? String)!
+        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
+        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
+        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
+        pausedAt        = NSDate.dateFromString(json["paused_at"] as? String)!
         
         super.init(json: json)
     }
 }
 
 public class TraktLastActivityShows: TraktObject {
-    public let ratedAt: String
-    public let watchlistedAt: String
-    public let commentedAt: String
+    public let ratedAt: NSDate
+    public let watchlistedAt: NSDate
+    public let commentedAt: NSDate
     
     // Initialization
     required public init(json: RawJSON) {
-        ratedAt = json["rated_at"] as? String ?? ""
-        watchlistedAt = json["watchlisted_at"] as? String ?? ""
-        commentedAt = json["commented_at"] as? String ?? ""
+        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
+        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
+        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
         
         super.init(json: json)
     }
 }
 
 public class TraktLastActivitySeasons: TraktObject {
-    public let ratedAt: String
-    public let watchlistedAt: String
-    public let commentedAt: String
+    public let ratedAt: NSDate
+    public let watchlistedAt: NSDate
+    public let commentedAt: NSDate
     
     // Initialization
     required public init(json: RawJSON) {
-        ratedAt = json["rated_at"] as? String ?? ""
-        watchlistedAt = json["watchlisted_at"] as? String ?? ""
-        commentedAt = json["commented_at"] as? String ?? ""
+        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
+        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
+        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
         
         super.init(json: json)
     }
 }
 
 public class TraktLastActivityComments: TraktObject {
-    public let likedAt: String
+    public let likedAt: NSDate
     
     // Initialization
     required public init(json: RawJSON) {
-        likedAt = json["liked_at"] as? String ?? ""
+        likedAt = NSDate.dateFromString(json["liked_at"] as? String)!
         
         super.init(json: json)
     }
 }
 
 public class TraktLastActivityLists: TraktObject {
-    public let likedAt: String
-    public let updatedAt: String
-    public let commentedAt: String
+    public let likedAt: NSDate
+    public let updatedAt: NSDate
+    public let commentedAt: NSDate
     
     // Initialization
     required public init(json: RawJSON) {
-        likedAt = json["liked_at"] as? String ?? ""
-        updatedAt = json["updated_at"] as? String ?? ""
-        commentedAt = json["commented_at"] as? String ?? ""
+        likedAt         = NSDate.dateFromString(json["liked_at"] as? String)!
+        updatedAt       = NSDate.dateFromString(json["updated_at"] as? String)!
+        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
         
         super.init(json: json)
     }

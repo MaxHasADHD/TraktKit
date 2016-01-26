@@ -1,15 +1,14 @@
 //
-//  FilmTests.swift
+//  CheckinTests.swift
 //  TraktKit
 //
-//  Created by Maximilian Litteral on 7/20/15.
-//  Copyright © 2015 Maximilian Litteral. All rights reserved.
+//  Created by Maximilian Litteral on 1/25/16.
+//  Copyright © 2016 Maximilian Litteral. All rights reserved.
 //
 
 import XCTest
-import TraktKit
 
-class FilmTests: XCTestCase {
+class CheckinTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
