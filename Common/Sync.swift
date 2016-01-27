@@ -133,14 +133,14 @@ extension TraktManager {
      
      - parameter completion: completion handler
      */
-    public func getWatched(type: WatchedType, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatched(type: WatchedType, extended: extendedType = .Min, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         
         // Used to check data from another Trakt acount
 //        guard let request = mutableRequestForURL("users/USERNAME/watched/shows?extended=full", authorization: true, HTTPMethod: "GET") else {
 //            return nil
 //        }
         
-        guard let request = mutableRequestForURL("sync/watched/\(type.rawValue)", authorization: true, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("sync/watched/\(type.rawValue)?extended=\(extended.rawValue)", authorization: true, HTTPMethod: "GET") else {
             return nil
         }
         
