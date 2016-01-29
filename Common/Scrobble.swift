@@ -117,7 +117,7 @@ extension TraktManager {
         let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Request
-        guard let request = mutableRequestForURL("scrobble/\(scrobbleAction)", authorization: true, HTTPMethod: "POST") else { return nil }
+        guard let request = mutableRequestForURL("scrobble/\(scrobbleAction)", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)

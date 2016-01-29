@@ -33,7 +33,7 @@ extension TraktManager {
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "POST") else { return nil }
+        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
@@ -77,7 +77,7 @@ extension TraktManager {
      */
     public func deleteActiveCheckins(completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "DELETE") else {
+        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else {
             return nil
         }
         

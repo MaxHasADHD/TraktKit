@@ -82,7 +82,7 @@ extension TraktManager {
     Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
     */
     public func getWeekendBoxOffice(completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("movies/boxoffice", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("movies/boxoffice", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
@@ -132,7 +132,7 @@ extension TraktManager {
             path += "/\(country)"
         }
         
-        guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }

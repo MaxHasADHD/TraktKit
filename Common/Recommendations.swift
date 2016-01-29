@@ -52,7 +52,7 @@ extension TraktManager {
     
     private func getRecommendations(type: WatchedType, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("recommendations/\(type)", authorization: true, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("recommendations/\(type)", authorization: true, HTTPMethod: .GET) else {
             completion(objects: nil, error: TraktKitNoDataError)
             return nil
         }
@@ -62,7 +62,7 @@ extension TraktManager {
     
     private func hideRecommendation<T: CustomStringConvertible>(type type: WatchedType, id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("recommendations/\(type)/\(id)", authorization: true, HTTPMethod: "DELETE") else {
+        guard let request = mutableRequestForURL("recommendations/\(type)/\(id)", authorization: true, HTTPMethod: .DELETE) else {
             completion(success: false)
             return nil
         }

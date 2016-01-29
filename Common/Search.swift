@@ -21,7 +21,7 @@ extension TraktManager {
         
         let typesString = types.map { $0.rawValue }.joinWithSeparator(",") // Search with multiple types
         
-        guard let request = mutableRequestForURL("search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
@@ -32,7 +32,7 @@ extension TraktManager {
      Status Code: 200
      */
     public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: arrayCompletionHandler) -> NSURLSessionTask? {
-        guard let request = mutableRequestForURL("search?id_type=\(idType.rawValue)&id=\(id)", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("search?id_type=\(idType.rawValue)&id=\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
     }
