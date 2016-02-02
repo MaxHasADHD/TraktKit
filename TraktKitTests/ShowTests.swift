@@ -44,7 +44,7 @@ class ShowTests: XCTestCase {
                         if let traktID = showIDs["trakt"] as? NSNumber {
                             
                             TraktManager.sharedManager.getShowSummary(showID: traktID, extended: extendedType.Full) { (dictionary, error) -> Void in
-                                count++
+                                count+= 1
                                 
                                 guard error == nil else {
                                     print("Error getting Show Summary: \(error)")
