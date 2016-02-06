@@ -57,7 +57,7 @@ extension TraktManager {
             return nil
         }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     private func hideRecommendation<T: CustomStringConvertible>(type type: WatchedType, id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
@@ -67,7 +67,7 @@ extension TraktManager {
             return nil
         }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
 }

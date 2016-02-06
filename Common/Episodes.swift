@@ -22,7 +22,7 @@ extension TraktManager {
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -35,7 +35,7 @@ extension TraktManager {
             return nil
         }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -44,7 +44,7 @@ extension TraktManager {
     public func getEpisodeRatings<T: CustomStringConvertible>(showID id: T, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -53,7 +53,7 @@ extension TraktManager {
     public func getEpisodeStatistics<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/stats", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -62,6 +62,6 @@ extension TraktManager {
     public func getUsersWatchingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/watching", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

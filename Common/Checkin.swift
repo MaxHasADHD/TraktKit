@@ -46,8 +46,8 @@ extension TraktManager {
             }
             
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where (HTTPResponse.statusCode == statusCodes.successNewResourceCreated ||
-                    HTTPResponse.statusCode == statusCodes.conflict) else {
+                where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
+                    HTTPResponse.statusCode == StatusCodes.Conflict) else {
                         #if DEBUG
                             print("[\(__FUNCTION__)] \(response)")
                         #endif
@@ -55,7 +55,7 @@ extension TraktManager {
                         return
             }
             
-            if HTTPResponse.statusCode == statusCodes.successNewResourceCreated {
+            if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                 // Started watching
                 completionHandler(success: true)
             }
@@ -92,7 +92,7 @@ extension TraktManager {
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNoContentToReturn else {
+                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                     #if DEBUG
                         print("[\(__FUNCTION__)] \(response)")
                     #endif

@@ -22,7 +22,7 @@ extension TraktManager {
         guard let request = mutableRequestForURL("shows/\(id)/seasons?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -32,7 +32,7 @@ extension TraktManager {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -46,7 +46,7 @@ extension TraktManager {
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -58,7 +58,7 @@ extension TraktManager {
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -70,7 +70,7 @@ extension TraktManager {
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -80,6 +80,6 @@ extension TraktManager {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/watching", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

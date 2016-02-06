@@ -20,7 +20,51 @@ let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit", code: -10, us
 // Enums
 
 public enum Method: String {
-    case GET, POST, PUT, DELETE
+    /// Select one or more items. Success returns 200 status code.
+    case GET
+    /// Create a new item. Success returns 201 status code.
+    case POST
+    /// Update an item. Success returns 200 status code.
+    case PUT
+    /// Delete an item. Success returns 200 or 204 status code.
+    case DELETE
+}
+
+public struct StatusCodes {
+    /// Success
+    public static let Success = 200
+    /// Success - new resource created (POST)
+    public static let SuccessNewResourceCreated = 201
+    /// Success - no content to return (DELETE)
+    public static let SuccessNoContentToReturn = 204
+    /// Bad Request - request couldn't be parsed
+    public static let BadRequestion = 400
+    /// Unauthorized - OAuth must be provided
+    public static let Unauthorized = 401
+    /// Forbidden - invalid API key or unapproved app
+    public static let Forbidden = 403
+    /// Not Found - method exists, but no record found
+    public static let NotFound = 404
+    /// Method Not Found - method doesn't exist
+    public static let MethodNotFound = 405
+    /// Conflict - resource already created
+    public static let Conflict = 409
+    /// Precondition Failed - use application/json content type
+    public static let PreconditionFailed = 412
+    /// Unprocessable Entity - validation errors
+    public static let UnprocessableEntity = 422
+    /// Rate Limit Exceeded
+    public static let RateLimitExceeded = 429
+    /// Server Error
+    public static let ServerError = 500
+    /// Service Unavailable - server overloaded
+    public static let ServiceOverloaded = 503
+    /// Service Unavailable - Cloudflare error
+    public static let CloudflareError = 520
+    /// Service Unavailable - Cloudflare error
+    public static let CloudflareError2 = 521
+    /// Service Unavailable - Cloudflare error
+    public static let CloudflareError3 = 522
 }
 
 public enum SearchType: String {
@@ -88,26 +132,6 @@ public enum extendedType: String {
     case Metadata = "metadata"
     case Episodes = "episodes" // For getting all seasons and episodes
     case FullAndEpisodes = "full,episodes"
-}
-
-public struct statusCodes {
-    public static let success = 200
-    public static let successNewResourceCreated = 201
-    public static let successNoContentToReturn = 204
-    public static let badRequestion = 400
-    public static let unauthorized = 401
-    public static let forbidden = 403
-    public static let notFound = 404
-    public static let methodNotFound = 405
-    public static let conflict = 409
-    public static let preconditionFailed = 412
-    public static let unprocessableEntity = 422
-    public static let rateLimitExceeded = 429
-    public static let serverError = 500
-    public static let serviceOverloaded = 503
-    public static let cloudflareError = 520
-    public static let cloudflareError2 = 521
-    public static let cloudflareError3 = 522
 }
 
 public class TraktManager {
@@ -225,7 +249,7 @@ public class TraktManager {
             NSLocalizedFailureReasonErrorKey: "",
             NSLocalizedRecoverySuggestionErrorKey: ""
         ]
-        let TraktKitIncorrectStatusError = NSError(domain: "com.litteral.TraktKit", code: -1400, userInfo: userInfo)
+        let TraktKitIncorrectStatusError = NSError(domain: "com.litteral.TraktKit", code: statusCode, userInfo: userInfo)
         
         return TraktKitIncorrectStatusError
     }
@@ -418,6 +442,12 @@ public class TraktManager {
                     return
             }
             
+            // Check data
+            guard data != nil else {
+                completion(success: false)
+                return
+            }
+            
             completion(success: true)
         }
         datatask.resume()
@@ -444,7 +474,7 @@ public class TraktManager {
             }
         }
         
-        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+        let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
         
         return dataTask
     }
@@ -482,7 +512,7 @@ public class TraktManager {
             }
         }
         
-        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+        let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
         
         return dataTask
     }
@@ -526,7 +556,7 @@ public class TraktManager {
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
+                where HTTPResponse.statusCode == StatusCodes.Success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -657,7 +687,7 @@ public class TraktManager {
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
+                where HTTPResponse.statusCode == StatusCodes.Success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif

@@ -23,7 +23,7 @@ extension TraktManager {
         
         guard let request = mutableRequestForURL("search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /** 
@@ -34,6 +34,6 @@ extension TraktManager {
     public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: arrayCompletionHandler) -> NSURLSessionTask? {
         guard let request = mutableRequestForURL("search?id_type=\(idType.rawValue)&id=\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

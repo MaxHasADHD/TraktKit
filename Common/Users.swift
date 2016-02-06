@@ -50,7 +50,7 @@ extension Users {
     public func getSettings(completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/settings", authorization: true, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Follower Requests
@@ -63,7 +63,7 @@ extension Users {
     public func getFollowRequests(completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/requests", authorization: true, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Approve or Deny follower Requests
@@ -77,7 +77,7 @@ extension Users {
      */
     public func approveFollowRequest(requestID id: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/requests/\(id)", authorization: true, HTTPMethod: .POST) else { return nil }
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -90,7 +90,7 @@ extension Users {
     public func denyFollowRequest(requestID id: NSNumber, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/requests/\(id)", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     // MARK: - Hidden Items
@@ -105,7 +105,7 @@ extension Users {
         guard let request = mutableRequestForURL("users/hidden/\(section.rawValue)?type=\(type.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Likes
@@ -121,7 +121,7 @@ extension Users {
     public func getLikes(type: LikeType, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/likes/\(type.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Profile
@@ -135,7 +135,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Collection
@@ -151,7 +151,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/collection/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Comments
@@ -166,7 +166,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/comments/\(commentType.rawValue)/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Lists
@@ -180,7 +180,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/lists", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -195,24 +195,21 @@ extension Users {
      - parameter allowComments: Are comments allowed?
      */
     public func createCustomList(listName listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        
         // JSON
-        var jsonString = String()
-        
-        jsonString += "{" // Beginning
-        jsonString += "\"name\": \"\(listName)\","
-        jsonString += "\"description\": \"\(listDescription)\","
-        jsonString += "\"privacy\": \"\(privacy)\","
-        jsonString += "\"display_numbers\": \"\(displayNumbers)\","
-        jsonString += "\"allow_comments\": \"\(allowComments)\""
-        jsonString += "}" // End
-        
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        let json = [
+            "name": listName,
+            "description": listDescription,
+            "privacy": privacy,
+            "display_numbers": displayNumbers,
+            "allow_comments": allowComments,
+            ]
         
         // Request
         guard let request = mutableRequestForURL("users/me/lists", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = jsonData
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
     // MARK: - List
@@ -226,7 +223,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -235,24 +232,21 @@ extension Users {
      🔒 OAuth Required
      */
     public func updateCustomList(listID listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        
         // JSON
-        var jsonString = String()
-        
-        jsonString += "{" // Beginning
-        jsonString += "\"name\": \"\(listName)\","
-        jsonString += "\"description\": \"\(listDescription)\","
-        jsonString += "\"privacy\": \"\(privacy)\","
-        jsonString += "\"display_numbers\": \"\(displayNumbers)\","
-        jsonString += "\"allow_comments\": \"\(allowComments)\""
-        jsonString += "}" // End
-        
-        let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)
+        let json = [
+            "name": listName,
+            "description": listDescription,
+            "privacy": privacy,
+            "display_numbers": displayNumbers,
+            "allow_comments": allowComments,
+        ]
         
         // Request
         guard let request = mutableRequestForURL("users/me/lists/\(listID)", authorization: true, HTTPMethod: .PUT) else { return nil }
-        request.HTTPBody = jsonData
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -263,7 +257,7 @@ extension Users {
     public func DeleteCustomList(username: String = "me", listID: String, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     // MARK: - List Like
@@ -276,7 +270,7 @@ extension Users {
     public func likeList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: .POST) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     /**
@@ -287,7 +281,7 @@ extension Users {
     public func removeListLike<T: CustomStringConvertible>(username: String = "me", listID: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     // MARK: - List Items
@@ -301,7 +295,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -313,7 +307,7 @@ extension Users {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
     // MARK: - Remove List Items
@@ -327,7 +321,7 @@ extension Users {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items/remove", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - List Comments
@@ -340,7 +334,7 @@ extension Users {
     public func getAllListComments(username: String = "me", listID: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/comments", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Follow
@@ -355,7 +349,7 @@ extension Users {
     public func followUser(username: String, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/follow", authorization: true, HTTPMethod: .POST) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
     /**
@@ -366,7 +360,7 @@ extension Users {
     public func unfollowUser(username: String, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/follow", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     // MARK: - Followers
@@ -380,7 +374,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/followers", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Following
@@ -394,7 +388,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/following", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Friends
@@ -408,7 +402,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/friends", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - History
@@ -435,7 +429,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL(path, authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Ratings
@@ -456,7 +450,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL(path, authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Watchlist
@@ -470,7 +464,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Watching
@@ -499,8 +493,8 @@ extension Users {
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success ||
-                    HTTPResponse.statusCode == statusCodes.successNoContentToReturn else {
+                where HTTPResponse.statusCode == StatusCodes.Success ||
+                    HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                         if let HTTPResponse = response as? NSHTTPURLResponse {
                             completion(watching: false, dictionary: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
                         }
@@ -510,7 +504,7 @@ extension Users {
                         return
             }
             
-            if HTTPResponse.statusCode == statusCodes.successNoContentToReturn {
+            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
                 completion(watching: false, dictionary: nil, error: nil)
                 return
             }
@@ -549,7 +543,7 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/watched/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Stats
@@ -563,6 +557,6 @@ extension Users {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/stats", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

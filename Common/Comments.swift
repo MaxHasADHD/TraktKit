@@ -47,7 +47,7 @@ extension TraktManager {
         }
         request.HTTPBody = jsonData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completionHandler)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completionHandler)
     }
     
     /**
@@ -56,7 +56,7 @@ extension TraktManager {
     public func getComment<T: CustomStringConvertible>(commentID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -81,7 +81,7 @@ extension TraktManager {
         guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .PUT) else { return nil }
         request.HTTPBody = jsonData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -92,7 +92,7 @@ extension TraktManager {
     public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     // MARK: - Replies
@@ -105,7 +105,7 @@ extension TraktManager {
     public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -130,7 +130,7 @@ extension TraktManager {
         guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Like
@@ -143,7 +143,7 @@ extension TraktManager {
     public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .POST) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     /**
@@ -154,6 +154,6 @@ extension TraktManager {
     public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
 }

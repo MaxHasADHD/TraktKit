@@ -84,7 +84,7 @@ extension TraktManager {
     public func getWeekendBoxOffice(completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("movies/boxoffice", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Updates
@@ -134,7 +134,7 @@ extension TraktManager {
         
         guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Translations
