@@ -42,21 +42,21 @@ extension TraktManager {
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
-        guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: "POST") else {
+        guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: .POST) else {
             return nil
         }
         request.HTTPBody = jsonData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNewResourceCreated, completion: completionHandler)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completionHandler)
     }
     
     /**
      Returns a single comment and indicates how many replies it has. Use **GET** `/comments/:id/replies` to get the actual replies.
      */
     public func getComment<T: CustomStringConvertible>(commentID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("comments/\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -78,10 +78,10 @@ extension TraktManager {
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
-        guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: "PUT") else { return nil }
+        guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .PUT) else { return nil }
         request.HTTPBody = jsonData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -90,9 +90,9 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: "DELETE") else { return nil }
+        guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     // MARK: - Replies
@@ -103,9 +103,9 @@ extension TraktManager {
     📄 Pagination
     */
     public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: false, HTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -127,10 +127,10 @@ extension TraktManager {
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
 
         // Request
-        guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: "POST") else { return nil }
+        guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Like
@@ -141,9 +141,9 @@ extension TraktManager {
     🔒 OAuth: Required
     */
     public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: "POST") else { return nil }
+        guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .POST) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
     /**
@@ -152,8 +152,8 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: "DELETE") else { return nil }
+        guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .DELETE) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.successNoContentToReturn, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
 }

@@ -17,12 +17,12 @@ extension TraktManager {
      */
     public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("people/\(id)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -47,11 +47,11 @@ extension TraktManager {
     
     private func getCredits<T: CustomStringConvertible>(type type: WatchedType, id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)/\(type)", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("people/\(id)/\(type)", authorization: false, HTTPMethod: .GET) else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

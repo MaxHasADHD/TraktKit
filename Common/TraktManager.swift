@@ -19,6 +19,54 @@ let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit", code: -10, us
 
 // Enums
 
+public enum Method: String {
+    /// Select one or more items. Success returns 200 status code.
+    case GET
+    /// Create a new item. Success returns 201 status code.
+    case POST
+    /// Update an item. Success returns 200 status code.
+    case PUT
+    /// Delete an item. Success returns 200 or 204 status code.
+    case DELETE
+}
+
+public struct StatusCodes {
+    /// Success
+    public static let Success = 200
+    /// Success - new resource created (POST)
+    public static let SuccessNewResourceCreated = 201
+    /// Success - no content to return (DELETE)
+    public static let SuccessNoContentToReturn = 204
+    /// Bad Request - request couldn't be parsed
+    public static let BadRequestion = 400
+    /// Unauthorized - OAuth must be provided
+    public static let Unauthorized = 401
+    /// Forbidden - invalid API key or unapproved app
+    public static let Forbidden = 403
+    /// Not Found - method exists, but no record found
+    public static let NotFound = 404
+    /// Method Not Found - method doesn't exist
+    public static let MethodNotFound = 405
+    /// Conflict - resource already created
+    public static let Conflict = 409
+    /// Precondition Failed - use application/json content type
+    public static let PreconditionFailed = 412
+    /// Unprocessable Entity - validation errors
+    public static let UnprocessableEntity = 422
+    /// Rate Limit Exceeded
+    public static let RateLimitExceeded = 429
+    /// Server Error
+    public static let ServerError = 500
+    /// Service Unavailable - server overloaded
+    public static let ServiceOverloaded = 503
+    /// Service Unavailable - Cloudflare error
+    public static let CloudflareError = 520
+    /// Service Unavailable - Cloudflare error
+    public static let CloudflareError2 = 521
+    /// Service Unavailable - Cloudflare error
+    public static let CloudflareError3 = 522
+}
+
 public enum SearchType: String {
     case Movie = "movie"
     case Show = "show"
@@ -84,26 +132,6 @@ public enum extendedType: String {
     case Metadata = "metadata"
     case Episodes = "episodes" // For getting all seasons and episodes
     case FullAndEpisodes = "full,episodes"
-}
-
-public struct statusCodes {
-    public static let success = 200
-    public static let successNewResourceCreated = 201
-    public static let successNoContentToReturn = 204
-    public static let badRequestion = 400
-    public static let unauthorized = 401
-    public static let forbidden = 403
-    public static let notFound = 404
-    public static let methodNotFound = 405
-    public static let conflict = 409
-    public static let preconditionFailed = 412
-    public static let unprocessableEntity = 422
-    public static let rateLimitExceeded = 429
-    public static let serverError = 500
-    public static let serviceOverloaded = 503
-    public static let cloudflareError = 520
-    public static let cloudflareError2 = 521
-    public static let cloudflareError3 = 522
 }
 
 public class TraktManager {
@@ -245,36 +273,42 @@ public class TraktManager {
             NSLocalizedFailureReasonErrorKey: "",
             NSLocalizedRecoverySuggestionErrorKey: ""
         ]
-        let TraktKitIncorrectStatusError = NSError(domain: "com.litteral.TraktKit", code: -1400, userInfo: userInfo)
+        let TraktKitIncorrectStatusError = NSError(domain: "com.litteral.TraktKit", code: statusCode, userInfo: userInfo)
         
         return TraktKitIncorrectStatusError
     }
     
     // MARK: - Actions
     
-    public func mutableRequestForURL(URL: NSURL?, authorization: Bool, HTTPMethod: String) -> NSMutableURLRequest {
+    public func mutableRequestForURL(URL: NSURL?, authorization: Bool, HTTPMethod: Method) -> NSMutableURLRequest? {
         let request = NSMutableURLRequest(URL: URL!)
-        request.HTTPMethod = HTTPMethod
+        request.HTTPMethod = HTTPMethod.rawValue
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
         if let clientID = clientID {
             request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
         }
+        
         if authorization {
-            request.addValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
+            if let accessToken = accessToken {
+                request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            }
+            else {
+                return nil
+            }
         }
         
         return request
     }
     
-    public func mutableRequestForURL(path: String, authorization: Bool, HTTPMethod: String) -> NSMutableURLRequest? {
+    public func mutableRequestForURL(path: String, authorization: Bool, HTTPMethod: Method) -> NSMutableURLRequest? {
         let urlString = "https://api-v2launch.trakt.tv/" + path
         guard let URL = NSURL(string: urlString) else {
             return nil
         }
         let request = NSMutableURLRequest(URL: URL)
-        request.HTTPMethod = HTTPMethod
+        request.HTTPMethod = HTTPMethod.rawValue
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
@@ -432,6 +466,12 @@ public class TraktManager {
                     return
             }
             
+            // Check data
+            guard data != nil else {
+                completion(success: false)
+                return
+            }
+            
             completion(success: true)
         }
         datatask.resume()
@@ -450,18 +490,18 @@ public class TraktManager {
                 if let jsonCrew = json["crew"] as? [String: AnyObject],
                     productionCrew = jsonCrew["production"]  as? [[String: AnyObject]] {
                     for jsonCrewMember in productionCrew {
-                        let crewMember = CrewMember(json: jsonCrewMember)
-                        
-                        crew.append(crewMember)
+                        if let crewMember = CrewMember(json: jsonCrewMember) {
+                            crew.append(crewMember)
+                        }
                     }
                 }
                 
                 // Cast
                 if let jsonCast = json["cast"] as? [[String: AnyObject]] {
                     for jsonCastMember in jsonCast {
-                        let castMember = CastMember(json: jsonCastMember)
-                        
-                        cast.append(castMember)
+                        if let castMember = CastMember(json: jsonCastMember) {
+                            cast.append(castMember)
+                        }
                     }
                 }
                 
@@ -472,13 +512,13 @@ public class TraktManager {
             }
         }
         
-        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+        let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
         
         return dataTask
     }
     
     // Generic array of Trakt objects
-    func performRequest<T: TraktObject>(request request: NSURLRequest,
+    func performRequest<T: TraktProtocol>(request request: NSURLRequest,
         expectingStatusCode code: Int,
         completion: ((TraktObject: T?, error: NSError?) -> Void)) -> NSURLSessionDataTask? {
             
@@ -493,13 +533,13 @@ public class TraktManager {
                 }
             }
             
-            let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+            let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
             
             return dataTask
     }
     
     // Generic array of Trakt objects
-    func performRequest<T: TraktObject>(request request: NSURLRequest,
+    func performRequest<T: TraktProtocol>(request request: NSURLRequest,
         expectingStatusCode code: Int,
         completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
             
@@ -509,8 +549,9 @@ public class TraktManager {
                 var traktObjects: [T] = []
                 
                 for jsonObject in objects {
-                    let trendingShow = T(json: jsonObject)
-                    traktObjects.append(trendingShow)
+                    if let trendingShow = T(json: jsonObject) {
+                        traktObjects.append(trendingShow)
+                    }
                 }
                 
                 completion(TraktObjects: traktObjects, error: error)
@@ -520,7 +561,7 @@ public class TraktManager {
             }
         }
         
-        let dataTask = performRequest(request: request, expectingStatusCode: statusCodes.success, completion: aCompletion)
+        let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
         
         return dataTask
     }
@@ -537,9 +578,19 @@ public class TraktManager {
         
         let urlString = "https://trakt.tv/oauth/token"
         let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "POST")
-        let httpBodyString = "{\"code\": \"\(code)\", \"client_id\": \"\(clientID)\", \"client_secret\": \"\(clientSecret)\", \"redirect_uri\": \"\(redirectURI)\", \"grant_type\": \"authorization_code\" }"
-        request.HTTPBody = httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)
+        guard let request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler?(success: false)
+            return
+        }
+        
+        let json = [
+            "code": code,
+            "client_id": clientID,
+            "client_secret": clientSecret,
+            "redirect_uri": redirectURI,
+            "grant_type": "authorization_code",
+        ]
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -554,7 +605,7 @@ public class TraktManager {
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
+                where HTTPResponse.statusCode == StatusCodes.Success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -646,6 +697,7 @@ public class TraktManager {
         guard let clientID = clientID,
             clientSecret = clientSecret,
             redirectURI = redirectURI else {
+                completionHandler(success: false)
                 return
         }
         
@@ -659,9 +711,19 @@ public class TraktManager {
         
         let urlString = "https://trakt.tv/oauth/token"
         let url = NSURL(string: urlString)
-        let request = mutableRequestForURL(url, authorization: false, HTTPMethod: "POST")
-        let httpBodyString = "{\"refresh_token\": \"\(rToken)\", \"client_id\": \"\(clientID)\", \"client_secret\": \"\(clientSecret)\", \"redirect_uri\": \"\(redirectURI)\", \"grant_type\": \"refresh_token\" }"
-        request.HTTPBody = httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)
+        guard let request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler(success: false)
+            return
+        }
+        
+        let json = [
+            "refresh_token": rToken,
+            "client_id": clientID,
+            "client_secret": clientSecret,
+            "redirect_uri": redirectURI,
+            "grant_type": "refresh_token",
+        ]
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -674,7 +736,7 @@ public class TraktManager {
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
+                where HTTPResponse.statusCode == StatusCodes.Success else {
                 #if DEBUG
                     print("[\(__FUNCTION__)] \(response)")
                 #endif
@@ -726,65 +788,6 @@ public class TraktManager {
                 #endif
                 
                 completionHandler(success: false)
-            }
-        }.resume()
-    }
-    
-    // MARK: - Ratings
-    
-    /// Returns rating (between 0 and 10) and distribution for a movie / show / episode.
-    /// Status Code: 200
-    ///
-    /// :param: which type of content to receive
-    /// :param: trakt ID for movie / show / episode
-    /// :param: completion handler
-    public func getRatings(type: WatchedType, id: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) {
-
-        guard let request = mutableRequestForURL("movies/\(id)/ratings", authorization: false, HTTPMethod: "GET") else {
-            return
-        }
-        
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
-                #endif
-                
-                completion(dictionary: nil, error: error)
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.success else {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(error)")
-                #endif
-                
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(dictionary: nil, error: TraktKitNoDataError)
-                return
-            }
-            
-            do {
-                if let dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
-                    completion(dictionary: dictionary, error: nil)
-                }
-            }
-            catch let jsonSerializationError as NSError {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
-                #endif
-                completion(dictionary: nil, error: jsonSerializationError)
-            }
-            catch {
-                #if DEBUG
-                    print("[\(__FUNCTION__)] Catched something")
-                #endif
             }
         }.resume()
     }

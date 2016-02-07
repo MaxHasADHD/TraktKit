@@ -10,17 +10,13 @@ import Foundation
 
 public typealias RawJSON = [String: AnyObject] // Dictionary
 
-// Common superclass so generic completion handler works
-public class TraktObject {
-    required public init(json: RawJSON) {
-        
-    }
+public protocol TraktProtocol {
+    init?(json: RawJSON?) // Min data must be present not to fail
 }
-
 
 // MARK: - TV & Movies
 
-public class ID: TraktObject {
+public struct ID: TraktProtocol {
     public let trakt: Int
     public let slug: String?
     public let tvdb: Int?
@@ -29,19 +25,20 @@ public class ID: TraktObject {
     public let tvRage: Int?
     
     // Initialize
-    required public init(json: RawJSON) {
-        trakt   = json["trakt"] as? Int ?? 0
-        slug    = json["slug"] as? String
-        tvdb    = json["tvdb"] as? Int
-        imdb    = json["imdb"] as? String
-        tmdb    = json["tmdb"] as? Int
-        tvRage  = json["tvrage"] as? Int
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            traktID = json["trakt"] as? Int else { return nil }
         
-        super.init(json: json)
+        trakt = traktID
+        slug = json["slug"] as? String
+        tvdb = json["tvdb"] as? Int
+        imdb = json["imdb"] as? String
+        tmdb = json["tmdb"] as? Int
+        tvRage = json["tvrage"] as? Int
     }
 }
 
-public class TraktSearchResult: TraktObject {
+public struct TraktSearchResult: TraktProtocol {
     public let type: String // Can be movie, show, episode, person, list
     public let score: Double
     
@@ -52,126 +49,81 @@ public class TraktSearchResult: TraktObject {
     public let list: TraktList?
     
     // Initialize
-    required public init(json: RawJSON) {
-        type = json["type"] as? String ?? "" // Should this fail then?
-        score = json["score"] as? Double ?? 0
+    public init?(json: RawJSON?) {
+        guard let json = json,
+        type = json["type"] as? String,
+        score = json["score"] as? Double else { return nil }
         
-        if let movieJSON = json["movie"] as? RawJSON {
-            movie = TraktMovie(json: movieJSON)
-        }
-        else {
-            movie = nil
-        }
-        
-        if let showJSON = json["show"] as? RawJSON {
-            show = TraktShow(json: showJSON)
-        }
-        else {
-            show = nil
-        }
-        
-        if let episodeJSON = json["episode"] as? RawJSON {
-            episode = TraktEpisode(json: episodeJSON)
-        }
-        else {
-            episode = nil
-        }
-        
-        if let personJSON = json["person"] as? RawJSON {
-            person = Person(json: personJSON)
-        }
-        else {
-            person = nil
-        }
-        
-        if let listJSON = json["list"] as? RawJSON {
-            list = TraktList(json: listJSON)
-        }
-        else {
-            list = nil
-        }
-        
-        super.init(json: json)
+        self.type = type
+        self.score = score
+        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
+        self.show = TraktShow(json: json["show"] as? RawJSON)
+        self.episode = TraktEpisode(json: json["episode"] as? RawJSON)
+        self.person = Person(json: json["person"] as? RawJSON)
+        self.list = TraktList(json: json["list"] as? RawJSON)
     }
 }
 
 // MARK: - Images
 
-public class TraktImages: TraktObject {
+public struct TraktImages: TraktProtocol {
     public let fanart: TraktImage?
     public let poster: TraktImage?
     public let logo: TraktImage?
     public let clearArt: TraktImage?
     public let banner: TraktImage?
     public let thumb: TraktImage?
-    
     public let headshot: TraktImage?
     
     // Initialize
-    required public init(json: RawJSON) {
-        fanart = TraktImage(optionalJSON: json["fanart"] as? RawJSON)
-        poster = TraktImage(optionalJSON: json["poster"] as? RawJSON)
-        logo = TraktImage(optionalJSON: json["logo"] as? RawJSON)
-        clearArt = TraktImage(optionalJSON: json["clearart"] as? RawJSON)
-        banner = TraktImage(optionalJSON: json["banner"] as? RawJSON)
-        thumb = TraktImage(optionalJSON: json["thumb"] as? RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json else { return nil }
         
-        headshot = TraktImage(optionalJSON: json["headshot"] as? RawJSON) // For actors
-        
-        super.init(json: json)
+        fanart      = TraktImage(json: json["fanart"] as? RawJSON)
+        poster      = TraktImage(json: json["poster"] as? RawJSON)
+        logo        = TraktImage(json: json["logo"] as? RawJSON)
+        clearArt    = TraktImage(json: json["clearart"] as? RawJSON)
+        banner      = TraktImage(json: json["banner"] as? RawJSON)
+        thumb       = TraktImage(json: json["thumb"] as? RawJSON)
+        headshot    = TraktImage(json: json["headshot"] as? RawJSON) // For actors
     }
 }
 
-public class TraktImage: TraktObject {
+public struct TraktImage: TraktProtocol {
     public let full: NSURL?
     public let medium: NSURL?
     public let thumb: NSURL?
     
     // Initialize
-    required public init(json: RawJSON) {
+    public init?(json: RawJSON?) {
+        guard let json = json else { return nil }
+        
         full = NSURL(string: json["full"] as? String ?? "") ?? nil
         medium = NSURL(string: json["medium"] as? String ?? "") ?? nil
         thumb = NSURL(string: json["thumb"] as? String ?? "") ?? nil
-        
-        super.init(json: json)
-    }
-    
-    public init?(optionalJSON: RawJSON?) { // Makes easier to code instead of a bunch of if-lets for TraktImages
-        if let json = optionalJSON {
-            full = NSURL(string: json["full"] as? String ?? "") ?? nil
-            medium = NSURL(string: json["medium"] as? String ?? "") ?? nil
-            thumb = NSURL(string: json["thumb"] as? String ?? "") ?? nil
-            
-            super.init(json: json)
-        }
-        else {
-            full = nil
-            medium = nil
-            thumb = nil
-            super.init(json: [:])
-            return nil
-        }
     }
 }
 
 // MARK: - Television
 
-public class TraktTrendingShow: TraktObject {
+public struct TraktTrendingShow: TraktProtocol {
     // Extended: Min
     public let watchers: Int
     public let show: TraktShow
     
     // Initialize
-    required public init(json: RawJSON) {
-        watchers    = json["watchers"] as? Int ?? 0
-        show        = TraktShow(json: json["show"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+        watchers = json["watchers"] as? Int,
+        show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.watchers = watchers
+        self.show = show
     }
 }
 
 // Used for most played, watched, and collected shows
-public class TraktMostShow: TraktObject {
+public struct TraktMostShow: TraktProtocol {
     // Extended: Min
     public let watcherCount: Int
     public let playCount: Int
@@ -180,32 +132,39 @@ public class TraktMostShow: TraktObject {
     public let show: TraktShow
     
     // Initialize
-    required public init(json: RawJSON) {
-        watcherCount    = json["watcher_count"] as? Int ?? 0
-        playCount       = json["play_count"] as? Int ?? 0
-        collectedCount  = json["collected_count"] as? Int ?? 0
-        collectorCount  = json["collector_count"] as? Int ?? 0
-        show            = TraktShow(json: json["show"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            watcherCount = json["watcher_count"] as? Int,
+            playCount = json["play_count"] as? Int,
+            collectedCount = json["collected_count"] as? Int,
+            collectorCount = json["collector_count"] as? Int,
+            show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.watcherCount = watcherCount
+        self.playCount = playCount
+        self.collectedCount = collectedCount
+        self.collectorCount = collectorCount
+        self.show = show
     }
 }
 
-public class TraktAnticipatedShow: TraktObject {
+public struct TraktAnticipatedShow: TraktProtocol {
     // Extended: Min
     public let listCount: Int
     public let show: TraktShow
     
     // Initialize
-    required public init(json: RawJSON) {
-        listCount   = json["list_count"] as? Int ?? 0
-        show        = TraktShow(json: json["show"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            listCount = json["list_count"] as? Int,
+            show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.listCount = listCount
+        self.show = show
     }
 }
 
-public class TraktShow: TraktObject {
+public struct TraktShow: TraktProtocol {
     // Extended: Min
     public let title: String
     public let year: Int?
@@ -234,11 +193,14 @@ public class TraktShow: TraktObject {
     public let images: TraktImages?
     
     // Initialize
-    required public init(json: RawJSON) {
+    public init?(json: RawJSON?) {
+        guard let json = json else { return nil }
+        
         // Extended: Min
         title   = json["title"] as? String ?? ""
         year    = json["year"] as? Int
-        ids     = ID(json: json["ids"] as! RawJSON)
+        guard let ids = ID(json: json["ids"] as? RawJSON) else { return nil }
+        self.ids = ids
         
         // Extended: Full
         overview        = json["overview"] as? String
@@ -266,13 +228,10 @@ public class TraktShow: TraktObject {
         else {
             images = nil
         }
-        
-        //
-        super.init(json: json)
     }
 }
 
-public class TraktSeason: TraktObject {
+public struct TraktSeason: TraktProtocol {
     // Extended: Min
     public let show: TraktShow
     public let number: Int
@@ -281,20 +240,22 @@ public class TraktSeason: TraktObject {
     // Extended: Full
     
     // Initialize
-    required public init(json: RawJSON) {
-        fatalError("init(json:) has not been implemented")
+    public init?(json: RawJSON?) {
+        fatalError("init?(json:?) has not been implemented")
     }
     
-    public init(json: RawJSON, show: TraktShow) {
-        self.show   = show
-        number      = json["number"] as? Int ?? 0
-        ids         = ID(json: json["ids"] as! RawJSON)
+    public init?(json: RawJSON?, show: TraktShow) {
+        guard let json = json,
+            number = json["number"] as? Int,
+            ids = ID(json: json["ids"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.show   = show
+        self.number = number
+        self.ids    = ids
     }
 }
 
-public class TraktEpisode: TraktObject {
+public struct TraktEpisode: TraktProtocol {
     // Extended: Min
     public let season: TraktSeason
     public let number: Int
@@ -304,38 +265,43 @@ public class TraktEpisode: TraktObject {
     // Extended: Full
     
     // Initialize
-    required public init(json: RawJSON) {
-        fatalError("init(json:) has not been implemented")
+    public init?(json: RawJSON?) {
+        fatalError("init?(json:?) has not been implemented")
     }
     
-    public init(json: RawJSON, season: TraktSeason) {
+    public init?(json: RawJSON?, season: TraktSeason) {
+        guard let json = json,
+            number = json["number"] as? Int,
+            title = json["title"] as? String,
+            ids = ID(json: json["ids"] as? RawJSON) else { return nil }
         self.season = season
-        number      = json["number"] as? Int ?? 0
-        title       = json["title"] as? String ?? "TBA"
-        ids         = ID(json: json["ids"] as! RawJSON)
-        
-        super.init(json: json)
+        self.number = number
+        self.title  = title
+        self.ids    = ids
     }
 }
 
-public class TraktShowTranslation: TraktObject {
+public struct TraktShowTranslation: TraktProtocol {
     public let title: String
     public let overview: String
     public let language: String
     
     // Initialize
-    required public init(json: RawJSON) {
-        title       = json["title"] as? String ?? ""
-        overview    = json["overview"] as? String ?? ""
-        language    = json["language"] as? String ?? ""
+    public init?(json: RawJSON?) {
+        guard let json = json,
+        title = json["title"] as? String,
+        overview = json["overview"] as? String,
+        language = json["language"] as? String else { return nil }
         
-        super.init(json: json)
+        self.title       = title
+        self.overview    = overview
+        self.language    = language
     }
 }
 
 // MARK: Watched progress
 
-public class TraktWatchedShow: TraktObject {
+public struct TraktWatchedShow: TraktProtocol {
     // Extended: Min
     public let plays: Int // Total number of plays
     public let lastWatchedAt: NSDate
@@ -343,30 +309,37 @@ public class TraktWatchedShow: TraktObject {
     public let seasons: [TraktWatchedSeason]
     
     // Initialize
-    required public init(json: RawJSON) {
-        plays = json["plays"] as? Int ?? 0
-        lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String) ?? NSDate()
-        show = TraktShow(json: json["show"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            plays = json["plays"] as? Int,
+            lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String),
+            show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
+        
+        self.plays = plays
+        self.lastWatchedAt = lastWatchedAt
+        self.show = show
         
         var tempSeasons: [TraktWatchedSeason] = []
         let jsonSeasons = json["seasons"] as? [RawJSON] ?? []
         for jsonSeason in jsonSeasons {
-            tempSeasons.append(TraktWatchedSeason(json: jsonSeason))
+            guard let season = TraktWatchedSeason(json: jsonSeason) else { continue }
+            tempSeasons.append(season)
         }
         seasons = tempSeasons
-        
-        super.init(json: json)
     }
 }
 
-public class TraktWatchedSeason: TraktObject {
+public struct TraktWatchedSeason: TraktProtocol {
     // Extended: Min
     public let number: Int // Season number
     public let episodes: [TraktWatchedEpisodes]
     
     // Initialize
-    required public init(json: RawJSON) {
-        number = json["number"] as? Int ?? 0
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            number = json["number"] as? Int else { return nil }
+        
+        self.number = number
         
         var tempEpisodes: [TraktWatchedEpisodes] = []
         let jsonEpisodes = json["episodes"] as? [RawJSON] ?? []
@@ -374,44 +347,53 @@ public class TraktWatchedSeason: TraktObject {
             tempEpisodes.append(TraktWatchedEpisodes(json: jsonEpisode))
         }
         episodes = tempEpisodes
-        
-        super.init(json: json)
     }
 }
 
-public class TraktWatchedEpisodes: TraktObject {
+public struct TraktWatchedEpisodes: TraktProtocol {
     // Extended: Min
     public let number: Int // Episode number
     public let plays: Int // Number of plays
     public let lastWatchedAt: NSDate
     
     // Initialize
-    required public init(json: RawJSON) {
+    public init(json: RawJSON) {
         number = json["number"] as? Int ?? 0
         plays = json["plays"] as? Int ?? 0
         lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String) ?? NSDate()
+    }
+    
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            number = json["number"] as? Int,
+            plays = json["plays"] as? Int,
+            lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String) else { return nil }
         
-        super.init(json: json)
+        self.number = number
+        self.plays = plays
+        self.lastWatchedAt = lastWatchedAt
     }
 }
 
 // MARK: - Movies
 
-public class TraktTrendingMovie: TraktObject {
+public struct TraktTrendingMovie: TraktProtocol {
     // Extended: Min
     public let watchers: Int
     public let movie: TraktMovie
     
     // Initialize
-    required public init(json: RawJSON) {
-        watchers = json["watchers"] as? Int ?? 0
-        movie = TraktMovie(json: json["movie"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            watchers = json["watchers"] as? Int,
+            movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.watchers = watchers
+        self.movie = movie
     }
 }
 
-public class TraktMovie: TraktObject {
+public struct TraktMovie: TraktProtocol {
     // Extended: Min
     public let title: String
     public let year: Int?
@@ -436,26 +418,30 @@ public class TraktMovie: TraktObject {
     public let images: TraktImages?
     
     // Initialize
-    required public init(json: RawJSON) {
+    public init?(json: RawJSON?) {
+        guard let json = json,
+        title = json["title"] as? String,
+        ids = ID(json: json["ids"] as? RawJSON) else { return nil }
+        
         // Extended: Min
-        title   = json["title"] as? String ?? ""
-        year    = json["year"] as? Int
-        ids     = ID(json: json["ids"] as! RawJSON)
+        self.title = title
+        self.year = json["year"] as? Int
+        self.ids = ids
         
         // Extended: Full
-        tagline             = json["overview"] as? String
-        overview            = json["overview"] as? String
-        released            = NSDate.dateFromString(json["released"] as? String)
-        runtime             = json["runtime"] as? Int
-        trailer             = NSURL(string: json["trailer"] as? String ?? "") ?? nil
-        homepage            = NSURL(string: json["homepage"] as? String ?? "") ?? nil
-        rating              = json["rating"] as? Double
-        votes               = json["votes"] as? Int
-        updatedAt           = NSDate.dateFromString(json["updated_at"] as? String)
-        language            = json["language"] as? String
-        availableTranslations = json["available_translations"] as? [String]
-        genres              = json["genres"] as? [String]
-        certification       = json["certification"] as? String
+        self.tagline             = json["overview"] as? String
+        self.overview            = json["overview"] as? String
+        self.released            = NSDate.dateFromString(json["released"] as? String)
+        self.runtime             = json["runtime"] as? Int
+        self.trailer             = NSURL(string: json["trailer"] as? String ?? "") ?? nil
+        self.homepage            = NSURL(string: json["homepage"] as? String ?? "") ?? nil
+        self.rating              = json["rating"] as? Double
+        self.votes               = json["votes"] as? Int
+        self.updatedAt           = NSDate.dateFromString(json["updated_at"] as? String)
+        self.language            = json["language"] as? String
+        self.availableTranslations = json["available_translations"] as? [String]
+        self.genres              = json["genres"] as? [String]
+        self.certification       = json["certification"] as? String
         
         // Extended: Images
         if let imageJSON = json["images"] as? RawJSON {
@@ -464,50 +450,54 @@ public class TraktMovie: TraktObject {
         else {
             images = nil
         }
-        
-        //
-        super.init(json: json)
     }
 }
 
-public class TraktMovieTranslation: TraktObject {
+public struct TraktMovieTranslation: TraktProtocol {
     public let title: String
     public let overview: String
     public let tagline: String
     public let language: String
     
     // Initialize
-    required public init(json: RawJSON) {
-        title       = json["title"] as? String ?? ""
-        overview    = json["overview"] as? String ?? ""
-        tagline     = json["tagline"] as? String ?? ""
-        language    = json["language"] as? String ?? ""
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            title = json["title"] as? String,
+            overview = json["overview"] as? String,
+            tagline = json["tagline"] as? String,
+            language = json["language"] as? String else { return nil }
         
-        super.init(json: json)
+        self.title = title
+        self.overview = overview
+        self.tagline = tagline
+        self.language = language
     }
 }
 
 // MARK: Watched progress
 
-public class TraktWatchedMovie: TraktObject {
+public struct TraktWatchedMovie: TraktProtocol {
     // Extended: Min
     public let plays: Int // Total number of plays
     public let lastWatchedAt: NSDate
     public let movie: TraktMovie
     
     // Initialize
-    required public init(json: RawJSON) {
-        plays = json["plays"] as? Int ?? 0
-        lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String) ?? NSDate()
-        movie = TraktMovie(json: json["movie"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            plays = json["plays"] as? Int,
+            lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String),
+            movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.plays = plays
+        self.lastWatchedAt = lastWatchedAt
+        self.movie = movie
     }
 }
 
 // MARK: - Comments
 
-public class Comment: TraktObject {
+public struct Comment: TraktProtocol {
     public let id: NSNumber
     public let parentID: NSNumber
     public let createdAt: NSDate // TODO: Make NSDate
@@ -519,51 +509,60 @@ public class Comment: TraktObject {
     public let user: User
     
     // Initialize
-    required public init(json: RawJSON) {
-        id          = json["id"] as? NSNumber ?? 0
-        parentID    = json["parent_id"] as? NSNumber ?? 0
-        createdAt   = NSDate.dateFromString(json["created_at"] as? String) ?? NSDate()
-        comment     = json["comment"] as? String ?? NSLocalizedString("COMMENTS_UNAVAILABLE", comment: "Comment Unavailable")
-        spoiler     = json["spoiler"] as? Bool ?? false
-        review      = json["review"] as? Bool ?? false
-        replies     = json["replies"] as? NSNumber ?? 0
-        userRating  = json["user_rating"] as? NSNumber ?? 0
-        user        = User(json: json["user"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            id = json["id"] as? NSNumber,
+            parentID = json["parent_id"] as? NSNumber,
+            createdAt = NSDate.dateFromString(json["created_at"] as? String),
+            comment = json["comment"] as? String,
+            spoiler = json["spoiler"] as? Bool,
+            review = json["review"] as? Bool,
+            replies = json["replies"] as? NSNumber,
+            userRating = json["user_rating"] as? NSNumber,
+            user = User(json: json["user"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.id = id
+        self.parentID = parentID
+        self.createdAt = createdAt
+        self.comment = comment
+        self.spoiler = spoiler
+        self.review = review
+        self.replies = replies
+        self.userRating = userRating
+        self.user = user
     }
 }
 
 // Trakt user
-public class User: TraktObject {
+public struct User: TraktProtocol {
     public let username: String
     public let isPrivate: Bool
     public let name: String
     public let isVIP: Bool
     public let isVIPEP: Bool
     
-    required public init(json: [String: AnyObject]) {
-        username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
-        isPrivate = json["private"] as? Bool ?? false
-        name = json["name"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
-        isVIP = json["vip"] as? Bool ?? false
-        isVIPEP = json["vip_ep"] as? Bool ?? false
+    // Initialize
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            isPrivate = json["private"] as? Bool,
+            isVIP = json["vip"] as? Bool,
+            isVIPEP = json["vip_ep"] as? Bool else { return nil }
         
-        super.init(json: json)
+        self.username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
+        self.isPrivate = isPrivate
+        self.name = json["name"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
+        self.isVIP = isVIP
+        self.isVIPEP = isVIPEP
     }
 }
 
 // MARK: - People
 
 // Actor/Actress/Crew member
-public class Person: TraktObject {
+public struct Person: TraktProtocol {
     // Extended: Min
     public let name: String
-    public let idTrakt: NSNumber
-    public let idSlug: String
-    public let idTMDB: NSNumber
-    public let idIMDB: String
-    public let idTVRage: NSNumber
+    public let ids: ID
     
     // Extended: Full
     public let biography: String?
@@ -576,24 +575,14 @@ public class Person: TraktObject {
     public let images: TraktImages?
     
     // Initialize
-    required public init(json: RawJSON) {
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            name = json["name"] as? String,
+            ids = ID(json: json["ids"] as? [String: AnyObject]) else { return nil }
+
         // Extended: Min
-        name = json["name"] as? String ?? ""
-        
-        if let ids = json["ids"] as? [String: AnyObject] {
-            idTrakt = ids["trakt"] as? NSNumber ?? 0
-            idSlug = ids["slug"] as? String ?? ""
-            idTMDB = ids["tmdb"] as? NSNumber ?? 0
-            idIMDB = ids["imdb"] as? String ?? ""
-            idTVRage = ids["tvrage"] as? NSNumber ?? 0
-        }
-        else {
-            idTrakt = 0
-            idSlug = ""
-            idTMDB = 0
-            idIMDB = ""
-            idTVRage = 0
-        }
+        self.name = name
+        self.ids = ids
         
         // Extended: Full
         biography   = json["biography"] as? String
@@ -615,38 +604,42 @@ public class Person: TraktObject {
         else {
             images = nil
         }
-        
-        super.init(json: json)
     }
 }
 
-public class CrewMember: TraktObject {
+public struct CrewMember: TraktProtocol {
     public let job: String
     public let person: Person
     
-    required public init(json: RawJSON) {
-        job     = json["job"] as? String ?? ""
-        person  = Person(json: json["person"] as! RawJSON)
+    // Initialize
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            job = json["job"] as? String,
+            person = Person(json: json["person"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.job = job
+        self.person = person
     }
 }
 
-public class CastMember: TraktObject {
+public struct CastMember: TraktProtocol {
     public let character: String
     public let person: Person
     
-    required public init(json: RawJSON) {
-        character = json["character"] as? String ?? ""
-        person = Person(json: json["person"] as! RawJSON)
+    // Initialize
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            character = json["character"] as? String,
+            person = Person(json: json["person"] as? RawJSON) else { return nil }
         
-        super.init(json: json)
+        self.character = character
+        self.person = person
     }
 }
 
 // MARK: - List
 
-public class TraktList: TraktObject {
+public struct TraktList: TraktProtocol {
     public let name: String
     public let description: String
     public let privacy: String // TODO: Maybe make a type?
@@ -655,21 +648,28 @@ public class TraktList: TraktObject {
     public let id: ID
     
     // Initialization
-    required public init(json: RawJSON) {
-        name            = json["name"] as? String ?? ""
-        description     = json["description"] as? String ?? ""
-        privacy         = json["privacy"] as? String ?? ""
-        displayNumbers  = json["display_numbers"] as? Bool ?? false
-        allowComments   = json["allow_comments"] as? Bool ?? false
-        id              = ID(json: json["ids"] as! RawJSON)
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            name = json["name"] as? String,
+            description = json["description"] as? String,
+            privacy = json["privacy"] as? String,
+            displayNumbers = json["display_numbers"] as? Bool,
+            allowComments = json["allow_comments"] as? Bool,
+            id = ID(json: json["ids"] as? RawJSON)
+            else { return nil }
         
-        super.init(json: json)
+        self.name            = name
+        self.description     = description
+        self.privacy         = privacy
+        self.displayNumbers  = displayNumbers
+        self.allowComments   = allowComments
+        self.id              = id
     }
 }
 
 // MARK: - Stats
 
-public class TraktStats: TraktObject {
+public struct TraktStats: TraktProtocol {
     public let watchers: Int
     public let plays: Int
     public let collectors: Int
@@ -679,22 +679,29 @@ public class TraktStats: TraktObject {
     public let votes: Int
     
     // Initialization
-    required public init(json: RawJSON) {
-        watchers            = json["watchers"] as? Int ?? 0
-        plays               = json["plays"] as? Int ?? 0
-        collectors          = json["collectors"] as? Int ?? 0
-        collectedEpisodes   = json["collected_episodes"] as? Int ?? 0 // Not included for movie stats
-        comments            = json["comments"] as? Int ?? 0
-        lists               = json["lists"] as? Int ?? 0
-        votes               = json["votes"] as? Int ?? 0
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            watchers = json["watchers"] as? Int,
+            plays = json["plays"] as? Int,
+            collectors = json["collectors"] as? Int,
+            comments = json["comments"] as? Int,
+            lists = json["lists"] as? Int,
+            votes = json["votes"] as? Int else { return nil }
         
-        super.init(json: json)
+        self.watchers = watchers
+        self.plays = plays
+        self.collectors = collectors
+        self.collectedEpisodes = json["collected_episodes"] as? Int ?? 0 // Not included for movie stats
+        self.comments = comments
+        self.lists = lists
+        self.votes = votes
+        
     }
 }
 
 // MARK: - Last Activities
 
-public class TraktLastActivities: TraktObject {
+public struct TraktLastActivities: TraktProtocol {
     public let all: NSDate
     public let movies: TraktLastActivityMovies
     public let episodes: TraktLastActivityEpisodes
@@ -704,28 +711,34 @@ public class TraktLastActivities: TraktObject {
     public let lists: TraktLastActivityLists
     
     // Initialization
-    required public init(json: RawJSON) {
-        let allJSON         = json["all"] as! String
-        let moviesJSON      = json["movies"] as! RawJSON
-        let episodesJSON    = json["episodes"] as! RawJSON
-        let showsJSON       = json["shows"] as! RawJSON
-        let seasonsJSON     = json["seasons"] as! RawJSON
-        let commentsJSON    = json["comments"] as! RawJSON
-        let listsJSON       = json["lists"] as! RawJSON
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            allJSON = json["all"] as? String,
+            all = NSDate.dateFromString(allJSON),
+            moviesJSON = json["movies"] as? RawJSON,
+            movies = TraktLastActivityMovies(json: moviesJSON),
+            episodesJSON = json["episodes"] as? RawJSON,
+            episodes = TraktLastActivityEpisodes(json: episodesJSON),
+            showsJSON = json["shows"] as? RawJSON,
+            shows = TraktLastActivityShows(json: showsJSON),
+            seasonsJSON = json["seasons"] as? RawJSON,
+            seasons = TraktLastActivitySeasons(json: seasonsJSON),
+            commentsJSON = json["comments"] as? RawJSON,
+            comments = TraktLastActivityComments(json: commentsJSON),
+            listsJSON = json["lists"] as? RawJSON,
+            lists = TraktLastActivityLists(json: listsJSON) else { return nil }
         
-        all = NSDate.dateFromString(allJSON)!
-        movies = TraktLastActivityMovies(json: moviesJSON)
-        episodes = TraktLastActivityEpisodes(json: episodesJSON)
-        shows = TraktLastActivityShows(json: showsJSON)
-        seasons = TraktLastActivitySeasons(json: seasonsJSON)
-        comments = TraktLastActivityComments(json: commentsJSON)
-        lists = TraktLastActivityLists(json: listsJSON)
-        
-        super.init(json: json)
+        self.all        = all
+        self.movies     = movies
+        self.episodes   = episodes
+        self.shows      = shows
+        self.seasons    = seasons
+        self.comments   = comments
+        self.lists      = lists
     }
 }
 
-public class TraktLastActivityMovies: TraktObject {
+public struct TraktLastActivityMovies: TraktProtocol {
     public let watchedAt: NSDate
     public let collectedAt: NSDate
     public let ratedAt: NSDate
@@ -734,19 +747,25 @@ public class TraktLastActivityMovies: TraktObject {
     public let pausedAt: NSDate
     
     // Initialization
-    required public init(json: RawJSON) {
-        watchedAt       = NSDate.dateFromString(json["watched_at"] as? String)!
-        collectedAt     = NSDate.dateFromString(json["collected_at"] as? String)!
-        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
-        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
-        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
-        pausedAt        = NSDate.dateFromString(json["paused_at"] as? String)!
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            watchedAt = NSDate.dateFromString(json["watched_at"] as? String),
+            collectedAt = NSDate.dateFromString(json["collected_at"] as? String),
+            ratedAt = NSDate.dateFromString(json["rated_at"] as? String),
+            watchlistedAt = NSDate.dateFromString(json["watchlisted_at"] as? String),
+            commentedAt = NSDate.dateFromString(json["commented_at"] as? String),
+            pausedAt = NSDate.dateFromString(json["paused_at"] as? String) else { return nil }
         
-        super.init(json: json)
+        self.watchedAt = watchedAt
+        self.collectedAt = collectedAt
+        self.ratedAt = ratedAt
+        self.watchlistedAt = watchlistedAt
+        self.commentedAt = commentedAt
+        self.pausedAt = pausedAt
     }
 }
 
-public class TraktLastActivityEpisodes: TraktObject {
+public struct TraktLastActivityEpisodes: TraktProtocol {
     public let watchedAt: NSDate
     public let collectedAt: NSDate
     public let ratedAt: NSDate
@@ -755,70 +774,87 @@ public class TraktLastActivityEpisodes: TraktObject {
     public let pausedAt: NSDate
     
     // Initialization
-    required public init(json: RawJSON) {
-        watchedAt       = NSDate.dateFromString(json["watched_at"] as? String)!
-        collectedAt     = NSDate.dateFromString(json["collected_at"] as? String)!
-        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
-        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
-        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
-        pausedAt        = NSDate.dateFromString(json["paused_at"] as? String)!
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            watchedAt = NSDate.dateFromString(json["watched_at"] as? String),
+            collectedAt = NSDate.dateFromString(json["collected_at"] as? String),
+            ratedAt = NSDate.dateFromString(json["rated_at"] as? String),
+            watchlistedAt = NSDate.dateFromString(json["watchlisted_at"] as? String),
+            commentedAt = NSDate.dateFromString(json["commented_at"] as? String),
+            pausedAt = NSDate.dateFromString(json["paused_at"] as? String) else { return nil }
         
-        super.init(json: json)
+        self.watchedAt = watchedAt
+        self.collectedAt = collectedAt
+        self.ratedAt = ratedAt
+        self.watchlistedAt = watchlistedAt
+        self.commentedAt = commentedAt
+        self.pausedAt = pausedAt
     }
 }
 
-public class TraktLastActivityShows: TraktObject {
+public struct TraktLastActivityShows: TraktProtocol {
     public let ratedAt: NSDate
     public let watchlistedAt: NSDate
     public let commentedAt: NSDate
     
     // Initialization
-    required public init(json: RawJSON) {
-        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
-        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
-        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            ratedAt = NSDate.dateFromString(json["rated_at"] as? String),
+            watchlistedAt = NSDate.dateFromString(json["watchlisted_at"] as? String),
+            commentedAt = NSDate.dateFromString(json["commented_at"] as? String) else { return nil }
         
-        super.init(json: json)
+        self.ratedAt = ratedAt
+        self.watchlistedAt = watchlistedAt
+        self.commentedAt = commentedAt
     }
 }
 
-public class TraktLastActivitySeasons: TraktObject {
+public struct TraktLastActivitySeasons: TraktProtocol {
     public let ratedAt: NSDate
     public let watchlistedAt: NSDate
     public let commentedAt: NSDate
     
     // Initialization
-    required public init(json: RawJSON) {
-        ratedAt         = NSDate.dateFromString(json["rated_at"] as? String)!
-        watchlistedAt   = NSDate.dateFromString(json["watchlisted_at"] as? String)!
-        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
+    public init?(json: RawJSON?) {
+        guard let json = json,
+        ratedAt = NSDate.dateFromString(json["rated_at"] as? String),
+        watchlistedAt = NSDate.dateFromString(json["watchlisted_at"] as? String),
+        commentedAt = NSDate.dateFromString(json["commented_at"] as? String) else { return nil }
         
-        super.init(json: json)
+        self.ratedAt = ratedAt
+        self.watchlistedAt = watchlistedAt
+        self.commentedAt = commentedAt
     }
 }
 
-public class TraktLastActivityComments: TraktObject {
+public struct TraktLastActivityComments: TraktProtocol {
     public let likedAt: NSDate
     
     // Initialization
-    required public init(json: RawJSON) {
-        likedAt = NSDate.dateFromString(json["liked_at"] as? String)!
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            likedAt = NSDate.dateFromString(json["liked_at"] as? String) else { return nil }
         
-        super.init(json: json)
+        self.likedAt = likedAt
     }
 }
 
-public class TraktLastActivityLists: TraktObject {
+public struct TraktLastActivityLists: TraktProtocol {
     public let likedAt: NSDate
     public let updatedAt: NSDate
     public let commentedAt: NSDate
     
     // Initialization
-    required public init(json: RawJSON) {
-        likedAt         = NSDate.dateFromString(json["liked_at"] as? String)!
-        updatedAt       = NSDate.dateFromString(json["updated_at"] as? String)!
-        commentedAt     = NSDate.dateFromString(json["commented_at"] as? String)!
+    
+    public init?(json: RawJSON?) {
+        guard let json = json,
+            likedAt = NSDate.dateFromString(json["liked_at"] as? String),
+            updatedAt = NSDate.dateFromString(json["updated_at"] as? String),
+            commentedAt = NSDate.dateFromString(json["commented_at"] as? String) else { return nil }
         
-        super.init(json: json)
+        self.likedAt = likedAt
+        self.updatedAt = updatedAt
+        self.commentedAt = commentedAt
     }
 }

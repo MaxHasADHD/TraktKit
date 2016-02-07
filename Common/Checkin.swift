@@ -33,7 +33,7 @@ extension TraktManager {
         let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "POST") else { return nil }
+        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
@@ -46,8 +46,8 @@ extension TraktManager {
             }
             
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where (HTTPResponse.statusCode == statusCodes.successNewResourceCreated ||
-                    HTTPResponse.statusCode == statusCodes.conflict) else {
+                where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
+                    HTTPResponse.statusCode == StatusCodes.Conflict) else {
                         #if DEBUG
                             print("[\(__FUNCTION__)] \(response)")
                         #endif
@@ -55,7 +55,7 @@ extension TraktManager {
                         return
             }
             
-            if HTTPResponse.statusCode == statusCodes.successNewResourceCreated {
+            if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                 // Started watching
                 completionHandler(success: true)
             }
@@ -77,7 +77,7 @@ extension TraktManager {
      */
     public func deleteActiveCheckins(completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: "DELETE") else {
+        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else {
             return nil
         }
         
@@ -92,7 +92,7 @@ extension TraktManager {
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == statusCodes.successNoContentToReturn else {
+                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                     #if DEBUG
                         print("[\(__FUNCTION__)] \(response)")
                     #endif

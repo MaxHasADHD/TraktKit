@@ -19,20 +19,20 @@ extension TraktManager {
      
      */
     public func getSeasons<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: SeasonsCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons?extended=\(extended.rawValue)", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("shows/\(id)/seasons?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
      Returns all episodes for a specific season of a show.
      */
     public func getEpisodesForSeason<T: CustomStringConvertible>(showID id: T, season: NSNumber, extended: extendedType = .Min, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
@@ -41,45 +41,45 @@ extension TraktManager {
      📄 Pagination
      */
     public func getAllSeasonComments<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/comments", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/comments", authorization: false, HTTPMethod: .GET) else {
             return nil
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
      Returns rating (between 0 and 10) and distribution for a season.
     */
     public func getSeasonRatings<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/ratings", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/ratings", authorization: false, HTTPMethod: .GET) else {
             return nil
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
      Returns lots of season stats.
      */
     public func getSeasonStatistics<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: statsCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/stats", authorization: false, HTTPMethod: "GET") else {
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/stats", authorization: false, HTTPMethod: .GET) else {
             return nil
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
      Returns all users watching this season right now.
      */
     public func getUsersWatchingSeasons<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/watching", authorization: false, HTTPMethod: "GET") else { return nil }
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/watching", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: statusCodes.success, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }
