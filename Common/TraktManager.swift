@@ -240,7 +240,7 @@ public class TraktManager {
     public typealias TrendingMoviesCompletionHandler = ((trendingMovies: [TraktTrendingMovie], error: NSError?) -> Void)
     public typealias MostMoviesCompletionHandler     = ((MostMovies: [TraktMostShow], error: NSError?) -> Void)
     public typealias MovieTranslationsCompletionHandler = ((translations: [TraktMovieTranslation], error: NSError?) -> Void)
-    public typealias WatchedMoviesCompletionHandler  = ((shows: [TraktWatchedMovie], error: NSError?) -> Void)
+    public typealias WatchedMoviesCompletionHandler  = ((movies: [TraktWatchedMovie], error: NSError?) -> Void)
     
     // Sync
     public typealias LastActivitiesCompletionHandler = ((activities: TraktLastActivities?, error: NSError?) -> Void)

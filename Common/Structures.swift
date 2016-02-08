@@ -257,7 +257,7 @@ public struct TraktSeason: TraktProtocol {
 
 public struct TraktEpisode: TraktProtocol {
     // Extended: Min
-    public let season: TraktSeason
+    public let season: TraktSeason?
     public let number: Int
     public let title: String
     public let ids: ID
@@ -266,7 +266,15 @@ public struct TraktEpisode: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        fatalError("init?(json:?) has not been implemented")
+        guard let json = json,
+            number = json["number"] as? Int,
+            title = json["title"] as? String,
+            ids = ID(json: json["ids"] as? RawJSON) else { return nil }
+
+        self.season = nil
+        self.number = number
+        self.title  = title
+        self.ids    = ids
     }
     
     public init?(json: RawJSON?, season: TraktSeason) {

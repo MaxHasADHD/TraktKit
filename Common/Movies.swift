@@ -103,7 +103,7 @@ extension TraktManager {
     /**
     Returns a single movie's details.
     */
-    public func getMovieSummary(movieID id: NSNumber, extended: extendedType = .Min, completion: MovieCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieSummary<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: MovieCompletionHandler) -> NSURLSessionDataTask? {
         return getSummary(.Movies, id: id, extended: extended, completion: completion)
     }
     
