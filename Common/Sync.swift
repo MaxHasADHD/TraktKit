@@ -246,37 +246,44 @@ extension TraktManager {
      🔒 OAuth: Required
      
      - parameter rating: Between 1 and 10.
+     - parameter ratedAt: UTC datetime when the item was rated.
      - parameter movies: Array of movie objects
      - parameter shows: Array of show objects
      - parameter episodes: Array of episode objects
     */
-    public func addRatings(rating rating: NSNumber, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func addRatings(rating rating: NSNumber, ratedAt: String, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         
-        let ratedAt = NSDate()
+        // TODO: Have ratedAt be of NSDate type and convert to a UTC date string
         
         // JSON
         var json = RawJSON()
         
         // Movies
+        var ratedMovies: [RawJSON] = []
         for var movie in movies {
             movie["rated_at"] = ratedAt
-            movie["rating"] = rating
+            movie["rating"] = movie
+            ratedMovies.append(movie)
         }
-        json["movies"] = movies
+        json["movies"] = ratedMovies
         
         // Shows
+        var ratedShows: [RawJSON] = []
         for var show in shows {
             show["rated_at"] = ratedAt
             show["rating"] = rating
+            ratedShows.append(show)
         }
-        json["shows"] = shows
+        json["shows"] = ratedShows
         
         // Episodes
+        var ratedEpisodes: [RawJSON] = []
         for var episode in episodes {
             episode["rated_at"] = ratedAt
             episode["rating"] = rating
+            ratedEpisodes.append(episode)
         }
-        json["episodes"] = episodes
+        json["episodes"] = ratedEpisodes
         
         // Request
         guard let request = mutableRequestForURL("sync/ratings", authorization: true, HTTPMethod: .POST) else { return nil }
@@ -298,7 +305,7 @@ extension TraktManager {
         guard let request = mutableRequestForURL("sync/ratings/remove", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Watchlist
