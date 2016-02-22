@@ -39,7 +39,7 @@ extension TraktManager {
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 completionHandler(success: false)
                 return
@@ -49,7 +49,7 @@ extension TraktManager {
                 where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
                     HTTPResponse.statusCode == StatusCodes.Conflict) else {
                         #if DEBUG
-                            print("[\(__FUNCTION__)] \(response)")
+                            print("[\(#function)] \(response)")
                         #endif
                         completionHandler(success: false)
                         return
@@ -62,7 +62,7 @@ extension TraktManager {
             else {
                 // Already watching something
                 #if DEBUG
-                    print("[\(__FUNCTION__)] Already watching a show")
+                    print("[\(#function)] Already watching a show")
                 #endif
                 completionHandler(success: false)
             }
@@ -84,7 +84,7 @@ extension TraktManager {
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 completionHandler(success: false)
                 return
@@ -94,7 +94,7 @@ extension TraktManager {
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                     #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
+                        print("[\(#function)] \(response)")
                     #endif
                     completionHandler(success: false)
                     return

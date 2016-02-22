@@ -324,7 +324,7 @@ public class TraktManager {
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 completion(objects: nil, error: error)
                 return
@@ -374,7 +374,7 @@ public class TraktManager {
         let datatask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 completion(dictionary: nil, error: error)
                 return
@@ -409,7 +409,7 @@ public class TraktManager {
             }
             catch let jsonSerializationError as NSError {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                    print("[\(#function)] \(jsonSerializationError)")
                 #endif
                 completion(dictionary: nil, error: jsonSerializationError)
             }
@@ -423,7 +423,7 @@ public class TraktManager {
         let datatask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 
                 completion(success: false)
@@ -434,7 +434,7 @@ public class TraktManager {
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == code else {
                     #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
+                        print("[\(#function)] \(response)")
                     #endif
                     
                     completion(success: false)
@@ -546,7 +546,7 @@ public class TraktManager {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 
                 completionHandler?(success: false)
@@ -558,7 +558,7 @@ public class TraktManager {
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.Success else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(response)")
+                    print("[\(#function)] \(response)")
                 #endif
                 completionHandler?(success: false)
                 return
@@ -577,8 +577,8 @@ public class TraktManager {
                     self.refreshToken = accessTokenDict["refresh_token"] as? String
                     
                     #if DEBUG
-                        print("[\(__FUNCTION__)] Access token is \(self.accessToken)")
-                        print("[\(__FUNCTION__)] Refresh token is \(self.refreshToken)")
+                        print("[\(#function)] Access token is \(self.accessToken)")
+                        print("[\(#function)] Refresh token is \(self.refreshToken)")
                     #endif
                     
                     // Save expiration date
@@ -598,7 +598,7 @@ public class TraktManager {
             }
             catch let jsonSerializationError as NSError {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                    print("[\(#function)] \(jsonSerializationError)")
                 #endif
                 completionHandler?(success: false)
             }
@@ -630,7 +630,7 @@ public class TraktManager {
             if today.compare(expirationDate) == .OrderedDescending ||
                 today.compare(expirationDate) == .OrderedSame {
                     #if DEBUG
-                        print("[\(__FUNCTION__)] Refreshing token!")
+                        print("[\(#function)] Refreshing token!")
                     #endif
                     self.getAccessTokenFromRefreshToken({ (success) -> Void in
                         
@@ -638,7 +638,7 @@ public class TraktManager {
             }
             else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] No need to refresh token!")
+                    print("[\(#function)] No need to refresh token!")
                 #endif
             }
         }
@@ -654,7 +654,7 @@ public class TraktManager {
         
         guard let rToken = refreshToken else {
             #if DEBUG
-                print("[\(__FUNCTION__)] Refresh token is nil")
+                print("[\(#function)] Refresh token is nil")
             #endif
             completionHandler(success: false)
             return
@@ -679,7 +679,7 @@ public class TraktManager {
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 completionHandler(success: false)
                 return
@@ -689,7 +689,7 @@ public class TraktManager {
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.Success else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(response)")
+                    print("[\(#function)] \(response)")
                 #endif
                 completionHandler(success: false)
                 return
@@ -711,8 +711,8 @@ public class TraktManager {
                     
                     #if DEBUG
                         print(accessTokenDict)
-                        print("[\(__FUNCTION__)] Access token is \(self.accessToken)")
-                        print("[\(__FUNCTION__)] Refresh token is \(self.refreshToken)")
+                        print("[\(#function)] Access token is \(self.accessToken)")
+                        print("[\(#function)] Refresh token is \(self.refreshToken)")
                     #endif
                     
                     // Save expiration date
@@ -735,7 +735,7 @@ public class TraktManager {
             }
             catch let jsonSerializationError as NSError {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+                    print("[\(#function)] \(jsonSerializationError)")
                 #endif
                 
                 completionHandler(success: false)

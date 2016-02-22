@@ -485,7 +485,7 @@ extension Users {
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
 //                #if DEBUG
-//                    print("[\(__FUNCTION__)] \(error!)")
+//                    print("[\(#function)] \(error!)")
 //                #endif
                 completion(watching: false, dictionary: nil, error: error)
                 return
@@ -522,7 +522,7 @@ extension Users {
             }
             catch let jsonSerializationError as NSError {
 //                #if DEBUG
-//                    print("[\(__FUNCTION__)] \(jsonSerializationError)")
+//                    print("[\(#function)] \(jsonSerializationError)")
 //                #endif
                 completion(watching: false, dictionary: nil, error: jsonSerializationError)
             }
