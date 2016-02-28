@@ -132,6 +132,7 @@ public enum extendedType: String {
     case Metadata = "metadata"
     case Episodes = "episodes" // For getting all seasons and episodes
     case FullAndEpisodes = "full,episodes"
+    case FullAndEpisodesAndImages = "full,episodes,images"
 }
 
 public class TraktManager {
