@@ -30,46 +30,53 @@ extension TraktManager {
             json["episode"] = episode
         }
         
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
-        
-        // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = jsonData
-        
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(#function)] \(error!)")
-                #endif
-                completionHandler(success: false)
-                return
-            }
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
             
-            guard let HTTPResponse = response as? NSHTTPURLResponse
-                where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
-                    HTTPResponse.statusCode == StatusCodes.Conflict) else {
-                        #if DEBUG
-                            print("[\(#function)] \(response)")
-                        #endif
-                        completionHandler(success: false)
-                        return
-            }
+            // Request
+            guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
+            request.HTTPBody = jsonData
             
-            if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
-                // Started watching
-                completionHandler(success: true)
+            let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+                guard error == nil else {
+                    #if DEBUG
+                        print("[\(#function)] \(error!)")
+                    #endif
+                    completionHandler(success: false)
+                    return
+                }
+                
+                guard let HTTPResponse = response as? NSHTTPURLResponse
+                    where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
+                        HTTPResponse.statusCode == StatusCodes.Conflict) else {
+                            #if DEBUG
+                                print("[\(#function)] \(response)")
+                            #endif
+                            completionHandler(success: false)
+                            return
+                }
+                
+                if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
+                    // Started watching
+                    completionHandler(success: true)
+                }
+                else {
+                    // Already watching something
+                    #if DEBUG
+                        print("[\(#function)] Already watching a show")
+                    #endif
+                    completionHandler(success: false)
+                }
             }
-            else {
-                // Already watching something
-                #if DEBUG
-                    print("[\(#function)] Already watching a show")
-                #endif
-                completionHandler(success: false)
-            }
+            dataTask.resume()
+            
+            return dataTask
         }
-        dataTask.resume()
+        catch let error as NSError {
+            print(error)
+        }
         
-        return dataTask
+        return nil
     }
     
     /**

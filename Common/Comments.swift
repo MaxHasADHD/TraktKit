@@ -17,7 +17,7 @@ extension TraktManager {
     
     🔒 OAuth: Required
     */
-    public func postComment(movie movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func postComment(movie movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -35,11 +35,8 @@ extension TraktManager {
         else if let episode = episode {
             json["episode"] = episode
         }
-        
-        #if DEBUG
-            print(json)
-        #endif
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+
+        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
         guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: .POST) else {
@@ -64,7 +61,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
         let json: RawJSON = [
@@ -75,7 +72,7 @@ extension TraktManager {
         #if DEBUG
             print(json)
         #endif
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
         guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .PUT) else { return nil }
@@ -113,7 +110,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
         let json: RawJSON = [
@@ -124,8 +121,8 @@ extension TraktManager {
         #if DEBUG
             print(json)
         #endif
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
-
+        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        
         // Request
         guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData

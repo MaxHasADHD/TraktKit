@@ -305,7 +305,7 @@ public class TraktManager {
         return request
     }
     
-    func createJsonData(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON]) -> NSData? {
+    func createJsonData(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON]) throws -> NSData? {
         
         let json = [
             "movies": movies,
@@ -316,13 +316,14 @@ public class TraktManager {
         #if DEBUG
             print(json)
         #endif
-        return try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        return try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
     }
     
     // MARK: Perform Requests
     
     func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask = session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+            guard let wSelf = self else { return }
             guard error == nil else {
                 #if DEBUG
                     print("[\(#function)] \(error!)")
@@ -339,7 +340,7 @@ public class TraktManager {
                     #endif
                     
                     if let HTTPResponse = response as? NSHTTPURLResponse {
-                        completion(objects: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
+                        completion(objects: nil, error: wSelf.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
                     }
                     else {
                         completion(objects: nil, error: nil)
@@ -372,7 +373,8 @@ public class TraktManager {
     }
     
     func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        let datatask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let datatask = session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+            guard let wSelf = self else { return }
             guard error == nil else {
                 #if DEBUG
                     print("[\(#function)] \(error!)")
@@ -389,7 +391,7 @@ public class TraktManager {
                     #endif
                     
                     if let HTTPResponse = response as? NSHTTPURLResponse {
-                        completion(dictionary: nil, error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
+                        completion(dictionary: nil, error: wSelf.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
                     }
                     else {
                         completion(dictionary: nil, error: nil)
@@ -520,7 +522,7 @@ public class TraktManager {
     
     // MARK: - Authentication
     
-    public func getTokenFromAuthorizationCode(code: String, completionHandler: successCompletionHandler?) {
+    public func getTokenFromAuthorizationCode(code: String, completionHandler: successCompletionHandler?) throws {
         guard let clientID = clientID,
             clientSecret = clientSecret,
             redirectURI = redirectURI else {
@@ -542,9 +544,11 @@ public class TraktManager {
             "redirect_uri": redirectURI,
             "grant_type": "authorization_code",
         ]
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        
+        let dataTask = session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+            guard let wSelf = self else { return }
             guard error == nil else {
                 #if DEBUG
                     print("[\(#function)] \(error!)")
@@ -558,11 +562,11 @@ public class TraktManager {
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.Success else {
-                #if DEBUG
-                    print("[\(#function)] \(response)")
-                #endif
-                completionHandler?(success: false)
-                return
+                    #if DEBUG
+                        print("[\(#function)] \(response)")
+                    #endif
+                    completionHandler?(success: false)
+                    return
             }
             
             // Check data
@@ -574,12 +578,12 @@ public class TraktManager {
             do {
                 if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     
-                    self.accessToken = accessTokenDict["access_token"] as? String
-                    self.refreshToken = accessTokenDict["refresh_token"] as? String
+                    wSelf.accessToken = accessTokenDict["access_token"] as? String
+                    wSelf.refreshToken = accessTokenDict["refresh_token"] as? String
                     
                     #if DEBUG
-                        print("[\(#function)] Access token is \(self.accessToken)")
-                        print("[\(#function)] Refresh token is \(self.refreshToken)")
+                        print("[\(#function)] Access token is \(wSelf.accessToken)")
+                        print("[\(#function)] Refresh token is \(wSelf.refreshToken)")
                     #endif
                     
                     // Save expiration date
@@ -603,7 +607,8 @@ public class TraktManager {
                 #endif
                 completionHandler?(success: false)
             }
-        }.resume()
+        }
+        dataTask.resume()
     }
     
     // MARK: Refresh access token
@@ -624,7 +629,7 @@ public class TraktManager {
         return false
     }
     
-    public func checkToRefresh() {
+    public func checkToRefresh() throws {
         if let expirationDate = NSUserDefaults.standardUserDefaults().objectForKey("accessTokenExpirationDate") as? NSDate {
             let today = NSDate()
             
@@ -633,7 +638,7 @@ public class TraktManager {
                     #if DEBUG
                         print("[\(#function)] Refreshing token!")
                     #endif
-                    self.getAccessTokenFromRefreshToken({ (success) -> Void in
+                    try self.getAccessTokenFromRefreshToken({ (success) -> Void in
                         
                     })
             }
@@ -645,7 +650,7 @@ public class TraktManager {
         }
     }
     
-    public func getAccessTokenFromRefreshToken(completionHandler: successCompletionHandler) {
+    public func getAccessTokenFromRefreshToken(completionHandler: successCompletionHandler) throws {
         guard let clientID = clientID,
             clientSecret = clientSecret,
             redirectURI = redirectURI else {
@@ -675,7 +680,7 @@ public class TraktManager {
             "redirect_uri": redirectURI,
             "grant_type": "refresh_token",
         ]
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
@@ -705,8 +710,7 @@ public class TraktManager {
             do {
                 if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     
-                    
-                    
+        
                     self.accessToken = accessTokenDict["access_token"] as? String
                     self.refreshToken = accessTokenDict["refresh_token"] as? String
                     

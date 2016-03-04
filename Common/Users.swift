@@ -194,7 +194,7 @@ extension Users {
      - parameter displayNumbers: Should each item be numbered?
      - parameter allowComments: Are comments allowed?
      */
-    public func createCustomList(listName listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func createCustomList(listName listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
         let json = [
@@ -207,7 +207,7 @@ extension Users {
         
         // Request
         guard let request = mutableRequestForURL("users/me/lists", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
@@ -303,9 +303,9 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
+        request.HTTPBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
@@ -317,9 +317,9 @@ extension Users {
     
     🔒 OAuth Required
     */
-    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items/remove", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = createJsonData(movies: movies, shows: shows, episodes: episodes)
+        request.HTTPBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

@@ -14,7 +14,6 @@ public protocol TraktProtocol {
     init(json: RawJSON)
 }
 
-
 // MARK: - TV & Movies
 
 public struct ID: TraktProtocol {

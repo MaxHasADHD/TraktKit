@@ -16,8 +16,9 @@ extension TraktManager {
      
      **Note**: If the `first_aired` is unknown, it will be set to `null`.
      */
-    public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)", authorization: false, HTTPMethod: .GET) else {
+    public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else {
+            completion(dictionary: nil, error: nil)
             return nil
         }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
