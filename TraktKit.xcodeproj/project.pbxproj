@@ -27,6 +27,22 @@
 		A78D135A1B2A341000BA2068 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
 		A79163A51C0D46F200E791BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
+		A7B6037E1C8B8FAB00172A47 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
+		A7B6037F1C8B8FAB00172A47 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */; };
+		A7B603801C8B8FAB00172A47 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */; };
+		A7B603811C8B8FAB00172A47 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */; };
+		A7B603821C8B8FAB00172A47 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A61BF805E400A43AD3 /* People.swift */; };
+		A7B603831C8B8FAB00172A47 /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */; };
+		A7B603841C8B8FAB00172A47 /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
+		A7B603851C8B8FAB00172A47 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405F1C07886500A69EA1 /* Search.swift */; };
+		A7B603861C8B8FAB00172A47 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405D1C07884B00A69EA1 /* Shows.swift */; };
+		A7B603871C8B8FAB00172A47 /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340631C079D2500A69EA1 /* Seasons.swift */; };
+		A7B603881C8B8FAB00172A47 /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340651C079D2D00A69EA1 /* Episodes.swift */; };
+		A7B603891C8B8FAB00172A47 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A01BF7C36E00A43AD3 /* Sync.swift */; };
+		A7B6038A1C8B8FAB00172A47 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
+		A7B6038B1C8B8FAB00172A47 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340691C08D82D00A69EA1 /* SharedFunctions.swift */; };
+		A7B6038C1C8B8FAB00172A47 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
+		A7B6038D1C8B8FAB00172A47 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		A7C5DA881B5DB3040027920B /* FilmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA871B5DB3040027920B /* FilmTests.swift */; };
 		A7C5DA8A1B5DB30E0027920B /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA891B5DB30E0027920B /* KeychainTests.swift */; };
 		A7C5DA8C1B5DB6B60027920B /* ShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */; };
@@ -406,9 +422,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7B603851C8B8FAB00172A47 /* Search.swift in Sources */,
+				A7B6038C1C8B8FAB00172A47 /* Structures.swift in Sources */,
+				A7B603881C8B8FAB00172A47 /* Episodes.swift in Sources */,
 				A723DAAF1B917FE300CA217C /* MLKeychain.swift in Sources */,
 				A723DAAE1B917FE300CA217C /* Movies.swift in Sources */,
+				A7B603811C8B8FAB00172A47 /* Genres.swift in Sources */,
+				A7B603841C8B8FAB00172A47 /* Scrobble.swift in Sources */,
+				A7B6038D1C8B8FAB00172A47 /* Extensions.swift in Sources */,
+				A7B6038B1C8B8FAB00172A47 /* SharedFunctions.swift in Sources */,
 				A72B584E1B918044002561A4 /* TraktManager.swift in Sources */,
+				A7B603831C8B8FAB00172A47 /* Recommendations.swift in Sources */,
+				A7B6038A1C8B8FAB00172A47 /* Users.swift in Sources */,
+				A7B603821C8B8FAB00172A47 /* People.swift in Sources */,
+				A7B6037E1C8B8FAB00172A47 /* Calendars.swift in Sources */,
+				A7B603891C8B8FAB00172A47 /* Sync.swift in Sources */,
+				A7B603871C8B8FAB00172A47 /* Seasons.swift in Sources */,
+				A7B6037F1C8B8FAB00172A47 /* Checkin.swift in Sources */,
+				A7B603861C8B8FAB00172A47 /* Shows.swift in Sources */,
+				A7B603801C8B8FAB00172A47 /* Comments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

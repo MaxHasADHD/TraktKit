@@ -338,7 +338,7 @@ public class TraktManager {
                     #if DEBUG
                         print(response)
                     #endif
-                    
+    
                     if let HTTPResponse = response as? NSHTTPURLResponse {
                         completion(objects: nil, error: wSelf.createTraktErrorWithStatusCode(HTTPResponse.statusCode))
                     }
