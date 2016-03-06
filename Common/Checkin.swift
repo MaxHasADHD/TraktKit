@@ -15,7 +15,7 @@ extension TraktManager {
      
      **Note**: If a checkin is already in progress, a `409` HTTP status code will returned. The response will contain an `expires_at` timestamp which is when the user can check in again.
      */
-    public func checkIn(movie movie: RawJSON?, episode: RawJSON?, completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func checkIn(movie movie: RawJSON?, episode: RawJSON?, completionHandler: successCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -30,7 +30,7 @@ extension TraktManager {
             json["episode"] = episode
         }
         
-        let jsonData = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
         guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
@@ -39,7 +39,7 @@ extension TraktManager {
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 completionHandler(success: false)
                 return
@@ -49,7 +49,7 @@ extension TraktManager {
                 where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
                     HTTPResponse.statusCode == StatusCodes.Conflict) else {
                         #if DEBUG
-                            print("[\(__FUNCTION__)] \(response)")
+                            print("[\(#function)] \(response)")
                         #endif
                         completionHandler(success: false)
                         return
@@ -62,7 +62,7 @@ extension TraktManager {
             else {
                 // Already watching something
                 #if DEBUG
-                    print("[\(__FUNCTION__)] Already watching a show")
+                    print("[\(#function)] Already watching a show")
                 #endif
                 completionHandler(success: false)
             }
@@ -84,7 +84,7 @@ extension TraktManager {
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
                 #if DEBUG
-                    print("[\(__FUNCTION__)] \(error!)")
+                    print("[\(#function)] \(error!)")
                 #endif
                 completionHandler(success: false)
                 return
@@ -94,7 +94,7 @@ extension TraktManager {
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                     #if DEBUG
-                        print("[\(__FUNCTION__)] \(response)")
+                        print("[\(#function)] \(response)")
                     #endif
                     completionHandler(success: false)
                     return

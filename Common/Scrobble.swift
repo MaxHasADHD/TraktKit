@@ -24,8 +24,8 @@ extension TraktManager {
      - parameter appVersion: Version number of the app.
      - parameter appBuildDate: Build date of the app.
     */
-    func scrobbleStart(movie movie: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return scrobble("start", movie: movie, episode: nil, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
+    func scrobbleStart(movie movie: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
+        return try scrobble("start", movie: movie, episode: nil, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
     }
     
     /**
@@ -40,8 +40,8 @@ extension TraktManager {
      - parameter appVersion: Version number of the app.
      - parameter appBuildDate: Build date of the app.
      */
-    func scrobbleStart(episode episode: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return scrobble("start", movie: nil, episode: episode, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
+    func scrobbleStart(episode episode: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
+        return try scrobble("start", movie: nil, episode: episode, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
     }
     
     // MARK: - Pause
@@ -51,8 +51,8 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    func scrobblePause(movie movie: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return scrobble("pause", movie: movie, episode: nil, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
+    func scrobblePause(movie movie: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
+        return try scrobble("pause", movie: movie, episode: nil, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
     }
     
     /**
@@ -60,8 +60,8 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    func scrobblePause(episode episode: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return scrobble("pause", movie: nil, episode: episode, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
+    func scrobblePause(episode episode: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
+        return try scrobble("pause", movie: nil, episode: episode, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
     }
     
     // MARK: - Stop
@@ -75,8 +75,8 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    func scrobbleStop(movie movie: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return scrobble("stop", movie: movie, episode: nil, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
+    func scrobbleStop(movie movie: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
+        return try scrobble("stop", movie: movie, episode: nil, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
     }
     
     /**
@@ -88,13 +88,13 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    func scrobbleStop(episode episode: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return scrobble("stop", movie: nil, episode: episode, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
+    func scrobbleStop(episode episode: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
+        return try scrobble("stop", movie: nil, episode: episode, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
     }
     
     // MARK: - Private
     
-    private func scrobble(scrobbleAction: String, movie: RawJSON?, episode: RawJSON?, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    private func scrobble(scrobbleAction: String, movie: RawJSON?, episode: RawJSON?, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
         // JSON
         var json: RawJSON = [
             "progress": progress,
@@ -111,7 +111,7 @@ extension TraktManager {
         
         // Request
         guard let request = mutableRequestForURL("scrobble/\(scrobbleAction)", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }

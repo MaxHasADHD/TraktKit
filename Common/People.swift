@@ -30,8 +30,8 @@ extension TraktManager {
      
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `movie` object.
      */
-    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return getCredits(type: WatchedType.Movies, id: id, completion: completion)
+    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
     
     /**
@@ -39,15 +39,15 @@ extension TraktManager {
      
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `show` object.
      */
-    public func getShowCredits<T: CustomStringConvertible>(showID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        return getCredits(type: WatchedType.Shows, id: id, completion: completion)
+    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+        return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Private
     
-    private func getCredits<T: CustomStringConvertible>(type type: WatchedType, id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    private func getCredits<T: CustomStringConvertible>(type type: WatchedType, id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)/\(type)", authorization: false, HTTPMethod: .GET) else {
+        guard let request = mutableRequestForURL("people/\(id)/\(type)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }
