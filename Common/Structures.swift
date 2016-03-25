@@ -49,6 +49,16 @@ public struct TraktSearchResult: TraktProtocol {
     public let list: TraktList?
     
     // Initialize
+    public init(type: String, score: Double, movie: TraktMovie?, show: TraktShow?, episode: TraktEpisode?, person: Person?, list: TraktList?) {
+        self.type = type
+        self.score = score
+        self.movie = movie
+        self.show = show
+        self.episode = episode
+        self.person = person
+        self.list = list
+    }
+    
     public init?(json: RawJSON?) {
         guard let json = json,
         type = json["type"] as? String,
