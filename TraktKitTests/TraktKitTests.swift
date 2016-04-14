@@ -22,22 +22,18 @@ class TraktKitTests: XCTestCase {
         super.tearDown()
     }
     
-    func testGetTrendingShows() {
+    func testGetShow() {
         let expectation = self.expectationWithDescription("High Expectations")
-        let numberOfTrendingShows = 10
         
-        TraktManager.sharedManager.getTrendingShows(page: 1, limit: numberOfTrendingShows) { (trendingShows, error) -> Void in
-            if let error = error {
-                print("Error getting trending shows: \(error)")
+        TraktManager.sharedManager.getSeasons(showID: "breaking-bad", extended: .FullAndEpisodes) {
+            (seasons, error) in
+            guard error == nil else { return }
+        
+            for season in seasons {
+                print("Season \(season.number) has \(season.episodeCount) episodes, which \(season.airedEpisodes) have aired")
             }
-            else {
-                for (index, trendingShow) in trendingShows.enumerate() {
-                    let show = trendingShow.show
-                    print("Trending #\(index): \(show.title); \(trendingShow.watchers) watchers")
-                }
-                
-                expectation.fulfill()
-            }
+            
+            expectation.fulfill()
         }
         
         self.waitForExpectationsWithTimeout(30.0, handler: { (error) -> Void in
@@ -45,5 +41,7 @@ class TraktKitTests: XCTestCase {
                 print("Timeout error: \(error)")
             }
         })
+        
+        
     }
 }

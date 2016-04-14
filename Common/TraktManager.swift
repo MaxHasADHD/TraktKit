@@ -485,26 +485,25 @@ public class TraktManager {
         let aCompletion: dictionaryCompletionHandler = { (json: [String: AnyObject]?, error: NSError?) -> Void in
             
             if let json = json {
-                var crew: [CrewMember] = []
-                var cast: [CastMember] = []
+                let crew: [CrewMember]
+                let cast: [CastMember]
                 
                 // Crew
-                if let jsonCrew = json["crew"] as? [String: AnyObject],
-                    productionCrew = jsonCrew["production"]  as? [[String: AnyObject]] {
-                    for jsonCrewMember in productionCrew {
-                        if let crewMember = CrewMember(json: jsonCrewMember) {
-                            crew.append(crewMember)
-                        }
-                    }
+                if let jsonCrew = json["crew"] as? RawJSON,
+                    productionCrew = jsonCrew["production"]  as? [RawJSON] {
+                    
+                    crew = initEach(productionCrew)
+                }
+                else {
+                    crew = []
                 }
                 
                 // Cast
-                if let jsonCast = json["cast"] as? [[String: AnyObject]] {
-                    for jsonCastMember in jsonCast {
-                        if let castMember = CastMember(json: jsonCastMember) {
-                            cast.append(castMember)
-                        }
-                    }
+                if let jsonCast = json["cast"] as? [RawJSON] {
+                    cast = initEach(jsonCast)
+                }
+                else {
+                    cast = []
                 }
                 
                 completion(cast: cast, crew: crew, error: error)
@@ -548,13 +547,7 @@ public class TraktManager {
         let aCompletion: arrayCompletionHandler = { (objects: [[String: AnyObject]]?, error: NSError?) -> Void in
             
             if let objects = objects {
-                var traktObjects: [T] = []
-                
-                for jsonObject in objects {
-                    if let trendingShow = T(json: jsonObject) {
-                        traktObjects.append(trendingShow)
-                    }
-                }
+                let traktObjects: [T] = initEach(objects)
                 
                 completion(TraktObjects: traktObjects, error: error)
             }
