@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="http://maximilianlitteral.com/TraktKit.png" alt="Storage" />
+    <img src="http://maximilianlitteral.com/TraktKit.png" alt="Logo" />
 </p>
 
 #Trakt Kit
