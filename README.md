@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="http://maximilianlitteral.com/TraktKit.png" alt="Logo" />
+</p>
+
 #TraktKit
 Swift wrapper for Trakt.tv  API.
 
