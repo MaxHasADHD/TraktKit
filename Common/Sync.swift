@@ -329,8 +329,6 @@ extension TraktManager {
      🔒 OAuth: Required
     */
     public func addToWatchlist(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: successCompletionHandler) throws -> NSURLSessionDataTask? {
-        
-        // Request
         guard let request = mutableRequestForURL("sync/watchlist", authorization: true, HTTPMethod: .POST) else {
             completion(success: false)
             return nil
