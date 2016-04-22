@@ -460,9 +460,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatchlist(username: String = "me", type: Type, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchlist(username: String = "me", type: Type, extended: extendedType = .Min, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)?extended=\(extended.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -484,9 +484,6 @@ extension Users {
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
-//                #if DEBUG
-//                    print("[\(#function)] \(error!)")
-//                #endif
                 completion(watching: false, dictionary: nil, error: error)
                 return
             }
@@ -521,9 +518,6 @@ extension Users {
                 }
             }
             catch let jsonSerializationError as NSError {
-//                #if DEBUG
-//                    print("[\(#function)] \(jsonSerializationError)")
-//                #endif
                 completion(watching: false, dictionary: nil, error: jsonSerializationError)
             }
         }

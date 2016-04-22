@@ -345,6 +345,7 @@ public class TraktManager {
     // MARK: Perform Requests
     
     func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+
         let dataTask = session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
             guard let wSelf = self else { return }
             guard error == nil else {
