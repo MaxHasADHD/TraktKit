@@ -13,3 +13,10 @@ extension String: CustomStringConvertible {
         return self
     }
 }
+
+extension NSURL {
+    @nonobjc convenience init?(string: AnyObject?) {
+        guard let dateString = string as? String else { return nil }
+        self.init(string: dateString)
+    }
+}

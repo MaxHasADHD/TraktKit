@@ -13,10 +13,10 @@ extension TraktManager {
     // MARK: - Comments
     
     /**
-    Add a new comment to a movie, show, season, episode, or list. Make sure to allow and encourage spoilers to be indicated in your app and follow the rules listed above.
-    
-    🔒 OAuth: Required
-    */
+     Add a new comment to a movie, show, season, episode, or list. Make sure to allow and encourage spoilers to be indicated in your app and follow the rules listed above.
+     
+     🔒 OAuth: Required
+     */
     public func postComment(movie movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: successCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
@@ -28,11 +28,9 @@ extension TraktManager {
         
         if let movie = movie {
             json["movie"] = movie
-        }
-        else if let show = show {
+        } else if let show = show {
             json["show"] = show
-        }
-        else if let episode = episode {
+        } else if let episode = episode {
             json["episode"] = episode
         }
         
@@ -42,9 +40,7 @@ extension TraktManager {
         let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
-        guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: .POST) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completionHandler)
@@ -70,7 +66,7 @@ extension TraktManager {
         let json: RawJSON = [
             "comment": newComment,
             "spoiler": isSpoiler,
-        ]
+            ]
         
         #if DEBUG
             print(json)
@@ -98,10 +94,10 @@ extension TraktManager {
     // MARK: - Replies
     
     /**
-    Returns all replies for a comment. It is possible these replies could have replies themselves, so in that case you would just call **GET** `/comments/:id/replies` again with the new comment `id`.
-    
-    📄 Pagination
-    */
+     Returns all replies for a comment. It is possible these replies could have replies themselves, so in that case you would just call **GET** `/comments/:id/replies` again with the new comment `id`.
+     
+     📄 Pagination
+     */
     public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: false, HTTPMethod: .GET) else { return nil }
         
@@ -119,13 +115,13 @@ extension TraktManager {
         let json: RawJSON = [
             "comment": newComment,
             "spoiler": isSpoiler,
-        ]
+            ]
         
         #if DEBUG
             print(json)
         #endif
         let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
-
+        
         // Request
         guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: .POST) else { return nil }
         request.HTTPBody = jsonData
@@ -136,10 +132,10 @@ extension TraktManager {
     // MARK: - Like
     
     /**
-    Votes help determine popular comments. Only one like is allowed per comment per user.
-    
-    🔒 OAuth: Required
-    */
+     Votes help determine popular comments. Only one like is allowed per comment per user.
+     
+     🔒 OAuth: Required
+     */
     public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: successCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .POST) else { return nil }
         

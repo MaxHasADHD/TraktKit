@@ -23,8 +23,8 @@ internal extension NSDate {
     
     // MARK: - Class
     
-    class func dateFromString(string: String?) -> NSDate? {
-        guard let dateString = string else { return nil }
+    class func dateFromString(string: AnyObject?) -> NSDate? {
+        guard let dateString = string as? String else { return nil }
         return ISO8601DateFormatter.dateFromString(dateString)
     }
 }

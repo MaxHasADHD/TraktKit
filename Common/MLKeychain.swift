@@ -54,8 +54,7 @@ public class MLKeychain {
         
         if status == noErr {
             return dataTypeRef as? NSData
-        }
-        else {
+        } else {
             return nil
         }
     }

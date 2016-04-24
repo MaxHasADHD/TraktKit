@@ -46,13 +46,13 @@ public struct TraktMovie: TraktProtocol {
         // Extended: Full
         self.tagline             = json["overview"] as? String
         self.overview            = json["overview"] as? String
-        self.released            = NSDate.dateFromString(json["released"] as? String)
+        self.released            = NSDate.dateFromString(json["released"])
         self.runtime             = json["runtime"] as? Int
-        self.trailer             = NSURL(string: json["trailer"] as? String ?? "") ?? nil
-        self.homepage            = NSURL(string: json["homepage"] as? String ?? "") ?? nil
+        self.trailer             = NSURL(string: json["trailer"])
+        self.homepage            = NSURL(string: json["homepage"])
         self.rating              = json["rating"] as? Double
         self.votes               = json["votes"] as? Int
-        self.updatedAt           = NSDate.dateFromString(json["updated_at"] as? String)
+        self.updatedAt           = NSDate.dateFromString(json["updated_at"])
         self.language            = json["language"] as? String
         self.availableTranslations = json["available_translations"] as? [String]
         self.genres              = json["genres"] as? [String]

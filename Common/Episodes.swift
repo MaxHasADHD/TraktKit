@@ -17,9 +17,7 @@ extension TraktManager {
      **Note**: If the `first_aired` is unknown, it will be set to `null`.
      */
     public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)", authorization: false, HTTPMethod: .GET) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -31,9 +29,7 @@ extension TraktManager {
      📄 Pagination
      */
     public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/comments", authorization: false, HTTPMethod: .GET) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/comments", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

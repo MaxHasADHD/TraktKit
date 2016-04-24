@@ -42,16 +42,14 @@ public struct Person: TraktProtocol {
         
         if let homepageString = json["homepage"] as? String {
             homepage = NSURL(string: homepageString)
-        }
-        else {
+        } else {
             homepage = nil
         }
         
         // Extended: Images
         if let imageJSON = json["images"] as? RawJSON {
             images = TraktImages(json: imageJSON)
-        }
-        else {
+        } else {
             images = nil
         }
     }

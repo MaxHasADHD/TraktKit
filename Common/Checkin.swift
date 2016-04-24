@@ -25,8 +25,7 @@ extension TraktManager {
         
         if let movie = movie {
             json["movie"] = movie
-        }
-        else if let episode = episode {
+        } else if let episode = episode {
             json["episode"] = episode
         }
         
@@ -58,8 +57,7 @@ extension TraktManager {
             if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                 // Started watching
                 completionHandler(success: true)
-            }
-            else {
+            } else {
                 // Already watching something
                 #if DEBUG
                     print("[\(#function)] Already watching a show")
@@ -77,9 +75,7 @@ extension TraktManager {
      */
     public func deleteActiveCheckins(completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {

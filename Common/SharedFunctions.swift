@@ -43,9 +43,7 @@ internal extension ShowsAndMovies {
     // MARK: - Watched
     
     func getWatched<T: TraktProtocol>(type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("\(type)/watched/\(period.rawValue)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("\(type)/watched/\(period.rawValue)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -54,9 +52,7 @@ internal extension ShowsAndMovies {
     // MARK: - Collected
     
     func getCollected<T: TraktProtocol>(type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("\(type)/collected/\(period.rawValue)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("\(type)/collected/\(period.rawValue)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -65,9 +61,7 @@ internal extension ShowsAndMovies {
     // MARK: - Anticipated
     
     func getAnticipated(type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("\(type)/anticipated/\(period.rawValue)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("\(type)/anticipated/\(period.rawValue)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -76,9 +70,7 @@ internal extension ShowsAndMovies {
     // MARK: - Updates
     
     func getUpdated(type: WatchedType, page: Int, limit: Int, startDate: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("\(type)/updates/\(startDate)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else {
-            return nil
-        }
+        guard let request = mutableRequestForURL("\(type)/updates/\(startDate)?page=\(page)&limit=\(limit)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

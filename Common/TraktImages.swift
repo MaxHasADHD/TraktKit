@@ -39,9 +39,8 @@ public struct TraktImage: TraktProtocol {
     // Initialize
     public init?(json: RawJSON?) {
         guard let json = json else { return nil }
-        
-        full = NSURL(string: json["full"] as? String ?? "") ?? nil
-        medium = NSURL(string: json["medium"] as? String ?? "") ?? nil
-        thumb = NSURL(string: json["thumb"] as? String ?? "") ?? nil
+        full    = NSURL(string: json["full"])
+        medium  = NSURL(string: json["medium"])
+        thumb   = NSURL(string: json["thumb"])
     }
 }

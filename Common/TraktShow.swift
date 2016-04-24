@@ -48,18 +48,18 @@ public struct TraktShow: TraktProtocol {
         
         // Extended: Full
         self.overview       = json["overview"] as? String
-        self.firstAired     = NSDate.dateFromString(json["first_aired"] as? String)
+        self.firstAired     = NSDate.dateFromString(json["first_aired"])
         self.airs           = json["airs"] as? RawJSON
         self.runtime        = json["runtime"] as? Int
         self.certification  = json["certification"] as? String
         self.network        = json["network"] as? String
         self.country        = json["country"] as? String
-        self.trailer        = NSURL(string: json["trailer"] as? String ?? "")
-        self.homepage       = NSURL(string: json["homepage"] as? String ?? "")
+        self.trailer        = NSURL(string: json["trailer"])
+        self.homepage       = NSURL(string: json["homepage"])
         self.status         = json["status"] as? String
         self.rating         = json["rating"] as? Double
         self.votes          = json["votes"] as? Int
-        self.updatedAt      = NSDate.dateFromString(json["updated_at"] as? String)
+        self.updatedAt      = NSDate.dateFromString(json["updated_at"])
         self.language       = json["language"] as? String
         self.availableTranslations = json["available_translations"] as? [String]
         self.genres         = json["genres"] as? [String]

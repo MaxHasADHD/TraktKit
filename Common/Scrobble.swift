@@ -23,7 +23,7 @@ extension TraktManager {
      - parameter progress: Progress percentage between 0 and 100.
      - parameter appVersion: Version number of the app.
      - parameter appBuildDate: Build date of the app.
-    */
+     */
     func scrobbleStart(movie movie: RawJSON, progress: Float, appVersion: Float, appBuildDate: NSDate, completion: dictionaryCompletionHandler) throws -> NSURLSessionDataTask? {
         return try scrobble("start", movie: movie, episode: nil, progress: progress, appVersion: appVersion, appBuildDate: appBuildDate, completion: completion)
     }
@@ -104,8 +104,7 @@ extension TraktManager {
         
         if let movie = movie {
             json["movie"] = movie
-        }
-        else if let episode = episode {
+        } else if let episode = episode {
             json["episode"] = episode
         }
         
