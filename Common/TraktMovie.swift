@@ -37,6 +37,7 @@ public struct TraktMovie: TraktProtocol {
         guard let json = json,
             title = json["title"] as? String,
             ids = ID(json: json["ids"] as? RawJSON) else { return nil }
+        print(json)
         
         // Extended: Min
         self.title = title
@@ -48,8 +49,8 @@ public struct TraktMovie: TraktProtocol {
         self.overview            = json["overview"] as? String
         self.released            = NSDate.dateFromString(json["released"])
         self.runtime             = json["runtime"] as? Int
-        self.trailer             = NSURL(string: json["trailer"])
-        self.homepage            = NSURL(string: json["homepage"])
+        self.trailer             = NSURL(string: json["trailer"] as? String ?? "")
+        self.homepage            = NSURL(string: json["homepage"] as? String ?? "")
         self.rating              = json["rating"] as? Double
         self.votes               = json["votes"] as? Int
         self.updatedAt           = NSDate.dateFromString(json["updated_at"])

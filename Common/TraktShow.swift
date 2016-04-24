@@ -54,8 +54,8 @@ public struct TraktShow: TraktProtocol {
         self.certification  = json["certification"] as? String
         self.network        = json["network"] as? String
         self.country        = json["country"] as? String
-        self.trailer        = NSURL(string: json["trailer"])
-        self.homepage       = NSURL(string: json["homepage"])
+        self.trailer        = NSURL(string: json["trailer"] as? String ?? "")
+        self.homepage       = NSURL(string: json["homepage"] as? String ?? "")
         self.status         = json["status"] as? String
         self.rating         = json["rating"] as? Double
         self.votes          = json["votes"] as? Int
