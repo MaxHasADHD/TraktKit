@@ -22,9 +22,9 @@ public struct TraktWatchedShow: TraktProtocol {
             lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String),
             show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
-        self.plays = plays
-        self.lastWatchedAt = lastWatchedAt
-        self.show = show
+        self.plays          = plays
+        self.lastWatchedAt  = lastWatchedAt
+        self.show           = show
         
         var tempSeasons: [TraktWatchedSeason] = []
         let jsonSeasons = json["seasons"] as? [RawJSON] ?? []

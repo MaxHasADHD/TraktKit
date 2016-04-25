@@ -38,11 +38,11 @@ public struct TraktEpisode: TraktProtocol {
         self.ids    = ids
         
         // Full
-        self.overview = json["overview"] as? String
-        self.rating = json["rating"] as? Double
-        self.votes = json["votes"] as? Int
+        self.overview   = json["overview"] as? String
+        self.rating     = json["rating"] as? Double
+        self.votes      = json["votes"] as? Int
         self.firstAired = NSDate.dateFromString(json["first_aired"] as? String)
-        self.updatedAt = NSDate.dateFromString(json["updated_at"] as? String)
+        self.updatedAt  = NSDate.dateFromString(json["updated_at"] as? String)
         self.availableTranslations = []
     }
 }

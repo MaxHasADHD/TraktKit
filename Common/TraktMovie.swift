@@ -37,33 +37,31 @@ public struct TraktMovie: TraktProtocol {
         guard let json = json,
             title = json["title"] as? String,
             ids = ID(json: json["ids"] as? RawJSON) else { return nil }
-        print(json)
         
         // Extended: Min
-        self.title = title
-        self.year = json["year"] as? Int
-        self.ids = ids
+        self.title              = title
+        self.year               = json["year"] as? Int
+        self.ids                = ids
         
         // Extended: Full
-        self.tagline             = json["overview"] as? String
-        self.overview            = json["overview"] as? String
-        self.released            = NSDate.dateFromString(json["released"])
-        self.runtime             = json["runtime"] as? Int
-        self.trailer             = NSURL(string: json["trailer"] as? String ?? "")
-        self.homepage            = NSURL(string: json["homepage"] as? String ?? "")
-        self.rating              = json["rating"] as? Double
-        self.votes               = json["votes"] as? Int
-        self.updatedAt           = NSDate.dateFromString(json["updated_at"])
-        self.language            = json["language"] as? String
+        self.tagline            = json["overview"] as? String
+        self.overview           = json["overview"] as? String
+        self.released           = NSDate.dateFromString(json["released"])
+        self.runtime            = json["runtime"] as? Int
+        self.trailer            = NSURL(string: json["trailer"] as? String ?? "")
+        self.homepage           = NSURL(string: json["homepage"] as? String ?? "")
+        self.rating             = json["rating"] as? Double
+        self.votes              = json["votes"] as? Int
+        self.updatedAt          = NSDate.dateFromString(json["updated_at"])
+        self.language           = json["language"] as? String
         self.availableTranslations = json["available_translations"] as? [String]
-        self.genres              = json["genres"] as? [String]
-        self.certification       = json["certification"] as? String
+        self.genres             = json["genres"] as? [String]
+        self.certification      = json["certification"] as? String
         
         // Extended: Images
         if let imageJSON = json["images"] as? RawJSON {
             images = TraktImages(json: imageJSON)
-        }
-        else {
+        } else {
             images = nil
         }
     }

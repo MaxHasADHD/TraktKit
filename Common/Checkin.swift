@@ -37,9 +37,6 @@ extension TraktManager {
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
-                #if DEBUG
-                    print("[\(#function)] \(error!)")
-                #endif
                 completionHandler(success: false)
                 return
             }
@@ -47,9 +44,6 @@ extension TraktManager {
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
                     HTTPResponse.statusCode == StatusCodes.Conflict) else {
-                        #if DEBUG
-                            print("[\(#function)] \(response)")
-                        #endif
                         completionHandler(success: false)
                         return
             }
@@ -59,9 +53,6 @@ extension TraktManager {
                 completionHandler(success: true)
             } else {
                 // Already watching something
-                #if DEBUG
-                    print("[\(#function)] Already watching a show")
-                #endif
                 completionHandler(success: false)
             }
         }
@@ -79,9 +70,6 @@ extension TraktManager {
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
             guard error == nil else {
-                #if DEBUG
-                    print("[\(#function)] \(error!)")
-                #endif
                 completionHandler(success: false)
                 return
             }
@@ -89,20 +77,13 @@ extension TraktManager {
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
-                    #if DEBUG
-                        print("[\(#function)] \(response)")
-                    #endif
                     completionHandler(success: false)
                     return
             }
-            
-            print("Cancelled check-in")
-            
             completionHandler(success: true)
         }
         dataTask.resume()
         
         return dataTask
     }
-    
 }

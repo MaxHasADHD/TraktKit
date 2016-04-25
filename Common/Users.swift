@@ -494,8 +494,7 @@ extension Users {
                     HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                         if let HTTPResponse = response as? NSHTTPURLResponse {
                             completion(watching: false, dictionary: nil, error: self.createErrorWithStatusCode(HTTPResponse.statusCode))
-                        }
-                        else {
+                        } else {
                             completion(watching: false, dictionary: nil, error: TraktKitNoDataError)
                         }
                         return
@@ -516,8 +515,7 @@ extension Users {
                 if let dict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
                     completion(watching: true, dictionary: dict, error: nil)
                 }
-            }
-            catch let jsonSerializationError as NSError {
+            } catch let jsonSerializationError as NSError {
                 completion(watching: false, dictionary: nil, error: jsonSerializationError)
             }
         }

@@ -20,13 +20,13 @@ public struct TraktSearchResult: TraktProtocol {
     
     // Initialize
     public init(type: String, score: Double, movie: TraktMovie?, show: TraktShow?, episode: TraktEpisode?, person: Person?, list: TraktList?) {
-        self.type = type
-        self.score = score
-        self.movie = movie
-        self.show = show
-        self.episode = episode
-        self.person = person
-        self.list = list
+        self.type       = type
+        self.score      = score
+        self.movie      = movie
+        self.show       = show
+        self.episode    = episode
+        self.person     = person
+        self.list       = list
     }
     
     public init?(json: RawJSON?) {
@@ -34,12 +34,12 @@ public struct TraktSearchResult: TraktProtocol {
             type = json["type"] as? String,
             score = json["score"] as? Double else { return nil }
         
-        self.type = type
-        self.score = score
-        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
-        self.show = TraktShow(json: json["show"] as? RawJSON)
-        self.episode = TraktEpisode(json: json["episode"] as? RawJSON)
-        self.person = Person(json: json["person"] as? RawJSON)
-        self.list = TraktList(json: json["list"] as? RawJSON)
+        self.type       = type
+        self.score      = score
+        self.movie      = TraktMovie(json: json["movie"] as? RawJSON)
+        self.show       = TraktShow(json: json["show"] as? RawJSON)
+        self.episode    = TraktEpisode(json: json["episode"] as? RawJSON)
+        self.person     = Person(json: json["person"] as? RawJSON)
+        self.list       = TraktList(json: json["list"] as? RawJSON)
     }
 }

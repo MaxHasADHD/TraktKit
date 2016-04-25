@@ -34,9 +34,6 @@ extension TraktManager {
             json["episode"] = episode
         }
         
-        #if DEBUG
-            print(json)
-        #endif
         let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
@@ -68,9 +65,6 @@ extension TraktManager {
             "spoiler": isSpoiler,
             ]
         
-        #if DEBUG
-            print(json)
-        #endif
         let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
@@ -116,10 +110,7 @@ extension TraktManager {
             "comment": newComment,
             "spoiler": isSpoiler,
             ]
-        
-        #if DEBUG
-            print(json)
-        #endif
+    
         let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
         
         // Request
