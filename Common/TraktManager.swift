@@ -124,7 +124,7 @@ public enum CommentType: String {
     case Shouts = "shouts"
 }
 
-public enum extendedType: String {
+public enum ExtendedType: String, CustomStringConvertible {
     case Min = "min"
     case Images = "images"
     case Full = "full"
@@ -132,6 +132,12 @@ public enum extendedType: String {
     case Metadata = "metadata"
     case Episodes = "episodes" // For getting all seasons and episodes
     case FullAndEpisodes = "full,episodes"
+    
+    public var description: String {
+        get {
+            return self.rawValue
+        }
+    }
 }
 
 public class TraktManager {
@@ -239,6 +245,7 @@ public class TraktManager {
     public typealias MostMoviesCompletionHandler     = ((MostMovies: [TraktMostShow], error: NSError?) -> Void)
     public typealias MovieTranslationsCompletionHandler = ((translations: [TraktMovieTranslation], error: NSError?) -> Void)
     public typealias WatchedMoviesCompletionHandler  = ((movies: [TraktWatchedMovie], error: NSError?) -> Void)
+    public typealias BoxOfficeMoviesCompletionHandler  = ((movies: [TraktBoxOfficeMovie], error: NSError?) -> Void)
     
     // Sync
     public typealias LastActivitiesCompletionHandler = ((activities: TraktLastActivities?, error: NSError?) -> Void)
@@ -476,14 +483,23 @@ public class TraktManager {
         let aCompletion: dictionaryCompletionHandler = { (json: [String: AnyObject]?, error: NSError?) -> Void in
             
             if let json = json {
-                let crew: [CrewMember]
+                var crew: [CrewMember]
                 let cast: [CastMember]
                 
                 // Crew
-                if let jsonCrew = json["crew"] as? RawJSON,
-                    productionCrew = jsonCrew["production"]  as? [RawJSON] {
+                if let jsonCrew = json["crew"] as? RawJSON {
+                    // Directing
+                    crew = []
                     
-                    crew = initEach(productionCrew)
+                    if let directing = jsonCrew["directing"] as? [RawJSON] {
+                        crew += initEach(directing)
+                    }
+                    
+                    if let writing = jsonCrew["writing"] as? [RawJSON] {
+                        crew += initEach(writing)
+                    }
+                    
+                    
                 } else {
                     crew = []
                 }

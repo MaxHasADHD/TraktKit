@@ -122,13 +122,8 @@ extension TraktManager {
      - parameter type: which type of content to receive
      - parameter completion: completion handler
      */
-    public func getWatchedShows(extended: extendedType = .Min, completion: WatchedShowsCompletionHandler) -> NSURLSessionDataTask? {
-        // Used to check data from another Trakt acount
-        //        guard let request = mutableRequestForURL("users/USERNAME/watched/shows?extended=full", authorization: true, HTTPMethod: .GET) else {
-        //            return nil
-        //        }
-        
-        guard let request = mutableRequestForURL("sync/watched/shows?extended=\(extended.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
+    public func getWatchedShows(extended: ExtendedType = .Min, completion: WatchedShowsCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("sync/watched/shows?extended=\(extended)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -143,8 +138,8 @@ extension TraktManager {
      - parameter type: which type of content to receive
      - parameter completion: completion handler
      */
-    public func getWatchedMovies(extended: extendedType = .Min, completion: WatchedMoviesCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("sync/watched/movies?extended=\(extended.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
+    public func getWatchedMovies(extended: ExtendedType = .Min, completion: WatchedMoviesCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("sync/watched/movies?extended=\(extended)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

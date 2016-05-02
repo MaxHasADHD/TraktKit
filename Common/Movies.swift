@@ -17,8 +17,8 @@ extension TraktManager {
     
     📄 Pagination
      */
-    public func getTrendingMovies(page page: Int, limit: Int, completion: TrendingMoviesCompletionHandler) -> NSURLSessionDataTask? {
-        return getTrending(.Movies, page: page, limit: limit, completion: completion)
+    public func getTrendingMovies(page page: Int, limit: Int, extended: ExtendedType = .Min, completion: TrendingMoviesCompletionHandler) -> NSURLSessionDataTask? {
+        return getTrending(.Movies, page: page, limit: limit, extended: extended, completion: completion)
     }
     
     // MARK: - Popular
@@ -28,8 +28,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getPopularMovies(page page: Int, limit: Int, completion: MoviesCompletionHandler) -> NSURLSessionDataTask? {
-        return getPopular(.Movies, page: page, limit: limit, completion: completion)
+    public func getPopularMovies(page page: Int, limit: Int, extended: ExtendedType = .Min, completion: MoviesCompletionHandler) -> NSURLSessionDataTask? {
+        return getPopular(.Movies, page: page, limit: limit, extended: extended, completion: completion)
     }
     
     // MARK: - Played
@@ -39,7 +39,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getPlayedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPlayedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getPlayed(.Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -50,7 +50,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getWatchedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getWatched(.Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -61,7 +61,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getCollectedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCollectedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> NSURLSessionDataTask? {
         return getCollected(.Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -81,8 +81,8 @@ extension TraktManager {
     /**
     Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
     */
-    public func getWeekendBoxOffice(completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("movies/boxoffice", authorization: false, HTTPMethod: .GET) else { return nil }
+    public func getWeekendBoxOffice(extended extended: ExtendedType = .Min, completion: BoxOfficeMoviesCompletionHandler) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("movies/boxoffice?extended=\(extended)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -103,7 +103,7 @@ extension TraktManager {
     /**
     Returns a single movie's details.
     */
-    public func getMovieSummary<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: MovieCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieSummary<T: CustomStringConvertible>(movieID id: T, extended: ExtendedType = .Min, completion: MovieCompletionHandler) -> NSURLSessionDataTask? {
         return getSummary(.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -164,7 +164,7 @@ extension TraktManager {
     
     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
     */
-    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: ExtendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
         return getPeople(.Movies, id: id, extended: extended, completion: completion)
     }
     

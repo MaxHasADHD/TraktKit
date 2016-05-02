@@ -13,8 +13,8 @@ internal extension ShowsAndMovies {
     
     // MARK: - Trending
     
-    func getTrending<T: TraktProtocol>(type: WatchedType, page: Int, limit: Int, completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("\(type)/trending?page=\(page)&limit=\(limit)&extended=full,images", authorization: false, HTTPMethod: .GET) else { return nil }
+    func getTrending<T: TraktProtocol>(type: WatchedType, page: Int, limit: Int, extended: ExtendedType = .Min, completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("\(type)/trending?page=\(page)&limit=\(limit)&extended=\(extended)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -22,8 +22,8 @@ internal extension ShowsAndMovies {
     
     // MARK: - Popular
     
-    func getPopular<T: TraktProtocol>(type: WatchedType, page: Int, limit: Int, completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("\(type)/popular?page=\(page)&limit=\(limit)&extended=full,images", authorization: false, HTTPMethod: .GET) else { return nil }
+    func getPopular<T: TraktProtocol>(type: WatchedType, page: Int, limit: Int, extended: ExtendedType = .Min,  completion: ((TraktObjects: [T], error: NSError?) -> Void)) -> NSURLSessionDataTask? {
+        guard let request = mutableRequestForURL("\(type)/popular?page=\(page)&limit=\(limit)&extended=\(extended)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -78,7 +78,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Summary
     
-    func getSummary<T: CustomStringConvertible, U: TraktProtocol>(type: WatchedType, id: T, extended: extendedType = .Min, completion: ((TraktObject: U?, error: NSError?) -> Void)) -> NSURLSessionDataTask? {
+    func getSummary<T: CustomStringConvertible, U: TraktProtocol>(type: WatchedType, id: T, extended: ExtendedType = .Min, completion: ((TraktObject: U?, error: NSError?) -> Void)) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -115,7 +115,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - People
     
-    func getPeople<T: CustomStringConvertible>(type: WatchedType, id: T, extended: extendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
+    func getPeople<T: CustomStringConvertible>(type: WatchedType, id: T, extended: ExtendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/people?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

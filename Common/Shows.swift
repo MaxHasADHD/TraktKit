@@ -100,7 +100,7 @@ extension TraktManager {
      
      **Note**: When getting `full` extended info, the `status` field can have a value of `returning series` (airing right now), `in production` (airing soon), `planned` (in development), `canceled`, or `ended`.
     */
-    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: ShowCompletionHandler) -> NSURLSessionDataTask? {
+    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: ExtendedType = .Min, completion: ShowCompletionHandler) -> NSURLSessionDataTask? {
         return getSummary(.Shows, id: id, extended: extended, completion: completion)
     }
     
@@ -171,7 +171,7 @@ extension TraktManager {
      
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
      */
-    public func getPeopleInShow<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPeopleInShow<T: CustomStringConvertible>(showID id: T, extended: ExtendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
         return getPeople(.Shows, id: id, extended: extended, completion: completion)
     }
     

@@ -15,9 +15,9 @@ extension TraktManager {
     /**
      Returns a single person's details.
      */
-    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: ExtendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else {
+        guard let request = mutableRequestForURL("people/\(id)?extended=\(extended)", authorization: false, HTTPMethod: .GET) else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }
@@ -30,7 +30,7 @@ extension TraktManager {
      
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `movie` object.
      */
-    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: ExtendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -39,15 +39,15 @@ extension TraktManager {
      
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `show` object.
      */
-    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: ExtendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Private
     
-    private func getCredits<T: CustomStringConvertible>(type type: WatchedType, id: T, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    private func getCredits<T: CustomStringConvertible>(type type: WatchedType, id: T, extended: ExtendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)/\(type)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else {
+        guard let request = mutableRequestForURL("people/\(id)/\(type)?extended=\(extended)", authorization: false, HTTPMethod: .GET) else {
             completion(dictionary: nil, error: TraktKitNoDataError)
             return nil
         }

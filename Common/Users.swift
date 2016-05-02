@@ -460,9 +460,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatchlist(username: String = "me", type: Type, extended: extendedType = .Min, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchlist(username: String = "me", type: Type, extended: ExtendedType = .Min, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)?extended=\(extended.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)?extended=\(extended)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -531,9 +531,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatched(username: String = "me", type: Type, extended: extendedType = .Min, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatched(username: String = "me", type: Type, extended: ExtendedType = .Min, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/watched/\(type.rawValue)?extended=\(extended.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL("users/\(username)/watched/\(type.rawValue)?extended=\(extended)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
