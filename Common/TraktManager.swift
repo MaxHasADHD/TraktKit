@@ -484,35 +484,37 @@ public class TraktManager {
     
     func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
         let aCompletion: dictionaryCompletionHandler = { (json: [String: AnyObject]?, error: NSError?) -> Void in
+            guard let json = json else { return completion(cast: [], crew: [], error: error) }
             
-            if let json = json {
-                var crew: [CrewMember] = []
-                var cast: [CastMember] = []
+            var crew: [CrewMember] = []
+            var cast: [CastMember] = []
+            
+            // Crew
+            if let jsonCrew = json["crew"] as? RawJSON {
                 
-                // Crew
-                if let jsonCrew = json["crew"] as? [String: AnyObject],
-                    productionCrew = jsonCrew["production"]  as? [[String: AnyObject]] {
-                    for jsonCrewMember in productionCrew {
-                        let crewMember = CrewMember(json: jsonCrewMember)
-                        
+                func addMembers(members: [RawJSON]) {
+                    members.forEach { (dict) in
+                        let crewMember = CrewMember(json: dict)
                         crew.append(crewMember)
                     }
                 }
                 
-                // Cast
-                if let jsonCast = json["cast"] as? [[String: AnyObject]] {
-                    for jsonCastMember in jsonCast {
-                        let castMember = CastMember(json: jsonCastMember)
-                        
-                        cast.append(castMember)
-                    }
+                if let members = jsonCrew["production"] as? [RawJSON] { addMembers(members) }
+                if let members = jsonCrew["writing"] as? [RawJSON] { addMembers(members) }
+                if let members = jsonCrew["crew"] as? [RawJSON] { addMembers(members) }
+                if let members = jsonCrew["camera"] as? [RawJSON] { addMembers(members) }
+                if let members = jsonCrew["sound"] as? [RawJSON] { addMembers(members) }
+            }
+            
+            // Cast
+            if let members = json["cast"] as? [[String: AnyObject]] {
+                members.forEach { (dict) in
+                    let castMember = CastMember(json: dict)
+                    cast.append(castMember)
                 }
-                
-                completion(cast: cast, crew: crew, error: error)
             }
-            else {
-                completion(cast: [], crew: [], error: error)
-            }
+            
+            completion(cast: cast, crew: crew, error: error)
         }
         
         let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
