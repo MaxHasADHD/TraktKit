@@ -117,7 +117,7 @@ internal extension ShowsAndMovies {
     
     func getComments<T: CustomStringConvertible>(type: WatchedType, id: T, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("\(type)/\(id)/comments", authorization: false, HTTPMethod: .GET) else { return nil }
-        
+        request.cachePolicy = .ReloadIgnoringLocalCacheData
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     

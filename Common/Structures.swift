@@ -415,6 +415,12 @@ public struct Comment: TraktProtocol {
     }
 }
 
+public extension SequenceType where Generator.Element == Comment {
+    public func hideSpoilers() -> [Comment] {
+        return self.filter { $0.spoiler == false }
+    }
+}
+
 // Trakt user
 public struct User: TraktProtocol {
     public let username: String
