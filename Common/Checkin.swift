@@ -15,7 +15,7 @@ extension TraktManager {
      
      **Note**: If a checkin is already in progress, a `409` HTTP status code will returned. The response will contain an `expires_at` timestamp which is when the user can check in again.
      */
-    public func checkIn(movie movie: RawJSON?, episode: RawJSON?, completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func checkIn(movie movie: RawJSON?, episode: RawJSON?, completionHandler: SuccessCompletionHandler) -> NSURLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -38,34 +38,18 @@ extension TraktManager {
             request.HTTPBody = jsonData
             
             let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-                guard error == nil else {
-                    #if DEBUG
-                        print("[\(#function)] \(error!)")
-                    #endif
-                    completionHandler(success: false)
-                    return
-                }
+                guard error == nil else { return completionHandler(result: .Fail) }
                 
                 guard let HTTPResponse = response as? NSHTTPURLResponse
                     where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
-                        HTTPResponse.statusCode == StatusCodes.Conflict) else {
-                            #if DEBUG
-                                print("[\(#function)] \(response)")
-                            #endif
-                            completionHandler(success: false)
-                            return
-                }
+                        HTTPResponse.statusCode == StatusCodes.Conflict) else {  return completionHandler(result: .Fail) }
                 
                 if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                     // Started watching
-                    completionHandler(success: true)
+                    completionHandler(result: .Success)
                 }
-                else {
-                    // Already watching something
-                    #if DEBUG
-                        print("[\(#function)] Already watching a show")
-                    #endif
-                    completionHandler(success: false)
+                else { // Already watching something
+                    completionHandler(result: .Fail)
                 }
             }
             dataTask.resume()
@@ -74,6 +58,7 @@ extension TraktManager {
         }
         catch let error as NSError {
             print(error)
+            completionHandler(result: .Fail)
         }
         
         return nil
@@ -82,34 +67,21 @@ extension TraktManager {
     /**
      Removes any active checkins, no need to provide a specific item.
      */
-    public func deleteActiveCheckins(completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func deleteActiveCheckins(completionHandler: SuccessCompletionHandler) -> NSURLSessionDataTask? {
         // Request
         guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else {
+            completionHandler(result: .Fail)
             return nil
         }
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                #if DEBUG
-                    print("[\(#function)] \(error!)")
-                #endif
-                completionHandler(success: false)
-                return
-            }
+            guard error == nil else { return completionHandler(result: .Fail) }
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
-                    #if DEBUG
-                        print("[\(#function)] \(response)")
-                    #endif
-                    completionHandler(success: false)
-                    return
-            }
+                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .Fail) }
             
-            print("Cancelled check-in")
-            
-            completionHandler(success: true)
+            completionHandler(result: .Success)
         }
         dataTask.resume()
         

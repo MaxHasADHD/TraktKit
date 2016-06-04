@@ -26,6 +26,7 @@ class ShowTests: XCTestCase {
         let numberOfTrendingShows = 100
         var count = 0
         
+        
         TraktManager.sharedManager.getTrendingShows(page: 1, limit: numberOfTrendingShows) { (objects, error) -> Void in
             guard error == nil else {
                 print("Error getting trending shows: \(error)")

@@ -16,9 +16,9 @@ extension TraktManager {
      
      **Note**: If the `first_aired` is unknown, it will be set to `null`.
      */
-    public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, extended: extendedType = .Min, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, extended: extendedType = .Min, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else {
-            completion(dictionary: nil, error: nil)
+            completion(result: .Error(error: nil))
             return nil
         }
         request.cachePolicy = .ReloadIgnoringLocalCacheData
@@ -31,7 +31,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
+    public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: CommentsCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/comments", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = .ReloadIgnoringLocalCacheData
         
@@ -41,7 +41,7 @@ extension TraktManager {
     /**
      Returns rating (between 0 and 10) and distribution for an episode.
      */
-    public func getEpisodeRatings<T: CustomStringConvertible>(showID id: T, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getEpisodeRatings<T: CustomStringConvertible>(showID id: T, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = .ReloadIgnoringLocalCacheData
         
@@ -51,7 +51,7 @@ extension TraktManager {
     /**
      Returns lots of episode stats.
      */
-    public func getEpisodeStatistics<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getEpisodeStatistics<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/stats", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = .ReloadIgnoringLocalCacheData
         
@@ -61,7 +61,7 @@ extension TraktManager {
     /**
      Returns all users watching this episode right now.
      */
-    public func getUsersWatchingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getUsersWatchingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/watching", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = .ReloadIgnoringLocalCacheData
         

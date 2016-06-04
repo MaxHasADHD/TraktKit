@@ -2,12 +2,12 @@
 //  TraktKitMacTests.swift
 //  TraktKitMacTests
 //
-//  Created by Maximilian Litteral on 8/28/15.
-//  Copyright © 2015 Maximilian Litteral. All rights reserved.
+//  Created by Maximilian Litteral on 6/3/16.
+//  Copyright © 2016 Maximilian Litteral. All rights reserved.
 //
 
 import XCTest
-@testable import TraktKitMac
+@testable import TraktKit
 
 class TraktKitMacTests: XCTestCase {
     
@@ -24,6 +24,7 @@ class TraktKitMacTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
     }
     
     func testPerformanceExample() {

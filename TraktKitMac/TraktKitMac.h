@@ -15,5 +15,4 @@ FOUNDATION_EXPORT double TraktKitMacVersionNumber;
 FOUNDATION_EXPORT const unsigned char TraktKitMacVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <TraktKitMac/PublicHeader.h>
-
-
+ 

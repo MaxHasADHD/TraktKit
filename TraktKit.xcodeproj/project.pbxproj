@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		A7033F301C3AE3C4000E40F7 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
 		A723DA8C1B917EF300CA217C /* TraktKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = A723DA8B1B917EF300CA217C /* TraktKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A723DA931B917EF300CA217C /* TraktKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKitMac.framework */; };
-		A723DA981B917EF300CA217C /* TraktKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723DA971B917EF300CA217C /* TraktKitMacTests.swift */; };
 		A723DAAE1B917FE300CA217C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
 		A723DAAF1B917FE300CA217C /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; };
 		A72B584E1B918044002561A4 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
@@ -50,6 +48,8 @@
 		A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
 		A7CC79A51BF805DC00A43AD3 /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */; };
 		A7CC79A71BF805E400A43AD3 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A61BF805E400A43AD3 /* People.swift */; };
+		A7E9BA921D02414100BE258B /* TraktKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E9BA911D02414100BE258B /* TraktKitMacTests.swift */; };
+		A7E9BA941D02414100BE258B /* TraktKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKitMac.framework */; };
 		A7FB7FCC1BF8DD960003BBD7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */; };
 		A7FB7FCE1BF8DD9E0003BBD7 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */; };
 		A7FB7FD01BF8EC990003BBD7 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
@@ -57,19 +57,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A723DA941B917EF300CA217C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A77E86401B29F09100EABC2D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A723DA881B917EF300CA217C;
-			remoteInfo = TraktKitMac;
-		};
 		A77E86561B29F09100EABC2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A77E86401B29F09100EABC2D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A77E86481B29F09100EABC2D;
 			remoteInfo = TraktKit;
+		};
+		A7E9BA951D02414100BE258B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A77E86401B29F09100EABC2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A723DA881B917EF300CA217C;
+			remoteInfo = TraktKitMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -78,9 +78,6 @@
 		A723DA891B917EF300CA217C /* TraktKitMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A723DA8B1B917EF300CA217C /* TraktKitMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitMac.h; sourceTree = "<group>"; };
 		A723DA8D1B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A723DA921B917EF300CA217C /* TraktKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraktKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A723DA971B917EF300CA217C /* TraktKitMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitMacTests.swift; sourceTree = "<group>"; };
-		A723DA991B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A76905B51B47B7A6003C7431 /* MLKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKeychain.swift; sourceTree = "<group>"; };
 		A773405D1C07884B00A69EA1 /* Shows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		A773405F1C07886500A69EA1 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -104,6 +101,9 @@
 		A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrobble.swift; sourceTree = "<group>"; };
 		A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
 		A7CC79A61BF805E400A43AD3 /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		A7E9BA8F1D02414100BE258B /* TraktKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraktKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7E9BA911D02414100BE258B /* TraktKitMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitMacTests.swift; sourceTree = "<group>"; };
+		A7E9BA931D02414100BE258B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
@@ -115,14 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A723DA8F1B917EF300CA217C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A723DA931B917EF300CA217C /* TraktKitMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +133,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7E9BA8C1D02414100BE258B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7E9BA941D02414100BE258B /* TraktKitMac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -151,15 +151,6 @@
 				A723DA8D1B917EF300CA217C /* Info.plist */,
 			);
 			path = TraktKitMac;
-			sourceTree = "<group>";
-		};
-		A723DA961B917EF300CA217C /* TraktKitMacTests */ = {
-			isa = PBXGroup;
-			children = (
-				A723DA971B917EF300CA217C /* TraktKitMacTests.swift */,
-				A723DA991B917EF300CA217C /* Info.plist */,
-			);
-			path = TraktKitMacTests;
 			sourceTree = "<group>";
 		};
 		A723DAAB1B917F7200CA217C /* Common */ = {
@@ -195,7 +186,7 @@
 				A77E864B1B29F09100EABC2D /* TraktKit */,
 				A77E86581B29F09100EABC2D /* TraktKitTests */,
 				A723DA8A1B917EF300CA217C /* TraktKitMac */,
-				A723DA961B917EF300CA217C /* TraktKitMacTests */,
+				A7E9BA901D02414100BE258B /* TraktKitMacTests */,
 				A77E864A1B29F09100EABC2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -206,7 +197,7 @@
 				A77E86491B29F09100EABC2D /* TraktKit.framework */,
 				A77E86541B29F09100EABC2D /* TraktKitTests.xctest */,
 				A723DA891B917EF300CA217C /* TraktKitMac.framework */,
-				A723DA921B917EF300CA217C /* TraktKitMacTests.xctest */,
+				A7E9BA8F1D02414100BE258B /* TraktKitMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,6 +237,15 @@
 				A77E865A1B29F09100EABC2D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7E9BA901D02414100BE258B /* TraktKitMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				A7E9BA911D02414100BE258B /* TraktKitMacTests.swift */,
+				A7E9BA931D02414100BE258B /* Info.plist */,
+			);
+			path = TraktKitMacTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,24 +288,6 @@
 			productReference = A723DA891B917EF300CA217C /* TraktKitMac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		A723DA911B917EF300CA217C /* TraktKitMacTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A723DA9E1B917EF300CA217C /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */;
-			buildPhases = (
-				A723DA8E1B917EF300CA217C /* Sources */,
-				A723DA8F1B917EF300CA217C /* Frameworks */,
-				A723DA901B917EF300CA217C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A723DA951B917EF300CA217C /* PBXTargetDependency */,
-			);
-			name = TraktKitMacTests;
-			productName = TraktKitMacTests;
-			productReference = A723DA921B917EF300CA217C /* TraktKitMacTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		A77E86481B29F09100EABC2D /* TraktKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A77E865F1B29F09100EABC2D /* Build configuration list for PBXNativeTarget "TraktKit" */;
@@ -342,20 +324,35 @@
 			productReference = A77E86541B29F09100EABC2D /* TraktKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A7E9BA8E1D02414100BE258B /* TraktKitMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7E9BA971D02414100BE258B /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */;
+			buildPhases = (
+				A7E9BA8B1D02414100BE258B /* Sources */,
+				A7E9BA8C1D02414100BE258B /* Frameworks */,
+				A7E9BA8D1D02414100BE258B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7E9BA961D02414100BE258B /* PBXTargetDependency */,
+			);
+			name = TraktKitMacTests;
+			productName = TraktKitMacTests;
+			productReference = A7E9BA8F1D02414100BE258B /* TraktKitMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A77E86401B29F09100EABC2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Maximilian Litteral";
 				TargetAttributes = {
 					A723DA881B917EF300CA217C = {
-						CreatedOnToolsVersion = 7.0;
-					};
-					A723DA911B917EF300CA217C = {
 						CreatedOnToolsVersion = 7.0;
 					};
 					A77E86481B29F09100EABC2D = {
@@ -363,6 +360,9 @@
 					};
 					A77E86531B29F09100EABC2D = {
 						CreatedOnToolsVersion = 6.3.2;
+					};
+					A7E9BA8E1D02414100BE258B = {
+						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
 			};
@@ -381,20 +381,13 @@
 				A77E86481B29F09100EABC2D /* TraktKit */,
 				A77E86531B29F09100EABC2D /* TraktKitTests */,
 				A723DA881B917EF300CA217C /* TraktKitMac */,
-				A723DA911B917EF300CA217C /* TraktKitMacTests */,
+				A7E9BA8E1D02414100BE258B /* TraktKitMacTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A723DA871B917EF300CA217C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A723DA901B917EF300CA217C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -409,6 +402,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A77E86521B29F09100EABC2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7E9BA8D1D02414100BE258B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -441,14 +441,6 @@
 				A7B6037F1C8B8FAB00172A47 /* Checkin.swift in Sources */,
 				A7B603861C8B8FAB00172A47 /* Shows.swift in Sources */,
 				A7B603801C8B8FAB00172A47 /* Comments.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A723DA8E1B917EF300CA217C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A723DA981B917EF300CA217C /* TraktKitMacTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,18 +481,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7E9BA8B1D02414100BE258B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7E9BA921D02414100BE258B /* TraktKitMacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A723DA951B917EF300CA217C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A723DA881B917EF300CA217C /* TraktKitMac */;
-			targetProxy = A723DA941B917EF300CA217C /* PBXContainerItemProxy */;
-		};
 		A77E86571B29F09100EABC2D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A77E86481B29F09100EABC2D /* TraktKit */;
 			targetProxy = A77E86561B29F09100EABC2D /* PBXContainerItemProxy */;
+		};
+		A7E9BA961D02414100BE258B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A723DA881B917EF300CA217C /* TraktKitMac */;
+			targetProxy = A7E9BA951D02414100BE258B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -563,43 +563,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-			};
-			name = Distribution;
-		};
-		A723DA9F1B917EF300CA217C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		A723DAA01B917EF300CA217C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		A723DAA11B917EF300CA217C /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 			};
 			name = Distribution;
 		};
@@ -668,6 +631,7 @@
 		A75B879E1B6A8BC9007F6B8F /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -815,6 +779,7 @@
 		A77E86631B29F09100EABC2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -833,6 +798,7 @@
 		A77E86641B29F09100EABC2D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -844,6 +810,52 @@
 			};
 			name = Release;
 		};
+		A7E9BA981D02414100BE258B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A7E9BA991D02414100BE258B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A7E9BA9A1D02414100BE258B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -853,16 +865,6 @@
 				A723DA9B1B917EF300CA217C /* Debug */,
 				A723DA9C1B917EF300CA217C /* Release */,
 				A723DA9D1B917EF300CA217C /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A723DA9E1B917EF300CA217C /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A723DA9F1B917EF300CA217C /* Debug */,
-				A723DAA01B917EF300CA217C /* Release */,
-				A723DAA11B917EF300CA217C /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -893,6 +895,16 @@
 				A77E86631B29F09100EABC2D /* Debug */,
 				A77E86641B29F09100EABC2D /* Release */,
 				A75B879E1B6A8BC9007F6B8F /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7E9BA971D02414100BE258B /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7E9BA981D02414100BE258B /* Debug */,
+				A7E9BA991D02414100BE258B /* Release */,
+				A7E9BA9A1D02414100BE258B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
