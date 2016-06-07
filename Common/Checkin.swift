@@ -15,7 +15,7 @@ extension TraktManager {
      
      **Note**: If a checkin is already in progress, a `409` HTTP status code will returned. The response will contain an `expires_at` timestamp which is when the user can check in again.
      */
-    public func checkIn(movie movie: RawJSON?, episode: RawJSON?, completionHandler: successCompletionHandler) throws -> NSURLSessionDataTask? {
+    public func checkIn(movie movie: RawJSON?, episode: RawJSON?, completionHandler: SuccessCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -25,7 +25,8 @@ extension TraktManager {
         
         if let movie = movie {
             json["movie"] = movie
-        } else if let episode = episode {
+        }
+        else if let episode = episode {
             json["episode"] = episode
         }
         
@@ -36,24 +37,19 @@ extension TraktManager {
         request.HTTPBody = jsonData
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                completionHandler(success: false)
-                return
-            }
+            guard error == nil else { return completionHandler(result: .Fail) }
             
             guard let HTTPResponse = response as? NSHTTPURLResponse
                 where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
-                    HTTPResponse.statusCode == StatusCodes.Conflict) else {
-                        completionHandler(success: false)
-                        return
-            }
+                    HTTPResponse.statusCode == StatusCodes.Conflict) else { return completionHandler(result: .Fail) }
             
             if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                 // Started watching
-                completionHandler(success: true)
-            } else {
+                completionHandler(result: .Success)
+            }
+            else {
                 // Already watching something
-                completionHandler(success: false)
+                completionHandler(result: .Fail)
             }
         }
         dataTask.resume()
@@ -64,23 +60,17 @@ extension TraktManager {
     /**
      Removes any active checkins, no need to provide a specific item.
      */
-    public func deleteActiveCheckins(completionHandler: successCompletionHandler) -> NSURLSessionDataTask? {
+    public func deleteActiveCheckins(completionHandler: SuccessCompletionHandler) -> NSURLSessionDataTask? {
         // Request
         guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
         let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            guard error == nil else {
-                completionHandler(success: false)
-                return
-            }
+            guard error == nil else { return completionHandler(result: .Fail) }
             
             // Check response
             guard let HTTPResponse = response as? NSHTTPURLResponse
-                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
-                    completionHandler(success: false)
-                    return
-            }
-            completionHandler(success: true)
+                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .Success) }
+            completionHandler(result: .Fail)
         }
         dataTask.resume()
         

@@ -72,7 +72,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getAnticipatedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getAnticipatedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         return getAnticipated(.Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -94,7 +94,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getUpdatedMovies(page page: Int, limit: Int, startDate: String, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getUpdatedMovies(page page: Int, limit: Int, startDate: String, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         return getUpdated(.Movies, page: page, limit: limit, startDate: startDate, completion: completion)
     }
     
@@ -112,7 +112,7 @@ extension TraktManager {
     /**
     Returns all title aliases for a movie. Includes country where name is different.
     */
-    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         return getAliases(.Movies, id: id, completion: completion)
     }
     
@@ -124,7 +124,7 @@ extension TraktManager {
     - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
     - parameter country: 2 character country code. Example: `us`.
     */
-    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         
         var path = "movies/\(id)/releases"
         
@@ -153,7 +153,7 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: commentsCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: CommentsCompletionHandler) -> NSURLSessionDataTask? {
         return getComments(.Movies, id: id, completion: completion)
     }
     
@@ -173,7 +173,7 @@ extension TraktManager {
     /**
     Returns rating (between 0 and 10) and distribution for a movie.
     */
-    public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: dictionaryCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
         return getRatings(.Movies, id: id, completion: completion)
     }
     
@@ -184,7 +184,7 @@ extension TraktManager {
     
     **Note**: We are continuing to improve this algorithm.
     */
-    public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         return getRelated(.Movies, id: id, completion: completion)
     }
     
@@ -202,7 +202,7 @@ extension TraktManager {
     /**
     Returns all users watching this movie right now.
     */
-    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         return getUsersWatching(.Movies, id: id, completion: completion)
     }
 }

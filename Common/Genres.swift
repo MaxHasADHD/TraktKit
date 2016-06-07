@@ -13,9 +13,9 @@ extension TraktManager {
     /**
      Get a list of all genres, including names and slugs.
      */
-    public func listGenres(type type: WatchedType, completion: arrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func listGenres(type type: WatchedType, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("genres/\(type)", authorization: false, HTTPMethod: .GET) else {
-            completion(objects: nil, error: TraktKitNoDataError)
+            completion(result: .Error(error: nil))
             return nil
         }
         
