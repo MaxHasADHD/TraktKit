@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import TraktKit
 
 class TraktKitTests: XCTestCase {
     

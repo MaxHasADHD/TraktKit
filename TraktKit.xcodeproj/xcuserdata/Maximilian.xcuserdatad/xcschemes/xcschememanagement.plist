@@ -23,7 +23,7 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>TraktKitMacTests.xcscheme</key>
+		<key>TraktKitTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>

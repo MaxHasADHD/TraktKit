@@ -41,15 +41,11 @@
 		A7B6038B1C8B8FAB00172A47 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340691C08D82D00A69EA1 /* SharedFunctions.swift */; };
 		A7B6038C1C8B8FAB00172A47 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
 		A7B6038D1C8B8FAB00172A47 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
-		A7C5DA881B5DB3040027920B /* FilmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA871B5DB3040027920B /* FilmTests.swift */; };
 		A7C5DA8A1B5DB30E0027920B /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA891B5DB30E0027920B /* KeychainTests.swift */; };
-		A7C5DA8C1B5DB6B60027920B /* ShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */; };
 		A7CC79A11BF7C36E00A43AD3 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A01BF7C36E00A43AD3 /* Sync.swift */; };
 		A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
 		A7CC79A51BF805DC00A43AD3 /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */; };
 		A7CC79A71BF805E400A43AD3 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A61BF805E400A43AD3 /* People.swift */; };
-		A7E9BA921D02414100BE258B /* TraktKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E9BA911D02414100BE258B /* TraktKitMacTests.swift */; };
-		A7E9BA941D02414100BE258B /* TraktKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKitMac.framework */; };
 		A7FB7FCC1BF8DD960003BBD7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */; };
 		A7FB7FCE1BF8DD9E0003BBD7 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */; };
 		A7FB7FD01BF8EC990003BBD7 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
@@ -63,13 +59,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A77E86481B29F09100EABC2D;
 			remoteInfo = TraktKit;
-		};
-		A7E9BA951D02414100BE258B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A77E86401B29F09100EABC2D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A723DA881B917EF300CA217C;
-			remoteInfo = TraktKitMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -94,16 +83,11 @@
 		A78D13591B2A341000BA2068 /* Movies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		A79163A41C0D46F200E791BC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7AE55AD1BD4560700A5DFFB /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
-		A7C5DA871B5DB3040027920B /* FilmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTests.swift; sourceTree = "<group>"; };
 		A7C5DA891B5DB30E0027920B /* KeychainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
-		A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTests.swift; sourceTree = "<group>"; };
 		A7CC79A01BF7C36E00A43AD3 /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
 		A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrobble.swift; sourceTree = "<group>"; };
 		A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
 		A7CC79A61BF805E400A43AD3 /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
-		A7E9BA8F1D02414100BE258B /* TraktKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraktKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7E9BA911D02414100BE258B /* TraktKitMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitMacTests.swift; sourceTree = "<group>"; };
-		A7E9BA931D02414100BE258B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
@@ -130,14 +114,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7E9BA8C1D02414100BE258B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7E9BA941D02414100BE258B /* TraktKitMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +162,6 @@
 				A77E864B1B29F09100EABC2D /* TraktKit */,
 				A77E86581B29F09100EABC2D /* TraktKitTests */,
 				A723DA8A1B917EF300CA217C /* TraktKitMac */,
-				A7E9BA901D02414100BE258B /* TraktKitMacTests */,
 				A77E864A1B29F09100EABC2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -197,7 +172,6 @@
 				A77E86491B29F09100EABC2D /* TraktKit.framework */,
 				A77E86541B29F09100EABC2D /* TraktKitTests.xctest */,
 				A723DA891B917EF300CA217C /* TraktKitMac.framework */,
-				A7E9BA8F1D02414100BE258B /* TraktKitMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,8 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				A77E865B1B29F09100EABC2D /* TraktKitTests.swift */,
-				A7C5DA8B1B5DB6B60027920B /* ShowTests.swift */,
-				A7C5DA871B5DB3040027920B /* FilmTests.swift */,
 				A7C5DA891B5DB30E0027920B /* KeychainTests.swift */,
 				A77E86591B29F09100EABC2D /* Supporting Files */,
 			);
@@ -237,15 +209,6 @@
 				A77E865A1B29F09100EABC2D /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A7E9BA901D02414100BE258B /* TraktKitMacTests */ = {
-			isa = PBXGroup;
-			children = (
-				A7E9BA911D02414100BE258B /* TraktKitMacTests.swift */,
-				A7E9BA931D02414100BE258B /* Info.plist */,
-			);
-			path = TraktKitMacTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,24 +287,6 @@
 			productReference = A77E86541B29F09100EABC2D /* TraktKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A7E9BA8E1D02414100BE258B /* TraktKitMacTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7E9BA971D02414100BE258B /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */;
-			buildPhases = (
-				A7E9BA8B1D02414100BE258B /* Sources */,
-				A7E9BA8C1D02414100BE258B /* Frameworks */,
-				A7E9BA8D1D02414100BE258B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7E9BA961D02414100BE258B /* PBXTargetDependency */,
-			);
-			name = TraktKitMacTests;
-			productName = TraktKitMacTests;
-			productReference = A7E9BA8F1D02414100BE258B /* TraktKitMacTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -349,20 +294,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Maximilian Litteral";
 				TargetAttributes = {
 					A723DA881B917EF300CA217C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					A77E86481B29F09100EABC2D = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = U6J8328WE2;
+						DevelopmentTeamName = "Maximilian Litteral";
 					};
 					A77E86531B29F09100EABC2D = {
 						CreatedOnToolsVersion = 6.3.2;
-					};
-					A7E9BA8E1D02414100BE258B = {
-						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = U6J8328WE2;
+						DevelopmentTeamName = "Maximilian Litteral";
 					};
 				};
 			};
@@ -381,7 +328,6 @@
 				A77E86481B29F09100EABC2D /* TraktKit */,
 				A77E86531B29F09100EABC2D /* TraktKitTests */,
 				A723DA881B917EF300CA217C /* TraktKitMac */,
-				A7E9BA8E1D02414100BE258B /* TraktKitMacTests */,
 			);
 		};
 /* End PBXProject section */
@@ -402,13 +348,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A77E86521B29F09100EABC2D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7E9BA8D1D02414100BE258B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -475,17 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77E865C1B29F09100EABC2D /* TraktKitTests.swift in Sources */,
-				A7C5DA881B5DB3040027920B /* FilmTests.swift in Sources */,
-				A7C5DA8C1B5DB6B60027920B /* ShowTests.swift in Sources */,
 				A7C5DA8A1B5DB30E0027920B /* KeychainTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7E9BA8B1D02414100BE258B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7E9BA921D02414100BE258B /* TraktKitMacTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,17 +426,13 @@
 			target = A77E86481B29F09100EABC2D /* TraktKit */;
 			targetProxy = A77E86561B29F09100EABC2D /* PBXContainerItemProxy */;
 		};
-		A7E9BA961D02414100BE258B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A723DA881B917EF300CA217C /* TraktKitMac */;
-			targetProxy = A7E9BA951D02414100BE258B /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A723DA9B1B917EF300CA217C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -523,12 +448,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		A723DA9C1B917EF300CA217C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -543,12 +470,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		A723DA9D1B917EF300CA217C /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -563,6 +493,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Distribution;
 		};
@@ -631,7 +562,7 @@
 		A75B879E1B6A8BC9007F6B8F /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -773,13 +704,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
 		A77E86631B29F09100EABC2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -798,7 +730,7 @@
 		A77E86641B29F09100EABC2D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -807,54 +739,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
-		};
-		A7E9BA981D02414100BE258B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		A7E9BA991D02414100BE258B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		A7E9BA9A1D02414100BE258B /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Distribution;
 		};
 /* End XCBuildConfiguration section */
 
@@ -895,16 +782,6 @@
 				A77E86631B29F09100EABC2D /* Debug */,
 				A77E86641B29F09100EABC2D /* Release */,
 				A75B879E1B6A8BC9007F6B8F /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7E9BA971D02414100BE258B /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7E9BA981D02414100BE258B /* Debug */,
-				A7E9BA991D02414100BE258B /* Release */,
-				A7E9BA9A1D02414100BE258B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

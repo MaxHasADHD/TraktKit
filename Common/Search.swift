@@ -17,11 +17,10 @@ extension TraktManager {
      Status Code: 200
      
      */
-    public func search(query: String, types: [SearchType], completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func search(query: String, types: [SearchType], completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        let typesString = types.map { $0.rawValue }.joined(separator: ",") // Search with multiple types
         
-        let typesString = types.map { $0.rawValue }.joinWithSeparator(",") // Search with multiple types
-        
-        guard let request = mutableRequestForURL("search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -31,8 +30,8 @@ extension TraktManager {
      
      Status Code: 200
      */
-    public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: ArrayCompletionHandler) -> NSURLSessionTask? {
-        guard let request = mutableRequestForURL("search?id_type=\(idType.rawValue)&id=\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
+    public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "search?id_type=\(idType.rawValue)&id=\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

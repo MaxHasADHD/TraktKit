@@ -17,8 +17,8 @@ extension TraktManager {
     
     📄 Pagination
      */
-    public func getTrendingMovies(page page: Int, limit: Int, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getTrending(.Movies, page: page, limit: limit, completion: completion)
+    public func getTrendingMovies(page: Int, limit: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getTrending(type: .Movies, page: page, limit: limit, completion: completion)
     }
     
     // MARK: - Popular
@@ -28,8 +28,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getPopularMovies(page page: Int, limit: Int, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getPopular(.Movies, page: page, limit: limit, completion: completion)
+    public func getPopularMovies(page: Int, limit: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getPopular(type: .Movies, page: page, limit: limit, completion: completion)
     }
     
     // MARK: - Played
@@ -39,8 +39,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getPlayedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getPlayed(.Movies, page: page, limit: limit, period: period, completion: completion)
+    public func getPlayedMovies(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getPlayed(type: .Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
     // MARK: - Watched
@@ -50,8 +50,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getWatchedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getWatched(.Movies, page: page, limit: limit, period: period, completion: completion)
+    public func getWatchedMovies(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getWatched(type: .Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
     // MARK: - Collected
@@ -61,8 +61,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getCollectedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getCollected(.Movies, page: page, limit: limit, period: period, completion: completion)
+    public func getCollectedMovies(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getCollected(type: .Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
     // MARK: - Anticipated
@@ -72,8 +72,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getAnticipatedMovies(page page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getAnticipated(.Movies, page: page, limit: limit, period: period, completion: completion)
+    public func getAnticipatedMovies(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getAnticipated(type: .Movies, page: page, limit: limit, period: period, completion: completion)
     }
     
     // MARK: - Box Office
@@ -81,8 +81,8 @@ extension TraktManager {
     /**
     Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
     */
-    public func getWeekendBoxOffice(completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("movies/boxoffice", authorization: false, HTTPMethod: .GET) else { return nil }
+    public func getWeekendBoxOffice(completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "movies/boxoffice", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -94,8 +94,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getUpdatedMovies(page page: Int, limit: Int, startDate: String, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getUpdated(.Movies, page: page, limit: limit, startDate: startDate, completion: completion)
+    public func getUpdatedMovies(page: Int, limit: Int, startDate: String, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getUpdated(type: .Movies, page: page, limit: limit, startDate: startDate, completion: completion)
     }
     
     // MARK: - Summary
@@ -103,8 +103,8 @@ extension TraktManager {
     /**
     Returns a single movie's details.
     */
-    public func getMovieSummary(movieID id: NSNumber, extended: extendedType = .Min, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
-        return getSummary(.Movies, id: id, extended: extended, completion: completion)
+    public func getMovieSummary(movieID id: NSNumber, extended: extendedType = .Min, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+        return getSummary(type: .Movies, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Aliases
@@ -112,8 +112,8 @@ extension TraktManager {
     /**
     Returns all title aliases for a movie. Includes country where name is different.
     */
-    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getAliases(.Movies, id: id, completion: completion)
+    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getAliases(type: .Movies, id: id, completion: completion)
     }
     
     // MARK: - Releases
@@ -124,7 +124,7 @@ extension TraktManager {
     - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
     - parameter country: 2 character country code. Example: `us`.
     */
-    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         
         var path = "movies/\(id)/releases"
         
@@ -132,7 +132,7 @@ extension TraktManager {
             path += "/\(country)"
         }
         
-        guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: path, authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -142,8 +142,8 @@ extension TraktManager {
     /**
     Returns all translations for a movie, including language and translated values for title, tagline and overview.
     */
-    public func getMovieTranslations<T: CustomStringConvertible>(movieID id: T, language: String?, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getTranslations(.Movies, id: id, language: language, completion: completion)
+    public func getMovieTranslations<T: CustomStringConvertible>(movieID id: T, language: String?, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getTranslations(type: .Movies, id: id, language: language, completion: completion)
     }
     
     // MARK: - Comments
@@ -153,8 +153,8 @@ extension TraktManager {
     
     📄 Pagination
     */
-    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: CommentsCompletionHandler) -> NSURLSessionDataTask? {
-        return getComments(.Movies, id: id, completion: completion)
+    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: CommentsCompletionHandler) -> URLSessionDataTask? {
+        return getComments(type: .Movies, id: id, completion: completion)
     }
     
     // MARK: - People
@@ -164,8 +164,8 @@ extension TraktManager {
     
     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
     */
-    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
-        return getPeople(.Movies, id: id, extended: extended, completion: completion)
+    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: extendedType = .Min, completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
+        return getPeople(type: .Movies, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Ratings
@@ -173,8 +173,8 @@ extension TraktManager {
     /**
     Returns rating (between 0 and 10) and distribution for a movie.
     */
-    public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
-        return getRatings(.Movies, id: id, completion: completion)
+    public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+        return getRatings(type: .Movies, id: id, completion: completion)
     }
     
     // MARK: - Related
@@ -184,8 +184,8 @@ extension TraktManager {
     
     **Note**: We are continuing to improve this algorithm.
     */
-    public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getRelated(.Movies, id: id, completion: completion)
+    public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getRelated(type: .Movies, id: id, completion: completion)
     }
     
     // MARK: - Stats
@@ -193,8 +193,8 @@ extension TraktManager {
     /**
     Returns lots of movie stats.
     */
-    public func getMovieStatistics<T: CustomStringConvertible>(movieID id: T, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
-        return getStatistics(.Movies, id: id, completion: completion)
+    public func getMovieStatistics<T: CustomStringConvertible>(movieID id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+        return getStatistics(type: .Movies, id: id, completion: completion)
     }
     
     // MARK: - Watching
@@ -202,7 +202,7 @@ extension TraktManager {
     /**
     Returns all users watching this movie right now.
     */
-    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        return getUsersWatching(.Movies, id: id, completion: completion)
+    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        return getUsersWatching(type: .Movies, id: id, completion: completion)
     }
 }

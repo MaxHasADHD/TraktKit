@@ -150,7 +150,7 @@ public class TraktManager {
     let refreshTokenKey = "refreshToken"
     
     // Lazy
-    lazy var session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    lazy var session = URLSession(configuration: URLSessionConfiguration.default())
     
     // MARK: Public
     public static let sharedManager = TraktManager()
@@ -165,7 +165,7 @@ public class TraktManager {
     public var accessToken: String? {
         get {
             if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
-                if let accessTokenString = NSString(data: accessTokenData, encoding: NSUTF8StringEncoding) as? String {
+                if let accessTokenString = NSString(data: accessTokenData, encoding: String.Encoding.utf8.rawValue) as? String {
                     return accessTokenString
                 }
             }
@@ -177,11 +177,11 @@ public class TraktManager {
             
             if newValue == nil {
                 // Remove from keychain
-                MLKeychain.deleteItem(forKey: accessTokenKey)
+                _ = MLKeychain.deleteItem(forKey: accessTokenKey)
             }
             else {
                 // Save to keychain
-                let succeeded = MLKeychain.setString(newValue!, forKey: accessTokenKey)
+                let succeeded = MLKeychain.setString(value: newValue!, forKey: accessTokenKey)
                 #if DEBUG
                     print("Saved access token: \(succeeded)")
                 #endif
@@ -192,7 +192,7 @@ public class TraktManager {
     public var refreshToken: String? {
         get {
             if let refreshTokenData = MLKeychain.loadData(forKey: refreshTokenKey) {
-                if let accessTokenString = NSString(data: refreshTokenData, encoding: NSUTF8StringEncoding) as? String {
+                if let accessTokenString = NSString(data: refreshTokenData, encoding: String.Encoding.utf8.rawValue) as? String {
                     return accessTokenString
                 }
             }
@@ -203,11 +203,11 @@ public class TraktManager {
             // Save somewhere secure
             if newValue == nil {
                 // Remove from keychain
-                MLKeychain.deleteItem(forKey: refreshTokenKey)
+                _ = MLKeychain.deleteItem(forKey: refreshTokenKey)
             }
             else {
                 // Save to keychain
-                let succeeded = MLKeychain.setString(newValue!, forKey: refreshTokenKey)
+                let succeeded = MLKeychain.setString(value: newValue!, forKey: refreshTokenKey)
                 #if DEBUG
                     print("Saved refresh token: \(succeeded)")
                 #endif
@@ -283,9 +283,10 @@ public class TraktManager {
     
     // MARK: - Actions
     
-    public func mutableRequestForURL(URL: NSURL?, authorization: Bool, HTTPMethod: Method) -> NSMutableURLRequest? {
-        let request = NSMutableURLRequest(URL: URL!)
-        request.HTTPMethod = HTTPMethod.rawValue
+    public func mutableRequestForURL(url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
+        guard let url = url else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.rawValue
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
@@ -305,13 +306,11 @@ public class TraktManager {
         return request
     }
     
-    public func mutableRequestForURL(path: String, authorization: Bool, HTTPMethod: Method) -> NSMutableURLRequest? {
+    public func mutableRequestForURL(path: String, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
         let urlString = "https://api-v2launch.trakt.tv/" + path
-        guard let URL = NSURL(string: urlString) else {
-            return nil
-        }
-        let request = NSMutableURLRequest(URL: URL)
-        request.HTTPMethod = HTTPMethod.rawValue
+        guard let URL = URL(string: urlString) else { return nil }
+        var request = URLRequest(url: URL)
+        request.httpMethod = HTTPMethod.rawValue
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
@@ -331,33 +330,29 @@ public class TraktManager {
         return request
     }
     
-    func createJsonData(movies movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON]) throws -> NSData? {
-        
+    func createJsonData(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON]) throws -> Data? {
         let json = [
             "movies": movies,
             "shows": shows,
             "episodes": episodes,
         ]
-        
-        #if DEBUG
-            print(json)
-        #endif
-        return try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+    
+        return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions(rawValue: 0))
     }
     
     // MARK: Perform Requests
     
-    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: ResultCompletionHandler) -> URLSessionDataTask? {
         
-        let datatask = session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+        let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let wSelf = self else { return }
             guard error == nil else { return completion(result: .Error(error: error)) }
             
             // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where HTTPResponse.statusCode == code else {
-                    if let HTTPResponse = response as? NSHTTPURLResponse {
-                        completion(result: .Error(error: wSelf.createTraktErrorWithStatusCode(HTTPResponse.statusCode)))
+                    if let HTTPResponse = response as? HTTPURLResponse {
+                        completion(result: .Error(error: wSelf.createTraktErrorWithStatusCode(statusCode: HTTPResponse.statusCode)))
                     }
                     else {
                         completion(result: .Error(error: nil))
@@ -369,7 +364,7 @@ public class TraktManager {
             guard let data = data else { return completion(result: .Error(error: TraktKitNoDataError)) }
             
             do {
-                if let dict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let dict = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? RawJSON {
                     completion(result: .Success(dict: dict))
                 }
             }
@@ -383,16 +378,16 @@ public class TraktManager {
     }
     
     /// Array
-    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        let dataTask = session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let wSelf = self else { return }
             guard error == nil else { return completion(result: .Error(error: error)) }
             
             // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where HTTPResponse.statusCode == code else {
-                    if let HTTPResponse = response as? NSHTTPURLResponse {
-                        completion(result: .Error(error: wSelf.createTraktErrorWithStatusCode(HTTPResponse.statusCode)))
+                    if let HTTPResponse = response as? HTTPURLResponse {
+                        completion(result: .Error(error: wSelf.createTraktErrorWithStatusCode(statusCode: HTTPResponse.statusCode)))
                     }
                     else {
                         completion(result: .Error(error: nil))
@@ -405,7 +400,7 @@ public class TraktManager {
             guard let data = data else { return completion(result: .Error(error: TraktKitNoDataError)) }
             
             do {
-                if let array = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [RawJSON] {
+                if let array = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [RawJSON] {
                     completion(result: .Success(array: array))
                 }
             }
@@ -419,12 +414,12 @@ public class TraktManager {
     }
     
     /// Success / Failure
-    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
-        let datatask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+        let datatask = session.dataTask(with: request) { (data, response, error) in
             guard error == nil else { return completion(result: .Fail) }
             
             // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where HTTPResponse.statusCode == code else { return completion(result: .Fail) }
             
             // Check data
@@ -438,7 +433,7 @@ public class TraktManager {
     }
     
     /// Comments
-    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: CommentsCompletionHandler) -> NSURLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: CommentsCompletionHandler) -> URLSessionDataTask? {
         let aCompletion: ArrayCompletionHandler = { (result: ArrayResultType) -> Void in
             
             switch result {
@@ -463,7 +458,7 @@ public class TraktManager {
     }
     
     /// Cast and crew
-    func performRequest(request request: NSURLRequest, expectingStatusCode code: Int, completion: CastCrewCompletionHandler) -> NSURLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
         let aCompletion: ResultCompletionHandler = { (result: DictionaryResultType) -> Void in
             switch result {
             case .Success(let dict):
@@ -480,11 +475,11 @@ public class TraktManager {
                         }
                     }
                     
-                    if let members = jsonCrew["production"] as? [RawJSON] { addMembers(members) }
-                    if let members = jsonCrew["writing"] as? [RawJSON] { addMembers(members) }
-                    if let members = jsonCrew["crew"] as? [RawJSON] { addMembers(members) }
-                    if let members = jsonCrew["camera"] as? [RawJSON] { addMembers(members) }
-                    if let members = jsonCrew["sound"] as? [RawJSON] { addMembers(members) }
+                    if let members = jsonCrew["production"] as? [RawJSON] { addMembers(members: members) }
+                    if let members = jsonCrew["writing"] as? [RawJSON] { addMembers(members: members) }
+                    if let members = jsonCrew["crew"] as? [RawJSON] { addMembers(members: members) }
+                    if let members = jsonCrew["camera"] as? [RawJSON] { addMembers(members: members) }
+                    if let members = jsonCrew["sound"] as? [RawJSON] { addMembers(members: members) }
                 }
                 
                 // Cast
@@ -517,8 +512,8 @@ public class TraktManager {
         }
         
         let urlString = "https://trakt.tv/oauth/token"
-        let url = NSURL(string: urlString)
-        guard let request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForURL(url: url, authorization: false, HTTPMethod: .POST) else {
             completionHandler?(result: .Fail)
             return
         }
@@ -531,9 +526,9 @@ public class TraktManager {
             "grant_type": "authorization_code",
         ]
         
-        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions(rawValue: 0))
         
-        let dataTask = session.dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+        let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let wSelf = self else { return }
             guard error == nil else {
                 completionHandler?(result: .Fail)
@@ -542,7 +537,7 @@ public class TraktManager {
             }
             
             // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.Success else {
                     completionHandler?(result: .Fail)
                     return
@@ -555,7 +550,7 @@ public class TraktManager {
             }
             
             do {
-                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? RawJSON {
                     
                     wSelf.accessToken = accessTokenDict["access_token"] as? String
                     wSelf.refreshToken = accessTokenDict["refresh_token"] as? String
@@ -569,14 +564,14 @@ public class TraktManager {
                     let timeInterval = accessTokenDict["expires_in"] as! NSNumber
                     let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                     
-                    NSUserDefaults.standardUserDefaults().setObject(expiresDate, forKey: "accessTokenExpirationDate")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    UserDefaults.standard().set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard().synchronize()
                     
                     // Post notification
-                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                        NSNotificationCenter.defaultCenter().postNotificationName("signedInToTrakt", object: nil)
+                    OperationQueue.main().addOperation({
+                        NotificationCenter.default().post(name: NSNotification.Name(rawValue: "signedInToTrakt"), object: nil)
                     })
-                    
+
                     completionHandler?(result: .Success)
                 }
             }
@@ -590,11 +585,10 @@ public class TraktManager {
     // MARK: Refresh access token
     
     public func needToRefresh() -> Bool {
-        if let expirationDate = NSUserDefaults.standardUserDefaults().objectForKey("accessTokenExpirationDate") as? NSDate {
-            let today = NSDate()
-            
-            if today.compare(expirationDate) == .OrderedDescending ||
-                today.compare(expirationDate) == .OrderedSame {
+        if let expirationDate = UserDefaults.standard().object(forKey: "accessTokenExpirationDate") as? Date {
+            let today = Date()
+            if today.compare(expirationDate) == .orderedDescending ||
+                today.compare(expirationDate) == .orderedSame {
                     return true
             }
             else {
@@ -606,17 +600,17 @@ public class TraktManager {
     }
     
     public func checkToRefresh() throws {
-        if let expirationDate = NSUserDefaults.standardUserDefaults().objectForKey("accessTokenExpirationDate") as? NSDate {
-            let today = NSDate()
+        if let expirationDate = UserDefaults.standard().object(forKey: "accessTokenExpirationDate") as? Date {
+            let today = Date()
             
-            if today.compare(expirationDate) == .OrderedDescending ||
-                today.compare(expirationDate) == .OrderedSame {
-                    #if DEBUG
-                        print("[\(#function)] Refreshing token!")
-                    #endif
-                    try self.getAccessTokenFromRefreshToken({ (success) -> Void in
-                        
-                    })
+            if today.compare(expirationDate) == .orderedDescending ||
+                today.compare(expirationDate) == .orderedSame {
+                #if DEBUG
+                    print("[\(#function)] Refreshing token!")
+                #endif
+                try self.getAccessTokenFromRefreshToken(completionHandler: { (result) in
+                    
+                })
             }
             else {
                 #if DEBUG
@@ -634,8 +628,8 @@ public class TraktManager {
         guard let rToken = refreshToken else { return completionHandler(result: .Fail) }
         
         let urlString = "https://trakt.tv/oauth/token"
-        let url = NSURL(string: urlString)
-        guard let request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else { return completionHandler(result: .Fail) }
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForURL(url: url, authorization: false, HTTPMethod: .POST) else { return completionHandler(result: .Fail) }
         
         let json = [
             "refresh_token": rToken,
@@ -644,20 +638,20 @@ public class TraktManager {
             "redirect_uri": redirectURI,
             "grant_type": "refresh_token",
         ]
-        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions(rawValue: 0))
         
-        session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        session.dataTask(with: request) { (data, response, error) in
             guard error == nil else { return completionHandler(result: .Fail) }
             
             // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.Success else { return completionHandler(result: .Fail) }
             
             // Check data
             guard let data = data else { return completionHandler(result: .Fail) }
             
             do {
-                if let accessTokenDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [String: AnyObject] {
+                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? RawJSON {
                     
         
                     self.accessToken = accessTokenDict["access_token"] as? String
@@ -673,18 +667,18 @@ public class TraktManager {
                     guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else { return completionHandler(result: .Fail) }
                     let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                     
-                    NSUserDefaults.standardUserDefaults().setObject(expiresDate, forKey: "accessTokenExpirationDate")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    UserDefaults.standard().set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard().synchronize()
+                
+                    // Post notification
+                    OperationQueue.main().addOperation({
+                        NotificationCenter.default().post(name: NSNotification.Name(rawValue: "signedInToTrakt"), object: nil)
+                    })
                     
                     completionHandler(result: .Success)
-                    
-                    // Post notification
-//                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                        NSNotificationCenter.defaultCenter().postNotificationName("signedInToTrakt", object: nil)
-//                    })
                 }
             }
-            catch let jsonSerializationError as NSError {
+            catch {
                 completionHandler(result: .Fail)
             }
         }.resume()

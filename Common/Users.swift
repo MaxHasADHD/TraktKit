@@ -47,8 +47,8 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func getSettings(completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/settings", authorization: true, HTTPMethod: .GET) else { return nil }
+    public func getSettings(completion: ResultCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/settings", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -60,8 +60,8 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func getFollowRequests(completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/requests", authorization: true, HTTPMethod: .GET) else { return nil }
+    public func getFollowRequests(completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/requests", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -75,8 +75,9 @@ extension Users {
     
     - parameter id: ID of the follower request. Example: `123`.
      */
-    public func approveFollowRequest(requestID id: NSNumber, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/requests/\(id)", authorization: true, HTTPMethod: .POST) else { return nil }
+    public func approveFollowRequest(requestID id: NSNumber, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/requests/\(id)", authorization: true, HTTPMethod: .POST) else { return nil }
+        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -87,8 +88,8 @@ extension Users {
      
      - parameter id: ID of the follower request. Example: `123`.
      */
-    public func denyFollowRequest(requestID id: NSNumber, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/requests/\(id)", authorization: true, HTTPMethod: .DELETE) else { return nil }
+    public func denyFollowRequest(requestID id: NSNumber, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/requests/\(id)", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
@@ -101,9 +102,9 @@ extension Users {
      🔒 OAuth Required
      📄 Pagination
      */
-    public func hiddenItems(section: SectionType, type: HiddenItemsType, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/hidden/\(section.rawValue)?type=\(type.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
-        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
+    public func hiddenItems(section: SectionType, type: HiddenItemsType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        guard var request = mutableRequestForURL(path: "users/hidden/\(section.rawValue)?type=\(type.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
+        request.cachePolicy = .reloadIgnoringCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -118,8 +119,8 @@ extension Users {
     
     - Parameter type: Possible values:  comments, lists.
      */
-    public func getLikes(type: LikeType, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/likes/\(type.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
+    public func getLikes(type: LikeType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/likes/\(type.rawValue)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -131,9 +132,9 @@ extension Users {
      
      🔓 OAuth Optional
      */
-    public func getUserProfile(username: String = "me", completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
+    public func getUserProfile(username: String = "me", completion: ResultCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -147,9 +148,9 @@ extension Users {
     
     🔓 OAuth Optional
      */
-    public func getCollection(username: String = "me", type: Type, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCollection(username: String = "me", type: Type, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/collection/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/collection/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -162,9 +163,9 @@ extension Users {
     🔓 OAuth Optional
     📄 Pagination
     */
-    public func getComments(username: String = "me", commentType: CommentType, type: Type2, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getComments(username: String = "me", commentType: CommentType, type: Type2, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/comments/\(commentType.rawValue)/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/comments/\(commentType.rawValue)/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -176,9 +177,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getCustomLists(username: String = "me", completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCustomLists(username: String = "me", completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/lists", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/lists", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -194,7 +195,7 @@ extension Users {
      - parameter displayNumbers: Should each item be numbered?
      - parameter allowComments: Are comments allowed?
      */
-    public func createCustomList(listName listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ResultCompletionHandler) throws -> NSURLSessionDataTask? {
+    public func createCustomList(listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         let json = [
@@ -206,8 +207,8 @@ extension Users {
             ]
         
         // Request
-        guard let request = mutableRequestForURL("users/me/lists", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        guard var request = mutableRequestForURL(path: "users/me/lists", authorization: true, HTTPMethod: .POST) else { return nil }
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions(rawValue: 0))
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
@@ -219,9 +220,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -231,7 +232,7 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func updateCustomList(listID listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
+    public func updateCustomList(listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ResultCompletionHandler) -> URLSessionDataTask? {
         
         // JSON
         let json = [
@@ -243,8 +244,8 @@ extension Users {
         ]
         
         // Request
-        guard let request = mutableRequestForURL("users/me/lists/\(listID)", authorization: true, HTTPMethod: .PUT) else { return nil }
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        guard var request = mutableRequestForURL(path: "users/me/lists/\(listID)", authorization: true, HTTPMethod: .PUT) else { return nil }
+        request.httpBody = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions(rawValue: 0))
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -254,8 +255,8 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func DeleteCustomList(username: String = "me", listID: String, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)", authorization: true, HTTPMethod: .DELETE) else { return nil }
+    public func DeleteCustomList(username: String = "me", listID: String, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
@@ -267,8 +268,8 @@ extension Users {
     
     🔒 OAuth Required
     */
-    public func likeList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: .POST) else { return nil }
+    public func likeList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: .POST) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
@@ -278,8 +279,8 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func removeListLike<T: CustomStringConvertible>(username: String = "me", listID: T, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: .DELETE) else { return nil }
+    public func removeListLike<T: CustomStringConvertible>(username: String = "me", listID: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)/like", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
@@ -291,9 +292,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)/items", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -303,9 +304,9 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
+    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+        guard var request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)/items", authorization: true, HTTPMethod: .POST) else { return nil }
+        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
@@ -317,9 +318,9 @@ extension Users {
     
     🔒 OAuth Required
     */
-    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items/remove", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
+    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+        guard var request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)/items/remove", authorization: true, HTTPMethod: .POST) else { return nil }
+        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -331,8 +332,8 @@ extension Users {
     
     📄 Pagination
     */
-    public func getAllListComments(username: String = "me", listID: String, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/comments", authorization: false, HTTPMethod: .GET) else { return nil }
+    public func getAllListComments(username: String = "me", listID: String, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/\(username)/lists/\(listID)/comments", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -346,8 +347,8 @@ extension Users {
     
     🔒 OAuth Required
     */
-    public func followUser(username: String, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/follow", authorization: true, HTTPMethod: .POST) else { return nil }
+    public func followUser(username: String, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/\(username)/follow", authorization: true, HTTPMethod: .POST) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
@@ -357,8 +358,8 @@ extension Users {
      
      🔒 OAuth Required
      */
-    public func unfollowUser(username: String, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
-        guard let request = mutableRequestForURL("users/\(username)/follow", authorization: true, HTTPMethod: .DELETE) else { return nil }
+    public func unfollowUser(username: String, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequestForURL(path: "users/\(username)/follow", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
@@ -370,9 +371,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getFollowers(username: String = "me", completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getFollowers(username: String = "me", completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/followers", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/followers", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -384,9 +385,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getFollowing(username: String = "me", completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getFollowing(username: String = "me", completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/following", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/following", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -398,9 +399,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getFriends(username: String = "me", completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getFriends(username: String = "me", completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/friends", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/friends", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -415,7 +416,7 @@ extension Users {
     🔓 OAuth Optional
     📄 Pagination
     */
-    public func getWatchedHistory<T: CustomStringConvertible>(username: String = "me", type: WatchedType?, id: T?, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchedHistory<T: CustomStringConvertible>(username: String = "me", type: WatchedType?, id: T?, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         var path = "users/\(username)/history"
         
         if let type = type {
@@ -427,7 +428,7 @@ extension Users {
         }
         
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL(path, authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: path, authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -439,7 +440,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getUsersRatings(username: String = "me", type: Type, rating: NSNumber?, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getUsersRatings(username: String = "me", type: Type, rating: NSNumber?, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         
         var path = "users/\(username)/ratings/\(type.rawValue)"
         
@@ -448,7 +449,7 @@ extension Users {
         }
         
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL(path, authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: path, authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -460,9 +461,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatchlist(username: String = "me", type: Type, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchlist(username: String = "me", type: Type, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/watchlist/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -481,21 +482,21 @@ extension Users {
      
      🔓 OAuth Optional
      */
-    public func getWatching(username: String = "me", completion: watchingCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatching(username: String = "me", completion: watchingCompletionHandler) -> URLSessionDataTask? {
         // Should this function have a special completion handler? If it returns no data it is obvious that the user
         // is not watching anything, but checking a boolean in the completion block is also nice
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/watching", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/watching", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else { return completion(result: .Error(error: error)) }
             
             // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.Success ||
                     HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
-                        if let HTTPResponse = response as? NSHTTPURLResponse {
-                            completion(result: .Error(error: self.createTraktErrorWithStatusCode(HTTPResponse.statusCode)))
+                        if let HTTPResponse = response as? HTTPURLResponse {
+                            completion(result: .Error(error: self.createTraktErrorWithStatusCode(statusCode: HTTPResponse.statusCode)))
                         }
                         else {
                             completion(result: .Error(error: TraktKitNoDataError))
@@ -512,7 +513,7 @@ extension Users {
             guard let data = data else { return completion(result: .Error(error: TraktKitNoDataError)) }
             
             do {
-                guard let dict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? RawJSON else { return completion(result: .Error(error: nil)) }
+                guard let dict = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? RawJSON else { return completion(result: .Error(error: nil)) }
                     
                  completion(result: .CheckedIn(dict: dict))
             }
@@ -532,9 +533,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatched(username: String = "me", type: Type, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatched(username: String = "me", type: Type, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/watched/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/watched/\(type.rawValue)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -546,9 +547,9 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getStats(username: String = "me", completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
+    public func getStats(username: String = "me", completion: ResultCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/stats", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequestForURL(path: "users/\(username)/stats", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

@@ -415,7 +415,7 @@ public struct Comment: TraktProtocol {
     }
 }
 
-public extension SequenceType where Generator.Element == Comment {
+public extension Sequence where Iterator.Element == Comment {
     public func hideSpoilers() -> [Comment] {
         return self.filter { $0.spoiler == false }
     }
