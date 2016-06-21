@@ -18,6 +18,7 @@ extension TraktManager {
      **Note**: This returns a lot of data, so please only use this method if you need it all!
      
      */
+    @discardableResult
     public func getSeasons<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         guard var request = mutableRequestForURL(path: "shows/\(id)/seasons?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
@@ -28,6 +29,7 @@ extension TraktManager {
     /**
      Returns all episodes for a specific season of a show.
      */
+    @discardableResult
     public func getEpisodesForSeason<T: CustomStringConvertible>(showID id: T, season: NSNumber, extended: extendedType = .Min, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         guard var request = mutableRequestForURL(path: "shows/\(id)/seasons/\(season)?extended=\(extended.rawValue)", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
@@ -40,6 +42,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @discardableResult
     public func getAllSeasonComments<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         guard var request = mutableRequestForURL(path: "shows/\(id)/seasons/\(season)/comments", authorization: false, HTTPMethod: .GET) else {
             return nil
@@ -52,6 +55,7 @@ extension TraktManager {
     /**
      Returns rating (between 0 and 10) and distribution for a season.
     */
+    @discardableResult
     public func getSeasonRatings<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: ResultCompletionHandler) -> URLSessionDataTask? {
         guard var request = mutableRequestForURL(path: "shows/\(id)/seasons/\(season)/ratings", authorization: false, HTTPMethod: .GET) else {
             return nil
@@ -64,6 +68,7 @@ extension TraktManager {
     /**
      Returns lots of season stats.
      */
+    @discardableResult
     public func getSeasonStatistics<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: ResultCompletionHandler) -> URLSessionDataTask? {
         guard var request = mutableRequestForURL(path: "shows/\(id)/seasons/\(season)/stats", authorization: false, HTTPMethod: .GET) else {
             return nil
@@ -76,6 +81,7 @@ extension TraktManager {
     /**
      Returns all users watching this season right now.
      */
+    @discardableResult
     public func getUsersWatchingSeasons<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         guard var request = mutableRequestForURL(path: "shows/\(id)/seasons/\(season)/watching", authorization: false, HTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
