@@ -17,129 +17,6 @@ internal let userInfo = [
 ]
 let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit", code: -10, userInfo: userInfo)
 
-// Enums
-
-public enum Method: String {
-    /// Select one or more items. Success returns 200 status code.
-    case GET
-    /// Create a new item. Success returns 201 status code.
-    case POST
-    /// Update an item. Success returns 200 status code.
-    case PUT
-    /// Delete an item. Success returns 200 or 204 status code.
-    case DELETE
-}
-
-public struct StatusCodes {
-    /// Success
-    public static let Success = 200
-    /// Success - new resource created (POST)
-    public static let SuccessNewResourceCreated = 201
-    /// Success - no content to return (DELETE)
-    public static let SuccessNoContentToReturn = 204
-    /// Bad Request - request couldn't be parsed
-    public static let BadRequestion = 400
-    /// Unauthorized - OAuth must be provided
-    public static let Unauthorized = 401
-    /// Forbidden - invalid API key or unapproved app
-    public static let Forbidden = 403
-    /// Not Found - method exists, but no record found
-    public static let NotFound = 404
-    /// Method Not Found - method doesn't exist
-    public static let MethodNotFound = 405
-    /// Conflict - resource already created
-    public static let Conflict = 409
-    /// Precondition Failed - use application/json content type
-    public static let PreconditionFailed = 412
-    /// Unprocessable Entity - validation errors
-    public static let UnprocessableEntity = 422
-    /// Rate Limit Exceeded
-    public static let RateLimitExceeded = 429
-    /// Server Error
-    public static let ServerError = 500
-    /// Service Unavailable - server overloaded
-    public static let ServiceOverloaded = 503
-    /// Service Unavailable - Cloudflare error
-    public static let CloudflareError = 520
-    /// Service Unavailable - Cloudflare error
-    public static let CloudflareError2 = 521
-    /// Service Unavailable - Cloudflare error
-    public static let CloudflareError3 = 522
-}
-
-public enum SearchType: String {
-    case Movie = "movie"
-    case Show = "show"
-    case Episode = "episode"
-    case Person = "person"
-    case List = "list"
-}
-
-public enum LookupType: String {
-    case TraktMovie = "trakt-movie"
-    case TraktShow = "trakt-show"
-    case TraktEpisode = "trakt-episode"
-    case IMDB = "imdb"
-    case TMDB = "tmdb"
-    case TVDB = "tvdb"
-    case TVRage = "tvrage"
-}
-
-public enum Type: String, CustomStringConvertible {
-    case Movies = "movies"
-    case Shows = "shows"
-    
-    public var description: String {
-        return self.rawValue
-    }
-}
-
-public enum WatchedType: String, CustomStringConvertible {
-    case Movies = "movies"
-    case Shows = "shows"
-    case Seasons = "seasons"
-    case Episodes = "episodes"
-    
-    public var description: String {
-        return self.rawValue
-    }
-}
-
-public enum Type2: String, CustomStringConvertible {
-    case All = "all"
-    case Movies = "movies"
-    case Shows = "shows"
-    case Seasons = "seasons"
-    case Episodes = "episodes"
-    case Lists = "lists"
-    
-    public var description: String {
-        return self.rawValue
-    }
-}
-
-public enum CommentType: String {
-    case All = "all"
-    case Reviews = "reviews"
-    case Shouts = "shouts"
-}
-
-public enum ExtendedType: String, CustomStringConvertible {
-    case Min = "min"
-    case Images = "images"
-    case Full = "full"
-    case FullAndImages = "full,images"
-    case Metadata = "metadata"
-    case Episodes = "episodes" // For getting all seasons and episodes
-    case FullAndEpisodes = "full,episodes"
-    
-    public var description: String {
-        get {
-            return self.rawValue
-        }
-    }
-}
-
 /// Generic result type
 public enum ObjectResultType<T: TraktProtocol> {
     case Success(object: T)
@@ -288,6 +165,10 @@ public class TraktManager {
     
     // Sync
     public typealias LastActivitiesCompletionHandler = ((result: ObjectResultType<TraktLastActivities>) -> Void)
+    
+    // Users
+    public typealias ListsCompletionHandler         = ((result: ObjectsResultType<TraktList>) -> Void)
+    public typealias ListItemCompletionHandler      = ((result: ObjectsResultType<TraktListItem>) -> Void)
     
     // MARK: - Lifecycle
     

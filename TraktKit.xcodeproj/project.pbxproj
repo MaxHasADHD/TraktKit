@@ -59,6 +59,10 @@
 		A77340641C079D2500A69EA1 /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340631C079D2500A69EA1 /* Seasons.swift */; };
 		A77340661C079D2D00A69EA1 /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340651C079D2D00A69EA1 /* Episodes.swift */; };
 		A773406A1C08D82D00A69EA1 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340691C08D82D00A69EA1 /* SharedFunctions.swift */; };
+		A77602BB1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
+		A77602BC1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
+		A77602BE1D1BB66D000FA8C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
+		A77602BF1D1BB66D000FA8C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
 		A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
@@ -132,6 +136,8 @@
 		A77340631C079D2500A69EA1 /* Seasons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seasons.swift; sourceTree = "<group>"; };
 		A77340651C079D2D00A69EA1 /* Episodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episodes.swift; sourceTree = "<group>"; };
 		A77340691C08D82D00A69EA1 /* SharedFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctions.swift; sourceTree = "<group>"; };
+		A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktListItem.swift; sourceTree = "<group>"; };
+		A77602BD1D1BB66D000FA8C4 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A77E86491B29F09100EABC2D /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77E864D1B29F09100EABC2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77E864E1B29F09100EABC2D /* TraktKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKit.h; sourceTree = "<group>"; };
@@ -318,6 +324,7 @@
 				A7CC79A01BF7C36E00A43AD3 /* Sync.swift */,
 				A7AE55AD1BD4560700A5DFFB /* Users.swift */,
 				A77340691C08D82D00A69EA1 /* SharedFunctions.swift */,
+				A77602BD1D1BB66D000FA8C4 /* Enums.swift */,
 			);
 			name = Wrapper;
 			sourceTree = "<group>";
@@ -405,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				A7AF98951CBF50DE00744566 /* TraktList.swift */,
+				A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */,
 			);
 			name = List;
 			sourceTree = "<group>";
@@ -590,10 +598,12 @@
 				A7582BEB1CCA6FE900B3CF63 /* Structures.swift in Sources */,
 				A7582BE71CCA6FDB00B3CF63 /* Episodes.swift in Sources */,
 				A7582BF71CCA6FE900B3CF63 /* TraktWatchedEpisodes.swift in Sources */,
+				A77602BF1D1BB66D000FA8C4 /* Enums.swift in Sources */,
 				A7582BF31CCA6FE900B3CF63 /* TraktEpisode.swift in Sources */,
 				A7582BED1CCA6FE900B3CF63 /* TraktImages.swift in Sources */,
 				A723DAAE1B917FE300CA217C /* Movies.swift in Sources */,
 				A7582BE01CCA6FDB00B3CF63 /* Genres.swift in Sources */,
+				A77602BC1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */,
 				A7582BF01CCA6FE900B3CF63 /* TraktAnticipatedShow.swift in Sources */,
 				A7582C071CCA6FF600B3CF63 /* TraktCrewMember.swift in Sources */,
 				A7582C0C1CCA6FF600B3CF63 /* Extensions.swift in Sources */,
@@ -648,10 +658,12 @@
 				A773405E1C07884B00A69EA1 /* Shows.swift in Sources */,
 				A77340661C079D2D00A69EA1 /* Episodes.swift in Sources */,
 				A7AF987A1CBF495300744566 /* TraktWatchedShow.swift in Sources */,
+				A77602BE1D1BB66D000FA8C4 /* Enums.swift in Sources */,
 				A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */,
 				A7AF98741CBF48D900744566 /* TraktSeason.swift in Sources */,
 				A7AF986E1CBF484B00744566 /* TraktMostShow.swift in Sources */,
 				A7AF98931CBF4F7600744566 /* TraktCastMember.swift in Sources */,
+				A77602BB1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */,
 				A7AF98861CBF4A4000744566 /* TraktWatchedMovie.swift in Sources */,
 				A77340641C079D2500A69EA1 /* Seasons.swift in Sources */,
 				A7AF98801CBF49E700744566 /* TraktTrendingMovie.swift in Sources */,

@@ -176,7 +176,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getCustomLists(username: String = "me", completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getCustomLists(username: String = "me", completion: ListsCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/lists", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
@@ -291,9 +291,15 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, type: [ListItemType]? = nil, completion: ListItemCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard let request = mutableRequestForURL("users/\(username)/lists/\(listID)/items", authorization: authorization, HTTPMethod: .GET) else { return nil }
+        var path = "users/\(username)/lists/\(listID)/items"
+        
+        if let type = type {
+            let value = type.map { $0.rawValue }.joinWithSeparator(",")
+            path += "/\(value)"
+        }
+        guard let request = mutableRequestForURL(path, authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -460,7 +466,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatchlist(username: String = "me", type: Type, extended: ExtendedType = .Min, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchlist(username: String = "me", type: WatchedType, extended: ExtendedType = .Min, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)?extended=\(extended)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         

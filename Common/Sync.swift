@@ -306,7 +306,7 @@ extension TraktManager {
     /**
      Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.
      */
-    public func getWatchlist(watchType: WatchedType, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchlist(watchType: WatchedType, completion: ListItemCompletionHandler) -> NSURLSessionDataTask? {
         guard let request = mutableRequestForURL("sync/watchlist", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
