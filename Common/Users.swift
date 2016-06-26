@@ -291,11 +291,11 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, type: [ListItemType]? = nil, completion: ListItemCompletionHandler) -> NSURLSessionDataTask? {
+    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, type: [ListItemType], completion: ListItemCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
         var path = "users/\(username)/lists/\(listID)/items"
         
-        if let type = type {
+        if type.isEmpty == false {
             let value = type.map { $0.rawValue }.joinWithSeparator(",")
             path += "/\(value)"
         }
@@ -466,7 +466,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatchlist(username: String = "me", type: WatchedType, extended: ExtendedType = .Min, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatchlist(username: String = "me", type: WatchedType, extended: ExtendedType = .Min, completion: ListItemCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/watchlist/\(type.rawValue)?extended=\(extended)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         
@@ -537,7 +537,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getWatched(username: String = "me", type: Type, extended: ExtendedType = .Min, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getWatched(username: String = "me", type: Type, extended: ExtendedType = .Min, completion: WatchedMoviesCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequestForURL("users/\(username)/watched/\(type.rawValue)?extended=\(extended)", authorization: authorization, HTTPMethod: .GET) else { return nil }
         request.timeoutInterval = 60*2 // 2 minutes
