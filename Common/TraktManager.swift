@@ -167,6 +167,7 @@ public class TraktManager {
     public typealias LastActivitiesCompletionHandler = ((result: ObjectResultType<TraktLastActivities>) -> Void)
     
     // Users
+    public typealias ListCompletionHandler          = ((result: ObjectResultType<TraktList>) -> Void)
     public typealias ListsCompletionHandler         = ((result: ObjectsResultType<TraktList>) -> Void)
     public typealias ListItemCompletionHandler      = ((result: ObjectsResultType<TraktListItem>) -> Void)
     
@@ -369,7 +370,7 @@ public class TraktManager {
             }
         }
         
-        let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
+        let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
         
         return dataTask
     }
@@ -407,7 +408,7 @@ public class TraktManager {
             }
         }
         
-        let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
+        let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
         
         return dataTask
     }
@@ -425,7 +426,7 @@ public class TraktManager {
             }
         }
         
-        let dataTask = performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: aCompletion)
+        let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
         
         return dataTask
     }

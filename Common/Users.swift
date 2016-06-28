@@ -194,7 +194,7 @@ extension Users {
      - parameter displayNumbers: Should each item be numbered?
      - parameter allowComments: Are comments allowed?
      */
-    public func createCustomList(listName listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ResultCompletionHandler) throws -> NSURLSessionDataTask? {
+    public func createCustomList(listName listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ListCompletionHandler) throws -> NSURLSessionDataTask? {
         
         // JSON
         let json = [
@@ -291,7 +291,7 @@ extension Users {
     
     🔓 OAuth Optional
     */
-    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, type: [ListItemType], completion: ListItemCompletionHandler) -> NSURLSessionDataTask? {
+    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, type: [ListItemType], extended: ExtendedType = .Min, completion: ListItemCompletionHandler) -> NSURLSessionDataTask? {
         let authorization = username == "me" ? true : false
         var path = "users/\(username)/lists/\(listID)/items"
         
@@ -299,6 +299,8 @@ extension Users {
             let value = type.map { $0.rawValue }.joinWithSeparator(",")
             path += "/\(value)"
         }
+        
+        path += "?extended=\(extended)"
         guard let request = mutableRequestForURL(path, authorization: authorization, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
