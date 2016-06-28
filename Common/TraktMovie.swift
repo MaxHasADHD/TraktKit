@@ -48,8 +48,8 @@ public struct TraktMovie: TraktProtocol {
         self.overview           = json["overview"] as? String
         self.released           = NSDate.dateFromString(json["released"])
         self.runtime            = json["runtime"] as? Int
-        self.trailer            = NSURL(string: json["trailer"] as? String ?? "")
-        self.homepage           = NSURL(string: json["homepage"] as? String ?? "")
+        self.trailer            = (json["trailer"] as? String)?.URL()
+        self.homepage           = (json["homepage"] as? String)?.URL()
         self.rating             = json["rating"] as? Double
         self.votes              = json["votes"] as? Int
         self.updatedAt          = NSDate.dateFromString(json["updated_at"])
@@ -61,7 +61,8 @@ public struct TraktMovie: TraktProtocol {
         // Extended: Images
         if let imageJSON = json["images"] as? RawJSON {
             images = TraktImages(json: imageJSON)
-        } else {
+        }
+        else {
             images = nil
         }
     }

@@ -13,3 +13,11 @@ extension String: CustomStringConvertible {
         return self
     }
 }
+
+extension String {
+    func URL() -> NSURL? {
+        guard self.isEmpty == false else { return nil }
+        
+        return NSURL(string: self)
+    }
+}
