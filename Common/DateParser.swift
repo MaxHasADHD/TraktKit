@@ -28,3 +28,15 @@ internal extension NSDate {
         return ISO8601DateFormatter.date(from: dateString)
     }
 }
+
+// Private
+
+private let UTCFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+private let ISO8601DateFormatter: NSDateFormatter = {
+    let dateFormatter = NSDateFormatter()
+    let enUSPOSIXLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+    dateFormatter.locale = enUSPOSIXLocale
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    return dateFormatter
+}()
