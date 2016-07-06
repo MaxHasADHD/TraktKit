@@ -17,7 +17,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func postComment(movie movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: SuccessCompletionHandler) throws -> NSURLSessionDataTask? {
+    public func postComment(movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -34,11 +34,11 @@ extension TraktManager {
             json["episode"] = episode
         }
         
-        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard let request = mutableRequestForURL("comments", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = jsonData
+        guard var request = mutableRequestForURL("comments", authorization: true, HTTPMethod: .POST) else { return nil }
+        request.httpBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completionHandler)
     }
@@ -46,7 +46,7 @@ extension TraktManager {
     /**
      Returns a single comment and indicates how many replies it has. Use **GET** `/comments/:id/replies` to get the actual replies.
      */
-    public func getComment<T: CustomStringConvertible>(commentID id: T, completion: ResultCompletionHandler) -> NSURLSessionDataTask? {
+    public func getComment<T: CustomStringConvertible>(commentID id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -57,7 +57,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: ResultCompletionHandler) throws -> NSURLSessionDataTask? {
+    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         let json: RawJSON = [
@@ -65,11 +65,11 @@ extension TraktManager {
             "spoiler": isSpoiler,
             ]
         
-        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .PUT) else { return nil }
-        request.HTTPBody = jsonData
+        guard var request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .PUT) else { return nil }
+        request.httpBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -79,7 +79,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
+    public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
@@ -92,7 +92,7 @@ extension TraktManager {
      
      📄 Pagination
      */
-    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: ArrayCompletionHandler) -> NSURLSessionDataTask? {
+    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -103,7 +103,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: ResultCompletionHandler) throws -> NSURLSessionDataTask? {
+    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         let json: RawJSON = [
@@ -111,11 +111,11 @@ extension TraktManager {
             "spoiler": isSpoiler,
             ]
     
-        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = jsonData
+        guard var request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: .POST) else { return nil }
+        request.httpBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -127,7 +127,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
+    public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .POST) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
@@ -138,7 +138,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
-    public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> NSURLSessionDataTask? {
+    public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)

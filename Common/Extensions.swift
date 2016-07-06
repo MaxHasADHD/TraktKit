@@ -15,9 +15,9 @@ extension String: CustomStringConvertible {
 }
 
 extension String {
-    func URL() -> NSURL? {
+    func toURL() -> URL? {
         guard self.isEmpty == false else { return nil }
         
-        return NSURL(string: self)
+        return URL(string: self)
     }
 }

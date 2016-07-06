@@ -15,7 +15,7 @@ extension TraktManager {
      
      **Note**: If a checkin is already in progress, a `409` HTTP status code will returned. The response will contain an `expires_at` timestamp which is when the user can check in again.
      */
-    public func checkIn(movie movie: RawJSON?, episode: RawJSON?, completionHandler: SuccessCompletionHandler) throws -> NSURLSessionDataTask? {
+    public func checkIn(movie: RawJSON?, episode: RawJSON?, completionHandler: SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -30,16 +30,16 @@ extension TraktManager {
             json["episode"] = episode
         }
         
-        let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: NSJSONWritingOptions(rawValue: 0))
+        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
-        request.HTTPBody = jsonData
+        guard var request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
+        request.httpBody = jsonData
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else { return completionHandler(result: .Fail) }
             
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
                     HTTPResponse.statusCode == StatusCodes.Conflict) else { return completionHandler(result: .Fail) }
             
@@ -60,15 +60,15 @@ extension TraktManager {
     /**
      Removes any active checkins, no need to provide a specific item.
      */
-    public func deleteActiveCheckins(completionHandler: SuccessCompletionHandler) -> NSURLSessionDataTask? {
+    public func deleteActiveCheckins(completionHandler: SuccessCompletionHandler) -> URLSessionDataTask? {
         // Request
         guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else { return nil }
         
-        let dataTask = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+        let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else { return completionHandler(result: .Fail) }
             
             // Check response
-            guard let HTTPResponse = response as? NSHTTPURLResponse
+            guard let HTTPResponse = response as? HTTPURLResponse
                 where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .Success) }
             completionHandler(result: .Fail)
         }

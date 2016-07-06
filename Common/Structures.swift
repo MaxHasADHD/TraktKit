@@ -14,7 +14,7 @@ public protocol TraktProtocol {
     init?(json: RawJSON?) // Min data must be present not to fail
 }
 
-func initEach<T: TraktProtocol>(dictionaries: [RawJSON]) -> [T] {
+func initEach<T: TraktProtocol>(_ dictionaries: [RawJSON]) -> [T] {
     var array = [T]()
     for dictionary in dictionaries {
         if let object = T(json: dictionary) {

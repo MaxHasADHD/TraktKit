@@ -19,8 +19,8 @@ public struct TraktMovie: TraktProtocol {
     public let overview: String?
     public let released: NSDate?
     public let runtime: Int?
-    public let trailer: NSURL?
-    public let homepage: NSURL?
+    public let trailer: URL?
+    public let homepage: URL?
     public let rating: Double?
     public let votes: Int?
     public let updatedAt: NSDate?
@@ -48,8 +48,8 @@ public struct TraktMovie: TraktProtocol {
         self.overview           = json["overview"] as? String
         self.released           = NSDate.dateFromString(json["released"] as? String)
         self.runtime            = json["runtime"] as? Int
-        self.trailer            = (json["trailer"] as? String)?.URL()
-        self.homepage           = (json["homepage"] as? String)?.URL()
+        self.trailer            = (json["trailer"] as? String)?.toURL()
+        self.homepage           = (json["homepage"] as? String)?.toURL()
         self.rating             = json["rating"] as? Double
         self.votes              = json["votes"] as? Int
         self.updatedAt          = NSDate.dateFromString(json["updated_at"] as? String)

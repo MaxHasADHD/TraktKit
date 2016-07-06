@@ -22,7 +22,7 @@ let kSecMatchLimitOneValue = kSecMatchLimitOne as String
 public class MLKeychain {
     
     class func setString(value: String, forKey key: String) -> Bool {
-        let data = value.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        let data = value.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
         let keychainQuery = [
             kSecClassValue: kSecClassGenericPasswordValue,
@@ -30,13 +30,13 @@ public class MLKeychain {
             kSecValueDataValue: data
         ]
         
-        SecItemDelete(keychainQuery as CFDictionaryRef)
+        SecItemDelete(keychainQuery as CFDictionary)
         
-        let status: OSStatus = SecItemAdd(keychainQuery as CFDictionaryRef, nil)
+        let status: OSStatus = SecItemAdd(keychainQuery as CFDictionary, nil)
         return status == noErr
     }
     
-    class func loadData(forKey key: String) -> NSData? {
+    class func loadData(forKey key: String) -> Data? {
         let keychainQuery = [
             kSecClassValue: kSecClassGenericPasswordValue,
             kSecAttrAccountValue: key,
@@ -46,25 +46,26 @@ public class MLKeychain {
         
         var dataTypeRef: AnyObject?
         
-        let status: OSStatus = withUnsafeMutablePointer(&dataTypeRef) { SecItemCopyMatching(keychainQuery as CFDictionaryRef, UnsafeMutablePointer($0)) }
+        let status: OSStatus = withUnsafeMutablePointer(&dataTypeRef) { SecItemCopyMatching(keychainQuery as CFDictionary, UnsafeMutablePointer($0)) }
         
         if status == -34018 {
-            return dataTypeRef as? NSData
+            return dataTypeRef as? Data
         }
         
         if status == noErr {
-            return dataTypeRef as? NSData
+            return dataTypeRef as? Data
         } else {
             return nil
         }
     }
     
+    @discardableResult
     class func deleteItem(forKey key: String) -> Bool {
         let query = [
             kSecClass as String       : kSecClassGenericPassword,
             kSecAttrAccount as String : key ]
         
-        let status: OSStatus = SecItemDelete(query as CFDictionaryRef)
+        let status: OSStatus = SecItemDelete(query as CFDictionary)
         
         return status == noErr
     }
@@ -72,7 +73,7 @@ public class MLKeychain {
     public class func clear() -> Bool {
         let query = [ kSecClass as String : kSecClassGenericPassword ]
         
-        let status: OSStatus = SecItemDelete(query as CFDictionaryRef)
+        let status: OSStatus = SecItemDelete(query as CFDictionary)
         
         return status == noErr
     }

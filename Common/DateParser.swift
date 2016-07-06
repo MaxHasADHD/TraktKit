@@ -8,12 +8,12 @@
 
 import Foundation
 
-internal let calendar = NSCalendar.currentCalendar()
-internal let dateFormatter = NSDateFormatter()
+internal let calendar = Calendar.current
+internal let dateFormatter = DateFormatter()
 
-internal let ISO8601DateFormatter: NSDateFormatter = {
-    let dateFormatter = NSDateFormatter()
-    let enUSPOSIXLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+internal let ISO8601DateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    let enUSPOSIXLocale = Locale(localeIdentifier: "en_US_POSIX")
     dateFormatter.locale = enUSPOSIXLocale
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     return dateFormatter
@@ -23,8 +23,8 @@ internal extension NSDate {
     
     // MARK: - Class
     
-    class func dateFromString(string: AnyObject?) -> NSDate? {
+    class func dateFromString(_ string: AnyObject?) -> NSDate? {
         guard let dateString = string as? String else { return nil }
-        return ISO8601DateFormatter.dateFromString(dateString)
+        return ISO8601DateFormatter.date(from: dateString)
     }
 }

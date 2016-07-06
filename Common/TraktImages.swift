@@ -32,15 +32,15 @@ public struct TraktImages: TraktProtocol {
 }
 
 public struct TraktImage: TraktProtocol {
-    public let full: NSURL?
-    public let medium: NSURL?
-    public let thumb: NSURL?
+    public let full: URL?
+    public let medium: URL?
+    public let thumb: URL?
     
     // Initialize
     public init?(json: RawJSON?) {
         guard let json = json else { return nil }
-        full    = (json["full"] as? String)?.URL()
-        medium  = (json["medium"] as? String)?.URL()
-        thumb   = (json["thumb"] as? String)?.URL()
+        full    = (json["full"] as? String)?.toURL()
+        medium  = (json["medium"] as? String)?.toURL()
+        thumb   = (json["thumb"] as? String)?.toURL()
     }
 }

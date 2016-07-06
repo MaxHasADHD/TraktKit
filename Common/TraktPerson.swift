@@ -19,7 +19,7 @@ public struct Person: TraktProtocol {
     public let birthday: NSDate?
     public let death: NSDate?
     public let birthplace: String?
-    public let homepage: NSURL?
+    public let homepage: URL?
     
     // Extended: Images
     public let images: TraktImages?
@@ -39,7 +39,7 @@ public struct Person: TraktProtocol {
         birthday    = NSDate.dateFromString(json["birthday"] as? String)
         death       = NSDate.dateFromString(json["death"] as? String)
         birthplace  = json["birthplace"] as? String
-        homepage    = (json["homepage"] as? String)?.URL()
+        homepage    = (json["homepage"] as? String)?.toURL()
     
         // Extended: Images
         if let imageJSON = json["images"] as? RawJSON {
