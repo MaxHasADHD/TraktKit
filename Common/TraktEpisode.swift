@@ -19,8 +19,8 @@ public struct TraktEpisode: TraktProtocol {
     public let overview: String?
     public let rating: Double?
     public let votes: Int?
-    public let firstAired: NSDate?
-    public let updatedAt: NSDate?
+    public let firstAired: Date?
+    public let updatedAt: Date?
     public let availableTranslations: [RawJSON]?
     
     // Initialize
@@ -41,8 +41,8 @@ public struct TraktEpisode: TraktProtocol {
         self.overview   = json["overview"] as? String
         self.rating     = json["rating"] as? Double
         self.votes      = json["votes"] as? Int
-        self.firstAired = NSDate.dateFromString(json["first_aired"] as? String)
-        self.updatedAt  = NSDate.dateFromString(json["updated_at"] as? String)
+        self.firstAired = Date.dateFromString(json["first_aired"] as? String)
+        self.updatedAt  = Date.dateFromString(json["updated_at"] as? String)
         self.availableTranslations = []
     }
 }

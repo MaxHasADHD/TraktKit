@@ -11,7 +11,7 @@ import Foundation
 public struct Comment: TraktProtocol {
     public let id: NSNumber
     public let parentID: NSNumber
-    public let createdAt: NSDate // TODO: Make NSDate
+    public let createdAt: Date // TODO: Make Date
     public let comment: String
     public let spoiler: Bool
     public let review: Bool
@@ -24,7 +24,7 @@ public struct Comment: TraktProtocol {
         guard let json = json,
             id = json["id"] as? NSNumber,
             parentID = json["parent_id"] as? NSNumber,
-            createdAt = NSDate.dateFromString(json["created_at"] as? String),
+            createdAt = Date.dateFromString(json["created_at"] as? String),
             comment = json["comment"] as? String,
             spoiler = json["spoiler"] as? Bool,
             review = json["review"] as? Bool,

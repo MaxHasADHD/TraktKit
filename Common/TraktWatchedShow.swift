@@ -11,7 +11,7 @@ import Foundation
 public struct TraktWatchedShow: TraktProtocol {
     // Extended: Min
     public let plays: Int // Total number of plays
-    public let lastWatchedAt: NSDate
+    public let lastWatchedAt: Date
     public let show: TraktShow
     public let seasons: [TraktWatchedSeason]
     
@@ -19,7 +19,7 @@ public struct TraktWatchedShow: TraktProtocol {
     public init?(json: RawJSON?) {
         guard let json = json,
             plays = json["plays"] as? Int,
-            lastWatchedAt = NSDate.dateFromString(json["last_watched_at"] as? String),
+            lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String),
             show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
         self.plays          = plays

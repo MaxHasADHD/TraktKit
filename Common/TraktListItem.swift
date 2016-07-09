@@ -11,7 +11,7 @@ import Foundation
 public struct TraktListItem: TraktProtocol {
     
     public let rank: NSNumber
-    public let listedAt: NSDate
+    public let listedAt: Date
     public let type: String
     public var show: TraktShow? = nil
     public var season: TraktSeason? = nil
@@ -23,7 +23,7 @@ public struct TraktListItem: TraktProtocol {
     public init?(json: RawJSON?) {
         guard let json = json,
             rank = json["rank"] as? NSNumber,
-            listedAt = NSDate.dateFromString(json["listed_at"]),
+            listedAt = Date.dateFromString(json["listed_at"]),
             type = json["type"] as? String else { return nil }
         
         self.rank = rank

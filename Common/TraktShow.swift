@@ -16,7 +16,7 @@ public struct TraktShow: TraktProtocol {
     
     // Extended: Full
     public let overview: String?
-    public let firstAired: NSDate?
+    public let firstAired: Date?
     public let airs: RawJSON? // TODO: Make as type
     public let runtime: Int?
     public let certification: String?
@@ -27,7 +27,7 @@ public struct TraktShow: TraktProtocol {
     public let status: String?
     public let rating: Double?
     public let votes: Int?
-    public let updatedAt: NSDate?
+    public let updatedAt: Date?
     public let language: String?
     public let availableTranslations: [String]?
     public let genres: [String]?
@@ -48,7 +48,7 @@ public struct TraktShow: TraktProtocol {
         
         // Extended: Full
         self.overview       = json["overview"] as? String
-        self.firstAired     = NSDate.dateFromString(json["first_aired"])
+        self.firstAired     = Date.dateFromString(json["first_aired"])
         self.airs           = json["airs"] as? RawJSON
         self.runtime        = json["runtime"] as? Int
         self.certification  = json["certification"] as? String
@@ -59,7 +59,7 @@ public struct TraktShow: TraktProtocol {
         self.status         = json["status"] as? String
         self.rating         = json["rating"] as? Double
         self.votes          = json["votes"] as? Int
-        self.updatedAt      = NSDate.dateFromString(json["updated_at"])
+        self.updatedAt      = Date.dateFromString(json["updated_at"])
         self.language       = json["language"] as? String
         self.availableTranslations = json["available_translations"] as? [String]
         self.genres         = json["genres"] as? [String]

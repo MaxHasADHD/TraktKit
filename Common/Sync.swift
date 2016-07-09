@@ -259,7 +259,7 @@ extension TraktManager {
     @discardableResult
     public func addRatings(rating: NSNumber, ratedAt: String, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
         
-        // TODO: Have ratedAt be of NSDate type and convert to a UTC date string
+        // TODO: Have ratedAt be of Date type and convert to a UTC date string
         
         // JSON
         var json = RawJSON()

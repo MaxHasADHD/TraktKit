@@ -12,14 +12,14 @@ public struct TraktList: TraktProtocol {
     
     public let allowComments: Bool
     public let commentCount: NSNumber
-    public let createdAt: NSDate
+    public let createdAt: Date
     public let description: String
     public let displayNumbers: Bool
     public var itemCount: NSNumber
     public var likes: NSNumber
     public let name: String
     public let privacy: String // TODO: Maybe make a type?
-    public var updatedAt: NSDate
+    public var updatedAt: Date
     
     public let id: ID
     
@@ -31,8 +31,8 @@ public struct TraktList: TraktProtocol {
             privacy = json["privacy"] as? String,
             displayNumbers = json["display_numbers"] as? Bool,
             allowComments = json["allow_comments"] as? Bool,
-            createdAt = NSDate.dateFromString(json["created_at"]),
-            updatedAt = NSDate.dateFromString(json["updated_at"]),
+            createdAt = Date.dateFromString(json["created_at"]),
+            updatedAt = Date.dateFromString(json["updated_at"]),
             itemCount = json["item_count"] as? NSNumber,
             commentCount = json["comment_count"] as? NSNumber,
             likes = json["likes"] as? NSNumber,

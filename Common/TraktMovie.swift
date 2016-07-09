@@ -17,13 +17,13 @@ public struct TraktMovie: TraktProtocol {
     // Extended: Full
     public let tagline: String?
     public let overview: String?
-    public let released: NSDate?
+    public let released: Date?
     public let runtime: Int?
     public let trailer: URL?
     public let homepage: URL?
     public let rating: Double?
     public let votes: Int?
-    public let updatedAt: NSDate?
+    public let updatedAt: Date?
     public let language: String?
     public let availableTranslations: [String]?
     public let genres: [String]?
@@ -47,7 +47,7 @@ public struct TraktMovie: TraktProtocol {
         self.tagline            = json["overview"] as? String
         self.overview           = json["overview"] as? String
         if let released = json["released"] as? String {
-            self.released = NSDate.dateFromString(released)
+            self.released = Date.dateFromString(released)
         }
         else {
             self.released = nil
@@ -58,7 +58,7 @@ public struct TraktMovie: TraktProtocol {
         self.rating             = json["rating"] as? Double
         self.votes              = json["votes"] as? Int
         if let updatedAt = json["updated_at"] as? String {
-            self.updatedAt = NSDate.dateFromString(updatedAt)
+            self.updatedAt = Date.dateFromString(updatedAt)
         }
         else {
             self.updatedAt = nil

@@ -16,8 +16,8 @@ public struct Person: TraktProtocol {
     
     // Extended: Full
     public let biography: String?
-    public let birthday: NSDate?
-    public let death: NSDate?
+    public let birthday: Date?
+    public let death: Date?
     public let birthplace: String?
     public let homepage: URL?
     
@@ -36,8 +36,8 @@ public struct Person: TraktProtocol {
         
         // Extended: Full
         biography   = json["biography"] as? String
-        birthday    = NSDate.dateFromString(json["birthday"] as? String)
-        death       = NSDate.dateFromString(json["death"] as? String)
+        birthday    = Date.dateFromString(json["birthday"] as? String)
+        death       = Date.dateFromString(json["death"] as? String)
         birthplace  = json["birthplace"] as? String
         homepage    = (json["homepage"] as? String)?.toURL()
     

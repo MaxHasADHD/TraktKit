@@ -12,11 +12,11 @@ import Foundation
 internal let calendar = Calendar.current
 internal let dateFormatter = DateFormatter()
 
-internal extension NSDate {
+internal extension Date {
     
     // MARK: - Class
     
-    class func dateFromString(_ string: AnyObject?) -> NSDate? {
+    static func dateFromString(_ string: AnyObject?) -> Date? {
         guard let dateString = string as? String else { return nil }
         
         let count = dateString.characters.count

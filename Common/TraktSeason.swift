@@ -17,7 +17,7 @@ public struct TraktSeason: TraktProtocol {
     public let episodeCount: Int
     public let airedEpisodes: Int
     public let overview: String
-    public let firstAired: NSDate
+    public let firstAired: Date
     
     // Extended: Full
     public let episodes: [TraktEpisode]
@@ -31,7 +31,7 @@ public struct TraktSeason: TraktProtocol {
             votes = json["votes"] as? Int,
             episodeCount = json["episode_count"] as? Int,
             airedEpisodes = json["aired_episodes"] as? Int,
-            firstAired = NSDate.dateFromString(json["first_aired"] as? String) else { return nil }
+            firstAired = Date.dateFromString(json["first_aired"] as? String) else { return nil }
         
         self.number = number
         self.ids    = ids
