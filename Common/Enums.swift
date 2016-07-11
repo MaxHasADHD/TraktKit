@@ -117,6 +117,41 @@ public enum CommentType: String {
 }
 
 /// Extended information
+/*public struct ExtendedType: OptionSet {
+    public let rawValue: Int
+    
+    public init(rawValue: Int) { self.rawValue = rawValue }
+    
+    /// Least amount of info
+    public static let Min      = ExtendedType(rawValue: 0)
+    /// Images for Show, Episode, or Movie
+    public static let Images   = ExtendedType(rawValue: 1)
+    /// All information, excluding images
+    public static let Full     = ExtendedType(rawValue: 2)
+    /// Collection only. Additional video and audio info.
+    public static let Metadata = ExtendedType(rawValue: 3)
+    /// Get all seasons and episodes
+    public static let Episodes = ExtendedType(rawValue: 4)
+    
+    func value() -> String {
+        switch self.rawValue {
+        case 0:
+            return "min"
+        case 1:
+            return "images"
+        case 2:
+            return "full"
+        case 3:
+            return "metadata"
+        case 4:
+            return "episodes"
+        default:
+            return ""
+        }
+    }
+}*/
+
+/// Extended information
 public enum ExtendedType: String, CustomStringConvertible {
     /// Least amount of info
     case Min = "min"
@@ -124,18 +159,21 @@ public enum ExtendedType: String, CustomStringConvertible {
     case Images = "images"
     /// All information, excluding images
     case Full = "full"
-    /// All information, including images
-    case FullAndImages = "full,images"
+    /// Collection only. Additional video and audio info.
     case Metadata = "metadata"
     /// Get all seasons and episodes
     case Episodes = "episodes"
-    /// Get full information about all episodes
-    case FullAndEpisodes = "full,episodes"
     
     public var description: String {
         get {
             return self.rawValue
         }
+    }
+}
+
+extension Sequence where Iterator.Element: CustomStringConvertible {
+    func queryString() -> String {
+        return self.map { $0.description }.joined(separator: ",") // Search with multiple types
     }
 }
 

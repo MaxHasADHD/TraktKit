@@ -29,16 +29,18 @@ extension TraktManager {
         
         if let movie = movie {
             json["movie"] = movie
-        } else if let show = show {
+        }
+        else if let show = show {
             json["show"] = show
-        } else if let episode = episode {
+        }
+        else if let episode = episode {
             json["episode"] = episode
         }
         
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard var request = mutableRequestForURL("comments", authorization: true, HTTPMethod: .POST) else { return nil }
+        guard var request = mutableRequest(forPath: "comments", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completionHandler)
@@ -49,7 +51,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getComment<T: CustomStringConvertible>(commentID id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "comments/\(id)", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -71,7 +73,7 @@ extension TraktManager {
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard var request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .PUT) else { return nil }
+        guard var request = mutableRequest(forPath: "comments/\(id)", withQuery: [:], isAuthorized: true, withHTTPMethod: .PUT) else { return nil }
         request.httpBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -84,7 +86,7 @@ extension TraktManager {
      */
     @discardableResult
     public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)", authorization: true, HTTPMethod: .DELETE) else { return nil }
+        guard let request = mutableRequest(forPath: "comments/\(id)", withQuery: [:], isAuthorized: true, withHTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
@@ -98,7 +100,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)/replies", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "comments/\(id)/replies", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -120,7 +122,7 @@ extension TraktManager {
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard var request = mutableRequestForURL("comments/\(id)/replies", authorization: true, HTTPMethod: .POST) else { return nil }
+        guard var request = mutableRequest(forPath: "comments/\(id)/replies", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = jsonData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -135,7 +137,7 @@ extension TraktManager {
      */
     @discardableResult
     public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .POST) else { return nil }
+        guard let request = mutableRequest(forPath: "comments/\(id)/like", withQuery: [:], isAuthorized: false, withHTTPMethod: .POST) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
@@ -147,7 +149,7 @@ extension TraktManager {
      */
     @discardableResult
     public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("comments/\(id)/like", authorization: false, HTTPMethod: .DELETE) else { return nil }
+        guard let request = mutableRequest(forPath: "comments/\(id)/like", withQuery: [:], isAuthorized: false, withHTTPMethod: .DELETE) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }

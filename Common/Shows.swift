@@ -108,7 +108,7 @@ extension TraktManager {
      **Note**: When getting `full` extended info, the `status` field can have a value of `returning series` (airing right now), `in production` (airing soon), `planned` (in development), `canceled`, or `ended`.
     */
     @discardableResult
-    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: ExtendedType = .Min, completion: ShowCompletionHandler) -> URLSessionDataTask? {
+    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: ShowCompletionHandler) -> URLSessionDataTask? {
         return getSummary(.Shows, id: id, extended: extended, completion: completion)
     }
     
@@ -158,7 +158,11 @@ extension TraktManager {
      */
     @discardableResult
     public func getShowCollectionProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/progress/collection?hidden=\(hidden)&specials=\(specials)", authorization: true, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "shows/\(id)/progress/collection",
+                                           withQuery: ["hidden": "\(hidden)",
+                                                       "specials": "\(specials)"],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -172,7 +176,11 @@ extension TraktManager {
      */
     @discardableResult
     public func getShowWatchedProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/progress/watched?hidden=\(hidden)&specials=\(specials)", authorization: true, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "shows/\(id)/progress/watched",
+                                           withQuery: ["hidden": "\(hidden)",
+                                                       "specials": "\(specials)"],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -185,7 +193,7 @@ extension TraktManager {
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
      */
     @discardableResult
-    public func getPeopleInShow<T: CustomStringConvertible>(showID id: T, extended: ExtendedType = .Min, completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
+    public func getPeopleInShow<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
         return getPeople(.Shows, id: id, extended: extended, completion: completion)
     }
     

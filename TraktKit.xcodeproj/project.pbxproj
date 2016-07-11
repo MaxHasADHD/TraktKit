@@ -534,6 +534,8 @@
 					};
 					A77E86531B29F09100EABC2D = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = U6J8328WE2;
+						DevelopmentTeamName = "Maximilian Litteral";
 					};
 				};
 			};

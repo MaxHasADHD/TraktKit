@@ -18,7 +18,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard var request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard var request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -31,7 +31,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: CommentsCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/comments", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -41,7 +41,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeRatings<T: CustomStringConvertible>(showID id: T, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -51,7 +51,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeStatistics<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: statsCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/stats", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/stats", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -60,7 +60,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getUsersWatchingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("shows/\(id)/seasons/\(season)/episodes/\(episode)/watching", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/watching", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

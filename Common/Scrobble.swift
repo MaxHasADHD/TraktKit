@@ -111,12 +111,13 @@ extension TraktManager {
         
         if let movie = movie {
             json["movie"] = movie
-        } else if let episode = episode {
+        }
+        else if let episode = episode {
             json["episode"] = episode
         }
         
         // Request
-        guard var request = mutableRequestForURL("scrobble/\(scrobbleAction)", authorization: true, HTTPMethod: .POST) else { return nil }
+        guard var request = mutableRequest(forPath: "scrobble/\(scrobbleAction)", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)

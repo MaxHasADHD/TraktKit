@@ -18,17 +18,10 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>TraktKitMac.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
 		<key>TraktKitTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

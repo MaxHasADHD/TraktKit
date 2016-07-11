@@ -21,7 +21,11 @@ extension TraktManager {
     public func search(query: String, types: [SearchType], completion: SearchCompletionHandler) -> URLSessionDataTask? {
         
         let typesString = types.map { $0.rawValue }.joined(separator: ",") // Search with multiple types
-        guard let request = mutableRequestForURL("search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "search",
+                                           withQuery: ["query": query,
+                                                       "type": typesString],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -33,7 +37,11 @@ extension TraktManager {
      */
     @discardableResult
     public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("search?id_type=\(idType.rawValue)&id=\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: "search",
+                                           withQuery: ["id_type": idType.rawValue,
+                                                       "id": "\(id)"],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

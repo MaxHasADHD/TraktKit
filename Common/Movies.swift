@@ -18,7 +18,7 @@ extension TraktManager {
     📄 Pagination
      */
     @discardableResult
-    public func getTrendingMovies(page: Int, limit: Int, extended: ExtendedType = .Min, completion: TrendingMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getTrendingMovies(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: TrendingMoviesCompletionHandler) -> URLSessionDataTask? {
         return getTrending(.Movies, page: page, limit: limit, extended: extended, completion: completion)
     }
     
@@ -30,7 +30,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getPopularMovies(page: Int, limit: Int, extended: ExtendedType = .Min, completion: MoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getPopularMovies(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: MoviesCompletionHandler) -> URLSessionDataTask? {
         return getPopular(.Movies, page: page, limit: limit, extended: extended, completion: completion)
     }
     
@@ -88,8 +88,11 @@ extension TraktManager {
     Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
     */
     @discardableResult
-    public func getWeekendBoxOffice(extended: ExtendedType = .Min, completion: BoxOfficeMoviesCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequestForURL("movies/boxoffice?extended=\(extended)", authorization: false, HTTPMethod: .GET) else { return nil }
+    public func getWeekendBoxOffice(extended: [ExtendedType] = [.Min], completion: BoxOfficeMoviesCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "movies/boxoffice",
+                                           withQuery: ["extended": extended.queryString()],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -112,7 +115,7 @@ extension TraktManager {
     Returns a single movie's details.
     */
     @discardableResult
-    public func getMovieSummary<T: CustomStringConvertible>(movieID id: T, extended: ExtendedType = .Min, completion: MovieCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieSummary<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: MovieCompletionHandler) -> URLSessionDataTask? {
         return getSummary(.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -143,7 +146,7 @@ extension TraktManager {
             path += "/\(country)"
         }
         
-        guard let request = mutableRequestForURL(path, authorization: false, HTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(forPath: path, withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -178,7 +181,7 @@ extension TraktManager {
     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
     */
     @discardableResult
-    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: ExtendedType = .Min, completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
+    public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
         return getPeople(.Movies, id: id, extended: extended, completion: completion)
     }
     

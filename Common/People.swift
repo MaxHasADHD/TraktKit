@@ -16,12 +16,12 @@ extension TraktManager {
      Returns a single person's details.
      */
     @discardableResult
-    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: ExtendedType = .Min, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: ResultCompletionHandler) -> URLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)?extended=\(extended)", authorization: false, HTTPMethod: .GET) else {
-            completion(result: .Error(error: nil))
-            return nil
-        }
+        guard let request = mutableRequest(forPath: "people/\(id)",
+                                           withQuery: ["extended": extended.queryString()],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -32,7 +32,7 @@ extension TraktManager {
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `movie` object.
      */
     @discardableResult
-    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: ExtendedType = .Min, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: MoviesCompletionHandler) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -42,18 +42,18 @@ extension TraktManager {
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `show` object.
      */
     @discardableResult
-    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: ExtendedType = .Min, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: ShowsCompletionHandler) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Private
     @discardableResult
-    private func getCredits<T: CustomStringConvertible>(type: WatchedType, id: T, extended: ExtendedType = .Min, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    private func getCredits<T: CustomStringConvertible, U: TraktProtocol>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: ((result: ObjectsResultType<U>) -> Void)) -> URLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("people/\(id)/\(type)?extended=\(extended)", authorization: false, HTTPMethod: .GET) else {
-            completion(result: .Error(error: nil))
-            return nil
-        }
+        guard let request = mutableRequest(forPath: "people/\(id)/\(type)",
+                                           withQuery: ["extended": extended.queryString()],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

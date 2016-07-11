@@ -34,23 +34,23 @@ extension TraktManager {
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard var request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .POST) else { return nil }
+        guard var request = mutableRequest(forPath: "checkin", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = jsonData
         
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard error == nil else { return completionHandler(result: .Fail) }
+            guard error == nil else { return completionHandler(result: .fail) }
             
             guard let HTTPResponse = response as? HTTPURLResponse
                 where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
-                    HTTPResponse.statusCode == StatusCodes.Conflict) else { return completionHandler(result: .Fail) }
+                    HTTPResponse.statusCode == StatusCodes.Conflict) else { return completionHandler(result: .fail) }
             
             if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                 // Started watching
-                completionHandler(result: .Success)
+                completionHandler(result: .success)
             }
             else {
                 // Already watching something
-                completionHandler(result: .Fail)
+                completionHandler(result: .fail)
             }
         }
         dataTask.resume()
@@ -64,15 +64,15 @@ extension TraktManager {
     @discardableResult
     public func deleteActiveCheckins(completionHandler: SuccessCompletionHandler) -> URLSessionDataTask? {
         // Request
-        guard let request = mutableRequestForURL("checkin", authorization: true, HTTPMethod: .DELETE) else { return nil }
+        guard let request = mutableRequest(forPath: "checkin", withQuery: [:], isAuthorized: true, withHTTPMethod: .DELETE) else { return nil }
         
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard error == nil else { return completionHandler(result: .Fail) }
+            guard error == nil else { return completionHandler(result: .fail) }
             
             // Check response
             guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .Success) }
-            completionHandler(result: .Fail)
+                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .success) }
+            completionHandler(result: .fail)
         }
         dataTask.resume()
         
