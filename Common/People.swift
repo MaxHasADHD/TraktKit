@@ -32,7 +32,7 @@ extension TraktManager {
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `movie` object.
      */
     @discardableResult
-    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: MoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -42,13 +42,13 @@ extension TraktManager {
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `show` object.
      */
     @discardableResult
-    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: ShowsCompletionHandler) -> URLSessionDataTask? {
+    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Private
     @discardableResult
-    private func getCredits<T: CustomStringConvertible, U: TraktProtocol>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: ((result: ObjectsResultType<U>) -> Void)) -> URLSessionDataTask? {
+    private func getCredits<T: CustomStringConvertible>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
         // Request
         guard let request = mutableRequest(forPath: "people/\(id)/\(type)",
                                            withQuery: ["extended": extended.queryString()],

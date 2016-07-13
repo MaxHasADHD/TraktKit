@@ -29,7 +29,7 @@ func initEach<T: TraktProtocol>(_ dictionaries: [RawJSON]) -> [T] {
 
 public struct ID: TraktProtocol {
     public let trakt: Int
-    public let slug: String?
+    public let slug: String
     public let tvdb: Int?
     public let imdb: String?
     public let tmdb: Int?
@@ -38,10 +38,11 @@ public struct ID: TraktProtocol {
     // Initialize
     public init?(json: RawJSON?) {
         guard let json = json,
-            traktID = json["trakt"] as? Int else { return nil }
+            traktID = json["trakt"] as? Int,
+            slugID = json["slug"] as? String else { return nil }
         
         trakt = traktID
-        slug = json["slug"] as? String
+        slug = slugID
         tvdb = json["tvdb"] as? Int
         imdb = json["imdb"] as? String
         tmdb = json["tmdb"] as? Int

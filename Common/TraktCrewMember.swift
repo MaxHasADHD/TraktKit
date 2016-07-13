@@ -10,15 +10,18 @@ import Foundation
 
 public struct CrewMember: TraktProtocol {
     public let job: String
-    public let person: Person
+    public let person: Person?
+    public let movie: TraktMovie?
+    public let show: TraktShow?
     
     // Initialize
     public init?(json: RawJSON?) {
         guard let json = json,
-            job = json["job"] as? String,
-            person = Person(json: json["person"] as? RawJSON) else { return nil }
+            job = json["job"] as? String else { return nil }
         
         self.job = job
-        self.person = person
+        self.person = Person(json: json["person"] as? RawJSON)
+        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
+        self.show = TraktShow(json: json["show"] as? RawJSON)
     }
 }

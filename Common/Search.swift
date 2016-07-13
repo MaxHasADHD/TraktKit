@@ -18,15 +18,14 @@ extension TraktManager {
      
      */
     @discardableResult
-    public func search(query: String, types: [SearchType], completion: SearchCompletionHandler) -> URLSessionDataTask? {
+    public func search(query: String, types: [SearchType], extended: [ExtendedType] = [.Min], completion: SearchCompletionHandler) -> URLSessionDataTask? {
         
         let typesString = types.map { $0.rawValue }.joined(separator: ",") // Search with multiple types
-        guard let request = mutableRequest(forPath: "search",
+        guard let request = mutableRequest(forPath: "search/\(typesString)",
                                            withQuery: ["query": query,
-                                                       "type": typesString],
+                                                       "extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     

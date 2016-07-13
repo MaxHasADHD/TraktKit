@@ -10,15 +10,18 @@ import Foundation
 
 public struct CastMember: TraktProtocol {
     public let character: String
-    public let person: Person
+    public let person: Person?
+    public let movie: TraktMovie?
+    public let show: TraktShow?
     
     // Initialize
     public init?(json: RawJSON?) {
         guard let json = json,
-            character = json["character"] as? String,
-            person = Person(json: json["person"] as? RawJSON) else { return nil }
+            character = json["character"] as? String else { return nil }
         
         self.character = character
-        self.person = person
+        self.person = Person(json: json["person"] as? RawJSON)
+        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
+        self.show = TraktShow(json: json["show"] as? RawJSON)
     }
 }

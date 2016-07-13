@@ -463,6 +463,9 @@ public class TraktManager {
                     let objects: [T] = initEach(array)
                     completion(result: .success(objects: objects))
                 }
+                else {
+                    completion(result: .error(error: nil))
+                }
             }
             catch let jsonSerializationError as NSError {
                 completion(result: .error(error: jsonSerializationError))
