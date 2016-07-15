@@ -232,11 +232,15 @@ public class TraktManager {
     public func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
         let urlString = "https://api-v2launch.trakt.tv/" + path
         guard var components = URLComponents(string: urlString) else { return nil }
-        var queryItems: [URLQueryItem] = []
-        for (key, value) in query {
-            queryItems.append(URLQueryItem(name: key, value: value))
+        
+        if query.isEmpty == false {
+            var queryItems: [URLQueryItem] = []
+            for (key, value) in query {
+                queryItems.append(URLQueryItem(name: key, value: value))
+            }
+            components.queryItems = queryItems
         }
-        components.queryItems = queryItems
+        
         guard let url = components.url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue

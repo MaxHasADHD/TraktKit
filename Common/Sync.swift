@@ -277,7 +277,7 @@ extension TraktManager {
         var ratedMovies: [RawJSON] = []
         for var movie in movies {
             movie["rated_at"] = ratedAt
-            movie["rating"] = movie
+            movie["rating"] = rating
             ratedMovies.append(movie)
         }
         json["movies"] = ratedMovies
@@ -303,7 +303,7 @@ extension TraktManager {
         // Request
         guard var request = mutableRequest(forPath: "sync/ratings", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-        
+
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
