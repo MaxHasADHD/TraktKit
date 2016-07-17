@@ -63,6 +63,7 @@
 		A77602BC1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
 		A77602BE1D1BB66D000FA8C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
 		A77602BF1D1BB66D000FA8C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
+		A77A21711D394E1B006E5D92 /* TraktRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A21701D394E1B006E5D92 /* TraktRating.swift */; };
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
 		A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
@@ -138,6 +139,7 @@
 		A77340691C08D82D00A69EA1 /* SharedFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctions.swift; sourceTree = "<group>"; };
 		A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktListItem.swift; sourceTree = "<group>"; };
 		A77602BD1D1BB66D000FA8C4 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		A77A21701D394E1B006E5D92 /* TraktRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktRating.swift; sourceTree = "<group>"; };
 		A77E86491B29F09100EABC2D /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77E864D1B29F09100EABC2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77E864E1B29F09100EABC2D /* TraktKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKit.h; sourceTree = "<group>"; };
@@ -247,6 +249,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		A77A216D1D394DFA006E5D92 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				A77A21701D394E1B006E5D92 /* TraktRating.swift */,
+			);
+			name = Sync;
+			sourceTree = "<group>";
+		};
 		A77E863F1B29F09100EABC2D = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +351,7 @@
 				A7AF988A1CBF4B7F00744566 /* User */,
 				A7AF988D1CBF4D2C00744566 /* People */,
 				A7AF98941CBF50CC00744566 /* List */,
+				A77A216D1D394DFA006E5D92 /* Sync */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -670,6 +681,7 @@
 				A77602BB1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */,
 				A7AF98861CBF4A4000744566 /* TraktWatchedMovie.swift in Sources */,
 				A77340641C079D2500A69EA1 /* Seasons.swift in Sources */,
+				A77A21711D394E1B006E5D92 /* TraktRating.swift in Sources */,
 				A7AF98801CBF49E700744566 /* TraktTrendingMovie.swift in Sources */,
 				A773406A1C08D82D00A69EA1 /* SharedFunctions.swift in Sources */,
 				A7AF98721CBF487600744566 /* TraktShow.swift in Sources */,

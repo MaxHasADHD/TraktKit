@@ -241,7 +241,7 @@ extension TraktManager {
      - parameter rating: Filter for a specific rating
      */
     @discardableResult
-    public func getRatings(type: WatchedType, rating: NSInteger?, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getRatings(type: WatchedType, rating: NSInteger?, completion: RatingsCompletionHandler) -> URLSessionDataTask? {
         var path = "sync/ratings/\(type)"
         if let rating = rating {
             path += "/\(rating)"
