@@ -244,7 +244,7 @@ extension Users {
      🔒 OAuth Required
      */
     @discardableResult
-    public func updateCustomList(listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func updateCustomList(listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ListCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         let json = [
