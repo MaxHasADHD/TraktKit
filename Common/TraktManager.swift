@@ -150,7 +150,7 @@ public class TraktManager {
     let refreshTokenKey = "refreshToken"
     
     // Lazy
-    lazy var session = URLSession(configuration: URLSessionConfiguration.default())
+    lazy var session = URLSession(configuration: URLSessionConfiguration.default)
     
     // MARK: Public
     public static let sharedManager = TraktManager()
@@ -564,12 +564,12 @@ public class TraktManager {
                     let timeInterval = accessTokenDict["expires_in"] as! NSNumber
                     let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                     
-                    UserDefaults.standard().set(expiresDate, forKey: "accessTokenExpirationDate")
-                    UserDefaults.standard().synchronize()
+                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard.synchronize()
                     
                     // Post notification
-                    OperationQueue.main().addOperation({
-                        NotificationCenter.default().post(name: NSNotification.Name(rawValue: "signedInToTrakt"), object: nil)
+                    OperationQueue.main.addOperation({
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "signedInToTrakt"), object: nil)
                     })
 
                     completionHandler?(result: .Success)
@@ -585,7 +585,7 @@ public class TraktManager {
     // MARK: Refresh access token
     
     public func needToRefresh() -> Bool {
-        if let expirationDate = UserDefaults.standard().object(forKey: "accessTokenExpirationDate") as? Date {
+        if let expirationDate = UserDefaults.standard.object(forKey: "accessTokenExpirationDate") as? Date {
             let today = Date()
             if today.compare(expirationDate) == .orderedDescending ||
                 today.compare(expirationDate) == .orderedSame {
@@ -600,7 +600,7 @@ public class TraktManager {
     }
     
     public func checkToRefresh() throws {
-        if let expirationDate = UserDefaults.standard().object(forKey: "accessTokenExpirationDate") as? Date {
+        if let expirationDate = UserDefaults.standard.object(forKey: "accessTokenExpirationDate") as? Date {
             let today = Date()
             
             if today.compare(expirationDate) == .orderedDescending ||
@@ -667,12 +667,12 @@ public class TraktManager {
                     guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else { return completionHandler(result: .Fail) }
                     let expiresDate = NSDate(timeIntervalSinceNow: timeInterval.doubleValue)
                     
-                    UserDefaults.standard().set(expiresDate, forKey: "accessTokenExpirationDate")
-                    UserDefaults.standard().synchronize()
+                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard.synchronize()
                 
                     // Post notification
-                    OperationQueue.main().addOperation({
-                        NotificationCenter.default().post(name: NSNotification.Name(rawValue: "signedInToTrakt"), object: nil)
+                    OperationQueue.main.addOperation({
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "signedInToTrakt"), object: nil)
                     })
                     
                     completionHandler(result: .Success)
