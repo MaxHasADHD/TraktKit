@@ -33,7 +33,7 @@ extension TraktManager {
      Returns all episodes for a specific season of a show.
      */
     @discardableResult
-    public func getEpisodesForSeason<T: CustomStringConvertible>(showID id: T, season: NSNumber, extended: [ExtendedType] = [.Min], completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getEpisodesForSeason<T: CustomStringConvertible>(showID id: T, season: NSNumber, extended: [ExtendedType] = [.Min], completion: EpisodeCompletionHandler) -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,

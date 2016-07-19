@@ -154,6 +154,10 @@ public class TraktManager {
     public typealias SeasonsCompletionHandler       = (result: ObjectsResultType<TraktSeason>) -> Void
     public typealias WatchedShowsCompletionHandler  = (result: ObjectsResultType<TraktWatchedShow>) -> Void
     
+    // Episodes
+    public typealias EpisodeCompletionHandler         = (result: ObjectsResultType<TraktEpisode>) -> Void
+    public typealias EpisodesCompletionHandler         = (result: ObjectsResultType<TraktEpisode>) -> Void
+    
     // Movies
     public typealias MovieCompletionHandler          = (result: ObjectResultType<TraktMovie>) -> Void
     public typealias MoviesCompletionHandler         = (result: ObjectsResultType<TraktMovie>) -> Void

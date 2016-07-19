@@ -12,7 +12,7 @@ public struct TraktEpisode: TraktProtocol {
     // Extended: Min
     public let season: Int
     public let number: Int
-    public let title: String
+    public let title: String? // Might be missing, TBA episode
     public let ids: ID
     
     // Extended: Full
@@ -28,13 +28,12 @@ public struct TraktEpisode: TraktProtocol {
         guard let json = json,
             season = json["season"] as? Int,
             number = json["number"] as? Int,
-            title = json["title"] as? String,
             ids = ID(json: json["ids"] as? RawJSON) else { return nil }
         
         // Min
         self.season = season
         self.number = number
-        self.title  = title
+        self.title  = json["title"] as? String
         self.ids    = ids
         
         // Full
