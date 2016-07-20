@@ -1,6 +1,6 @@
 //
 //  MLKeychain.swift
-//  TVShows
+//  TraktKit
 //
 //  Created by Maximilian Litteral on 7/3/15.
 //  Copyright (c) 2015 Maximilian Litteral. All rights reserved.
