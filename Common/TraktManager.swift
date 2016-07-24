@@ -163,6 +163,7 @@ public class TraktManager {
     public typealias MoviesCompletionHandler         = (result: ObjectsResultType<TraktMovie>) -> Void
     public typealias TrendingMoviesCompletionHandler = (result: ObjectsResultType<TraktTrendingMovie>) -> Void
     public typealias MostMoviesCompletionHandler     = (result: ObjectsResultType<TraktMostShow>) -> Void
+    public typealias AnticipatedMovieCompletionHandler = (result: ObjectsResultType<TraktAnticipatedMovie>) -> Void
     public typealias MovieTranslationsCompletionHandler = (result: ObjectsResultType<TraktMovieTranslation>) -> Void
     public typealias WatchedMoviesCompletionHandler  = (result: ObjectsResultType<TraktWatchedMovie>) -> Void
     public typealias BoxOfficeMoviesCompletionHandler  = (result: ObjectsResultType<TraktBoxOfficeMovie>) -> Void

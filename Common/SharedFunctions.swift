@@ -81,13 +81,15 @@ internal extension ShowsAndMovies {
     
     // MARK: - Anticipated
     
-    func getAnticipated(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard var request = mutableRequest(forPath: "\(type)/anticipated/\(period.rawValue)",
+    func getAnticipated(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: AnticipatedMovieCompletionHandler) -> URLSessionDataTask? {
+        guard var request = mutableRequest(forPath: "\(type)/anticipated",
                                            withQuery: ["page": "\(page)",
-                                                       "limit": "\(limit)"],
+                                                       "limit": "\(limit)",
+                                                       "extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
+        print(request.url)
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
