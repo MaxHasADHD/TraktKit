@@ -19,7 +19,8 @@ public struct TraktImages: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json else { return nil }
+        guard
+            let json = json else { return nil }
         
         fanart      = TraktImage(json: json["fanart"] as? RawJSON)
         poster      = TraktImage(json: json["poster"] as? RawJSON)
@@ -38,7 +39,8 @@ public struct TraktImage: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json else { return nil }
+        guard
+            let json = json else { return nil }
         full    = (json["full"] as? String)?.toURL()
         medium  = (json["medium"] as? String)?.toURL()
         thumb   = (json["thumb"] as? String)?.toURL()

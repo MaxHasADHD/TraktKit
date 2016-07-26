@@ -15,10 +15,11 @@ public struct TraktShowTranslation: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            title = json["title"] as? String,
-            overview = json["overview"] as? String,
-            language = json["language"] as? String else { return nil }
+        guard
+            let json = json,
+            let title = json["title"] as? String,
+            let overview = json["overview"] as? String,
+            let language = json["language"] as? String else { return nil }
         
         self.title       = title
         self.overview    = overview

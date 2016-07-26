@@ -17,7 +17,8 @@ internal extension Date {
     // MARK: - Class
     
     static func dateFromString(_ string: AnyObject?) -> Date? {
-        guard let dateString = string as? String else { return nil }
+        guard
+            let dateString = string as? String else { return nil }
         
         let count = dateString.characters.count
         if count <= 10 {

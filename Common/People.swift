@@ -18,11 +18,11 @@ extension TraktManager {
     @discardableResult
     public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: ResultCompletionHandler) -> URLSessionDataTask? {
         // Request
-        guard let request = mutableRequest(forPath: "people/\(id)",
+        guard
+            let request = mutableRequest(forPath: "people/\(id)",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
-        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -50,7 +50,8 @@ extension TraktManager {
     @discardableResult
     private func getCredits<T: CustomStringConvertible>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
         // Request
-        guard let request = mutableRequest(forPath: "people/\(id)/\(type)",
+        guard
+            let request = mutableRequest(forPath: "people/\(id)/\(type)",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }

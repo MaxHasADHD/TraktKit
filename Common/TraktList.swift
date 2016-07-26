@@ -25,19 +25,19 @@ public struct TraktList: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            name = json["name"] as? String,
-            description = json["description"] as? String,
-            privacy = json["privacy"] as? String,
-            displayNumbers = json["display_numbers"] as? Bool,
-            allowComments = json["allow_comments"] as? Bool,
-            createdAt = Date.dateFromString(json["created_at"]),
-            updatedAt = Date.dateFromString(json["updated_at"]),
-            itemCount = json["item_count"] as? NSNumber,
-            commentCount = json["comment_count"] as? NSNumber,
-            likes = json["likes"] as? NSNumber,
-            id = ID(json: json["ids"] as? RawJSON)
-            else { return nil }
+        guard
+            let json = json,
+            let name = json["name"] as? String,
+            let description = json["description"] as? String,
+            let privacy = json["privacy"] as? String,
+            let displayNumbers = json["display_numbers"] as? Bool,
+            let allowComments = json["allow_comments"] as? Bool,
+            let createdAt = Date.dateFromString(json["created_at"]),
+            let updatedAt = Date.dateFromString(json["updated_at"]),
+            let itemCount = json["item_count"] as? NSNumber,
+            let commentCount = json["comment_count"] as? NSNumber,
+            let likes = json["likes"] as? NSNumber,
+            let id = ID(json: json["ids"] as? RawJSON) else { return nil }
         
         self.name               = name
         self.description        = description

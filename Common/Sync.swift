@@ -23,8 +23,11 @@ extension TraktManager {
      */
     @discardableResult
     public func lastActivities(completion: LastActivitiesCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "sync/last_activities", withQuery: [:], isAuthorized: true, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "sync/last_activities",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -45,8 +48,11 @@ extension TraktManager {
      */
     @discardableResult
     public func getPlaybackProgress(type: WatchedType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "sync/playback/\(type)", withQuery: [:], isAuthorized: true, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "sync/playback/\(type)",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -59,8 +65,11 @@ extension TraktManager {
      */
     @discardableResult
     public func removePlaybackItem<T: CustomStringConvertible>(id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "sync/playback/\(id)", withQuery: [:], isAuthorized: true, withHTTPMethod: .DELETE) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "sync/playback/\(id)",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .DELETE) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
     
@@ -77,8 +86,11 @@ extension TraktManager {
      */
     @discardableResult
     public func getCollection(type: WatchedType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "sync/collection/\(type)", withQuery: [:], isAuthorized: true, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "sync/collection/\(type)",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -114,8 +126,9 @@ extension TraktManager {
                                            withQuery: [:],
                                            isAuthorized: true,
                                            withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        
+        request.httpBody = try createJsonData(movies: movies,
+                                              shows: shows,
+                                              episodes: episodes)
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -133,11 +146,11 @@ extension TraktManager {
      */
     @discardableResult
     public func getWatchedShows(extended: [ExtendedType] = [.Min], completion: WatchedShowsCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "sync/watched/shows",
-                                           withQuery: ["extended": extended.queryString()],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "sync/watched/shows",
+                                         withQuery: ["extended": extended.queryString()],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -153,11 +166,11 @@ extension TraktManager {
      */
     @discardableResult
     public func getWatchedMovies(extended: [ExtendedType] = [.Min], completion: WatchedMoviesCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "sync/watched/movies",
-                                           withQuery: ["extended": extended.queryString()],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "sync/watched/movies",
+                                         withQuery: ["extended": extended.queryString()],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -181,8 +194,11 @@ extension TraktManager {
             path += "\(traktID)"
         }
         
-        guard let request = mutableRequest(forPath: path, withQuery: [:], isAuthorized: true, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: path,
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -202,9 +218,13 @@ extension TraktManager {
     public func addToHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // Request
-        guard var request = mutableRequest(forPath: "sync/history", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        
+        guard var request = mutableRequest(forPath: "sync/history",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .POST) else { return nil }
+        request.httpBody = try createJsonData(movies: movies,
+                                              shows: shows,
+                                              episodes: episodes)
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
@@ -224,9 +244,13 @@ extension TraktManager {
     public func removeFromHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // Request
-        guard var request = mutableRequest(forPath: "sync/history/remove", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        
+        guard var request = mutableRequest(forPath: "sync/history/remove",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .POST) else { return nil }
+        request.httpBody = try createJsonData(movies: movies,
+                                              shows: shows,
+                                              episodes: episodes)
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -247,8 +271,11 @@ extension TraktManager {
             path += "/\(rating)"
         }
         
-        guard let request = mutableRequest(forPath: path, withQuery: [:], isAuthorized: true, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: path,
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -301,9 +328,12 @@ extension TraktManager {
         json["episodes"] = ratedEpisodes
         
         // Request
-        guard var request = mutableRequest(forPath: "sync/ratings", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-
+        guard var request = mutableRequest(forPath: "sync/ratings",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .POST) else { return nil }
+        request.httpBody = try JSONSerialization.data(withJSONObject: json,
+                                                      options: [])
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
@@ -318,9 +348,14 @@ extension TraktManager {
      */
     @discardableResult
     public func removeRatings(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
-        guard var request = mutableRequest(forPath: "sync/ratings/remove", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        
+        guard
+            var request = mutableRequest(forPath: "sync/ratings/remove",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .POST) else { return nil }
+        request.httpBody = try createJsonData(movies: movies,
+                                              shows: shows,
+                                              episodes: episodes)
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -331,8 +366,11 @@ extension TraktManager {
      */
     @discardableResult
     public func getWatchlist(watchType: WatchedType, completion: ListItemCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "sync/watchlist", withQuery: [:], isAuthorized: true, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "sync/watchlist",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -347,9 +385,14 @@ extension TraktManager {
     public func addToWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // Request
-        guard var request = mutableRequest(forPath: "sync/watchlist", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { completion(result: .fail); return nil }
-        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        
+        guard
+            var request = mutableRequest(forPath: "sync/watchlist",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .POST) else { completion(result: .fail); return nil }
+        request.httpBody = try createJsonData(movies: movies,
+                                              shows: shows,
+                                              episodes: episodes)
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
@@ -362,9 +405,14 @@ extension TraktManager {
      */
     @discardableResult
     public func removeFromWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
-        guard var request = mutableRequest(forPath: "sync/watchlist/remove", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { completion(result: .error(error: nil)); return nil }
-        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        
+        guard
+            var request = mutableRequest(forPath: "sync/watchlist/remove",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .POST) else { completion(result: .error(error: nil)); return nil }
+        request.httpBody = try createJsonData(movies: movies,
+                                              shows: shows,
+                                              episodes: episodes)
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

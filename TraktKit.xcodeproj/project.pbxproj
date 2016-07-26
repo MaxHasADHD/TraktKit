@@ -53,6 +53,10 @@
 		A7582C0A1CCA6FF600B3CF63 /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; };
 		A7582C0B1CCA6FF600B3CF63 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF28DC1C568FF600CA5B53 /* DateParser.swift */; };
 		A7582C0C1CCA6FF600B3CF63 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
+		A759C3B71D47D3BA00E7F938 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B61D47D3BA00E7F938 /* Filters.swift */; };
+		A759C3B91D47D49200E7F938 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B81D47D49200E7F938 /* Pagination.swift */; };
+		A759C3BA1D47D49600E7F938 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B81D47D49200E7F938 /* Pagination.swift */; };
+		A759C3BB1D47D49600E7F938 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B61D47D3BA00E7F938 /* Filters.swift */; };
 		A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; };
 		A773405E1C07884B00A69EA1 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405D1C07884B00A69EA1 /* Shows.swift */; };
 		A77340601C07886500A69EA1 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405F1C07886500A69EA1 /* Search.swift */; };
@@ -132,6 +136,8 @@
 		A723DA921B917EF300CA217C /* TraktKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraktKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A723DA971B917EF300CA217C /* TraktKitMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitMacTests.swift; sourceTree = "<group>"; };
 		A723DA991B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A759C3B61D47D3BA00E7F938 /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		A759C3B81D47D49200E7F938 /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		A76905B51B47B7A6003C7431 /* MLKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKeychain.swift; sourceTree = "<group>"; };
 		A773405D1C07884B00A69EA1 /* Shows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		A773405F1C07886500A69EA1 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -346,6 +352,8 @@
 			children = (
 				A7033F2F1C3AE3C4000E40F7 /* Structures.swift */,
 				A7AF98621CBF47BA00744566 /* TraktSearchResult.swift */,
+				A759C3B81D47D49200E7F938 /* Pagination.swift */,
+				A759C3B61D47D3BA00E7F938 /* Filters.swift */,
 				A7AF98681CBF47FE00744566 /* Images */,
 				A7AF98691CBF480300744566 /* Shows */,
 				A7AF986A1CBF480700744566 /* Movies */,
@@ -620,10 +628,12 @@
 				A7582BF31CCA6FE900B3CF63 /* TraktEpisode.swift in Sources */,
 				A7582BED1CCA6FE900B3CF63 /* TraktImages.swift in Sources */,
 				A723DAAE1B917FE300CA217C /* Movies.swift in Sources */,
+				A759C3BB1D47D49600E7F938 /* Filters.swift in Sources */,
 				A7582BE01CCA6FDB00B3CF63 /* Genres.swift in Sources */,
 				A77602BC1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */,
 				A7582BF01CCA6FE900B3CF63 /* TraktAnticipatedShow.swift in Sources */,
 				A7582C071CCA6FF600B3CF63 /* TraktCrewMember.swift in Sources */,
+				A759C3BA1D47D49600E7F938 /* Pagination.swift in Sources */,
 				A7582C0C1CCA6FF600B3CF63 /* Extensions.swift in Sources */,
 				A7582C051CCA6FF600B3CF63 /* TraktUser.swift in Sources */,
 				A7582BE31CCA6FDB00B3CF63 /* Scrobble.swift in Sources */,
@@ -686,6 +696,7 @@
 				A77340641C079D2500A69EA1 /* Seasons.swift in Sources */,
 				A77A21711D394E1B006E5D92 /* TraktRating.swift in Sources */,
 				A7AF98801CBF49E700744566 /* TraktTrendingMovie.swift in Sources */,
+				A759C3B91D47D49200E7F938 /* Pagination.swift in Sources */,
 				A773406A1C08D82D00A69EA1 /* SharedFunctions.swift in Sources */,
 				A7AF98721CBF487600744566 /* TraktShow.swift in Sources */,
 				A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */,
@@ -702,6 +713,7 @@
 				A7FB7FD01BF8EC990003BBD7 /* Calendars.swift in Sources */,
 				A7033F301C3AE3C4000E40F7 /* Structures.swift in Sources */,
 				A7AF98761CBF48E200744566 /* TraktEpisode.swift in Sources */,
+				A759C3B71D47D3BA00E7F938 /* Filters.swift in Sources */,
 				A7AF987E1CBF49C600744566 /* TraktWatchedEpisodes.swift in Sources */,
 				A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */,
 				A7AF98651CBF47D500744566 /* TraktImages.swift in Sources */,
@@ -760,6 +772,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -780,6 +793,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -799,6 +813,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Distribution;
 		};
@@ -812,6 +827,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -825,6 +841,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -837,6 +854,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Distribution;
 		};
@@ -875,6 +893,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -899,6 +918,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Distribution;
 		};
@@ -913,6 +933,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Distribution;
 		};
@@ -960,6 +981,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1001,6 +1023,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1025,6 +1048,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1046,6 +1070,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1064,6 +1089,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1079,6 +1105,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

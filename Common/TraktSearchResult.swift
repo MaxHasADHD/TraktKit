@@ -10,7 +10,7 @@ import Foundation
 
 public struct TraktSearchResult: TraktProtocol {
     public let type: String // Can be movie, show, episode, person, list
-    public let score: Double
+    public let score: Double?
     
     public let movie: TraktMovie?
     public let show: TraktShow?
@@ -30,12 +30,12 @@ public struct TraktSearchResult: TraktProtocol {
     }
     
     public init?(json: RawJSON?) {
-        guard let json = json,
-            type = json["type"] as? String,
-            score = json["score"] as? Double else { return nil }
+        guard
+            let json = json,
+            let type = json["type"] as? String else { return nil }
         
         self.type       = type
-        self.score      = score
+        self.score      = json["score"] as? Double
         self.movie      = TraktMovie(json: json["movie"] as? RawJSON)
         self.show       = TraktShow(json: json["show"] as? RawJSON)
         self.episode    = TraktEpisode(json: json["episode"] as? RawJSON)

@@ -89,11 +89,11 @@ extension TraktManager {
     */
     @discardableResult
     public func getWeekendBoxOffice(extended: [ExtendedType] = [.Min], completion: BoxOfficeMoviesCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "movies/boxoffice",
+        guard
+            let request = mutableRequest(forPath: "movies/boxoffice",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -146,8 +146,11 @@ extension TraktManager {
             path += "/\(country)"
         }
         
-        guard let request = mutableRequest(forPath: path, withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: path,
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     

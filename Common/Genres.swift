@@ -15,8 +15,11 @@ extension TraktManager {
      */
     @discardableResult
     public func listGenres(type: WatchedType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "genres/\(type)", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
-
+        guard
+            let request = mutableRequest(forPath: "genres/\(type)",
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

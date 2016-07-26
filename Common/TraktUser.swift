@@ -17,10 +17,11 @@ public struct User: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            isPrivate = json["private"] as? Bool,
-            isVIP = json["vip"] as? Bool,
-            isVIPEP = json["vip_ep"] as? Bool else { return nil }
+        guard
+            let json = json,
+            let isPrivate = json["private"] as? Bool,
+            let isVIP = json["vip"] as? Bool,
+            let isVIPEP = json["vip_ep"] as? Bool else { return nil }
         
         self.username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
         self.isPrivate = isPrivate

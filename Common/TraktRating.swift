@@ -20,9 +20,10 @@ public struct TraktRating: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            ratedAt = Date.dateFromString(json["rated_at"]),
-            rating = json["rating"] as? NSNumber else { return nil }
+        guard
+            let json = json,
+            let ratedAt = Date.dateFromString(json["rated_at"]),
+            let rating = json["rating"] as? NSNumber else { return nil }
         
         self.ratedAt = ratedAt
         self.rating = rating

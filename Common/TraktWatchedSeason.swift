@@ -15,8 +15,9 @@ public struct TraktWatchedSeason: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            number = json["number"] as? Int else { return nil }
+        guard
+            let json = json,
+            let number = json["number"] as? Int else { return nil }
         
         self.number = number
         

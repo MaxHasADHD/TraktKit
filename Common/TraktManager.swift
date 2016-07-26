@@ -213,7 +213,8 @@ public class TraktManager {
     // MARK: - Actions
     
     public func mutableRequestForURL(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
-        guard let url = url else { return nil }
+        guard
+            let url = url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.rawValue
         
@@ -247,7 +248,8 @@ public class TraktManager {
             components.queryItems = queryItems
         }
         
-        guard let url = components.url else { return nil }
+        guard
+            let url = components.url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         
@@ -284,12 +286,14 @@ public class TraktManager {
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: ResultCompletionHandler) -> URLSessionDataTask? {
         
         let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard
+                let wSelf = self else { return }
             guard error == nil else { return completion(result: .error(error: error)) }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == code else {
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == code else {
                     if let HTTPResponse = response as? HTTPURLResponse {
                         completion(result: .error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
                     }
@@ -300,10 +304,10 @@ public class TraktManager {
             }
             
             // Check data
-            guard let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
+            guard
+                let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
             
             do {
-                
                 if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                     completion(result: .success(dict: dict))
                 }
@@ -320,12 +324,14 @@ public class TraktManager {
     /// Array
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard
+                let wSelf = self else { return }
             guard error == nil else { return completion(result: .error(error: error)) }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == code else {
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == code else {
                     if let HTTPResponse = response as? HTTPURLResponse {
                         completion(result: .error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
                     }
@@ -337,7 +343,8 @@ public class TraktManager {
             }
             
             // Check data
-            guard let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
+            guard
+                let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
             
             do {
                 if let array = try JSONSerialization.jsonObject(with: data, options: []) as? [RawJSON] {
@@ -359,8 +366,11 @@ public class TraktManager {
             guard error == nil else { return completion(result: .fail) }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == code else { return completion(result: .fail) }
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == code else {
+                return completion(result: .fail)
+            }
             
             // Check data
             guard data != nil else { return completion(result: .fail) }
@@ -434,7 +444,8 @@ public class TraktManager {
         let aCompletion: ResultCompletionHandler = { (result) -> Void in
             switch result {
             case .success(let dict):
-                guard let traktObject = T(json: dict) else { return completion(result: .error(error: nil)) }
+                guard
+                    let traktObject = T(json: dict) else { return completion(result: .error(error: nil)) }
                 completion(result: .success(object: traktObject))
             case .error(let error):
                 completion(result: .error(error: error))
@@ -450,12 +461,14 @@ public class TraktManager {
     func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: ((result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard
+                let wSelf = self else { return }
             guard error == nil else { return completion(result: .error(error: error)) }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == code else {
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == code else {
                     if let HTTPResponse = response as? HTTPURLResponse {
                         completion(result: .error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
                     }
@@ -467,7 +480,8 @@ public class TraktManager {
             }
             
             // Check data
-            guard let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
+            guard
+                let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
             
             do {
                 if let array = try JSONSerialization.jsonObject(with: data, options: []) as? [RawJSON] {
@@ -490,9 +504,10 @@ public class TraktManager {
     // MARK: - Authentication
     
     public func getTokenFromAuthorizationCode(code: String, completionHandler: SuccessCompletionHandler?) throws {
-        guard let clientID = clientID,
-            clientSecret = clientSecret,
-            redirectURI = redirectURI else {
+        guard
+            let clientID = clientID,
+            let clientSecret = clientSecret,
+            let redirectURI = redirectURI else {
                 completionHandler?(result: .fail)
                 return
         }
@@ -514,23 +529,26 @@ public class TraktManager {
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
         session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard
+                let wSelf = self else { return }
             guard error == nil else {
                 completionHandler?(result: .fail)
                 return
             }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == StatusCodes.Success else {
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success else {
                     completionHandler?(result: .fail)
                     return
             }
             
             // Check data
-            guard let data = data else {
-                completionHandler?(result: .fail)
-                return
+            guard
+                let data = data else {
+                    completionHandler?(result: .fail)
+                    return
             }
             
             do {
@@ -604,11 +622,13 @@ public class TraktManager {
     }
     
     public func getAccessTokenFromRefreshToken(completionHandler: SuccessCompletionHandler) throws {
-        guard let clientID = clientID,
-            clientSecret = clientSecret,
-            redirectURI = redirectURI else { return completionHandler(result: .fail) }
+        guard
+            let clientID = clientID,
+            let clientSecret = clientSecret,
+            let redirectURI = redirectURI else { return completionHandler(result: .fail) }
         
-        guard let rToken = refreshToken else { return completionHandler(result: .fail) }
+        guard
+            let rToken = refreshToken else { return completionHandler(result: .fail) }
         
         let urlString = "https://trakt.tv/oauth/token"
         let url = URL(string: urlString)
@@ -624,15 +644,20 @@ public class TraktManager {
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
         session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard
+                let wSelf = self else { return }
             guard error == nil else { return completionHandler(result: .fail) }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == StatusCodes.Success else { return completionHandler(result: .fail) }
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success else {
+                    return completionHandler(result: .fail)
+            }
             
             // Check data
-            guard let data = data else { return completionHandler(result: .fail) }
+            guard
+                let data = data else { return completionHandler(result: .fail) }
             
             do {
                 if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
@@ -647,7 +672,10 @@ public class TraktManager {
                     #endif
                     
                     // Save expiration date
-                    guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else { return completionHandler(result: .fail) }
+                    guard
+                        let timeInterval = accessTokenDict["expires_in"] as? NSNumber else {
+                            return completionHandler(result: .fail)
+                    }
                     let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
                     
                     UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")

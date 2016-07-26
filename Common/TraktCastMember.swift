@@ -16,8 +16,9 @@ public struct CastMember: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            character = json["character"] as? String else { return nil }
+        guard
+            let json = json,
+            let character = json["character"] as? String else { return nil }
         
         self.character = character
         self.person = Person(json: json["person"] as? RawJSON)

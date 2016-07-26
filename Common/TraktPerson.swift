@@ -26,9 +26,10 @@ public struct Person: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            name = json["name"] as? String,
-            ids = ID(json: json["ids"] as? [String: AnyObject]) else { return nil }
+        guard
+            let json = json,
+            let name = json["name"] as? String,
+            let ids = ID(json: json["ids"] as? [String: AnyObject]) else { return nil }
         
         // Extended: Min
         self.name = name

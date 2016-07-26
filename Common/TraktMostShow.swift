@@ -19,12 +19,13 @@ public struct TraktMostShow: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            watcherCount = json["watcher_count"] as? Int,
-            playCount = json["play_count"] as? Int,
-            collectedCount = json["collected_count"] as? Int,
-            collectorCount = json["collector_count"] as? Int,
-            show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let watcherCount = json["watcher_count"] as? Int,
+            let playCount = json["play_count"] as? Int,
+            let collectedCount = json["collected_count"] as? Int,
+            let collectorCount = json["collector_count"] as? Int,
+            let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
         self.watcherCount = watcherCount
         self.playCount = playCount

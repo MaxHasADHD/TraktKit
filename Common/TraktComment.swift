@@ -21,16 +21,17 @@ public struct Comment: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            id = json["id"] as? NSNumber,
-            parentID = json["parent_id"] as? NSNumber,
-            createdAt = Date.dateFromString(json["created_at"] as? String),
-            comment = json["comment"] as? String,
-            spoiler = json["spoiler"] as? Bool,
-            review = json["review"] as? Bool,
-            replies = json["replies"] as? NSNumber,
-            userRating = json["user_rating"] as? NSNumber,
-            user = User(json: json["user"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let id = json["id"] as? NSNumber,
+            let parentID = json["parent_id"] as? NSNumber,
+            let createdAt = Date.dateFromString(json["created_at"] as? String),
+            let comment = json["comment"] as? String,
+            let spoiler = json["spoiler"] as? Bool,
+            let review = json["review"] as? Bool,
+            let replies = json["replies"] as? NSNumber,
+            let userRating = json["user_rating"] as? NSNumber,
+            let user = User(json: json["user"] as? RawJSON) else { return nil }
         
         self.id = id
         self.parentID = parentID

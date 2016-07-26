@@ -15,9 +15,10 @@ public struct TraktBoxOfficeMovie: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            revenue = json["revenue"] as? Int,
-            movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let revenue = json["revenue"] as? Int,
+            let movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
         
         self.revenue = revenue
         self.movie = movie

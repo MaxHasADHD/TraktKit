@@ -22,10 +22,11 @@ public struct TraktWatchedEpisodes: TraktProtocol {
     }
     
     public init?(json: RawJSON?) {
-        guard let json = json,
-            number = json["number"] as? Int,
-            plays = json["plays"] as? Int,
-            lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String) else { return nil }
+        guard
+            let json = json,
+            let number = json["number"] as? Int,
+            let plays = json["plays"] as? Int,
+            let lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String) else { return nil }
         
         self.number = number
         self.plays = plays

@@ -15,9 +15,10 @@ public struct TraktAnticipatedMovie: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            listCount = json["list_count"] as? Int,
-            movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let listCount = json["list_count"] as? Int,
+            let movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
         
         self.listCount = listCount
         self.movie = movie

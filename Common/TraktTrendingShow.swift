@@ -15,9 +15,10 @@ public struct TraktTrendingShow: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            watchers = json["watchers"] as? Int,
-            show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let watchers = json["watchers"] as? Int,
+            let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
         self.watchers = watchers
         self.show = show

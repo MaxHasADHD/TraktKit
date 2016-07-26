@@ -110,10 +110,11 @@ internal extension ShowsAndMovies {
     // MARK: - Summary
     
     func getSummary<T: CustomStringConvertible, U: TraktProtocol>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: ((result: ObjectResultType<U>) -> Void)) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)",
-                                           withQuery: ["extended": extended.queryString()],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)",
+                                         withQuery: ["extended": extended.queryString()],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -121,10 +122,11 @@ internal extension ShowsAndMovies {
     // MARK: - Aliases
     
     func getAliases<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)",
-                                           withQuery: [:],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)",
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -138,71 +140,77 @@ internal extension ShowsAndMovies {
             path += "/\(language)"
         }
         
-        guard let request = mutableRequest(forPath: path, withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: path,
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Comments
     
     func getComments<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: CommentsCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)/comments", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)/comments",
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - People
     
     func getPeople<T: CustomStringConvertible>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)/people",
-                                           withQuery: ["extended": extended.queryString()],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)/people",
+                                         withQuery: ["extended": extended.queryString()],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Ratings
     
     func getRatings<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)/ratings",
-                                           withQuery: [:],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)/ratings",
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Related
     
     func getRelated<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)/related",
-                                           withQuery: [:],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)/related",
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Stats
     
     func getStatistics<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: statsCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)/stats",
-                                           withQuery: [:],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)/stats",
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Watching
     
     func getUsersWatching<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "\(type)/\(id)/watching",
-                                           withQuery: [:],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "\(type)/\(id)/watching",
+                                         withQuery: [:],
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

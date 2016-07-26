@@ -21,46 +21,51 @@ public struct TraktListItem: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            rank = json["rank"] as? NSNumber,
-            listedAt = Date.dateFromString(json["listed_at"]),
-            type = json["type"] as? String else { return nil }
+        guard
+            let json = json,
+            let rank = json["rank"] as? NSNumber,
+            let listedAt = Date.dateFromString(json["listed_at"]),
+            let type = json["type"] as? String else { return nil }
         
         self.rank = rank
         self.listedAt = listedAt
         self.type = type
         
         if type == "movie" {
-            guard let movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
+            guard
+                let movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
             self.movie = movie
         }
         else if type == "show" {
-            guard let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
+            guard
+                let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
             
             self.show = show
         }
         else if type == "season" {
-            guard let show = TraktShow(json: json["show"] as? RawJSON),
-                season = TraktSeason(json: json["season"] as? RawJSON) else { return nil }
+            guard
+                let show = TraktShow(json: json["show"] as? RawJSON),
+                let season = TraktSeason(json: json["season"] as? RawJSON) else { return nil }
             
             self.show = show
             self.season = season
         }
         else if type == "episode" {
-            guard let show = TraktShow(json: json["show"] as? RawJSON),
-                episode = TraktEpisode(json: json["episode"] as? RawJSON) else { return nil }
+            guard
+                let show = TraktShow(json: json["show"] as? RawJSON),
+                let episode = TraktEpisode(json: json["episode"] as? RawJSON) else { return nil }
             
             self.show = show
             self.episode = episode
         }
         else if type == "person" {
-            guard let person = Person(json: json["person"] as? RawJSON) else { return nil }
+            guard
+                let person = Person(json: json["person"] as? RawJSON) else { return nil }
             
             self.person = person
         }
         else {
             return nil
         }
-        
     }
 }

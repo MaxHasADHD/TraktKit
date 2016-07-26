@@ -34,9 +34,10 @@ public struct TraktMovie: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            title = json["title"] as? String,
-            ids = ID(json: json["ids"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let title = json["title"] as? String,
+            let ids = ID(json: json["ids"] as? RawJSON) else { return nil }
         
         // Extended: Min
         self.title              = title

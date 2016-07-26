@@ -15,9 +15,10 @@ public struct TraktAnticipatedShow: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            listCount = json["list_count"] as? Int,
-            show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let listCount = json["list_count"] as? Int,
+            let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
         self.listCount = listCount
         self.show = show

@@ -16,8 +16,9 @@ public struct CrewMember: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            job = json["job"] as? String else { return nil }
+        guard
+            let json = json,
+            let job = json["job"] as? String else { return nil }
         
         self.job = job
         self.person = Person(json: json["person"] as? RawJSON)

@@ -66,14 +66,42 @@ public enum SearchType: String {
 }
 
 /// Type of ID used for look up
-public enum LookupType: String {
-    case TraktMovie = "trakt-movie"
-    case TraktShow = "trakt-show"
-    case TraktEpisode = "trakt-episode"
-    case IMDB = "imdb"
-    case TMDB = "tmdb"
-    case TVDB = "tvdb"
-    case TVRage = "tvrage"
+public enum LookupType {
+    case Trakt(id: NSNumber)
+    case IMDB(id: String)
+    case TMDB(id: NSNumber)
+    case TVDB(id: NSNumber)
+    case TVRage(id: NSNumber)
+    
+    func name() -> String {
+        switch self {
+        case .Trakt(_):
+            return "trakt"
+        case .IMDB(_):
+            return "imdb"
+        case .TMDB(_):
+            return "tmdb"
+        case .TVDB(_):
+            return "tvdb"
+        case .TVRage(_):
+            return "tvrage"
+        }
+    }
+    
+    func id() -> String {
+        switch self {
+        case .Trakt(let id):
+            return "\(id)"
+        case .IMDB(let id):
+            return id
+        case .TMDB(let id):
+            return "\(id)"
+        case .TVDB(let id):
+            return "\(id)"
+        case .TVRage(let id):
+            return "\(id)"
+        }
+    }
 }
 
 public enum Type: String, CustomStringConvertible {

@@ -16,10 +16,11 @@ public struct TraktWatchedMovie: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            plays = json["plays"] as? Int,
-            lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String),
-            movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let plays = json["plays"] as? Int,
+            let lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String),
+            let movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
         
         self.plays = plays
         self.lastWatchedAt = lastWatchedAt

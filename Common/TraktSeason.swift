@@ -24,14 +24,15 @@ public struct TraktSeason: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            number = json["number"] as? Int,
-            ids = ID(json: json["ids"] as? RawJSON),
-            rating = json["rating"] as? Double,
-            votes = json["votes"] as? Int,
-            episodeCount = json["episode_count"] as? Int,
-            airedEpisodes = json["aired_episodes"] as? Int,
-            firstAired = Date.dateFromString(json["first_aired"] as? String) else { return nil }
+        guard
+            let json = json,
+            let number = json["number"] as? Int,
+            let ids = ID(json: json["ids"] as? RawJSON),
+            let rating = json["rating"] as? Double,
+            let votes = json["votes"] as? Int,
+            let episodeCount = json["episode_count"] as? Int,
+            let airedEpisodes = json["aired_episodes"] as? Int,
+            let firstAired = Date.dateFromString(json["first_aired"] as? String) else { return nil }
         
         self.number = number
         self.ids    = ids

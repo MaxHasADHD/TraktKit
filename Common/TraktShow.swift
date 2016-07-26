@@ -38,8 +38,9 @@ public struct TraktShow: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            ids = ID(json: json["ids"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let ids = ID(json: json["ids"] as? RawJSON) else { return nil }
         
         // Extended: Min
         self.title          = json["title"] as? String ?? ""

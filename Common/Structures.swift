@@ -37,9 +37,10 @@ public struct ID: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            traktID = json["trakt"] as? Int,
-            slugID = json["slug"] as? String else { return nil }
+        guard
+            let json = json,
+            let traktID = json["trakt"] as? Int,
+            let slugID = json["slug"] as? String else { return nil }
         
         trakt = traktID
         slug = slugID
@@ -63,13 +64,14 @@ public struct TraktStats: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            watchers = json["watchers"] as? Int,
-            plays = json["plays"] as? Int,
-            collectors = json["collectors"] as? Int,
-            comments = json["comments"] as? Int,
-            lists = json["lists"] as? Int,
-            votes = json["votes"] as? Int else { return nil }
+        guard
+            let json = json,
+            let watchers = json["watchers"] as? Int,
+            let plays = json["plays"] as? Int,
+            let collectors = json["collectors"] as? Int,
+            let comments = json["comments"] as? Int,
+            let lists = json["lists"] as? Int,
+            let votes = json["votes"] as? Int else { return nil }
         
         self.watchers = watchers
         self.plays = plays
@@ -78,7 +80,6 @@ public struct TraktStats: TraktProtocol {
         self.comments = comments
         self.lists = lists
         self.votes = votes
-        
     }
 }
 
@@ -95,21 +96,22 @@ public struct TraktLastActivities: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            allJSON = json["all"] ,
-            all = Date.dateFromString(allJSON),
-            moviesJSON = json["movies"] as? RawJSON,
-            movies = TraktLastActivityMovies(json: moviesJSON),
-            episodesJSON = json["episodes"] as? RawJSON,
-            episodes = TraktLastActivityEpisodes(json: episodesJSON),
-            showsJSON = json["shows"] as? RawJSON,
-            shows = TraktLastActivityShows(json: showsJSON),
-            seasonsJSON = json["seasons"] as? RawJSON,
-            seasons = TraktLastActivitySeasons(json: seasonsJSON),
-            commentsJSON = json["comments"] as? RawJSON,
-            comments = TraktLastActivityComments(json: commentsJSON),
-            listsJSON = json["lists"] as? RawJSON,
-            lists = TraktLastActivityLists(json: listsJSON) else { return nil }
+        guard
+            let json = json,
+            let allJSON = json["all"] ,
+            let all = Date.dateFromString(allJSON),
+            let moviesJSON = json["movies"] as? RawJSON,
+            let movies = TraktLastActivityMovies(json: moviesJSON),
+            let episodesJSON = json["episodes"] as? RawJSON,
+            let episodes = TraktLastActivityEpisodes(json: episodesJSON),
+            let showsJSON = json["shows"] as? RawJSON,
+            let shows = TraktLastActivityShows(json: showsJSON),
+            let seasonsJSON = json["seasons"] as? RawJSON,
+            let seasons = TraktLastActivitySeasons(json: seasonsJSON),
+            let commentsJSON = json["comments"] as? RawJSON,
+            let comments = TraktLastActivityComments(json: commentsJSON),
+            let listsJSON = json["lists"] as? RawJSON,
+            let lists = TraktLastActivityLists(json: listsJSON) else { return nil }
         
         self.all        = all
         self.movies     = movies
@@ -131,13 +133,14 @@ public struct TraktLastActivityMovies: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            watchedAt = Date.dateFromString(json["watched_at"]),
-            collectedAt = Date.dateFromString(json["collected_at"]),
-            ratedAt = Date.dateFromString(json["rated_at"]),
-            watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
-            commentedAt = Date.dateFromString(json["commented_at"]),
-            pausedAt = Date.dateFromString(json["paused_at"]) else { return nil }
+        guard
+            let json = json,
+            let watchedAt = Date.dateFromString(json["watched_at"]),
+            let collectedAt = Date.dateFromString(json["collected_at"]),
+            let ratedAt = Date.dateFromString(json["rated_at"]),
+            let watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
+            let commentedAt = Date.dateFromString(json["commented_at"]),
+            let pausedAt = Date.dateFromString(json["paused_at"]) else { return nil }
         
         self.watchedAt      = watchedAt
         self.collectedAt    = collectedAt
@@ -158,13 +161,14 @@ public struct TraktLastActivityEpisodes: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            watchedAt = Date.dateFromString(json["watched_at"]),
-            collectedAt = Date.dateFromString(json["collected_at"]),
-            ratedAt = Date.dateFromString(json["rated_at"]),
-            watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
-            commentedAt = Date.dateFromString(json["commented_at"]),
-            pausedAt = Date.dateFromString(json["paused_at"]) else { return nil }
+        guard
+            let json = json,
+            let watchedAt = Date.dateFromString(json["watched_at"]),
+            let collectedAt = Date.dateFromString(json["collected_at"]),
+            let ratedAt = Date.dateFromString(json["rated_at"]),
+            let watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
+            let commentedAt = Date.dateFromString(json["commented_at"]),
+            let pausedAt = Date.dateFromString(json["paused_at"]) else { return nil }
         
         self.watchedAt = watchedAt
         self.collectedAt = collectedAt
@@ -182,10 +186,11 @@ public struct TraktLastActivityShows: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            ratedAt = Date.dateFromString(json["rated_at"]),
-            watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
-            commentedAt = Date.dateFromString(json["commented_at"]) else { return nil }
+        guard
+            let json = json,
+            let ratedAt = Date.dateFromString(json["rated_at"]),
+            let watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
+            let commentedAt = Date.dateFromString(json["commented_at"]) else { return nil }
         
         self.ratedAt = ratedAt
         self.watchlistedAt = watchlistedAt
@@ -200,10 +205,11 @@ public struct TraktLastActivitySeasons: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            ratedAt = Date.dateFromString(json["rated_at"]),
-            watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
-            commentedAt = Date.dateFromString(json["commented_at"]) else { return nil }
+        guard
+            let json = json,
+            let ratedAt = Date.dateFromString(json["rated_at"]),
+            let watchlistedAt = Date.dateFromString(json["watchlisted_at"]),
+            let commentedAt = Date.dateFromString(json["commented_at"]) else { return nil }
         
         self.ratedAt = ratedAt
         self.watchlistedAt = watchlistedAt
@@ -216,8 +222,9 @@ public struct TraktLastActivityComments: TraktProtocol {
     
     // Initialization
     public init?(json: RawJSON?) {
-        guard let json = json,
-            likedAt = Date.dateFromString(json["liked_at"]) else { return nil }
+        guard
+            let json = json,
+            let likedAt = Date.dateFromString(json["liked_at"]) else { return nil }
         
         self.likedAt = likedAt
     }
@@ -231,10 +238,11 @@ public struct TraktLastActivityLists: TraktProtocol {
     // Initialization
     
     public init?(json: RawJSON?) {
-        guard let json = json,
-            likedAt = Date.dateFromString(json["liked_at"]),
-            updatedAt = Date.dateFromString(json["updated_at"]),
-            commentedAt = Date.dateFromString(json["commented_at"]) else { return nil }
+        guard
+            let json = json,
+            let likedAt = Date.dateFromString(json["liked_at"]),
+            let updatedAt = Date.dateFromString(json["updated_at"]),
+            let commentedAt = Date.dateFromString(json["commented_at"]) else { return nil }
         
         self.likedAt = likedAt
         self.updatedAt = updatedAt

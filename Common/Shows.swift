@@ -158,12 +158,12 @@ extension TraktManager {
      */
     @discardableResult
     public func getShowCollectionProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/progress/collection",
-                                           withQuery: ["hidden": "\(hidden)",
-                                                       "specials": "\(specials)"],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "shows/\(id)/progress/collection",
+                                         withQuery: ["hidden": "\(hidden)",
+                                                     "specials": "\(specials)"],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -176,12 +176,12 @@ extension TraktManager {
      */
     @discardableResult
     public func getShowWatchedProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ResultCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/progress/watched",
-                                           withQuery: ["hidden": "\(hidden)",
-                                                       "specials": "\(specials)"],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .GET) else { return nil }
-        
+        guard
+            let request = mutableRequest(forPath: "shows/\(id)/progress/watched",
+                                         withQuery: ["hidden": "\(hidden)",
+                                                     "specials": "\(specials)"],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     

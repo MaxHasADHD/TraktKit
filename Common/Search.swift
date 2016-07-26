@@ -10,38 +10,78 @@ import Foundation
 
 extension TraktManager {
     /**
-     Perform a text query that searches titles, descriptions, translated titles, aliases, and people. Items searched include movies, shows, episodes, people, and lists. Results are ordered by the most relevant score.
-     
-     You can optionally limit the `type` of results to return. Send a comma separated string to get results for multiple types. You can optionally filter the `year` for `movie` and `show` results.
+     Search by titles, descriptions, translated titles, aliases, and people. Results are ordered by the most relevant score. Specify the type of results by sending a single value or a comma delimited string for multiple types.
      
      Status Code: 200
      
+     📄 Pagination
+     ✨ Extended Info
+     🎚 Filters
      */
     @discardableResult
-    public func search(query: String, types: [SearchType], extended: [ExtendedType] = [.Min], completion: SearchCompletionHandler) -> URLSessionDataTask? {
+    public func search(query: String,
+                       types: [SearchType],
+                       extended: [ExtendedType] = [.Min],
+                       pagination: Pagination? = nil,
+                       filters: [Filter]? = nil,
+                       completion: SearchCompletionHandler) -> URLSessionDataTask? {
         
         let typesString = types.map { $0.rawValue }.joined(separator: ",") // Search with multiple types
-        guard let request = mutableRequest(forPath: "search/\(typesString)",
-                                           withQuery: ["query": query,
-                                                       "extended": extended.queryString()],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
+        var query: [String: String] = ["query": query,
+                                       "extended": extended.queryString()]
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+        
+        // Filters
+        if let filters = filters {
+            for (key, value) in (filters.map { $0.value() }) {
+                query[key] = value
+            }
+        }
+        
+        //
+        guard
+            let request = mutableRequest(forPath: "search/\(typesString)",
+                                         withQuery: query,
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
-    /** 
-     Lookup an item by using a Trakt.tv ID or other external ID. This is helpful to get an items info including the Trakt.tv ID.
+    /**
+     Lookup items by their Trakt, IMDB, TMDB, TVDB, or TVRage ID. If you use the search url without a `type` it might return multiple items if the `id_type` is not globally unique. Specify the `type` of results by sending a single value or a comma delimited string for multiple types.
      
      Status Code: 200
+     
+     📄 Pagination
+     ✨ Extended Info
      */
     @discardableResult
-    public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard let request = mutableRequest(forPath: "search",
-                                           withQuery: ["id_type": idType.rawValue,
-                                                       "id": "\(id)"],
-                                           isAuthorized: false,
-                                           withHTTPMethod: .GET) else { return nil }
+    public func lookup(id: LookupType,
+                       extended: [ExtendedType] = [.Min],
+                       type: SearchType,
+                       pagination: Pagination? = nil,
+                       completion: SearchCompletionHandler) -> URLSessionDataTask? {
         
+        var query: [String: String] = ["extended": extended.queryString(),
+                                       "type": type.rawValue]
+        
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+        
+        guard
+            let request = mutableRequest(forPath: "search/\(id.name())/\(id.id())",
+                                         withQuery: query,
+                                         isAuthorized: false,
+                                         withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

@@ -40,9 +40,12 @@ extension TraktManager {
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else { return completionHandler(result: .fail) }
             
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
-                    HTTPResponse.statusCode == StatusCodes.Conflict) else { return completionHandler(result: .fail) }
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
+                    HTTPResponse.statusCode == StatusCodes.Conflict) else {
+                        return completionHandler(result: .fail)
+            }
             
             if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                 // Started watching
@@ -64,14 +67,21 @@ extension TraktManager {
     @discardableResult
     public func deleteActiveCheckins(completionHandler: SuccessCompletionHandler) -> URLSessionDataTask? {
         // Request
-        guard let request = mutableRequest(forPath: "checkin", withQuery: [:], isAuthorized: true, withHTTPMethod: .DELETE) else { return nil }
+        guard
+            let request = mutableRequest(forPath: "checkin",
+                                         withQuery: [:],
+                                         isAuthorized: true,
+                                         withHTTPMethod: .DELETE) else { return nil }
         
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else { return completionHandler(result: .fail) }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .success) }
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
+                    return completionHandler(result: .success)
+            }
             completionHandler(result: .fail)
         }
         dataTask.resume()

@@ -25,10 +25,11 @@ public struct TraktEpisode: TraktProtocol {
     
     // Initialize
     public init?(json: RawJSON?) {
-        guard let json = json,
-            season = json["season"] as? Int,
-            number = json["number"] as? Int,
-            ids = ID(json: json["ids"] as? RawJSON) else { return nil }
+        guard
+            let json = json,
+            let season = json["season"] as? Int,
+            let number = json["number"] as? Int,
+            let ids = ID(json: json["ids"] as? RawJSON) else { return nil }
         
         // Min
         self.season = season
