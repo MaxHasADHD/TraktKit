@@ -39,15 +39,33 @@ func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
 
 ###Get Show information
 ```
-TraktManager.sharedManager.getShowSummary(showID: "the-last-man-on-earth", extended: .FullAndImages) { (dictionary, error) -> Void in        
-            guard error == nil else {
+TraktManager.sharedManager.getShowSummary(showID: "the-last-man-on-earth", extended: [.Full, .Images]) { (result) in
+            switch result {
+            case .success(let result):
+                // Process result
+                break
+            case .error(let error):
                 // Handle error
-                return
+                break
             }
-            
-            guard let summary = dictionary else {
-                completion(newShow: nil)
-                return
+        }
+```
+
+###Search - This will find Batman movies with ratings between 75% and 100%
+```
+TraktManager.sharedManager.search(query: "Batman",
+                                          types: [.movie],
+                                          extended: [.Full, .Images],
+                                          pagination: Pagination(page: 1, limit: 20),
+                                          filters: [.ratings(ratings: (lower: 75, upper: 100))]) { (result) in
+            switch result {
+            case .success(let results):
+                for result in results {
+                    guard let movie = result.movie else { continue }
+                    // Handle movie
+                }
+            case .error(let error):
+                print(error?.localizedDescription)
             }
         }
 ```
