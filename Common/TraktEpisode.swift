@@ -23,6 +23,9 @@ public struct TraktEpisode: TraktProtocol {
     public let updatedAt: Date?
     public let availableTranslations: [RawJSON]?
     
+    // Extended: Images
+    public let images: TraktImages?
+    
     // Initialize
     public init?(json: RawJSON?) {
         guard
@@ -44,5 +47,8 @@ public struct TraktEpisode: TraktProtocol {
         self.firstAired = Date.dateFromString(json["first_aired"] as? String)
         self.updatedAt  = Date.dateFromString(json["updated_at"] as? String)
         self.availableTranslations = []
+        
+        // Extended: Images
+        images = TraktImages(json: json["images"] as? RawJSON)
     }
 }

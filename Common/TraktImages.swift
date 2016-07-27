@@ -15,7 +15,8 @@ public struct TraktImages: TraktProtocol {
     public let clearArt: TraktImage?
     public let banner: TraktImage?
     public let thumb: TraktImage?
-    public let headshot: TraktImage?
+    public let headshot: TraktImage? // Cast/Crew
+    public let screenshot: TraktImage? // TVEpisode
     
     // Initialize
     public init?(json: RawJSON?) {
@@ -28,7 +29,8 @@ public struct TraktImages: TraktProtocol {
         clearArt    = TraktImage(json: json["clearart"] as? RawJSON)
         banner      = TraktImage(json: json["banner"] as? RawJSON)
         thumb       = TraktImage(json: json["thumb"] as? RawJSON)
-        headshot    = TraktImage(json: json["headshot"] as? RawJSON) // For actors
+        headshot    = TraktImage(json: json["headshot"] as? RawJSON) // For cast/crew
+        screenshot  = TraktImage(json: json["screenshot"] as? RawJSON) // For episodes
     }
 }
 
