@@ -12,7 +12,7 @@ public struct Comment: TraktProtocol {
     public let id: NSNumber
     public let parentID: NSNumber
     public let createdAt: Date // TODO: Make Date
-    public let comment: String
+    public var comment: String
     public let spoiler: Bool
     public let review: Bool
     public let replies: NSNumber
@@ -42,5 +42,26 @@ public struct Comment: TraktProtocol {
         self.replies = replies
         self.userRating = userRating
         self.user = user
+    }
+}
+
+public extension Sequence where Iterator.Element == Comment {
+    public func hideSpoilers() -> [Comment] {
+        var copy: [Comment] = self as! [Comment]
+        
+        for (index, var comment) in copy.enumerated() {
+            var text = comment.comment
+            
+            if let start = text.range(of: "[spoiler]"),
+                let end = text.range(of: "[/spoiler]") {
+                
+                let range = Range(uncheckedBounds: (start.lowerBound, end.upperBound))
+                // Clean up title
+                text.removeSubrange(range)
+                comment.comment = text.trimmingCharacters(in: .whitespaces)
+                copy[index] = comment
+            }
+        }
+        return copy.filter { $0.spoiler == false }
     }
 }
