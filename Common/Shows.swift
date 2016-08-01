@@ -24,8 +24,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getTrendingShows(page: Int, limit: Int, completion: TrendingShowsCompletionHandler) -> URLSessionDataTask? {
-        return getTrending(.Shows, page: page, limit: limit, completion: completion)
+    public func getTrendingShows(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: TrendingShowsCompletionHandler) -> URLSessionDataTask? {
+        return getTrending(.Shows, page: page, limit: limit, extended: extended, completion: completion)
     }
     
     // MARK: - Popular
@@ -34,10 +34,10 @@ extension TraktManager {
      Returns the most popular shows. Popularity is calculated using the rating percentage and the number of ratings.
      
      📄 Pagination
-    */
+     */
     @discardableResult
-    public func getPopularShows(page: Int, limit: Int, completion: ShowsCompletionHandler) -> URLSessionDataTask? {
-        return getPopular(.Shows, page: page, limit: limit, completion: completion)
+    public func getPopularShows(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: ShowsCompletionHandler) -> URLSessionDataTask? {
+        return getPopular(.Shows, page: page, limit: limit, extended: extended, completion: completion)
     }
     
     // MARK: - Played
@@ -48,7 +48,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getPlayedShows(page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getPlayedShows(page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getPlayed(.Shows, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -60,7 +60,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getWatchedShows(page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchedShows(page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getWatched(.Shows, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -72,7 +72,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getCollectedShows(page: Int, limit: Int, period: Period = .Weekly, completion: MostMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getCollectedShows(page: Int, limit: Int, period: Period = .Weekly, completion: MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getCollected(.Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -175,7 +175,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getShowWatchedProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowWatchedProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ShowWatchedProgressCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "shows/\(id)/progress/watched",
                                          withQuery: ["hidden": "\(hidden)",

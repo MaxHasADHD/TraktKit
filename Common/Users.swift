@@ -588,8 +588,6 @@ extension Users {
     
     // MARK: - Watching
     
-    public typealias watchingCompletionHandler = (watching: Bool, dictionary: [String: AnyObject]?, error: NSError?) -> Void
-    
     /**
      Returns a movie or episode if the user is currently watching something. If they are not, it returns no data and a `204` HTTP status code.
      
@@ -606,10 +604,8 @@ extension Users {
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard error == nil else {
-                completion(watching: false, dictionary: nil, error: error)
-                return
-            }
+            guard
+                error == nil else { return completion(result: .Error(error: error)) }
             
             // Check response
             guard
@@ -618,30 +614,27 @@ extension Users {
                     HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                         
                         if let HTTPResponse = response as? HTTPURLResponse {
-                            completion(watching: false, dictionary: nil, error: self.createErrorWithStatusCode(HTTPResponse.statusCode))
+                            completion(result: .Error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
                         }
                         else {
-                            completion(watching: false, dictionary: nil, error: TraktKitNoDataError)
+                            completion(result: .Error(error: TraktKitNoDataError))
                         }
                         return
             }
             
-            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
-                return completion(watching: false, dictionary: nil, error: nil)
-            }
+            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn { return completion(result: .NotCheckedIn) }
             
             // Check data
             guard
-                let data = data else {
-                    return completion(watching: false, dictionary: nil, error: TraktKitNoDataError)
-            }
+                let data = data else { return completion(result: .Error(error: TraktKitNoDataError)) }
             
             do {
-                if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
-                    completion(watching: true, dictionary: dict, error: nil)
-                }
-            } catch let jsonSerializationError as NSError {
-                completion(watching: false, dictionary: nil, error: jsonSerializationError)
+                guard
+                    let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else { return completion(result: .Error(error: nil)) }
+                completion(result: .CheckedIn(dict: dict))
+            }
+            catch let jsonSerializationError as NSError {
+                completion(result: .Error(error: jsonSerializationError))
             }
         }
         dataTask.resume()

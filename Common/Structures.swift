@@ -51,6 +51,46 @@ public struct ID: TraktProtocol {
     }
 }
 
+public struct SeasonId: TraktProtocol {
+    public let trakt: Int
+    public let tvdb: Int?
+    public let tmdb: Int?
+    public let tvRage: Int?
+    
+    // Initialize
+    public init?(json: RawJSON?) {
+        guard
+            let json = json,
+            let traktID = json["trakt"] as? Int else { return nil }
+        
+        trakt = traktID
+        tvdb = json["tvdb"] as? Int
+        tmdb = json["tmdb"] as? Int
+        tvRage = json["tvrage"] as? Int
+    }
+}
+
+public struct EpisodeId: TraktProtocol {
+    public let trakt: Int
+    public let tvdb: Int?
+    public let imdb: String?
+    public let tmdb: Int?
+    public let tvRage: Int?
+    
+    // Initialize
+    public init?(json: RawJSON?) {
+        guard
+            let json = json,
+            let traktID = json["trakt"] as? Int else { return nil }
+        
+        trakt = traktID
+        tvdb = json["tvdb"] as? Int
+        imdb = json["imdb"] as? String
+        tmdb = json["tmdb"] as? Int
+        tvRage = json["tvrage"] as? Int
+    }
+}
+
 // MARK: - Stats
 
 public struct TraktStats: TraktProtocol {

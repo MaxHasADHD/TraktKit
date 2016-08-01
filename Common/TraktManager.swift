@@ -134,12 +134,20 @@ public class TraktManager {
         case error(error: NSError?)
     }
     
+    public enum WatchingResultType {
+        case CheckedIn(dict: RawJSON)
+        case NotCheckedIn
+        case Error(error: NSError?)
+    }
+    
     // MARK: Completion handlers
     public typealias ResultCompletionHandler        = (result: DictionaryResultType) -> Void
     public typealias SuccessCompletionHandler       = (result: SuccessResultType) -> Void
     public typealias ArrayCompletionHandler         = (result: ArrayResultType) -> Void
     public typealias CommentsCompletionHandler      = (result: CommentsResultType) -> Void
     public typealias CastCrewCompletionHandler      = (result: CastCrewResultType) -> Void
+    
+    public typealias watchingCompletionHandler      = (result: WatchingResultType) -> Void
     
     // MARK: - Completion handlers
     public typealias SearchCompletionHandler        = (result: ObjectsResultType<TraktSearchResult>) -> Void
@@ -152,7 +160,9 @@ public class TraktManager {
     public typealias MostShowsCompletionHandler     = (result: ObjectsResultType<TraktMostShow>) -> Void
     public typealias ShowTranslationsCompletionHandler = (result: ObjectsResultType<TraktShowTranslation>) -> Void
     public typealias SeasonsCompletionHandler       = (result: ObjectsResultType<TraktSeason>) -> Void
+    
     public typealias WatchedShowsCompletionHandler  = (result: ObjectsResultType<TraktWatchedShow>) -> Void
+    public typealias ShowWatchedProgressCompletionHandler = (result: ObjectResultType<TraktShowWatchedProgress>) -> Void
     
     // Episodes
     public typealias EpisodeCompletionHandler         = (result: ObjectsResultType<TraktEpisode>) -> Void

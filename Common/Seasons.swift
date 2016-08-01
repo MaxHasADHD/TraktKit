@@ -25,7 +25,6 @@ extension TraktManager {
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
-        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
