@@ -88,9 +88,7 @@ internal extension ShowsAndMovies {
                                                        "extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        print(request.url)
-        
+        request.cachePolicy = .reloadIgnoringLocalCacheData        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     

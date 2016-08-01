@@ -32,7 +32,9 @@ class KeychainTests: XCTestCase {
         // Load data
         if let data = MLKeychain.loadData(forKey: key) {
             if let stringForm = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
-                print("Found this in the keychain: \(stringForm)")
+                #if DEBUG
+                    print("Found this in the keychain: \(stringForm)")
+                #endif
                 XCTAssert(value == stringForm, "Data should be exact")
             }
             else {
