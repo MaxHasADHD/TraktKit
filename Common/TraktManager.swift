@@ -135,57 +135,57 @@ public class TraktManager {
     }
     
     public enum WatchingResultType {
-        case CheckedIn(dict: RawJSON)
-        case NotCheckedIn
-        case Error(error: NSError?)
+        case checkedIn(watching: TraktWatching)
+        case notCheckedIn
+        case error(error: NSError?)
     }
     
     // MARK: Completion handlers
-    public typealias ResultCompletionHandler        = (result: DictionaryResultType) -> Void
-    public typealias SuccessCompletionHandler       = (result: SuccessResultType) -> Void
-    public typealias ArrayCompletionHandler         = (result: ArrayResultType) -> Void
-    public typealias CommentsCompletionHandler      = (result: CommentsResultType) -> Void
-    public typealias CastCrewCompletionHandler      = (result: CastCrewResultType) -> Void
+    public typealias ResultCompletionHandler = (result: DictionaryResultType) -> Void
+    public typealias SuccessCompletionHandler = (result: SuccessResultType) -> Void
+    public typealias ArrayCompletionHandler = (result: ArrayResultType) -> Void
+    public typealias CommentsCompletionHandler = (result: CommentsResultType) -> Void
+    public typealias CastCrewCompletionHandler = (result: CastCrewResultType) -> Void
     
-    public typealias watchingCompletionHandler      = (result: WatchingResultType) -> Void
+    public typealias watchingCompletionHandler = (result: WatchingResultType) -> Void
     
     // MARK: - Completion handlers
-    public typealias SearchCompletionHandler        = (result: ObjectsResultType<TraktSearchResult>) -> Void
-    public typealias statsCompletionHandler         = (result: ObjectResultType<TraktStats>) -> Void
+    public typealias SearchCompletionHandler = (result: ObjectsResultType<TraktSearchResult>) -> Void
+    public typealias statsCompletionHandler = (result: ObjectResultType<TraktStats>) -> Void
     
     // TV
-    public typealias ShowCompletionHandler          = (result: ObjectResultType<TraktShow>) -> Void
-    public typealias ShowsCompletionHandler         = (result: ObjectsResultType<TraktShow>) -> Void
+    public typealias ShowCompletionHandler = (result: ObjectResultType<TraktShow>) -> Void
+    public typealias ShowsCompletionHandler = (result: ObjectsResultType<TraktShow>) -> Void
     public typealias TrendingShowsCompletionHandler = (result: ObjectsResultType<TraktTrendingShow>) -> Void
-    public typealias MostShowsCompletionHandler     = (result: ObjectsResultType<TraktMostShow>) -> Void
+    public typealias MostShowsCompletionHandler = (result: ObjectsResultType<TraktMostShow>) -> Void
     public typealias ShowTranslationsCompletionHandler = (result: ObjectsResultType<TraktShowTranslation>) -> Void
-    public typealias SeasonsCompletionHandler       = (result: ObjectsResultType<TraktSeason>) -> Void
+    public typealias SeasonsCompletionHandler = (result: ObjectsResultType<TraktSeason>) -> Void
     
-    public typealias WatchedShowsCompletionHandler  = (result: ObjectsResultType<TraktWatchedShow>) -> Void
+    public typealias WatchedShowsCompletionHandler = (result: ObjectsResultType<TraktWatchedShow>) -> Void
     public typealias ShowWatchedProgressCompletionHandler = (result: ObjectResultType<TraktShowWatchedProgress>) -> Void
     
     // Episodes
-    public typealias EpisodeCompletionHandler         = (result: ObjectsResultType<TraktEpisode>) -> Void
-    public typealias EpisodesCompletionHandler         = (result: ObjectsResultType<TraktEpisode>) -> Void
+    public typealias EpisodeCompletionHandler = (result: ObjectsResultType<TraktEpisode>) -> Void
+    public typealias EpisodesCompletionHandler = (result: ObjectsResultType<TraktEpisode>) -> Void
     
     // Movies
-    public typealias MovieCompletionHandler          = (result: ObjectResultType<TraktMovie>) -> Void
-    public typealias MoviesCompletionHandler         = (result: ObjectsResultType<TraktMovie>) -> Void
+    public typealias MovieCompletionHandler = (result: ObjectResultType<TraktMovie>) -> Void
+    public typealias MoviesCompletionHandler = (result: ObjectsResultType<TraktMovie>) -> Void
     public typealias TrendingMoviesCompletionHandler = (result: ObjectsResultType<TraktTrendingMovie>) -> Void
-    public typealias MostMoviesCompletionHandler     = (result: ObjectsResultType<TraktMostShow>) -> Void
+    public typealias MostMoviesCompletionHandler = (result: ObjectsResultType<TraktMostShow>) -> Void
     public typealias AnticipatedMovieCompletionHandler = (result: ObjectsResultType<TraktAnticipatedMovie>) -> Void
     public typealias MovieTranslationsCompletionHandler = (result: ObjectsResultType<TraktMovieTranslation>) -> Void
-    public typealias WatchedMoviesCompletionHandler  = (result: ObjectsResultType<TraktWatchedMovie>) -> Void
-    public typealias BoxOfficeMoviesCompletionHandler  = (result: ObjectsResultType<TraktBoxOfficeMovie>) -> Void
+    public typealias WatchedMoviesCompletionHandler = (result: ObjectsResultType<TraktWatchedMovie>) -> Void
+    public typealias BoxOfficeMoviesCompletionHandler = (result: ObjectsResultType<TraktBoxOfficeMovie>) -> Void
     
     // Sync
     public typealias LastActivitiesCompletionHandler = (result: ObjectResultType<TraktLastActivities>) -> Void
-    public typealias RatingsCompletionHandler       = (result: ObjectsResultType<TraktRating>) -> Void
+    public typealias RatingsCompletionHandler = (result: ObjectsResultType<TraktRating>) -> Void
     
     // Users
-    public typealias ListCompletionHandler          = (result: ObjectResultType<TraktList>) -> Void
-    public typealias ListsCompletionHandler         = (result: ObjectsResultType<TraktList>) -> Void
-    public typealias ListItemCompletionHandler      = (result: ObjectsResultType<TraktListItem>) -> Void
+    public typealias ListCompletionHandler = (result: ObjectResultType<TraktList>) -> Void
+    public typealias ListsCompletionHandler = (result: ObjectsResultType<TraktList>) -> Void
+    public typealias ListItemCompletionHandler = (result: ObjectsResultType<TraktListItem>) -> Void
     
     // MARK: - Lifecycle
     

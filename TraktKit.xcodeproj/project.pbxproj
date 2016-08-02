@@ -75,6 +75,7 @@
 		A79163A51C0D46F200E791BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
 		A79E56171D4E7663009CACC7 /* TraktWatchedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E56161D4E7663009CACC7 /* TraktWatchedProgress.swift */; };
+		A79E56301D4FBE43009CACC7 /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
 		A7A168CE1D445D0A0022E762 /* TraktAnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */; };
 		A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
 		A7AF98631CBF47BA00744566 /* TraktSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98621CBF47BA00744566 /* TraktSearchResult.swift */; };
@@ -158,6 +159,7 @@
 		A78D13591B2A341000BA2068 /* Movies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		A79163A41C0D46F200E791BC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A79E56161D4E7663009CACC7 /* TraktWatchedProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktWatchedProgress.swift; sourceTree = "<group>"; };
+		A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktWatching.swift; sourceTree = "<group>"; };
 		A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktAnticipatedMovie.swift; sourceTree = "<group>"; };
 		A7AE55AD1BD4560700A5DFFB /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		A7AF98621CBF47BA00744566 /* TraktSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktSearchResult.swift; sourceTree = "<group>"; };
@@ -360,7 +362,7 @@
 				A7AF98691CBF480300744566 /* Shows */,
 				A7AF986A1CBF480700744566 /* Movies */,
 				A7AF98871CBF4A5700744566 /* Comments */,
-				A7AF988A1CBF4B7F00744566 /* User */,
+				A7AF988A1CBF4B7F00744566 /* Users */,
 				A7AF988D1CBF4D2C00744566 /* People */,
 				A7AF98941CBF50CC00744566 /* List */,
 				A77A216D1D394DFA006E5D92 /* Sync */,
@@ -415,12 +417,13 @@
 			name = Comments;
 			sourceTree = "<group>";
 		};
-		A7AF988A1CBF4B7F00744566 /* User */ = {
+		A7AF988A1CBF4B7F00744566 /* Users */ = {
 			isa = PBXGroup;
 			children = (
 				A7AF988B1CBF4B8E00744566 /* TraktUser.swift */,
+				A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */,
 			);
-			name = User;
+			name = Users;
 			sourceTree = "<group>";
 		};
 		A7AF988D1CBF4D2C00744566 /* People */ = {
@@ -691,6 +694,7 @@
 				A77340661C079D2D00A69EA1 /* Episodes.swift in Sources */,
 				A7AF987A1CBF495300744566 /* TraktWatchedShow.swift in Sources */,
 				A77602BE1D1BB66D000FA8C4 /* Enums.swift in Sources */,
+				A79E56301D4FBE43009CACC7 /* TraktWatching.swift in Sources */,
 				A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */,
 				A7AF98741CBF48D900744566 /* TraktSeason.swift in Sources */,
 				A7AF986E1CBF484B00744566 /* TraktMostShow.swift in Sources */,

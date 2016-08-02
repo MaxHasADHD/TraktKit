@@ -605,7 +605,7 @@ extension Users {
                                          withHTTPMethod: .GET) else { return nil }
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard
-                error == nil else { return completion(result: .Error(error: error)) }
+                error == nil else { return completion(result: .error(error: error)) }
             
             // Check response
             guard
@@ -614,27 +614,29 @@ extension Users {
                     HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                         
                         if let HTTPResponse = response as? HTTPURLResponse {
-                            completion(result: .Error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                            completion(result: .error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
                         }
                         else {
-                            completion(result: .Error(error: TraktKitNoDataError))
+                            completion(result: .error(error: TraktKitNoDataError))
                         }
                         return
             }
             
-            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn { return completion(result: .NotCheckedIn) }
+            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn { return completion(result: .notCheckedIn) }
             
             // Check data
             guard
-                let data = data else { return completion(result: .Error(error: TraktKitNoDataError)) }
+                let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
             
             do {
                 guard
-                    let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else { return completion(result: .Error(error: nil)) }
-                completion(result: .CheckedIn(dict: dict))
+                    let dict = try JSONSerialization.jsonObject(with: data, options: []) as? RawJSON,
+                    let watching = TraktWatching(json: dict)
+                    else { return completion(result: .error(error: nil)) }
+                completion(result: .checkedIn(watching: watching))
             }
             catch let jsonSerializationError as NSError {
-                completion(result: .Error(error: jsonSerializationError))
+                completion(result: .error(error: jsonSerializationError))
             }
         }
         dataTask.resume()

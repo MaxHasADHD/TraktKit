@@ -38,7 +38,7 @@ private let UTCFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
 private let ISO8601DateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
-    let enUSPOSIXLocale = Locale(localeIdentifier: "en_US_POSIX")
+    let enUSPOSIXLocale = Locale(identifier: "en_US_POSIX")
     dateFormatter.locale = enUSPOSIXLocale
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     return dateFormatter
