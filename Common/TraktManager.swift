@@ -580,9 +580,9 @@ public class TraktManager {
                     UserDefaults.standard.synchronize()
                     
                     // Post notification
-                    OperationQueue.main.addOperation({ 
+                    DispatchQueue.main.async {
                         NotificationCenter.default.post(name: Notification.Name.init(rawValue: "signedInToTrakt"), object: nil)
-                    })
+                    }
                     
                     completionHandler?(result: .success)
                 }
