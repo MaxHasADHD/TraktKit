@@ -44,8 +44,8 @@ public struct TraktEpisode: TraktProtocol {
         self.overview   = json["overview"] as? String
         self.rating     = json["rating"] as? Double
         self.votes      = json["votes"] as? Int
-        self.firstAired = Date.dateFromString(json["first_aired"] as? String)
-        self.updatedAt  = Date.dateFromString(json["updated_at"] as? String)
+        self.firstAired = Date.dateFromString(json["first_aired"])
+        self.updatedAt  = Date.dateFromString(json["updated_at"])
         self.availableTranslations = []
         
         // Extended: Images

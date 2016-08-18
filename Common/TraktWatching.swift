@@ -22,8 +22,8 @@ public struct TraktWatching: TraktProtocol {
     public init?(json: RawJSON?) {
         guard
             let json = json,
-            let expiresAt = Date.dateFromString(json["expires_at"] as? String),
-            let startedAt = Date.dateFromString(json["started_at"] as? String),
+            let expiresAt = Date.dateFromString(json["expires_at"]),
+            let startedAt = Date.dateFromString(json["started_at"]),
             let action = json["action"] as? String,
             let type = json["type"] as? String else { return nil }
         

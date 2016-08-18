@@ -47,23 +47,13 @@ public struct TraktMovie: TraktProtocol {
         // Extended: Full
         self.tagline            = json["overview"] as? String
         self.overview           = json["overview"] as? String
-        if let released = json["released"] as? String {
-            self.released = Date.dateFromString(released)
-        }
-        else {
-            self.released = nil
-        }
+        self.released = Date.dateFromString(json["released"])
         self.runtime            = json["runtime"] as? Int
         self.trailer            = (json["trailer"] as? String)?.toURL()
         self.homepage           = (json["homepage"] as? String)?.toURL()
         self.rating             = json["rating"] as? Double
         self.votes              = json["votes"] as? Int
-        if let updatedAt = json["updated_at"] as? String {
-            self.updatedAt = Date.dateFromString(updatedAt)
-        }
-        else {
-            self.updatedAt = nil
-        }
+        self.updatedAt = Date.dateFromString(json["updated_at"])
         self.language           = json["language"] as? String
         self.availableTranslations = json["available_translations"] as? [String]
         self.genres             = json["genres"] as? [String]

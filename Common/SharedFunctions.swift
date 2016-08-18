@@ -13,7 +13,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Trending
     
-    func getTrending<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: ((result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func getTrending<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "\(type)/trending",
                                            withQuery: [
                                             "page": "\(page)",
@@ -28,7 +28,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Popular
     
-    func getPopular<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min],  completion: ((result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func getPopular<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min],  completion: ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "\(type)/popular",
                                            withQuery: ["page": "\(page)",
                                                        "limit": "\(limit)",
@@ -42,7 +42,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Played
     
-    func getPlayed<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func getPlayed<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "\(type)/played/\(period.rawValue)",
                                            withQuery: ["page": "\(page)",
                                                        "limit": "\(limit)"],
@@ -55,7 +55,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Watched
     
-    func getWatched<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func getWatched<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "\(type)/watched/\(period.rawValue)",
                                            withQuery: ["page": "\(page)",
                                                        "limit": "\(limit)"],
@@ -68,7 +68,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Collected
     
-    func getCollected<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func getCollected<T: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "\(type)/collected/\(period.rawValue)",
                                            withQuery: ["page": "\(page)",
                                                        "limit": "\(limit)"],
@@ -107,7 +107,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Summary
     
-    func getSummary<T: CustomStringConvertible, U: TraktProtocol>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: ((result: ObjectResultType<U>) -> Void)) -> URLSessionDataTask? {
+    func getSummary<T: CustomStringConvertible, U: TraktProtocol>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: ((_ result: ObjectResultType<U>) -> Void)) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "\(type)/\(id)",
                                          withQuery: ["extended": extended.queryString()],
@@ -131,7 +131,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Translations
     
-    func getTranslations<T: CustomStringConvertible, U: TraktProtocol>(_ type: WatchedType, id: T, language: String?, completion: ((result: ObjectsResultType<U>) -> Void)) -> URLSessionDataTask? {
+    func getTranslations<T: CustomStringConvertible, U: TraktProtocol>(_ type: WatchedType, id: T, language: String?, completion: ((_ result: ObjectsResultType<U>) -> Void)) -> URLSessionDataTask? {
         
         var path = "\(type)/\(id)/translations"
         if let language = language {

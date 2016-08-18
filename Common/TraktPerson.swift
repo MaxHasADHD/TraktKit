@@ -37,8 +37,8 @@ public struct Person: TraktProtocol {
         
         // Extended: Full
         biography   = json["biography"] as? String
-        birthday    = Date.dateFromString(json["birthday"] as? String)
-        death       = Date.dateFromString(json["death"] as? String)
+        birthday    = Date.dateFromString(json["birthday"])
+        death       = Date.dateFromString(json["death"])
         birthplace  = json["birthplace"] as? String
         homepage    = (json["homepage"] as? String)?.toURL()
     

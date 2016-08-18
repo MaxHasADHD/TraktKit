@@ -389,7 +389,7 @@ extension TraktManager {
             var request = mutableRequest(forPath: "sync/watchlist",
                                          withQuery: [:],
                                          isAuthorized: true,
-                                         withHTTPMethod: .POST) else { completion(result: .fail); return nil }
+                                         withHTTPMethod: .POST) else { completion(.fail); return nil }
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
                                               episodes: episodes)
@@ -409,7 +409,7 @@ extension TraktManager {
             var request = mutableRequest(forPath: "sync/watchlist/remove",
                                          withQuery: [:],
                                          isAuthorized: true,
-                                         withHTTPMethod: .POST) else { completion(result: .error(error: nil)); return nil }
+                                         withHTTPMethod: .POST) else { completion(.error(error: nil)); return nil }
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
                                               episodes: episodes)

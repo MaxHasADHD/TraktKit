@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension String: CustomStringConvertible {
+extension String {
     public var description: String {
         return self
     }

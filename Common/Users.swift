@@ -239,7 +239,7 @@ extension Users {
     public func createCustomList(listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ListCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
-        let json = [
+        let json: [String: Any] = [
             "name": listName,
             "description": listDescription,
             "privacy": privacy,
@@ -281,7 +281,7 @@ extension Users {
     public func updateCustomList(listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: ListCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
-        let json = [
+        let json: [String: Any] = [
             "name": listName,
             "description": listDescription,
             "privacy": privacy,
@@ -605,7 +605,7 @@ extension Users {
                                          withHTTPMethod: .GET) else { return nil }
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard
-                error == nil else { return completion(result: .error(error: error)) }
+                error == nil else { return completion(.error(error: error as? NSError)) }
             
             // Check response
             guard
@@ -614,29 +614,29 @@ extension Users {
                     HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
                         
                         if let HTTPResponse = response as? HTTPURLResponse {
-                            completion(result: .error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                            completion(.error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
                         }
                         else {
-                            completion(result: .error(error: TraktKitNoDataError))
+                            completion(.error(error: TraktKitNoDataError))
                         }
                         return
             }
             
-            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn { return completion(result: .notCheckedIn) }
+            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn { return completion(.notCheckedIn) }
             
             // Check data
             guard
-                let data = data else { return completion(result: .error(error: TraktKitNoDataError)) }
+                let data = data else { return completion(.error(error: TraktKitNoDataError)) }
             
             do {
                 guard
                     let dict = try JSONSerialization.jsonObject(with: data, options: []) as? RawJSON,
                     let watching = TraktWatching(json: dict)
-                    else { return completion(result: .error(error: nil)) }
-                completion(result: .checkedIn(watching: watching))
+                    else { return completion(.error(error: nil)) }
+                completion(.checkedIn(watching: watching))
             }
             catch let jsonSerializationError as NSError {
-                completion(result: .error(error: jsonSerializationError))
+                completion(.error(error: jsonSerializationError))
             }
         }
         dataTask.resume()

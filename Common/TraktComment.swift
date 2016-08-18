@@ -25,7 +25,7 @@ public struct Comment: TraktProtocol {
             let json = json,
             let id = json["id"] as? NSNumber,
             let parentID = json["parent_id"] as? NSNumber,
-            let createdAt = Date.dateFromString(json["created_at"] as? String),
+            let createdAt = Date.dateFromString(json["created_at"]),
             let comment = json["comment"] as? String,
             let spoiler = json["spoiler"] as? Bool,
             let review = json["review"] as? Bool,

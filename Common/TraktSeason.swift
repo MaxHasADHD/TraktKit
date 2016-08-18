@@ -40,7 +40,7 @@ public struct TraktSeason: TraktProtocol {
         self.episodeCount = episodeCount
         self.airedEpisodes = airedEpisodes
         self.overview = json["overview"] as? String
-        self.firstAired = Date.dateFromString(json["first_aired"] as? String)
+        self.firstAired = Date.dateFromString(json["first_aired"])
         
         self.episodes = initEach(json["episodes"] as? [RawJSON] ?? [])
     }

@@ -28,7 +28,7 @@ public struct TraktShowWatchedProgress: TraktProtocol {
         
         self.aired = aired
         self.completed = completed
-        self.lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String)
+        self.lastWatchedAt = Date.dateFromString(json["last_watched_at"])
         
         if let jsonSeasons = json["seasons"] as? [RawJSON] {
             seasons = initEach(jsonSeasons)
@@ -88,6 +88,6 @@ public struct TraktEpisodeWatchedProgress: TraktProtocol {
         
         self.number = number
         self.completed = completed
-        self.lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String)
+        self.lastWatchedAt = Date.dateFromString(json["last_watched_at"])
     }
 }

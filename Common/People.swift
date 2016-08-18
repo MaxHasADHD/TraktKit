@@ -22,7 +22,7 @@ extension TraktManager {
             let request = mutableRequest(forPath: "people/\(id)",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
-                                           withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
+                                           withHTTPMethod: .GET) else { completion(.error(error: nil)); return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -54,7 +54,7 @@ extension TraktManager {
             let request = mutableRequest(forPath: "people/\(id)/\(type)",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
-                                           withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
+                                           withHTTPMethod: .GET) else { completion(.error(error: nil)); return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }

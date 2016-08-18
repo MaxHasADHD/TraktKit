@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias RawJSON = [String: AnyObject] // Dictionary
+public typealias RawJSON = [String: Any] // Dictionary
 
 public protocol TraktProtocol {
     init?(json: RawJSON?) // Min data must be present not to fail
@@ -138,7 +138,7 @@ public struct TraktLastActivities: TraktProtocol {
     public init?(json: RawJSON?) {
         guard
             let json = json,
-            let allJSON = json["all"] ,
+            let allJSON = json["all"],
             let all = Date.dateFromString(allJSON),
             let moviesJSON = json["movies"] as? RawJSON,
             let movies = TraktLastActivityMovies(json: moviesJSON),

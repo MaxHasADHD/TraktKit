@@ -20,7 +20,7 @@ public struct TraktWatchedShow: TraktProtocol {
         guard
             let json = json,
             let plays = json["plays"] as? Int,
-            let lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String),
+            let lastWatchedAt = Date.dateFromString(json["last_watched_at"]),
             let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
         
         self.plays          = plays

@@ -34,26 +34,28 @@ extension TraktManager {
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard var request = mutableRequest(forPath: "checkin", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
+        guard
+            var request = mutableRequest(forPath: "checkin", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = jsonData
         
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard error == nil else { return completionHandler(result: .fail) }
+            guard
+                error == nil else { return completionHandler(.fail) }
             
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
                 (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
                     HTTPResponse.statusCode == StatusCodes.Conflict) else {
-                        return completionHandler(result: .fail)
+                        return completionHandler(.fail)
             }
             
             if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                 // Started watching
-                completionHandler(result: .success)
+                completionHandler(.success)
             }
             else {
                 // Already watching something
-                completionHandler(result: .fail)
+                completionHandler(.fail)
             }
         }
         dataTask.resume()
@@ -74,15 +76,15 @@ extension TraktManager {
                                          withHTTPMethod: .DELETE) else { return nil }
         
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard error == nil else { return completionHandler(result: .fail) }
+            guard error == nil else { return completionHandler(.fail) }
             
             // Check response
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
                 HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
-                    return completionHandler(result: .success)
+                    return completionHandler(.success)
             }
-            completionHandler(result: .fail)
+            completionHandler(.fail)
         }
         dataTask.resume()
         

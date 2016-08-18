@@ -18,7 +18,7 @@ public struct TraktWatchedEpisodes: TraktProtocol {
     public init(json: RawJSON) {
         number = json["number"] as? Int ?? 0
         plays = json["plays"] as? Int ?? 0
-        lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String) ?? Date()
+        lastWatchedAt = Date.dateFromString(json["last_watched_at"]) ?? Date()
     }
     
     public init?(json: RawJSON?) {
@@ -26,7 +26,7 @@ public struct TraktWatchedEpisodes: TraktProtocol {
             let json = json,
             let number = json["number"] as? Int,
             let plays = json["plays"] as? Int,
-            let lastWatchedAt = Date.dateFromString(json["last_watched_at"] as? String) else { return nil }
+            let lastWatchedAt = Date.dateFromString(json["last_watched_at"]) else { return nil }
         
         self.number = number
         self.plays = plays

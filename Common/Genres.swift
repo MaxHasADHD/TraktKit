@@ -19,7 +19,7 @@ extension TraktManager {
             let request = mutableRequest(forPath: "genres/\(type)",
                                          withQuery: [:],
                                          isAuthorized: false,
-                                         withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
+                                         withHTTPMethod: .GET) else { completion(.error(error: nil)); return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

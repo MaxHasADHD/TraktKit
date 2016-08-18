@@ -61,7 +61,7 @@ extension TraktManager {
             let request = mutableRequest(forPath: "recommendations/\(type)",
                                            withQuery: [:],
                                            isAuthorized: true,
-                                           withHTTPMethod: .GET) else { completion(result: .error(error: nil)); return nil }
+                                           withHTTPMethod: .GET) else { completion(.error(error: nil)); return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
@@ -73,7 +73,7 @@ extension TraktManager {
             let request = mutableRequest(forPath: "recommendations/\(type)/\(id)",
                                          withQuery: [:],
                                          isAuthorized: true,
-                                         withHTTPMethod: .DELETE) else { completion(result: .fail); return nil }
+                                         withHTTPMethod: .DELETE) else { completion(.fail); return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
     }
 }
