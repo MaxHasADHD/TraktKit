@@ -81,7 +81,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Anticipated
     
-    func getAnticipated(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: AnticipatedMovieCompletionHandler) -> URLSessionDataTask? {
+    func getAnticipated<U: TraktProtocol>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: ((_ result: ObjectsResultType<U>) -> Void)) -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "\(type)/anticipated",
                                            withQuery: ["page": "\(page)",
                                                        "limit": "\(limit)",

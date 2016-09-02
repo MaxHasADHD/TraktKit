@@ -84,7 +84,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getAnticipatedShows(page: Int, limit: Int, period: Period = .Weekly, extended: [ExtendedType] = [.Min], completion: AnticipatedMovieCompletionHandler) -> URLSessionDataTask? {
+    public func getAnticipatedShows(page: Int, limit: Int, period: Period = .Weekly, extended: [ExtendedType] = [.Min], completion: AnticipatedShowCompletionHandler) -> URLSessionDataTask? {
         return getAnticipated(.Shows, page: page, limit: limit, extended: extended, completion: completion)
     }
     

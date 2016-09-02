@@ -158,6 +158,7 @@ public class TraktManager {
     public typealias ShowsCompletionHandler = (_ result: ObjectsResultType<TraktShow>) -> Void
     public typealias TrendingShowsCompletionHandler = (_ result: ObjectsResultType<TraktTrendingShow>) -> Void
     public typealias MostShowsCompletionHandler = (_ result: ObjectsResultType<TraktMostShow>) -> Void
+    public typealias AnticipatedShowCompletionHandler = (_ result: ObjectsResultType<TraktAnticipatedShow>) -> Void
     public typealias ShowTranslationsCompletionHandler = (_ result: ObjectsResultType<TraktShowTranslation>) -> Void
     public typealias SeasonsCompletionHandler = (_ result: ObjectsResultType<TraktSeason>) -> Void
     
