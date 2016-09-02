@@ -206,8 +206,8 @@ extension TraktManager {
     **Note**: We are continuing to improve this algorithm.
     */
     @discardableResult
-    public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
-        return getRelated(.Movies, id: id, completion: completion)
+    public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: MoviesCompletionHandler) -> URLSessionDataTask? {
+        return getRelated(.Movies, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Stats

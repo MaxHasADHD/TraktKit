@@ -181,10 +181,10 @@ internal extension ShowsAndMovies {
     
     // MARK: - Related
     
-    func getRelated<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    func getRelated<T: CustomStringConvertible, U: TraktProtocol>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: ((_ result: ObjectsResultType<U>) -> Void)) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "\(type)/\(id)/related",
-                                         withQuery: [:],
+                                         withQuery: ["extended": extended.queryString()],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

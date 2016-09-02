@@ -248,7 +248,8 @@ public class TraktManager {
     
     public func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
         let urlString = "https://api-v2launch.trakt.tv/" + path
-        guard var components = URLComponents(string: urlString) else { return nil }
+        guard
+            var components = URLComponents(string: urlString) else { return nil }
         
         if query.isEmpty == false {
             var queryItems: [URLQueryItem] = []
