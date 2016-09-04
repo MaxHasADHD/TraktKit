@@ -140,6 +140,11 @@ public class TraktManager {
         case error(error: NSError?)
     }
     
+    public enum HiddenItemsResultType {
+        case success(items: [HiddenItem])
+        case error(error: Error?)
+    }
+    
     // MARK: Completion handlers
     public typealias ResultCompletionHandler = (_ result: DictionaryResultType) -> Void
     public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
@@ -187,6 +192,7 @@ public class TraktManager {
     public typealias ListCompletionHandler = (_ result: ObjectResultType<TraktList>) -> Void
     public typealias ListsCompletionHandler = (_ result: ObjectsResultType<TraktList>) -> Void
     public typealias ListItemCompletionHandler = (_ result: ObjectsResultType<TraktListItem>) -> Void
+    public typealias HiddenItemsCompletionHandler = (_ result: HiddenItemsResultType) -> Void
     
     // MARK: - Lifecycle
     
@@ -510,6 +516,24 @@ public class TraktManager {
         }
         
         dataTask.resume()
+        return dataTask
+    }
+    
+    // Hidden Items
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: HiddenItemsCompletionHandler) -> URLSessionDataTask? {
+        let aCompletion: ArrayCompletionHandler = { (result: ArrayResultType) -> Void in
+            
+            switch result {
+            case .success(let array):
+                let items: [HiddenItem] = initEach(array)
+                completion(.success(items: items))
+            case .error(let error):
+                completion(.error(error: error))
+            }
+        }
+        
+        let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
+        
         return dataTask
     }
     

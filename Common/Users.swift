@@ -117,12 +117,18 @@ extension Users {
      
      🔒 OAuth Required
      📄 Pagination
+     ✨ Extended Info
      */
     @discardableResult
-    public func hiddenItems(section: SectionType, type: HiddenItemsType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, completion: HiddenItemsCompletionHandler) -> URLSessionDataTask? {
+        var query: [String: String] = [:]
+        if let type = type {
+            query["type"] = type.rawValue
+        }
+        
         guard
             var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
-                                         withQuery: ["type": "\(type.rawValue)"],
+                                         withQuery: query,
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
