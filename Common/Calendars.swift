@@ -19,7 +19,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func myShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/my/shows/\(dateString)/\(days)",
                                          withQuery: [:],
@@ -37,7 +37,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myNewShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func myNewShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/my/shows/new/\(dateString)/\(days)",
                                          withQuery: [:],
@@ -55,7 +55,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func mySeasonPremieres(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func mySeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/my/shows/premieres/\(dateString)/\(days)",
                                          withQuery: [:],
@@ -73,7 +73,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myMovies(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func myMovies(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/my/movies/\(dateString)/\(days)",
                                          withQuery: [:],
@@ -89,7 +89,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/all/shows/\(dateString)/\(days)",
                                          withQuery: [:],
@@ -105,7 +105,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allNewShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allNewShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/all/shows/new/\(dateString)/\(days)",
                                          withQuery: [:],
@@ -121,7 +121,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allSeasonPremieres(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allSeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/all/shows/premieres/\(dateString)/\(days)",
                                          withQuery: [:],
@@ -137,7 +137,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allMovies(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allMovies(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "calendars/all/movies/\(dateString)/\(days)",
                                          withQuery: [:],

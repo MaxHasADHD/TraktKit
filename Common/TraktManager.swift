@@ -301,7 +301,7 @@ public class TraktManager {
     // MARK: Perform Requests
     
     /// Dictionary
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         
         let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
@@ -340,7 +340,7 @@ public class TraktManager {
     }
     
     /// Array
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
                 let wSelf = self else { return }
@@ -379,7 +379,7 @@ public class TraktManager {
     }
     
     /// Success / Failure
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         let datatask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else { return completion(.fail) }
             
@@ -401,7 +401,7 @@ public class TraktManager {
     }
     
     /// Comments
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: CommentsCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         let aCompletion: ArrayCompletionHandler = { (result: ArrayResultType) -> Void in
             
             switch result {
@@ -419,7 +419,7 @@ public class TraktManager {
     }
     
     /// Cast and crew
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
         let aCompletion: ResultCompletionHandler = { (result: DictionaryResultType) -> Void in
             switch result {
             case .success(let dict):
@@ -457,7 +457,7 @@ public class TraktManager {
     }
     
     // Generic array of Trakt objects
-    func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTask? {
         
         let aCompletion: ResultCompletionHandler = { (result) -> Void in
             switch result {
@@ -476,7 +476,7 @@ public class TraktManager {
     }
     
     /// Array of TraktProtocol objects
-    func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
@@ -520,7 +520,7 @@ public class TraktManager {
     }
     
     // Hidden Items
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: HiddenItemsCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
         let aCompletion: ArrayCompletionHandler = { (result: ArrayResultType) -> Void in
             
             switch result {
@@ -657,7 +657,7 @@ public class TraktManager {
         }
     }
     
-    public func getAccessTokenFromRefreshToken(completionHandler: SuccessCompletionHandler) throws {
+    public func getAccessTokenFromRefreshToken(completionHandler: @escaping SuccessCompletionHandler) throws {
         guard
             let clientID = clientID,
             let clientSecret = clientSecret,

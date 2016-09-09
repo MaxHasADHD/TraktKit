@@ -18,7 +18,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postComment(movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func postComment(movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -50,7 +50,7 @@ extension TraktManager {
      Returns a single comment and indicates how many replies it has. Use **GET** `/comments/:id/replies` to get the actual replies.
      */
     @discardableResult
-    public func getComment<T: CustomStringConvertible>(commentID id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "comments/\(id)",
                                          withQuery: [:],
@@ -65,7 +65,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         let json: RawJSON = [
@@ -88,7 +88,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "comments/\(id)",
                                          withQuery: [:],
@@ -105,7 +105,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "comments/\(id)/replies",
                                          withQuery: [:],
@@ -120,7 +120,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         let json: RawJSON = [
@@ -145,7 +145,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "comments/\(id)/like",
                                          withQuery: [:],
@@ -161,7 +161,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "comments/\(id)/like",
                                          withQuery: [:],

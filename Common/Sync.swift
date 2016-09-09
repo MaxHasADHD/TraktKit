@@ -22,7 +22,7 @@ extension TraktManager {
      - returns: URLSessionDataTask?
      */
     @discardableResult
-    public func lastActivities(completion: LastActivitiesCompletionHandler) -> URLSessionDataTask? {
+    public func lastActivities(completion: @escaping LastActivitiesCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/last_activities",
                                          withQuery: [:],
@@ -47,7 +47,7 @@ extension TraktManager {
      - parameter type: Possible Values: .Movies, .Episodes
      */
     @discardableResult
-    public func getPlaybackProgress(type: WatchedType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getPlaybackProgress(type: WatchedType, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/playback/\(type)",
                                          withQuery: [:],
@@ -64,7 +64,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removePlaybackItem<T: CustomStringConvertible>(id: T, completion: SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func removePlaybackItem<T: CustomStringConvertible>(id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/playback/\(id)",
                                          withQuery: [:],
@@ -85,7 +85,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getCollection(type: WatchedType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getCollection(type: WatchedType, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/collection/\(type)",
                                          withQuery: [:],
@@ -106,7 +106,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func addToCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func addToCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "sync/collection", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         
@@ -121,7 +121,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removeFromCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeFromCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "sync/collection/remove",
                                            withQuery: [:],
                                            isAuthorized: true,
@@ -145,7 +145,7 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     @discardableResult
-    public func getWatchedShows(extended: [ExtendedType] = [.Min], completion: WatchedShowsCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchedShows(extended: [ExtendedType] = [.Min], completion: @escaping WatchedShowsCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/watched/shows",
                                          withQuery: ["extended": extended.queryString()],
@@ -165,7 +165,7 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     @discardableResult
-    public func getWatchedMovies(extended: [ExtendedType] = [.Min], completion: WatchedMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchedMovies(extended: [ExtendedType] = [.Min], completion: @escaping WatchedMoviesCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/watched/movies",
                                          withQuery: ["extended": extended.queryString()],
@@ -184,7 +184,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getHistory<T: CustomStringConvertible>(type: WatchedType?, traktID: T?, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getHistory<T: CustomStringConvertible>(type: WatchedType?, traktID: T?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         var path = "sync/history"
         if let type = type {
             path += type.rawValue
@@ -215,7 +215,7 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     @discardableResult
-    public func addToHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func addToHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // Request
         guard var request = mutableRequest(forPath: "sync/history",
@@ -241,7 +241,7 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     @discardableResult
-    public func removeFromHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeFromHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // Request
         guard var request = mutableRequest(forPath: "sync/history/remove",
@@ -265,7 +265,7 @@ extension TraktManager {
      - parameter rating: Filter for a specific rating
      */
     @discardableResult
-    public func getRatings(type: WatchedType, rating: NSInteger?, completion: RatingsCompletionHandler) -> URLSessionDataTask? {
+    public func getRatings(type: WatchedType, rating: NSInteger?, completion: @escaping RatingsCompletionHandler) -> URLSessionDataTask? {
         var path = "sync/ratings/\(type)"
         if let rating = rating {
             path += "/\(rating)"
@@ -293,7 +293,7 @@ extension TraktManager {
      - parameter episodes: Array of episode objects
      */
     @discardableResult
-    public func addRatings(rating: NSNumber, ratedAt: String, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func addRatings(rating: NSNumber, ratedAt: String, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // TODO: Have ratedAt be of Date type and convert to a UTC date string
         
@@ -347,7 +347,7 @@ extension TraktManager {
      - parameter episodes: array of episode object JSON strings
      */
     @discardableResult
-    public func removeRatings(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeRatings(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         guard
             var request = mutableRequest(forPath: "sync/ratings/remove",
                                          withQuery: [:],
@@ -365,7 +365,7 @@ extension TraktManager {
      Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.
      */
     @discardableResult
-    public func getWatchlist(watchType: WatchedType, completion: ListItemCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchlist(watchType: WatchedType, completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/watchlist",
                                          withQuery: [:],
@@ -382,7 +382,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func addToWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func addToWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // Request
         guard
@@ -404,7 +404,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removeFromWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeFromWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         guard
             var request = mutableRequest(forPath: "sync/watchlist/remove",
                                          withQuery: [:],
