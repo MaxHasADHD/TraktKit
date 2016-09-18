@@ -8,6 +8,59 @@
 
 /* Begin PBXBuildFile section */
 		A7033F301C3AE3C4000E40F7 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
+		A70807191D8E1F2D00176B0A /* TraktKitWatchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = A70807171D8E1F2D00176B0A /* TraktKitWatchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A708071E1D8E1F5A00176B0A /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
+		A708071F1D8E1F5A00176B0A /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
+		A70807201D8E1F5A00176B0A /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */; };
+		A70807211D8E1F5A00176B0A /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */; };
+		A70807221D8E1F5A00176B0A /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */; };
+		A70807231D8E1F5A00176B0A /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
+		A70807241D8E1F5A00176B0A /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A61BF805E400A43AD3 /* People.swift */; };
+		A70807251D8E1F5A00176B0A /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */; };
+		A70807261D8E1F5A00176B0A /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
+		A70807271D8E1F5A00176B0A /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405F1C07886500A69EA1 /* Search.swift */; };
+		A70807281D8E1F5A00176B0A /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405D1C07884B00A69EA1 /* Shows.swift */; };
+		A70807291D8E1F5A00176B0A /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340631C079D2500A69EA1 /* Seasons.swift */; };
+		A708072A1D8E1F5A00176B0A /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340651C079D2D00A69EA1 /* Episodes.swift */; };
+		A708072B1D8E1F5A00176B0A /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A01BF7C36E00A43AD3 /* Sync.swift */; };
+		A708072C1D8E1F5A00176B0A /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
+		A708072D1D8E1F5A00176B0A /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340691C08D82D00A69EA1 /* SharedFunctions.swift */; };
+		A708072E1D8E1F5A00176B0A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
+		A708072F1D8E1F5A00176B0A /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
+		A70807301D8E1F5A00176B0A /* TraktSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98621CBF47BA00744566 /* TraktSearchResult.swift */; };
+		A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B81D47D49200E7F938 /* Pagination.swift */; };
+		A70807321D8E1F5A00176B0A /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B61D47D3BA00E7F938 /* Filters.swift */; };
+		A70807331D8E1F5A00176B0A /* TraktImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98641CBF47D500744566 /* TraktImages.swift */; };
+		A70807341D8E1F5A00176B0A /* TraktTrendingShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF986B1CBF483900744566 /* TraktTrendingShow.swift */; };
+		A70807351D8E1F5A00176B0A /* TraktMostShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF986D1CBF484B00744566 /* TraktMostShow.swift */; };
+		A70807361D8E1F5A00176B0A /* TraktAnticipatedShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF986F1CBF486C00744566 /* TraktAnticipatedShow.swift */; };
+		A70807371D8E1F5A00176B0A /* TraktShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98711CBF487600744566 /* TraktShow.swift */; };
+		A70807381D8E1F5A00176B0A /* TraktSeason.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98731CBF48D900744566 /* TraktSeason.swift */; };
+		A70807391D8E1F5A00176B0A /* TraktEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98751CBF48E200744566 /* TraktEpisode.swift */; };
+		A708073A1D8E1F5A00176B0A /* TraktShowTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98771CBF490200744566 /* TraktShowTranslation.swift */; };
+		A708073B1D8E1F5A00176B0A /* TraktWatchedShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98791CBF495300744566 /* TraktWatchedShow.swift */; };
+		A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF987B1CBF495D00744566 /* TraktWatchedSeason.swift */; };
+		A708073D1D8E1F5A00176B0A /* TraktWatchedEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF987D1CBF49C600744566 /* TraktWatchedEpisodes.swift */; };
+		A708073E1D8E1F5A00176B0A /* TraktWatchedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E56161D4E7663009CACC7 /* TraktWatchedProgress.swift */; };
+		A708073F1D8E1F5A00176B0A /* TraktTrendingMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF987F1CBF49E700744566 /* TraktTrendingMovie.swift */; };
+		A70807401D8E1F5A00176B0A /* TraktMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98811CBF49FF00744566 /* TraktMovie.swift */; };
+		A70807411D8E1F5A00176B0A /* TraktMovieTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98831CBF4A1C00744566 /* TraktMovieTranslation.swift */; };
+		A70807421D8E1F5A00176B0A /* TraktWatchedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98851CBF4A4000744566 /* TraktWatchedMovie.swift */; };
+		A70807431D8E1F5A00176B0A /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
+		A70807441D8E1F5A00176B0A /* TraktAnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */; };
+		A70807451D8E1F5A00176B0A /* TraktComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98881CBF4A6A00744566 /* TraktComment.swift */; };
+		A70807461D8E1F5A00176B0A /* TraktUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988B1CBF4B8E00744566 /* TraktUser.swift */; };
+		A70807471D8E1F5A00176B0A /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
+		A70807481D8E1F5A00176B0A /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764CB7F1D7B36960094BE66 /* HiddenItem.swift */; };
+		A70807491D8E1F5A00176B0A /* TraktPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* TraktPerson.swift */; };
+		A708074A1D8E1F5A00176B0A /* TraktCrewMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98901CBF4E9D00744566 /* TraktCrewMember.swift */; };
+		A708074B1D8E1F5A00176B0A /* TraktCastMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98921CBF4F7600744566 /* TraktCastMember.swift */; };
+		A708074C1D8E1F5A00176B0A /* TraktList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98951CBF50DE00744566 /* TraktList.swift */; };
+		A708074D1D8E1F5A00176B0A /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
+		A708074E1D8E1F5A00176B0A /* TraktRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A21701D394E1B006E5D92 /* TraktRating.swift */; };
+		A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; };
+		A70807501D8E1F5A00176B0A /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF28DC1C568FF600CA5B53 /* DateParser.swift */; };
+		A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		A723DA8C1B917EF300CA217C /* TraktKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = A723DA8B1B917EF300CA217C /* TraktKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A723DA931B917EF300CA217C /* TraktKitMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKitMac.framework */; };
 		A723DA981B917EF300CA217C /* TraktKitMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A723DA971B917EF300CA217C /* TraktKitMacTests.swift */; };
@@ -133,6 +186,9 @@
 
 /* Begin PBXFileReference section */
 		A7033F2F1C3AE3C4000E40F7 /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		A70807151D8E1F2D00176B0A /* TraktKitWatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitWatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A70807171D8E1F2D00176B0A /* TraktKitWatchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitWatchOS.h; sourceTree = "<group>"; };
+		A70807181D8E1F2D00176B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A723DA891B917EF300CA217C /* TraktKitMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A723DA8B1B917EF300CA217C /* TraktKitMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitMac.h; sourceTree = "<group>"; };
 		A723DA8D1B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -200,6 +256,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A70807111D8E1F2D00176B0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A723DA851B917EF300CA217C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +296,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A70807161D8E1F2D00176B0A /* TraktKitWatchOS */ = {
+			isa = PBXGroup;
+			children = (
+				A70807171D8E1F2D00176B0A /* TraktKitWatchOS.h */,
+				A70807181D8E1F2D00176B0A /* Info.plist */,
+			);
+			path = TraktKitWatchOS;
+			sourceTree = "<group>";
+		};
 		A723DA8A1B917EF300CA217C /* TraktKitMac */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +351,7 @@
 				A77E86581B29F09100EABC2D /* TraktKitTests */,
 				A723DA8A1B917EF300CA217C /* TraktKitMac */,
 				A723DA961B917EF300CA217C /* TraktKitMacTests */,
+				A70807161D8E1F2D00176B0A /* TraktKitWatchOS */,
 				A77E864A1B29F09100EABC2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -290,6 +363,7 @@
 				A77E86541B29F09100EABC2D /* TraktKitTests.xctest */,
 				A723DA891B917EF300CA217C /* TraktKitMac.framework */,
 				A723DA921B917EF300CA217C /* TraktKitMacTests.xctest */,
+				A70807151D8E1F2D00176B0A /* TraktKitWatchOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -451,6 +525,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		A70807121D8E1F2D00176B0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A70807191D8E1F2D00176B0A /* TraktKitWatchOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A723DA861B917EF300CA217C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,6 +552,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A70807141D8E1F2D00176B0A /* TraktKitWatchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A708071D1D8E1F2D00176B0A /* Build configuration list for PBXNativeTarget "TraktKitWatchOS" */;
+			buildPhases = (
+				A70807101D8E1F2D00176B0A /* Sources */,
+				A70807111D8E1F2D00176B0A /* Frameworks */,
+				A70807121D8E1F2D00176B0A /* Headers */,
+				A70807131D8E1F2D00176B0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TraktKitWatchOS;
+			productName = TraktKitWatchOS;
+			productReference = A70807151D8E1F2D00176B0A /* TraktKitWatchOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		A723DA881B917EF300CA217C /* TraktKitMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A723DA9A1B917EF300CA217C /* Build configuration list for PBXNativeTarget "TraktKitMac" */;
@@ -552,6 +652,11 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Maximilian Litteral";
 				TargetAttributes = {
+					A70807141D8E1F2D00176B0A = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = U6J8328WE2;
+						ProvisioningStyle = Automatic;
+					};
 					A723DA881B917EF300CA217C = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -587,11 +692,19 @@
 				A77E86531B29F09100EABC2D /* TraktKitTests */,
 				A723DA881B917EF300CA217C /* TraktKitMac */,
 				A723DA911B917EF300CA217C /* TraktKitMacTests */,
+				A70807141D8E1F2D00176B0A /* TraktKitWatchOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A70807131D8E1F2D00176B0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A723DA871B917EF300CA217C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -623,6 +736,65 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A70807101D8E1F2D00176B0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A70807381D8E1F5A00176B0A /* TraktSeason.swift in Sources */,
+				A70807351D8E1F5A00176B0A /* TraktMostShow.swift in Sources */,
+				A70807321D8E1F5A00176B0A /* Filters.swift in Sources */,
+				A708073A1D8E1F5A00176B0A /* TraktShowTranslation.swift in Sources */,
+				A70807341D8E1F5A00176B0A /* TraktTrendingShow.swift in Sources */,
+				A708072D1D8E1F5A00176B0A /* SharedFunctions.swift in Sources */,
+				A70807361D8E1F5A00176B0A /* TraktAnticipatedShow.swift in Sources */,
+				A708072F1D8E1F5A00176B0A /* Structures.swift in Sources */,
+				A70807291D8E1F5A00176B0A /* Seasons.swift in Sources */,
+				A708072A1D8E1F5A00176B0A /* Episodes.swift in Sources */,
+				A70807251D8E1F5A00176B0A /* Recommendations.swift in Sources */,
+				A70807421D8E1F5A00176B0A /* TraktWatchedMovie.swift in Sources */,
+				A70807261D8E1F5A00176B0A /* Scrobble.swift in Sources */,
+				A708073F1D8E1F5A00176B0A /* TraktTrendingMovie.swift in Sources */,
+				A708074C1D8E1F5A00176B0A /* TraktList.swift in Sources */,
+				A708072E1D8E1F5A00176B0A /* Enums.swift in Sources */,
+				A70807391D8E1F5A00176B0A /* TraktEpisode.swift in Sources */,
+				A708071E1D8E1F5A00176B0A /* TraktManager.swift in Sources */,
+				A70807461D8E1F5A00176B0A /* TraktUser.swift in Sources */,
+				A708073E1D8E1F5A00176B0A /* TraktWatchedProgress.swift in Sources */,
+				A70807221D8E1F5A00176B0A /* Genres.swift in Sources */,
+				A70807501D8E1F5A00176B0A /* DateParser.swift in Sources */,
+				A70807231D8E1F5A00176B0A /* Movies.swift in Sources */,
+				A70807411D8E1F5A00176B0A /* TraktMovieTranslation.swift in Sources */,
+				A708074E1D8E1F5A00176B0A /* TraktRating.swift in Sources */,
+				A70807441D8E1F5A00176B0A /* TraktAnticipatedMovie.swift in Sources */,
+				A70807451D8E1F5A00176B0A /* TraktComment.swift in Sources */,
+				A708072C1D8E1F5A00176B0A /* Users.swift in Sources */,
+				A708071F1D8E1F5A00176B0A /* Calendars.swift in Sources */,
+				A70807401D8E1F5A00176B0A /* TraktMovie.swift in Sources */,
+				A708074B1D8E1F5A00176B0A /* TraktCastMember.swift in Sources */,
+				A70807281D8E1F5A00176B0A /* Shows.swift in Sources */,
+				A70807431D8E1F5A00176B0A /* TraktBoxOfficeMovie.swift in Sources */,
+				A708074D1D8E1F5A00176B0A /* TraktListItem.swift in Sources */,
+				A70807301D8E1F5A00176B0A /* TraktSearchResult.swift in Sources */,
+				A70807201D8E1F5A00176B0A /* Checkin.swift in Sources */,
+				A708074A1D8E1F5A00176B0A /* TraktCrewMember.swift in Sources */,
+				A708073B1D8E1F5A00176B0A /* TraktWatchedShow.swift in Sources */,
+				A708073D1D8E1F5A00176B0A /* TraktWatchedEpisodes.swift in Sources */,
+				A70807371D8E1F5A00176B0A /* TraktShow.swift in Sources */,
+				A70807331D8E1F5A00176B0A /* TraktImages.swift in Sources */,
+				A70807271D8E1F5A00176B0A /* Search.swift in Sources */,
+				A70807211D8E1F5A00176B0A /* Comments.swift in Sources */,
+				A70807491D8E1F5A00176B0A /* TraktPerson.swift in Sources */,
+				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
+				A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */,
+				A708072B1D8E1F5A00176B0A /* Sync.swift in Sources */,
+				A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */,
+				A70807241D8E1F5A00176B0A /* People.swift in Sources */,
+				A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */,
+				A70807471D8E1F5A00176B0A /* TraktWatching.swift in Sources */,
+				A70807481D8E1F5A00176B0A /* HiddenItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A723DA841B917EF300CA217C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,6 +940,91 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		A708071A1D8E1F2D00176B0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = U6J8328WE2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TraktKitWatchOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Debug;
+		};
+		A708071B1D8E1F2D00176B0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = U6J8328WE2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TraktKitWatchOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Release;
+		};
+		A708071C1D8E1F2D00176B0A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = U6J8328WE2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TraktKitWatchOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Distribution;
+		};
 		A723DA9B1B917EF300CA217C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1125,6 +1382,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A708071D1D8E1F2D00176B0A /* Build configuration list for PBXNativeTarget "TraktKitWatchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A708071A1D8E1F2D00176B0A /* Debug */,
+				A708071B1D8E1F2D00176B0A /* Release */,
+				A708071C1D8E1F2D00176B0A /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A723DA9A1B917EF300CA217C /* Build configuration list for PBXNativeTarget "TraktKitMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
