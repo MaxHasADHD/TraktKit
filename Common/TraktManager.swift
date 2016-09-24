@@ -481,7 +481,8 @@ public class TraktManager {
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
                 let wSelf = self else { return }
-            guard error == nil else { return completion(.error(error: error as? NSError)) }
+            guard
+                error == nil else { return completion(.error(error: error as? NSError)) }
             
             // Check response
             guard
