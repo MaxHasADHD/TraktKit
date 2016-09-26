@@ -18,9 +18,12 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
-        guard var request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)", withQuery: [:], isAuthorized: false, withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringCacheData
-        
+        guard
+            var request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)",
+                withQuery: [:],
+                isAuthorized: false,
+                withHTTPMethod: .GET) else { return nil }
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -32,10 +35,11 @@ extension TraktManager {
     @discardableResult
     public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         guard
-            let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments",
+            var request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments",
                                          withQuery: [:],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else { return nil }
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -45,10 +49,11 @@ extension TraktManager {
     @discardableResult
     public func getEpisodeRatings<T: CustomStringConvertible>(showID id: T, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         guard
-            let request = mutableRequest(forPath: "shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings",
+            var request = mutableRequest(forPath: "shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings",
                                          withQuery: [:],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else { return nil }
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     

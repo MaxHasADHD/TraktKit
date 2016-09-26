@@ -16,7 +16,7 @@ public struct Comment: TraktProtocol {
     public let spoiler: Bool
     public let review: Bool
     public let replies: NSNumber
-    public let userRating: NSNumber
+    public let userRating: NSNumber?
     public let user: User
     
     // Initialize
@@ -30,7 +30,6 @@ public struct Comment: TraktProtocol {
             let spoiler = json["spoiler"] as? Bool,
             let review = json["review"] as? Bool,
             let replies = json["replies"] as? NSNumber,
-            let userRating = json["user_rating"] as? NSNumber,
             let user = User(json: json["user"] as? RawJSON) else { return nil }
         
         self.id = id
@@ -40,7 +39,7 @@ public struct Comment: TraktProtocol {
         self.spoiler = spoiler
         self.review = review
         self.replies = replies
-        self.userRating = userRating
+        self.userRating = json["user_rating"] as? NSNumber
         self.user = user
     }
 }
