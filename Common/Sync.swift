@@ -184,19 +184,29 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getHistory<T: CustomStringConvertible>(type: WatchedType?, traktID: T?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getHistory(type: WatchedType?, traktID: String? = nil, pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
+        
+        var query: [String: String] = [:]
+        
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+        
         var path = "sync/history"
         if let type = type {
-            path += type.rawValue
+            path += "/\(type.rawValue)"
         }
         
         if let traktID = traktID {
-            path += "\(traktID)"
+            path += "/\(traktID)"
         }
         
         guard
             let request = mutableRequest(forPath: path,
-                                         withQuery: [:],
+                                         withQuery: query,
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

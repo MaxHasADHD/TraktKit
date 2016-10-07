@@ -22,9 +22,15 @@ public enum ObjectResultType<T: TraktProtocol> {
     case error(error: NSError?)
 }
 
-/// Generic result type
+/// Generic results type
 public enum ObjectsResultType<T: TraktProtocol> {
     case success(objects: [T])
+    case error(error: NSError?)
+}
+
+/// Generic results type + Pagination
+public enum ObjectsResultTypePagination<T: TraktProtocol> {
+    case success(objects: [T], currentPage: Int, limit: Int)
     case error(error: NSError?)
 }
 
@@ -187,6 +193,7 @@ public class TraktManager {
     // Sync
     public typealias LastActivitiesCompletionHandler = (_ result: ObjectResultType<TraktLastActivities>) -> Void
     public typealias RatingsCompletionHandler = (_ result: ObjectsResultType<TraktRating>) -> Void
+    public typealias HistoryCompletionHandler = (_ result: ObjectsResultTypePagination<TraktHistoryItem>) -> Void
     
     // Users
     public typealias ListCompletionHandler = (_ result: ObjectResultType<TraktList>) -> Void
@@ -536,6 +543,63 @@ public class TraktManager {
         
         let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
         
+        return dataTask
+    }
+    
+    /// Array of ObjectsResultTypePagination objects
+    func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTask? {
+        
+        let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+            guard
+                let wSelf = self else { return }
+            guard
+                error == nil else { return completion(.error(error: error as? NSError)) }
+            
+            // Check response
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == code else {
+                    if let HTTPResponse = response as? HTTPURLResponse {
+                        completion(.error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                    }
+                    else {
+                        completion(.error(error: nil))
+                    }
+                    
+                    return
+            }
+            
+            var pageCount: Int = 0
+            if let pCount = HTTPResponse.allHeaderFields["x-pagination-page-count"] as? String,
+                let pCountInt = Int(pCount) {
+                pageCount = pCountInt
+            }
+            
+            var currentPage: Int = 0
+            if let cPage = HTTPResponse.allHeaderFields["x-pagination-page"] as? String,
+                let cPageInt = Int(cPage) {
+                currentPage = cPageInt
+            }
+            
+            // Check data
+            guard
+                let data = data else { return completion(.error(error: TraktKitNoDataError)) }
+            
+            do {
+                if let array = try JSONSerialization.jsonObject(with: data, options: []) as? [RawJSON] {
+                    let objects: [T] = initEach(array)
+                    completion(.success(objects: objects, currentPage: currentPage, limit: pageCount))
+                }
+                else {
+                    completion(.error(error: nil))
+                }
+            }
+            catch let jsonSerializationError as NSError {
+                completion(.error(error: jsonSerializationError))
+            }
+        }
+        
+        dataTask.resume()
         return dataTask
     }
     
