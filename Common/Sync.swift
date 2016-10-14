@@ -146,6 +146,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getWatchedShows(extended: [ExtendedType] = [.Min], completion: @escaping WatchedShowsCompletionHandler) -> URLSessionDataTask? {
+
         guard
             let request = mutableRequest(forPath: "sync/watched/shows",
                                          withQuery: ["extended": extended.queryString()],
@@ -184,9 +185,9 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getHistory(type: WatchedType?, traktID: String? = nil, pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
+    public func getHistory(type: WatchedType?, traktID: String? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
         
-        var query: [String: String] = [:]
+        var query: [String: String] = ["extended": extended.queryString()]
         
         // pagination
         if let pagination = pagination {
@@ -209,6 +210,7 @@ extension TraktManager {
                                          withQuery: query,
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
+        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -251,16 +253,19 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     @discardableResult
-    public func removeFromHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeFromHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], historyIDs: [NSNumber]? = nil, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // Request
         guard var request = mutableRequest(forPath: "sync/history/remove",
                                            withQuery: [:],
                                            isAuthorized: true,
                                            withHTTPMethod: .POST) else { return nil }
+        
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
-                                              episodes: episodes)
+                                              episodes: episodes,
+                                              ids: historyIDs)
+        
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     

@@ -261,7 +261,7 @@ public class TraktManager {
     }
     
     public func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
-        let urlString = "https://api-v2launch.trakt.tv/" + path
+        let urlString = "https://api.trakt.tv/" + path
         guard
             var components = URLComponents(string: urlString) else { return nil }
         
@@ -296,12 +296,17 @@ public class TraktManager {
         return request
     }
     
-    func createJsonData(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON]) throws -> Data? {
-        let json = [
+    func createJsonData(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], ids: [NSNumber]? = nil) throws -> Data? {
+        var json: [String: Any] = [
             "movies": movies,
             "shows": shows,
             "episodes": episodes,
             ]
+        
+        if let ids = ids {
+            json["ids"] = ids
+        }
+        
         return try JSONSerialization.data(withJSONObject: json, options: [])
     }
     
