@@ -146,7 +146,6 @@ extension TraktManager {
      */
     @discardableResult
     public func getWatchedShows(extended: [ExtendedType] = [.Min], completion: @escaping WatchedShowsCompletionHandler) -> URLSessionDataTask? {
-
         guard
             let request = mutableRequest(forPath: "sync/watched/shows",
                                          withQuery: ["extended": extended.queryString()],
@@ -380,10 +379,10 @@ extension TraktManager {
      Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.
      */
     @discardableResult
-    public func getWatchlist(watchType: WatchedType, completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchlist(watchType: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/watchlist",
-                                         withQuery: [:],
+                                         withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

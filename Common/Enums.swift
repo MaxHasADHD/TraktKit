@@ -183,8 +183,6 @@ public enum CommentType: String {
 public enum ExtendedType: String, CustomStringConvertible {
     /// Least amount of info
     case Min = "min"
-    /// Images for Show, Episode, or Movie
-    case Images = "images"
     /// All information, excluding images
     case Full = "full"
     /// Collection only. Additional video and audio info.
