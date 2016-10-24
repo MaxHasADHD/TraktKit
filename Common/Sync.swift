@@ -85,10 +85,10 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getCollection(type: WatchedType, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getCollection(type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping CollectionCompletionHandler) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "sync/collection/\(type)",
-                                         withQuery: [:],
+                                         withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -107,7 +107,8 @@ extension TraktManager {
      */
     @discardableResult
     public func addToCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
-        guard var request = mutableRequest(forPath: "sync/collection", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
+        guard
+            var request = mutableRequest(forPath: "sync/collection", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
@@ -146,6 +147,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getWatchedShows(extended: [ExtendedType] = [.Min], completion: @escaping WatchedShowsCompletionHandler) -> URLSessionDataTask? {
+        
         guard
             let request = mutableRequest(forPath: "sync/watched/shows",
                                          withQuery: ["extended": extended.queryString()],

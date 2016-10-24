@@ -194,6 +194,7 @@ public class TraktManager {
     public typealias LastActivitiesCompletionHandler = (_ result: ObjectResultType<TraktLastActivities>) -> Void
     public typealias RatingsCompletionHandler = (_ result: ObjectsResultType<TraktRating>) -> Void
     public typealias HistoryCompletionHandler = (_ result: ObjectsResultTypePagination<TraktHistoryItem>) -> Void
+    public typealias CollectionCompletionHandler = (_ result: ObjectsResultType<TraktCollectedItem>) -> Void
     
     // Users
     public typealias ListCompletionHandler = (_ result: ObjectResultType<TraktList>) -> Void
