@@ -29,9 +29,6 @@ public struct TraktMovie: TraktProtocol {
     public let genres: [String]?
     public let certification: String?
     
-    // Extended: Images
-    public let images: TraktImages?
-    
     // Initialize
     public init?(json: RawJSON?) {
         guard
@@ -58,13 +55,5 @@ public struct TraktMovie: TraktProtocol {
         self.availableTranslations = json["available_translations"] as? [String]
         self.genres             = json["genres"] as? [String]
         self.certification      = json["certification"] as? String
-        
-        // Extended: Images
-        if let imageJSON = json["images"] as? RawJSON {
-            images = TraktImages(json: imageJSON)
-        }
-        else {
-            images = nil
-        }
     }
 }

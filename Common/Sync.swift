@@ -186,7 +186,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getHistory(type: WatchedType?, traktID: String? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
+    public func getHistory(type: TraktKit.WatchedType?, traktID: String? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
         
         var query: [String: String] = ["extended": extended.queryString()]
         

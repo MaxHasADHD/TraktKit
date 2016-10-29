@@ -21,9 +21,6 @@ public struct Person: TraktProtocol {
     public let birthplace: String?
     public let homepage: URL?
     
-    // Extended: Images
-    public let images: TraktImages?
-    
     // Initialize
     public init?(json: RawJSON?) {
         guard
@@ -41,12 +38,5 @@ public struct Person: TraktProtocol {
         death       = Date.dateFromString(json["death"])
         birthplace  = json["birthplace"] as? String
         homepage    = (json["homepage"] as? String)?.toURL()
-    
-        // Extended: Images
-        if let imageJSON = json["images"] as? RawJSON {
-            images = TraktImages(json: imageJSON)
-        } else {
-            images = nil
-        }
     }
 }

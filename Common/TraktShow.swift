@@ -33,9 +33,6 @@ public struct TraktShow: TraktProtocol {
     public let genres: [String]?
     public let airedEpisodes: Int?
     
-    // Extended: Images
-    public let images: TraktImages?
-    
     // Initialize
     public init?(json: RawJSON?) {
         guard
@@ -65,8 +62,5 @@ public struct TraktShow: TraktProtocol {
         self.availableTranslations = json["available_translations"] as? [String]
         self.genres         = json["genres"] as? [String]
         self.airedEpisodes  = json["aired_episodes"] as? Int
-        
-        // Extended: Images
-        images = TraktImages(json: json["images"] as? RawJSON)
     }
 }
