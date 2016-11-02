@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktMovie: TraktProtocol {
+public class TraktMovie: NSObject, TraktProtocol, NSCoding {
     // Extended: Min
     public let title: String
     public let year: Int?
@@ -30,7 +30,7 @@ public struct TraktMovie: TraktProtocol {
     public let certification: String?
     
     // Initialize
-    public init?(json: RawJSON?) {
+    public required init?(json: RawJSON?) {
         guard
             let json = json,
             let title = json["title"] as? String,
@@ -55,5 +55,51 @@ public struct TraktMovie: TraktProtocol {
         self.availableTranslations = json["available_translations"] as? [String]
         self.genres             = json["genres"] as? [String]
         self.certification      = json["certification"] as? String
+    }
+    
+    // MARK: NSCoding
+    
+    required public init?(coder aDecoder: NSCoder) {
+        // Extended: Min
+        self.title = aDecoder.decodeObject(forKey: "title") as! String
+        self.year = aDecoder.decodeObject(forKey: "year") as? Int
+        self.ids = aDecoder.decodeObject(forKey: "ids") as! ID
+        
+        // Extended: Full
+        self.tagline = aDecoder.decodeObject(forKey: "tagline") as? String
+        self.overview = aDecoder.decodeObject(forKey: "overview") as? String
+        self.released = aDecoder.decodeObject(forKey: "released") as? Date
+        self.runtime = aDecoder.decodeObject(forKey: "runtime") as? Int
+        self.trailer = (aDecoder.decodeObject(forKey: "trailer") as? String)?.toURL()
+        self.homepage = (aDecoder.decodeObject(forKey: "homepage") as? String)?.toURL()
+        self.rating = aDecoder.decodeObject(forKey: "rating") as? Double
+        self.votes = aDecoder.decodeObject(forKey: "votes") as? Int
+        self.updatedAt = aDecoder.decodeObject(forKey: "updatedAt") as? Date
+        self.language = aDecoder.decodeObject(forKey: "language") as? String
+        self.availableTranslations = aDecoder.decodeObject(forKey: "availableTranslations") as? [String]
+        self.genres = aDecoder.decodeObject(forKey: "genres") as? [String]
+        self.certification = aDecoder.decodeObject(forKey: "certification") as? String
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        // Extended: Min
+        aCoder.encode(self.title, forKey: "title")
+        aCoder.encode(self.year, forKey: "year")
+        aCoder.encode(self.ids, forKey: "ids")
+        
+        // Extended: Full
+        aCoder.encode(self.tagline, forKey: "tagline")
+        aCoder.encode(self.overview, forKey: "overview")
+        aCoder.encode(self.released, forKey: "released")
+        aCoder.encode(self.runtime, forKey: "runtime")
+        aCoder.encode(self.trailer, forKey: "trailer")
+        aCoder.encode(self.homepage, forKey: "homepage")
+        aCoder.encode(self.rating, forKey: "rating")
+        aCoder.encode(self.votes, forKey: "votes")
+        aCoder.encode(self.updatedAt, forKey: "updatedAt")
+        aCoder.encode(self.language, forKey: "language")
+        aCoder.encode(self.availableTranslations, forKey: "availableTranslations")
+        aCoder.encode(self.genres, forKey: "genres")
+        aCoder.encode(self.certification, forKey: "certification")
     }
 }

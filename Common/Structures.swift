@@ -27,7 +27,7 @@ func initEach<T: TraktProtocol>(_ dictionaries: [RawJSON]) -> [T] {
 
 // MARK: - TV & Movies
 
-public struct ID: TraktProtocol {
+public class ID: NSObject, TraktProtocol, NSCoding {
     public let trakt: Int
     public let slug: String
     public let tvdb: Int?
@@ -36,7 +36,7 @@ public struct ID: TraktProtocol {
     public let tvRage: Int?
     
     // Initialize
-    public init?(json: RawJSON?) {
+    public required init?(json: RawJSON?) {
         guard
             let json = json,
             let traktID = json["trakt"] as? Int,
@@ -44,10 +44,33 @@ public struct ID: TraktProtocol {
         
         trakt = traktID
         slug = slugID
+        
         tvdb = json["tvdb"] as? Int
         imdb = json["imdb"] as? String
         tmdb = json["tmdb"] as? Int
         tvRage = json["tvrage"] as? Int
+    }
+    
+    // MARK: NSCoding
+    
+    required public init?(coder aDecoder: NSCoder) {
+        self.trakt = aDecoder.decodeInteger(forKey: "trakt")
+        self.slug = aDecoder.decodeObject(forKey: "slug") as! String
+        
+        self.tvdb = aDecoder.decodeObject(forKey: "tvdb") as? Int
+        self.imdb = aDecoder.decodeObject(forKey: "imdb") as? String
+        self.tmdb = aDecoder.decodeObject(forKey: "tmdb") as? Int
+        self.tvRage = aDecoder.decodeObject(forKey: "tvRage") as? Int
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.trakt, forKey: "trakt")
+        aCoder.encode(self.slug, forKey: "slug")
+        
+        aCoder.encode(self.tvdb, forKey: "tvdb")
+        aCoder.encode(self.imdb, forKey: "imdb")
+        aCoder.encode(self.tmdb, forKey: "tmdb")
+        aCoder.encode(self.tvRage, forKey: "tvRage")
     }
 }
 
@@ -70,7 +93,7 @@ public struct SeasonId: TraktProtocol {
     }
 }
 
-public struct EpisodeId: TraktProtocol {
+public class EpisodeId: NSObject, TraktProtocol, NSCoding {
     public let trakt: Int
     public let tvdb: Int?
     public let imdb: String?
@@ -78,7 +101,7 @@ public struct EpisodeId: TraktProtocol {
     public let tvRage: Int?
     
     // Initialize
-    public init?(json: RawJSON?) {
+    public required init?(json: RawJSON?) {
         guard
             let json = json,
             let traktID = json["trakt"] as? Int else { return nil }
@@ -88,6 +111,26 @@ public struct EpisodeId: TraktProtocol {
         imdb = json["imdb"] as? String
         tmdb = json["tmdb"] as? Int
         tvRage = json["tvrage"] as? Int
+    }
+    
+    // MARK: NSCoding
+    
+    required public init?(coder aDecoder: NSCoder) {
+        self.trakt = aDecoder.decodeInteger(forKey: "trakt")
+        
+        self.tvdb = aDecoder.decodeObject(forKey: "tvdb") as? Int
+        self.imdb = aDecoder.decodeObject(forKey: "imdb") as? String
+        self.tmdb = aDecoder.decodeObject(forKey: "tmdb") as? Int
+        self.tvRage = aDecoder.decodeObject(forKey: "tvRage") as? Int
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.trakt, forKey: "trakt")
+        
+        aCoder.encode(self.tvdb, forKey: "tvdb")
+        aCoder.encode(self.imdb, forKey: "imdb")
+        aCoder.encode(self.tmdb, forKey: "tmdb")
+        aCoder.encode(self.tvRage, forKey: "tvRage")
     }
 }
 

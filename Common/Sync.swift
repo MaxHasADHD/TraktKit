@@ -185,6 +185,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    #if os(iOS)
     @discardableResult
     public func getHistory(type: TraktKit.WatchedType?, traktID: String? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
         
@@ -214,6 +215,7 @@ extension TraktManager {
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
+    #endif
     
     /**
      Add items to a user's watch history.

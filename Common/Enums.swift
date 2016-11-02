@@ -54,6 +54,29 @@ public struct StatusCodes {
     public static let CloudflareError2 = 521
     /// Service Unavailable - Cloudflare error
     public static let CloudflareError3 = 522
+    
+    static func message(for status: Int) -> String? {
+        if status == StatusCodes.Unauthorized {
+            return "App not authorized. Please sign in again."
+        }
+        else if status == StatusCodes.Forbidden {
+            return "Invalid API Key"
+        }
+        else if status == StatusCodes.NotFound {
+            return "API not found"
+        }
+        else if status == StatusCodes.RateLimitExceeded {
+            return "Rate Limit Exceeded. Please try again in a minute."
+        }
+        else if status == StatusCodes.ServiceOverloaded || status == StatusCodes.ServerError {
+            return "Trakt.tv is down. Please try again later..."
+        }
+        else if status == StatusCodes.CloudflareError || status == StatusCodes.CloudflareError2 || status == StatusCodes.CloudflareError3 {
+            return "CloudFlare error. Please try again later..."
+        }
+        
+        return nil
+    }
 }
 
 /// What to search for
@@ -143,41 +166,6 @@ public enum CommentType: String {
     case reviews = "reviews"
     case shouts = "shouts"
 }
-
-/// Extended information
-/*public struct ExtendedType: OptionSet {
-    public let rawValue: Int
-    
-    public init(rawValue: Int) { self.rawValue = rawValue }
-    
-    /// Least amount of info
-    public static let Min      = ExtendedType(rawValue: 0)
-    /// Images for Show, Episode, or Movie
-    public static let Images   = ExtendedType(rawValue: 1)
-    /// All information, excluding images
-    public static let Full     = ExtendedType(rawValue: 2)
-    /// Collection only. Additional video and audio info.
-    public static let Metadata = ExtendedType(rawValue: 3)
-    /// Get all seasons and episodes
-    public static let Episodes = ExtendedType(rawValue: 4)
-    
-    func value() -> String {
-        switch self.rawValue {
-        case 0:
-            return "min"
-        case 1:
-            return "images"
-        case 2:
-            return "full"
-        case 3:
-            return "metadata"
-        case 4:
-            return "episodes"
-        default:
-            return ""
-        }
-    }
-}*/
 
 /// Extended information
 public enum ExtendedType: String, CustomStringConvertible {

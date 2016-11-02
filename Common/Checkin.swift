@@ -16,7 +16,7 @@ extension TraktManager {
      **Note**: If a checkin is already in progress, a `409` HTTP status code will returned. The response will contain an `expires_at` timestamp which is when the user can check in again.
      */
     @discardableResult
-    public func checkIn(movie: RawJSON?, episode: RawJSON?, completionHandler: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func checkIn(movie: RawJSON?, episode: RawJSON?, completionHandler: @escaping checkinCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [
@@ -38,29 +38,7 @@ extension TraktManager {
             var request = mutableRequest(forPath: "checkin", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = jsonData
         
-        let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard
-                error == nil else { return completionHandler(.fail) }
-            
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
-                    HTTPResponse.statusCode == StatusCodes.Conflict) else {
-                        return completionHandler(.fail)
-            }
-            
-            if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
-                // Started watching
-                completionHandler(.success)
-            }
-            else {
-                // Already watching something
-                completionHandler(.fail)
-            }
-        }
-        dataTask.resume()
-        
-        return dataTask
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completionHandler)
     }
     
     /**
