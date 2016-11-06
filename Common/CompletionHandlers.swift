@@ -246,8 +246,8 @@ extension TraktManager {
                     if let members = jsonCrew["writing"] as? [RawJSON] { addMembers(members) }
                     if let members = jsonCrew["production"] as? [RawJSON] { addMembers(members) }
                     if let members = jsonCrew["crew"] as? [RawJSON] { addMembers(members) }
-                    //                    if let members = jsonCrew["camera"] as? [RawJSON] { addMembers(members) }
-                    //                    if let members = jsonCrew["sound"] as? [RawJSON] { addMembers(members) }
+//                    if let members = jsonCrew["camera"] as? [RawJSON] { addMembers(members) }
+//                    if let members = jsonCrew["sound"] as? [RawJSON] { addMembers(members) }
                 }
                 
                 // Cast
