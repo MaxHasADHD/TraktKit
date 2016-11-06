@@ -19,7 +19,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func myShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/my/shows/\(dateString)/\(days)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -34,7 +34,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myNewShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func myNewShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/my/shows/new/\(dateString)/\(days)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -49,7 +49,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func mySeasonPremieres(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func mySeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/my/shows/premieres/\(dateString)/\(days)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -64,7 +64,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myMovies(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func myMovies(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/my/movies/\(dateString)/\(days)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -77,7 +77,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/all/shows/\(dateString)/\(days)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -90,7 +90,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allNewShows(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allNewShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/all/shows/new/\(dateString)/\(days)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -103,7 +103,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allSeasonPremieres(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allSeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/all/shows/premieres/\(dateString)/\(days)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -116,7 +116,7 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allMovies(startDateString dateString: String, days: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func allMovies(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "calendars/all/movies/\(dateString)/\(days)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

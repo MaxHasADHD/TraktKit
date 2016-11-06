@@ -23,7 +23,6 @@
 		A77E865C1B29F09100EABC2D /* TraktKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E865B1B29F09100EABC2D /* TraktKitTests.swift */; };
 		A77E86861B29F16C00EABC2D /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		A78D135A1B2A341000BA2068 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
-		A79163A51C0D46F200E791BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		A7AE55AE1BD4560700A5DFFB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
 		A7B6037E1C8B8FAB00172A47 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
 		A7B6037F1C8B8FAB00172A47 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */; };
@@ -40,7 +39,6 @@
 		A7B6038A1C8B8FAB00172A47 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
 		A7B6038B1C8B8FAB00172A47 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340691C08D82D00A69EA1 /* SharedFunctions.swift */; };
 		A7B6038C1C8B8FAB00172A47 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
-		A7B6038D1C8B8FAB00172A47 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		A7C5DA8A1B5DB30E0027920B /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5DA891B5DB30E0027920B /* KeychainTests.swift */; };
 		A7CC79A11BF7C36E00A43AD3 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A01BF7C36E00A43AD3 /* Sync.swift */; };
 		A7CC79A31BF805CF00A43AD3 /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
@@ -81,7 +79,6 @@
 		A77E865B1B29F09100EABC2D /* TraktKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitTests.swift; sourceTree = "<group>"; };
 		A77E86851B29F16C00EABC2D /* TraktManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktManager.swift; sourceTree = "<group>"; };
 		A78D13591B2A341000BA2068 /* Movies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
-		A79163A41C0D46F200E791BC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7AE55AD1BD4560700A5DFFB /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		A7C5DA891B5DB30E0027920B /* KeychainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		A7CC79A01BF7C36E00A43AD3 /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
@@ -150,7 +147,6 @@
 				A77340691C08D82D00A69EA1 /* SharedFunctions.swift */,
 				A7033F2F1C3AE3C4000E40F7 /* Structures.swift */,
 				A76905B51B47B7A6003C7431 /* MLKeychain.swift */,
-				A79163A41C0D46F200E791BC /* Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -368,7 +364,6 @@
 				A723DAAE1B917FE300CA217C /* Movies.swift in Sources */,
 				A7B603811C8B8FAB00172A47 /* Genres.swift in Sources */,
 				A7B603841C8B8FAB00172A47 /* Scrobble.swift in Sources */,
-				A7B6038D1C8B8FAB00172A47 /* Extensions.swift in Sources */,
 				A7B6038B1C8B8FAB00172A47 /* SharedFunctions.swift in Sources */,
 				A72B584E1B918044002561A4 /* TraktManager.swift in Sources */,
 				A7B603831C8B8FAB00172A47 /* Recommendations.swift in Sources */,
@@ -388,7 +383,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7CC79A51BF805DC00A43AD3 /* Recommendations.swift in Sources */,
-				A79163A51C0D46F200E791BC /* Extensions.swift in Sources */,
 				A7FB7FCC1BF8DD960003BBD7 /* Genres.swift in Sources */,
 				A773405E1C07884B00A69EA1 /* Shows.swift in Sources */,
 				A77340661C079D2D00A69EA1 /* Episodes.swift in Sources */,
@@ -532,6 +526,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -618,6 +613,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -659,6 +655,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

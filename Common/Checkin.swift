@@ -41,9 +41,10 @@ extension TraktManager {
             let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
                 guard error == nil else { return completionHandler(result: .Fail) }
                 
-                guard let HTTPResponse = response as? HTTPURLResponse
-                    where (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
-                        HTTPResponse.statusCode == StatusCodes.Conflict) else {  return completionHandler(result: .Fail) }
+                guard
+                    let HTTPResponse = response as? HTTPURLResponse,
+                    (HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated ||
+                        HTTPResponse.statusCode == StatusCodes.Conflict) else { return completionHandler(result: .Fail) }
                 
                 if HTTPResponse.statusCode == StatusCodes.SuccessNewResourceCreated {
                     // Started watching
@@ -57,8 +58,7 @@ extension TraktManager {
             
             return dataTask
         }
-        catch let error as NSError {
-            print(error)
+        catch {
             completionHandler(result: .Fail)
         }
         
@@ -80,8 +80,9 @@ extension TraktManager {
             guard error == nil else { return completionHandler(result: .Fail) }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse
-                where HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .Fail) }
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn else { return completionHandler(result: .Fail) }
             
             completionHandler(result: .Success)
         }
@@ -89,5 +90,4 @@ extension TraktManager {
         
         return dataTask
     }
-    
 }

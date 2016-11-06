@@ -18,7 +18,7 @@ extension TraktManager {
      
      */
     @discardableResult
-    public func search(query: String, types: [SearchType], completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func search(query: String, types: [SearchType], completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         let typesString = types.map { $0.rawValue }.joined(separator: ",") // Search with multiple types
         
         guard let request = mutableRequestForURL(path: "search?query=\(query)&type=\(typesString)", authorization: false, HTTPMethod: .GET) else { return nil }
@@ -32,7 +32,7 @@ extension TraktManager {
      Status Code: 200
      */
     @discardableResult
-    public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func lookup<T: CustomStringConvertible>(id: T, idType: LookupType, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "search?id_type=\(idType.rawValue)&id=\(id)", authorization: false, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias RawJSON = [String: AnyObject] // Dictionary
+public typealias RawJSON = [String: Any] // Dictionary
 
 public protocol TraktProtocol {
     init(json: RawJSON)

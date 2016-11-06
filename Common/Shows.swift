@@ -24,7 +24,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getTrendingShows(page: Int, limit: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getTrendingShows(page: Int, limit: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getTrending(type: .Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -36,7 +36,7 @@ extension TraktManager {
      📄 Pagination
     */
     @discardableResult
-    public func getPopularShows(page: Int, limit: Int, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getPopularShows(page: Int, limit: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getPopular(type: .Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -48,7 +48,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getPlayedShows(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getPlayedShows(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getPlayed(type: .Shows, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -60,7 +60,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getWatchedShows(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchedShows(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getWatched(type: .Shows, page: page, limit: limit, period: period, completion: completion)
     }
     
@@ -72,7 +72,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getCollectedShows(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getCollectedShows(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getCollected(type: .Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -84,7 +84,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getAnticipatedShows(page: Int, limit: Int, period: Period = .Weekly, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getAnticipatedShows(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getAnticipated(type: .Shows, page: page, limit: limit, completion: completion)
     }
     
@@ -96,7 +96,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getUpdatedShows(page: Int, limit: Int, startDate: String, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getUpdatedShows(page: Int, limit: Int, startDate: String, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getUpdated(type: .Shows, page: page, limit: limit, startDate: startDate, completion: completion)
     }
     
@@ -108,7 +108,7 @@ extension TraktManager {
      **Note**: When getting `full` extended info, the `status` field can have a value of `returning series` (airing right now), `in production` (airing soon), `planned` (in development), `canceled`, or `ended`.
     */
     @discardableResult
-    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         return getSummary(type: .Shows, id: id, extended: extended, completion: completion)
     }
     
@@ -120,7 +120,7 @@ extension TraktManager {
      - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
      */
     @discardableResult
-    public func getShowAliases<T: CustomStringConvertible>(showID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getShowAliases<T: CustomStringConvertible>(showID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getAliases(type: .Shows, id: id, completion: completion)
     }
     
@@ -133,7 +133,7 @@ extension TraktManager {
     - parameter language: 2 character language code. Example: `es`
      */
     @discardableResult
-    public func getShowTranslations<T: CustomStringConvertible>(showID id: T, language: String?, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getShowTranslations<T: CustomStringConvertible>(showID id: T, language: String?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getTranslations(type: .Shows, id: id, language: language, completion: completion)
     }
     
@@ -145,7 +145,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getShowComments<T: CustomStringConvertible>(showID id: T, completion: CommentsCompletionHandler) -> URLSessionDataTask? {
+    public func getShowComments<T: CustomStringConvertible>(showID id: T, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         return getComments(type: .Shows, id: id, completion: completion)
     }
     
@@ -157,7 +157,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getShowCollectionProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowCollectionProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "shows/\(id)/progress/collection?hidden=\(hidden)&specials=\(specials)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -171,7 +171,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getShowWatchedProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowWatchedProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequestForURL(path: "shows/\(id)/progress/watched?hidden=\(hidden)&specials=\(specials)", authorization: true, HTTPMethod: .GET) else { return nil }
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
@@ -185,7 +185,7 @@ extension TraktManager {
      The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
      */
     @discardableResult
-    public func getPeopleInShow<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: CastCrewCompletionHandler) -> URLSessionDataTask? {
+    public func getPeopleInShow<T: CustomStringConvertible>(showID id: T, extended: extendedType = .Min, completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
         return getPeople(type: .Shows, id: id, extended: extended, completion: completion)
     }
     
@@ -195,7 +195,7 @@ extension TraktManager {
      Returns rating (between 0 and 10) and distribution for a show.
      */
     @discardableResult
-    public func getShowRatings<T: CustomStringConvertible>(showID id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowRatings<T: CustomStringConvertible>(showID id: T, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         return getRatings(type: .Shows, id: id, completion: completion)
     }
     
@@ -207,7 +207,7 @@ extension TraktManager {
      **Note**: We are continuing to improve this algorithm.
      */
     @discardableResult
-    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getRelated(type: .Shows, id: id, completion: completion)
     }
     
@@ -217,7 +217,7 @@ extension TraktManager {
      Returns lots of show stats.
      */
     @discardableResult
-    public func getShowStatistics<T: CustomStringConvertible>(showID id: T, completion: ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowStatistics<T: CustomStringConvertible>(showID id: T, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         return getStatistics(type: .Shows, id: id, completion: completion)
     }
     
@@ -227,7 +227,7 @@ extension TraktManager {
      Returns all users watching this show right now.
      */
     @discardableResult
-    public func getUsersWatchingShow<T: CustomStringConvertible>(showID id: T, completion: ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getUsersWatchingShow<T: CustomStringConvertible>(showID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getUsersWatching(type: .Shows, id: id, completion: completion)
     }
 }
