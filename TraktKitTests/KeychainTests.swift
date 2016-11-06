@@ -26,12 +26,12 @@ class KeychainTests: XCTestCase {
         let value = "Top Secret"
         
         // Save data
-        let savedToKeychain = MLKeychain.setString(value, forKey: key)
+        let savedToKeychain = MLKeychain.setString(value: value, forKey: key)
         XCTAssert(savedToKeychain, "Item did not save to keychain successfully")
         
         // Load data
         if let data = MLKeychain.loadData(forKey: key) {
-            if let stringForm = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
+            if let stringForm = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
                 print("Found this in the keychain: \(stringForm)")
                 XCTAssert(value == stringForm, "Data should be exact")
             }
