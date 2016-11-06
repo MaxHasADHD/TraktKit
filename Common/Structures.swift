@@ -429,7 +429,7 @@ public struct User: TraktProtocol {
     public let isVIP: Bool
     public let isVIPEP: Bool
     
-    public init(json: [String: AnyObject]) {
+    public init(json: RawJSON) {
         username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
         isPrivate = json["private"] as? Bool ?? false
         name = json["name"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")

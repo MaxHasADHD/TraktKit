@@ -635,7 +635,7 @@ public class TraktManager {
         }
     }
     
-    public func getAccessTokenFromRefreshToken(completionHandler: SuccessCompletionHandler) throws {
+    public func getAccessTokenFromRefreshToken(completionHandler: @escaping SuccessCompletionHandler) throws {
         guard
             let clientID = clientID,
             let clientSecret = clientSecret,
@@ -658,7 +658,7 @@ public class TraktManager {
         
         session.dataTask(with: request) { (data, response, error) in
             guard
-                error == nil else { return completionHandler( .Fail) }
+                error == nil else { return completionHandler(.Fail) }
             
             // Check response
             guard

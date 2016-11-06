@@ -209,7 +209,7 @@ extension Users {
     public func createCustomList(listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
-        let json = [
+        let json: [String: Any] = [
             "name": listName,
             "description": listDescription,
             "privacy": privacy,
@@ -248,13 +248,13 @@ extension Users {
     public func updateCustomList(listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         
         // JSON
-        let json = [
+        let json: [String: Any] = [
             "name": listName,
             "description": listDescription,
             "privacy": privacy,
             "display_numbers": displayNumbers,
             "allow_comments": allowComments,
-        ]
+            ]
         
         // Request
         guard var request = mutableRequestForURL(path: "users/me/lists/\(listID)", authorization: true, HTTPMethod: .PUT) else { return nil }

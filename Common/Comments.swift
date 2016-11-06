@@ -18,7 +18,7 @@ extension TraktManager {
     🔒 OAuth: Required
     */
     @discardableResult
-    public func postComment(movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func postComment(movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         var json: RawJSON = [

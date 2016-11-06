@@ -166,7 +166,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: CommentsCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         return getComments(type: .Movies, id: id, completion: completion)
     }
     
