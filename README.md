@@ -8,12 +8,12 @@ Swift wrapper for Trakt.tv  API.
 ###Usage
 
 In your AppDelegate, under <code>application(application:, didFinishLaunchingWithOptions launchOptions:)</code> place:
-```
+```swift
 TraktManager.sharedManager.setClientID("Client ID", clientSecret: "Secret", redirectURI: "Redirect URI")
 ```
 
 ###Authentication
-```
+```swift
 guard let oathURL = TraktManager.sharedManager.oauthURL else { return }
 
 let traktAuth = SFSafariViewController(URL: oathURL)
@@ -22,7 +22,7 @@ self.presentViewController(traktAuth, animated: true, completion: nil)
 ```
 
 In AppDelegate.swift
-```
+```swift
 func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
     let urlString = url.absoluteString
     
@@ -38,7 +38,7 @@ func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
 ```
 
 ###Get Show information
-```
+```swift
 TraktManager.sharedManager.getShowSummary(showID: "the-last-man-on-earth", extended: .FullAndImages) { (dictionary, error) -> Void in        
             guard error == nil else {
                 // Handle error
