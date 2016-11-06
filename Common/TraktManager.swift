@@ -1,6 +1,6 @@
 //
 //  TraktManager.swift
-//  TVKit
+//  TraktKit
 //
 //  Created by Maximilian Litteral on 2/4/15.
 //  Copyright (c) 2015 Maximilian Litteral. All rights reserved.
