@@ -26,6 +26,7 @@ public struct Person: TraktProtocol {
         guard
             let json = json,
             let name = json["name"] as? String,
+            !name.isEmpty,
             let ids = ID(json: json["ids"] as? [String: AnyObject]) else { return nil }
         
         // Extended: Min
