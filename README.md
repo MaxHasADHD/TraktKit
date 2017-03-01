@@ -14,7 +14,7 @@ TraktManager.sharedManager.setClientID("Client ID", clientSecret: "Secret", redi
 
 ###Authentication
 ```swift
-guard let oathURL = TraktManager.sharedManager.oauthURL else { return }
+guard let oauthURL = TraktManager.sharedManager.oauthURL else { return }
 
 let traktAuth = SFSafariViewController(URL: oathURL)
 traktAuth.delegate = self
@@ -25,9 +25,9 @@ In AppDelegate.swift
 ```swift
 func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
     let urlString = url.absoluteString
-    
+
     let queryDict = url.queryDict() // Parse URL
-            
+
     if url.host == "auth" {
         if let code = queryDict["code"] as? String { // Get authorization code
             TraktManager.sharedManager.getTokenFromAuthorizationCode(code, completionHandler: nil)

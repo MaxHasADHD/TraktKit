@@ -86,6 +86,44 @@ public enum SearchType: String {
     case episode
     case person
     case list
+    
+    
+    public struct Field {
+        let title: String
+    }
+    public struct Fields {
+        public struct Movie {
+            public static let title = Field(title: "title")
+            public static let tagline = Field(title: "tagline")
+            public static let overview = Field(title: "overview")
+            public static let people = Field(title: "people")
+            public static let translations = Field(title: "translations")
+            public static let aliases = Field(title: "aliases")
+        }
+        
+        public struct Show {
+            public static let title = Field(title: "title")
+            public static let overview = Field(title: "overview")
+            public static let people = Field(title: "people")
+            public static let translations = Field(title: "translations")
+            public static let aliases = Field(title: "aliases")
+        }
+        
+        public struct Episode {
+            public static let title = Field(title: "title")
+            public static let overview = Field(title: "overview")
+        }
+        
+        public struct Person {
+            public static let name = Field(title: "name")
+            public static let biography = Field(title: "biography")
+        }
+        
+        public struct List {
+            public static let name = Field(title: "name")
+            public static let description = Field(title: "description")
+        }
+    }
 }
 
 /// Type of ID used for look up

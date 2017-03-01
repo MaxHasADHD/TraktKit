@@ -34,6 +34,10 @@ public enum ObjectsResultTypePagination<T: TraktProtocol> {
     case error(error: NSError?)
 }
 
+public extension Notification.Name {
+    static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
+}
+
 public class TraktManager {
     
     // TODO List:
@@ -302,7 +306,7 @@ public class TraktManager {
                     
                     // Post notification
                     DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: Notification.Name.init(rawValue: "signedInToTrakt"), object: nil)
+                        NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
                     }
                     
                     completionHandler?(.success)

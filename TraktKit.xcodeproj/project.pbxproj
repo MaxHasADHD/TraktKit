@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		702631EB1E6682E5006F323B /* TraktAnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */; };
+		702631EC1E6682ED006F323B /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
+		702631ED1E6682F2006F323B /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764CB7F1D7B36960094BE66 /* HiddenItem.swift */; };
+		702631EE1E6682F9006F323B /* TraktWatchedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E56161D4E7663009CACC7 /* TraktWatchedProgress.swift */; };
 		70B6813C1DA5A95000D7EAF1 /* TraktRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A21701D394E1B006E5D92 /* TraktRating.swift */; };
 		70B6813E1DA5A97A00D7EAF1 /* TraktHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */; };
 		70B6813F1DA5A97A00D7EAF1 /* TraktHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */; };
@@ -834,6 +838,7 @@
 				A7582BE01CCA6FDB00B3CF63 /* Genres.swift in Sources */,
 				A77602BC1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */,
 				70B6813F1DA5A97A00D7EAF1 /* TraktHistoryItem.swift in Sources */,
+				702631ED1E6682F2006F323B /* HiddenItem.swift in Sources */,
 				A7582BF01CCA6FE900B3CF63 /* TraktAnticipatedShow.swift in Sources */,
 				A7582C071CCA6FF600B3CF63 /* TraktCrewMember.swift in Sources */,
 				A759C3BA1D47D49600E7F938 /* Pagination.swift in Sources */,
@@ -852,7 +857,9 @@
 				A7582C081CCA6FF600B3CF63 /* TraktCastMember.swift in Sources */,
 				A7582BE21CCA6FDB00B3CF63 /* Recommendations.swift in Sources */,
 				A7582BE91CCA6FDB00B3CF63 /* Users.swift in Sources */,
+				702631EB1E6682E5006F323B /* TraktAnticipatedMovie.swift in Sources */,
 				A7582C0A1CCA6FF600B3CF63 /* MLKeychain.swift in Sources */,
+				702631EE1E6682F9006F323B /* TraktWatchedProgress.swift in Sources */,
 				A7582BF61CCA6FE900B3CF63 /* TraktWatchedSeason.swift in Sources */,
 				A7582BE11CCA6FDB00B3CF63 /* People.swift in Sources */,
 				A7582BFB1CCA6FE900B3CF63 /* TraktWatchedMovie.swift in Sources */,
@@ -869,6 +876,7 @@
 				A7582BE51CCA6FDB00B3CF63 /* Shows.swift in Sources */,
 				A7582BDF1CCA6FDB00B3CF63 /* Comments.swift in Sources */,
 				A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */,
+				702631EC1E6682ED006F323B /* TraktWatching.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@ extension TraktManager {
                        extended: [ExtendedType] = [.Min],
                        pagination: Pagination? = nil,
                        filters: [Filter]? = nil,
+                       fields: [SearchType.Field]? = nil,
                        completion: @escaping SearchCompletionHandler) -> URLSessionDataTask? {
         
         let typesString = types.map { $0.rawValue }.joined(separator: ",") // Search with multiple types
@@ -43,12 +44,19 @@ extension TraktManager {
             }
         }
         
+        // Fields
+        if let fields = fields {
+            query["fields"] = fields.map { $0.title }.joined(separator: ",")
+        }
+        
         //
-        guard
-            let request = mutableRequest(forPath: "search/\(typesString)",
-                                         withQuery: query,
-                                         isAuthorized: false,
-                                         withHTTPMethod: .GET) else { return nil }
+        guard let request = mutableRequest(
+                forPath: "search/\(typesString)",
+                withQuery: query,
+                isAuthorized: false,
+                withHTTPMethod: .GET
+            )
+            else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
