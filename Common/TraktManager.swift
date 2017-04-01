@@ -293,8 +293,8 @@ public class TraktManager {
                     wSelf.refreshToken = accessTokenDict["refresh_token"] as? String
                     
                     #if DEBUG
-                        print("[\(#function)] Access token is \(wSelf.accessToken)")
-                        print("[\(#function)] Refresh token is \(wSelf.refreshToken)")
+                        print("[\(#function)] Access token is \(String(describing: wSelf.accessToken))")
+                        print("[\(#function)] Refresh token is \(String(describing: wSelf.refreshToken))")
                     #endif
                     
                     // Save expiration date
@@ -402,8 +402,8 @@ public class TraktManager {
                     
                     #if DEBUG
                         print(accessTokenDict)
-                        print("[\(#function)] Access token is \(wSelf.accessToken)")
-                        print("[\(#function)] Refresh token is \(wSelf.refreshToken)")
+                        print("[\(#function)] Access token is \(String(describing: wSelf.accessToken))")
+                        print("[\(#function)] Refresh token is \(String(describing: wSelf.refreshToken))")
                     #endif
                     
                     // Save expiration date

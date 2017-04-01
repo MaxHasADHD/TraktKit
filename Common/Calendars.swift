@@ -83,6 +83,22 @@ extension TraktManager {
     }
     
     /**
+     Returns all movies with a DVD release date during the time period specified.
+     
+     🔒 OAuth: Required
+     ✨ Extended Info
+     🎚 Filters
+     */
+    @discardableResult
+    public func myDVD(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/my/dvd/\(dateString)/\(days)",
+                                            withQuery: [:],
+                                            isAuthorized: true,
+                                            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+    }
+    
+    /**
      Returns all shows airing during the time period specified.
      
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
@@ -143,6 +159,18 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+    }
+    
+    /**
+ */
+    @discardableResult
+    public func allDVD(startDateString dateString: String, days: Int, completion: @escaping dvdReleaseCompletionHandler) -> URLSessionDataTask? {
+        guard
+            let request = mutableRequest(forPath: "calendars/all/dvd/\(dateString)/\(days)",
+                withQuery: [:],
+                isAuthorized: false,
+                withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

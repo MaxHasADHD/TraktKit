@@ -611,7 +611,7 @@ extension Users {
                                          withHTTPMethod: .GET) else { return nil }
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard
-                error == nil else { return completion(.error(error: error as? NSError)) }
+                error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
             guard

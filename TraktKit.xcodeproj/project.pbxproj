@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701EF4B11E88713C00C56499 /* TraktDVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */; };
+		701EF4B21E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */; };
+		701EF4B31E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */; };
 		702631EB1E6682E5006F323B /* TraktAnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */; };
 		702631EC1E6682ED006F323B /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
 		702631ED1E6682F2006F323B /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764CB7F1D7B36960094BE66 /* HiddenItem.swift */; };
@@ -199,6 +202,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktDVDReleaseMovie.swift; sourceTree = "<group>"; };
 		70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktHistoryItem.swift; sourceTree = "<group>"; };
 		70C810B21DBAAE9A00A5AA28 /* TraktCollectedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktCollectedItem.swift; sourceTree = "<group>"; };
 		70C832331DC50164003EB134 /* TraktCheckin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktCheckin.swift; sourceTree = "<group>"; };
@@ -501,6 +505,7 @@
 				A7AF98851CBF4A4000744566 /* TraktWatchedMovie.swift */,
 				A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */,
 				A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */,
+				701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */,
 			);
 			name = Movies;
 			sourceTree = "<group>";
@@ -770,6 +775,7 @@
 				A708072F1D8E1F5A00176B0A /* Structures.swift in Sources */,
 				70F5F1E31DC718E700CDE58E /* CompletionHandlers.swift in Sources */,
 				A70807291D8E1F5A00176B0A /* Seasons.swift in Sources */,
+				701EF4B31E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */,
 				A708072A1D8E1F5A00176B0A /* Episodes.swift in Sources */,
 				A70807251D8E1F5A00176B0A /* Recommendations.swift in Sources */,
 				A70807421D8E1F5A00176B0A /* TraktWatchedMovie.swift in Sources */,
@@ -832,6 +838,7 @@
 				A7582BF71CCA6FE900B3CF63 /* TraktWatchedEpisodes.swift in Sources */,
 				70C810B41DBAE34400A5AA28 /* TraktCollectedItem.swift in Sources */,
 				A77602BF1D1BB66D000FA8C4 /* Enums.swift in Sources */,
+				701EF4B21E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */,
 				A7582BF31CCA6FE900B3CF63 /* TraktEpisode.swift in Sources */,
 				A723DAAE1B917FE300CA217C /* Movies.swift in Sources */,
 				A759C3BB1D47D49600E7F938 /* Filters.swift in Sources */,
@@ -902,6 +909,7 @@
 				A77602BE1D1BB66D000FA8C4 /* Enums.swift in Sources */,
 				A79E56301D4FBE43009CACC7 /* TraktWatching.swift in Sources */,
 				A76905B61B47B7A6003C7431 /* MLKeychain.swift in Sources */,
+				701EF4B11E88713C00C56499 /* TraktDVDReleaseMovie.swift in Sources */,
 				A7AF98741CBF48D900744566 /* TraktSeason.swift in Sources */,
 				A7AF986E1CBF484B00744566 /* TraktMostShow.swift in Sources */,
 				70C832341DC50164003EB134 /* TraktCheckin.swift in Sources */,

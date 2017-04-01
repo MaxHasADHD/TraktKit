@@ -66,6 +66,9 @@ extension TraktManager {
     public typealias SearchCompletionHandler = (_ result: ObjectsResultType<TraktSearchResult>) -> Void
     public typealias statsCompletionHandler = (_ result: ObjectResultType<TraktStats>) -> Void
     
+    // MARK: Calendar
+    public typealias dvdReleaseCompletionHandler = (_ result: ObjectsResultType<TraktDVDReleaseMovie>) -> Void
+    
     // MARK: Checkin
     public typealias checkinCompletionHandler = (_ result: CheckinResultType) -> Void
     
@@ -115,7 +118,7 @@ extension TraktManager {
         let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
                 let wSelf = self else { return }
-            guard error == nil else { return completion(.error(error: error as? NSError)) }
+            guard error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
             guard
@@ -154,7 +157,7 @@ extension TraktManager {
             guard
                 let wSelf = self else { return }
             guard
-                error == nil else { return completion(.error(error: error as? NSError)) }
+                error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
             guard
@@ -336,7 +339,7 @@ extension TraktManager {
             guard
                 let wSelf = self else { return }
             guard
-                error == nil else { return completion(.error(error: error as? NSError)) }
+                error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
             guard
@@ -381,7 +384,7 @@ extension TraktManager {
             guard
                 let wSelf = self else { return }
             guard
-                error == nil else { return completion(.error(error: error as? NSError)) }
+                error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
             guard
