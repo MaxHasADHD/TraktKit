@@ -100,12 +100,12 @@ extension TraktManager {
     // MARK: - Updates
     
     /**
-    Returns all movies updated since the specified UTC date. We recommended storing the date you can be efficient using this method moving forward.
+    Returns all movies updated since the specified date. We recommended storing the date you can be efficient using this method moving forward.
     
     📄 Pagination
     */
     @discardableResult
-    public func getUpdatedMovies(page: Int, limit: Int, startDate: String, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getUpdatedMovies(page: Int, limit: Int, startDate: Date?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         return getUpdated(.Movies, page: page, limit: limit, startDate: startDate, completion: completion)
     }
     

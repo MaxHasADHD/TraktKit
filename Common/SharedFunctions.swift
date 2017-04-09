@@ -94,8 +94,14 @@ internal extension ShowsAndMovies {
     
     // MARK: - Updates
     
-    func getUpdated(_ type: WatchedType, page: Int, limit: Int, startDate: String, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard var request = mutableRequest(forPath: "\(type)/updates/\(startDate)",
+    func getUpdated(_ type: WatchedType, page: Int, limit: Int, startDate: Date?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+        
+        var path = "\(type)/updates/"
+        if let startDateString = startDate?.dateString(withFormat: "YYYY-MM-DD") {
+            path.append(startDateString)
+        }
+        
+        guard var request = mutableRequest(forPath: path,
                                            withQuery: ["page": "\(page)",
                                                        "limit": "\(limit)"],
                                            isAuthorized: false,

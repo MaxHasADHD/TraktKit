@@ -9,7 +9,6 @@
 import Foundation
 
 extension TraktManager {
-    // TODO: Hold a private variable that constructs the common base URL
     
     /**
      Returns a single episode's details. All date and times are in UTC and were calculated using the episode's `air_date` and show's `country` and `air_time`.

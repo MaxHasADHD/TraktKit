@@ -305,23 +305,22 @@ extension TraktManager {
      🔒 OAuth: Required
      
      - parameter rating: Between 1 and 10.
-     - parameter ratedAt: UTC datetime when the item was rated.
+     - parameter ratedAt: Date when the item was rated.
      - parameter movies: Array of movie objects
      - parameter shows: Array of show objects
      - parameter episodes: Array of episode objects
      */
     @discardableResult
-    public func addRatings(rating: NSNumber, ratedAt: String, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
-        
-        // TODO: Have ratedAt be of Date type and convert to a UTC date string
+    public func addRatings(rating: NSNumber, ratedAt: Date, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
         
         // JSON
         var json = RawJSON()
+        let ratedAtString = ratedAt.UTCDateString()
         
         // Movies
         var ratedMovies: [RawJSON] = []
         for var movie in movies {
-            movie["rated_at"] = ratedAt
+            movie["rated_at"] = ratedAtString
             movie["rating"] = rating
             ratedMovies.append(movie)
         }
@@ -330,7 +329,7 @@ extension TraktManager {
         // Shows
         var ratedShows: [RawJSON] = []
         for var show in shows {
-            show["rated_at"] = ratedAt
+            show["rated_at"] = ratedAtString
             show["rating"] = rating
             ratedShows.append(show)
         }
@@ -339,7 +338,7 @@ extension TraktManager {
         // Episodes
         var ratedEpisodes: [RawJSON] = []
         for var episode in episodes {
-            episode["rated_at"] = ratedAt
+            episode["rated_at"] = ratedAtString
             episode["rating"] = rating
             ratedEpisodes.append(episode)
         }

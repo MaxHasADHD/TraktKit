@@ -11,7 +11,7 @@ import Foundation
 public struct Comment: TraktProtocol {
     public let id: NSNumber
     public let parentID: NSNumber
-    public let createdAt: Date // TODO: Make Date
+    public let createdAt: Date
     public var comment: String
     public let spoiler: Bool
     public let review: Bool
