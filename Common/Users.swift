@@ -529,7 +529,7 @@ extension Users {
     📄 Pagination
     */
     @discardableResult
-    public func getWatchedHistory<T: CustomStringConvertible>(username: String = "me", type: WatchedType?, id: T?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchedHistory<T: CustomStringConvertible>(username: String = "me", type: WatchedType?, id: T?, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
         var path = "users/\(username)/history"
         
         if let type = type {
