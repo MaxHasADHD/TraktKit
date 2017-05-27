@@ -20,7 +20,8 @@ public struct TraktCollectedItem: TraktProtocol {
     public init?(json: RawJSON?) {
         guard
             let json = json,
-            let lastCollectedAt = Date.dateFromString(json["last_collected_at"]) else { return nil }
+            let dateString = json["collected_at"] ?? json["last_collected_at"],
+            let lastCollectedAt = Date.dateFromString(dateString) else { return nil }
         
         self.lastCollectedAt = lastCollectedAt
         

@@ -23,8 +23,10 @@ internal extension Date {
         let count = dateString.characters.count
         if count <= 10 {
             ISO8601DateFormatter.dateFormat = "yyyy-MM-dd"
+        } else if count == 23 {
+            ISO8601DateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
         } else {
-            ISO8601DateFormatter.dateFormat = UTCFormat
+            ISO8601DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         }
         
         return ISO8601DateFormatter.date(from: dateString)
@@ -32,7 +34,7 @@ internal extension Date {
     
     func UTCDateString() -> String {
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        let UTCString = self.dateString(withFormat: UTCFormat)
+        let UTCString = self.dateString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         dateFormatter.timeZone = TimeZone.current
         return UTCString
     }
@@ -44,8 +46,6 @@ internal extension Date {
 }
 
 // Private
-
-private let UTCFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
 private let ISO8601DateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()

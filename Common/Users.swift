@@ -126,13 +126,64 @@ extension Users {
             query["type"] = type.rawValue
         }
         
-        guard
-            var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
-                                         withQuery: query,
-                                         isAuthorized: true,
-                                         withHTTPMethod: .GET) else { return nil }
+        guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
+            withQuery: query,
+            isAuthorized: true,
+            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+    }
+    
+    /**
+     Hide items for a specific section. Here's what type of items can hidden for each section.
+     
+     🔒 OAuth Required
+     */
+    @discardableResult
+    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+        var json: [String : Any] = [:]
+        json["movies"] = movies
+        json["shows"] = shows
+        json["seasons"] = seasons
+        
+        guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
+            withQuery: [:],
+            isAuthorized: true,
+            withHTTPMethod: .POST) else { return nil }
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+            return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
+        } catch {
+            return nil
+        }
+    }
+    
+    /**
+     Unhide items for a specific section. Here's what type of items can unhidden for each section.
+     
+     🔒 OAuth Required
+     */
+    @discardableResult
+    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+        var json: [String : Any] = [:]
+        json["movies"] = movies
+        json["shows"] = shows
+        json["seasons"] = seasons
+        
+        guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)/remove",
+            withQuery: [:],
+            isAuthorized: true,
+            withHTTPMethod: .POST) else { return nil }
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+            return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        } catch {
+            return nil
+        }
     }
     
     // MARK: - Likes
