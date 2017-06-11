@@ -116,7 +116,7 @@ extension TraktManager {
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
         
         let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard let welf = self else { return }
             guard error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
@@ -125,7 +125,7 @@ extension TraktManager {
                 HTTPResponse.statusCode == code
                 else {
                     if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
                     } else {
                         completion(.error(error: nil))
                     }
@@ -151,7 +151,7 @@ extension TraktManager {
     /// Array
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard let welf = self else { return }
             guard error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
@@ -160,7 +160,7 @@ extension TraktManager {
                 HTTPResponse.statusCode == code
                 else {
                     if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
                     } else {
                         completion(.error(error: nil))
                     }
@@ -326,7 +326,7 @@ extension TraktManager {
     func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard let welf = self else { return }
             guard error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
@@ -335,7 +335,7 @@ extension TraktManager {
                 HTTPResponse.statusCode == code
                 else {
                     if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
                     } else {
                         completion(.error(error: nil))
                     }
@@ -366,7 +366,7 @@ extension TraktManager {
     func performRequest<T: TraktProtocol>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTask? {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let wSelf = self else { return }
+            guard let welf = self else { return }
             guard error == nil else { return completion(.error(error: error as NSError?)) }
             
             // Check response
@@ -375,7 +375,7 @@ extension TraktManager {
                 HTTPResponse.statusCode == code
                 else {
                     if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: wSelf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
                     } else {
                         completion(.error(error: nil))
                     }

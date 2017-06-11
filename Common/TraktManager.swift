@@ -144,8 +144,7 @@ public class TraktManager {
         
         if let traktMessage = StatusCodes.message(for: statusCode) {
             message = traktMessage
-        }
-        else {
+        } else {
             message = "Request Failed: Gateway timed out (\(statusCode))"
         }
         
@@ -265,7 +264,7 @@ public class TraktManager {
         
         session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
-                let wSelf = self else { return }
+                let welf = self else { return }
             guard error == nil else {
                 completionHandler?(.fail)
                 return
@@ -289,12 +288,12 @@ public class TraktManager {
             do {
                 if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                     
-                    wSelf.accessToken = accessTokenDict["access_token"] as? String
-                    wSelf.refreshToken = accessTokenDict["refresh_token"] as? String
+                    welf.accessToken = accessTokenDict["access_token"] as? String
+                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
                     
                     #if DEBUG
-                        print("[\(#function)] Access token is \(String(describing: wSelf.accessToken))")
-                        print("[\(#function)] Refresh token is \(String(describing: wSelf.refreshToken))")
+                        print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
+                        print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
                     #endif
                     
                     // Save expiration date
@@ -380,7 +379,7 @@ public class TraktManager {
         
         session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
-                let wSelf = self else { return }
+                let welf = self else { return }
             guard error == nil else { return completionHandler(.fail) }
             
             // Check response
@@ -397,13 +396,13 @@ public class TraktManager {
             do {
                 if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                     
-                    wSelf.accessToken = accessTokenDict["access_token"] as? String
-                    wSelf.refreshToken = accessTokenDict["refresh_token"] as? String
+                    welf.accessToken = accessTokenDict["access_token"] as? String
+                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
                     
                     #if DEBUG
                         print(accessTokenDict)
-                        print("[\(#function)] Access token is \(String(describing: wSelf.accessToken))")
-                        print("[\(#function)] Refresh token is \(String(describing: wSelf.refreshToken))")
+                        print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
+                        print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
                     #endif
                     
                     // Save expiration date
