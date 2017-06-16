@@ -8,19 +8,14 @@
 
 import Foundation
 
-public struct TraktAnticipatedShow: TraktProtocol {
+public struct TraktAnticipatedShow: Codable {
+    
     // Extended: Min
     public let listCount: Int
     public let show: TraktShow
     
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let listCount = json["list_count"] as? Int,
-            let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
-        
-        self.listCount = listCount
-        self.show = show
+    enum CodingKeys: String, CodingKey {
+        case listCount = "list_count"
+        case show
     }
 }

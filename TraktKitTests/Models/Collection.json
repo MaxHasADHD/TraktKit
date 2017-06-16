@@ -1,0 +1,42 @@
+ [
+  {
+  "collected_at": "2014-09-01T09:10:11.000Z",
+  "movie": {
+  "title": "TRON: Legacy",
+  "year": 2010,
+  "ids": {
+  "trakt": 1,
+  "slug": "tron-legacy-2010",
+  "imdb": "tt1104001",
+  "tmdb": 20526
+  }
+  },
+  "metadata": {
+  "media_type": "bluray",
+  "resolution": "hd_1080p",
+  "audio": "dts",
+  "audio_channels": "6.1",
+  "3d": false
+  }
+  },
+  {
+  "collected_at": "2014-09-01T09:10:11.000Z",
+  "movie": {
+  "title": "The Dark Knight",
+  "year": 2008,
+  "ids": {
+  "trakt": 6,
+  "slug": "the-dark-knight-2008",
+  "imdb": "tt0468569",
+  "tmdb": 155
+  }
+  },
+  "metadata": {
+  "media_type": "bluray",
+  "resolution": "hd_1080p",
+  "audio": "dts",
+  "audio_channels": "6.1",
+  "3d": false
+  }
+  }
+  ]

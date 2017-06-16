@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct HiddenItem: TraktProtocol {
+public struct HiddenItem: Codable {
     public let hiddenAt: Date
     public let type: String
     
@@ -16,19 +16,11 @@ public struct HiddenItem: TraktProtocol {
     public let show: TraktShow?
     public let season: TraktSeason?
     
-    
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let hiddenAt = Date.dateFromString(json["hidden_at"]),
-            let type = json["type"] as? String else { return nil }
-        
-        self.hiddenAt = hiddenAt
-        self.type = type
-        
-        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
-        self.show = TraktShow(json: json["show"] as? RawJSON)
-        self.season = TraktSeason(json: json["season"] as? RawJSON)
+    enum CodingKeys: String, CodingKey {
+        case hiddenAt = "hidden_at"
+        case type
+        case movie
+        case show
+        case season
     }
 }

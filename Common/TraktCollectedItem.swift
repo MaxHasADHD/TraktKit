@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktCollectedItem: TraktProtocol {
+public struct TraktCollectedItem: Codable {
     
     public var lastCollectedAt: Date
     
@@ -16,51 +16,28 @@ public struct TraktCollectedItem: TraktProtocol {
     public var show: TraktShow?
     public var seasons: [TraktCollectedSeason]?
     
-    // Initialization
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let dateString = json["collected_at"] ?? json["last_collected_at"],
-            let lastCollectedAt = Date.dateFromString(dateString) else { return nil }
-        
-        self.lastCollectedAt = lastCollectedAt
-        
-        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
-        self.show = TraktShow(json: json["show"] as? RawJSON)
-        self.seasons = (json["seasons"] as? [RawJSON])?.flatMap { TraktCollectedSeason(json: $0) }
+    enum CodingKeys: String, CodingKey {
+        case lastCollectedAt = "collected_at" // Can be last_collected_at though :/
+        case movie
+        case show
+        case seasons
     }
 }
 
-public struct TraktCollectedSeason: TraktProtocol {
+public struct TraktCollectedSeason: Codable {
     
     /// Season number
-    public var number: NSNumber
+    public var number: Int
     public var episodes: [TraktCollectedEpisode]
-    
-    // Initialization
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let number = json["number"] as? NSNumber else { return nil }
-        
-        self.number = number
-        self.episodes = (json["episodes"] as? [RawJSON])?.flatMap { TraktCollectedEpisode(json: $0) } ?? []
-    }
 }
 
-public struct TraktCollectedEpisode: TraktProtocol {
+public struct TraktCollectedEpisode: Codable {
     
-    public var number: NSNumber
+    public var number: Int
     public var collectedAt: Date
     
-    // Initialization
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let number = json["number"] as? NSNumber,
-            let collectedAt = Date.dateFromString(json["collectedAt"]) else { return nil }
-        
-        self.number = number
-        self.collectedAt = collectedAt
+    enum CodingKeys: String, CodingKey {
+        case number
+        case collectedAt = "collected_at"
     }
 }

@@ -19,12 +19,11 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/my/shows/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func myShows(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarShow>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/my/shows/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -37,12 +36,11 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myNewShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/my/shows/new/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func myNewShows(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarShow>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/my/shows/new/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -55,12 +53,11 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func mySeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/my/shows/premieres/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func mySeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarShow>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/my/shows/premieres/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -73,12 +70,11 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func myMovies(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/my/movies/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func myMovies(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarMovie>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/my/movies/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -90,7 +86,7 @@ extension TraktManager {
      🎚 Filters
      */
     @discardableResult
-    public func myDVD(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func myDVDReleases(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarMovie>) -> URLSessionDataTask? {
         guard let request = mutableRequest(forPath: "calendars/my/dvd/\(dateString)/\(days)",
                                             withQuery: [:],
                                             isAuthorized: true,
@@ -105,12 +101,11 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/all/shows/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func allShows(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarShow>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/all/shows/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -121,12 +116,11 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allNewShows(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/all/shows/new/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: false,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func allNewShows(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarShow>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/all/shows/new/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -137,12 +131,11 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allSeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/all/shows/premieres/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: false,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func allSeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarShow>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/all/shows/premieres/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
@@ -153,24 +146,22 @@ extension TraktManager {
      - parameter days: Number of days to display. Example: `7`.
      */
     @discardableResult
-    public func allMovies(startDateString dateString: String, days: Int, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/all/movies/\(dateString)/\(days)",
-                                         withQuery: [:],
-                                         isAuthorized: false,
-                                         withHTTPMethod: .GET) else { return nil }
+    public func allMovies(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarMovie>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/all/movies/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     /**
  */
     @discardableResult
-    public func allDVD(startDateString dateString: String, days: Int, completion: @escaping dvdReleaseCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "calendars/all/dvd/\(dateString)/\(days)",
-                withQuery: [:],
-                isAuthorized: false,
-                withHTTPMethod: .GET) else { return nil }
+    public func allDVD(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarMovie>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "calendars/all/dvd/\(dateString)/\(days)",
+                                           withQuery: [:],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
 }

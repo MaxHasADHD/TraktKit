@@ -8,21 +8,8 @@
 
 import Foundation
 
-public struct TraktShowTranslation: TraktProtocol {
+public struct TraktShowTranslation: Codable {
     public let title: String
     public let overview: String
     public let language: String
-    
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let title = json["title"] as? String,
-            let overview = json["overview"] as? String,
-            let language = json["language"] as? String else { return nil }
-        
-        self.title       = title
-        self.overview    = overview
-        self.language    = language
-    }
 }

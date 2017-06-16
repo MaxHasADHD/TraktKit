@@ -8,19 +8,9 @@
 
 import Foundation
 
-public struct TraktTrendingShow: TraktProtocol {
+public struct TraktTrendingShow: Codable {
+    
     // Extended: Min
     public let watchers: Int
     public let show: TraktShow
-    
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let watchers = json["watchers"] as? Int,
-            let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
-        
-        self.watchers = watchers
-        self.show = show
-    }
 }

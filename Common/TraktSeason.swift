@@ -8,40 +8,36 @@
 
 import Foundation
 
-public struct TraktSeason: TraktProtocol {
+public struct TraktSeason: Codable {
+    
     // Extended: Min
     public let number: Int
     public let ids: SeasonId
-    public let rating: Double
-    public let votes: Int
-    public let episodeCount: Int
-    public let airedEpisodes: Int
+    
+    // Extended: Full
+    public let rating: Double?
+    public let votes: Int?
+    public let episodeCount: Int?
+    public let airedEpisodes: Int?
+    public let title: String?
     public let overview: String?
     public let firstAired: Date?
     
-    // Extended: Full
-    public let episodes: [TraktEpisode]
+    // Extended: Episodes
+    public let episodes: [TraktEpisode]?
     
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let number = json["number"] as? Int,
-            let ids = SeasonId(json: json["ids"] as? RawJSON),
-            let rating = json["rating"] as? Double,
-            let votes = json["votes"] as? Int,
-            let episodeCount = json["episode_count"] as? Int,
-            let airedEpisodes = json["aired_episodes"] as? Int else { return nil }
+    enum CodingKeys: String, CodingKey {
+        case number
+        case ids
         
-        self.number = number
-        self.ids    = ids
-        self.rating = rating
-        self.votes = votes
-        self.episodeCount = episodeCount
-        self.airedEpisodes = airedEpisodes
-        self.overview = json["overview"] as? String
-        self.firstAired = Date.dateFromString(json["first_aired"])
+        case rating
+        case votes
+        case episodeCount = "episode_count"
+        case airedEpisodes = "aired_episodes"
+        case title
+        case overview
+        case firstAired = "first_aired"
         
-        self.episodes = initEach(json["episodes"] as? [RawJSON] ?? [])
+        case episodes
     }
 }

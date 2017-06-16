@@ -231,3 +231,27 @@ public enum ListItemType: String {
     case episodes
     case people
 }
+
+public enum Period: String {
+    case Weekly = "weekly"
+    case Monthly = "monthly"
+    case All = "all"
+}
+
+public enum SectionType: String {
+    case Calendar = "calendar"
+    case ProgressWatched = "progress_watched"
+    case ProgressCollected = "progress_collected"
+    case Recommendations = "recommendations"
+}
+
+public enum HiddenItemsType: String {
+    case Movie = "movie"
+    case Show = "show"
+    case Season = "Season"
+}
+
+public enum LikeType: String {
+    case Comments = "comments"
+    case Lists = "lists"
+}

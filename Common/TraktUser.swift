@@ -8,25 +8,49 @@
 
 import Foundation
 
-public struct User: TraktProtocol {
-    public let username: String
+public struct User: Codable {
+    public let username: String?
     public let isPrivate: Bool
-    public let name: String
+    public let name: String?
     public let isVIP: Bool
     public let isVIPEP: Bool
     
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let isPrivate = json["private"] as? Bool,
-            let isVIP = json["vip"] as? Bool,
-            let isVIPEP = json["vip_ep"] as? Bool else { return nil }
-        
-        self.username = json["username"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
-        self.isPrivate = isPrivate
-        self.name = json["name"] as? String ?? NSLocalizedString("COMMENTS_ANONYMOUS_NAME", comment: "Anonymous")
-        self.isVIP = isVIP
-        self.isVIPEP = isVIPEP
+    enum CodingKeys: String, CodingKey {
+        case username
+        case isPrivate = "private"
+        case name
+        case isVIP = "vip"
+        case isVIPEP = "vip_ep"
+    }
+}
+
+/// User object returned from User Settings
+public struct SettingsUser: Codable {
+    public let username: String?
+    public let isPrivate: Bool
+    public let name: String?
+    public let isVIP: Bool
+    public let isVIPEP: Bool
+    public let joinedAt: Date
+    public let location: String
+    public let about: String
+    public let gender: String
+    public let age: Int
+    public let vipOG: Bool
+    public let vipYears: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case username
+        case isPrivate = "private"
+        case name
+        case isVIP = "vip"
+        case isVIPEP = "vip_ep"
+        case joinedAt = "joined_at"
+        case location
+        case about
+        case gender
+        case age
+        case vipOG = "vip_og"
+        case vipYears = "vip_years"
     }
 }

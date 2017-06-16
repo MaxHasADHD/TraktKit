@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktWatching: TraktProtocol {
+public struct TraktWatching: Codable {
     public let expiresAt: Date
     public let startedAt: Date
     public let action: String
@@ -18,22 +18,14 @@ public struct TraktWatching: TraktProtocol {
     public let show: TraktShow?
     public let movie: TraktMovie?
     
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let expiresAt = Date.dateFromString(json["expires_at"]),
-            let startedAt = Date.dateFromString(json["started_at"]),
-            let action = json["action"] as? String,
-            let type = json["type"] as? String else { return nil }
+    enum CodingKeys: String, CodingKey {
+        case expiresAt = "expires_at"
+        case startedAt = "started_at"
+        case action
+        case type
         
-        self.expiresAt = expiresAt
-        self.startedAt = startedAt
-        self.action = action
-        self.type = type
-        
-        self.episode = TraktEpisode(json: json["episode"] as? RawJSON)
-        self.show = TraktShow(json: json["show"] as? RawJSON)
-        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
+        case episode
+        case show
+        case movie
     }
 }

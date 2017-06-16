@@ -8,24 +8,6 @@
 
 import Foundation
 
-public enum SectionType: String {
-    case Calendar = "calendar"
-    case ProgressWatched = "progress_watched"
-    case ProgressCollected = "progress_collected"
-    case Recommendations = "recommendations"
-}
-
-public enum HiddenItemsType: String {
-    case Movie = "movie"
-    case Show = "show"
-    case Season = "Season"
-}
-
-public enum LikeType: String {
-    case Comments = "comments"
-    case Lists = "lists"
-}
-
 /**
  User's with public data will return info with all GET methods. Private user's (inlcuding yourself) require valid OAuth and a friend relationship to return data.
  
@@ -48,13 +30,14 @@ extension Users {
      🔒 OAuth Required
      */
     @discardableResult
-    public func getSettings(completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "users/settings",
+    public func getSettings(completion: @escaping ObjectCompletionHandler<AccountSettings>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "users/settings",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     // MARK: - Follower Requests
@@ -65,13 +48,14 @@ extension Users {
      🔒 OAuth Required
      */
     @discardableResult
-    public func getFollowRequests(completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "users/requests",
+    public func getFollowRequests(completion: @escaping ObjectCompletionHandler<FollowRequest>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "users/requests",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     // MARK: - Approve or Deny follower Requests
@@ -84,13 +68,14 @@ extension Users {
     - parameter id: ID of the follower request. Example: `123`.
      */
     @discardableResult
-    public func approveFollowRequest(requestID id: NSNumber, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "users/requests/\(id)",
+    public func approveFollowRequest(requestID id: NSNumber, completion: @escaping ObjectCompletionHandler<FollowResult>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "users/requests/\(id)",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .POST) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     /**
@@ -102,12 +87,13 @@ extension Users {
      */
     @discardableResult
     public func denyFollowRequest(requestID id: NSNumber, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "users/requests/\(id)",
+        guard let request = mutableRequest(forPath: "users/requests/\(id)",
                                            withQuery: [:],
                                            isAuthorized: true,
                                            withHTTPMethod: .DELETE) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.SuccessNoContentToReturn,
+                              completion: completion)
     }
     
     // MARK: - Hidden Items
@@ -131,7 +117,9 @@ extension Users {
             isAuthorized: true,
             withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     /**
@@ -140,7 +128,7 @@ extension Users {
      🔒 OAuth Required
      */
     @discardableResult
-    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<[String : Any]>) throws -> URLSessionDataTask? {
         var json: [String : Any] = [:]
         json["movies"] = movies
         json["shows"] = shows
@@ -151,13 +139,8 @@ extension Users {
             isAuthorized: true,
             withHTTPMethod: .POST) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-            return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
-        } catch {
-            return nil
-        }
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
     }
     
     /**
@@ -166,7 +149,7 @@ extension Users {
      🔒 OAuth Required
      */
     @discardableResult
-    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<[String : Any]>) throws -> URLSessionDataTask? {
         var json: [String : Any] = [:]
         json["movies"] = movies
         json["shows"] = shows
@@ -177,13 +160,8 @@ extension Users {
             isAuthorized: true,
             withHTTPMethod: .POST) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-            return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
-        } catch {
-            return nil
-        }
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
     
     // MARK: - Likes
@@ -197,13 +175,14 @@ extension Users {
     - Parameter type: Possible values:  comments, lists.
      */
     @discardableResult
-    public func getLikes(type: LikeType, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "users/likes/\(type.rawValue)",
+    public func getLikes(type: LikeType, completion: @escaping ObjectsCompletionHandler<Like>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "users/likes/\(type.rawValue)",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     // MARK: - Profile
@@ -214,14 +193,15 @@ extension Users {
      🔓 OAuth Optional
      */
     @discardableResult
-    public func getUserProfile(username: String = "me", completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getUserProfile(username: String = "me", completion: @escaping ObjectCompletionHandler<User>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard
-            let request = mutableRequest(forPath: "users/\(username)",
+        guard let request = mutableRequest(forPath: "users/\(username)",
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     // MARK: - Collection
@@ -234,10 +214,9 @@ extension Users {
     🔓 OAuth Optional
      */
     @discardableResult
-    public func getCollection(username: String = "me", type: Type, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getCollection(username: String = "me", type: Type, completion: @escaping ObjectsCompletionHandler<UsersCollection>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
-        guard
-            let request = mutableRequest(forPath: "users/\(username)/collection/\(type.rawValue)",
+        guard let request = mutableRequest(forPath: "users/\(username)/collection/\(type.rawValue)",
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }

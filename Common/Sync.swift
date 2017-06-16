@@ -23,12 +23,13 @@ extension TraktManager {
      */
     @discardableResult
     public func lastActivities(completion: @escaping LastActivitiesCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "sync/last_activities",
+        guard let request = mutableRequest(forPath: "sync/last_activities",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     // MARK: - Playback
@@ -47,13 +48,14 @@ extension TraktManager {
      - parameter type: Possible Values: .Movies, .Episodes
      */
     @discardableResult
-    public func getPlaybackProgress(type: WatchedType, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "sync/playback/\(type)",
+    public func getPlaybackProgress(type: WatchedType, completion: @escaping ObjectsCompletionHandler<PlaybackProgress>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "sync/playback/\(type)",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     /**
@@ -65,12 +67,13 @@ extension TraktManager {
      */
     @discardableResult
     public func removePlaybackItem<T: CustomStringConvertible>(id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "sync/playback/\(id)",
+        guard let request = mutableRequest(forPath: "sync/playback/\(id)",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .DELETE) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.SuccessNoContentToReturn,
+                              completion: completion)
     }
     
     // MARK: - Collection
@@ -86,12 +89,13 @@ extension TraktManager {
      */
     @discardableResult
     public func getCollection(type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping CollectionCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "sync/collection/\(type)",
+        guard let request = mutableRequest(forPath: "sync/collection/\(type)",
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     /**
@@ -107,11 +111,15 @@ extension TraktManager {
      */
     @discardableResult
     public func addToCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
-        guard
-            var request = mutableRequest(forPath: "sync/collection", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
+        guard var request = mutableRequest(forPath: "sync/collection",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .POST) else { return nil }
         request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
+                              completion: completion)
     }
     
     /**

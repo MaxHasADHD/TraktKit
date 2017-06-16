@@ -8,12 +8,6 @@
 
 import Foundation
 
-public enum Period: String {
-    case Weekly = "weekly"
-    case Monthly = "monthly"
-    case All = "all"
-}
-
 extension TraktManager {
     
     // MARK: - Trending
@@ -35,10 +29,10 @@ extension TraktManager {
      
      📄 Pagination
      */
-    @discardableResult
+    /*@discardableResult
     public func getPopularShows(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping ShowsCompletionHandler) -> URLSessionDataTask? {
         return getPopular(.Shows, page: page, limit: limit, extended: extended, completion: completion)
-    }
+    }*/
     
     // MARK: - Played
     
@@ -108,7 +102,7 @@ extension TraktManager {
      **Note**: When getting `full` extended info, the `status` field can have a value of `returning series` (airing right now), `in production` (airing soon), `planned` (in development), `canceled`, or `ended`.
     */
     @discardableResult
-    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ShowCompletionHandler) -> URLSessionDataTask? {
+    public func getShowSummary<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktShow>) -> URLSessionDataTask? {
         return getSummary(.Shows, id: id, extended: extended, completion: completion)
     }
     
@@ -214,10 +208,10 @@ extension TraktManager {
      
      **Note**: We are continuing to improve this algorithm.
      */
-    @discardableResult
-    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ShowsCompletionHandler) -> URLSessionDataTask? {
-        return getRelated(.Shows, id: id, extended: extended, completion: completion)
-    }
+//    @discardableResult
+//    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ShowsCompletionHandler) -> URLSessionDataTask? {
+//        return getRelated(.Shows, id: id, extended: extended, completion: completion)
+//    }
     
     // MARK: - Stats
     

@@ -26,19 +26,22 @@ extension TraktManager {
         
         if let movie = movie {
             json["movie"] = movie
-        }
-        else if let episode = episode {
+        } else if let episode = episode {
             json["episode"] = episode
         }
         
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
         // Request
-        guard
-            var request = mutableRequest(forPath: "checkin", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
+        guard var request = mutableRequest(forPath: "checkin",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .POST) else { return nil }
         request.httpBody = jsonData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completionHandler)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
+                              completion: completionHandler)
     }
     
     /**
@@ -46,12 +49,10 @@ extension TraktManager {
      */
     @discardableResult
     public func deleteActiveCheckins(completionHandler: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
-        // Request
-        guard
-            let request = mutableRequest(forPath: "checkin",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .DELETE) else { return nil }
+        guard let request = mutableRequest(forPath: "checkin",
+                                           withQuery: [:],
+                                           isAuthorized: true,
+                                           withHTTPMethod: .DELETE) else { return nil }
         
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard
@@ -60,13 +61,11 @@ extension TraktManager {
             // Check response
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
-                (HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn || HTTPResponse.statusCode == StatusCodes.Success) else {
-                    return completionHandler(.fail)
-            }
+                (HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn || HTTPResponse.statusCode == StatusCodes.Success)
+                else { return completionHandler(.fail) }
             completionHandler(.success)
         }
         dataTask.resume()
-        
         return dataTask
     }
 }

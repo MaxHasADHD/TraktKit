@@ -12,13 +12,22 @@ import Foundation
 internal let calendar = Calendar.current
 internal let dateFormatter = DateFormatter()
 
+public func customDateDecodingStrategy(decoder: Decoder) throws -> Date {
+    let container = try decoder.singleValueContainer()
+    let str = try container.decode(String.self)
+    return try Date.dateFromString(str)
+}
+
 internal extension Date {
+    
+    enum DateParserError: Error {
+        case failedToParseDateFromString(String)
+    }
     
     // MARK: - Class
     
-    static func dateFromString(_ string: Any?) -> Date? {
-        guard
-            let dateString = string as? String else { return nil }
+    static func dateFromString(_ string: Any?) throws -> Date {
+        guard let dateString = string as? String else { throw DateParserError.failedToParseDateFromString("\(String(describing: string))") }
         
         let count = dateString.characters.count
         if count <= 10 {
@@ -29,7 +38,11 @@ internal extension Date {
             ISO8601DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         }
         
-        return ISO8601DateFormatter.date(from: dateString)
+        if let date = ISO8601DateFormatter.date(from: dateString) {
+            return date
+        } else {
+            throw DateParserError.failedToParseDateFromString(dateString)
+        }
     }
     
     func UTCDateString() -> String {

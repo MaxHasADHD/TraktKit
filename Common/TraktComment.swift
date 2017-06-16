@@ -8,39 +8,29 @@
 
 import Foundation
 
-public struct Comment: TraktProtocol {
-    public let id: NSNumber
-    public let parentID: NSNumber
+public struct Comment: Codable {
+    public let id: Int
+    public let parentId: Int
     public let createdAt: Date
     public var comment: String
     public let spoiler: Bool
     public let review: Bool
-    public let replies: NSNumber
-    public let userRating: NSNumber?
+    public let replies: Int
+    public let likes: Int
+    public let userRating: Int?
     public let user: User
     
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let id = json["id"] as? NSNumber,
-            let parentID = json["parent_id"] as? NSNumber,
-            let createdAt = Date.dateFromString(json["created_at"]),
-            let comment = json["comment"] as? String,
-            let spoiler = json["spoiler"] as? Bool,
-            let review = json["review"] as? Bool,
-            let replies = json["replies"] as? NSNumber,
-            let user = User(json: json["user"] as? RawJSON) else { return nil }
-        
-        self.id = id
-        self.parentID = parentID
-        self.createdAt = createdAt
-        self.comment = comment
-        self.spoiler = spoiler
-        self.review = review
-        self.replies = replies
-        self.userRating = json["user_rating"] as? NSNumber
-        self.user = user
+    enum CodingKeys: String, CodingKey {
+        case id
+        case parentId = "parent_id"
+        case createdAt = "created_at"
+        case comment
+        case spoiler
+        case review
+        case replies
+        case likes
+        case userRating = "user_rating"
+        case user
     }
 }
 

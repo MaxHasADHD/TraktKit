@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct TraktListItem: TraktProtocol {
+public struct TraktListItem: Codable {
     
-    public let rank: NSNumber
+    public let rank: Int
     public let listedAt: Date
     public let type: String
     public var show: TraktShow? = nil
@@ -19,53 +19,14 @@ public struct TraktListItem: TraktProtocol {
     public var movie: TraktMovie? = nil
     public var person: Person? = nil
     
-    // Initialization
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let rank = json["rank"] as? NSNumber,
-            let listedAt = Date.dateFromString(json["listed_at"]),
-            let type = json["type"] as? String else { return nil }
-        
-        self.rank = rank
-        self.listedAt = listedAt
-        self.type = type
-        
-        if type == "movie" {
-            guard
-                let movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
-            self.movie = movie
-        }
-        else if type == "show" {
-            guard
-                let show = TraktShow(json: json["show"] as? RawJSON) else { return nil }
-            
-            self.show = show
-        }
-        else if type == "season" {
-            guard
-                let show = TraktShow(json: json["show"] as? RawJSON),
-                let season = TraktSeason(json: json["season"] as? RawJSON) else { return nil }
-            
-            self.show = show
-            self.season = season
-        }
-        else if type == "episode" {
-            guard
-                let show = TraktShow(json: json["show"] as? RawJSON),
-                let episode = TraktEpisode(json: json["episode"] as? RawJSON) else { return nil }
-            
-            self.show = show
-            self.episode = episode
-        }
-        else if type == "person" {
-            guard
-                let person = Person(json: json["person"] as? RawJSON) else { return nil }
-            
-            self.person = person
-        }
-        else {
-            return nil
-        }
+    enum CodingKeys: String, CodingKey {
+        case rank
+        case listedAt = "listed_at"
+        case type
+        case show
+        case season
+        case episode
+        case movie
+        case person
     }
 }

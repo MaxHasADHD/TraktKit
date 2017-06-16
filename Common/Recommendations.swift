@@ -13,13 +13,14 @@ extension TraktManager {
     // MARK: - Public
     
     /**
-     Personalized movie recommendations for a user. Results returned with the top recommendation first.
+     Personalized movie recommendations for a user. Results returned with the top recommendation first. By default, `10` results are returned. You can send a limit to get up to `100` results per page.
      
      🔒 OAuth: Required
+     ✨ Extended Info
      */
     @discardableResult
-    public func getRecommendedMovies(completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        return self.getRecommendations(.Movies, completion: completion)
+    public func getRecommendedMovies(completion: @escaping ObjectsCompletionHandler<TraktMovie>) -> URLSessionDataTask? {
+        return getRecommendations(.Movies, completion: completion)
     }
     
     /**
@@ -38,8 +39,8 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getRecommendedShows(completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        return self.getRecommendations(.Shows, completion: completion)
+    public func getRecommendedShows(completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTask? {
+        return getRecommendations(.Shows, completion: completion)
     }
     
     /**
@@ -55,25 +56,32 @@ extension TraktManager {
     // MARK: - Private
     
     @discardableResult
-    private func getRecommendations(_ type: WatchedType, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
-        // Request
-        guard
-            let request = mutableRequest(forPath: "recommendations/\(type)",
-                                           withQuery: [:],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .GET) else { completion(.error(error: nil)); return nil }
+    private func getRecommendations<T>(_ type: WatchedType, completion: @escaping ObjectsCompletionHandler<T>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "recommendations/\(type)",
+            withQuery: [:],
+            isAuthorized: true,
+            withHTTPMethod: .GET) else {
+                completion(.error(error: nil))
+                return nil
+        }
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     @discardableResult
     private func hideRecommendation<T: CustomStringConvertible>(type: WatchedType, id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
-        // Request
-        guard
-            let request = mutableRequest(forPath: "recommendations/\(type)/\(id)",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .DELETE) else { completion(.fail); return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNoContentToReturn, completion: completion)
+        guard let request = mutableRequest(forPath: "recommendations/\(type)/\(id)",
+            withQuery: [:],
+            isAuthorized: true,
+            withHTTPMethod: .DELETE) else {
+                completion(.fail)
+                return nil
+        }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.SuccessNoContentToReturn,
+                              completion: completion)
     }
 }
+

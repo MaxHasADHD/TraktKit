@@ -51,13 +51,13 @@ extension TraktManager {
         
         //
         guard let request = mutableRequest(
-                forPath: "search/\(typesString)",
-                withQuery: query,
-                isAuthorized: false,
-                withHTTPMethod: .GET
-            )
-            else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+            forPath: "search/\(typesString)",
+            withQuery: query,
+            isAuthorized: false,
+            withHTTPMethod: .GET ) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     /**
@@ -85,11 +85,13 @@ extension TraktManager {
             }
         }
         
-        guard
-            let request = mutableRequest(forPath: "search/\(id.name())/\(id.id())",
-                                         withQuery: query,
-                                         isAuthorized: false,
-                                         withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        guard let request = mutableRequest(forPath: "search/\(id.name())/\(id.id())",
+            withQuery: query,
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
 }
+

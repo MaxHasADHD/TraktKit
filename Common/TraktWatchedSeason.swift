@@ -8,24 +8,9 @@
 
 import Foundation
 
-public struct TraktWatchedSeason: TraktProtocol {
+public struct TraktWatchedSeason: Codable {
+    
     // Extended: Min
     public let number: Int // Season number
     public let episodes: [TraktWatchedEpisodes]
-    
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let number = json["number"] as? Int else { return nil }
-        
-        self.number = number
-        
-        var tempEpisodes: [TraktWatchedEpisodes] = []
-        let jsonEpisodes = json["episodes"] as? [RawJSON] ?? []
-        for jsonEpisode in jsonEpisodes {
-            tempEpisodes.append(TraktWatchedEpisodes(json: jsonEpisode))
-        }
-        episodes = tempEpisodes
-    }
 }

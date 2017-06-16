@@ -8,19 +8,8 @@
 
 import Foundation
 
-public struct TraktDVDReleaseMovie: TraktProtocol {
+public struct TraktDVDReleaseMovie: Codable {
     // Extended: Min
     public let released: Date
     public let movie: TraktMovie
-    
-    // Initialize
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let released = Date.dateFromString(json["released"]),
-            let movie = TraktMovie(json: json["movie"] as? RawJSON) else { return nil }
-        
-        self.released = released
-        self.movie = movie
-    }
 }

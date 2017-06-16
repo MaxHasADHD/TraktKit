@@ -16,24 +16,6 @@ let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit",
                                              NSLocalizedFailureReasonErrorKey: "",
                                              NSLocalizedRecoverySuggestionErrorKey: ""])
 
-/// Generic result type
-public enum ObjectResultType<T: TraktProtocol> {
-    case success(object: T)
-    case error(error: NSError?)
-}
-
-/// Generic results type
-public enum ObjectsResultType<T: TraktProtocol> {
-    case success(objects: [T])
-    case error(error: NSError?)
-}
-
-/// Generic results type + Pagination
-public enum ObjectsResultTypePagination<T: TraktProtocol> {
-    case success(objects: [T], currentPage: Int, limit: Int)
-    case error(error: NSError?)
-}
-
 public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }

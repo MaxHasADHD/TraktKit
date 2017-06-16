@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct TraktHistoryItem: TraktProtocol {
+public struct TraktHistoryItem: Codable {
     
-    public var id: NSNumber
+    public var id: Int
     public var watchedAt: Date
     public var action: String
     public var type: String
@@ -20,23 +20,14 @@ public struct TraktHistoryItem: TraktProtocol {
     public var season: TraktSeason?
     public var episode: TraktEpisode?
     
-    // Initialization
-    public init?(json: RawJSON?) {
-        guard
-            let json = json,
-            let id = json["id"] as? NSNumber,
-            let watchedAt = Date.dateFromString(json["watched_at"]),
-            let action = json["action"] as? String,
-            let type = json["type"] as? String else { return nil }
-        
-        self.id = id
-        self.watchedAt = watchedAt
-        self.action = action
-        self.type = type
-        
-        self.movie = TraktMovie(json: json["movie"] as? RawJSON)
-        self.show = TraktShow(json: json["show"] as? RawJSON)
-        self.season = TraktSeason(json: json["season"] as? RawJSON)
-        self.episode = TraktEpisode(json: json["episode"] as? RawJSON)
+    enum CodingKeys: String, CodingKey {
+        case id
+        case watchedAt = "watched_at"
+        case action
+        case type
+        case movie
+        case show
+        case season
+        case episode
     }
 }
