@@ -46,8 +46,6 @@ public struct StatusCodes {
     public static let RateLimitExceeded = 429
     /// Server Error
     public static let ServerError = 500
-    /// Service Unavailable - server overloaded
-    public static let ServiceOverloaded = 503
     /// Service Unavailable - Cloudflare error
     public static let CloudflareError = 520
     /// Service Unavailable - Cloudflare error
@@ -56,26 +54,22 @@ public struct StatusCodes {
     public static let CloudflareError3 = 522
     
     static func message(for status: Int) -> String? {
-        if status == StatusCodes.Unauthorized {
+        switch status {
+        case Unauthorized:
             return "App not authorized. Please sign in again."
-        }
-        else if status == StatusCodes.Forbidden {
+        case Forbidden:
             return "Invalid API Key"
-        }
-        else if status == StatusCodes.NotFound {
+        case NotFound:
             return "API not found"
-        }
-        else if status == StatusCodes.RateLimitExceeded {
+        case RateLimitExceeded:
             return "Rate Limit Exceeded. Please try again in a minute."
+        case ServerError..<CloudflareError:
+            return "Trakt.tv is down. Please try again later."
+        case CloudflareError..<600:
+            return "CloudFlare error. Please try again later."
+        default:
+            return nil
         }
-        else if status == StatusCodes.ServiceOverloaded || status == StatusCodes.ServerError {
-            return "Trakt.tv is down. Please try again later..."
-        }
-        else if status == StatusCodes.CloudflareError || status == StatusCodes.CloudflareError2 || status == StatusCodes.CloudflareError3 {
-            return "CloudFlare error. Please try again later..."
-        }
-        
-        return nil
     }
 }
 
