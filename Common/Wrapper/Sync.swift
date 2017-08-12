@@ -110,13 +110,12 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func addToCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func addToCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<AddToCollectionResult>) throws -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "sync/collection",
                                            withQuery: [:],
                                            isAuthorized: true,
                                            withHTTPMethod: .POST) else { return nil }
         request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        
         return performRequest(request: request,
                               expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
                               completion: completion)
@@ -130,7 +129,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removeFromCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeFromCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<RemoveFromCollectionResult>) throws -> URLSessionDataTask? {
         guard var request = mutableRequest(forPath: "sync/collection/remove",
                                            withQuery: [:],
                                            isAuthorized: true,
@@ -319,7 +318,7 @@ extension TraktManager {
      - parameter episodes: Array of episode objects
      */
     @discardableResult
-    public func addRatings(rating: NSNumber, ratedAt: Date, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func addRatings(rating: NSNumber, ratedAt: Date, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<AddRatingsResult>) throws -> URLSessionDataTask? {
         
         // JSON
         var json = RawJSON()
@@ -372,7 +371,7 @@ extension TraktManager {
      - parameter episodes: array of episode object JSON strings
      */
     @discardableResult
-    public func removeRatings(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeRatings(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<RemoveRatingsResult>) throws -> URLSessionDataTask? {
         guard
             var request = mutableRequest(forPath: "sync/ratings/remove",
                                          withQuery: [:],
@@ -396,7 +395,9 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
     
     /**
@@ -408,17 +409,16 @@ extension TraktManager {
      */
     @discardableResult
     public func addToWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
-        
-        // Request
-        guard
-            var request = mutableRequest(forPath: "sync/watchlist",
+        guard var request = mutableRequest(forPath: "sync/watchlist",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .POST) else { completion(.fail); return nil }
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
                                               episodes: episodes)
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
+                              completion: completion)
     }
     
     /**
@@ -429,15 +429,16 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removeFromWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ResultCompletionHandler) throws -> URLSessionDataTask? {
-        guard
-            var request = mutableRequest(forPath: "sync/watchlist/remove",
+    public func removeFromWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<RemoveFromWatchlistResult>) throws -> URLSessionDataTask? {
+        guard var request = mutableRequest(forPath: "sync/watchlist/remove",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .POST) else { completion(.error(error: nil)); return nil }
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
                                               episodes: episodes)
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
     }
 }

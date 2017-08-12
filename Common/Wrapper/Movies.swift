@@ -89,8 +89,7 @@ extension TraktManager {
     */
     @discardableResult
     public func getWeekendBoxOffice(extended: [ExtendedType] = [.Min], completion: @escaping BoxOfficeMoviesCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "movies/boxoffice",
+        guard let request = mutableRequest(forPath: "movies/boxoffice",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
@@ -105,7 +104,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getUpdatedMovies(page: Int, limit: Int, startDate: Date?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getUpdatedMovies(page: Int, limit: Int, startDate: Date?, completion: @escaping ObjectsCompletionHandler<Update>) -> URLSessionDataTask? {
         return getUpdated(.Movies, page: page, limit: limit, startDate: startDate, completion: completion)
     }
     
@@ -125,7 +124,7 @@ extension TraktManager {
     Returns all title aliases for a movie. Includes country where name is different.
     */
     @discardableResult
-    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectsCompletionHandler<Alias>) -> URLSessionDataTask? {
         return getAliases(.Movies, id: id, completion: completion)
     }
     
@@ -138,7 +137,7 @@ extension TraktManager {
     - parameter country: 2 character country code. Example: `us`.
     */
     @discardableResult
-    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: @escaping ObjectsCompletionHandler<TraktMovieRelease>) -> URLSessionDataTask? {
         
         var path = "movies/\(id)/releases"
         
@@ -146,8 +145,7 @@ extension TraktManager {
             path += "/\(country)"
         }
         
-        guard
-            let request = mutableRequest(forPath: path,
+        guard let request = mutableRequest(forPath: path,
                                          withQuery: [:],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else { return nil }
@@ -194,7 +192,7 @@ extension TraktManager {
     Returns rating (between 0 and 10) and distribution for a movie.
     */
     @discardableResult
-    public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
         return getRatings(.Movies, id: id, completion: completion)
     }
     
@@ -226,7 +224,7 @@ extension TraktManager {
     Returns all users watching this movie right now.
     */
     @discardableResult
-    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
         return getUsersWatching(.Movies, id: id, completion: completion)
     }
 }

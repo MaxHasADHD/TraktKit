@@ -1,0 +1,29 @@
+{
+    "us": [
+           {
+           "name": "G",
+           "slug": "g",
+           "description": "All Ages"
+           },
+           {
+           "name": "PG",
+           "slug": "pg",
+           "description": "Parental Guidance Suggested"
+           },
+           {
+           "name": "PG-13",
+           "slug": "pg-13",
+           "description": "Parents Strongly Cautioned - Ages 13+ Recommended"
+           },
+           {
+           "name": "R",
+           "slug": "r",
+           "description": "Mature Audiences - Ages 17+ Recommended"
+           },
+           {
+           "name": "Not Rated",
+           "slug": "nr",
+           "description": "Not Rated"
+           }
+           ]
+}

@@ -29,10 +29,10 @@ extension TraktManager {
      
      📄 Pagination
      */
-    /*@discardableResult
-    public func getPopularShows(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping ShowsCompletionHandler) -> URLSessionDataTask? {
+    @discardableResult
+    public func getPopularShows(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTask? {
         return getPopular(.Shows, page: page, limit: limit, extended: extended, completion: completion)
-    }*/
+    }
     
     // MARK: - Played
     
@@ -90,7 +90,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getUpdatedShows(page: Int, limit: Int, startDate: Date?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getUpdatedShows(page: Int, limit: Int, startDate: Date?, completion: @escaping ObjectsCompletionHandler<Update>) -> URLSessionDataTask? {
         return getUpdated(.Shows, page: page, limit: limit, startDate: startDate, completion: completion)
     }
     
@@ -114,7 +114,7 @@ extension TraktManager {
      - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
      */
     @discardableResult
-    public func getShowAliases<T: CustomStringConvertible>(showID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getShowAliases<T: CustomStringConvertible>(showID id: T, completion: @escaping ObjectsCompletionHandler<Alias>) -> URLSessionDataTask? {
         return getAliases(.Shows, id: id, completion: completion)
     }
     
@@ -151,7 +151,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getShowCollectionProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowCollectionProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: @escaping ObjectCompletionHandler<ShowCollectionProgress>) -> URLSessionDataTask? {
         guard
             let request = mutableRequest(forPath: "shows/\(id)/progress/collection",
                                          withQuery: ["hidden": "\(hidden)",
@@ -197,7 +197,7 @@ extension TraktManager {
      Returns rating (between 0 and 10) and distribution for a show.
      */
     @discardableResult
-    public func getShowRatings<T: CustomStringConvertible>(showID id: T, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+    public func getShowRatings<T: CustomStringConvertible>(showID id: T, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
         return getRatings(.Shows, id: id, completion: completion)
     }
     
@@ -208,10 +208,10 @@ extension TraktManager {
      
      **Note**: We are continuing to improve this algorithm.
      */
-//    @discardableResult
-//    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ShowsCompletionHandler) -> URLSessionDataTask? {
-//        return getRelated(.Shows, id: id, extended: extended, completion: completion)
-//    }
+    @discardableResult
+    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTask? {
+        return getRelated(.Shows, id: id, extended: extended, completion: completion)
+    }
     
     // MARK: - Stats
     
@@ -229,7 +229,7 @@ extension TraktManager {
      Returns all users watching this show right now.
      */
     @discardableResult
-    public func getUsersWatchingShow<T: CustomStringConvertible>(showID id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    public func getUsersWatchingShow<T: CustomStringConvertible>(showID id: T, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
         return getUsersWatching(.Shows, id: id, completion: completion)
     }
 }

@@ -22,7 +22,7 @@ public struct CastAndCrew {
     enum CrewKeys: String, CodingKey {
         case directors = "directing"
         case writers = "writing"
-        case producers = "producing"
+        case producers = "production"
     }
 }
 

@@ -12,9 +12,7 @@ import Foundation
 
 class ShowsTests: XCTestCase {
     func testParseMinShowJSON() {
-        let bundle = Bundle(for: ShowsTests.self)
-        let path = bundle.path(forResource: "Show_Min", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+        let data = jsonData(named: "Show_Min")
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
@@ -28,9 +26,7 @@ class ShowsTests: XCTestCase {
     }
     
     func testParseFullShowJSON() {
-        let bundle = Bundle(for: ShowsTests.self)
-        let path = bundle.path(forResource: "Show_Full", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+        let data = jsonData(named: "Show_Full")
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
@@ -42,4 +38,56 @@ class ShowsTests: XCTestCase {
             XCTFail("Failed to parse Trakt Show")
         }
     }
+    
+    func testParseShowCollectionProgress() {
+        let data = jsonData(named: "ShowCollectionProgress")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let collectionProgress = try decoder.decode(ShowCollectionProgress.self, from: data)
+            XCTAssertEqual(collectionProgress.aired, 8)
+            XCTAssertEqual(collectionProgress.completed, 6)
+            XCTAssertEqual(collectionProgress.seasons.count, 1)
+            
+            let season = collectionProgress.seasons[0]
+            XCTAssertEqual(season.number, 1)
+            XCTAssertEqual(season.aired, 8)
+            XCTAssertEqual(season.completed, 6)
+            
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse show collection progress")
+        }
+    }
+    
+    func testParseTrendingShows() {
+        let data = jsonData(named: "TrendingShows")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let _ = try decoder.decode([TraktShow].self, from: data)
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse trending shows")
+        }
+    }
+
+    func testParseCastAndCrew() {
+        let data = jsonData(named: "ShowCastAndCrew_Min")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let castAndCrew = try decoder.decode(CastAndCrew.self, from: data)
+            
+            XCTAssertEqual(castAndCrew.cast!.count, 27)
+            XCTAssertEqual(castAndCrew.producers!.count, 15)
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse cast and crew")
+        }
+    }
+    
 }

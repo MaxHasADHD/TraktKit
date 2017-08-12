@@ -11,19 +11,19 @@ import Foundation
 /// Generic result type
 public enum ObjectResultType<T: Codable> {
     case success(object: T)
-    case error(error: NSError?)
+    case error(error: Error?)
 }
 
 /// Generic results type
 public enum ObjectsResultType<T: Codable> {
     case success(objects: [T])
-    case error(error: NSError?)
+    case error(error: Error?)
 }
 
 /// Generic results type + Pagination
 public enum ObjectsResultTypePagination<T: Codable> {
     case success(objects: [T], currentPage: Int, limit: Int)
-    case error(error: NSError?)
+    case error(error: Error?)
 }
 
 extension TraktManager {
@@ -32,7 +32,7 @@ extension TraktManager {
     
     public enum DataResultType {
         case success(data: Data)
-        case error(error: NSError?)
+        case error(error: Error?)
     }
     
     public enum SuccessResultType {
@@ -40,29 +40,9 @@ extension TraktManager {
         case fail
     }
     
-    public enum ArrayResultType<T: Codable> {
-        case success(array: [T])
-        case error(error: NSError?)
-    }
-    
-    public enum CommentsResultType {
-        case success(comments: [Comment])
-        case error(error: NSError?)
-    }
-    
-    public enum CastCrewResultType {
-        case success(cast: [CastMember], crew: [CrewMember])
-        case error(error: NSError?)
-    }
-    
     public enum WatchingResultType {
         case checkedIn(watching: TraktWatching)
         case notCheckedIn
-        case error(error: NSError?)
-    }
-    
-    public enum HiddenItemsResultType {
-        case success(items: [HiddenItem])
         case error(error: Error?)
     }
     
@@ -80,14 +60,16 @@ extension TraktManager {
     
     public typealias DataResultCompletionHandler = (_ result: DataResultType) -> Void
     public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
-    public typealias ArrayCompletionHandler<T: Codable> = (_ result: ArrayResultType<T>) -> Void
-    public typealias CommentsCompletionHandler = (_ result: CommentsResultType) -> Void
-    public typealias CastCrewCompletionHandler = (_ result: CastCrewResultType) -> Void
+    public typealias CommentsCompletionHandler = ObjectsCompletionHandler<Comment>
+    public typealias CastCrewCompletionHandler = ObjectCompletionHandler<CastAndCrew>
     
-    public typealias watchingCompletionHandler = (_ result: WatchingResultType) -> Void
-
     public typealias SearchCompletionHandler = ObjectsCompletionHandler<TraktSearchResult>
     public typealias statsCompletionHandler = ObjectCompletionHandler<TraktStats>
+    
+    // MARK: Shared
+    public typealias UpdateCompletionHandler = ObjectsCompletionHandler<Update>
+    public typealias AliasCompletionHandler = ObjectsCompletionHandler<Alias>
+    public typealias RatingDistributionCompletionHandler = ObjectCompletionHandler<RatingDistribution>
     
     // MARK: Calendar
     public typealias dvdReleaseCompletionHandler = ObjectsCompletionHandler<TraktDVDReleaseMovie>
@@ -106,8 +88,8 @@ extension TraktManager {
     public typealias ShowWatchedProgressCompletionHandler = ObjectCompletionHandler<TraktShowWatchedProgress>
     
     // MARK: Episodes
-    public typealias EpisodeCompletionHandler = (_ result: ObjectsResultType<TraktEpisode>) -> Void
-    public typealias EpisodesCompletionHandler = (_ result: ObjectsResultType<TraktEpisode>) -> Void
+    public typealias EpisodeCompletionHandler = ObjectCompletionHandler<TraktEpisode>
+    public typealias EpisodesCompletionHandler = ObjectsCompletionHandler<TraktEpisode>
     
     // MARK: Movies
     public typealias MovieCompletionHandler = ObjectCompletionHandler<TraktMovie>
@@ -129,7 +111,15 @@ extension TraktManager {
     public typealias ListCompletionHandler = ObjectCompletionHandler<TraktList>
     public typealias ListsCompletionHandler = ObjectsCompletionHandler<TraktList>
     public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktListItem>
-    public typealias HiddenItemsCompletionHandler = (_ result: HiddenItemsResultType) -> Void
+    public typealias HiddenItemsCompletionHandler = ObjectsCompletionHandler<HiddenItem>
+    public typealias UserCommentsCompletionHandler = ObjectsCompletionHandler<UsersComments>
+    public typealias AddListItemCompletion = ObjectCompletionHandler<ListItemPostResult>
+    public typealias RemoveListItemCompletion = ObjectCompletionHandler<RemoveListItemResult>
+    public typealias FollowUserCompletion = ObjectCompletionHandler<FollowUserResult>
+    public typealias FollowersCompletion = ObjectsCompletionHandler<FollowUserResult>
+    public typealias FriendsCompletion = ObjectsCompletionHandler<Friend>
+    public typealias WatchingCompletion = (_ result: WatchingResultType) -> Void
+    public typealias UserStatsCompletion = ObjectCompletionHandler<UserStats>
     
     // MARK: - Perform Requests
     
@@ -138,7 +128,7 @@ extension TraktManager {
         
         let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
-            guard error == nil else { return completion(.error(error: error as NSError?)) }
+            guard error == nil else { return completion(.error(error: error)) }
             
             // Check response
             guard
@@ -162,28 +152,6 @@ extension TraktManager {
         return datatask
     }
     
-    /// Array
-    func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping ArrayCompletionHandler<T>) -> URLSessionDataTask? {
-        let aCompletion: DataResultCompletionHandler = { (result: DataResultType) -> Void in
-            switch result {
-            case .success(let data):
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-                do {
-                    let array = try decoder.decode([T].self, from: data)
-                    completion(.success(array: array))
-                } catch let jsonSerializationError as NSError {
-                    completion(.error(error: jsonSerializationError))
-                }
-            case .error(let error):
-                completion(.error(error: error))
-            }
-        }
-        
-        let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
-        return dataTask
-    }
-    
     /// Success / Failure
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         let datatask = session.dataTask(with: request) { (data, response, error) -> Void in
@@ -203,58 +171,6 @@ extension TraktManager {
         datatask.resume()
         
         return datatask
-    }
-    
-    /// Cast and crew
-    /*func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
-        let aCompletion: ObjectCompletionHandler<[String : Any]> = { (result: ObjectResultType) -> Void in
-            switch result {
-            case .success(let dict):
-                var crew: [CrewMember] = []
-                var cast: [CastMember] = []
-                
-                // Crew
-                if let jsonCrew = dict["crew"] as? RawJSON {
-                    func addMembers(_ members: [RawJSON]) {
-                        crew += initEach(members)
-                    }
-                    
-                    if let members = jsonCrew["directing"] as? [RawJSON] { addMembers(members) }
-                    if let members = jsonCrew["writing"] as? [RawJSON] { addMembers(members) }
-                    if let members = jsonCrew["production"] as? [RawJSON] { addMembers(members) }
-                    if let members = jsonCrew["crew"] as? [RawJSON] { addMembers(members) }
-//                    if let members = jsonCrew["camera"] as? [RawJSON] { addMembers(members) }
-//                    if let members = jsonCrew["sound"] as? [RawJSON] { addMembers(members) }
-                }
-                
-                // Cast
-                if let members = dict["cast"] as? [[String: AnyObject]] {
-                    cast += initEach(members)
-                }
-                
-                completion(.success(cast: cast, crew: crew))
-            case .error(let error):
-                completion(.error(error: error))
-            }
-        }
-        
-        return performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
-    }*/
-    
-    /// Hidden Items
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
-        let aCompletion: ArrayCompletionHandler<HiddenItem> = { (result: ArrayResultType) -> Void in
-            
-            switch result {
-            case .success(let hiddenItems):
-                completion(.success(items: hiddenItems))
-            case .error(let error):
-                completion(.error(error: error))
-            }
-        }
-        
-        let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
-        return dataTask
     }
     
     /// Checkin
@@ -311,7 +227,7 @@ extension TraktManager {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
-            guard error == nil else { return completion(.error(error: error as NSError?)) }
+            guard error == nil else { return completion(.error(error: error)) }
             
             // Check response
             guard
@@ -334,8 +250,8 @@ extension TraktManager {
             do {
                 let array = try decoder.decode([T].self, from: data)
                 completion(.success(objects: array))
-            } catch let jsonSerializationError as NSError {
-                completion(.error(error: jsonSerializationError))
+            } catch {
+                completion(.error(error: error))
             }
         }
         
@@ -348,7 +264,7 @@ extension TraktManager {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
-            guard error == nil else { return completion(.error(error: error as NSError?)) }
+            guard error == nil else { return completion(.error(error: error)) }
             
             // Check response
             guard
@@ -384,11 +300,57 @@ extension TraktManager {
             do {
                 let array = try decoder.decode([T].self, from: data)
                 completion(.success(objects: array, currentPage: currentPage, limit: pageCount))
-            } catch let jsonSerializationError as NSError {
-                completion(.error(error: jsonSerializationError))
+            } catch {
+                completion(.error(error: error))
             }
         }
         
+        dataTask.resume()
+        return dataTask
+    }
+    
+    // Watching
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping WatchingCompletion) -> URLSessionDataTask? {
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                completion(.error(error: error))
+                return
+            }
+            
+            // Check response
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success ||
+                    HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn
+                else {
+                    if let HTTPResponse = response as? HTTPURLResponse {
+                        completion(.error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                    } else {
+                        completion(.error(error: TraktKitNoDataError))
+                    }
+                    return
+            }
+            
+            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
+                completion(.notCheckedIn)
+                return
+            }
+            
+            // Check data
+            guard let data = data else {
+                completion(.error(error: TraktKitNoDataError))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+            do {
+                let watching = try decoder.decode(TraktWatching.self, from: data)
+                completion(.checkedIn(watching: watching))
+            } catch {
+                completion(.error(error: error))
+            }
+        }
         dataTask.resume()
         return dataTask
     }

@@ -9,9 +9,9 @@
 import Foundation
 
 public struct Airs: Codable {
-    public let day: String
-    public let time: String
-    public let timezone: String
+    public let day: String?
+    public let time: String?
+    public let timezone: String?
 }
 
 public struct TraktShow: Codable {
@@ -34,7 +34,7 @@ public struct TraktShow: Codable {
     public let status: String?
     public let rating: Double?
     public let votes: Int?
-    public let updatedAt: String?
+    public let updatedAt: Date?
     public let language: String?
     public let availableTranslations: [String]?
     public let genres: [String]?

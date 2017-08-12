@@ -31,16 +31,16 @@ extension TraktManager {
      
      📄 Pagination
      */
-    /*@discardableResult
-     public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
-     guard var request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments",
-     withQuery: [:],
-     isAuthorized: false,
-     withHTTPMethod: .GET) else { return nil }
-     return performRequest(request: request,
-     expectingStatusCode: StatusCodes.Success,
-     completion: completion)
-     }*/
+    @discardableResult
+    public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments",
+            withQuery: [:],
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
     
     /**
      Returns rating (between 0 and 10) and distribution for an episode.

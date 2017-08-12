@@ -9,7 +9,7 @@
 import Foundation
 
 public struct AccountSettings: Codable {
-    public let user: SettingsUser
+    public let user: User
     public let connections: Connections
     
     public struct Connections: Codable {

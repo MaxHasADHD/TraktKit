@@ -52,7 +52,7 @@ public struct StatusCodes {
     public static let CloudflareError2 = 521
     /// Service Unavailable - Cloudflare error
     public static let CloudflareError3 = 522
-    
+
     static func message(for status: Int) -> String? {
         switch status {
         case Unauthorized:
@@ -80,10 +80,9 @@ public enum SearchType: String {
     case episode
     case person
     case list
-    
-    
+
     public struct Field {
-        let title: String
+        public let title: String
     }
     public struct Fields {
         public struct Movie {
@@ -94,7 +93,7 @@ public enum SearchType: String {
             public static let translations = Field(title: "translations")
             public static let aliases = Field(title: "aliases")
         }
-        
+
         public struct Show {
             public static let title = Field(title: "title")
             public static let overview = Field(title: "overview")
@@ -102,17 +101,17 @@ public enum SearchType: String {
             public static let translations = Field(title: "translations")
             public static let aliases = Field(title: "aliases")
         }
-        
+
         public struct Episode {
             public static let title = Field(title: "title")
             public static let overview = Field(title: "overview")
         }
-        
+
         public struct Person {
             public static let name = Field(title: "name")
             public static let biography = Field(title: "biography")
         }
-        
+
         public struct List {
             public static let name = Field(title: "name")
             public static let description = Field(title: "description")
@@ -127,7 +126,7 @@ public enum LookupType {
     case TMDB(id: NSNumber)
     case TVDB(id: NSNumber)
     case TVRage(id: NSNumber)
-    
+
     func name() -> String {
         switch self {
         case .Trakt(_):
@@ -142,7 +141,7 @@ public enum LookupType {
             return "tvrage"
         }
     }
-    
+
     func id() -> String {
         switch self {
         case .Trakt(let id):
@@ -162,7 +161,7 @@ public enum LookupType {
 public enum Type: String, CustomStringConvertible {
     case Movies = "movies"
     case Shows = "shows"
-    
+
     public var description: String {
         return self.rawValue
     }
@@ -173,7 +172,7 @@ public enum WatchedType: String, CustomStringConvertible {
     case Shows = "shows"
     case Seasons = "seasons"
     case Episodes = "episodes"
-    
+
     public var description: String {
         return self.rawValue
     }
@@ -186,7 +185,7 @@ public enum Type2: String, CustomStringConvertible {
     case Seasons = "seasons"
     case Episodes = "episodes"
     case Lists = "lists"
-    
+
     public var description: String {
         return self.rawValue
     }
@@ -209,11 +208,9 @@ public enum ExtendedType: String, CustomStringConvertible {
     case Metadata = "metadata"
     /// Get all seasons and episodes
     case Episodes = "episodes"
-    
+
     public var description: String {
-        get {
-            return self.rawValue
-        }
+        return self.rawValue
     }
 }
 

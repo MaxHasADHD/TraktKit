@@ -12,9 +12,7 @@ import Foundation
 
 class MovieTests: XCTestCase {
     func testParseMinMovieJSON() {
-        let bundle = Bundle(for: MovieTests.self)
-        let path = bundle.path(forResource: "Movie_Min", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+        let data = jsonData(named: "Movie_Min")
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
@@ -28,9 +26,7 @@ class MovieTests: XCTestCase {
     }
     
     func testParseFullMovieJSON() {
-        let bundle = Bundle(for: MovieTests.self)
-        let path = bundle.path(forResource: "Movie_Full", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+        let data = jsonData(named: "Movie_Full")
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
@@ -40,6 +36,19 @@ class MovieTests: XCTestCase {
         } catch {
             debugPrintError(error)
             XCTFail("Failed to parse Trakt Movie")
+        }
+    }
+    
+    func testParseMovieReleases() {
+        let data = jsonData(named: "MovieReleases")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let _ = try decoder.decode([TraktMovieRelease].self, from: data)
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse movie releases")
         }
     }
 }

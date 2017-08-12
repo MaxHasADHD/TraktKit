@@ -8,8 +8,7 @@
 
 import Foundation
 
-private typealias ShowsAndMovies = TraktManager
-internal extension ShowsAndMovies {
+internal extension TraktManager {
     
     // MARK: - Trending
     
@@ -94,7 +93,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Updates
     
-    func getUpdated(_ type: WatchedType, page: Int, limit: Int, startDate: Date?, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    func getUpdated(_ type: WatchedType, page: Int, limit: Int, startDate: Date?, completion: @escaping UpdateCompletionHandler) -> URLSessionDataTask? {
         
         var path = "\(type)/updates/"
         if let startDateString = startDate?.dateString(withFormat: "YYYY-MM-DD") {
@@ -123,7 +122,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Aliases
     
-    func getAliases<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    func getAliases<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping AliasCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequest(forPath: "\(type)/\(id)",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -169,7 +168,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Ratings
     
-    func getRatings<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping ResultCompletionHandler) -> URLSessionDataTask? {
+    func getRatings<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
         guard let request = mutableRequest(forPath: "\(type)/\(id)/ratings",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -199,7 +198,7 @@ internal extension ShowsAndMovies {
     
     // MARK: - Watching
     
-    func getUsersWatching<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping ArrayCompletionHandler) -> URLSessionDataTask? {
+    func getUsersWatching<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
         guard let request = mutableRequest(forPath: "\(type)/\(id)/watching",
                                            withQuery: [:],
                                            isAuthorized: false,

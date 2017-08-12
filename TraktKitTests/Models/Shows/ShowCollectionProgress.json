@@ -1,0 +1,77 @@
+{
+  "aired": 8,
+  "completed": 6,
+  "last_collected_at": "2015-03-21T19:03:58.000Z",
+  "seasons": [
+    {
+      "number": 1,
+      "aired": 8,
+      "completed": 6,
+      "episodes": [
+        {
+          "number": 1,
+          "completed": true,
+          "collected_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 2,
+          "completed": true,
+          "collected_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 3,
+          "completed": true,
+          "collected_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 4,
+          "completed": true,
+          "collected_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 5,
+          "completed": true,
+          "collected_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 6,
+          "completed": true,
+          "collected_at": "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number": 7,
+          "completed": false,
+          "collected_at": null
+        },
+        {
+          "number": 8,
+          "completed": false,
+          "collected_at": null
+        }
+      ]
+    }
+  ],
+  "hidden_seasons": [
+    {
+      "number": 2,
+      "ids": {
+        "trakt": 3051,
+        "tvdb": 498968,
+        "tmdb": 53334,
+        "tvrage": null
+      }
+    }
+  ],
+  "next_episode": {
+    "season": 1,
+    "number": 7,
+    "title": "Water",
+    "ids": {
+      "trakt": 62315,
+      "tvdb": 4849873,
+      "imdb": null,
+      "tmdb": null,
+      "tvrage": null
+    }
+  }
+}

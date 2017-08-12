@@ -22,3 +22,10 @@ func debugPrintError(_ error: Error) {
         break
     }
 }
+
+func jsonData(named: String) -> Data {
+    let bundle = Bundle(for: MovieTests.self)
+    let path = bundle.path(forResource: named, ofType: "json")!
+    let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+    return data
+}

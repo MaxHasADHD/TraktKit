@@ -1,0 +1,41 @@
+{
+    "user": {
+        "username": "justin",
+        "private": false,
+        "name": "Justin Nemeth",
+        "vip": true,
+        "vip_ep": false,
+        "ids": {
+            "slug": "justin"
+        },
+        "joined_at": "2010-09-25T17:49:25.000Z",
+        "location": "San Diego, CA",
+        "about": "Co-founder of trakt.",
+        "gender": "male",
+        "age": 32,
+        "images": {
+            "avatar": {
+                "full": "https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256"
+            }
+        },
+        "vip_og": true,
+        "vip_years": 5
+    },
+    "account": {
+        "timezone": "America/Los_Angeles",
+        "time_24hr": false,
+        "cover_image": "https://walter.trakt.tv/images/movies/000/001/545/fanarts/original/0abb604492.jpg"
+    },
+    "connections": {
+        "facebook": true,
+        "twitter": true,
+        "google": true,
+        "tumblr": false,
+        "medium": false,
+        "slack": false
+    },
+    "sharing_text": {
+        "watching": "I'm watching [item]",
+        "watched": "I just watched [item]"
+    }
+}

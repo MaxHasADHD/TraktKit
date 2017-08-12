@@ -1,0 +1,554 @@
+{
+  "cast": [
+    {
+      "character": "Tyrion Lannister",
+      "person": {
+        "name": "Peter Dinklage",
+        "ids": {
+          "trakt": 639,
+          "slug": "peter-dinklage",
+          "imdb": "nm0227759",
+          "tmdb": 22970,
+          "tvrage": 34516
+        }
+      }
+    },
+    {
+      "character": "Jaime Lannister",
+      "person": {
+        "name": "Nikolaj Coster-Waldau",
+        "ids": {
+          "trakt": 640,
+          "slug": "nikolaj-coster-waldau",
+          "imdb": "nm0182666",
+          "tmdb": 12795,
+          "tvrage": 180684
+        }
+      }
+    },
+    {
+      "character": "Cersei Baratheon",
+      "person": {
+        "name": "Lena Headey",
+        "ids": {
+          "trakt": 641,
+          "slug": "lena-headey",
+          "imdb": "nm0372176",
+          "tmdb": 17286,
+          "tvrage": 98569
+        }
+      }
+    },
+    {
+      "character": "Daenerys Targaryen",
+      "person": {
+        "name": "Emilia Clarke",
+        "ids": {
+          "trakt": 642,
+          "slug": "emilia-clarke",
+          "imdb": "nm3592338",
+          "tmdb": 1223786,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Jon Snow",
+      "person": {
+        "name": "Kit Harington",
+        "ids": {
+          "trakt": 643,
+          "slug": "kit-harington",
+          "imdb": "nm3229685",
+          "tmdb": 239019,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Tywin Lannister",
+      "person": {
+        "name": "Charles Dance",
+        "ids": {
+          "trakt": 644,
+          "slug": "charles-dance",
+          "imdb": "nm0001097",
+          "tmdb": 4391,
+          "tvrage": 81300
+        }
+      }
+    },
+    {
+      "character": "Margaery Tyrell",
+      "person": {
+        "name": "Natalie Dormer",
+        "ids": {
+          "trakt": 645,
+          "slug": "natalie-dormer",
+          "imdb": "nm1754059",
+          "tmdb": 58502,
+          "tvrage": 173448
+        }
+      }
+    },
+    {
+      "character": "Joffrey Baratheon",
+      "person": {
+        "name": "Jack Gleeson",
+        "ids": {
+          "trakt": 138,
+          "slug": "jack-gleeson",
+          "imdb": "nm0322416",
+          "tmdb": 489467,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Sansa Stark",
+      "person": {
+        "name": "Sophie Turner",
+        "ids": {
+          "trakt": 646,
+          "slug": "sophie-turner",
+          "imdb": "nm3849842",
+          "tmdb": 1001657,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Arya Stark",
+      "person": {
+        "name": "Maisie Williams",
+        "ids": {
+          "trakt": 647,
+          "slug": "maisie-williams",
+          "imdb": "nm3586035",
+          "tmdb": 1181313,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Samwell Tarly",
+      "person": {
+        "name": "John Bradley-West",
+        "ids": {
+          "trakt": 648,
+          "slug": "john-bradley-west",
+          "imdb": "",
+          "tmdb": 1223788,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Ygritte",
+      "person": {
+        "name": "Rose Leslie",
+        "ids": {
+          "trakt": 649,
+          "slug": "rose-leslie",
+          "imdb": "nm3310211",
+          "tmdb": 1223793,
+          "tvrage": 342808
+        }
+      }
+    },
+    {
+      "character": "Tormund Giantsbane",
+      "person": {
+        "name": "Kristofer Hivju",
+        "ids": {
+          "trakt": 650,
+          "slug": "kristofer-hivju",
+          "imdb": "nm1970465",
+          "tmdb": 571418,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Sandor Clegane",
+      "person": {
+        "name": "Rory McCann",
+        "ids": {
+          "trakt": 651,
+          "slug": "rory-mccann",
+          "imdb": "nm0564920",
+          "tmdb": 3075,
+          "tvrage": 92391
+        }
+      }
+    },
+    {
+      "character": "Brienne of Tarth",
+      "person": {
+        "name": "Gwendoline Christie",
+        "ids": {
+          "trakt": 525,
+          "slug": "gwendoline-christie",
+          "imdb": "nm3729225",
+          "tmdb": 1011904,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Bronn",
+      "person": {
+        "name": "Jerome Flynn",
+        "ids": {
+          "trakt": 652,
+          "slug": "jerome-flynn",
+          "imdb": "nm0283492",
+          "tmdb": 195930,
+          "tvrage": 65682
+        }
+      }
+    },
+    {
+      "character": "Shae",
+      "person": {
+        "name": "Sibel Kekilli",
+        "ids": {
+          "trakt": 653,
+          "slug": "sibel-kekilli",
+          "imdb": "nm1402546",
+          "tmdb": 5118,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Jorah Mormont",
+      "person": {
+        "name": "Iain Glen",
+        "ids": {
+          "trakt": 654,
+          "slug": "iain-glen",
+          "imdb": "nm0322513",
+          "tmdb": 20508,
+          "tvrage": 105767
+        }
+      }
+    },
+    {
+      "character": "Petyr Baelish",
+      "person": {
+        "name": "Aidan Gillen",
+        "ids": {
+          "trakt": 655,
+          "slug": "aidan-gillen",
+          "imdb": "nm0318821",
+          "tmdb": 49735,
+          "tvrage": 36542
+        }
+      }
+    },
+    {
+      "character": "Davos Seaworth",
+      "person": {
+        "name": "Liam Cunningham",
+        "ids": {
+          "trakt": 656,
+          "slug": "liam-cunningham",
+          "imdb": "nm0192377",
+          "tmdb": 15498,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Stannis Baratheon",
+      "person": {
+        "name": "Stephen Dillane",
+        "ids": {
+          "trakt": 657,
+          "slug": "stephen-dillane",
+          "imdb": "nm0226820",
+          "tmdb": 8435,
+          "tvrage": 152454
+        }
+      }
+    },
+    {
+      "character": "Melisandre",
+      "person": {
+        "name": "Carice van Houten",
+        "ids": {
+          "trakt": 658,
+          "slug": "carice-van-houten",
+          "imdb": "nm0396924",
+          "tmdb": 23229,
+          "tvrage": 230892
+        }
+      }
+    },
+    {
+      "character": "Bran Stark",
+      "person": {
+        "name": "Isaac Hempstead Wright",
+        "ids": {
+          "trakt": 659,
+          "slug": "isaac-hempstead-wright",
+          "imdb": "nm3652842",
+          "tmdb": 239020,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Theon Greyjoy",
+      "person": {
+        "name": "Alfie Allen",
+        "ids": {
+          "trakt": 660,
+          "slug": "alfie-allen",
+          "imdb": "nm0654295",
+          "tmdb": 71586,
+          "tvrage": 128136
+        }
+      }
+    },
+    {
+      "character": "Lord Varys",
+      "person": {
+        "name": "Conleth Hill",
+        "ids": {
+          "trakt": 661,
+          "slug": "conleth-hill",
+          "imdb": "nm0384152",
+          "tmdb": 84423,
+          "tvrage": null
+        }
+      }
+    },
+    {
+      "character": "Ramsay Snow",
+      "person": {
+        "name": "Iwan Rheon",
+        "ids": {
+          "trakt": 662,
+          "slug": "iwan-rheon",
+          "imdb": "nm3701064",
+          "tmdb": 221978,
+          "tvrage": 336010
+        }
+      }
+    },
+    {
+      "character": "Roose Bolton",
+      "person": {
+        "name": "Michael McElhatton",
+        "ids": {
+          "trakt": 663,
+          "slug": "michael-mcelhatton",
+          "imdb": "nm0568385",
+          "tmdb": 73288,
+          "tvrage": null
+        }
+      }
+    }
+  ],
+  "crew": {
+    "production": [
+      {
+        "job": "Executive Producer",
+        "person": {
+          "name": "David Benioff",
+          "ids": {
+            "trakt": 664,
+            "slug": "david-benioff",
+            "imdb": "nm1125275",
+            "tmdb": 9813,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "person": {
+          "name": "D. B. Weiss",
+          "ids": {
+            "trakt": 665,
+            "slug": "d-b-weiss",
+            "imdb": "nm1888967",
+            "tmdb": 1223783,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Mark Huffam",
+          "ids": {
+            "trakt": 666,
+            "slug": "mark-huffam",
+            "imdb": "nm0400240",
+            "tmdb": 8401,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Frank Doelger",
+          "ids": {
+            "trakt": 667,
+            "slug": "frank-doelger",
+            "imdb": "nm0230361",
+            "tmdb": 1223796,
+            "tvrage": 69927
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "George R. R. Martin",
+          "ids": {
+            "trakt": 668,
+            "slug": "george-r-r-martin",
+            "imdb": "nm0552333",
+            "tmdb": 1222463,
+            "tvrage": 79951
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Vince Gerardis",
+          "ids": {
+            "trakt": 669,
+            "slug": "vince-gerardis",
+            "imdb": "nm1136210",
+            "tmdb": 54268,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Ralph Vicinanza",
+          "ids": {
+            "trakt": 670,
+            "slug": "ralph-vicinanza",
+            "imdb": "nm2088223",
+            "tmdb": 54269,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Guymon Casady",
+          "ids": {
+            "trakt": 671,
+            "slug": "guymon-casady",
+            "imdb": "nm0143939",
+            "tmdb": 53758,
+            "tvrage": 121700
+          }
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "person": {
+          "name": "Carolyn Strauss",
+          "ids": {
+            "trakt": 672,
+            "slug": "carolyn-strauss",
+            "imdb": "nm1865467",
+            "tmdb": 1223797,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "person": {
+          "name": "Frank Doelger",
+          "ids": {
+            "trakt": 667,
+            "slug": "frank-doelger",
+            "imdb": "nm0230361",
+            "tmdb": 1223796,
+            "tvrage": 69927
+          }
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "person": {
+          "name": "Bernadette Caulfield",
+          "ids": {
+            "trakt": 673,
+            "slug": "bernadette-caulfield",
+            "imdb": "nm0146529",
+            "tmdb": 1223798,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Bernadette Caulfield",
+          "ids": {
+            "trakt": 673,
+            "slug": "bernadette-caulfield",
+            "imdb": "nm0146529",
+            "tmdb": 1223798,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Vanessa Taylor",
+          "ids": {
+            "trakt": 674,
+            "slug": "vanessa-taylor",
+            "imdb": "nm0961827",
+            "tmdb": 1223785,
+            "tvrage": 8043
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Greg Spence",
+          "ids": {
+            "trakt": 675,
+            "slug": "greg-spence",
+            "imdb": "nm0817770",
+            "tmdb": 56746,
+            "tvrage": null
+          }
+        }
+      },
+      {
+        "job": "Producer",
+        "person": {
+          "name": "Chris Newman",
+          "ids": {
+            "trakt": 676,
+            "slug": "chris-newman",
+            "imdb": "nm0628040",
+            "tmdb": 1223799,
+            "tvrage": null
+          }
+        }
+      }
+    ]
+  }
+}
