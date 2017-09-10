@@ -9,8 +9,8 @@
 import Foundation
 
 public struct RemoveFromCollectionResult: Codable {
-    let deleted: deleted
-    let notFound: NotFound
+    public let deleted: deleted
+    public let notFound: NotFound
     
     public struct deleted: Codable {
         let movies: Int

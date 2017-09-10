@@ -31,10 +31,10 @@ extension CastAndCrew: Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         cast = try values.decodeIfPresent([CastMember].self, forKey: .cast)
         
-        let crew = try values.nestedContainer(keyedBy: CrewKeys.self, forKey: .crew)
-        directors = try crew.decodeIfPresent([CrewMember].self, forKey: .directors)
-        writers = try crew.decodeIfPresent([CrewMember].self, forKey: .writers)
-        producers = try crew.decodeIfPresent([CrewMember].self, forKey: .producers)
+        let crew = try? values.nestedContainer(keyedBy: CrewKeys.self, forKey: .crew)
+        directors = try crew?.decodeIfPresent([CrewMember].self, forKey: .directors)
+        writers = try crew?.decodeIfPresent([CrewMember].self, forKey: .writers)
+        producers = try crew?.decodeIfPresent([CrewMember].self, forKey: .producers)
     }
 }
 

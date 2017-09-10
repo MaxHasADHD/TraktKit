@@ -1,12 +1,13 @@
 {
-    "username": "sean",
-    "private": false,
-    "name": "Sean Rudford",
-    "vip": true,
-    "vip_ep": true,
-    "ids": {
-        "slug": "sean"
-    },
-    "vip_og": true,
-    "vip_years": 5
+  "vip_ep" : true,
+  "ids" : {
+    "slug" : "sean"
+  },
+  "vip_og" : true,
+  "username" : "sean",
+  "vip" : true,
+  "vip_years" : 5,
+  "private" : false,
+  "name" : "Sean Rudford"
 }
+

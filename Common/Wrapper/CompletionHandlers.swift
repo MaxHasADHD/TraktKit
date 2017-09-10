@@ -211,7 +211,7 @@ extension TraktManager {
                     let object = try decoder.decode(T.self, from: data)
                     completion(.success(object: object))
                 } catch {
-                    completion(.error(error: nil))
+                    completion(.error(error: error))
                 }
             case .error(let error):
                 completion(.error(error: error))

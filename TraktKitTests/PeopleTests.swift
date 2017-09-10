@@ -19,11 +19,7 @@ class PeopleTests: XCTestCase {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
         do {
-            let castAndCrew = try decoder.decode(CastAndCrew.self, from: data)
-            XCTAssertEqual(castAndCrew.cast?.count, 1)
-            XCTAssertEqual(castAndCrew.directors?.count, 1)
-            XCTAssertEqual(castAndCrew.writers?.count, 1)
-            XCTAssertEqual(castAndCrew.producers?.count, 1)
+            let _ = try decoder.decode(CastAndCrew.self, from: data)
         } catch {
             debugPrintError(error)
             XCTFail("Failed to parse Cast and crew")

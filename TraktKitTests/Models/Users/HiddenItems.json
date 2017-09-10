@@ -1,35 +1,34 @@
 [
- {
- "hidden_at": "2015-03-30T23:18:42.000Z",
- "type": "show",
- "show": {
- "title": "Gossip Girl",
- "year": 2007,
- "ids": {
- "trakt": 48,
- "slug": "gossip-girl",
- "tvdb": 80547,
- "imdb": "tt0397442",
- "tmdb": 1395,
- "tvrage": 15619
- }
- }
- },
- {
- "hidden_at": "2015-03-30T23:19:33.000Z",
- "type": "show",
- "show": {
- "title": "Bitten",
- "year": 2014,
- "ids": {
- "trakt": 839,
- "slug": "bitten",
- "tvdb": 269550,
- "imdb": "tt2365946",
- "tmdb": 60556,
- "tvrage": 34965
- }
- }
- }
- ]
-
+  {
+    "type" : "show",
+    "hidden_at" : "2015-03-30T23:18:42.000Z",
+    "show" : {
+      "title" : "Gossip Girl",
+      "year" : 2007,
+      "ids" : {
+        "tmdb" : 1395,
+        "slug" : "gossip-girl",
+        "tvdb" : 80547,
+        "tvrage" : 15619,
+        "trakt" : 48,
+        "imdb" : "tt0397442"
+      }
+    }
+  },
+  {
+    "type" : "show",
+    "hidden_at" : "2015-03-30T23:19:33.000Z",
+    "show" : {
+      "title" : "Bitten",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 60556,
+        "slug" : "bitten",
+        "tvdb" : 269550,
+        "tvrage" : 34965,
+        "trakt" : 839,
+        "imdb" : "tt2365946"
+      }
+    }
+  }
+]

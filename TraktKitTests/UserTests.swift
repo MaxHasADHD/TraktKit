@@ -105,7 +105,7 @@ class UserTests: XCTestCase {
         }
     }
     
-    func testParseUSerStatsJSON() {
+    func testParseUserStatsJSON() {
         let data = jsonData(named: "Stats")
         
         let decoder = JSONDecoder()
@@ -115,6 +115,49 @@ class UserTests: XCTestCase {
         } catch {
             debugPrintError(error)
             XCTFail("Failed to parse user statistics")
+        }
+    }
+    
+    func testParseUserWatchlist() {
+        let data = jsonData(named: "Watchlist")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let _ = try decoder.decode([TraktListItem].self, from: data)
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse user watchlist")
+        }
+    }
+    
+    func testParseUserWatched() {
+        let data = jsonData(named: "Watched")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let _ = try decoder.decode([TraktWatchedShow].self, from: data)
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse user watchlist")
+        }
+    }
+    
+    func testParseUserUnhideItem() {
+        let data = jsonData(named: "UnhideItemResult")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let result = try decoder.decode(UnhideItemResult.self, from: data)
+            XCTAssertEqual(result.deleted.movies, 1)
+            XCTAssertEqual(result.deleted.shows, 2)
+            XCTAssertEqual(result.deleted.seasons, 2)
+            XCTAssertEqual(result.notFound.movies.first?.imdb, "tt0000111")
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse unhide item result")
         }
     }
 }

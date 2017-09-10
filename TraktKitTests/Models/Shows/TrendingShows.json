@@ -1,34 +1,40 @@
 [
   {
-    "title": "The Simpsons",
-    "year": 1989,
-    "ids": {
-      "trakt": 455,
-      "slug": "the-simpsons",
-      "tvdb": 71663,
-      "imdb": "tt0096697",
-      "tmdb": 456,
-      "tvrage": 6190
+    "airs" : {
+      "day" : "Sunday",
+      "time" : "20:00",
+      "timezone" : "America\/New_York"
     },
-    "overview": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
-    "first_aired": "1989-12-17T05:00:00.000Z",
-    "airs": {
-      "day": "Sunday",
-      "time": "20:00",
-      "timezone": "America/New_York"
+    "runtime" : 25,
+    "status" : "returning series",
+    "title" : "The Simpsons",
+    "ids" : {
+      "tmdb" : 456,
+      "slug" : "the-simpsons",
+      "tvdb" : 71663,
+      "tvrage" : 6190,
+      "trakt" : 455,
+      "imdb" : "tt0096697"
     },
-    "runtime": 25,
-    "certification": "TV-PG",
-    "network": "FOX (US)",
-    "country": "us",
-    "trailer": null,
-    "homepage": "http://www.thesimpsons.com/",
-    "status": "returning series",
-    "rating": 8.55875,
-    "votes": 14017,
-    "updated_at": "2017-08-15T11:00:47.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
+    "country" : "us",
+    "first_aired" : "1989-12-17T05:00:00.000Z",
+    "updated_at" : "2017-08-15T11:00:47.000Z",
+    "language" : "en",
+    "trailer" : null,
+    "year" : 1989,
+    "homepage" : "http:\/\/www.thesimpsons.com\/",
+    "aired_episodes" : 618,
+    "votes" : 14017,
+    "network" : "FOX (US)",
+    "genres" : [
+      "animation",
+      "comedy",
+      "family"
+    ],
+    "certification" : "TV-PG",
+    "rating" : 8.55875,
+    "available_translations" : [
       "bg",
       "cs",
       "da",
@@ -62,44 +68,47 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "animation",
-      "comedy",
-      "family"
-    ],
-    "aired_episodes": 618
+    ]
   },
   {
-    "title": "Marvel's Agents of S.H.I.E.L.D.",
-    "year": 2013,
-    "ids": {
-      "trakt": 1394,
-      "slug": "marvel-s-agents-of-s-h-i-e-l-d",
-      "tvdb": 263365,
-      "imdb": "tt2364582",
-      "tmdb": 1403,
-      "tvrage": 32656
+    "airs" : {
+      "day" : "Friday",
+      "time" : "21:00",
+      "timezone" : "America\/New_York"
     },
-    "overview": "The missions of the Strategic Homeland Intervention Enforcement and Logistics Division.",
-    "first_aired": "2013-09-24T00:00:00.000Z",
-    "airs": {
-      "day": "Friday",
-      "time": "21:00",
-      "timezone": "America/New_York"
+    "runtime" : 45,
+    "status" : "returning series",
+    "title" : "Marvel's Agents of S.H.I.E.L.D.",
+    "ids" : {
+      "tmdb" : 1403,
+      "slug" : "marvel-s-agents-of-s-h-i-e-l-d",
+      "tvdb" : 263365,
+      "tvrage" : 32656,
+      "trakt" : 1394,
+      "imdb" : "tt2364582"
     },
-    "runtime": 45,
-    "certification": "TV-PG",
-    "network": "ABC (US)",
-    "country": "us",
-    "trailer": "http://youtube.com/watch?v=T3T-evQZiQo",
-    "homepage": "http://www.agentsofshield.com/",
-    "status": "returning series",
-    "rating": 7.8607,
-    "votes": 14623,
-    "updated_at": "2017-08-16T11:15:01.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "The missions of the Strategic Homeland Intervention Enforcement and Logistics Division.",
+    "country" : "us",
+    "first_aired" : "2013-09-24T00:00:00.000Z",
+    "updated_at" : "2017-08-16T11:15:01.000Z",
+    "language" : "en",
+    "trailer" : "http:\/\/youtube.com\/watch?v=T3T-evQZiQo",
+    "year" : 2013,
+    "homepage" : "http:\/\/www.agentsofshield.com\/",
+    "aired_episodes" : 88,
+    "votes" : 14623,
+    "network" : "ABC (US)",
+    "genres" : [
+      "action",
+      "adventure",
+      "drama",
+      "fantasy",
+      "science-fiction",
+      "suspense"
+    ],
+    "certification" : "TV-PG",
+    "rating" : 7.8607,
+    "available_translations" : [
       "bg",
       "bs",
       "cs",
@@ -131,47 +140,44 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "action",
-      "adventure",
-      "drama",
-      "fantasy",
-      "science-fiction",
-      "suspense"
-    ],
-    "aired_episodes": 88
+    ]
   },
   {
-    "title": "True Detective",
-    "year": 2014,
-    "ids": {
-      "trakt": 46375,
-      "slug": "true-detective",
-      "tvdb": 270633,
-      "imdb": "tt2356777",
-      "tmdb": 46648,
-      "tvrage": 31369
+    "airs" : {
+      "day" : "Sunday",
+      "time" : "21:00",
+      "timezone" : "America\/New_York"
     },
-    "overview": "An anthology series in which police investigations unearth the personal and professional secrets of those involved, both within and outside the law.",
-    "first_aired": "2014-01-12T00:00:00.000Z",
-    "airs": {
-      "day": "Sunday",
-      "time": "21:00",
-      "timezone": "America/New_York"
+    "runtime" : 60,
+    "status" : "returning series",
+    "title" : "True Detective",
+    "ids" : {
+      "tmdb" : 46648,
+      "slug" : "true-detective",
+      "tvdb" : 270633,
+      "tvrage" : 31369,
+      "trakt" : 46375,
+      "imdb" : "tt2356777"
     },
-    "runtime": 60,
-    "certification": "TV-MA",
-    "network": "HBO",
-    "country": "us",
-    "trailer": "http://youtube.com/watch?v=fVQUcaO4AvE",
-    "homepage": "http://www.hbo.com/true-detective",
-    "status": "returning series",
-    "rating": 8.79384,
-    "votes": 13800,
-    "updated_at": "2017-08-02T09:59:07.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "An anthology series in which police investigations unearth the personal and professional secrets of those involved, both within and outside the law.",
+    "country" : "us",
+    "first_aired" : "2014-01-12T00:00:00.000Z",
+    "updated_at" : "2017-08-02T09:59:07.000Z",
+    "language" : "en",
+    "trailer" : "http:\/\/youtube.com\/watch?v=fVQUcaO4AvE",
+    "year" : 2014,
+    "homepage" : "http:\/\/www.hbo.com\/true-detective",
+    "aired_episodes" : 16,
+    "votes" : 13800,
+    "network" : "HBO",
+    "genres" : [
+      "drama",
+      "crime",
+      "mystery"
+    ],
+    "certification" : "TV-MA",
+    "rating" : 8.793839999999999,
+    "available_translations" : [
       "ar",
       "az",
       "bg",
@@ -200,44 +206,44 @@
       "uk",
       "vi",
       "zh"
-    ],
-    "genres": [
-      "drama",
-      "crime",
-      "mystery"
-    ],
-    "aired_episodes": 16
+    ]
   },
   {
-    "title": "Vikings",
-    "year": 2013,
-    "ids": {
-      "trakt": 43973,
-      "slug": "vikings",
-      "tvdb": 260449,
-      "imdb": "tt2306299",
-      "tmdb": 44217,
-      "tvrage": 31136
+    "airs" : {
+      "day" : "Wednesday",
+      "time" : "21:00",
+      "timezone" : "America\/Toronto"
     },
-    "overview": "Vikings follows the adventures of Ragnar Lothbrok the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods, legend has it that he was a direct descendant of Odin, the god of war and warriors.",
-    "first_aired": "2013-03-03T05:00:00.000Z",
-    "airs": {
-      "day": "Wednesday",
-      "time": "21:00",
-      "timezone": "America/Toronto"
+    "runtime" : 45,
+    "status" : "returning series",
+    "title" : "Vikings",
+    "ids" : {
+      "tmdb" : 44217,
+      "slug" : "vikings",
+      "tvdb" : 260449,
+      "tvrage" : 31136,
+      "trakt" : 43973,
+      "imdb" : "tt2306299"
     },
-    "runtime": 45,
-    "certification": "TV-MA",
-    "network": "History",
-    "country": "ca",
-    "trailer": "http://youtube.com/watch?v=1j2sXLbzm9U",
-    "homepage": "http://www.history.com/shows/vikings",
-    "status": "returning series",
-    "rating": 8.64942,
-    "votes": 13703,
-    "updated_at": "2017-08-16T11:03:39.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "Vikings follows the adventures of Ragnar Lothbrok the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods, legend has it that he was a direct descendant of Odin, the god of war and warriors.",
+    "country" : "ca",
+    "first_aired" : "2013-03-03T05:00:00.000Z",
+    "updated_at" : "2017-08-16T11:03:39.000Z",
+    "language" : "en",
+    "trailer" : "http:\/\/youtube.com\/watch?v=1j2sXLbzm9U",
+    "year" : 2013,
+    "homepage" : "http:\/\/www.history.com\/shows\/vikings",
+    "aired_episodes" : 49,
+    "votes" : 13703,
+    "network" : "History",
+    "genres" : [
+      "drama",
+      "action",
+      "adventure"
+    ],
+    "certification" : "TV-MA",
+    "rating" : 8.649419999999999,
+    "available_translations" : [
       "ar",
       "bg",
       "bs",
@@ -269,44 +275,45 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "drama",
-      "action",
-      "adventure"
-    ],
-    "aired_episodes": 49
+    ]
   },
   {
-    "title": "American Horror Story",
-    "year": 2011,
-    "ids": {
-      "trakt": 1404,
-      "slug": "american-horror-story",
-      "tvdb": 250487,
-      "imdb": "tt1844624",
-      "tmdb": 1413,
-      "tvrage": 28776
+    "airs" : {
+      "day" : "Tuesday",
+      "time" : "22:00",
+      "timezone" : "America\/New_York"
     },
-    "overview": "An anthology series that centers on different characters and locations, including a house with a murderous past, an insane asylum, a witch coven, a freak show, an enigmatic hotel and a sinister farmhouse in Roanoke, North Carolina.",
-    "first_aired": "2011-10-05T00:00:00.000Z",
-    "airs": {
-      "day": "Tuesday",
-      "time": "22:00",
-      "timezone": "America/New_York"
+    "runtime" : 45,
+    "status" : "returning series",
+    "title" : "American Horror Story",
+    "ids" : {
+      "tmdb" : 1413,
+      "slug" : "american-horror-story",
+      "tvdb" : 250487,
+      "tvrage" : 28776,
+      "trakt" : 1404,
+      "imdb" : "tt1844624"
     },
-    "runtime": 45,
-    "certification": "TV-MA",
-    "network": "FX (US)",
-    "country": "us",
-    "trailer": null,
-    "homepage": "http://www.fxnetworks.com/shows/american-horror-story/",
-    "status": "returning series",
-    "rating": 8.17615,
-    "votes": 13500,
-    "updated_at": "2017-08-16T11:13:57.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "An anthology series that centers on different characters and locations, including a house with a murderous past, an insane asylum, a witch coven, a freak show, an enigmatic hotel and a sinister farmhouse in Roanoke, North Carolina.",
+    "country" : "us",
+    "first_aired" : "2011-10-05T00:00:00.000Z",
+    "updated_at" : "2017-08-16T11:13:57.000Z",
+    "language" : "en",
+    "trailer" : null,
+    "year" : 2011,
+    "homepage" : "http:\/\/www.fxnetworks.com\/shows\/american-horror-story\/",
+    "aired_episodes" : 73,
+    "votes" : 13500,
+    "network" : "FX (US)",
+    "genres" : [
+      "drama",
+      "mystery",
+      "horror",
+      "thriller"
+    ],
+    "certification" : "TV-MA",
+    "rating" : 8.17615,
+    "available_translations" : [
       "ar",
       "bg",
       "bs",
@@ -335,45 +342,42 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "drama",
-      "mystery",
-      "horror",
-      "thriller"
-    ],
-    "aired_episodes": 73
+    ]
   },
   {
-    "title": "Community",
-    "year": 2009,
-    "ids": {
-      "trakt": 18265,
-      "slug": "community",
-      "tvdb": 94571,
-      "imdb": "tt1439629",
-      "tmdb": 18347,
-      "tvrage": 22589
+    "airs" : {
+      "day" : "Tuesday",
+      "time" : "03:00",
+      "timezone" : "America\/New_York"
     },
-    "overview": "From Emmy Award-winner Dan Harmon comes \"Community\", a smart comedy series about higher education – and lower expectations. The student body at Greendale Community College is made up of high-school losers, newly divorced housewives, and old people who want to keep their minds active. Within these not-so-hallowed halls, Community focuses on a band of misfits, at the center of which is a fast-talking lawyer whose degree was found to be fake, who form a study group and end up learning a lot more about themselves than they do about their course work.",
-    "first_aired": "2009-09-17T07:00:00.000Z",
-    "airs": {
-      "day": "Tuesday",
-      "time": "03:00",
-      "timezone": "America/New_York"
+    "runtime" : 22,
+    "status" : "ended",
+    "title" : "Community",
+    "ids" : {
+      "tmdb" : 18347,
+      "slug" : "community",
+      "tvdb" : 94571,
+      "tvrage" : 22589,
+      "trakt" : 18265,
+      "imdb" : "tt1439629"
     },
-    "runtime": 22,
-    "certification": "TV-PG",
-    "network": "Yahoo! Screen",
-    "country": "us",
-    "trailer": null,
-    "homepage": "http://www.nbc.com/community-show/",
-    "status": "ended",
-    "rating": 8.58664,
-    "votes": 12846,
-    "updated_at": "2017-08-08T10:06:37.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "From Emmy Award-winner Dan Harmon comes \"Community\", a smart comedy series about higher education – and lower expectations. The student body at Greendale Community College is made up of high-school losers, newly divorced housewives, and old people who want to keep their minds active. Within these not-so-hallowed halls, Community focuses on a band of misfits, at the center of which is a fast-talking lawyer whose degree was found to be fake, who form a study group and end up learning a lot more about themselves than they do about their course work.",
+    "country" : "us",
+    "first_aired" : "2009-09-17T07:00:00.000Z",
+    "updated_at" : "2017-08-08T10:06:37.000Z",
+    "language" : "en",
+    "trailer" : null,
+    "year" : 2009,
+    "homepage" : "http:\/\/www.nbc.com\/community-show\/",
+    "aired_episodes" : 110,
+    "votes" : 12846,
+    "network" : "Yahoo! Screen",
+    "genres" : [
+      "comedy"
+    ],
+    "certification" : "TV-PG",
+    "rating" : 8.586639999999999,
+    "available_translations" : [
       "bg",
       "bs",
       "cs",
@@ -396,42 +400,46 @@
       "ru",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "comedy"
-    ],
-    "aired_episodes": 110
+    ]
   },
   {
-    "title": "Person of Interest",
-    "year": 2011,
-    "ids": {
-      "trakt": 1402,
-      "slug": "person-of-interest",
-      "tvdb": 248742,
-      "imdb": "tt1839578",
-      "tmdb": 1411,
-      "tvrage": 28376
+    "airs" : {
+      "day" : "Tuesday",
+      "time" : "22:00",
+      "timezone" : "America\/New_York"
     },
-    "overview": "John Reese, a presumed dead former CIA agent who is approached by a mysterious billionaire named Harold Finch to prevent violent crimes before they happen by using an advanced surveillance system dubbed \"The Machine\". Their unique brand of vigilante justice attracts the attention of two NYPD officers, Joss Carter and Lionel Fusco, whom Reese uses to his advantage as he investigates persons of interest. Reese and Finch are later aided by Samantha \"Root\" Groves , a highly intelligent computer hacker and contract killer who the Machine later identifies as its \"analog interface\" and Sameen Shaw, a former ISA assassin who unknowingly dealt with the \"relevant\" numbers found by the Machine.",
-    "first_aired": "2011-09-22T00:00:00.000Z",
-    "airs": {
-      "day": "Tuesday",
-      "time": "22:00",
-      "timezone": "America/New_York"
+    "runtime" : 45,
+    "status" : "ended",
+    "title" : "Person of Interest",
+    "ids" : {
+      "tmdb" : 1411,
+      "slug" : "person-of-interest",
+      "tvdb" : 248742,
+      "tvrage" : 28376,
+      "trakt" : 1402,
+      "imdb" : "tt1839578"
     },
-    "runtime": 45,
-    "certification": "TV-14",
-    "network": "CBS",
-    "country": "us",
-    "trailer": "http://youtube.com/watch?v=68xN_BNYhc4",
-    "homepage": "http://www.cbs.com/shows/person_of_interest/",
-    "status": "ended",
-    "rating": 8.47299,
-    "votes": 12884,
-    "updated_at": "2017-08-14T11:10:14.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "John Reese, a presumed dead former CIA agent who is approached by a mysterious billionaire named Harold Finch to prevent violent crimes before they happen by using an advanced surveillance system dubbed \"The Machine\". Their unique brand of vigilante justice attracts the attention of two NYPD officers, Joss Carter and Lionel Fusco, whom Reese uses to his advantage as he investigates persons of interest. Reese and Finch are later aided by Samantha \"Root\" Groves , a highly intelligent computer hacker and contract killer who the Machine later identifies as its \"analog interface\" and Sameen Shaw, a former ISA assassin who unknowingly dealt with the \"relevant\" numbers found by the Machine.",
+    "country" : "us",
+    "first_aired" : "2011-09-22T00:00:00.000Z",
+    "updated_at" : "2017-08-14T11:10:14.000Z",
+    "language" : "en",
+    "trailer" : "http:\/\/youtube.com\/watch?v=68xN_BNYhc4",
+    "year" : 2011,
+    "homepage" : "http:\/\/www.cbs.com\/shows\/person_of_interest\/",
+    "aired_episodes" : 103,
+    "votes" : 12884,
+    "network" : "CBS",
+    "genres" : [
+      "drama",
+      "mystery",
+      "thriller",
+      "action",
+      "adventure"
+    ],
+    "certification" : "TV-14",
+    "rating" : 8.472989999999999,
+    "available_translations" : [
       "ar",
       "bg",
       "bs",
@@ -461,46 +469,46 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
+    ]
+  },
+  {
+    "airs" : {
+      "day" : "Tuesday",
+      "time" : "21:00",
+      "timezone" : "America\/New_York"
+    },
+    "runtime" : 45,
+    "status" : "ended",
+    "title" : "Prison Break",
+    "ids" : {
+      "tmdb" : 2288,
+      "slug" : "prison-break",
+      "tvdb" : 75340,
+      "tvrage" : null,
+      "trakt" : 2274,
+      "imdb" : "tt0455275"
+    },
+    "overview" : "When his brother is wrongly convicted of murder, a structural engineer resolves to bust his sibling out of the notorious Fox River State Penitentiary.",
+    "country" : "us",
+    "first_aired" : "2005-08-29T00:00:00.000Z",
+    "updated_at" : "2017-08-11T11:25:58.000Z",
+    "language" : "en",
+    "trailer" : "http:\/\/youtube.com\/watch?v=x9T-9fZn_oA",
+    "year" : 2005,
+    "homepage" : "http:\/\/www.fox.com\/prisonbreak",
+    "aired_episodes" : 88,
+    "votes" : 13012,
+    "network" : "FOX (US)",
+    "genres" : [
       "drama",
       "mystery",
-      "thriller",
+      "crime",
       "action",
       "adventure"
     ],
-    "aired_episodes": 103
-  },
-  {
-    "title": "Prison Break",
-    "year": 2005,
-    "ids": {
-      "trakt": 2274,
-      "slug": "prison-break",
-      "tvdb": 75340,
-      "imdb": "tt0455275",
-      "tmdb": 2288,
-      "tvrage": null
-    },
-    "overview": "When his brother is wrongly convicted of murder, a structural engineer resolves to bust his sibling out of the notorious Fox River State Penitentiary.",
-    "first_aired": "2005-08-29T00:00:00.000Z",
-    "airs": {
-      "day": "Tuesday",
-      "time": "21:00",
-      "timezone": "America/New_York"
-    },
-    "runtime": 45,
-    "certification": "TV-14",
-    "network": "FOX (US)",
-    "country": "us",
-    "trailer": "http://youtube.com/watch?v=x9T-9fZn_oA",
-    "homepage": "http://www.fox.com/prisonbreak",
-    "status": "ended",
-    "rating": 8.29311,
-    "votes": 13012,
-    "updated_at": "2017-08-11T11:25:58.000Z",
-    "language": "en",
-    "available_translations": [
+    "certification" : "TV-14",
+    "rating" : 8.29311,
+    "available_translations" : [
       "ar",
       "bg",
       "bs",
@@ -530,46 +538,46 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "drama",
-      "mystery",
-      "crime",
-      "action",
-      "adventure"
-    ],
-    "aired_episodes": 88
+    ]
   },
   {
-    "title": "True Blood",
-    "year": 2008,
-    "ids": {
-      "trakt": 10494,
-      "slug": "true-blood",
-      "tvdb": 82283,
-      "imdb": "tt0844441",
-      "tmdb": 10545,
-      "tvrage": 12662
+    "airs" : {
+      "day" : "Sunday",
+      "time" : "21:00",
+      "timezone" : "America\/New_York"
     },
-    "overview": "True Blood is based on The Southern Vampire Mysteries series of novels by Charlaine Harris, detailing the co-existence of vampires and humans in Bon Temps, a fictional, small town in northwestern Louisiana. The series centers on the adventures of Sookie Stackhouse (Anna Paquin), a telepathic waitress with an otherworldly quality.",
-    "first_aired": "2008-09-07T00:00:00.000Z",
-    "airs": {
-      "day": "Sunday",
-      "time": "21:00",
-      "timezone": "America/New_York"
+    "runtime" : 50,
+    "status" : "ended",
+    "title" : "True Blood",
+    "ids" : {
+      "tmdb" : 10545,
+      "slug" : "true-blood",
+      "tvdb" : 82283,
+      "tvrage" : 12662,
+      "trakt" : 10494,
+      "imdb" : "tt0844441"
     },
-    "runtime": 50,
-    "certification": "TV-MA",
-    "network": "HBO",
-    "country": "us",
-    "trailer": "http://youtube.com/watch?v=hE8wwYzKJOs",
-    "homepage": "http://www.hbo.com/trueblood/",
-    "status": "ended",
-    "rating": 7.92808,
-    "votes": 13250,
-    "updated_at": "2017-07-31T11:22:52.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "True Blood is based on The Southern Vampire Mysteries series of novels by Charlaine Harris, detailing the co-existence of vampires and humans in Bon Temps, a fictional, small town in northwestern Louisiana. The series centers on the adventures of Sookie Stackhouse (Anna Paquin), a telepathic waitress with an otherworldly quality.",
+    "country" : "us",
+    "first_aired" : "2008-09-07T00:00:00.000Z",
+    "updated_at" : "2017-07-31T11:22:52.000Z",
+    "language" : "en",
+    "trailer" : "http:\/\/youtube.com\/watch?v=hE8wwYzKJOs",
+    "year" : 2008,
+    "homepage" : "http:\/\/www.hbo.com\/trueblood\/",
+    "aired_episodes" : 80,
+    "votes" : 13250,
+    "network" : "HBO",
+    "genres" : [
+      "drama",
+      "fantasy",
+      "science-fiction",
+      "horror",
+      "mystery"
+    ],
+    "certification" : "TV-MA",
+    "rating" : 7.92808,
+    "available_translations" : [
       "bg",
       "bs",
       "cs",
@@ -594,46 +602,47 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "drama",
-      "fantasy",
-      "science-fiction",
-      "horror",
-      "mystery"
-    ],
-    "aired_episodes": 80
+    ]
   },
   {
-    "title": "Firefly",
-    "year": 2002,
-    "ids": {
-      "trakt": 1428,
-      "slug": "firefly",
-      "tvdb": 78874,
-      "imdb": "tt0303461",
-      "tmdb": 1437,
-      "tvrage": 3548
+    "airs" : {
+      "day" : null,
+      "time" : null,
+      "timezone" : "America\/New_York"
     },
-    "overview": "In the far-distant future, Captain Malcolm \"Mal\" Reynolds is a renegade former brown-coat sergeant, now turned smuggler & rogue, who is the commander of a small spacecraft, with a loyal hand-picked crew made up of the first mate, Zoe Warren; the pilot Hoban \"Wash\" Washburn; the gung-ho grunt Jayne Cobb; the engineer Kaylee Frye; the fugitives Dr. Simon Tam and his psychic sister River. Together, they travel the far reaches of space in search of food, money, and anything to live on.",
-    "first_aired": "2002-09-20T00:00:00.000Z",
-    "airs": {
-      "day": null,
-      "time": null,
-      "timezone": "America/New_York"
+    "runtime" : 45,
+    "status" : "ended",
+    "title" : "Firefly",
+    "ids" : {
+      "tmdb" : 1437,
+      "slug" : "firefly",
+      "tvdb" : 78874,
+      "tvrage" : 3548,
+      "trakt" : 1428,
+      "imdb" : "tt0303461"
     },
-    "runtime": 45,
-    "certification": "TV-14",
-    "network": "FOX (US)",
-    "country": "us",
-    "trailer": null,
-    "homepage": null,
-    "status": "ended",
-    "rating": 9.23370011496141,
-    "votes": 12178,
-    "updated_at": "2017-08-16T12:04:45.000Z",
-    "language": "en",
-    "available_translations": [
+    "overview" : "In the far-distant future, Captain Malcolm \"Mal\" Reynolds is a renegade former brown-coat sergeant, now turned smuggler & rogue, who is the commander of a small spacecraft, with a loyal hand-picked crew made up of the first mate, Zoe Warren; the pilot Hoban \"Wash\" Washburn; the gung-ho grunt Jayne Cobb; the engineer Kaylee Frye; the fugitives Dr. Simon Tam and his psychic sister River. Together, they travel the far reaches of space in search of food, money, and anything to live on.",
+    "country" : "us",
+    "first_aired" : "2002-09-20T00:00:00.000Z",
+    "updated_at" : "2017-08-16T12:04:45.000Z",
+    "language" : "en",
+    "trailer" : null,
+    "year" : 2002,
+    "homepage" : null,
+    "aired_episodes" : 14,
+    "votes" : 12178,
+    "network" : "FOX (US)",
+    "genres" : [
+      "drama",
+      "science-fiction",
+      "adventure",
+      "western",
+      "action",
+      "fantasy"
+    ],
+    "certification" : "TV-14",
+    "rating" : 9.23370011496141,
+    "available_translations" : [
       "bs",
       "cs",
       "da",
@@ -655,15 +664,7 @@
       "tr",
       "uk",
       "zh"
-    ],
-    "genres": [
-      "drama",
-      "science-fiction",
-      "adventure",
-      "western",
-      "action",
-      "fantasy"
-    ],
-    "aired_episodes": 14
+    ]
   }
 ]
+

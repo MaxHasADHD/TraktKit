@@ -127,7 +127,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<[String : Any]>) throws -> URLSessionDataTask? {
+    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTask? {
         var json: [String : Any] = [:]
         json["movies"] = movies
         json["shows"] = shows
@@ -148,7 +148,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<[String : Any]>) throws -> URLSessionDataTask? {
+    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTask? {
         var json: [String : Any] = [:]
         json["movies"] = movies
         json["shows"] = shows

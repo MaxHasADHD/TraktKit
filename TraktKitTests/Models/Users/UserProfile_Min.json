@@ -1,10 +1,11 @@
 {
-    "username": "sean",
-    "private": false,
-    "name": "Sean Rudford",
-    "vip": true,
-    "vip_ep": true,
-    "ids": {
-        "slug": "sean"
-    }
+  "username" : "sean",
+  "private" : false,
+  "vip" : true,
+  "vip_ep" : true,
+  "name" : "Sean Rudford",
+  "ids" : {
+    "slug" : "sean"
+  }
 }
+

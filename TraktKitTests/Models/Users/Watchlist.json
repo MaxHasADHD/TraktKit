@@ -1,0 +1,299 @@
+ [
+  {
+  "rank": 1,
+  "listed_at": "2017-07-01T10:28:33.000Z",
+  "type": "show",
+  "show": {
+  "title": "The Deuce",
+  "year": 2017,
+  "ids": {
+  "trakt": 111698,
+  "slug": "the-deuce",
+  "tvdb": 317728,
+  "imdb": "tt4998350",
+  "tmdb": 65817,
+  "tvrage": null
+  },
+  "overview": "This drama series follows the legalization and subsequent rise of the porn industry in New York from the early 1970s through the mid-1980s, exploring the rough-and-tumble world of midtown Manhattan. James Franco stars as real-life twin brothers who were players in the Times Square world and became fronts for mob control of the volatile and lucrative sex industry from its beginnings.",
+  "first_aired": "2017-09-09T14:00:00.000Z",
+  "airs": {
+  "day": "Sunday",
+  "time": "21:00",
+  "timezone": "America/New_York"
+  },
+  "runtime": 60,
+  "certification": "TV-MA",
+  "network": "HBO",
+  "country": "us",
+  "trailer": "http://youtube.com/watch?v=1jfpNwCU5JU",
+  "homepage": "http://www.hbo.com/the-deuce",
+  "status": "returning series",
+  "rating": 7.45455,
+  "votes": 11,
+  "updated_at": "2017-09-03T11:32:54.000Z",
+  "language": "en",
+  "available_translations": [
+                             "bg",
+                             "en",
+                             "es",
+                             "fr",
+                             "pl",
+                             "pt",
+                             "ru"
+                             ],
+  "genres": [
+             "drama"
+             ],
+  "aired_episodes": 0
+  }
+  },
+  {
+  "rank": 2,
+  "listed_at": "2017-08-14T19:13:07.000Z",
+  "type": "show",
+  "show": {
+  "title": "Mindhunter",
+  "year": 2017,
+  "ids": {
+  "trakt": 116965,
+  "slug": "mindhunter",
+  "tvdb": 328708,
+  "imdb": "tt5290382",
+  "tmdb": 67744,
+  "tvrage": null
+  },
+  "overview": "An agent in the FBI's Elite Serial Crime Unit tracks down serial killers and rapists.",
+  "first_aired": "2017-10-13T00:00:00.000Z",
+  "airs": {
+  "day": "Friday",
+  "time": "00:00",
+  "timezone": "America/New_York"
+  },
+  "runtime": 45,
+  "certification": null,
+  "network": "Netflix",
+  "country": "us",
+  "trailer": "http://youtube.com/watch?v=407GVB88b60",
+  "homepage": "https://www.netflix.com/title/80114855",
+  "status": "returning series",
+  "rating": 6.71429,
+  "votes": 7,
+  "updated_at": "2017-09-01T11:36:23.000Z",
+  "language": "en",
+  "available_translations": [
+                             "bs",
+                             "de",
+                             "en",
+                             "es",
+                             "fr",
+                             "it",
+                             "ko",
+                             "pl",
+                             "pt",
+                             "tr",
+                             "zh"
+                             ],
+  "genres": [
+             "drama",
+             "crime",
+             "thriller"
+             ],
+  "aired_episodes": 0
+  }
+  },
+  {
+  "rank": 3,
+  "listed_at": "2017-08-09T20:51:23.000Z",
+  "type": "show",
+  "show": {
+  "title": "The Gifted",
+  "year": 2017,
+  "ids": {
+  "trakt": 119025,
+  "slug": "the-gifted",
+  "tvdb": 328552,
+  "imdb": "tt4396630",
+  "tmdb": 69629,
+  "tvrage": null
+  },
+  "overview": "Family adventure series tells the story of a suburban couple whose ordinary lives are rocked by the sudden discovery that their children possess mutant powers. Forced to go on the run from a hostile government, the family joins up with an underground network of mutants and must fight to survive.",
+  "first_aired": "2017-10-03T01:00:00.000Z",
+  "airs": {
+  "day": "Monday",
+  "time": "21:00",
+  "timezone": "America/New_York"
+  },
+  "runtime": 45,
+  "certification": null,
+  "network": "FOX (US)",
+  "country": "us",
+  "trailer": "http://youtube.com/watch?v=qTzW9rMcbzk",
+  "homepage": "http://www.fox.com/the-gifted",
+  "status": "in production",
+  "rating": 7.53333,
+  "votes": 15,
+  "updated_at": "2017-09-01T11:20:56.000Z",
+  "language": "en",
+  "available_translations": [
+                             "en",
+                             "ru",
+                             "sv",
+                             "zh"
+                             ],
+  "genres": [
+             "action",
+             "drama",
+             "adventure",
+             "fantasy",
+             "science-fiction",
+             "superhero"
+             ],
+  "aired_episodes": 0
+  }
+  },
+  {
+  "rank": 4,
+  "listed_at": "2017-06-02T07:09:35.000Z",
+  "type": "show",
+  "show": {
+  "title": "Marvel's Inhumans",
+  "year": 2017,
+  "ids": {
+  "trakt": 113560,
+  "slug": "marvel-s-inhumans",
+  "tvdb": 320558,
+  "imdb": "tt4154858",
+  "tmdb": 68716,
+  "tvrage": null
+  },
+  "overview": "The epic story of the royal family including Black Bolt, the enigmatic, commanding King of the Inhumans, with a voice so powerful that the slightest whisper can destroy a city. After the Royal Family of Inhumans is splintered by a military coup, they barely escape to Hawaii where their surprising interactions with the lush world and humanity around them may prove to not only save them, but Earth itself.",
+  "first_aired": "2017-09-30T01:00:00.000Z",
+  "airs": {
+  "day": "Friday",
+  "time": "21:00",
+  "timezone": "America/New_York"
+  },
+  "runtime": 43,
+  "certification": "TV-PG",
+  "network": "ABC (US)",
+  "country": "us",
+  "trailer": "http://youtube.com/watch?v=KaaLbjZ3mj8",
+  "homepage": null,
+  "status": "in production",
+  "rating": 7.17143,
+  "votes": 35,
+  "updated_at": "2017-09-03T10:55:22.000Z",
+  "language": "en",
+  "available_translations": [
+                             "bg",
+                             "en",
+                             "fr",
+                             "hu",
+                             "pl",
+                             "ru",
+                             "sv",
+                             "tr",
+                             "uk"
+                             ],
+  "genres": [
+             "action",
+             "adventure",
+             "drama",
+             "fantasy",
+             "science-fiction",
+             "superhero"
+             ],
+  "aired_episodes": 0
+  }
+  },
+  {
+  "rank": 5,
+  "listed_at": "2017-06-02T07:17:53.000Z",
+  "type": "show",
+  "show": {
+  "title": "Young Sheldon",
+  "year": 2017,
+  "ids": {
+  "trakt": 119172,
+  "slug": "young-sheldon",
+  "tvdb": 328724,
+  "imdb": "tt6226232",
+  "tmdb": 71728,
+  "tvrage": null
+  },
+  "overview": "It’s 1989, and we meet 9-year-old Sheldon Cooper, the beloved character from THE BIG BANG THEORY. We get a peek into the early years-with voiceover from Jim Parsons-of a genius who is misunderstood by his family, classmates and neighbors.",
+  "first_aired": "2017-09-25T00:00:00.000Z",
+  "airs": {
+  "day": "Monday",
+  "time": "20:30",
+  "timezone": "America/New_York"
+  },
+  "runtime": 25,
+  "certification": "TV-14",
+  "network": "CBS",
+  "country": "us",
+  "trailer": "http://youtube.com/watch?v=eHQQQAX2n2A",
+  "homepage": "http://www.cbs.com/shows/young-sheldon/",
+  "status": "returning series",
+  "rating": 4.94737,
+  "votes": 19,
+  "updated_at": "2017-09-02T09:57:01.000Z",
+  "language": "en",
+  "available_translations": [
+                             "en",
+                             "fr"
+                             ],
+  "genres": [
+             "comedy"
+             ],
+  "aired_episodes": 0
+  }
+  },
+  {
+  "rank": 6,
+  "listed_at": "2017-09-03T18:55:59.000Z",
+  "type": "show",
+  "show": {
+  "title": "Suburra: The Series",
+  "year": 2017,
+  "ids": {
+  "trakt": 121337,
+  "slug": "suburra-the-series",
+  "tvdb": 327138,
+  "imdb": "tt7197684",
+  "tmdb": 73671,
+  "tvrage": null
+  },
+  "overview": "A seaside town near Rome becomes a gambling paradise -- and a battleground for a powerful family, the mafia and corrupt politicians.",
+  "first_aired": "2017-10-06T07:00:00.000Z",
+  "airs": {
+  "day": null,
+  "time": null,
+  "timezone": "Europe/Rome"
+  },
+  "runtime": 45,
+  "certification": null,
+  "network": "Netflix",
+  "country": "it",
+  "trailer": "http://youtube.com/watch?v=G3s7N9TEWJ4",
+  "homepage": "https://www.netflix.com/title/80081537",
+  "status": "returning series",
+  "rating": 0.0,
+  "votes": 0,
+  "updated_at": "2017-09-03T16:08:30.000Z",
+  "language": "it",
+  "available_translations": [
+                             "en",
+                             "it",
+                             "pl",
+                             "pt",
+                             "sv"
+                             ],
+  "genres": [
+             "drama",
+             "crime"
+             ],
+  "aired_episodes": 0
+  }
+  }
+  ]

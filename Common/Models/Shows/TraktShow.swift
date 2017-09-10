@@ -63,4 +63,29 @@ public struct TraktShow: Codable {
         case genres
         case airedEpisodes = "aired_episodes"
     }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        title = try container.decode(String.self, forKey: CodingKeys.title)
+        year = try container.decodeIfPresent(Int.self, forKey: CodingKeys.year)
+        ids = try container.decode(ID.self, forKey: CodingKeys.ids)
+        
+        overview = try container.decodeIfPresent(String.self, forKey: CodingKeys.overview)
+        firstAired = try container.decodeIfPresent(Date.self, forKey: CodingKeys.firstAired)
+        airs = try container.decodeIfPresent(Airs.self, forKey: CodingKeys.airs)
+        runtime = try container.decodeIfPresent(Int.self, forKey: CodingKeys.runtime)
+        certification = try container.decodeIfPresent(String.self, forKey: .certification)
+        network = try container.decodeIfPresent(String.self, forKey: .network)
+        country = try container.decodeIfPresent(String.self, forKey: .country)
+        trailer = try? container.decode(URL.self, forKey: .trailer)
+        homepage = try? container.decode(URL.self, forKey: .homepage)
+        status = try container.decodeIfPresent(String.self, forKey: .status)
+        rating = try container.decodeIfPresent(Double.self, forKey: .rating)
+        votes = try container.decodeIfPresent(Int.self, forKey: .votes)
+        updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
+        language = try container.decodeIfPresent(String.self, forKey: .language)
+        availableTranslations = try container.decodeIfPresent([String].self, forKey: .availableTranslations)
+        genres = try container.decodeIfPresent([String].self, forKey: .genres)
+        airedEpisodes = try container.decodeIfPresent(Int.self, forKey: .airedEpisodes)
+    }
 }
