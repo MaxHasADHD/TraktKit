@@ -17,7 +17,7 @@ public struct TraktCollectedItem: Codable {
     public var seasons: [TraktCollectedSeason]?
     
     enum CodingKeys: String, CodingKey {
-        case lastCollectedAt = "collected_at" // Can be last_collected_at though :/
+        case lastCollectedAt = "last_collected_at" // Can be last_collected_at / collected_at though :/
         case movie
         case show
         case seasons

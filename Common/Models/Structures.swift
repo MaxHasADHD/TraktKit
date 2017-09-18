@@ -60,6 +60,16 @@ public struct EpisodeId: Codable {
     }
 }
 
+public struct ListId: Codable {
+    public let trakt: Int
+    public let slug: String
+    
+    enum CodingKeys: String, CodingKey {
+        case trakt
+        case slug
+    }
+}
+
 // MARK: - Stats
 
 public struct TraktStats: Codable {

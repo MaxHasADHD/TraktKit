@@ -390,8 +390,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getWatchlist(watchType: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
-        guard
-            let request = mutableRequest(forPath: "sync/watchlist",
+        guard let request = mutableRequest(forPath: "sync/watchlist/\(watchType.rawValue)",
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }

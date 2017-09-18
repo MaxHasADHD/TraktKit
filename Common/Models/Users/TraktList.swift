@@ -25,7 +25,7 @@ public struct TraktList: Codable {
     public let name: String
     public let privacy: ListPrivacy
     public let updatedAt: Date
-    public let id: ID
+    public let id: ListId
     
     enum CodingKeys: String, CodingKey {
         case allowComments = "allow_comments"

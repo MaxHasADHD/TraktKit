@@ -160,4 +160,17 @@ class UserTests: XCTestCase {
             XCTFail("Failed to parse unhide item result")
         }
     }
+    
+    func testParseUserCollection() {
+        let data = jsonData(named: "Collection")
+        
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            let _ = try decoder.decode([UsersCollection].self, from: data)
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse user collection")
+        }
+    }
 }

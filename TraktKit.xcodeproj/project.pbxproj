@@ -113,6 +113,7 @@
 		707FE6EC1F5D716500407769 /* UnhideItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707FE6E91F5D70ED00407769 /* UnhideItemResult.swift */; };
 		708834DE1F5CA91A00AB0148 /* Watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 708834DD1F5CA91A00AB0148 /* Watchlist.json */; };
 		708834E01F5CAAFD00AB0148 /* Watched.json in Resources */ = {isa = PBXBuildFile; fileRef = 708834DF1F5CAAFD00AB0148 /* Watched.json */; };
+		7095BCEC1F6BF53D00560A2F /* Collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 7095BCEB1F6BF53D00560A2F /* Collection.json */; };
 		70B6813C1DA5A95000D7EAF1 /* TraktRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A21701D394E1B006E5D92 /* TraktRating.swift */; };
 		70B6813F1DA5A97A00D7EAF1 /* TraktHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */; };
 		70B681401DA5A97A00D7EAF1 /* TraktHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */; };
@@ -347,6 +348,7 @@
 		707FE6E91F5D70ED00407769 /* UnhideItemResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnhideItemResult.swift; sourceTree = "<group>"; };
 		708834DD1F5CA91A00AB0148 /* Watchlist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Watchlist.json; sourceTree = "<group>"; };
 		708834DF1F5CAAFD00AB0148 /* Watched.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Watched.json; sourceTree = "<group>"; };
+		7095BCEB1F6BF53D00560A2F /* Collection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Collection.json; sourceTree = "<group>"; };
 		70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktHistoryItem.swift; sourceTree = "<group>"; };
 		70B844321EF0DE9B001BA900 /* Movie_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Movie_Min.json; sourceTree = "<group>"; };
 		70B844341EF0DEA6001BA900 /* Movie_Full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Movie_Full.json; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				70F773561F3DBFD70078110E /* Stats.json */,
 				708834DD1F5CA91A00AB0148 /* Watchlist.json */,
 				708834DF1F5CAAFD00AB0148 /* Watched.json */,
+				7095BCEB1F6BF53D00560A2F /* Collection.json */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1031,6 +1034,7 @@
 				70F7733F1F3D44A70078110E /* FollowRequest.json in Resources */,
 				70F7734B1F3D4EBC0078110E /* Certifications.json in Resources */,
 				70F7733D1F3D3D6D0078110E /* Settings.json in Resources */,
+				7095BCEC1F6BF53D00560A2F /* Collection.json in Resources */,
 				70E96DA81EEFE81A00EE34DA /* Show_Full.json in Resources */,
 				7029D1571EEFFD3000BD926D /* Episode_Min.json in Resources */,
 				70F773551F3DBF850078110E /* ListComments.json in Resources */,

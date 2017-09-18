@@ -1,0 +1,1023 @@
+[
+  {
+    "collected_at" : "2007-07-27T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Simpsons Movie",
+      "year" : 2007,
+      "ids" : {
+        "tmdb" : 35,
+        "slug" : "the-simpsons-movie-2007",
+        "trakt" : 28,
+        "imdb" : "tt0462538"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2001-03-16T20:00:00.000Z",
+    "movie" : {
+      "title" : "Memento",
+      "year" : 2000,
+      "ids" : {
+        "tmdb" : 77,
+        "slug" : "memento-2000",
+        "trakt" : 47,
+        "imdb" : "tt0209144"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "1994-11-18T20:00:00.000Z",
+    "movie" : {
+      "title" : "Leon: The Professional",
+      "year" : 1994,
+      "ids" : {
+        "tmdb" : 101,
+        "slug" : "leon-the-professional-1994",
+        "trakt" : 70,
+        "imdb" : "tt0110413"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2008-07-18T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Dark Knight",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 155,
+        "slug" : "the-dark-knight-2008",
+        "trakt" : 120,
+        "imdb" : "tt0468569"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "1990-05-25T20:00:00.000Z",
+    "movie" : {
+      "title" : "Back to the Future Part III",
+      "year" : 1990,
+      "ids" : {
+        "tmdb" : 196,
+        "slug" : "back-to-the-future-part-iii-1990",
+        "trakt" : 159,
+        "imdb" : "tt0099088"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "1974-12-20T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Godfather: Part II",
+      "year" : 1974,
+      "ids" : {
+        "tmdb" : 240,
+        "slug" : "the-godfather-part-ii-1974",
+        "trakt" : 198,
+        "imdb" : "tt0071562"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "1990-12-24T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Godfather: Part III",
+      "year" : 1990,
+      "ids" : {
+        "tmdb" : 242,
+        "slug" : "the-godfather-part-iii-1990",
+        "trakt" : 200,
+        "imdb" : "tt0099674"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2005-06-15T20:00:00.000Z",
+    "movie" : {
+      "title" : "Batman Begins",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 272,
+        "slug" : "batman-begins-2005",
+        "trakt" : 228,
+        "imdb" : "tt0372784"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "1994-10-14T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Shawshank Redemption",
+      "year" : 1994,
+      "ids" : {
+        "tmdb" : 278,
+        "slug" : "the-shawshank-redemption-1994",
+        "trakt" : 234,
+        "imdb" : "tt0111161"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2001-12-12T20:00:00.000Z",
+    "movie" : {
+      "title" : "A Beautiful Mind",
+      "year" : 2001,
+      "ids" : {
+        "tmdb" : 453,
+        "slug" : "a-beautiful-mind-2001",
+        "trakt" : 358,
+        "imdb" : "tt0268978"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2002-05-02T20:00:00.000Z",
+    "movie" : {
+      "title" : "Spider-Man",
+      "year" : 2002,
+      "ids" : {
+        "tmdb" : 557,
+        "slug" : "spider-man-2002",
+        "trakt" : 438,
+        "imdb" : "tt0145487"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2004-06-29T20:00:00.000Z",
+    "movie" : {
+      "title" : "Spider-Man 2",
+      "year" : 2004,
+      "ids" : {
+        "tmdb" : 558,
+        "slug" : "spider-man-2-2004",
+        "trakt" : 439,
+        "imdb" : "tt0316654"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2007-05-03T20:00:00.000Z",
+    "movie" : {
+      "title" : "Spider-Man 3",
+      "year" : 2007,
+      "ids" : {
+        "tmdb" : 559,
+        "slug" : "spider-man-3-2007",
+        "trakt" : 440,
+        "imdb" : "tt0413300"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2002-12-25T20:00:00.000Z",
+    "movie" : {
+      "title" : "Catch Me If You Can",
+      "year" : 2002,
+      "ids" : {
+        "tmdb" : 640,
+        "slug" : "catch-me-if-you-can-2002",
+        "trakt" : 516,
+        "imdb" : "tt0264464"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "1986-07-18T20:00:00.000Z",
+    "movie" : {
+      "title" : "Aliens",
+      "year" : 1986,
+      "ids" : {
+        "tmdb" : 679,
+        "slug" : "aliens-1986",
+        "trakt" : 553,
+        "imdb" : "tt0090605"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2006-06-09T20:00:00.000Z",
+    "movie" : {
+      "title" : "Cars",
+      "year" : 2006,
+      "ids" : {
+        "tmdb" : 920,
+        "slug" : "cars-2006",
+        "trakt" : 762,
+        "imdb" : "tt0317219"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2006-10-19T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Prestige",
+      "year" : 2006,
+      "ids" : {
+        "tmdb" : 1124,
+        "slug" : "the-prestige-2006",
+        "trakt" : 851,
+        "imdb" : "tt0482571"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-01-22T14:40:15.000Z",
+    "movie" : {
+      "title" : "Zoolander",
+      "year" : 2001,
+      "ids" : {
+        "tmdb" : 9398,
+        "slug" : "zoolander-2001",
+        "trakt" : 4687,
+        "imdb" : "tt0196229"
+      }
+    },
+    "metadata" : {
+      "audio" : "dolby_digital",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "sd_576p"
+    }
+  },
+  {
+    "collected_at" : "2010-03-26T20:00:00.000Z",
+    "movie" : {
+      "title" : "How to Train Your Dragon",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 10191,
+        "slug" : "how-to-train-your-dragon-2010",
+        "trakt" : 5405,
+        "imdb" : "tt0892769"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2010-06-17T20:00:00.000Z",
+    "movie" : {
+      "title" : "Toy Story 3",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 10193,
+        "slug" : "toy-story-3-2010",
+        "trakt" : 5407,
+        "imdb" : "tt0435761"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2010-07-01T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Last Airbender",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 10196,
+        "slug" : "the-last-airbender-2010",
+        "trakt" : 5409,
+        "imdb" : "tt0938283"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2008-06-22T20:00:00.000Z",
+    "movie" : {
+      "title" : "WALL·E",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 10681,
+        "slug" : "wall-e-2008",
+        "trakt" : 5853,
+        "imdb" : "tt0910970"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-08-26T18:48:50.000Z",
+    "movie" : {
+      "title" : "My Sassy Girl",
+      "year" : 2001,
+      "ids" : {
+        "tmdb" : 11178,
+        "slug" : "my-sassy-girl-2001",
+        "trakt" : 6305,
+        "imdb" : "tt0293715"
+      }
+    },
+    "metadata" : {
+      "audio" : "mp3",
+      "3d" : false,
+      "audio_channels" : "2.0",
+      "media_type" : "digital",
+      "resolution" : "sd_480p"
+    }
+  },
+  {
+    "collected_at" : "2017-07-31T18:49:15.000Z",
+    "movie" : {
+      "title" : "Cowboy Bebop: The Movie",
+      "year" : 2001,
+      "ids" : {
+        "tmdb" : 11299,
+        "slug" : "cowboy-bebop-the-movie-2001",
+        "trakt" : 6398,
+        "imdb" : "tt0275277"
+      }
+    },
+    "metadata" : {
+      "audio" : "dolby_digital",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_720p"
+    }
+  },
+  {
+    "collected_at" : "2005-12-25T20:00:00.000Z",
+    "movie" : {
+      "title" : "The New World",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 11400,
+        "slug" : "the-new-world-2005",
+        "trakt" : 6496,
+        "imdb" : "tt0402399"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-09-13T21:12:19.000Z",
+    "movie" : {
+      "title" : "Don't Believe in Her",
+      "year" : 2004,
+      "ids" : {
+        "tmdb" : 18372,
+        "slug" : "don-t-believe-in-her-2004",
+        "trakt" : 11235,
+        "imdb" : "tt0390042"
+      }
+    },
+    "metadata" : {
+      "audio" : "dolby_digital",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-08-22T18:26:23.000Z",
+    "movie" : {
+      "title" : "Castaway on the Moon",
+      "year" : 2009,
+      "ids" : {
+        "tmdb" : 18438,
+        "slug" : "castaway-on-the-moon-2009",
+        "trakt" : 11288,
+        "imdb" : "tt1499666"
+      }
+    },
+    "metadata" : {
+      "audio" : "dolby_digital",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2006-11-17T20:00:00.000Z",
+    "movie" : {
+      "title" : "Casino Royale",
+      "year" : 2006,
+      "ids" : {
+        "tmdb" : 36557,
+        "slug" : "casino-royale-2006",
+        "trakt" : 23217,
+        "imdb" : "tt0381061"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-06-19T18:54:55.000Z",
+    "movie" : {
+      "title" : "Ghostbusters",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 43074,
+        "slug" : "ghostbusters-2016",
+        "trakt" : 28880,
+        "imdb" : "tt1289401"
+      }
+    },
+    "metadata" : {
+      "audio" : "dolby_digital",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2010-12-02T20:00:00.000Z",
+    "movie" : {
+      "title" : "Black Swan",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 44214,
+        "slug" : "black-swan-2010",
+        "trakt" : 29936,
+        "imdb" : "tt0947798"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2012-07-20T20:00:00.000Z",
+    "movie" : {
+      "title" : "The Dark Knight Rises",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 49026,
+        "slug" : "the-dark-knight-rises-2012",
+        "trakt" : 34073,
+        "imdb" : "tt1345836"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2012-06-08T20:00:00.000Z",
+    "movie" : {
+      "title" : "Prometheus",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 70981,
+        "slug" : "prometheus-2012",
+        "trakt" : 52036,
+        "imdb" : "tt1446714"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2014-06-13T20:00:00.000Z",
+    "movie" : {
+      "title" : "How to Train Your Dragon 2",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 82702,
+        "slug" : "how-to-train-your-dragon-2-2014",
+        "trakt" : 61873,
+        "imdb" : "tt1646971"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-09-10T20:02:16.000Z",
+    "movie" : {
+      "title" : "Alien: Covenant",
+      "year" : 2017,
+      "ids" : {
+        "tmdb" : 126889,
+        "slug" : "alien-covenant-2017",
+        "trakt" : 86997,
+        "imdb" : "tt2316204"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2013-10-18T20:00:00.000Z",
+    "movie" : {
+      "title" : "Carrie",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 133805,
+        "slug" : "carrie-2013",
+        "trakt" : 90598,
+        "imdb" : "tt1939659"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-06-18T21:02:31.000Z",
+    "movie" : {
+      "title" : "The Wind Rises",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 149870,
+        "slug" : "the-wind-rises-2013",
+        "trakt" : 98669,
+        "imdb" : "tt2013293"
+      }
+    },
+    "metadata" : {
+      "audio" : "aac",
+      "3d" : false,
+      "audio_channels" : "1.0",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2013-11-22T20:00:00.000Z",
+    "movie" : {
+      "title" : "Dallas Buyers Club",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 152532,
+        "slug" : "dallas-buyers-club-2013",
+        "trakt" : 99886,
+        "imdb" : "tt0790636"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2014-11-05T20:00:00.000Z",
+    "movie" : {
+      "title" : "Interstellar",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 157336,
+        "slug" : "interstellar-2014",
+        "trakt" : 102156,
+        "imdb" : "tt0816692"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-06-14T20:57:42.000Z",
+    "movie" : {
+      "title" : "Resident Evil: The Final Chapter",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 173897,
+        "slug" : "resident-evil-the-final-chapter-2016",
+        "trakt" : 110398,
+        "imdb" : "tt2592614"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-06-12T11:56:46.000Z",
+    "movie" : {
+      "title" : "T2 Trainspotting",
+      "year" : 2017,
+      "ids" : {
+        "tmdb" : 180863,
+        "slug" : "t2-trainspotting-2017",
+        "trakt" : 113917,
+        "imdb" : "tt2763304"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-05-29T21:00:07.000Z",
+    "movie" : {
+      "title" : "Wish I Was Here",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 231576,
+        "slug" : "wish-i-was-here-2014",
+        "trakt" : 141175,
+        "imdb" : "tt2870708"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-01-22T14:38:31.000Z",
+    "movie" : {
+      "title" : "Hail, Caesar!",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 270487,
+        "slug" : "hail-caesar-2016",
+        "trakt" : 168510,
+        "imdb" : "tt0475290"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-04-17T19:42:12.000Z",
+    "movie" : {
+      "title" : "Moana",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 277834,
+        "slug" : "moana-2016",
+        "trakt" : 175475,
+        "imdb" : "tt3521164"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-06-23T21:22:10.000Z",
+    "movie" : {
+      "title" : "Un Natale stupefacente",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 312428,
+        "slug" : "un-natale-stupefacente-2014",
+        "trakt" : 191914,
+        "imdb" : "tt3985572"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2014-10-09T20:00:00.000Z",
+    "movie" : {
+      "title" : "Tutto molto bello",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 296727,
+        "slug" : "tutto-molto-bello-2014",
+        "trakt" : 204350,
+        "imdb" : "tt3916354"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2016-07-29T20:00:00.000Z",
+    "movie" : {
+      "title" : "Jason Bourne",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 324668,
+        "slug" : "jason-bourne-2016",
+        "trakt" : 205219,
+        "imdb" : "tt4196776"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2016-02-12T20:00:00.000Z",
+    "movie" : {
+      "title" : "Zoolander 2",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 329833,
+        "slug" : "zoolander-2-2016",
+        "trakt" : 210774,
+        "imdb" : "tt1608290"
+      }
+    },
+    "metadata" : {
+      "audio" : null,
+      "3d" : false,
+      "audio_channels" : null,
+      "media_type" : null,
+      "resolution" : null
+    }
+  },
+  {
+    "collected_at" : "2017-01-22T18:04:56.000Z",
+    "movie" : {
+      "title" : "Love the Coopers",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 333348,
+        "slug" : "love-the-coopers-2015",
+        "trakt" : 214288,
+        "imdb" : "tt2279339"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-03-06T19:18:19.000Z",
+    "movie" : {
+      "title" : "Suburra",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 356296,
+        "slug" : "suburra-2015",
+        "trakt" : 223330,
+        "imdb" : "tt4025514"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  },
+  {
+    "collected_at" : "2017-06-23T21:22:01.000Z",
+    "movie" : {
+      "title" : "Belli di papà",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 363869,
+        "slug" : "belli-di-papa-2015",
+        "trakt" : 223681,
+        "imdb" : "tt4835298"
+      }
+    },
+    "metadata" : {
+      "audio" : "dolby_digital",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "sd_480p"
+    }
+  },
+  {
+    "collected_at" : "2017-07-15T06:14:40.000Z",
+    "movie" : {
+      "title" : "Split",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 381288,
+        "slug" : "split-2017-01-20",
+        "trakt" : 254263,
+        "imdb" : "tt4972582"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "5.1",
+      "media_type" : "digital",
+      "resolution" : "hd_1080p"
+    }
+  }
+]
+
