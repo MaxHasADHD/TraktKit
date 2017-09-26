@@ -51,7 +51,6 @@ public class TraktManager {
     public var accessToken: String? {
         get {
             if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
-                
                 if let accessTokenString = String.init(data: accessTokenData, encoding: .utf8) {
                     return accessTokenString
                 }
@@ -316,24 +315,29 @@ public class TraktManager {
         return false
     }
     
-    public func checkToRefresh() throws {
+    public func checkToRefresh(completion: @escaping (_ success: Bool) -> Void) {
         if let expirationDate = UserDefaults.standard.object(forKey: "accessTokenExpirationDate") as? Date {
             let today = Date()
             
             if today.compare(expirationDate) == .orderedDescending ||
                 today.compare(expirationDate) == .orderedSame {
-                #if DEBUG
-                    print("[\(#function)] Refreshing token!")
-                #endif
-                try self.getAccessTokenFromRefreshToken(completionHandler: { (success) -> Void in
-                    
-                })
+                do {
+                    try getAccessTokenFromRefreshToken { result in
+                        switch result {
+                        case .success:
+                            completion(true)
+                        case .fail:
+                            completion(false)
+                        }
+                    }
+                } catch {
+                    completion(false)
+                }
+            } else {
+                completion(true)
             }
-            else {
-                #if DEBUG
-                    print("[\(#function)] No need to refresh token!")
-                #endif
-            }
+        } else {
+            completion(true)
         }
     }
     
