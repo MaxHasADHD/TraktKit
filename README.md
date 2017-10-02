@@ -2,17 +2,17 @@
     <img src="http://maximilianlitteral.com/TraktKit.png" alt="Logo" />
 </p>
 
-#TraktKit
+# TraktKit
 Swift wrapper for Trakt.tv  API.
 
-###Usage
+### Usage
 
 In your AppDelegate, under <code>application(application:, didFinishLaunchingWithOptions launchOptions:)</code> place:
 ```swift
 TraktManager.sharedManager.setClientID("Client ID", clientSecret: "Secret", redirectURI: "Redirect URI")
 ```
 
-###Authentication
+### Authentication
 ```swift
 guard let oauthURL = TraktManager.sharedManager.oauthURL else { return }
 
@@ -37,7 +37,7 @@ func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
 }
 ```
 
-###Get Show information
+### Get Show information
 ```swift
 TraktManager.sharedManager.getShowSummary(showID: "the-last-man-on-earth", extended: [.Full, .Images]) { (result) in
             switch result {
@@ -51,7 +51,7 @@ TraktManager.sharedManager.getShowSummary(showID: "the-last-man-on-earth", exten
         }
 ```
 
-###Search - This will find Batman movies with ratings between 75% and 100%
+### Search - This will find Batman movies with ratings between 75% and 100%
 ```swift
 TraktManager.sharedManager.search(query: "Batman",
                                           types: [.movie],
@@ -70,7 +70,7 @@ TraktManager.sharedManager.search(query: "Batman",
         }
 ```
 
-###License
+### License
 The MIT License (MIT)
 
 Copyright (c) 2016 Maximilian Litteral
