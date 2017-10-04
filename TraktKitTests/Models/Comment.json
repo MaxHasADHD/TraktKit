@@ -1,0 +1,21 @@
+{
+    "id": 1,
+    "parent_id": 0,
+    "created_at": "2010-11-03T06:30:13.000Z",
+    "comment": "Agreed, this show is awesome. AMC in general has awesome shows.",
+    "spoiler": false,
+    "review": false,
+    "replies": 1,
+    "likes": 0,
+    "user_rating": 8,
+    "user": {
+        "username": "justin",
+        "private": false,
+        "name": "Justin Nemeth",
+        "vip": true,
+        "vip_ep": false,
+        "ids": {
+            "slug": "justin"
+        }
+    }
+}

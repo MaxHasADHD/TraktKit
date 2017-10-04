@@ -1,0 +1,21 @@
+{
+  "private" : false,
+  "ids" : {
+    "slug" : "sean"
+  },
+  "vip" : true,
+  "joined_at" : "2010-09-25T17:49:25.000Z",
+  "age" : 35,
+  "about" : "I have all your cassette tapes.",
+  "vip_ep" : true,
+  "location" : "SF",
+  "username" : "sean",
+  "images" : {
+    "avatar" : {
+      "full" : "https:\/\/walter-dev.trakt.tv\/images\/users\/000\/000\/001\/avatars\/large\/0ba3f72910.jpg"
+    }
+  },
+  "name" : "Sean Rudford",
+  "gender" : "male"
+}
+

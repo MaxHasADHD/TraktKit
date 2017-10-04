@@ -1,0 +1,27 @@
+{
+    "title": "TRON: Legacy",
+    "year": 2010,
+    "ids": {
+        "trakt": 343,
+        "slug": "tron-legacy-2010",
+        "imdb": "tt1104001",
+        "tmdb": 20526
+    },
+    "tagline": "The Game Has Changed.",
+    "overview": "Sam Flynn, the tech-savvy and daring son of Kevin Flynn, investigates his father's disappearance and is pulled into The Grid. With the help of  a mysterious program named Quorra, Sam quests to stop evil dictator Clu from crossing into the real world.",
+    "released": "2010-12-16",
+    "runtime": 125,
+    "updated_at": "2014-07-23T03:21:46.000Z",
+    "trailer": null,
+    "homepage": "http://disney.go.com/tron/",
+    "rating": 8,
+    "votes": 111,
+    "language": "en",
+    "available_translations": [
+                               "en"
+                               ],
+    "genres": [
+               "action"
+               ],
+    "certification": "PG-13"
+}
