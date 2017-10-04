@@ -11,44 +11,17 @@ import Foundation
 @testable import TraktKit
 
 class MovieTests: XCTestCase {
-    func testParseMinMovieJSON() {
-        let data = jsonData(named: "Movie_Min")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let show = try decoder.decode(TraktMovie.self, from: data)
-            XCTAssertEqual(show.title, "TRON: Legacy")
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse Trakt Movie")
-        }
+    func testParseMinMovie() {
+        guard let movie = decode("Movie_Min", to: TraktMovie.self) else { return }
+        XCTAssertEqual(movie.title, "TRON: Legacy")
     }
     
-    func testParseFullMovieJSON() {
-        let data = jsonData(named: "Movie_Full")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let movie = try decoder.decode(TraktMovie.self, from: data)
-            XCTAssertEqual(movie.title, "TRON: Legacy")
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse Trakt Movie")
-        }
+    func testParseFullMovie() {
+        guard let movie = decode("Movie_Full", to: TraktMovie.self) else { return }
+        XCTAssertEqual(movie.title, "TRON: Legacy")
     }
     
     func testParseMovieReleases() {
-        let data = jsonData(named: "MovieReleases")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode([TraktMovieRelease].self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse movie releases")
-        }
+        decode("MovieReleases", to: [TraktMovieRelease].self)
     }
 }

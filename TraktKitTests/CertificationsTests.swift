@@ -11,15 +11,7 @@ import Foundation
 @testable import TraktKit
 
 class CertificationsTests: XCTestCase {
-    func testParseCertificationsJSON() {
-        let data = jsonData(named: "Certifications")
-        
-        let decoder = JSONDecoder()
-        do {
-            let _ = try decoder.decode(Certifications.self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse certifications")
-        }
+    func testParseCertifications() {
+        decode("Certifications", to: Certifications.self)
     }
 }
