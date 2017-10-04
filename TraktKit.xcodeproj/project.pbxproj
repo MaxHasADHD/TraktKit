@@ -102,6 +102,7 @@
 		705462851EF3744A003BB24B /* UsersCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462821EF3744A003BB24B /* UsersCollection.swift */; };
 		705462871EF37A60003BB24B /* Collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 705462861EF37A60003BB24B /* Collection.json */; };
 		705462891EF37A76003BB24B /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462881EF37A76003BB24B /* UserTests.swift */; };
+		705AD1601F819D7B00AB7C74 /* CreateListResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 705AD15F1F819D7A00AB7C74 /* CreateListResult.json */; };
 		7061FA071F3FCBD40051036B /* MovieReleases.json in Resources */ = {isa = PBXBuildFile; fileRef = 7061FA061F3FCBD40051036B /* MovieReleases.json */; };
 		70706ECD1F47001C00117E11 /* ShowCastAndCrew_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */; };
 		7078C5521F40FE0300EC6ABD /* CalendarShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E6221EF220160026B8A1 /* CalendarShow.swift */; };
@@ -343,6 +344,7 @@
 		705462821EF3744A003BB24B /* UsersCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollection.swift; sourceTree = "<group>"; };
 		705462861EF37A60003BB24B /* Collection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Collection.json; sourceTree = "<group>"; };
 		705462881EF37A76003BB24B /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		705AD15F1F819D7A00AB7C74 /* CreateListResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CreateListResult.json; sourceTree = "<group>"; };
 		7061FA061F3FCBD40051036B /* MovieReleases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieReleases.json; sourceTree = "<group>"; };
 		70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowCastAndCrew_Min.json; sourceTree = "<group>"; };
 		707FE6E91F5D70ED00407769 /* UnhideItemResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnhideItemResult.swift; sourceTree = "<group>"; };
@@ -733,6 +735,7 @@
 				708834DD1F5CA91A00AB0148 /* Watchlist.json */,
 				708834DF1F5CAAFD00AB0148 /* Watched.json */,
 				7095BCEB1F6BF53D00560A2F /* Collection.json */,
+				705AD15F1F819D7A00AB7C74 /* CreateListResult.json */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1036,6 +1039,7 @@
 				70F7733D1F3D3D6D0078110E /* Settings.json in Resources */,
 				7095BCEC1F6BF53D00560A2F /* Collection.json in Resources */,
 				70E96DA81EEFE81A00EE34DA /* Show_Full.json in Resources */,
+				705AD1601F819D7B00AB7C74 /* CreateListResult.json in Resources */,
 				7029D1571EEFFD3000BD926D /* Episode_Min.json in Resources */,
 				70F773551F3DBF850078110E /* ListComments.json in Resources */,
 				70F773411F3D45330078110E /* HiddenItems.json in Resources */,
