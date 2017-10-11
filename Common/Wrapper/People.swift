@@ -39,7 +39,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getMovieCredits<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -51,7 +51,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getShowCredits<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
+    public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
     
