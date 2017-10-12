@@ -1,5 +1,5 @@
 //
-//  TraktPerson.swift
+//  Person.swift
 //  TraktKit
 //
 //  Created by Maximilian Litteral on 4/13/16.

@@ -62,7 +62,7 @@
 		703D2ED31EF13E6300CAD268 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703D2ED21EF13E6300CAD268 /* HelperFunctions.swift */; };
 		703D2ED41EF13FF000CAD268 /* TraktList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98951CBF50DE00744566 /* TraktList.swift */; };
 		703D2ED61EF141E200CAD268 /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
-		703D2ED71EF1422300CAD268 /* TraktPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* TraktPerson.swift */; };
+		703D2ED71EF1422300CAD268 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* Person.swift */; };
 		703D2ED81EF1423000CAD268 /* TraktRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A21701D394E1B006E5D92 /* TraktRating.swift */; };
 		703D2ED91EF1428500CAD268 /* TraktHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */; };
 		703D2EDA1EF142C300CAD268 /* TraktCollectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C810B21DBAAE9A00A5AA28 /* TraktCollectedItem.swift */; };
@@ -248,7 +248,7 @@
 		A70807461D8E1F5A00176B0A /* TraktUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988B1CBF4B8E00744566 /* TraktUser.swift */; };
 		A70807471D8E1F5A00176B0A /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
 		A70807481D8E1F5A00176B0A /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764CB7F1D7B36960094BE66 /* HiddenItem.swift */; };
-		A70807491D8E1F5A00176B0A /* TraktPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* TraktPerson.swift */; };
+		A70807491D8E1F5A00176B0A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* Person.swift */; };
 		A708074A1D8E1F5A00176B0A /* TraktCrewMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98901CBF4E9D00744566 /* TraktCrewMember.swift */; };
 		A708074B1D8E1F5A00176B0A /* TraktCastMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98921CBF4F7600744566 /* TraktCastMember.swift */; };
 		A708074C1D8E1F5A00176B0A /* TraktList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98951CBF50DE00744566 /* TraktList.swift */; };
@@ -289,7 +289,7 @@
 		A7582BFB1CCA6FE900B3CF63 /* TraktWatchedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98851CBF4A4000744566 /* TraktWatchedMovie.swift */; };
 		A7582C041CCA6FF600B3CF63 /* TraktComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98881CBF4A6A00744566 /* TraktComment.swift */; };
 		A7582C051CCA6FF600B3CF63 /* TraktUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988B1CBF4B8E00744566 /* TraktUser.swift */; };
-		A7582C061CCA6FF600B3CF63 /* TraktPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* TraktPerson.swift */; };
+		A7582C061CCA6FF600B3CF63 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* Person.swift */; };
 		A7582C071CCA6FF600B3CF63 /* TraktCrewMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98901CBF4E9D00744566 /* TraktCrewMember.swift */; };
 		A7582C081CCA6FF600B3CF63 /* TraktCastMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98921CBF4F7600744566 /* TraktCastMember.swift */; };
 		A7582C091CCA6FF600B3CF63 /* TraktList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98951CBF50DE00744566 /* TraktList.swift */; };
@@ -438,7 +438,7 @@
 		A7AF98851CBF4A4000744566 /* TraktWatchedMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktWatchedMovie.swift; sourceTree = "<group>"; };
 		A7AF98881CBF4A6A00744566 /* TraktComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktComment.swift; sourceTree = "<group>"; };
 		A7AF988B1CBF4B8E00744566 /* TraktUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktUser.swift; sourceTree = "<group>"; };
-		A7AF988E1CBF4D3C00744566 /* TraktPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktPerson.swift; sourceTree = "<group>"; };
+		A7AF988E1CBF4D3C00744566 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		A7AF98901CBF4E9D00744566 /* TraktCrewMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktCrewMember.swift; sourceTree = "<group>"; };
 		A7AF98921CBF4F7600744566 /* TraktCastMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktCastMember.swift; sourceTree = "<group>"; };
 		A7AF98951CBF50DE00744566 /* TraktList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktList.swift; sourceTree = "<group>"; };
@@ -553,7 +553,7 @@
 		700FED361F3FC38600169961 /* People */ = {
 			isa = PBXGroup;
 			children = (
-				A7AF988E1CBF4D3C00744566 /* TraktPerson.swift */,
+				A7AF988E1CBF4D3C00744566 /* Person.swift */,
 				A7AF98901CBF4E9D00744566 /* TraktCrewMember.swift */,
 				A7AF98921CBF4F7600744566 /* TraktCastMember.swift */,
 				70F7E6311EF2A7050026B8A1 /* CastAndCrew.swift */,
@@ -1137,7 +1137,7 @@
 				A70807271D8E1F5A00176B0A /* Search.swift in Sources */,
 				700FED231F3FBC7C00169961 /* People.swift in Sources */,
 				A70807211D8E1F5A00176B0A /* Comments.swift in Sources */,
-				A70807491D8E1F5A00176B0A /* TraktPerson.swift in Sources */,
+				A70807491D8E1F5A00176B0A /* Person.swift in Sources */,
 				70F7735A1F3DC0E00078110E /* RemoveListItemResult.swift in Sources */,
 				70F773381F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
@@ -1159,7 +1159,7 @@
 				70F7732D1F3C76C60078110E /* Update.swift in Sources */,
 				A7582BF51CCA6FE900B3CF63 /* TraktWatchedShow.swift in Sources */,
 				70393F3D1F3F34C300943D34 /* RemoveFromWatchlistResult.swift in Sources */,
-				A7582C061CCA6FF600B3CF63 /* TraktPerson.swift in Sources */,
+				A7582C061CCA6FF600B3CF63 /* Person.swift in Sources */,
 				70F7735B1F3DC0E00078110E /* RemoveListItemResult.swift in Sources */,
 				70E96DB21EEFF85700EE34DA /* Shows.swift in Sources */,
 				70F5F1E21DC718E700CDE58E /* CompletionHandlers.swift in Sources */,
@@ -1267,7 +1267,7 @@
 				70393F341F3F2BE500943D34 /* AddRatingsResult.swift in Sources */,
 				703D2EE21EF14B1B00CAD268 /* MLKeychain.swift in Sources */,
 				70F773301F3C77D80078110E /* Alias.swift in Sources */,
-				703D2ED71EF1422300CAD268 /* TraktPerson.swift in Sources */,
+				703D2ED71EF1422300CAD268 /* Person.swift in Sources */,
 				700FED291F3FBD8C00169961 /* ScrobbleResult.swift in Sources */,
 				70B8442E1EF0DC4D001BA900 /* TraktWatchedProgress.swift in Sources */,
 				70B844251EF0DC4D001BA900 /* TraktMostShow.swift in Sources */,
