@@ -147,6 +147,8 @@
 		70B844421EF0E590001BA900 /* Comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70B844411EF0E590001BA900 /* Comment.json */; };
 		70B844441EF0E5AB001BA900 /* CommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B844431EF0E5AB001BA900 /* CommentTests.swift */; };
 		70BF06C21F5D76AD00F351C8 /* UnhideItemResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 70BF06C11F5D76AD00F351C8 /* UnhideItemResult.json */; };
+		70C39B521F8508CB006D1708 /* Person_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C39B511F8508CB006D1708 /* Person_Min.json */; };
+		70C39B541F8508D3006D1708 /* Person_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C39B531F8508D3006D1708 /* Person_Full.json */; };
 		70C39F3C1EF3869100C3F6A4 /* UsersComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C39F3B1EF3869100C3F6A4 /* UsersComments.swift */; };
 		70C39F3D1EF3869100C3F6A4 /* UsersComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C39F3B1EF3869100C3F6A4 /* UsersComments.swift */; };
 		70C39F3E1EF3869100C3F6A4 /* UsersComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C39F3B1EF3869100C3F6A4 /* UsersComments.swift */; };
@@ -358,6 +360,8 @@
 		70B844411EF0E590001BA900 /* Comment.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Comment.json; sourceTree = "<group>"; };
 		70B844431EF0E5AB001BA900 /* CommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTests.swift; sourceTree = "<group>"; };
 		70BF06C11F5D76AD00F351C8 /* UnhideItemResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UnhideItemResult.json; sourceTree = "<group>"; };
+		70C39B511F8508CB006D1708 /* Person_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Person_Min.json; sourceTree = "<group>"; };
+		70C39B531F8508D3006D1708 /* Person_Full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Person_Full.json; sourceTree = "<group>"; };
 		70C39F3B1EF3869100C3F6A4 /* UsersComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersComments.swift; sourceTree = "<group>"; };
 		70C810B21DBAAE9A00A5AA28 /* TraktCollectedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktCollectedItem.swift; sourceTree = "<group>"; };
 		70C832331DC50164003EB134 /* TraktCheckin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktCheckin.swift; sourceTree = "<group>"; };
@@ -660,6 +664,8 @@
 				70393F481F3F4BE600943D34 /* ShowCollectionProgress.json */,
 				70EDB5681F45971100D508AA /* TrendingShows.json */,
 				70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */,
+				70E96DAC1EEFF23000EE34DA /* Show_Min.json */,
+				70E96DA71EEFE81A00EE34DA /* Show_Full.json */,
 			);
 			path = Shows;
 			sourceTree = "<group>";
@@ -693,25 +699,41 @@
 			isa = PBXGroup;
 			children = (
 				7061FA061F3FCBD40051036B /* MovieReleases.json */,
+				70B844321EF0DE9B001BA900 /* Movie_Min.json */,
+				70B844341EF0DEA6001BA900 /* Movie_Full.json */,
 			);
 			path = Movies;
+			sourceTree = "<group>";
+		};
+		70C39B4F1F850864006D1708 /* Episodes */ = {
+			isa = PBXGroup;
+			children = (
+				7029D1561EEFFD3000BD926D /* Episode_Min.json */,
+				7029D1581EEFFD3900BD926D /* Episode_Full.json */,
+			);
+			path = Episodes;
+			sourceTree = "<group>";
+		};
+		70C39B501F8508AA006D1708 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				70C39B511F8508CB006D1708 /* Person_Min.json */,
+				70C39B531F8508D3006D1708 /* Person_Full.json */,
+				70F7E6391EF2A7C70026B8A1 /* MovieCredits.json */,
+			);
+			path = People;
 			sourceTree = "<group>";
 		};
 		70E96DA61EEFE7FA00EE34DA /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				7061FA051F3FCB690051036B /* Movies */,
+				70C39B501F8508AA006D1708 /* People */,
 				70393F471F3F4BCF00943D34 /* Shows */,
+				70C39B4F1F850864006D1708 /* Episodes */,
 				70F773491F3D4EAB0078110E /* Certifications */,
 				70F7733B1F3D3D320078110E /* Users */,
-				70B844321EF0DE9B001BA900 /* Movie_Min.json */,
-				70B844341EF0DEA6001BA900 /* Movie_Full.json */,
-				70E96DAC1EEFF23000EE34DA /* Show_Min.json */,
-				70E96DA71EEFE81A00EE34DA /* Show_Full.json */,
-				7029D1561EEFFD3000BD926D /* Episode_Min.json */,
-				7029D1581EEFFD3900BD926D /* Episode_Full.json */,
 				70B844411EF0E590001BA900 /* Comment.json */,
-				70F7E6391EF2A7C70026B8A1 /* MovieCredits.json */,
 				705462601EF36318003BB24B /* Ratings.json */,
 				7054626A1EF36A69003BB24B /* PlaybackProgress.json */,
 				705462861EF37A60003BB24B /* Collection.json */,
@@ -1026,6 +1048,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70B844331EF0DE9B001BA900 /* Movie_Min.json in Resources */,
+				70C39B541F8508D3006D1708 /* Person_Full.json in Resources */,
 				70706ECD1F47001C00117E11 /* ShowCastAndCrew_Min.json in Resources */,
 				708834E01F5CAAFD00AB0148 /* Watched.json in Resources */,
 				70F773451F3D4AA50078110E /* UserProfile_Full.json in Resources */,
@@ -1049,6 +1072,7 @@
 				70F7733A1F3D3B840078110E /* ListItem_Post_Result.json in Resources */,
 				70EDB5691F45971100D508AA /* TrendingShows.json in Resources */,
 				70393F491F3F4BE600943D34 /* ShowCollectionProgress.json in Resources */,
+				70C39B521F8508CB006D1708 /* Person_Min.json in Resources */,
 				70E96DAD1EEFF23000EE34DA /* Show_Min.json in Resources */,
 				7054626B1EF36A69003BB24B /* PlaybackProgress.json in Resources */,
 				70BF06C21F5D76AD00F351C8 /* UnhideItemResult.json in Resources */,

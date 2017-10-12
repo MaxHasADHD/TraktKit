@@ -6,7 +6,9 @@
 //  Copyright © 2017 Maximilian Litteral. All rights reserved.
 //
 
+import XCTest
 import Foundation
+@testable import TraktKit
 
 func debugPrintError(_ error: Error) {
     switch error {
@@ -28,4 +30,21 @@ func jsonData(named: String) -> Data {
     let path = bundle.path(forResource: named, ofType: "json")!
     let data = try! Data(contentsOf: URL(fileURLWithPath: path))
     return data
+}
+
+extension XCTestCase {
+    @discardableResult
+    func decode<T: Codable>(_ fileName: String, to type: T.Type = T.self) -> T? {
+        let data = jsonData(named: fileName)
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            debugPrintError(error)
+            XCTFail("Failed to parse \(T.self)")
+        }
+        return nil
+    }
 }

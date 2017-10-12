@@ -11,178 +11,54 @@ import Foundation
 @testable import TraktKit
 
 class UserTests: XCTestCase {
-    func testParseSettingsJSON() {
-        let data = jsonData(named: "Settings")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode(AccountSettings.self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse settings")
-        }
+    func testParseSettings() {
+        decode("Settings", to: AccountSettings.self)
     }
     
     func testParseFollowRequest() {
-        let data = jsonData(named: "FollowRequest")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode([FollowRequest].self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse follow request")
-        }
+        decode("FollowRequest", to: [FollowRequest].self)
     }
     
     func testParseHiddenItems() {
-        let data = jsonData(named: "HiddenItems")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode([HiddenItem].self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse follow request")
-        }
+        decode("HiddenItems", to: [HiddenItem].self)
     }
     
-    func testUserProfileMinJSON() {
-        let data = jsonData(named: "UserProfile_Min")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode(User.self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse follow request")
-        }
+    func testUserProfileMin() {
+        decode("UserProfile_Min", to: User.self)
     }
     
-    func testUserProfileFullJSON() {
-        let data = jsonData(named: "UserProfile_Full")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode(User.self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse follow request")
-        }
+    func testUserProfileFull() {
+        decode("UserProfile_Full", to: User.self)
     }
     
-    func testUserProfileVIPJSON() {
-        let data = jsonData(named: "UserProfile_VIP")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode(User.self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse follow request")
-        }
-    }
-    
-    func testParseUserCollectionJSON() {
-        let bundle = Bundle(for: UserTests.self)
-        let path = bundle.path(forResource: "Collection", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode([UsersCollection].self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse playback progress")
-        }
-    }
-    
-    func testParseUserStatsJSON() {
-        let data = jsonData(named: "Stats")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode(UserStats.self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse user statistics")
-        }
-    }
-    
-    func testParseUserWatchlist() {
-        let data = jsonData(named: "Watchlist")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode([TraktListItem].self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse user watchlist")
-        }
-    }
-    
-    func testParseUserWatched() {
-        let data = jsonData(named: "Watched")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode([TraktWatchedShow].self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse user watchlist")
-        }
-    }
-    
-    func testParseUserUnhideItem() {
-        let data = jsonData(named: "UnhideItemResult")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let result = try decoder.decode(UnhideItemResult.self, from: data)
-            XCTAssertEqual(result.deleted.movies, 1)
-            XCTAssertEqual(result.deleted.shows, 2)
-            XCTAssertEqual(result.deleted.seasons, 2)
-//            XCTAssertEqual(result.notFound.movies.first?.imdb, "tt0000111")
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse unhide item result")
-        }
+    func testUserProfileVIP() {
+        decode("UserProfile_VIP", to: User.self)
     }
     
     func testParseUserCollection() {
-        let data = jsonData(named: "Collection")
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode([UsersCollection].self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse user collection")
-        }
+        decode("Collection", to: [UsersCollection].self)
+    }
+    
+    func testParseUserStats() {
+        decode("Stats", to: UserStats.self)
+    }
+    
+    func testParseUserWatchlist() {
+        decode("Watchlist", to: [TraktListItem].self)
+    }
+    
+    func testParseUserWatched() {
+        decode("Watched", to: [TraktWatchedShow].self)
+    }
+    
+    func testParseUserUnhideItem() {
+        guard let result = decode("UnhideItemResult", to: UnhideItemResult.self) else { return }
+        XCTAssertEqual(result.deleted.movies, 1)
+        XCTAssertEqual(result.deleted.shows, 2)
+        XCTAssertEqual(result.deleted.seasons, 2)
     }
 
     func testParseUserCreateListResult() {
-        let data = jsonData(named: "CreateListResult")
-
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let _ = try decoder.decode(TraktList.self, from: data)
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse Trakt list result")
-        }
+        decode("CreateListResult", to: TraktList.self)
     }
 }

@@ -1,4 +1,3 @@
-//
 //  Person.swift
 //  TraktKit
 //
@@ -20,7 +19,7 @@ public struct Person: Codable {
     public let death: Date?
     public let birthplace: String?
     public let homepage: URL?
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case ids
@@ -46,5 +45,5 @@ public struct Person: Codable {
             homepage = nil
         }
     }
-    
+
 }

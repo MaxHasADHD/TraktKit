@@ -11,34 +11,13 @@ import Foundation
 @testable import TraktKit
 
 class EpisodeTests: XCTestCase {
-    func testParseMinEpisodeJSON() {
-        let bundle = Bundle(for: EpisodeTests.self)
-        let path = bundle.path(forResource: "Episode_Min", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
-        
-        let decoder = JSONDecoder()
-        do {
-            let episode = try decoder.decode(TraktEpisode.self, from: data)
-            XCTAssertEqual(episode.title, "Winter Is Coming")
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse Trakt Show")
-        }
+    func testParseMinEpisode() {
+        guard let episode = decode("Episode_Min", to: TraktEpisode.self) else { return }
+        XCTAssertEqual(episode.title, "Winter Is Coming")
     }
     
-    func testParseFullEpisodeJSON() {
-        let bundle = Bundle(for: EpisodeTests.self)
-        let path = bundle.path(forResource: "Episode_Full", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        do {
-            let episode = try decoder.decode(TraktEpisode.self, from: data)
-            XCTAssertEqual(episode.title, "Winter Is Coming")
-        } catch {
-            debugPrintError(error)
-            XCTFail("Failed to parse Trakt Show")
-        }
+    func testParseFullEpisode() {
+        guard let episode = decode("Episode_Full", to: TraktEpisode.self) else { return }
+        XCTAssertEqual(episode.title, "Winter Is Coming")
     }
 }
