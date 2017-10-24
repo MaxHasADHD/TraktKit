@@ -9,6 +9,6 @@
 import Foundation
 
 public struct CalendarMovie: Codable {
-    let released: Date
-    let movie: TraktMovie
+    public let released: Date
+    public let movie: TraktMovie
 }
