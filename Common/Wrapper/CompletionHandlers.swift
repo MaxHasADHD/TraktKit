@@ -57,6 +57,7 @@ extension TraktManager {
     // MARK: Common
     public typealias ObjectCompletionHandler<T: Codable> = (_ result: ObjectResultType<T>) -> Void
     public typealias ObjectsCompletionHandler<T: Codable> = (_ result: ObjectsResultType<T>) -> Void
+    public typealias paginatedCompletionHandler<T: Codable> = (_ result: ObjectsResultTypePagination<T>) -> Void
     
     public typealias DataResultCompletionHandler = (_ result: DataResultType) -> Void
     public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
@@ -104,7 +105,7 @@ extension TraktManager {
     // MARK: Sync
     public typealias LastActivitiesCompletionHandler = ObjectCompletionHandler<TraktLastActivities>
     public typealias RatingsCompletionHandler = ObjectsCompletionHandler<TraktRating>
-    public typealias HistoryCompletionHandler = ObjectsCompletionHandler<TraktHistoryItem>
+    public typealias HistoryCompletionHandler = paginatedCompletionHandler<TraktHistoryItem>
     public typealias CollectionCompletionHandler = ObjectsCompletionHandler<TraktCollectedItem>
     
     // MARK: Users
