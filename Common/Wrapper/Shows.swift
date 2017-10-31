@@ -232,4 +232,40 @@ extension TraktManager {
     public func getUsersWatchingShow<T: CustomStringConvertible>(showID id: T, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
         return getUsersWatching(.Shows, id: id, completion: completion)
     }
+    
+    // MARK: - Next Episode
+    
+    /**
+     Returns the next scheduled to air episode.
+     
+     **Note**: If no episode is found, a 204 HTTP status code will be returned.
+     */
+    @discardableResult
+    public func getNextEpisode<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktEpisode>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "shows/\(id)/next_episode",
+            withQuery: ["extended": extended.queryString()],
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
+    
+    // MARK: - Last Episode
+    
+    /**
+     Returns the most recently aired episode.
+     
+     **Note**: If no episode is found, a 204 HTTP status code will be returned.
+     */
+    @discardableResult
+    public func getLastEpisode<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktEpisode>) -> URLSessionDataTask? {
+        guard let request = mutableRequest(forPath: "shows/\(id)/last_episode",
+            withQuery: ["extended": extended.queryString()],
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
 }
