@@ -29,7 +29,7 @@ internal extension Date {
     static func dateFromString(_ string: Any?) throws -> Date {
         guard let dateString = string as? String else { throw DateParserError.failedToParseDateFromString("\(String(describing: string))") }
         
-        let count = dateString.characters.count
+        let count = dateString.count
         if count <= 10 {
             ISO8601DateFormatter.dateFormat = "yyyy-MM-dd"
         } else if count == 23 {
