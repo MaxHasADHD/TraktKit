@@ -18,7 +18,7 @@ public struct TraktList: Codable {
     public let allowComments: Bool
     public let commentCount: Int
     public let createdAt: Date
-    public let description: String
+    public let description: String?
     public let displayNumbers: Bool
     public var itemCount: Int
     public var likes: Int
