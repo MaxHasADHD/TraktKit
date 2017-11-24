@@ -9,21 +9,21 @@
 import Foundation
 
 public struct RemoveRatingsResult: Codable {
-    let deleted: Deleted
-    let notFound: NotFound
+    public let deleted: Deleted
+    public let notFound: NotFound
     
     public struct Deleted: Codable {
-        let movies: Int
-        let shows: Int
-        let seasons: Int
-        let episodes: Int
+        public let movies: Int
+        public let shows: Int
+        public let seasons: Int
+        public let episodes: Int
     }
     
     public struct NotFound: Codable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        let episodes: [ID]
+        public let movies: [ID]
+        public let shows: [ID]
+        public let seasons: [ID]
+        public let episodes: [ID]
     }
     
     enum CodingKeys: String, CodingKey {
