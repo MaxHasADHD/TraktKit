@@ -55,14 +55,19 @@ extension TraktManager {
                                            withHTTPMethod: .DELETE) else { return nil }
         
         let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard
-                error == nil else { return completionHandler(.fail) }
+            guard error == nil else {
+                    completionHandler(.fail)
+                    return
+            }
             
             // Check response
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
                 (HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn || HTTPResponse.statusCode == StatusCodes.Success)
-                else { return completionHandler(.fail) }
+                else {
+                    completionHandler(.fail)
+                    return
+            }
             completionHandler(.success)
         }
         dataTask.resume()
