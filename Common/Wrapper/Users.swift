@@ -105,14 +105,14 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, page: Int, limit: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
-        var query: [String: String] = [:]
+    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], page: Int, limit: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
+        var query: [String: String] = ["extended": extended.queryString()]
         if let type = type {
             query["type"] = type.rawValue
         }
         query["page"] = "\(page)"
         query["limit"] = "\(limit)"
-        
+
         guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
             withQuery: query,
             isAuthorized: true,
