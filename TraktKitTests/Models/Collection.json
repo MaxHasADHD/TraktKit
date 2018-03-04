@@ -1,42 +1,65 @@
- [
+[
   {
-  "collected_at": "2014-09-01T09:10:11.000Z",
-  "movie": {
-  "title": "TRON: Legacy",
-  "year": 2010,
-  "ids": {
-  "trakt": 1,
-  "slug": "tron-legacy-2010",
-  "imdb": "tt1104001",
-  "tmdb": 20526
-  }
-  },
-  "metadata": {
-  "media_type": "bluray",
-  "resolution": "hd_1080p",
-  "audio": "dts",
-  "audio_channels": "6.1",
-  "3d": false
-  }
+    "collected_at" : "2014-09-01T09:10:11.000Z",
+    "movie" : {
+      "title" : "TRON: Legacy",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 20526,
+        "slug" : "tron-legacy-2010",
+        "trakt" : 1,
+        "imdb" : "tt1104001"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "6.1",
+      "media_type" : "bluray",
+      "resolution" : "hd_1080p"
+    }
   },
   {
-  "collected_at": "2014-09-01T09:10:11.000Z",
-  "movie": {
-  "title": "The Dark Knight",
-  "year": 2008,
-  "ids": {
-  "trakt": 6,
-  "slug": "the-dark-knight-2008",
-  "imdb": "tt0468569",
-  "tmdb": 155
-  }
+    "collected_at" : "2014-09-01T09:10:11.000Z",
+    "movie" : {
+      "title" : "The Dark Knight",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 155,
+        "slug" : "the-dark-knight-2008",
+        "trakt" : 6,
+        "imdb" : "tt0468569"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "6.1",
+      "media_type" : "bluray",
+      "resolution" : "hd_1080p"
+    }
   },
-  "metadata": {
-  "media_type": "bluray",
-  "resolution": "hd_1080p",
-  "audio": "dts",
-  "audio_channels": "6.1",
-  "3d": false
+  {
+    "collected_at" : "2016-01-01T09:10:11.000Z",
+    "show" : {
+      "title" : "iZombie",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 60866,
+        "slug" : "izombie",
+        "tvdb" : 281470,
+        "tvrage" : 38804,
+        "trakt" : 77686,
+        "imdb" : "tt3501584"
+      }
+    },
+    "metadata" : {
+      "audio" : "dts",
+      "3d" : false,
+      "audio_channels" : "6.1",
+      "media_type" : "bluray",
+      "resolution" : "hd_1080p"
+    }
   }
-  }
-  ]
+]
+

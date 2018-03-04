@@ -27,14 +27,15 @@ public struct TraktCollectedItem: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        movie = try container.decodeIfPresent(TraktMovie.self, forKey: .movie)
+        show = try container.decodeIfPresent(TraktShow.self, forKey: .show)
+        seasons = try container.decodeIfPresent([TraktCollectedSeason].self, forKey: .seasons)
+        
         do {
             self.lastCollectedAt = try container.decode(Date.self, forKey: .lastCollectedAt)
         } catch {
             self.lastCollectedAt = try container.decode(Date.self, forKey: .movieLastCollectAt)
         }
-        movie = try container.decodeIfPresent(TraktMovie.self, forKey: .movie)
-        show = try container.decodeIfPresent(TraktShow.self, forKey: .show)
-        seasons = try container.decodeIfPresent([TraktCollectedSeason].self, forKey: .seasons)
     }
 
     public func encode(to encoder: Encoder) throws {

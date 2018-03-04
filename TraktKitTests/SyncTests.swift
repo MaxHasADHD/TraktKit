@@ -19,4 +19,14 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(moviePlaybackProgress?.id, 13)
         XCTAssertNotNil(moviePlaybackProgress?.movie)
     }
+
+    func testParseCollection() {
+        let collection = decode("Collection", to: [TraktCollectedItem].self)
+        let collectedMovies = collection?.flatMap { $0.movie }
+        XCTAssertNotNil(collectedMovies)
+        XCTAssertEqual(collectedMovies?.count, 2)
+        let collectedShows = collection?.flatMap { $0.show }
+        XCTAssertNotNil(collectedShows)
+        XCTAssertEqual(collectedShows?.count, 1)
+    }
 }

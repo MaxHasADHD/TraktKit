@@ -76,6 +76,30 @@
 		703D2EE31EF14B2300CAD268 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B61D47D3BA00E7F938 /* Filters.swift */; };
 		703D2EE41EF14B2900CAD268 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		703D2EE51EF14B2900CAD268 /* CompletionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C832351DC505C5003EB134 /* CompletionHandlers.swift */; };
+		70469140204AEAEF0038F02B /* TraktSeason+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046913F204AEAEF0038F02B /* TraktSeason+Mock.swift */; };
+		70469141204AEAEF0038F02B /* TraktSeason+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046913F204AEAEF0038F02B /* TraktSeason+Mock.swift */; };
+		70469142204AEAEF0038F02B /* TraktSeason+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046913F204AEAEF0038F02B /* TraktSeason+Mock.swift */; };
+		70469144204AEAF80038F02B /* TraktEpisode+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469143204AEAF80038F02B /* TraktEpisode+Mock.swift */; };
+		70469145204AEAF80038F02B /* TraktEpisode+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469143204AEAF80038F02B /* TraktEpisode+Mock.swift */; };
+		70469146204AEAF80038F02B /* TraktEpisode+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469143204AEAF80038F02B /* TraktEpisode+Mock.swift */; };
+		70469148204AEBF10038F02B /* MockTraktEpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469147204AEBF10038F02B /* MockTraktEpisodeTests.swift */; };
+		7046914A204AEE640038F02B /* MockTraktSeasonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469149204AEE640038F02B /* MockTraktSeasonTests.swift */; };
+		7046914D204B472B0038F02B /* TraktPerson+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046914C204B472B0038F02B /* TraktPerson+Mock.swift */; };
+		7046914E204B472B0038F02B /* TraktPerson+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046914C204B472B0038F02B /* TraktPerson+Mock.swift */; };
+		7046914F204B472B0038F02B /* TraktPerson+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046914C204B472B0038F02B /* TraktPerson+Mock.swift */; };
+		70469151204B556E0038F02B /* MockTraktPersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469150204B556E0038F02B /* MockTraktPersonTests.swift */; };
+		70469153204C18670038F02B /* TraktCrewMember+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469152204C18670038F02B /* TraktCrewMember+Mock.swift */; };
+		70469154204C18670038F02B /* TraktCrewMember+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469152204C18670038F02B /* TraktCrewMember+Mock.swift */; };
+		70469155204C18670038F02B /* TraktCrewMember+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469152204C18670038F02B /* TraktCrewMember+Mock.swift */; };
+		70469157204C186F0038F02B /* TraktCastMember+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469156204C186F0038F02B /* TraktCastMember+Mock.swift */; };
+		70469158204C186F0038F02B /* TraktCastMember+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469156204C186F0038F02B /* TraktCastMember+Mock.swift */; };
+		70469159204C186F0038F02B /* TraktCastMember+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469156204C186F0038F02B /* TraktCastMember+Mock.swift */; };
+		7046915B204C19E70038F02B /* TraktCastAndCrew+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046915A204C19E70038F02B /* TraktCastAndCrew+Mock.swift */; };
+		7046915C204C19E70038F02B /* TraktCastAndCrew+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046915A204C19E70038F02B /* TraktCastAndCrew+Mock.swift */; };
+		7046915D204C19E70038F02B /* TraktCastAndCrew+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046915A204C19E70038F02B /* TraktCastAndCrew+Mock.swift */; };
+		7046915F204C1A9B0038F02B /* MockTraktCrewMemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7046915E204C1A9B0038F02B /* MockTraktCrewMemberTests.swift */; };
+		70469161204C1AA80038F02B /* MockTraktCastMemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469160204C1AA80038F02B /* MockTraktCastMemberTests.swift */; };
+		70469163204C1AB40038F02B /* MockTraktCastAndCrewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70469162204C1AB40038F02B /* MockTraktCastAndCrewTests.swift */; };
 		7054625A1EF35C06003BB24B /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405F1C07886500A69EA1 /* Search.swift */; };
 		7054625D1EF3622A003BB24B /* RatingDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054625C1EF3622A003BB24B /* RatingDistribution.swift */; };
 		7054625E1EF3622A003BB24B /* RatingDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054625C1EF3622A003BB24B /* RatingDistribution.swift */; };
@@ -103,6 +127,11 @@
 		705462871EF37A60003BB24B /* Collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 705462861EF37A60003BB24B /* Collection.json */; };
 		705462891EF37A76003BB24B /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462881EF37A76003BB24B /* UserTests.swift */; };
 		705AD1601F819D7B00AB7C74 /* CreateListResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 705AD15F1F819D7A00AB7C74 /* CreateListResult.json */; };
+		705BAFC9204593FD007E9413 /* TraktShow+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BAFC8204593FD007E9413 /* TraktShow+Mock.swift */; };
+		705BAFCA204593FD007E9413 /* TraktShow+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BAFC8204593FD007E9413 /* TraktShow+Mock.swift */; };
+		705BAFCB204593FD007E9413 /* TraktShow+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BAFC8204593FD007E9413 /* TraktShow+Mock.swift */; };
+		705BAFCE204595DD007E9413 /* MockTraktShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705BAFCD204595DD007E9413 /* MockTraktShowTests.swift */; };
+		705BAFD420465973007E9413 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		7061FA071F3FCBD40051036B /* MovieReleases.json in Resources */ = {isa = PBXBuildFile; fileRef = 7061FA061F3FCBD40051036B /* MovieReleases.json */; };
 		70706ECD1F47001C00117E11 /* ShowCastAndCrew_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */; };
 		7078C5521F40FE0300EC6ABD /* CalendarShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E6221EF220160026B8A1 /* CalendarShow.swift */; };
@@ -334,6 +363,18 @@
 		70393F431F3F4A9100943D34 /* ShowCollectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCollectionProgress.swift; sourceTree = "<group>"; };
 		70393F481F3F4BE600943D34 /* ShowCollectionProgress.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowCollectionProgress.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		703D2ED21EF13E6300CAD268 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		7046913F204AEAEF0038F02B /* TraktSeason+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraktSeason+Mock.swift"; sourceTree = "<group>"; };
+		70469143204AEAF80038F02B /* TraktEpisode+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraktEpisode+Mock.swift"; sourceTree = "<group>"; };
+		70469147204AEBF10038F02B /* MockTraktEpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTraktEpisodeTests.swift; sourceTree = "<group>"; };
+		70469149204AEE640038F02B /* MockTraktSeasonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTraktSeasonTests.swift; sourceTree = "<group>"; };
+		7046914C204B472B0038F02B /* TraktPerson+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraktPerson+Mock.swift"; sourceTree = "<group>"; };
+		70469150204B556E0038F02B /* MockTraktPersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTraktPersonTests.swift; sourceTree = "<group>"; };
+		70469152204C18670038F02B /* TraktCrewMember+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraktCrewMember+Mock.swift"; sourceTree = "<group>"; };
+		70469156204C186F0038F02B /* TraktCastMember+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraktCastMember+Mock.swift"; sourceTree = "<group>"; };
+		7046915A204C19E70038F02B /* TraktCastAndCrew+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraktCastAndCrew+Mock.swift"; sourceTree = "<group>"; };
+		7046915E204C1A9B0038F02B /* MockTraktCrewMemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTraktCrewMemberTests.swift; sourceTree = "<group>"; };
+		70469160204C1AA80038F02B /* MockTraktCastMemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTraktCastMemberTests.swift; sourceTree = "<group>"; };
+		70469162204C1AB40038F02B /* MockTraktCastAndCrewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTraktCastAndCrewTests.swift; sourceTree = "<group>"; };
 		7054625C1EF3622A003BB24B /* RatingDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingDistribution.swift; sourceTree = "<group>"; };
 		705462601EF36318003BB24B /* Ratings.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Ratings.json; sourceTree = "<group>"; };
 		705462621EF3632E003BB24B /* RatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTests.swift; sourceTree = "<group>"; };
@@ -347,6 +388,8 @@
 		705462861EF37A60003BB24B /* Collection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Collection.json; sourceTree = "<group>"; };
 		705462881EF37A76003BB24B /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		705AD15F1F819D7A00AB7C74 /* CreateListResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CreateListResult.json; sourceTree = "<group>"; };
+		705BAFC8204593FD007E9413 /* TraktShow+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TraktShow+Mock.swift"; sourceTree = "<group>"; };
+		705BAFCD204595DD007E9413 /* MockTraktShowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTraktShowTests.swift; sourceTree = "<group>"; };
 		7061FA061F3FCBD40051036B /* MovieReleases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieReleases.json; sourceTree = "<group>"; };
 		70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowCastAndCrew_Min.json; sourceTree = "<group>"; };
 		707FE6E91F5D70ED00407769 /* UnhideItemResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnhideItemResult.swift; sourceTree = "<group>"; };
@@ -670,6 +713,50 @@
 			path = Shows;
 			sourceTree = "<group>";
 		};
+		7046914B204B471A0038F02B /* People */ = {
+			isa = PBXGroup;
+			children = (
+				7046914C204B472B0038F02B /* TraktPerson+Mock.swift */,
+				70469152204C18670038F02B /* TraktCrewMember+Mock.swift */,
+				70469156204C186F0038F02B /* TraktCastMember+Mock.swift */,
+				7046915A204C19E70038F02B /* TraktCastAndCrew+Mock.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		705BAFC62045939C007E9413 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				7046914B204B471A0038F02B /* People */,
+				705BAFC7204593CB007E9413 /* Shows */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		705BAFC7204593CB007E9413 /* Shows */ = {
+			isa = PBXGroup;
+			children = (
+				705BAFC8204593FD007E9413 /* TraktShow+Mock.swift */,
+				7046913F204AEAEF0038F02B /* TraktSeason+Mock.swift */,
+				70469143204AEAF80038F02B /* TraktEpisode+Mock.swift */,
+			);
+			path = Shows;
+			sourceTree = "<group>";
+		};
+		705BAFCC204595BB007E9413 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				705BAFCD204595DD007E9413 /* MockTraktShowTests.swift */,
+				70469149204AEE640038F02B /* MockTraktSeasonTests.swift */,
+				70469147204AEBF10038F02B /* MockTraktEpisodeTests.swift */,
+				70469150204B556E0038F02B /* MockTraktPersonTests.swift */,
+				7046915E204C1A9B0038F02B /* MockTraktCrewMemberTests.swift */,
+				70469160204C1AA80038F02B /* MockTraktCastMemberTests.swift */,
+				70469162204C1AB40038F02B /* MockTraktCastAndCrewTests.swift */,
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
 		7061FA041F3FC6050051036B /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +880,7 @@
 			children = (
 				7061FA041F3FC6050051036B /* Wrapper */,
 				700FED301F3FC2C400169961 /* Models */,
+				705BAFC62045939C007E9413 /* Mocks */,
 				A76905B51B47B7A6003C7431 /* MLKeychain.swift */,
 				A7FF28DC1C568FF600CA5B53 /* DateParser.swift */,
 				A79163A41C0D46F200E791BC /* Extensions.swift */,
@@ -853,6 +941,7 @@
 				705462621EF3632E003BB24B /* RatingTests.swift */,
 				7054626C1EF36A7E003BB24B /* SyncTests.swift */,
 				705462881EF37A76003BB24B /* UserTests.swift */,
+				705BAFCC204595BB007E9413 /* Mocking */,
 				70E96DA61EEFE7FA00EE34DA /* Models */,
 				A77E86591B29F09100EABC2D /* Supporting Files */,
 			);
@@ -1091,6 +1180,7 @@
 			files = (
 				70393F401F3F39CC00943D34 /* Seasons.swift in Sources */,
 				700FED221F3FB96A00169961 /* TraktMovieRelease.swift in Sources */,
+				7046915D204C19E70038F02B /* TraktCastAndCrew+Mock.swift in Sources */,
 				A70807381D8E1F5A00176B0A /* TraktSeason.swift in Sources */,
 				A70807351D8E1F5A00176B0A /* TraktMostShow.swift in Sources */,
 				70393F281F3F1D8400943D34 /* UserStats.swift in Sources */,
@@ -1126,10 +1216,12 @@
 				A70807221D8E1F5A00176B0A /* Genres.swift in Sources */,
 				A70807501D8E1F5A00176B0A /* DateParser.swift in Sources */,
 				A70807411D8E1F5A00176B0A /* TraktMovieTranslation.swift in Sources */,
+				70469142204AEAEF0038F02B /* TraktSeason+Mock.swift in Sources */,
 				A708074E1D8E1F5A00176B0A /* TraktRating.swift in Sources */,
 				A70807441D8E1F5A00176B0A /* TraktAnticipatedMovie.swift in Sources */,
 				A70807451D8E1F5A00176B0A /* TraktComment.swift in Sources */,
 				70F7E6341EF2A7310026B8A1 /* CastAndCrew.swift in Sources */,
+				70469155204C18670038F02B /* TraktCrewMember+Mock.swift in Sources */,
 				A708071F1D8E1F5A00176B0A /* Calendars.swift in Sources */,
 				70393F291F3F2A3B00943D34 /* Sync.swift in Sources */,
 				70F7732E1F3C76C60078110E /* Update.swift in Sources */,
@@ -1146,8 +1238,10 @@
 				700FED251F3FBC8000169961 /* Scrobble.swift in Sources */,
 				A708074A1D8E1F5A00176B0A /* TraktCrewMember.swift in Sources */,
 				705462781EF36FA2003BB24B /* FollowRequest.swift in Sources */,
+				705BAFCB204593FD007E9413 /* TraktShow+Mock.swift in Sources */,
 				70393F2E1F3F2AC500943D34 /* AddToCollectionResult.swift in Sources */,
 				A708073B1D8E1F5A00176B0A /* TraktWatchedShow.swift in Sources */,
+				70469146204AEAF80038F02B /* TraktEpisode+Mock.swift in Sources */,
 				700FED1D1F3FB89900169961 /* Movies.swift in Sources */,
 				7054625F1EF3622A003BB24B /* RatingDistribution.swift in Sources */,
 				7078C5551F40FE0C00EC6ABD /* CalendarMovie.swift in Sources */,
@@ -1161,10 +1255,12 @@
 				A70807271D8E1F5A00176B0A /* Search.swift in Sources */,
 				700FED231F3FBC7C00169961 /* People.swift in Sources */,
 				A70807211D8E1F5A00176B0A /* Comments.swift in Sources */,
+				7046914F204B472B0038F02B /* TraktPerson+Mock.swift in Sources */,
 				A70807491D8E1F5A00176B0A /* Person.swift in Sources */,
 				70F7735A1F3DC0E00078110E /* RemoveListItemResult.swift in Sources */,
 				70F773381F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
+				70469159204C186F0038F02B /* TraktCastMember+Mock.swift in Sources */,
 				A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */,
 				A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */,
 				A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */,
@@ -1182,6 +1278,7 @@
 			files = (
 				70F7732D1F3C76C60078110E /* Update.swift in Sources */,
 				A7582BF51CCA6FE900B3CF63 /* TraktWatchedShow.swift in Sources */,
+				7046915C204C19E70038F02B /* TraktCastAndCrew+Mock.swift in Sources */,
 				70393F3D1F3F34C300943D34 /* RemoveFromWatchlistResult.swift in Sources */,
 				A7582C061CCA6FF600B3CF63 /* Person.swift in Sources */,
 				70F7735B1F3DC0E00078110E /* RemoveListItemResult.swift in Sources */,
@@ -1217,10 +1314,12 @@
 				A7582BF01CCA6FE900B3CF63 /* TraktAnticipatedShow.swift in Sources */,
 				705462681EF367BA003BB24B /* PlaybackProgress.swift in Sources */,
 				70C39F3D1EF3869100C3F6A4 /* UsersComments.swift in Sources */,
+				70469141204AEAEF0038F02B /* TraktSeason+Mock.swift in Sources */,
 				A7582C071CCA6FF600B3CF63 /* TraktCrewMember.swift in Sources */,
 				A759C3BA1D47D49600E7F938 /* Pagination.swift in Sources */,
 				70393F271F3F1D8400943D34 /* UserStats.swift in Sources */,
 				A7582C0C1CCA6FF600B3CF63 /* Extensions.swift in Sources */,
+				70469154204C18670038F02B /* TraktCrewMember+Mock.swift in Sources */,
 				A7582C051CCA6FF600B3CF63 /* TraktUser.swift in Sources */,
 				A7582BE31CCA6FDB00B3CF63 /* Scrobble.swift in Sources */,
 				A7582BF21CCA6FE900B3CF63 /* TraktSeason.swift in Sources */,
@@ -1237,8 +1336,10 @@
 				A7582BE21CCA6FDB00B3CF63 /* Recommendations.swift in Sources */,
 				702631EB1E6682E5006F323B /* TraktAnticipatedMovie.swift in Sources */,
 				A7582C0A1CCA6FF600B3CF63 /* MLKeychain.swift in Sources */,
+				705BAFCA204593FD007E9413 /* TraktShow+Mock.swift in Sources */,
 				702631EE1E6682F9006F323B /* TraktWatchedProgress.swift in Sources */,
 				705462771EF36FA2003BB24B /* FollowRequest.swift in Sources */,
+				70469145204AEAF80038F02B /* TraktEpisode+Mock.swift in Sources */,
 				A7582BF61CCA6FE900B3CF63 /* TraktWatchedSeason.swift in Sources */,
 				7054625E1EF3622A003BB24B /* RatingDistribution.swift in Sources */,
 				7078C5541F40FE0B00EC6ABD /* CalendarMovie.swift in Sources */,
@@ -1252,10 +1353,12 @@
 				A7582BDD1CCA6FDB00B3CF63 /* Calendars.swift in Sources */,
 				A7582BEE1CCA6FE900B3CF63 /* TraktTrendingShow.swift in Sources */,
 				A7582BEC1CCA6FE900B3CF63 /* TraktSearchResult.swift in Sources */,
+				7046914E204B472B0038F02B /* TraktPerson+Mock.swift in Sources */,
 				A7582BE81CCA6FDB00B3CF63 /* Sync.swift in Sources */,
 				70F773521F3DBEFD0078110E /* Users.swift in Sources */,
 				A7582BF81CCA6FE900B3CF63 /* TraktTrendingMovie.swift in Sources */,
 				70F773311F3C77D80078110E /* Alias.swift in Sources */,
+				70469158204C186F0038F02B /* TraktCastMember+Mock.swift in Sources */,
 				70F7735F1F3DC2160078110E /* FollowUserResult.swift in Sources */,
 				A7582BDE1CCA6FDB00B3CF63 /* Checkin.swift in Sources */,
 				A7582BF41CCA6FE900B3CF63 /* TraktShowTranslation.swift in Sources */,
@@ -1273,6 +1376,7 @@
 			files = (
 				703D2ED91EF1428500CAD268 /* TraktHistoryItem.swift in Sources */,
 				705462641EF36598003BB24B /* Episodes.swift in Sources */,
+				7046915B204C19E70038F02B /* TraktCastAndCrew+Mock.swift in Sources */,
 				703D2EDB1EF147E700CAD268 /* TraktCrewMember.swift in Sources */,
 				70B8442B1EF0DC4D001BA900 /* TraktWatchedShow.swift in Sources */,
 				70B844291EF0DC4D001BA900 /* TraktEpisode.swift in Sources */,
@@ -1298,6 +1402,7 @@
 				70F773621F3DC8AF0078110E /* Friend.swift in Sources */,
 				70B8442D1EF0DC4D001BA900 /* TraktWatchedEpisodes.swift in Sources */,
 				70F7E6251EF220CF0026B8A1 /* CalendarMovie.swift in Sources */,
+				705BAFC9204593FD007E9413 /* TraktShow+Mock.swift in Sources */,
 				70F773361F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				700FED201F3FB96A00169961 /* TraktMovieRelease.swift in Sources */,
 				703D2EDA1EF142C300CAD268 /* TraktCollectedItem.swift in Sources */,
@@ -1307,10 +1412,12 @@
 				70374C281F635E7900173E12 /* HideItemResult.swift in Sources */,
 				70B844381EF0DFAB001BA900 /* TraktMovieTranslation.swift in Sources */,
 				70F7E6231EF220160026B8A1 /* CalendarShow.swift in Sources */,
+				70469140204AEAEF0038F02B /* TraktSeason+Mock.swift in Sources */,
 				705462671EF367BA003BB24B /* PlaybackProgress.swift in Sources */,
 				70393F381F3F2C4700943D34 /* RemoveRatingsResult.swift in Sources */,
 				70B8443E1EF0E020001BA900 /* TraktCheckin.swift in Sources */,
 				70F7E6261EF222190026B8A1 /* Checkin.swift in Sources */,
+				70469153204C18670038F02B /* TraktCrewMember+Mock.swift in Sources */,
 				70F7E61F1EF21EE20026B8A1 /* Enums.swift in Sources */,
 				70B844391EF0DFBB001BA900 /* TraktWatchedMovie.swift in Sources */,
 				705462831EF3744A003BB24B /* UsersCollection.swift in Sources */,
@@ -1330,11 +1437,13 @@
 				70F7E6201EF21FB70026B8A1 /* Calendars.swift in Sources */,
 				70F7732C1F3C76C60078110E /* Update.swift in Sources */,
 				70C39F3C1EF3869100C3F6A4 /* UsersComments.swift in Sources */,
+				70469144204AEAF80038F02B /* TraktEpisode+Mock.swift in Sources */,
 				703D2EE41EF14B2900CAD268 /* TraktManager.swift in Sources */,
 				70393F421F3F411200943D34 /* Shows.swift in Sources */,
 				700FED1E1F3FB89A00169961 /* Movies.swift in Sources */,
 				703D2ED81EF1423000CAD268 /* TraktRating.swift in Sources */,
 				705462761EF36FA1003BB24B /* FollowRequest.swift in Sources */,
+				705BAFD420465973007E9413 /* Extensions.swift in Sources */,
 				7054625D1EF3622A003BB24B /* RatingDistribution.swift in Sources */,
 				70F7E6301EF2A5020026B8A1 /* Recommendations.swift in Sources */,
 				70F7E62B1EF2A3FC0026B8A1 /* Genre.swift in Sources */,
@@ -1342,10 +1451,12 @@
 				70F7735E1F3DC2160078110E /* FollowUserResult.swift in Sources */,
 				707FE6EA1F5D70ED00407769 /* UnhideItemResult.swift in Sources */,
 				70B8443B1EF0DFEE001BA900 /* TraktAnticipatedMovie.swift in Sources */,
+				7046914D204B472B0038F02B /* TraktPerson+Mock.swift in Sources */,
 				70B8442F1EF0DC7C001BA900 /* Structures.swift in Sources */,
 				70393F441F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
 				70F773531F3DBEFE0078110E /* Users.swift in Sources */,
 				70393F2C1F3F2AC500943D34 /* AddToCollectionResult.swift in Sources */,
+				70469157204C186F0038F02B /* TraktCastMember+Mock.swift in Sources */,
 				70B844271EF0DC4D001BA900 /* TraktShow.swift in Sources */,
 				70B844261EF0DC4D001BA900 /* TraktAnticipatedShow.swift in Sources */,
 				70393F3C1F3F34C300943D34 /* RemoveFromWatchlistResult.swift in Sources */,
@@ -1364,14 +1475,21 @@
 				703D2ED31EF13E6300CAD268 /* HelperFunctions.swift in Sources */,
 				70E96DAB1EEFE86F00EE34DA /* ShowsTests.swift in Sources */,
 				7054626D1EF36A7E003BB24B /* SyncTests.swift in Sources */,
+				70469161204C1AA80038F02B /* MockTraktCastMemberTests.swift in Sources */,
 				70F7E63C1EF2A8290026B8A1 /* PeopleTests.swift in Sources */,
 				70F773501F3D4F550078110E /* Certification.swift in Sources */,
+				70469163204C1AB40038F02B /* MockTraktCastAndCrewTests.swift in Sources */,
+				7046915F204C1A9B0038F02B /* MockTraktCrewMemberTests.swift in Sources */,
+				70469148204AEBF10038F02B /* MockTraktEpisodeTests.swift in Sources */,
 				705462631EF3632E003BB24B /* RatingTests.swift in Sources */,
 				70B844441EF0E5AB001BA900 /* CommentTests.swift in Sources */,
+				705BAFCE204595DD007E9413 /* MockTraktShowTests.swift in Sources */,
 				70F7734D1F3D4EDA0078110E /* CertificationsTests.swift in Sources */,
+				70469151204B556E0038F02B /* MockTraktPersonTests.swift in Sources */,
 				705462891EF37A76003BB24B /* UserTests.swift in Sources */,
 				70B844371EF0DEC7001BA900 /* MovieTests.swift in Sources */,
 				7029D15B1EEFFD6600BD926D /* EpisodeTests.swift in Sources */,
+				7046914A204AEE640038F02B /* MockTraktSeasonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
