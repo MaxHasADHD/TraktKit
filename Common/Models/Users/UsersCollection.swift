@@ -12,7 +12,7 @@ public struct UsersCollection: Codable {
     public let collectedAt: Date
     public let movie: TraktMovie?
     public let show: TraktShow?
-    public let metadata: Metadata
+    public let metadata: Metadata?
     
     public struct Metadata: Codable {
         public let mediaType: MediaType?

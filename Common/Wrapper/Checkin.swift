@@ -16,7 +16,7 @@ extension TraktManager {
      **Note**: If a checkin is already in progress, a `409` HTTP status code will returned. The response will contain an `expires_at` timestamp which is when the user can check in again.
      */
     @discardableResult
-    public func checkIn(movie: RawJSON?, episode: RawJSON?, completionHandler: @escaping checkinCompletionHandler) throws -> URLSessionDataTask? {
+    public func checkIn(movie: RawJSON?, episode: RawJSON?, completionHandler: @escaping checkinCompletionHandler) throws -> URLSessionDataTaskProtocol? {
         
         // JSON
         var json: RawJSON = [
@@ -48,7 +48,7 @@ extension TraktManager {
      Removes any active checkins, no need to provide a specific item.
      */
     @discardableResult
-    public func deleteActiveCheckins(completionHandler: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func deleteActiveCheckins(completionHandler: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "checkin",
                                            withQuery: [:],
                                            isAuthorized: true,

@@ -25,7 +25,7 @@ extension TraktManager {
                        pagination: Pagination? = nil,
                        filters: [Filter]? = nil,
                        fields: [SearchType.Field]? = nil,
-                       completion: @escaping SearchCompletionHandler) -> URLSessionDataTask? {
+                       completion: @escaping SearchCompletionHandler) -> URLSessionDataTaskProtocol? {
         
         let typesString = types.map { $0.rawValue }.joined(separator: ",") // Search with multiple types
         var query: [String: String] = ["query": query,
@@ -73,7 +73,7 @@ extension TraktManager {
                        extended: [ExtendedType] = [.Min],
                        type: SearchType,
                        pagination: Pagination? = nil,
-                       completion: @escaping SearchCompletionHandler) -> URLSessionDataTask? {
+                       completion: @escaping SearchCompletionHandler) -> URLSessionDataTaskProtocol? {
         
         var query: [String: String] = ["extended": extended.queryString(),
                                        "type": type.rawValue]

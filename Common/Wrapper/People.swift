@@ -18,7 +18,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<Person>) -> URLSessionDataTask? {
+    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<Person>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "people/\(id)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
@@ -39,7 +39,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
+    public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTaskProtocol? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
     
@@ -51,14 +51,14 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
+    public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTaskProtocol? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
     
     // MARK: - Private
     
     @discardableResult
-    private func getCredits<T: CustomStringConvertible>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTask? {
+    private func getCredits<T: CustomStringConvertible>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "people/\(id)/\(type)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,

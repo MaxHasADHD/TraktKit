@@ -125,7 +125,7 @@ extension TraktManager {
     // MARK: - Perform Requests
     
     /// Data
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTaskProtocol? {
         
         let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
@@ -155,12 +155,12 @@ extension TraktManager {
             completion(.success(data: data))
         }
         datatask.resume()
-        
+
         return datatask
     }
     
     /// Success / Failure
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         let datatask = session.dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else {
                 completion(.fail)
@@ -190,7 +190,7 @@ extension TraktManager {
     }
     
     /// Checkin
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping checkinCompletionHandler) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping checkinCompletionHandler) -> URLSessionDataTaskProtocol? {
         let aCompletion: DataResultCompletionHandler = { (result: DataResultType) -> Void in
             switch result {
             case .success(let data):
@@ -216,7 +216,7 @@ extension TraktManager {
     }
     
     // Generic array of Trakt objects
-    func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
         
         let aCompletion: DataResultCompletionHandler = { (result) -> Void in
             switch result {
@@ -239,7 +239,7 @@ extension TraktManager {
     }
     
     /// Array of TraktProtocol objects
-    func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTask? {
+    func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
@@ -282,7 +282,7 @@ extension TraktManager {
     }
     
     /// Array of ObjectsResultTypePagination objects
-    func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTask? {
+    func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
@@ -338,7 +338,7 @@ extension TraktManager {
     }
     
     // Watching
-    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping WatchingCompletion) -> URLSessionDataTask? {
+    func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping WatchingCompletion) -> URLSessionDataTaskProtocol? {
         let dataTask = session.dataTask(with: request) { data, response, error in
             guard error == nil else {
                 completion(.error(error: error))
