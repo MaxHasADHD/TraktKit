@@ -345,14 +345,22 @@ public class TraktManager {
         guard
             let clientID = clientID,
             let clientSecret = clientSecret,
-            let redirectURI = redirectURI else { return completionHandler(.fail) }
+            let redirectURI = redirectURI else {
+                completionHandler(.fail)
+                return
+        }
         
-        guard
-            let rToken = refreshToken else { return completionHandler(.fail) }
+        guard let rToken = refreshToken else {
+            completionHandler(.fail)
+            return
+        }
         
         let urlString = "https://trakt.tv/oauth/token"
         let url = URL(string: urlString)
-        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else { return completionHandler(.fail) }
+        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler(.fail)
+            return
+        }
         
         let json = [
             "refresh_token": rToken,
@@ -364,20 +372,25 @@ public class TraktManager {
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
         session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard
-                let welf = self else { return }
-            guard error == nil else { return completionHandler(.fail) }
+            guard let welf = self else { return }
+            guard error == nil else {
+                completionHandler(.fail)
+                return
+            }
             
             // Check response
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
                 HTTPResponse.statusCode == StatusCodes.Success else {
-                    return completionHandler(.fail)
+                    completionHandler(.fail)
+                    return
             }
             
             // Check data
-            guard
-                let data = data else { return completionHandler(.fail) }
+            guard let data = data else {
+                completionHandler(.fail)
+                return
+            }
             
             do {
                 if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
@@ -392,9 +405,9 @@ public class TraktManager {
                     #endif
                     
                     // Save expiration date
-                    guard
-                        let timeInterval = accessTokenDict["expires_in"] as? NSNumber else {
-                            return completionHandler(.fail)
+                    guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else {
+                        completionHandler(.fail)
+                        return
                     }
                     let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
                     
@@ -403,8 +416,7 @@ public class TraktManager {
                     
                     completionHandler(.success)
                 }
-            }
-            catch {
+            } catch {
                 completionHandler(.fail)
             }
         }.resume()

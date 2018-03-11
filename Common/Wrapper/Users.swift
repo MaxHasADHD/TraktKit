@@ -105,14 +105,14 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, page: Int, limit: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
-        var query: [String: String] = [:]
+    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], page: Int, limit: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
+        var query: [String: String] = ["extended": extended.queryString()]
         if let type = type {
             query["type"] = type.rawValue
         }
         query["page"] = "\(page)"
         query["limit"] = "\(limit)"
-        
+
         guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
             withQuery: query,
             isAuthorized: true,
@@ -299,7 +299,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTask? {
+    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping ObjectCompletionHandler<TraktList>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists/\(listID)",

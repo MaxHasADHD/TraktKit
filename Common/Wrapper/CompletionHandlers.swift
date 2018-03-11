@@ -129,7 +129,10 @@ extension TraktManager {
         
         let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
-            guard error == nil else { return completion(.error(error: error)) }
+            guard error == nil else {
+                completion(.error(error: error))
+                return
+            }
             
             // Check response
             guard
@@ -145,7 +148,10 @@ extension TraktManager {
             }
             
             // Check data
-            guard let data = data else { return completion(.error(error: TraktKitNoDataError)) }
+            guard let data = data else {
+                completion(.error(error: TraktKitNoDataError))
+                return
+            }
             completion(.success(data: data))
         }
         datatask.resume()
@@ -156,16 +162,25 @@ extension TraktManager {
     /// Success / Failure
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         let datatask = session.dataTask(with: request) { (data, response, error) -> Void in
-            guard error == nil else { return completion(.fail) }
+            guard error == nil else {
+                completion(.fail)
+                return
+            }
             
             // Check response
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
                 HTTPResponse.statusCode == code
-                else { return completion(.fail) }
+                else {
+                    completion(.fail)
+                    return
+            }
             
             // Check data
-            guard data != nil else { return completion(.fail) }
+            guard data != nil else {
+                completion(.fail)
+                return
+            }
             
             completion(.success)
         }
@@ -228,7 +243,10 @@ extension TraktManager {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
-            guard error == nil else { return completion(.error(error: error)) }
+            guard error == nil else {
+                completion(.error(error: error))
+                return
+            }
             
             // Check response
             guard
@@ -244,7 +262,10 @@ extension TraktManager {
             }
             
             // Check data
-            guard let data = data else { return completion(.error(error: TraktKitNoDataError)) }
+            guard let data = data else {
+                completion(.error(error: TraktKitNoDataError))
+                return
+            }
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
@@ -265,7 +286,10 @@ extension TraktManager {
         
         let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
-            guard error == nil else { return completion(.error(error: error)) }
+            guard error == nil else {
+                completion(.error(error: error))
+                return
+            }
             
             // Check response
             guard
@@ -294,7 +318,10 @@ extension TraktManager {
             }
             
             // Check data
-            guard let data = data else { return completion(.error(error: TraktKitNoDataError)) }
+            guard let data = data else {
+                completion(.error(error: TraktKitNoDataError))
+                return
+            }
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
