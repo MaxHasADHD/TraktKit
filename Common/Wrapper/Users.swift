@@ -299,7 +299,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTask? {
+    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping ObjectCompletionHandler<TraktList>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists/\(listID)",
