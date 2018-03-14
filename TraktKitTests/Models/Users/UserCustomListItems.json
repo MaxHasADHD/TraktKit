@@ -1,0 +1,99 @@
+[
+  {
+    "listed_at" : "2014-06-16T06:07:12.000Z",
+    "movie" : {
+      "title" : "Star Wars: Episode IV - A New Hope",
+      "year" : 1977,
+      "ids" : {
+        "tmdb" : 11,
+        "slug" : "star-wars-episode-iv-a-new-hope-1977",
+        "trakt" : 12,
+        "imdb" : "tt0076759"
+      }
+    },
+    "rank" : 1,
+    "type" : "movie"
+  },
+  {
+    "listed_at" : "2014-06-16T06:07:12.000Z",
+    "show" : {
+      "title" : "The Walking Dead",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 1402,
+        "slug" : "the-walking-dead",
+        "tvdb" : 153021,
+        "trakt" : 2,
+        "imdb" : "tt1520211"
+      }
+    },
+    "rank" : 2,
+    "type" : "show"
+  },
+  {
+    "listed_at" : "2014-06-16T06:07:12.000Z",
+    "season" : {
+      "number" : 1,
+      "ids" : {
+        "tvdb" : 30272,
+        "tmdb" : 3572,
+        "trakt": 1
+      }
+    },
+    "show" : {
+      "title" : "Breaking Bad",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 1396,
+        "slug" : "breaking-bad",
+        "tvdb" : 81189,
+        "trakt" : 1,
+        "imdb" : "tt0903747"
+      }
+    },
+    "rank" : 3,
+    "type" : "season"
+  },
+  {
+    "listed_at" : "2014-06-17T06:52:03.000Z",
+    "show" : {
+      "title" : "Breaking Bad",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 1396,
+        "slug" : "breaking-bad",
+        "tvdb" : 81189,
+        "trakt" : 1,
+        "imdb" : "tt0903747"
+      }
+    },
+    "rank" : 4,
+    "type" : "episode",
+    "episode" : {
+      "number" : 2,
+      "season" : 0,
+      "title" : "Wedding Day",
+      "ids" : {
+        "tmdb" : 62133,
+        "tvdb" : 3859791,
+        "trakt" : 2,
+        "imdb" : null
+      }
+    }
+  },
+  {
+    "listed_at" : "2014-06-17T06:52:03.000Z",
+    "rank" : 5,
+    "type" : "person",
+    "person" : {
+      "name" : "Garrett Hedlund",
+      "ids" : {
+        "tmdb" : 9828,
+        "slug" : "garrett-hedlund",
+        "trakt" : 1,
+        "imdb" : "nm1330560"
+      }
+    }
+  }
+]
+

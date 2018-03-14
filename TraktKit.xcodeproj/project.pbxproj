@@ -21,6 +21,14 @@
 		700FED2B1F3FBD8C00169961 /* ScrobbleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700FED281F3FBD8C00169961 /* ScrobbleResult.swift */; };
 		701EF4B21E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */; };
 		701EF4B31E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */; };
+		702019D120580322002F744E /* CommentsLikes.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D020580322002F744E /* CommentsLikes.json */; };
+		702019D32058033C002F744E /* ListsLikes.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D22058033C002F744E /* ListsLikes.json */; };
+		702019D520583419002F744E /* UserComments.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D420583419002F744E /* UserComments.json */; };
+		702019D72058375D002F744E /* UserCustomLists.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D62058375D002F744E /* UserCustomLists.json */; };
+		702019D920588777002F744E /* UserCustomList.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D820588777002F744E /* UserCustomList.json */; };
+		702019DB205944BA002F744E /* UserCustomListItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DA205944BA002F744E /* UserCustomListItems.json */; };
+		702019DD205946D6002F744E /* test_add_item_to_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DC205946D6002F744E /* test_add_item_to_custom_list.json */; };
+		702019DF205946E2002F744E /* test_remove_item_from_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DE205946E2002F744E /* test_remove_item_from_custom_list.json */; };
 		702631EB1E6682E5006F323B /* TraktAnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */; };
 		702631EC1E6682ED006F323B /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
 		702631ED1E6682F2006F323B /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764CB7F1D7B36960094BE66 /* HiddenItem.swift */; };
@@ -328,6 +336,14 @@
 		700FED1F1F3FB96A00169961 /* TraktMovieRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktMovieRelease.swift; sourceTree = "<group>"; };
 		700FED281F3FBD8C00169961 /* ScrobbleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrobbleResult.swift; sourceTree = "<group>"; };
 		701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktDVDReleaseMovie.swift; sourceTree = "<group>"; };
+		702019D020580322002F744E /* CommentsLikes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CommentsLikes.json; sourceTree = "<group>"; };
+		702019D22058033C002F744E /* ListsLikes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ListsLikes.json; sourceTree = "<group>"; };
+		702019D420583419002F744E /* UserComments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserComments.json; sourceTree = "<group>"; };
+		702019D62058375D002F744E /* UserCustomLists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserCustomLists.json; sourceTree = "<group>"; };
+		702019D820588777002F744E /* UserCustomList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserCustomList.json; sourceTree = "<group>"; };
+		702019DA205944BA002F744E /* UserCustomListItems.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = UserCustomListItems.json; sourceTree = "<group>"; };
+		702019DC205946D6002F744E /* test_add_item_to_custom_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_add_item_to_custom_list.json; sourceTree = "<group>"; };
+		702019DE205946E2002F744E /* test_remove_item_from_custom_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_remove_item_from_custom_list.json; sourceTree = "<group>"; };
 		7029D1561EEFFD3000BD926D /* Episode_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Episode_Min.json; sourceTree = "<group>"; };
 		7029D1581EEFFD3900BD926D /* Episode_Full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Episode_Full.json; sourceTree = "<group>"; };
 		7029D15A1EEFFD6600BD926D /* EpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTests.swift; sourceTree = "<group>"; };
@@ -766,15 +782,23 @@
 				70F7733E1F3D44A70078110E /* FollowRequest.json */,
 				70F773401F3D45330078110E /* HiddenItems.json */,
 				70BF06C11F5D76AD00F351C8 /* UnhideItemResult.json */,
+				702019D020580322002F744E /* CommentsLikes.json */,
+				702019D22058033C002F744E /* ListsLikes.json */,
 				70F773421F3D4A9A0078110E /* UserProfile_Min.json */,
 				70F773441F3D4AA50078110E /* UserProfile_Full.json */,
 				70F773461F3D4AD60078110E /* UserProfile_VIP.json */,
+				702019D420583419002F744E /* UserComments.json */,
+				702019D62058375D002F744E /* UserCustomLists.json */,
+				705AD15F1F819D7A00AB7C74 /* CreateListResult.json */,
+				702019D820588777002F744E /* UserCustomList.json */,
+				702019DA205944BA002F744E /* UserCustomListItems.json */,
+				702019DC205946D6002F744E /* test_add_item_to_custom_list.json */,
+				702019DE205946E2002F744E /* test_remove_item_from_custom_list.json */,
 				70F773541F3DBF840078110E /* ListComments.json */,
 				70F773561F3DBFD70078110E /* Stats.json */,
 				708834DD1F5CA91A00AB0148 /* Watchlist.json */,
 				708834DF1F5CAAFD00AB0148 /* Watched.json */,
 				7095BCEB1F6BF53D00560A2F /* Collection.json */,
-				705AD15F1F819D7A00AB7C74 /* CreateListResult.json */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1071,14 +1095,18 @@
 				708834E01F5CAAFD00AB0148 /* Watched.json in Resources */,
 				70F773451F3D4AA50078110E /* UserProfile_Full.json in Resources */,
 				70B844351EF0DEA6001BA900 /* Movie_Full.json in Resources */,
+				702019D920588777002F744E /* UserCustomList.json in Resources */,
 				705462871EF37A60003BB24B /* Collection.json in Resources */,
 				70F773571F3DBFD70078110E /* Stats.json in Resources */,
+				702019D520583419002F744E /* UserComments.json in Resources */,
 				70F773471F3D4AD60078110E /* UserProfile_VIP.json in Resources */,
 				7029D1591EEFFD3900BD926D /* Episode_Full.json in Resources */,
 				70F7733F1F3D44A70078110E /* FollowRequest.json in Resources */,
+				702019DB205944BA002F744E /* UserCustomListItems.json in Resources */,
 				70F7734B1F3D4EBC0078110E /* Certifications.json in Resources */,
 				70F7733D1F3D3D6D0078110E /* Settings.json in Resources */,
 				7095BCEC1F6BF53D00560A2F /* Collection.json in Resources */,
+				702019D72058375D002F744E /* UserCustomLists.json in Resources */,
 				70E96DA81EEFE81A00EE34DA /* Show_Full.json in Resources */,
 				705AD1601F819D7B00AB7C74 /* CreateListResult.json in Resources */,
 				7029D1571EEFFD3000BD926D /* Episode_Min.json in Resources */,
@@ -1086,8 +1114,10 @@
 				70F773411F3D45330078110E /* HiddenItems.json in Resources */,
 				70B844421EF0E590001BA900 /* Comment.json in Resources */,
 				7061FA071F3FCBD40051036B /* MovieReleases.json in Resources */,
+				702019D32058033C002F744E /* ListsLikes.json in Resources */,
 				705A4DCE2055B58B00E6ECC0 /* ShowAliases.json in Resources */,
 				705A4DD22055BF8400E6ECC0 /* ShowStats.json in Resources */,
+				702019DF205946E2002F744E /* test_remove_item_from_custom_list.json in Resources */,
 				708834DE1F5CA91A00AB0148 /* Watchlist.json in Resources */,
 				70F7733A1F3D3B840078110E /* ListItem_Post_Result.json in Resources */,
 				70EDB5691F45971100D508AA /* TrendingShows_Min.json in Resources */,
@@ -1100,6 +1130,8 @@
 				70F7E63A1EF2A7C70026B8A1 /* MovieCredits.json in Resources */,
 				705A4DD02055BD7400E6ECC0 /* LastEpisodeAired_min.json in Resources */,
 				70F773431F3D4A9A0078110E /* UserProfile_Min.json in Resources */,
+				702019D120580322002F744E /* CommentsLikes.json in Resources */,
+				702019DD205946D6002F744E /* test_add_item_to_custom_list.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

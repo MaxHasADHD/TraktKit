@@ -1,0 +1,32 @@
+[
+  {
+    "type" : "list",
+    "list" : {
+      "user" : {
+        "username" : "sean",
+        "private" : false,
+        "vip" : true,
+        "vip_ep" : false,
+        "name" : "Sean Rudford",
+        "ids" : {
+          "slug" : "sean"
+        }
+      },
+      "ids" : {
+        "trakt" : 55,
+        "slug" : "star-wars-in-machete-order"
+      },
+      "display_numbers" : true,
+      "privacy" : "private",
+      "allow_comments" : false,
+      "comment_count" : 0,
+      "item_count" : 5,
+      "description" : "Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.",
+      "updated_at" : "2014-10-11T17:00:54.000Z",
+      "name" : "Star Wars in NEW machete order",
+      "likes" : 0
+    },
+    "liked_at" : "2015-03-31T23:18:42.000Z"
+  }
+]
+

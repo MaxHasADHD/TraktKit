@@ -175,6 +175,11 @@ extension TraktManager {
                     completion(.fail)
                     return
             }
+
+            if code == StatusCodes.SuccessNoContentToReturn {
+                completion(.success)
+                return
+            }
             
             // Check data
             guard data != nil else {

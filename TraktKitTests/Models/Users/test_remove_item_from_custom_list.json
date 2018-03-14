@@ -1,0 +1,31 @@
+{
+  "deleted" : {
+    "seasons" : 1,
+    "people" : 1,
+    "movies" : 1,
+    "shows" : 1,
+    "episodes" : 2
+  },
+  "not_found" : {
+    "seasons" : [
+
+    ],
+    "people" : [
+
+    ],
+    "movies" : [
+      {
+        "ids" : {
+          "trakt" : 12345,
+          "slug" : "hello"
+        }
+      }
+    ],
+    "shows" : [
+
+    ],
+    "episodes" : [
+
+    ]
+  }
+}
