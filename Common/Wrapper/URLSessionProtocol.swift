@@ -33,12 +33,13 @@ extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 public class MockURLSession: URLSessionProtocol {
     var nextDataTask = MockURLSessionDataTask()
     var nextData: Data?
+    var nextStatusCode: Int = StatusCodes.Success
     var nextError: Error?
 
     private (set) var lastURL: URL?
 
     func successHttpURLResponse(request: URLRequest) -> URLResponse {
-        return HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
+        return HTTPURLResponse(url: request.url!, statusCode: nextStatusCode, httpVersion: "HTTP/1.1", headerFields: nil)!
     }
 
     public func dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {

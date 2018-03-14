@@ -11,8 +11,8 @@ import Foundation
 public struct ListItemPostResult: Codable {
     let added: Added
     let existing: Added
-    let notFound: NotFound
-    
+//    let notFound: NotFound
+
     public struct Added: Codable {
         let movies: Int
         let shows: Int
@@ -32,6 +32,6 @@ public struct ListItemPostResult: Codable {
     enum CodingKeys: String, CodingKey {
         case added
         case existing
-        case notFound = "not_found"
+//        case notFound = "not_found"
     }
 }

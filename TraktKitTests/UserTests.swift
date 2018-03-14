@@ -12,11 +12,13 @@ import Foundation
 
 class UserTests: XCTestCase {
 
+    let session = MockURLSession()
+    lazy var traktManager = TraktManager(session: session)
+
+    // MARK: - Settings
+
     func test_get_settings() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "Settings")
-        let traktManager = TraktManager(session: session)
-        traktManager.accessToken = "test"
 
         let expectation = XCTestExpectation(description: "settings")
         traktManager.getSettings { result in
@@ -25,11 +27,11 @@ class UserTests: XCTestCase {
                 XCTAssertEqual(accountSessings.user.gender, "male")
                 XCTAssertEqual(accountSessings.connections.twitter, true)
                 XCTAssertEqual(accountSessings.connections.slack, false)
-            } else { XCTFail("Unexpected result") }
-            expectation.fulfill()
+                expectation.fulfill()
+            }
         }
 
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/settings")
 
@@ -41,19 +43,19 @@ class UserTests: XCTestCase {
         }
     }
 
+    // MARK: - Follower requests
+
     func test_get_follow_request() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "FollowRequest")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "FollowRequest")
         traktManager.getFollowRequests { result in
             if case .success(let followRequests) = result {
                 XCTAssertEqual(followRequests.count, 1)
-            } else { XCTFail("Unexpected result") }
-            expectation.fulfill()
+                expectation.fulfill()
+            }
         }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/requests")
 
@@ -65,19 +67,21 @@ class UserTests: XCTestCase {
         }
     }
 
+    // MARK: - Approve or deny follower requests
+
+    // MARK: - Hidden items
+
     func test_get_hidden_items() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "HiddenItems")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "HiddenItems")
         traktManager.hiddenItems(section: .ProgressWatched, type: .Show, page: 1, limit: 10) { result in
             if case .success(let hiddenShows, _, _) = result {
                 XCTAssertEqual(hiddenShows.count, 2)
-            } else { XCTFail("Unexpected result") }
-            expectation.fulfill()
+                expectation.fulfill()
+            }
         }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/hidden/progress_watched?page=1&limit=10&type=show&extended=min")
 
@@ -89,10 +93,92 @@ class UserTests: XCTestCase {
         }
     }
 
+    // MARK: - Add hidden item
+
+    // MARK: - Remove hidden item
+
+    func test_post_remove_hidden_items() {
+        session.nextData = jsonData(named: "UnhideItemResult")
+
+        let expectation = XCTestExpectation(description: "Remove hidden items")
+        try! traktManager.unhide(from: .Calendar) { result in
+            if case .success(let result) = result {
+                XCTAssertEqual(result.deleted.movies, 1)
+                XCTAssertEqual(result.deleted.shows, 2)
+                XCTAssertEqual(result.deleted.seasons, 2)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/hidden/calendar/remove")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    // MARK: - Likes
+
+    func test_get_comments_likes() {
+        session.nextData = jsonData(named: "CommentsLikes")
+
+        let expectation = XCTestExpectation(description: "Comments likes")
+        traktManager.getLikes(type: .Comments) { result in
+            if case .success(let likes) = result {
+                XCTAssertEqual(likes.count, 1)
+                let like = likes.first!
+                XCTAssertEqual(like.type, .comment)
+                XCTAssertNotNil(like.comment)
+                XCTAssertNil(like.list)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/likes/comments")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    func test_get_lists_likes() {
+        session.nextData = jsonData(named: "ListsLikes")
+
+        let expectation = XCTestExpectation(description: "Lists likes")
+        traktManager.getLikes(type: .Lists) { result in
+            if case .success(let likes) = result {
+                XCTAssertEqual(likes.count, 1)
+                let like = likes.first!
+                XCTAssertEqual(like.type, .list)
+                XCTAssertNotNil(like.list)
+                XCTAssertNil(like.comment)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/likes/lists")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    // MARK: - Profile
+
     func test_get_min_profile() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "UserProfile_Min")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "User Profile")
         traktManager.getUserProfile { result in
@@ -102,10 +188,10 @@ class UserTests: XCTestCase {
                 XCTAssertEqual(user.isVIP, true)
                 XCTAssertEqual(user.isVIPEP, true)
                 XCTAssertEqual(user.name, "Sean Rudford")
-            } else { XCTFail("Unexpected result") }
-            expectation.fulfill()
+                expectation.fulfill()
+            }
         }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me?extended=min")
 
@@ -118,9 +204,7 @@ class UserTests: XCTestCase {
     }
 
     func test_get_full_profile() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "UserProfile_Full")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "User Profile")
         traktManager.getUserProfile(extended: [.Full]) { result in
@@ -135,10 +219,10 @@ class UserTests: XCTestCase {
                 XCTAssertEqual(user.about, "I have all your cassette tapes.")
                 XCTAssertEqual(user.location, "SF")
                 XCTAssertEqual(user.gender, "male")
-            } else { XCTFail("Unexpected result") }
-            expectation.fulfill()
+                expectation.fulfill()
+            }
         }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me?extended=full")
 
@@ -151,9 +235,7 @@ class UserTests: XCTestCase {
     }
 
     func test_get_VIP_profile() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "UserProfile_VIP")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "User Profile")
         traktManager.getUserProfile(extended: [.Full]) { result in
@@ -165,10 +247,10 @@ class UserTests: XCTestCase {
                 XCTAssertEqual(user.name, "Sean Rudford")
                 XCTAssertEqual(user.vipYears, 5)
                 XCTAssertEqual(user.vipOG, true)
-            } else { XCTFail("Unexpected result") }
-            expectation.fulfill()
+                expectation.fulfill()
+            }
         }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me?extended=full")
 
@@ -179,21 +261,21 @@ class UserTests: XCTestCase {
             break
         }
     }
-    
+
+    // MARK: - Collection
+
     func test_get_collection() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "Collection")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "User Collection")
         traktManager.getUserCollection(type: .Movies) { result in
             if case .success(let collection) = result {
                 let movies = collection.map { $0.movie }
                 XCTAssertEqual(movies.count, 2)
-            } else { XCTFail("Unexpected result") }
-            expectation.fulfill()
+                expectation.fulfill()
+            }
         }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me/collection/movies")
 
@@ -204,27 +286,405 @@ class UserTests: XCTestCase {
             break
         }
     }
-    
-    func testParseUserStats() {
-        decode("Stats", to: UserStats.self)
+
+    // MARK: - Comments
+
+    func test_get_user_comments() {
+        session.nextData = jsonData(named: "UserComments")
+
+        let expectation = XCTestExpectation(description: "User Commets")
+        traktManager.getUserComments(username: "sean") { result in
+            if case .success(let comments) = result {
+                XCTAssertEqual(comments.count, 5)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/comments")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
     }
-    
+
+    // MARK: - Lists
+
+    func test_get_custom_lists() {
+        session.nextData = jsonData(named: "UserCustomLists")
+
+        let expectation = XCTestExpectation(description: "User Custom Lists")
+        traktManager.getCustomLists(username: "sean") { result in
+            if case .success(let customLists) = result {
+                XCTAssertEqual(customLists.count, 2)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/lists")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    func test_post_custom_list() {
+        session.nextData = jsonData(named: "CreateListResult")
+        session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
+        
+        let expectation = XCTestExpectation(description: "User create custom lists")
+
+        let listName = "Star Wars in machete order"
+        let listDescription = "Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI."
+        try! traktManager.createCustomList(listName: "listName", listDescription: listDescription) { result in
+            if case .success(let newList) = result {
+                XCTAssertEqual(newList.name, listName)
+                XCTAssertEqual(newList.description, listDescription)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me/lists")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    // MARK: - List
+
+    func test_get_custom_list() {
+        session.nextData = jsonData(named: "UserCustomList")
+
+        let expectation = XCTestExpectation(description: "User create custom list")
+
+        traktManager.getCustomList(listID: "star-wars-in-machete-order") { result in
+            if case .success(let list) = result {
+                XCTAssertEqual(list.name, "Star Wars in machete order")
+                XCTAssertNotNil(list.description)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    func test_update_custom_list() {
+
+    }
+
+    func test_delete_custom_list() {
+
+    }
+
+    // MARK: - List like
+
+    func test_like_list() {
+        session.nextStatusCode = StatusCodes.SuccessNoContentToReturn
+
+        let expectation = XCTestExpectation(description: "Like a list")
+
+        traktManager.likeList(username: "sean", listID: "star-wars-in-machete-order") { result in
+            if case .success = result {
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/like")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    func test_remove_like_from_list() {
+        session.nextStatusCode = StatusCodes.SuccessNoContentToReturn
+
+        let expectation = XCTestExpectation(description: "Like a list")
+
+        traktManager.removeListLike(username: "sean", listID: "star-wars-in-machete-order") { result in
+            if case .success = result {
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/like")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    // MARK: - List items
+
+    func test_get_items_on_custom_list() {
+        session.nextData = jsonData(named: "UserCustomListItems")
+
+        let expectation = XCTestExpectation(description: "Get custom list items")
+        traktManager.getItemsForCustomList(username: "sean", listID: "star-wars-in-machete-order") { result in
+            if case .success(let listItems) = result {
+                XCTAssertEqual(listItems.count, 5)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items?extended=min")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    // MARK: - Add list items
+
+    func test_add_item_to_custom_list() {
+        session.nextData = jsonData(named: "test_add_item_to_custom_list")
+        session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
+        
+        let expectation = XCTestExpectation(description: "Add item to custom list")
+        try! traktManager.addItemToCustomList(username: "sean", listID: "star-wars-in-machete-order", movies: [], shows: [], episodes: []) { result in
+            if case .success(let response) = result {
+                XCTAssertEqual(response.added.seasons, 1)
+                XCTAssertEqual(response.added.people, 1)
+                XCTAssertEqual(response.added.movies, 1)
+                XCTAssertEqual(response.added.shows, 1)
+                XCTAssertEqual(response.added.episodes, 2)
+
+                XCTAssertEqual(response.existing.seasons, 0)
+                XCTAssertEqual(response.existing.episodes, 0)
+                XCTAssertEqual(response.existing.movies, 0)
+                XCTAssertEqual(response.existing.shows, 0)
+                XCTAssertEqual(response.existing.episodes, 0)
+
+//                XCTAssertEqual(response.notFound.movies.count, 1)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    // MARK: - Remove list items
+
+    func test_remove_item_from_custom_list() {
+        session.nextData = jsonData(named: "test_remove_item_from_custom_list")
+
+        let expectation = XCTestExpectation(description: "Remove item to custom list")
+        try! traktManager.removeItemFromCustomList(username: "sean", listID: "star-wars-in-machete-order", movies: [], shows: [], episodes: []) { result in
+            if case .success(let response) = result {
+                XCTAssertEqual(response.deleted.seasons, 1)
+                XCTAssertEqual(response.deleted.people, 1)
+                XCTAssertEqual(response.deleted.movies, 1)
+                XCTAssertEqual(response.deleted.shows, 1)
+                XCTAssertEqual(response.deleted.episodes, 2)
+
+                XCTAssertEqual(response.notFound.movies.count, 1)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items/remove")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
+    // MARK: - List comments
+
+    func test_get_all_list_comments() {
+
+    }
+
+    // MARK: - Follow
+
+    func test_follow_user() {
+
+    }
+
+    func test_unfollow_user() {
+
+    }
+
+    // MARK: - Followers
+
+    func test_get_followers() {
+
+    }
+
+    // MARK: - Following
+
+    func test_get_following() {
+
+    }
+
+    // MARK: - Friends
+
+    func test_get_friends() {
+
+    }
+
+    // MARK: - History
+
+    func test_get_watched_history() {
+
+    }
+
+    // MARK: - Ratings
+
+    func test_get_ratings() {
+
+    }
+
+    // MARK: - Watchlist
+
     func testParseUserWatchlist() {
         decode("Watchlist", to: [TraktListItem].self)
     }
-    
-    func testParseUserWatched() {
-        decode("Watched", to: [TraktWatchedShow].self)
-    }
-    
-    func testParseUserUnhideItem() {
-        guard let result = decode("UnhideItemResult", to: UnhideItemResult.self) else { return }
-        XCTAssertEqual(result.deleted.movies, 1)
-        XCTAssertEqual(result.deleted.shows, 2)
-        XCTAssertEqual(result.deleted.seasons, 2)
+
+    // MARK: - Watching
+
+    func test_get_user_watching() {
+
     }
 
-    func testParseUserCreateListResult() {
-        decode("CreateListResult", to: TraktList.self)
+    // MARK: - Watched movies / shows
+
+    func test_get_user_watched_movies() {
+        session.nextData = jsonData(named: "Watched")
+
+        let expectation = XCTestExpectation(description: "User Watched")
+        traktManager.getUserWatched(type: .Movies) { result in
+            if case .success(let watched) = result {
+                XCTAssertEqual(watched.count, 2)
+                let expectedMovieTitles = ["Batman Begins", "The Dark Knight"]
+                zip(watched, expectedMovieTitles).forEach { watchedMovie, movieTitle in
+                    XCTAssertEqual(watchedMovie.movie.title, movieTitle)
+                }
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me/watched/movies?extended=min")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
     }
+
+    func test_get_user_watched_shows() {
+
+    }
+
+    func test_get_user_watched_shows_no_seasons() {
+
+    }
+
+    // MARK: - Stats
+
+    func test_get_user_stats() {
+        session.nextData = jsonData(named: "Stats")
+
+        let expectation = XCTestExpectation(description: "User Stats")
+        traktManager.getUserStats { result in
+            if case .success(let stats) = result {
+                XCTAssertEqual(stats.movies.plays, 155)
+                XCTAssertEqual(stats.movies.watched, 114)
+                XCTAssertEqual(stats.movies.minutes, 15650)
+                XCTAssertEqual(stats.movies.collected, 933)
+                XCTAssertEqual(stats.movies.ratings, 256)
+                XCTAssertEqual(stats.movies.comments, 28)
+
+                XCTAssertEqual(stats.shows.watched, 16)
+                XCTAssertEqual(stats.shows.collected, 7)
+                XCTAssertEqual(stats.shows.ratings, 63)
+                XCTAssertEqual(stats.shows.comments, 20)
+
+                XCTAssertEqual(stats.seasons.ratings, 6)
+                XCTAssertEqual(stats.seasons.comments, 1)
+
+                XCTAssertEqual(stats.episodes.plays, 552)
+                XCTAssertEqual(stats.episodes.watched, 534)
+                XCTAssertEqual(stats.episodes.minutes, 17330)
+                XCTAssertEqual(stats.episodes.collected, 117)
+                XCTAssertEqual(stats.episodes.ratings, 64)
+                XCTAssertEqual(stats.episodes.comments, 14)
+
+                XCTAssertEqual(stats.network.friends, 1)
+                XCTAssertEqual(stats.network.followers, 4)
+                XCTAssertEqual(stats.network.following, 11)
+
+                XCTAssertEqual(stats.ratings.total, 389)
+                XCTAssertEqual(stats.ratings.distribution.one, 18)
+                XCTAssertEqual(stats.ratings.distribution.two, 1)
+                XCTAssertEqual(stats.ratings.distribution.three, 4)
+                XCTAssertEqual(stats.ratings.distribution.four, 1)
+                XCTAssertEqual(stats.ratings.distribution.five, 10)
+                XCTAssertEqual(stats.ratings.distribution.six, 9)
+                XCTAssertEqual(stats.ratings.distribution.seven, 37)
+                XCTAssertEqual(stats.ratings.distribution.eight, 37)
+                XCTAssertEqual(stats.ratings.distribution.nine, 57)
+                XCTAssertEqual(stats.ratings.distribution.ten, 215)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me/stats")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+
 }

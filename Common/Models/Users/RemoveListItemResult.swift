@@ -11,7 +11,7 @@ import Foundation
 public struct RemoveListItemResult: Codable {
     let deleted: Added
     let notFound: NotFound
-    
+
     public struct Added: Codable {
         let movies: Int
         let shows: Int
