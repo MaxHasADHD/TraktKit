@@ -27,9 +27,12 @@ public class TraktManager {
     // 2. Call completion with custom error when creating request fails
     
     // MARK: Internal
+    private var staging: Bool?
     private var clientID: String?
     private var clientSecret: String?
     private var redirectURI: String?
+    private var baseURL: String?
+    private var APIBaseURL: String?
     
     // Keys
     let accessTokenKey = "accessToken"
@@ -106,12 +109,15 @@ public class TraktManager {
     
     // MARK: - Setup
     
-    public func setClientID(clientID: String, clientSecret secret: String, redirectURI: String) {
+    public func setClientID(staging: Bool, clientID: String, clientSecret secret: String, redirectURI: String) {
+        self.staging = staging
         self.clientID = clientID
         self.clientSecret = secret
         self.redirectURI = redirectURI
         
-        self.oauthURL = URL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
+        self.baseURL = !staging ? "trakt.tv" : "staging.trakt.tv"
+        self.APIBaseURL = !staging ? "api.trakt.tv" : "api-staging.trakt.tv"
+        self.oauthURL = URL(string: "https://\(baseURL!)/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
     }
     
     internal func createErrorWithStatusCode(_ statusCode: Int) -> NSError {
@@ -161,7 +167,7 @@ public class TraktManager {
     }
     
     public func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
-        let urlString = "https://api.trakt.tv/" + path
+        let urlString = "https://\(APIBaseURL!)/" + path
         guard var components = URLComponents(string: urlString) else { return nil }
         
         if query.isEmpty == false {
@@ -218,7 +224,7 @@ public class TraktManager {
                 return
         }
         
-        let urlString = "https://trakt.tv/oauth/token"
+        let urlString = "https://\(baseURL!)/oauth/token"
         let url = URL(string: urlString)
         guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
             completionHandler?(.fail)
@@ -346,7 +352,7 @@ public class TraktManager {
             return
         }
         
-        let urlString = "https://trakt.tv/oauth/token"
+        let urlString = "https://\(baseURL!)/oauth/token"
         let url = URL(string: urlString)
         guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
             completionHandler(.fail)
