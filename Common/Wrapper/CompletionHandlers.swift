@@ -111,16 +111,17 @@ extension TraktManager {
     // MARK: Users
     public typealias ListCompletionHandler = ObjectCompletionHandler<TraktList>
     public typealias ListsCompletionHandler = ObjectsCompletionHandler<TraktList>
-    public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktListItem>
+    public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktWatchlistItem>
     public typealias HiddenItemsCompletionHandler = paginatedCompletionHandler<HiddenItem>
     public typealias UserCommentsCompletionHandler = ObjectsCompletionHandler<UsersComments>
     public typealias AddListItemCompletion = ObjectCompletionHandler<ListItemPostResult>
     public typealias RemoveListItemCompletion = ObjectCompletionHandler<RemoveListItemResult>
     public typealias FollowUserCompletion = ObjectCompletionHandler<FollowUserResult>
-    public typealias FollowersCompletion = ObjectsCompletionHandler<FollowUserResult>
+    public typealias FollowersCompletion = ObjectsCompletionHandler<FollowResult>
     public typealias FriendsCompletion = ObjectsCompletionHandler<Friend>
     public typealias WatchingCompletion = (_ result: WatchingResultType) -> Void
     public typealias UserStatsCompletion = ObjectCompletionHandler<UserStats>
+    public typealias UserWatchedCompletion = ObjectsCompletionHandler<TraktWatchedItem>
     
     // MARK: - Perform Requests
     
