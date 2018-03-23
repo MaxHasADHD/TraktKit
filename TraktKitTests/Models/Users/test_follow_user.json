@@ -1,0 +1,14 @@
+{
+  "user" : {
+    "username" : "sean",
+    "private" : false,
+    "vip" : true,
+    "vip_ep" : false,
+    "name" : "Sean Rudford",
+    "ids" : {
+      "slug" : "sean"
+    }
+  },
+  "approved_at" : "2014-11-15T09:41:34.704Z"
+}
+

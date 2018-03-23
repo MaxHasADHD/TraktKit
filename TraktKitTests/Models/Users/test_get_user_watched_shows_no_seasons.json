@@ -1,0 +1,33 @@
+[
+  {
+    "plays" : 56,
+    "last_watched_at" : "2014-10-11T17:00:54.000Z",
+    "show" : {
+      "title" : "Breaking Bad",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 1396,
+        "slug" : "breaking-bad",
+        "tvdb" : 81189,
+        "trakt" : 1,
+        "imdb" : "tt0903747"
+      }
+    }
+  },
+  {
+    "plays" : 23,
+    "last_watched_at" : "2014-10-12T17:00:54.000Z",
+    "show" : {
+      "title" : "Parks and Recreation",
+      "year" : 2009,
+      "ids" : {
+        "tmdb" : 8592,
+        "slug" : "parks-and-recreation",
+        "tvdb" : 84912,
+        "trakt" : 4,
+        "imdb" : "tt1266020"
+      }
+    }
+  }
+]
+
