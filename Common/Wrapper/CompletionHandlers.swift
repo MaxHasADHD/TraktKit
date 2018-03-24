@@ -96,7 +96,7 @@ extension TraktManager {
     public typealias MovieCompletionHandler = ObjectCompletionHandler<TraktMovie>
     public typealias MoviesCompletionHandler = ObjectsCompletionHandler<TraktMovie>
     public typealias TrendingMoviesCompletionHandler = ObjectsCompletionHandler<TraktTrendingMovie>
-    public typealias MostMoviesCompletionHandler = ObjectsCompletionHandler<TraktMostShow>
+    public typealias MostMoviesCompletionHandler = ObjectsCompletionHandler<TraktMostMovie>
     public typealias AnticipatedMovieCompletionHandler = ObjectsCompletionHandler<TraktAnticipatedMovie>
     public typealias MovieTranslationsCompletionHandler = ObjectsCompletionHandler<TraktMovieTranslation>
     public typealias WatchedMoviesCompletionHandler = ObjectsCompletionHandler<TraktWatchedMovie>
@@ -197,28 +197,51 @@ extension TraktManager {
     
     /// Checkin
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping checkinCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let aCompletion: DataResultCompletionHandler = { (result: DataResultType) -> Void in
-            switch result {
-            case .success(let data):
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-                
-                if let checkin = try? decoder.decode(TraktCheckin.self, from: data) {
-                    completion(.success(checkin: checkin))
-                } else if let rawDict = try? decoder.decode([String : Any].self, from: data),
-                    let expirationDate = try? Date.dateFromString(rawDict["expires_at"]) {
-                    completion(.checkedIn(expiration: expirationDate))
-                } else {
-                    completion(.error(error: nil))
-                }
-            case .error(let error):
+
+        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
+            guard let welf = self else { return }
+            guard error == nil else {
                 completion(.error(error: error))
+                return
             }
+
+            // Check data
+            guard let data = data else {
+                completion(.error(error: TraktKitNoDataError))
+                return
+            }
+
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+
+            if let checkin = try? decoder.decode(TraktCheckin.self, from: data) {
+                completion(.success(checkin: checkin))
+                return
+            } else if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                let jsonDictionary = jsonObject as? RawJSON,
+                let expirationDateString = jsonDictionary["expires_at"] as? String,
+                let expirationDate = try? Date.dateFromString(expirationDateString) {
+                completion(.checkedIn(expiration: expirationDate))
+                return
+            }
+
+            // Check response
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == code
+                else {
+                    if let HTTPResponse = response as? HTTPURLResponse {
+                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                    } else {
+                        completion(.error(error: nil))
+                    }
+                    return
+            }
+
+            completion(.error(error: nil))
         }
-        
-        let dataTask = performRequest(request: request, expectingStatusCode: code, completion: aCompletion)
-        
-        return dataTask
+        datatask.resume()
+        return datatask
     }
     
     // Generic array of Trakt objects

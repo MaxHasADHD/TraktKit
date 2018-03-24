@@ -10,5 +10,5 @@ import Foundation
 
 public struct Genres: Codable {
     public let name: String
-    public let slugId: String
+    public let slug: String
 }

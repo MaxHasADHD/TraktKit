@@ -59,8 +59,8 @@ internal extension Date {
     }
     
     func dateString(withFormat format: String) -> String {
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: self)
+        ISO8601DateFormatter.dateFormat = format
+        return ISO8601DateFormatter.string(from: self)
     }
 }
 

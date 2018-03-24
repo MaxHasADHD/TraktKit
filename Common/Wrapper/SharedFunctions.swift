@@ -96,7 +96,7 @@ internal extension TraktManager {
     func getUpdated(_ type: WatchedType, page: Int, limit: Int, startDate: Date?, completion: @escaping UpdateCompletionHandler) -> URLSessionDataTaskProtocol? {
         
         var path = "\(type)/updates/"
-        if let startDateString = startDate?.dateString(withFormat: "YYYY-MM-DD") {
+        if let startDateString = startDate?.dateString(withFormat: "yyyy-MM-dd") {
             path.append(startDateString)
         }
         

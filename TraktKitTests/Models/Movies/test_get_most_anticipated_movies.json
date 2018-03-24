@@ -1,0 +1,132 @@
+[
+  {
+    "movie" : {
+      "title" : "The Hunger Games: Mockingjay - Part 2",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 131634,
+        "slug" : "the-hunger-games-mockingjay-part-2-2015",
+        "trakt" : 89543,
+        "imdb" : "tt1951266"
+      }
+    },
+    "list_count" : 5362
+  },
+  {
+    "movie" : {
+      "title" : "Batman v Superman: Dawn of Justice",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 209112,
+        "slug" : "batman-v-superman-dawn-of-justice-2016",
+        "trakt" : 129583,
+        "imdb" : "tt2975590"
+      }
+    },
+    "list_count" : 4405
+  },
+  {
+    "movie" : {
+      "title" : "Star Wars: Episode VII - The Force Awakens",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 140607,
+        "slug" : "star-wars-episode-vii-the-force-awakens-2015",
+        "trakt" : 94024,
+        "imdb" : "tt2488496"
+      }
+    },
+    "list_count" : 4185
+  },
+  {
+    "movie" : {
+      "title" : "The Martian",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 286217,
+        "slug" : "the-martian-2015",
+        "trakt" : 183371,
+        "imdb" : "tt3659388"
+      }
+    },
+    "list_count" : 2996
+  },
+  {
+    "movie" : {
+      "title" : "Deadpool",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 293660,
+        "slug" : "deadpool-2016",
+        "trakt" : 190430,
+        "imdb" : "tt1431045"
+      }
+    },
+    "list_count" : 2902
+  },
+  {
+    "movie" : {
+      "title" : "Captain America: Civil War",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 271110,
+        "slug" : "captain-america-civil-war-2016",
+        "trakt" : 169105,
+        "imdb" : "tt3498820"
+      }
+    },
+    "list_count" : 2675
+  },
+  {
+    "movie" : {
+      "title" : "X-Men: Apocalypse",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 246655,
+        "slug" : "x-men-apocalypse-2016",
+        "trakt" : 149999,
+        "imdb" : "tt3385516"
+      }
+    },
+    "list_count" : 2629
+  },
+  {
+    "movie" : {
+      "title" : "Suicide Squad",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 297761,
+        "slug" : "suicide-squad-2016",
+        "trakt" : 193079,
+        "imdb" : "tt1386697"
+      }
+    },
+    "list_count" : 2184
+  },
+  {
+    "movie" : {
+      "title" : "SPECTRE",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 206647,
+        "slug" : "spectre-2015",
+        "trakt" : 128378,
+        "imdb" : "tt2379713"
+      }
+    },
+    "list_count" : 2127
+  },
+  {
+    "movie" : {
+      "title" : "Justice League",
+      "year" : 2017,
+      "ids" : {
+        "tmdb" : 141052,
+        "slug" : "justice-league-2017",
+        "trakt" : 94232,
+        "imdb" : "tt0974015"
+      }
+    },
+    "list_count" : 1951
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "movie" : {
+      "title" : "The Avengers",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 24428,
+        "slug" : "the-avengers-2012",
+        "trakt" : 14701,
+        "imdb" : "tt0848228"
+      }
+    },
+    "watcher_count" : 81289,
+    "play_count" : 102512,
+    "collected_count" : 33837
+  },
+  {
+    "movie" : {
+      "title" : "The Dark Knight",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 155,
+        "slug" : "the-dark-knight-2008",
+        "trakt" : 120,
+        "imdb" : "tt0468569"
+      }
+    },
+    "watcher_count" : 76254,
+    "play_count" : 104242,
+    "collected_count" : 31877
+  },
+  {
+    "movie" : {
+      "title" : "Inception",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 27205,
+        "slug" : "inception-2010",
+        "trakt" : 16662,
+        "imdb" : "tt1375666"
+      }
+    },
+    "watcher_count" : 74665,
+    "play_count" : 88597,
+    "collected_count" : 32044
+  },
+  {
+    "movie" : {
+      "title" : "Guardians of the Galaxy",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 118340,
+        "slug" : "guardians-of-the-galaxy-2014",
+        "trakt" : 82405,
+        "imdb" : "tt2015381"
+      }
+    },
+    "watcher_count" : 72538,
+    "play_count" : 97715,
+    "collected_count" : 26662
+  },
+  {
+    "movie" : {
+      "title" : "The Matrix",
+      "year" : 1999,
+      "ids" : {
+        "tmdb" : 603,
+        "slug" : "the-matrix-1999",
+        "trakt" : 481,
+        "imdb" : "tt0133093"
+      }
+    },
+    "watcher_count" : 67228,
+    "play_count" : 77108,
+    "collected_count" : 26263
+  },
+  {
+    "movie" : {
+      "title" : "Frozen",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 109445,
+        "slug" : "frozen-2013",
+        "trakt" : 77349,
+        "imdb" : "tt2294629"
+      }
+    },
+    "watcher_count" : 66667,
+    "play_count" : 109736,
+    "collected_count" : 27584
+  },
+  {
+    "movie" : {
+      "title" : "Iron Man",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 1726,
+        "slug" : "iron-man-2008",
+        "trakt" : 1157,
+        "imdb" : "tt0371746"
+      }
+    },
+    "watcher_count" : 63920,
+    "play_count" : 79998,
+    "collected_count" : 27721
+  },
+  {
+    "movie" : {
+      "title" : "Avatar",
+      "year" : 2009,
+      "ids" : {
+        "tmdb" : 19995,
+        "slug" : "avatar-2009",
+        "trakt" : 12269,
+        "imdb" : "tt0499549"
+      }
+    },
+    "watcher_count" : 62786,
+    "play_count" : 78930,
+    "collected_count" : 27693
+  },
+  {
+    "movie" : {
+      "title" : "The Lord of the Rings: The Fellowship of the Ring",
+      "year" : 2001,
+      "ids" : {
+        "tmdb" : 120,
+        "slug" : "the-lord-of-the-rings-the-fellowship-of-the-ring-2001",
+        "trakt" : 88,
+        "imdb" : "tt0120737"
+      }
+    },
+    "watcher_count" : 60803,
+    "play_count" : 69112,
+    "collected_count" : 27542
+  },
+  {
+    "movie" : {
+      "title" : "Batman Begins",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 272,
+        "slug" : "batman-begins-2005",
+        "trakt" : 228,
+        "imdb" : "tt0372784"
+      }
+    },
+    "watcher_count" : 58057,
+    "play_count" : 67884,
+    "collected_count" : 25803
+  }
+]

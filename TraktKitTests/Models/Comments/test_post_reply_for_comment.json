@@ -1,0 +1,22 @@
+{
+  "review" : false,
+  "user_rating" : null,
+  "replies" : 0,
+  "id" : 2,
+  "created_at" : "2014-09-01T06:30:13.000Z",
+  "user" : {
+    "username" : "justin",
+    "private" : false,
+    "vip" : true,
+    "vip_ep" : false,
+    "name" : "Justin Nemeth",
+    "ids" : {
+      "slug" : "justin"
+    }
+  },
+  "parent_id" : 1,
+  "updated_at" : "2014-09-01T06:30:13.000Z",
+  "comment" : "Couldn't agree more with your review!",
+  "spoiler" : false,
+  "likes" : 0
+}
