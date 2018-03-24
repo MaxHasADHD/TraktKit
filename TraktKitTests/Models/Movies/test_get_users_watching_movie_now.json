@@ -1,0 +1,22 @@
+[
+  {
+    "username" : "justin",
+    "private" : false,
+    "vip" : true,
+    "vip_ep" : false,
+    "name" : "Justin Nemeth",
+    "ids" : {
+      "slug" : "justin"
+    }
+  },
+  {
+    "username" : "sean",
+    "private" : false,
+    "vip" : true,
+    "vip_ep" : false,
+    "name" : "Sean Rudford",
+    "ids" : {
+      "slug" : "sean"
+    }
+  }
+]

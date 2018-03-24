@@ -1,0 +1,152 @@
+[
+  {
+    "movie" : {
+      "title" : "The Avengers",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 24428,
+        "slug" : "the-avengers-2012",
+        "trakt" : 14701,
+        "imdb" : "tt0848228"
+      }
+    },
+    "watcher_count" : 81289,
+    "play_count" : 102512,
+    "collected_count" : 33837
+  },
+  {
+    "movie" : {
+      "title" : "Inception",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 27205,
+        "slug" : "inception-2010",
+        "trakt" : 16662,
+        "imdb" : "tt1375666"
+      }
+    },
+    "watcher_count" : 74665,
+    "play_count" : 88597,
+    "collected_count" : 32044
+  },
+  {
+    "movie" : {
+      "title" : "The Dark Knight",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 155,
+        "slug" : "the-dark-knight-2008",
+        "trakt" : 120,
+        "imdb" : "tt0468569"
+      }
+    },
+    "watcher_count" : 76254,
+    "play_count" : 104242,
+    "collected_count" : 31877
+  },
+  {
+    "movie" : {
+      "title" : "The Hobbit: An Unexpected Journey",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 49051,
+        "slug" : "the-hobbit-an-unexpected-journey-2012",
+        "trakt" : 34097,
+        "imdb" : "tt0903624"
+      }
+    },
+    "watcher_count" : 55355,
+    "play_count" : 67402,
+    "collected_count" : 30502
+  },
+  {
+    "movie" : {
+      "title" : "The Dark Knight Rises",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 49026,
+        "slug" : "the-dark-knight-rises-2012",
+        "trakt" : 34073,
+        "imdb" : "tt1345836"
+      }
+    },
+    "watcher_count" : 56916,
+    "play_count" : 71767,
+    "collected_count" : 29062
+  },
+  {
+    "movie" : {
+      "title" : "The Hunger Games",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 70160,
+        "slug" : "the-hunger-games-2012",
+        "trakt" : 51342,
+        "imdb" : "tt1392170"
+      }
+    },
+    "watcher_count" : 57603,
+    "play_count" : 65325,
+    "collected_count" : 28037
+  },
+  {
+    "movie" : {
+      "title" : "Iron Man 3",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 68721,
+        "slug" : "iron-man-3-2013",
+        "trakt" : 50134,
+        "imdb" : "tt1300854"
+      }
+    },
+    "watcher_count" : 52662,
+    "play_count" : 63107,
+    "collected_count" : 27802
+  },
+  {
+    "movie" : {
+      "title" : "Iron Man",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 1726,
+        "slug" : "iron-man-2008",
+        "trakt" : 1157,
+        "imdb" : "tt0371746"
+      }
+    },
+    "watcher_count" : 63920,
+    "play_count" : 79998,
+    "collected_count" : 27721
+  },
+  {
+    "movie" : {
+      "title" : "Avatar",
+      "year" : 2009,
+      "ids" : {
+        "tmdb" : 19995,
+        "slug" : "avatar-2009",
+        "trakt" : 12269,
+        "imdb" : "tt0499549"
+      }
+    },
+    "watcher_count" : 62786,
+    "play_count" : 78930,
+    "collected_count" : 27693
+  },
+  {
+    "movie" : {
+      "title" : "Django Unchained",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 68718,
+        "slug" : "django-unchained-2012",
+        "trakt" : 50131,
+        "imdb" : "tt1853728"
+      }
+    },
+    "watcher_count" : 49809,
+    "play_count" : 60086,
+    "collected_count" : 27661
+  }
+]

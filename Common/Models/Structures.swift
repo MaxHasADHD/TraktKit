@@ -76,7 +76,7 @@ public struct TraktStats: Codable {
     public let watchers: Int
     public let plays: Int
     public let collectors: Int
-    public let collectedEpisodes: Int
+    public let collectedEpisodes: Int?
     public let comments: Int
     public let lists: Int
     public let votes: Int

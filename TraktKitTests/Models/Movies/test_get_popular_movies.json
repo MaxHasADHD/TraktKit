@@ -1,0 +1,102 @@
+[
+  {
+    "title" : "The Dark Knight",
+    "year" : 2008,
+    "ids" : {
+      "tmdb" : 155,
+      "slug" : "the-dark-knight-2008",
+      "trakt" : 16,
+      "imdb" : "tt0468569"
+    }
+  },
+  {
+    "title" : "Fight Club",
+    "year" : 1999,
+    "ids" : {
+      "tmdb" : 550,
+      "slug" : "fight-club-1999",
+      "trakt" : 727,
+      "imdb" : "tt0137523"
+    }
+  },
+  {
+    "title" : "Jurassic Park",
+    "year" : 1993,
+    "ids" : {
+      "tmdb" : 329,
+      "slug" : "jurassic-park-1993",
+      "trakt" : 393,
+      "imdb" : "tt0107290"
+    }
+  },
+  {
+    "title" : "Back to the Future",
+    "year" : 1985,
+    "ids" : {
+      "tmdb" : 105,
+      "slug" : "back-to-the-future-1985",
+      "trakt" : 308,
+      "imdb" : "tt0088763"
+    }
+  },
+  {
+    "title" : "The Shawshank Redemption",
+    "year" : 1994,
+    "ids" : {
+      "tmdb" : 278,
+      "slug" : "the-shawshank-redemption-1994",
+      "trakt" : 231,
+      "imdb" : "tt0111161"
+    }
+  },
+  {
+    "title" : "The Social Network",
+    "year" : 2010,
+    "ids" : {
+      "tmdb" : 37799,
+      "slug" : "the-social-network-2010",
+      "trakt" : 98,
+      "imdb" : "tt1285016"
+    }
+  },
+  {
+    "title" : "Star Wars: Episode IV - A New Hope",
+    "year" : 1977,
+    "ids" : {
+      "tmdb" : 11,
+      "slug" : "star-wars-episode-iv-a-new-hope-1977",
+      "trakt" : 738,
+      "imdb" : "tt0076759"
+    }
+  },
+  {
+    "title" : "The Lord of the Rings: The Return of the King",
+    "year" : 2003,
+    "ids" : {
+      "tmdb" : 122,
+      "slug" : "the-lord-of-the-rings-the-return-of-the-king-2003",
+      "trakt" : 374,
+      "imdb" : "tt0167260"
+    }
+  },
+  {
+    "title" : "The Lord of the Rings: The Two Towers",
+    "year" : 2002,
+    "ids" : {
+      "tmdb" : 121,
+      "slug" : "the-lord-of-the-rings-the-two-towers-2002",
+      "trakt" : 373,
+      "imdb" : "tt0167261"
+    }
+  },
+  {
+    "title" : "The Matrix",
+    "year" : 1999,
+    "ids" : {
+      "tmdb" : 603,
+      "slug" : "the-matrix-1999",
+      "trakt" : 269,
+      "imdb" : "tt0133093"
+    }
+  }
+]
