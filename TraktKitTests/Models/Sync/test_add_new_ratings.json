@@ -1,0 +1,27 @@
+{
+  "added" : {
+    "seasons" : 1,
+    "movies" : 1,
+    "shows" : 1,
+    "episodes" : 2
+  },
+  "not_found" : {
+    "seasons" : [
+
+    ],
+    "movies" : [
+      {
+        "ids" : {
+          "imdb" : "tt0000111"
+        },
+        "rating" : 10
+      }
+    ],
+    "shows" : [
+
+    ],
+    "episodes" : [
+
+    ]
+  }
+}

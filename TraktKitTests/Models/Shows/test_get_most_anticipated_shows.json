@@ -1,0 +1,142 @@
+[
+  {
+    "show" : {
+      "title" : "Supergirl",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 62688,
+        "slug" : "supergirl",
+        "tvdb" : 295759,
+        "trakt" : 99046,
+        "imdb" : "tt4016454"
+      }
+    },
+    "list_count" : 5383
+  },
+  {
+    "show" : {
+      "title" : "Marvel's Jessica Jones",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 38472,
+        "slug" : "marvel-s-jessica-jones",
+        "tvdb" : 284190,
+        "trakt" : 79385,
+        "imdb" : "tt2357547"
+      }
+    },
+    "list_count" : 3132
+  },
+  {
+    "show" : {
+      "title" : "Lucifer",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 63174,
+        "slug" : "lucifer",
+        "tvdb" : 295685,
+        "trakt" : 98990,
+        "imdb" : "tt4052886"
+      }
+    },
+    "list_count" : 3095
+  },
+  {
+    "show" : {
+      "title" : "Ash vs Evil Dead",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 62264,
+        "slug" : "ash-vs-evil-dead",
+        "tvdb" : 296295,
+        "trakt" : 99460,
+        "imdb" : "tt4189022"
+      }
+    },
+    "list_count" : 1704
+  },
+  {
+    "show" : {
+      "title" : "The Expanse",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : null,
+        "slug" : "the-expanse",
+        "tvdb" : 280619,
+        "trakt" : 77199,
+        "imdb" : "tt3230854"
+      }
+    },
+    "list_count" : 1655
+  },
+  {
+    "show" : {
+      "title" : "Into the Badlands",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 47450,
+        "slug" : "into-the-badlands",
+        "tvdb" : 289079,
+        "trakt" : 82217,
+        "imdb" : "tt3865236"
+      }
+    },
+    "list_count" : 1481
+  },
+  {
+    "show" : {
+      "title" : "Colony",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 62858,
+        "slug" : "colony",
+        "tvdb" : 284210,
+        "trakt" : 95966,
+        "imdb" : "tt4209256"
+      }
+    },
+    "list_count" : 1332
+  },
+  {
+    "show" : {
+      "title" : "Wicked City",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 62927,
+        "slug" : "wicked-city",
+        "tvdb" : 295518,
+        "trakt" : 98888,
+        "imdb" : "tt4428124"
+      }
+    },
+    "list_count" : 1060
+  },
+  {
+    "show" : {
+      "title" : "Marvel's Luke Cage",
+      "year" : 2016,
+      "ids" : {
+        "tmdb" : 62126,
+        "slug" : "marvel-s-luke-cage",
+        "tvdb" : 284192,
+        "trakt" : 79382,
+        "imdb" : "tt3322314"
+      }
+    },
+    "list_count" : 982
+  },
+  {
+    "show" : {
+      "title" : "Dr. Ken",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 62776,
+        "slug" : "dr-ken-1969",
+        "tvdb" : 295557,
+        "trakt" : 98913,
+        "imdb" : "tt3216608"
+      }
+    },
+    "list_count" : 838
+  }
+]

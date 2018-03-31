@@ -41,3 +41,15 @@ public struct TraktList: Codable {
         case ids
     }
 }
+
+public struct TraktTrendingList: Codable {
+    public let likeCount: Int
+    public let commentCount: Int
+    public let list: TraktList
+
+    enum CodingKeys: String, CodingKey {
+        case likeCount = "like_count"
+        case commentCount = "comment_count"
+        case list
+    }
+}

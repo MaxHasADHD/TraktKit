@@ -836,11 +836,11 @@ class UserTests: XCTestCase {
 
     // MARK: - Ratings
 
-    func test_get_ratings() {
-        session.nextData = jsonData(named: "test_get_ratings")
+    func test_get_user_ratings() {
+        session.nextData = jsonData(named: "test_get_user_ratings")
         session.nextStatusCode = StatusCodes.Success
 
-        let expectation = XCTestExpectation(description: "Get ratings")
+        let expectation = XCTestExpectation(description: "Get user ratings")
         traktManager.getUserRatings(username: "sean") { result in
             if case .success(let ratings) = result {
                 XCTAssertEqual(ratings.count, 2)

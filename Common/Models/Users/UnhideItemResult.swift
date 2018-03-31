@@ -10,8 +10,8 @@ import Foundation
 
 public struct UnhideItemResult: Codable {
     let deleted: Deleted
-    let notFound: NotFound
-    
+//    let notFound: NotFound
+
     public struct Deleted: Codable {
         let movies: Int
         let shows: Int
@@ -45,6 +45,6 @@ public struct UnhideItemResult: Codable {
     
     enum CodingKeys: String, CodingKey {
         case deleted
-        case notFound = "not_found"
+//        case notFound = "not_found"
     }
 }

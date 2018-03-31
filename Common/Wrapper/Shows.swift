@@ -142,7 +142,32 @@ extension TraktManager {
     public func getShowComments<T: CustomStringConvertible>(showID id: T, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
         return getComments(.Shows, id: id, completion: completion)
     }
-    
+
+    // MARK: - Lists
+
+    /**
+     Returns all lists that contain this show. By default, `personal` lists are returned sorted by the most `popular`.
+
+     📄 Pagination
+     */
+    @discardableResult
+    public func getListsContainingShow<T: CustomStringConvertible>(showID id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
+        var path = "shows/\(id)/lists"
+        if let listType = listType {
+            path += "/\(listType)"
+
+            if let sortBy = sortBy {
+                path += "/\(sortBy)"
+            }
+        }
+
+        guard let request = mutableRequest(forPath: path,
+                                           withQuery: [:],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+    }
+
     // MARK: - Collection Progress
     
     /**

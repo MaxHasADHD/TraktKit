@@ -1,0 +1,112 @@
+[
+  {
+    "title" : "Battlestar Galactica",
+    "year" : 2005,
+    "ids" : {
+      "tmdb" : 1972,
+      "slug" : "battlestar-galactica",
+      "tvdb" : 73545,
+      "trakt" : 331,
+      "imdb" : "tt0407362"
+    }
+  },
+  {
+    "title" : "Game of Thrones",
+    "year" : 2011,
+    "ids" : {
+      "tmdb" : 1399,
+      "slug" : "game-of-thrones",
+      "tvdb" : 121361,
+      "trakt" : 353,
+      "imdb" : "tt0944947"
+    }
+  },
+  {
+    "title" : "Firefly",
+    "year" : 2002,
+    "ids" : {
+      "tmdb" : 1437,
+      "slug" : "firefly",
+      "tvdb" : 78874,
+      "trakt" : 329,
+      "imdb" : "tt0303461"
+    }
+  },
+  {
+    "title" : "The Newsroom",
+    "year" : 2012,
+    "ids" : {
+      "tmdb" : 15621,
+      "slug" : "the-newsroom",
+      "tvdb" : 256227,
+      "trakt" : 497,
+      "imdb" : "tt1870479"
+    }
+  },
+  {
+    "title" : "Dollhouse",
+    "year" : 2009,
+    "ids" : {
+      "tmdb" : 14956,
+      "slug" : "dollhouse",
+      "tvdb" : 82046,
+      "trakt" : 395,
+      "imdb" : "tt1135300"
+    }
+  },
+  {
+    "title" : "Sons of Anarchy",
+    "year" : 2008,
+    "ids" : {
+      "tmdb" : 1409,
+      "slug" : "sons-of-anarchy",
+      "tvdb" : 82696,
+      "trakt" : 23,
+      "imdb" : "tt1124373"
+    }
+  },
+  {
+    "title" : "Hannibal",
+    "year" : 2013,
+    "ids" : {
+      "tmdb" : 40008,
+      "slug" : "hannibal",
+      "tvdb" : 259063,
+      "trakt" : 567,
+      "imdb" : "tt2243973"
+    }
+  },
+  {
+    "title" : "True Blood",
+    "year" : 2008,
+    "ids" : {
+      "tmdb" : 10545,
+      "slug" : "true-blood",
+      "tvdb" : 82283,
+      "trakt" : 122,
+      "imdb" : "tt0844441"
+    }
+  },
+  {
+    "title" : "The Walking Dead",
+    "year" : 2010,
+    "ids" : {
+      "tmdb" : 1402,
+      "slug" : "the-walking-dead",
+      "tvdb" : 153021,
+      "trakt" : 2,
+      "imdb" : "tt1520211"
+    }
+  },
+  {
+    "title" : "The Shield",
+    "year" : 2002,
+    "ids" : {
+      "tmdb" : 1414,
+      "slug" : "the-shield",
+      "tvdb" : 78261,
+      "trakt" : 486,
+      "imdb" : "tt0286486"
+    }
+  }
+]

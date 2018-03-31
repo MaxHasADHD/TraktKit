@@ -1,0 +1,42 @@
+[
+  {
+    "number" : 0,
+    "ids" : {
+      "trakt" : 1,
+      "tvdb" : 137481,
+      "tmdb" : 3627
+    }
+  },
+  {
+    "number" : 1,
+    "ids" : {
+      "trakt" : 2,
+      "tvdb" : 364731,
+      "tmdb" : 3624
+    }
+  },
+  {
+    "number" : 2,
+    "ids" : {
+      "trakt" : 3,
+      "tvdb" : 473271,
+      "tmdb" : 3625
+    }
+  },
+  {
+    "number" : 3,
+    "ids" : {
+      "trakt" : 4,
+      "tvdb" : 488434,
+      "tmdb" : 3626
+    }
+  },
+  {
+    "number" : 4,
+    "ids" : {
+      "trakt" : 5,
+      "tvdb" : 522882,
+      "tmdb" : 3628
+    }
+  }
+]

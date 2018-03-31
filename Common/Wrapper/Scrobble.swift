@@ -142,7 +142,7 @@ extension TraktManager {
         var json: RawJSON = [
             "progress": progress,
             "appVersion": appVersion,
-            "appBuildDate": appBuildDate
+            "appBuildDate": appBuildDate.dateString(withFormat: "yyyy-MM-dd")
         ]
         
         if let movie = movie {

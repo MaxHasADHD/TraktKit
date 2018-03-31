@@ -1,0 +1,172 @@
+[
+  {
+    "collector_count" : 23876,
+    "watcher_count" : 56216,
+    "show" : {
+      "title" : "The Simpsons",
+      "year" : 1989,
+      "ids" : {
+        "tmdb" : 456,
+        "slug" : "the-simpsons",
+        "tvdb" : 71663,
+        "trakt" : 455,
+        "imdb" : "tt0096697"
+      }
+    },
+    "play_count" : 19286818,
+    "collected_count" : 7427018
+  },
+  {
+    "collector_count" : 54953,
+    "watcher_count" : 155291,
+    "show" : {
+      "title" : "The Big Bang Theory",
+      "year" : 2007,
+      "ids" : {
+        "tmdb" : 1418,
+        "slug" : "the-big-bang-theory",
+        "tvdb" : 80379,
+        "trakt" : 1409,
+        "imdb" : "tt0898266"
+      }
+    },
+    "play_count" : 23542030,
+    "collected_count" : 6635583
+  },
+  {
+    "collector_count" : 32335,
+    "watcher_count" : 100242,
+    "show" : {
+      "title" : "How I Met Your Mother",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 1100,
+        "slug" : "how-i-met-your-mother",
+        "tvdb" : 75760,
+        "trakt" : 1095,
+        "imdb" : "tt0460649"
+      }
+    },
+    "play_count" : 19787304,
+    "collected_count" : 4529880
+  },
+  {
+    "collector_count" : 4511,
+    "watcher_count" : 8050,
+    "show" : {
+      "title" : "The Daily Show with Jon Stewart",
+      "year" : 1996,
+      "ids" : {
+        "tmdb" : 2224,
+        "slug" : "the-daily-show-with-jon-stewart",
+        "tvdb" : 71256,
+        "trakt" : 2211,
+        "imdb" : "tt0115147"
+      }
+    },
+    "play_count" : 17845449,
+    "collected_count" : 3550246
+  },
+  {
+    "collector_count" : 16230,
+    "watcher_count" : 53775,
+    "show" : {
+      "title" : "Friends",
+      "year" : 1994,
+      "ids" : {
+        "tmdb" : 1668,
+        "slug" : "friends",
+        "tvdb" : 79168,
+        "trakt" : 1657,
+        "imdb" : "tt0108778"
+      }
+    },
+    "play_count" : 12379465,
+    "collected_count" : 3347336
+  },
+  {
+    "collector_count" : 23114,
+    "watcher_count" : 48984,
+    "show" : {
+      "title" : "Family Guy",
+      "year" : 1999,
+      "ids" : {
+        "tmdb" : 1434,
+        "slug" : "family-guy",
+        "tvdb" : 75978,
+        "trakt" : 1425,
+        "imdb" : "tt0182576"
+      }
+    },
+    "play_count" : 7879681,
+    "collected_count" : 3273255
+  },
+  {
+    "collector_count" : 24399,
+    "watcher_count" : 68267,
+    "show" : {
+      "title" : "Supernatural",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 1622,
+        "slug" : "supernatural",
+        "tvdb" : 78901,
+        "trakt" : 1611,
+        "imdb" : "tt0460681"
+      }
+    },
+    "play_count" : 11294835,
+    "collected_count" : 3119930
+  },
+  {
+    "collector_count" : 19450,
+    "watcher_count" : 41844,
+    "show" : {
+      "title" : "South Park",
+      "year" : 1997,
+      "ids" : {
+        "tmdb" : 2190,
+        "slug" : "south-park",
+        "tvdb" : 75897,
+        "trakt" : 2177,
+        "imdb" : "tt0121955"
+      }
+    },
+    "play_count" : 7267474,
+    "collected_count" : 2965842
+  },
+  {
+    "collector_count" : 28446,
+    "watcher_count" : 72285,
+    "show" : {
+      "title" : "Modern Family",
+      "year" : 2009,
+      "ids" : {
+        "tmdb" : 1421,
+        "slug" : "modern-family",
+        "tvdb" : 95011,
+        "trakt" : 1412,
+        "imdb" : "tt1442437"
+      }
+    },
+    "play_count" : 7997522,
+    "collected_count" : 2570535
+  },
+  {
+    "collector_count" : 20113,
+    "watcher_count" : 54604,
+    "show" : {
+      "title" : "House",
+      "year" : 2004,
+      "ids" : {
+        "tmdb" : 1408,
+        "slug" : "house",
+        "tvdb" : 73255,
+        "trakt" : 1399,
+        "imdb" : "tt0412142"
+      }
+    },
+    "play_count" : 8986802,
+    "collected_count" : 2546116
+  }
+]

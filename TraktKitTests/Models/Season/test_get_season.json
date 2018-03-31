@@ -1,0 +1,112 @@
+[
+  {
+    "number" : 1,
+    "season" : 1,
+    "title" : "Winter Is Coming",
+    "ids" : {
+      "tmdb" : 63056,
+      "tvdb" : 3254641,
+      "trakt" : 456,
+      "imdb" : "tt1480055"
+    }
+  },
+  {
+    "number" : 2,
+    "season" : 1,
+    "title" : "The Kingsroad",
+    "ids" : {
+      "tmdb" : 63057,
+      "tvdb" : 3436411,
+      "trakt" : 457,
+      "imdb" : "tt1668746"
+    }
+  },
+  {
+    "number" : 3,
+    "season" : 1,
+    "title" : "Lord Snow",
+    "ids" : {
+      "tmdb" : 63058,
+      "tvdb" : 3436421,
+      "trakt" : 458,
+      "imdb" : "tt1829962"
+    }
+  },
+  {
+    "number" : 4,
+    "season" : 1,
+    "title" : "Cripples, Bastards, and Broken Things",
+    "ids" : {
+      "tmdb" : 63059,
+      "tvdb" : 3436431,
+      "trakt" : 459,
+      "imdb" : "tt1829963"
+    }
+  },
+  {
+    "number" : 5,
+    "season" : 1,
+    "title" : "The Wolf and the Lion",
+    "ids" : {
+      "tmdb" : 63060,
+      "tvdb" : 3436441,
+      "trakt" : 460,
+      "imdb" : "tt1829964"
+    }
+  },
+  {
+    "number" : 6,
+    "season" : 1,
+    "title" : "A Golden Crown",
+    "ids" : {
+      "tmdb" : 63061,
+      "tvdb" : 3436451,
+      "trakt" : 461,
+      "imdb" : "tt1837862"
+    }
+  },
+  {
+    "number" : 7,
+    "season" : 1,
+    "title" : "You Win or You Die",
+    "ids" : {
+      "tmdb" : 63062,
+      "tvdb" : 3436461,
+      "trakt" : 462,
+      "imdb" : "tt1837863"
+    }
+  },
+  {
+    "number" : 8,
+    "season" : 1,
+    "title" : "The Pointy End",
+    "ids" : {
+      "tmdb" : 63063,
+      "tvdb" : 3360391,
+      "trakt" : 463,
+      "imdb" : "tt1837864"
+    }
+  },
+  {
+    "number" : 9,
+    "season" : 1,
+    "title" : "Baelor",
+    "ids" : {
+      "tmdb" : 63064,
+      "tvdb" : 4063481,
+      "trakt" : 464,
+      "imdb" : "tt1851398"
+    }
+  },
+  {
+    "number" : 10,
+    "season" : 1,
+    "title" : "Fire and Blood",
+    "ids" : {
+      "tmdb" : 63065,
+      "tvdb" : 4063491,
+      "trakt" : 465,
+      "imdb" : "tt1851397"
+    }
+  }
+]
