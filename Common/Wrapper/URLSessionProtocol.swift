@@ -16,6 +16,7 @@ public protocol URLSessionProtocol {
 
 public protocol URLSessionDataTaskProtocol {
     func resume()
+    func cancel()
 }
 
 // MARK: Conform to protocols
@@ -50,9 +51,14 @@ public class MockURLSession: URLSessionProtocol {
 }
 
 class MockURLSessionDataTask: URLSessionDataTaskProtocol {
-    private (set) var resumeWasCalled = false
+    private(set) var resumeWasCalled = false
+    private(set) var cancelWasCalled = false
 
     func resume() {
         resumeWasCalled = true
+    }
+
+    func cancel() {
+        cancelWasCalled = true
     }
 }
