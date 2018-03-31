@@ -234,7 +234,7 @@ public class TraktManager {
             ]
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
-        session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
                 let welf = self else { return }
             guard error == nil else {
@@ -362,7 +362,7 @@ public class TraktManager {
             ]
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
-        session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
             guard error == nil else {
                 completionHandler(.fail)

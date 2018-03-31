@@ -339,10 +339,10 @@ class UserTests: XCTestCase {
 
     // MARK: - Collection
 
-    func test_get_collection() {
-        session.nextData = jsonData(named: "test_get_collection")
+    func test_get_user_collection() {
+        session.nextData = jsonData(named: "test_get_user_collection")
 
-        let expectation = XCTestExpectation(description: "User Collection")
+        let expectation = XCTestExpectation(description: "Get User Collection")
         traktManager.getUserCollection(type: .Movies) { result in
             if case .success(let collection) = result {
                 let movies = collection.map { $0.movie }
@@ -811,11 +811,11 @@ class UserTests: XCTestCase {
 
     // MARK: - History
 
-    func test_get_watched_history() {
-        session.nextData = jsonData(named: "test_get_watched_history")
+    func test_get_user_watched_history() {
+        session.nextData = jsonData(named: "test_get_user_watched_history")
         session.nextStatusCode = StatusCodes.Success
 
-        let expectation = XCTestExpectation(description: "Get watched history")
+        let expectation = XCTestExpectation(description: "Get user watched history")
         traktManager.getUserWatchedHistory(username: "sean") { result in
             if case .success(let history, _, _) = result {
                 XCTAssertEqual(history.count, 3)
@@ -861,11 +861,11 @@ class UserTests: XCTestCase {
 
     // MARK: - Watchlist
 
-    func test_get_watchlist() {
-        session.nextData = jsonData(named: "test_get_watchlist")
+    func test_get_user_watchlist() {
+        session.nextData = jsonData(named: "test_get_user_watchlist")
         session.nextStatusCode = StatusCodes.Success
 
-        let expectation = XCTestExpectation(description: "Get watchlist")
+        let expectation = XCTestExpectation(description: "Get user watchlist")
         traktManager.getUserWatchlist(username: "sean", type: .Movies, extended: [.Min]) { result in
             if case .success(let watchlist) = result {
                 XCTAssertEqual(watchlist.count, 2)

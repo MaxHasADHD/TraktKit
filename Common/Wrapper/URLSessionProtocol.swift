@@ -11,7 +11,7 @@ import Foundation
 public protocol URLSessionProtocol {
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
-    func dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
+    func _dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
 }
 
 public protocol URLSessionDataTaskProtocol {
@@ -21,7 +21,7 @@ public protocol URLSessionDataTaskProtocol {
 // MARK: Conform to protocols
 
 extension URLSession: URLSessionProtocol {
-    public func dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
+    public func _dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         return dataTask(with: request, completionHandler: completion) as URLSessionDataTaskProtocol
     }
 }
@@ -42,7 +42,7 @@ public class MockURLSession: URLSessionProtocol {
         return HTTPURLResponse(url: request.url!, statusCode: nextStatusCode, httpVersion: "HTTP/1.1", headerFields: nil)!
     }
 
-    public func dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
+    public func _dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         lastURL = request.url
         completion(nextData, successHttpURLResponse(request: request), nextError)
         return nextDataTask

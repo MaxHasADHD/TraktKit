@@ -127,8 +127,7 @@ extension TraktManager {
     
     /// Data
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTaskProtocol? {
-        
-        let datatask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        let datatask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
@@ -162,7 +161,7 @@ extension TraktManager {
     
     /// Success / Failure
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session.dataTask(with: request) { (data, response, error) -> Void in
+        let datatask = session._dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else {
                 completion(.fail)
                 return
@@ -198,7 +197,7 @@ extension TraktManager {
     /// Checkin
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping checkinCompletionHandler) -> URLSessionDataTaskProtocol? {
 
-        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
+        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
             guard let welf = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
@@ -270,7 +269,7 @@ extension TraktManager {
     /// Array of TraktProtocol objects
     func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
         
-        let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        let dataTask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
@@ -313,7 +312,7 @@ extension TraktManager {
     /// Array of ObjectsResultTypePagination objects
     func performRequest<T>(request: URLRequest, expectingStatusCode code: Int, completion: @escaping  ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
         
-        let dataTask = session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        let dataTask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
@@ -368,7 +367,7 @@ extension TraktManager {
     
     // Watching
     func performRequest(request: URLRequest, expectingStatusCode code: Int, completion: @escaping WatchingCompletion) -> URLSessionDataTaskProtocol? {
-        let dataTask = session.dataTask(with: request) { data, response, error in
+        let dataTask = session._dataTask(with: request) { data, response, error in
             guard error == nil else {
                 completion(.error(error: error))
                 return

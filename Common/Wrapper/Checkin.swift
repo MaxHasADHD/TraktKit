@@ -54,7 +54,7 @@ extension TraktManager {
                                            isAuthorized: true,
                                            withHTTPMethod: .DELETE) else { return nil }
         
-        let dataTask = session.dataTask(with: request) { (data, response, error) -> Void in
+        let dataTask = session._dataTask(with: request) { (data, response, error) -> Void in
             guard error == nil else {
                     completionHandler(.fail)
                     return
