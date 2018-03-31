@@ -12,8 +12,8 @@ public struct AddToCollectionResult: Codable {
     let added: Added
     let updated: Added
     let existing: Added
-    let notFound: NotFound
-    
+//    let notFound: NotFound
+
     public struct Added: Codable {
         let movies: Int
         let episodes: Int
@@ -30,6 +30,6 @@ public struct AddToCollectionResult: Codable {
         case added
         case updated
         case existing
-        case notFound = "not_found"
+//        case notFound = "not_found"
     }
 }

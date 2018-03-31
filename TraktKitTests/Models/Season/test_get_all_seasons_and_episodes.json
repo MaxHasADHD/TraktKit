@@ -1,0 +1,623 @@
+[
+  {
+    "number" : 0,
+    "ids" : {
+      "trakt" : 2145,
+      "tvdb" : 137481,
+      "tmdb" : 3627
+    },
+    "episodes" : [
+      {
+        "number" : 1,
+        "season" : 0,
+        "title" : "Inside Game of Thrones",
+        "ids" : {
+          "tmdb" : 63087,
+          "tvdb" : 3226241,
+          "trakt" : 36430,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 2,
+        "season" : 0,
+        "title" : "15-Minute Preview",
+        "ids" : {
+          "tmdb" : 63086,
+          "tvdb" : 4045941,
+          "trakt" : 36431,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 3,
+        "season" : 0,
+        "title" : "Making Game of Thrones",
+        "ids" : {
+          "tmdb" : 63088,
+          "tvdb" : 4073401,
+          "trakt" : 36432,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 4,
+        "season" : 0,
+        "title" : "El Juego Comienza",
+        "ids" : {
+          "tmdb" : 63089,
+          "tvdb" : 4082317,
+          "trakt" : 36433,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 5,
+        "season" : 0,
+        "title" : "2011 Comic Con Panel",
+        "ids" : {
+          "tmdb" : 63090,
+          "tvdb" : 4138149,
+          "trakt" : 36434,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 6,
+        "season" : 0,
+        "title" : "You Win or You Die",
+        "ids" : {
+          "tmdb" : 63091,
+          "tvdb" : 4292422,
+          "trakt" : 36435,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 7,
+        "season" : 0,
+        "title" : "A Gathering Storm",
+        "ids" : {
+          "tmdb" : 63092,
+          "tvdb" : 4517457,
+          "trakt" : 36436,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 8,
+        "season" : 0,
+        "title" : "Politics of Marriage",
+        "ids" : {
+          "tmdb" : 63093,
+          "tvdb" : 4576208,
+          "trakt" : 36437,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 9,
+        "season" : 0,
+        "title" : "Ice and Fire: A Foreshadowing",
+        "ids" : {
+          "tmdb" : 974558,
+          "tvdb" : 4779102,
+          "trakt" : 36438,
+          "imdb" : ""
+        }
+      },
+      {
+        "number" : 10,
+        "season" : 0,
+        "title" : "The Politics of Power: A Look Back at Season 3",
+        "ids" : {
+          "tmdb" : 974559,
+          "tvdb" : 4824480,
+          "trakt" : 36439,
+          "imdb" : ""
+        }
+      }
+    ]
+  },
+  {
+    "number" : 1,
+    "ids" : {
+      "trakt" : 2146,
+      "tvdb" : 364731,
+      "tmdb" : 3624
+    },
+    "episodes" : [
+      {
+        "number" : 1,
+        "season" : 1,
+        "title" : "Winter Is Coming",
+        "ids" : {
+          "tmdb" : 63056,
+          "tvdb" : 3254641,
+          "trakt" : 36440,
+          "imdb" : "tt1480055"
+        }
+      },
+      {
+        "number" : 2,
+        "season" : 1,
+        "title" : "The Kingsroad",
+        "ids" : {
+          "tmdb" : 63057,
+          "tvdb" : 3436411,
+          "trakt" : 36441,
+          "imdb" : "tt1668746"
+        }
+      },
+      {
+        "number" : 3,
+        "season" : 1,
+        "title" : "Lord Snow",
+        "ids" : {
+          "tmdb" : 63058,
+          "tvdb" : 3436421,
+          "trakt" : 36442,
+          "imdb" : "tt1829962"
+        }
+      },
+      {
+        "number" : 4,
+        "season" : 1,
+        "title" : "Cripples, Bastards, and Broken Things",
+        "ids" : {
+          "tmdb" : 63059,
+          "tvdb" : 3436431,
+          "trakt" : 36443,
+          "imdb" : "tt1829963"
+        }
+      },
+      {
+        "number" : 5,
+        "season" : 1,
+        "title" : "The Wolf and the Lion",
+        "ids" : {
+          "tmdb" : 63060,
+          "tvdb" : 3436441,
+          "trakt" : 36444,
+          "imdb" : "tt1829964"
+        }
+      },
+      {
+        "number" : 6,
+        "season" : 1,
+        "title" : "A Golden Crown",
+        "ids" : {
+          "tmdb" : 63061,
+          "tvdb" : 3436451,
+          "trakt" : 36445,
+          "imdb" : "tt1837862"
+        }
+      },
+      {
+        "number" : 7,
+        "season" : 1,
+        "title" : "You Win or You Die",
+        "ids" : {
+          "tmdb" : 63062,
+          "tvdb" : 3436461,
+          "trakt" : 36446,
+          "imdb" : "tt1837863"
+        }
+      },
+      {
+        "number" : 8,
+        "season" : 1,
+        "title" : "The Pointy End",
+        "ids" : {
+          "tmdb" : 63063,
+          "tvdb" : 3360391,
+          "trakt" : 36447,
+          "imdb" : "tt1837864"
+        }
+      },
+      {
+        "number" : 9,
+        "season" : 1,
+        "title" : "Baelor",
+        "ids" : {
+          "tmdb" : 63064,
+          "tvdb" : 4063481,
+          "trakt" : 36448,
+          "imdb" : "tt1851398"
+        }
+      },
+      {
+        "number" : 10,
+        "season" : 1,
+        "title" : "Fire and Blood",
+        "ids" : {
+          "tmdb" : 63065,
+          "tvdb" : 4063491,
+          "trakt" : 36449,
+          "imdb" : "tt1851397"
+        }
+      }
+    ]
+  },
+  {
+    "number" : 2,
+    "ids" : {
+      "trakt" : 2147,
+      "tvdb" : 473271,
+      "tmdb" : 3625
+    },
+    "episodes" : [
+      {
+        "number" : 1,
+        "season" : 2,
+        "title" : "The North Remembers",
+        "ids" : {
+          "tmdb" : 63066,
+          "tvdb" : 4161693,
+          "trakt" : 36450,
+          "imdb" : "tt1971833"
+        }
+      },
+      {
+        "number" : 2,
+        "season" : 2,
+        "title" : "The Night Lands",
+        "ids" : {
+          "tmdb" : 974430,
+          "tvdb" : 4245771,
+          "trakt" : 36451,
+          "imdb" : "tt2069318"
+        }
+      },
+      {
+        "number" : 3,
+        "season" : 2,
+        "title" : "What is Dead May Never Die",
+        "ids" : {
+          "tmdb" : 63068,
+          "tvdb" : 4245772,
+          "trakt" : 36452,
+          "imdb" : "tt2070135"
+        }
+      },
+      {
+        "number" : 4,
+        "season" : 2,
+        "title" : "Garden of Bones",
+        "ids" : {
+          "tmdb" : 63069,
+          "tvdb" : 4245773,
+          "trakt" : 36453,
+          "imdb" : "tt2069319"
+        }
+      },
+      {
+        "number" : 5,
+        "season" : 2,
+        "title" : "The Ghost of Harrenhal",
+        "ids" : {
+          "tmdb" : 63070,
+          "tvdb" : 4245774,
+          "trakt" : 36454,
+          "imdb" : "tt2074658"
+        }
+      },
+      {
+        "number" : 6,
+        "season" : 2,
+        "title" : "The Old Gods and the New",
+        "ids" : {
+          "tmdb" : 63071,
+          "tvdb" : 4245775,
+          "trakt" : 36455,
+          "imdb" : "tt2085238"
+        }
+      },
+      {
+        "number" : 7,
+        "season" : 2,
+        "title" : "A Man Without Honor",
+        "ids" : {
+          "tmdb" : 63073,
+          "tvdb" : 4245776,
+          "trakt" : 36456,
+          "imdb" : "tt2085239"
+        }
+      },
+      {
+        "number" : 8,
+        "season" : 2,
+        "title" : "The Prince of Winterfell",
+        "ids" : {
+          "tmdb" : 63074,
+          "tvdb" : 4245777,
+          "trakt" : 36457,
+          "imdb" : "tt2085240"
+        }
+      },
+      {
+        "number" : 9,
+        "season" : 2,
+        "title" : "Blackwater",
+        "ids" : {
+          "tmdb" : 63072,
+          "tvdb" : 4245778,
+          "trakt" : 36458,
+          "imdb" : "tt2084342"
+        }
+      },
+      {
+        "number" : 10,
+        "season" : 2,
+        "title" : "Valar Morghulis",
+        "ids" : {
+          "tmdb" : 63075,
+          "tvdb" : 4245779,
+          "trakt" : 36459,
+          "imdb" : "tt2112510"
+        }
+      }
+    ]
+  },
+  {
+    "number" : 3,
+    "ids" : {
+      "trakt" : 2148,
+      "tvdb" : 488434,
+      "tmdb" : 3626
+    },
+    "episodes" : [
+      {
+        "number" : 1,
+        "season" : 3,
+        "title" : "Valar Dohaeris",
+        "ids" : {
+          "tmdb" : 63077,
+          "tvdb" : 4293685,
+          "trakt" : 36460,
+          "imdb" : "tt2178782"
+        }
+      },
+      {
+        "number" : 2,
+        "season" : 3,
+        "title" : "Dark Wings, Dark Words",
+        "ids" : {
+          "tmdb" : 63076,
+          "tvdb" : 4517458,
+          "trakt" : 36461,
+          "imdb" : "tt2178772"
+        }
+      },
+      {
+        "number" : 3,
+        "season" : 3,
+        "title" : "Walk of Punishment",
+        "ids" : {
+          "tmdb" : 63078,
+          "tvdb" : 4517459,
+          "trakt" : 36462,
+          "imdb" : "tt2178802"
+        }
+      },
+      {
+        "number" : 4,
+        "season" : 3,
+        "title" : "And Now His Watch Is Ended",
+        "ids" : {
+          "tmdb" : 63082,
+          "tvdb" : 4517460,
+          "trakt" : 36463,
+          "imdb" : "tt2178798"
+        }
+      },
+      {
+        "number" : 5,
+        "season" : 3,
+        "title" : "Kissed by Fire",
+        "ids" : {
+          "tmdb" : 63083,
+          "tvdb" : 4517461,
+          "trakt" : 36464,
+          "imdb" : "tt2178788"
+        }
+      },
+      {
+        "number" : 6,
+        "season" : 3,
+        "title" : "The Climb",
+        "ids" : {
+          "tmdb" : 63084,
+          "tvdb" : 4517462,
+          "trakt" : 36465,
+          "imdb" : "tt2178812"
+        }
+      },
+      {
+        "number" : 7,
+        "season" : 3,
+        "title" : "The Bear and the Maiden Fair",
+        "ids" : {
+          "tmdb" : 63081,
+          "tvdb" : 4517463,
+          "trakt" : 36466,
+          "imdb" : "tt2178814"
+        }
+      },
+      {
+        "number" : 8,
+        "season" : 3,
+        "title" : "Second Sons",
+        "ids" : {
+          "tmdb" : 63085,
+          "tvdb" : 4517464,
+          "trakt" : 36467,
+          "imdb" : "tt2178806"
+        }
+      },
+      {
+        "number" : 9,
+        "season" : 3,
+        "title" : "The Rains of Castamere",
+        "ids" : {
+          "tmdb" : 63080,
+          "tvdb" : 4517465,
+          "trakt" : 36468,
+          "imdb" : "tt2178784"
+        }
+      },
+      {
+        "number" : 10,
+        "season" : 3,
+        "title" : "Mhysa",
+        "ids" : {
+          "tmdb" : 63079,
+          "tvdb" : 4517466,
+          "trakt" : 36469,
+          "imdb" : "tt2178796"
+        }
+      }
+    ]
+  },
+  {
+    "number" : 4,
+    "ids" : {
+      "trakt" : 2149,
+      "tvdb" : 522882,
+      "tmdb" : 3628
+    },
+    "episodes" : [
+      {
+        "number" : 1,
+        "season" : 4,
+        "title" : "Two Swords",
+        "ids" : {
+          "tmdb" : 973190,
+          "tvdb" : 4721938,
+          "trakt" : 36470,
+          "imdb" : "tt2816136"
+        }
+      },
+      {
+        "number" : 2,
+        "season" : 4,
+        "title" : "The Lion and the Rose",
+        "ids" : {
+          "tmdb" : 973219,
+          "tvdb" : 4801602,
+          "trakt" : 36471,
+          "imdb" : "tt2832378"
+        }
+      },
+      {
+        "number" : 3,
+        "season" : 4,
+        "title" : "Breaker of Chains",
+        "ids" : {
+          "tmdb" : 63096,
+          "tvdb" : 4615736,
+          "trakt" : 36472,
+          "imdb" : "tt2972426"
+        }
+      },
+      {
+        "number" : 4,
+        "season" : 4,
+        "title" : "Oathkeeper",
+        "ids" : {
+          "tmdb" : 63097,
+          "tvdb" : 4615737,
+          "trakt" : 36473,
+          "imdb" : "tt2972428"
+        }
+      },
+      {
+        "number" : 5,
+        "season" : 4,
+        "title" : "First of His Name",
+        "ids" : {
+          "tmdb" : 63098,
+          "tvdb" : 4615738,
+          "trakt" : 36474,
+          "imdb" : "tt3060856"
+        }
+      },
+      {
+        "number" : 6,
+        "season" : 4,
+        "title" : "The Laws of Gods and Men",
+        "ids" : {
+          "tmdb" : 63099,
+          "tvdb" : 4615739,
+          "trakt" : 36475,
+          "imdb" : "tt3060910"
+        }
+      },
+      {
+        "number" : 7,
+        "season" : 4,
+        "title" : "Mockingbird",
+        "ids" : {
+          "tmdb" : 63100,
+          "tvdb" : 4615740,
+          "trakt" : 36476,
+          "imdb" : "tt3060876"
+        }
+      },
+      {
+        "number" : 8,
+        "season" : 4,
+        "title" : "The Mountain and the Viper",
+        "ids" : {
+          "tmdb" : 63101,
+          "tvdb" : 4615741,
+          "trakt" : 36477,
+          "imdb" : "tt3060782"
+        }
+      },
+      {
+        "number" : 9,
+        "season" : 4,
+        "title" : "The Watchers on the Wall",
+        "ids" : {
+          "tmdb" : 63102,
+          "tvdb" : 4615742,
+          "trakt" : 36478,
+          "imdb" : "tt3060858"
+        }
+      },
+      {
+        "number" : 10,
+        "season" : 4,
+        "title" : "The Children",
+        "ids" : {
+          "tmdb" : 63103,
+          "tvdb" : 4615743,
+          "trakt" : 36479,
+          "imdb" : "tt3060860"
+        }
+      }
+    ]
+  },
+  {
+    "number" : 5,
+    "ids" : {
+      "trakt" : 3955,
+      "tvdb" : null,
+      "tmdb" : 62090
+    },
+    "episodes" : [
+      {
+        "number" : 1,
+        "season" : 5,
+        "title" : "5x1",
+        "ids" : {
+          "tmdb" : 1001402,
+          "tvdb" : null,
+          "trakt" : 63767,
+          "imdb" : ""
+        }
+      }
+    ]
+  }
+]

@@ -191,6 +191,30 @@ public enum Type2: String, CustomStringConvertible {
     }
 }
 
+public enum ListType: String, CustomStringConvertible {
+    case all
+    case personal
+    case official
+    case watchlists
+
+    public var description: String {
+        return self.rawValue
+    }
+}
+
+public enum ListSortType: String, CustomStringConvertible {
+    case popular
+    case likes
+    case comments
+    case items
+    case added
+    case updated
+
+    public var description: String {
+        return self.rawValue
+    }
+}
+
 /// Type of comments
 public enum CommentType: String {
     case all = "all"

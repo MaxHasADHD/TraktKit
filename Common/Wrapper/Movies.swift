@@ -173,7 +173,34 @@ extension TraktManager {
     public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
         return getComments(.Movies, id: id, completion: completion)
     }
-    
+
+    // MARK: - Lists
+
+    /**
+     Returns all lists that contain this movie. By default, `personal` lists are returned sorted by the most `popular`.
+
+     📄 Pagination
+     */
+    @discardableResult
+    public func getListsContainingMovie<T: CustomStringConvertible>(movieID id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
+        var path = "movies/\(id)/lists"
+        if let listType = listType {
+            path += "/\(listType)"
+
+            if let sortBy = sortBy {
+                path += "/\(sortBy)"
+            }
+        }
+
+        guard let request = mutableRequest(forPath: path,
+                                           withQuery: [:],
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
+
     // MARK: - People
     
     /**

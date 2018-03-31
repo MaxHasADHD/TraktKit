@@ -1,0 +1,20 @@
+{
+  "progress" : 1.25,
+  "id" : 0,
+  "sharing" : {
+    "twitter" : true,
+    "facebook" : true,
+    "tumblr" : false
+  },
+  "movie" : {
+    "title" : "Guardians of the Galaxy",
+    "year" : 2014,
+    "ids" : {
+      "tmdb" : 118340,
+      "slug" : "guardians-of-the-galaxy-2014",
+      "trakt" : 28,
+      "imdb" : "tt2015381"
+    }
+  },
+  "action" : "start"
+}

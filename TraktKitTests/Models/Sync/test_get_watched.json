@@ -1,0 +1,30 @@
+[
+  {
+    "plays" : 4,
+    "last_watched_at" : "2014-10-11T17:00:54.000Z",
+    "movie" : {
+      "title" : "Batman Begins",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 272,
+        "slug" : "batman-begins-2005",
+        "trakt" : 6,
+        "imdb" : "tt0372784"
+      }
+    }
+  },
+  {
+    "plays" : 2,
+    "last_watched_at" : "2014-10-12T17:00:54.000Z",
+    "movie" : {
+      "title" : "The Dark Knight",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 155,
+        "slug" : "the-dark-knight-2008",
+        "trakt" : 4,
+        "imdb" : "tt0468569"
+      }
+    }
+  }
+]

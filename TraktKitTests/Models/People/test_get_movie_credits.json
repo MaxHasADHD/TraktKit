@@ -1,0 +1,65 @@
+{
+  "crew" : {
+    "writing" : [
+      {
+        "job" : "Screenplay",
+        "movie" : {
+          "title" : "Godzilla",
+          "year" : 2014,
+          "ids" : {
+            "tmdb" : 124905,
+            "slug" : "godzilla-2014",
+            "trakt" : 24,
+            "imdb" : "tt0831387"
+          }
+        }
+      }
+    ],
+    "directing" : [
+      {
+        "job" : "Director",
+        "movie" : {
+          "title" : "Godzilla",
+          "year" : 2014,
+          "ids" : {
+            "tmdb" : 124905,
+            "slug" : "godzilla-2014",
+            "trakt" : 24,
+            "imdb" : "tt0831387"
+          }
+        }
+      }
+    ],
+    "producing" : [
+      {
+        "job" : "Producer",
+        "movie" : {
+          "title" : "Godzilla",
+          "year" : 2014,
+          "ids" : {
+            "tmdb" : 124905,
+            "slug" : "godzilla-2014",
+            "trakt" : 24,
+            "imdb" : "tt0831387"
+          }
+        }
+      }
+    ]
+  },
+  "cast" : [
+    {
+      "character" : "Joe Brody",
+      "movie" : {
+        "title" : "Godzilla",
+        "year" : 2014,
+        "ids" : {
+          "tmdb" : 124905,
+          "slug" : "godzilla-2014",
+          "trakt" : 24,
+          "imdb" : "tt0831387"
+        }
+      }
+    }
+  ]
+}
+

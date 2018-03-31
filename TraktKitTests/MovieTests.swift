@@ -370,7 +370,24 @@ class MovieTests: XCTestCase {
     // MARK: - Lists
 
     func test_get_lists_containing_movie() {
-        XCTFail("Need to implement")
+        session.nextData = jsonData(named: "test_get_lists_containing_movie")
+
+        let expectation = XCTestExpectation(description: "Get lists containing movie")
+        traktManager.getListsContainingMovie(movieID: "tron-legacy-2010") { result in
+            if case .success(let lists) = result {
+                XCTAssertEqual(lists.count, 1)
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/lists")
+
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
     }
 
     // MARK: - People
