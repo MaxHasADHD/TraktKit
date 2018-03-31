@@ -1,5 +1,6 @@
 [
   {
+    "rank" : 1,
     "type" : "movie",
     "movie" : {
       "title" : "TRON: Legacy",
@@ -14,6 +15,7 @@
     "listed_at" : "2014-09-01T09:10:11.000Z"
   },
   {
+    "rank" : 2,
     "type" : "movie",
     "movie" : {
       "title" : "The Dark Knight",

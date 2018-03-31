@@ -111,7 +111,7 @@ extension TraktManager {
     // MARK: Users
     public typealias ListCompletionHandler = ObjectCompletionHandler<TraktList>
     public typealias ListsCompletionHandler = ObjectsCompletionHandler<TraktList>
-    public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktWatchlistItem>
+    public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktListItem>
     public typealias HiddenItemsCompletionHandler = paginatedCompletionHandler<HiddenItem>
     public typealias UserCommentsCompletionHandler = ObjectsCompletionHandler<UsersComments>
     public typealias AddListItemCompletion = ObjectCompletionHandler<ListItemPostResult>
