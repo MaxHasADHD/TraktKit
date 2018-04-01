@@ -17,7 +17,7 @@ public enum ListPrivacy: String, Codable {
 public struct TraktList: Codable {
     public let allowComments: Bool
     public let commentCount: Int
-    public let createdAt: Date
+    public let createdAt: Date?
     public let description: String?
     public let displayNumbers: Bool
     public var itemCount: Int
@@ -39,5 +39,17 @@ public struct TraktList: Codable {
         case privacy
         case updatedAt = "updated_at"
         case ids
+    }
+}
+
+public struct TraktTrendingList: Codable {
+    public let likeCount: Int
+    public let commentCount: Int
+    public let list: TraktList
+
+    enum CodingKeys: String, CodingKey {
+        case likeCount = "like_count"
+        case commentCount = "comment_count"
+        case list
     }
 }

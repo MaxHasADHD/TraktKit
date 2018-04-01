@@ -1,0 +1,16 @@
+[
+  {
+    "type" : "movie",
+    "score" : null,
+    "movie" : {
+      "title" : "TRON: Legacy",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 20526,
+        "slug" : "tron-legacy-2010",
+        "trakt" : 12601,
+        "imdb" : "tt1104001"
+      }
+    }
+  }
+]

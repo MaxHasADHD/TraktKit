@@ -1,0 +1,538 @@
+{
+  "crew" : {
+    "writing" : [
+      {
+        "job" : "Screenplay",
+        "person" : {
+          "name" : "Adam Horowitz",
+          "ids" : {
+            "tmdb" : 44035,
+            "slug" : "adam-horowitz",
+            "trakt" : 30,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Screenplay",
+        "person" : {
+          "name" : "Richard Jefferies",
+          "ids" : {
+            "tmdb" : 73570,
+            "slug" : "richard-jefferies",
+            "trakt" : 31,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Screenplay",
+        "person" : {
+          "name" : "Edward Kitsis",
+          "ids" : {
+            "tmdb" : 44034,
+            "slug" : "edward-kitsis",
+            "trakt" : 32,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Screenplay",
+        "person" : {
+          "name" : "Steven Lisberger",
+          "ids" : {
+            "tmdb" : 12859,
+            "slug" : "steven-lisberger",
+            "trakt" : 33,
+            "imdb" : ""
+          }
+        }
+      }
+    ],
+    "camera" : [
+      {
+        "job" : "Director of Photography",
+        "person" : {
+          "name" : "Claudio Miranda",
+          "ids" : {
+            "tmdb" : 51333,
+            "slug" : "claudio-miranda",
+            "trakt" : 41,
+            "imdb" : ""
+          }
+        }
+      }
+    ],
+    "crew" : [
+      {
+        "job" : "Supervising Art Director",
+        "person" : {
+          "name" : "Kevin Ishioka",
+          "ids" : {
+            "tmdb" : 6878,
+            "slug" : "kevin-ishioka",
+            "trakt" : 23,
+            "imdb" : "nm0411131"
+          }
+        }
+      },
+      {
+        "job" : "Supervising Art Director",
+        "person" : {
+          "name" : "Mark W. Mansbridge",
+          "ids" : {
+            "tmdb" : 21070,
+            "slug" : "mark-w-mansbridge",
+            "trakt" : 24,
+            "imdb" : "nm0543729"
+          }
+        }
+      }
+    ],
+    "production" : [
+      {
+        "job" : "Casting",
+        "person" : {
+          "name" : "Heike Brandstatter",
+          "ids" : {
+            "tmdb" : 5362,
+            "slug" : "heike-brandstatter",
+            "trakt" : 19,
+            "imdb" : "nm0104840"
+          }
+        }
+      },
+      {
+        "job" : "Casting",
+        "person" : {
+          "name" : "Sarah Finn",
+          "ids" : {
+            "tmdb" : 7232,
+            "slug" : "sarah-finn",
+            "trakt" : 20,
+            "imdb" : "nm0278168"
+          }
+        }
+      },
+      {
+        "job" : "Casting",
+        "person" : {
+          "name" : "Coreen Mayrs",
+          "ids" : {
+            "tmdb" : 5363,
+            "slug" : "coreen-mayrs",
+            "trakt" : 21,
+            "imdb" : "nm0563042"
+          }
+        }
+      },
+      {
+        "job" : "Producer",
+        "person" : {
+          "name" : "Sean Bailey",
+          "ids" : {
+            "tmdb" : 39387,
+            "slug" : "sean-bailey",
+            "trakt" : 34,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Producer",
+        "person" : {
+          "name" : "Steven Lisberger",
+          "ids" : {
+            "tmdb" : 12859,
+            "slug" : "steven-lisberger",
+            "trakt" : 33,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Producer",
+        "person" : {
+          "name" : "Jeffrey Silver",
+          "ids" : {
+            "tmdb" : 20908,
+            "slug" : "jeffrey-silver",
+            "trakt" : 35,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Producer",
+        "person" : {
+          "name" : "Bruce Franklin",
+          "ids" : {
+            "tmdb" : 113981,
+            "slug" : "bruce-franklin",
+            "trakt" : 36,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Producer",
+        "person" : {
+          "name" : "Steve Gaub",
+          "ids" : {
+            "tmdb" : 63289,
+            "slug" : "steve-gaub",
+            "trakt" : 37,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Producer",
+        "person" : {
+          "name" : "Justis Greene",
+          "ids" : {
+            "tmdb" : 113982,
+            "slug" : "justis-greene",
+            "trakt" : 38,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Producer",
+        "person" : {
+          "name" : "Julien Lemaitre",
+          "ids" : {
+            "tmdb" : 113983,
+            "slug" : "julien-lemaitre",
+            "trakt" : 39,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Executive Producer",
+        "person" : {
+          "name" : "Donald Kushner",
+          "ids" : {
+            "tmdb" : 6889,
+            "slug" : "donald-kushner",
+            "trakt" : 40,
+            "imdb" : ""
+          }
+        }
+      }
+    ],
+    "costume & make-up" : [
+      {
+        "job" : "Costume Design",
+        "person" : {
+          "name" : "Michael Wilkinson",
+          "ids" : {
+            "tmdb" : 5392,
+            "slug" : "michael-wilkinson",
+            "trakt" : 26,
+            "imdb" : "nm0929452"
+          }
+        }
+      },
+      {
+        "job" : "Makeup Department Head",
+        "person" : {
+          "name" : "Rosalina Da Silva",
+          "ids" : {
+            "tmdb" : 75294,
+            "slug" : "rosalina-da-silva",
+            "trakt" : 27,
+            "imdb" : "nm0196301"
+          }
+        }
+      },
+      {
+        "job" : "Costume Supervisor",
+        "person" : {
+          "name" : "Tangi Crawford",
+          "ids" : {
+            "tmdb" : 1323289,
+            "slug" : "tangi-crawford",
+            "trakt" : 28,
+            "imdb" : ""
+          }
+        }
+      }
+    ],
+    "sound" : [
+      {
+        "job" : "Music",
+        "person" : {
+          "name" : "Daft Punk",
+          "ids" : {
+            "tmdb" : 67931,
+            "slug" : "daft-punk",
+            "trakt" : 15,
+            "imdb" : ""
+          }
+        }
+      }
+    ],
+    "art" : [
+      {
+        "job" : "Production Design",
+        "person" : {
+          "name" : "Darren Gilford",
+          "ids" : {
+            "tmdb" : 411385,
+            "slug" : "darren-gilford",
+            "trakt" : 22,
+            "imdb" : ""
+          }
+        }
+      },
+      {
+        "job" : "Set Decoration",
+        "person" : {
+          "name" : "Lin MacDonald",
+          "ids" : {
+            "tmdb" : 12384,
+            "slug" : "lin-macdonald",
+            "trakt" : 25,
+            "imdb" : "nm0003106"
+          }
+        }
+      }
+    ],
+    "directing" : [
+      {
+        "job" : "Director",
+        "person" : {
+          "name" : "Joseph Kosinski",
+          "ids" : {
+            "tmdb" : 86270,
+            "slug" : "joseph-kosinski",
+            "trakt" : 29,
+            "imdb" : "nm2676052"
+          }
+        }
+      }
+    ]
+  },
+  "cast" : [
+    {
+      "character" : "Sam Flynn",
+      "person" : {
+        "name" : "Garrett Hedlund",
+        "ids" : {
+          "tmdb" : 9828,
+          "slug" : "garrett-hedlund",
+          "trakt" : 1,
+          "imdb" : "nm1330560"
+        }
+      }
+    },
+    {
+      "character" : "Kevin Flynn \/ Clu",
+      "person" : {
+        "name" : "Jeff Bridges",
+        "ids" : {
+          "tmdb" : 1229,
+          "slug" : "jeff-bridges",
+          "trakt" : 2,
+          "imdb" : "nm0000313"
+        }
+      }
+    },
+    {
+      "character" : "Quorra",
+      "person" : {
+        "name" : "Olivia Wilde",
+        "ids" : {
+          "tmdb" : 59315,
+          "slug" : "olivia-wilde",
+          "trakt" : 3,
+          "imdb" : "nm1312575"
+        }
+      }
+    },
+    {
+      "character" : "Alan Bradley \/ Tron",
+      "person" : {
+        "name" : "Bruce Boxleitner",
+        "ids" : {
+          "tmdb" : 2547,
+          "slug" : "bruce-boxleitner",
+          "trakt" : 4,
+          "imdb" : "nm0000310"
+        }
+      }
+    },
+    {
+      "character" : "Siren",
+      "person" : {
+        "name" : "Yaya DaCosta",
+        "ids" : {
+          "tmdb" : 60033,
+          "slug" : "yaya-dacosta",
+          "trakt" : 5,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Siren",
+      "person" : {
+        "name" : "Serinda Swan",
+        "ids" : {
+          "tmdb" : 86268,
+          "slug" : "serinda-swan",
+          "trakt" : 6,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Siren",
+      "person" : {
+        "name" : "Beau Garrett",
+        "ids" : {
+          "tmdb" : 20403,
+          "slug" : "beau-garrett",
+          "trakt" : 7,
+          "imdb" : "nm1683768"
+        }
+      }
+    },
+    {
+      "character" : "Siren",
+      "person" : {
+        "name" : "Elizabeth Mathis",
+        "ids" : {
+          "tmdb" : 130108,
+          "slug" : "elizabeth-mathis",
+          "trakt" : 8,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Jarvis",
+      "person" : {
+        "name" : "James Frain",
+        "ids" : {
+          "tmdb" : 22063,
+          "slug" : "james-frain",
+          "trakt" : 9,
+          "imdb" : "nm0289656"
+        }
+      }
+    },
+    {
+      "character" : "Young Mrs. Flynn",
+      "person" : {
+        "name" : "Amy Esterle",
+        "ids" : {
+          "tmdb" : 86269,
+          "slug" : "amy-esterle",
+          "trakt" : 10,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Sobel",
+      "person" : {
+        "name" : "Brandon Jay McLaren",
+        "ids" : {
+          "tmdb" : 58371,
+          "slug" : "brandon-jay-mclaren",
+          "trakt" : 11,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Castor \/ Zuse",
+      "person" : {
+        "name" : "Michael Sheen",
+        "ids" : {
+          "tmdb" : 3968,
+          "slug" : "michael-sheen",
+          "trakt" : 12,
+          "imdb" : "nm0790688"
+        }
+      }
+    },
+    {
+      "character" : "Young Sam",
+      "person" : {
+        "name" : "Owen Best",
+        "ids" : {
+          "tmdb" : 109205,
+          "slug" : "owen-best",
+          "trakt" : 13,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Green Light Cycle Rider",
+      "person" : {
+        "name" : "Michael Teigen",
+        "ids" : {
+          "tmdb" : 37980,
+          "slug" : "michael-teigen",
+          "trakt" : 14,
+          "imdb" : "nm1083137"
+        }
+      }
+    },
+    {
+      "character" : "Masked DJ's",
+      "person" : {
+        "name" : "Daft Punk",
+        "ids" : {
+          "tmdb" : 67931,
+          "slug" : "daft-punk",
+          "trakt" : 15,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Chattering Homeless Man",
+      "person" : {
+        "name" : "Ron Selmour",
+        "ids" : {
+          "tmdb" : 10874,
+          "slug" : "ron-selmour",
+          "trakt" : 16,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Bartik",
+      "person" : {
+        "name" : "Conrad Coates",
+        "ids" : {
+          "tmdb" : 43263,
+          "slug" : "conrad-coates",
+          "trakt" : 17,
+          "imdb" : ""
+        }
+      }
+    },
+    {
+      "character" : "Half Faced Man (as Yurij Kis)",
+      "person" : {
+        "name" : "Kis Yurij",
+        "ids" : {
+          "tmdb" : 145110,
+          "slug" : "kis-yurij",
+          "trakt" : 18,
+          "imdb" : ""
+        }
+      }
+    }
+  ]
+}

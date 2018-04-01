@@ -1,0 +1,29 @@
+[
+  {
+    "user" : {
+      "username" : "sean",
+      "private" : false,
+      "vip" : true,
+      "vip_ep" : false,
+      "name" : "Sean Rudford",
+      "ids" : {
+        "slug" : "sean"
+      }
+    },
+    "followed_at" : "2014-09-01T09:10:11.000Z"
+  },
+  {
+    "user" : {
+      "username" : "justin",
+      "private" : false,
+      "vip" : true,
+      "vip_ep" : false,
+      "name" : "Justin Nemeth",
+      "ids" : {
+        "slug" : "justin"
+      }
+    },
+    "followed_at" : "2014-09-01T09:10:11.000Z"
+  }
+]
+

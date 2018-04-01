@@ -1,0 +1,132 @@
+[
+  {
+    "revenue" : 48464322,
+    "movie" : {
+      "title" : "Hotel Transylvania 2",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 159824,
+        "slug" : "hotel-transylvania-2-2015",
+        "trakt" : 103449,
+        "imdb" : "tt2510894"
+      }
+    }
+  },
+  {
+    "revenue" : 17728313,
+    "movie" : {
+      "title" : "The Intern",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 257211,
+        "slug" : "the-intern-2015",
+        "trakt" : 156997,
+        "imdb" : "tt2361509"
+      }
+    }
+  },
+  {
+    "revenue" : 14271777,
+    "movie" : {
+      "title" : "Maze Runner: The Scorch Trials",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 294254,
+        "slug" : "maze-runner-the-scorch-trials-2015",
+        "trakt" : 190987,
+        "imdb" : "tt4046784"
+      }
+    }
+  },
+  {
+    "revenue" : 13242895,
+    "movie" : {
+      "title" : "Everest",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 253412,
+        "slug" : "everest-2015",
+        "trakt" : 153969,
+        "imdb" : "tt2719848"
+      }
+    }
+  },
+  {
+    "revenue" : 11031215,
+    "movie" : {
+      "title" : "Black Mass",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 261023,
+        "slug" : "black-mass-2015",
+        "trakt" : 160067,
+        "imdb" : "tt1355683"
+      }
+    }
+  },
+  {
+    "revenue" : 6674280,
+    "movie" : {
+      "title" : "The Visit",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 298312,
+        "slug" : "the-visit-2015",
+        "trakt" : 196859,
+        "imdb" : "tt3567288"
+      }
+    }
+  },
+  {
+    "revenue" : 4774505,
+    "movie" : {
+      "title" : "The Perfect Guy",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 304372,
+        "slug" : "the-perfect-guy-2015",
+        "trakt" : 207114,
+        "imdb" : "tt3862750"
+      }
+    }
+  },
+  {
+    "revenue" : 4242644,
+    "movie" : {
+      "title" : "War Room",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 323272,
+        "slug" : "war-room",
+        "trakt" : 203901,
+        "imdb" : "tt3832914"
+      }
+    }
+  },
+  {
+    "revenue" : 3520626,
+    "movie" : {
+      "title" : "The Green Inferno",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 171424,
+        "slug" : "the-green-inferno-2014",
+        "trakt" : 109134,
+        "imdb" : "tt2403021"
+      }
+    }
+  },
+  {
+    "revenue" : 1717301,
+    "movie" : {
+      "title" : "Sicario",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 273481,
+        "slug" : "sicario-2015",
+        "trakt" : 171369,
+        "imdb" : "tt3397884"
+      }
+    }
+  }
+]

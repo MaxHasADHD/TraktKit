@@ -1,0 +1,29 @@
+{
+  "expires_at" : "2014-10-23T07:09:12.000Z",
+  "started_at" : "2014-10-23T06:24:12.000Z",
+  "episode" : {
+    "number" : 2,
+    "season" : 0,
+    "title" : "Wedding Day",
+    "ids" : {
+      "tmdb" : 62133,
+      "tvdb" : 3859791,
+      "trakt" : 2,
+      "imdb" : ""
+    }
+  },
+  "show" : {
+    "title" : "Breaking Bad",
+    "year" : 2008,
+    "ids" : {
+      "tmdb" : 1396,
+      "slug" : "breaking-bad",
+      "tvdb" : 81189,
+      "trakt" : 1,
+      "imdb" : "tt0903747"
+    }
+  },
+  "type" : "episode",
+  "action" : "scrobble"
+}
+

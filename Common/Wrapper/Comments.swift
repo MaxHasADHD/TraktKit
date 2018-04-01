@@ -18,24 +18,16 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postComment(movie: RawJSON?, show: RawJSON?, episode: RawJSON?, comment: String, isSpoiler spoiler: Bool, isReview review: Bool, completionHandler: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func postComment(movie: RawJSON? = nil, show: RawJSON? = nil, episode: RawJSON? = nil, comment: String, isSpoiler spoiler: Bool, completionHandler: @escaping SuccessCompletionHandler) throws -> URLSessionDataTaskProtocol? {
         
         // JSON
         var json: RawJSON = [
             "comment": comment,
-            "spoiler": spoiler,
-            "review": review
+            "spoiler": spoiler
         ]
-        
-        if let movie = movie {
-            json["movie"] = movie
-        }
-        else if let show = show {
-            json["show"] = show
-        }
-        else if let episode = episode {
-            json["episode"] = episode
-        }
+        json["movie"] = movie
+        json["show"] = show
+        json["episode"] = episode
         
         let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
         
@@ -50,7 +42,7 @@ extension TraktManager {
      Returns a single comment and indicates how many replies it has. Use **GET** `/comments/:id/replies` to get the actual replies.
      */
     @discardableResult
-    public func getComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<Comment>) -> URLSessionDataTask? {
+    public func getComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<Comment>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "comments/\(id)",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -64,7 +56,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
+    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTaskProtocol? {
         
         // JSON
         let json: RawJSON = [
@@ -89,7 +81,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard
             let request = mutableRequest(forPath: "comments/\(id)",
                                          withQuery: [:],
@@ -106,7 +98,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectsCompletionHandler<Comment>) -> URLSessionDataTask? {
+    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectsCompletionHandler<Comment>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "comments/\(id)/replies",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -120,7 +112,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
+    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTaskProtocol? {
         
         // JSON
         let json: RawJSON = [
@@ -140,7 +132,43 @@ extension TraktManager {
                               expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
-    
+
+    // MARK: - Item
+
+    /**
+     Returns all users who liked a comment. If you only need the `replies` count, the main `comment` object already has that, so no need to use this method.
+
+     📄 Pagination
+     */
+    @discardableResult
+    public func getAttachedMediaItem<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<TraktAttachedMediaItem>) -> URLSessionDataTaskProtocol? {
+        guard let request = mutableRequest(forPath: "comments/\(id)/item",
+            withQuery: [:],
+            isAuthorized: true,
+            withHTTPMethod: .POST) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
+
+    // MARK: - Likes
+
+    /**
+     Returns the media item this comment is attached to. The media type can be `movie`, `show`, `season`, `episode`, or `list` and it also returns the standard media object for that media type.
+
+     ✨ Extended Info
+     */
+    @discardableResult
+    public func getUsersWhoLikedComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectsCompletionHandler<TraktCommentLikedUser>) -> URLSessionDataTaskProtocol? {
+        guard let request = mutableRequest(forPath: "comments/\(id)/likes",
+            withQuery: [:],
+            isAuthorized: true,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
+
     // MARK: - Like
     
     /**
@@ -149,7 +177,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "comments/\(id)/like",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -165,13 +193,70 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "comments/\(id)/like",
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .DELETE) else { return nil }
         return performRequest(request: request,
                               expectingStatusCode: StatusCodes.SuccessNoContentToReturn,
+                              completion: completion)
+    }
+
+    // MARK: - Trending
+
+    /**
+     Returns all comments with the most likes and replies over the last 7 days. You can optionally filter by the `comment_type` and media `type` to limit what gets returned. If you want to `include_replies` that will return replies in place alongside top level comments.
+
+     📄 Pagination
+     ✨ Extended
+     */
+    @discardableResult
+    public func getTrendingComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectsCompletionHandler<TraktTrendingComment>) -> URLSessionDataTaskProtocol? {
+        guard let request = mutableRequest(forPath: "comments/trending/\(commentType.rawValue)/\(mediaType.rawValue)",
+            withQuery: ["include_replies": "\(includeReplies)"],
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
+
+    // MARK: - Recent
+
+    /**
+     Returns the most recently written comments across all of Trakt. You can optionally filter by the `comment_type` and media `type` to limit what gets returned. If you want to `include_replies` that will return replies in place alongside top level comments.
+
+     📄 Pagination
+     ✨ Extended
+     */
+    @discardableResult
+    public func getRecentComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectsCompletionHandler<TraktTrendingComment>) -> URLSessionDataTaskProtocol? {
+        guard let request = mutableRequest(forPath: "comments/recent/\(commentType.rawValue)/\(mediaType.rawValue)",
+            withQuery: ["include_replies": "\(includeReplies)"],
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
+                              completion: completion)
+    }
+
+    // MARK: - Updates
+
+    /**
+     Returns the most recently updated comments across all of Trakt. You can optionally filter by the `comment_type` and media `type` to limit what gets returned. If you want to `include_replies` that will return replies in place alongside top level comments.
+
+     📄 Pagination
+     ✨ Extended
+     */
+    @discardableResult
+    public func getRecentlyUpdatedComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectsCompletionHandler<TraktTrendingComment>) -> URLSessionDataTaskProtocol? {
+        guard let request = mutableRequest(forPath: "comments/updates/\(commentType.rawValue)/\(mediaType.rawValue)",
+            withQuery: ["include_replies": "\(includeReplies)"],
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 }

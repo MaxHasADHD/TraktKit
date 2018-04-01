@@ -1,0 +1,102 @@
+[
+  {
+    "type" : "movie",
+    "score" : 26.019499,
+    "movie" : {
+      "title" : "TRON: Legacy",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 20526,
+        "slug" : "tron-legacy-2010",
+        "trakt" : 12601,
+        "imdb" : "tt1104001"
+      }
+    }
+  },
+  {
+    "type" : "show",
+    "score" : 19.533358,
+    "show" : {
+      "title" : "Tron: Uprising",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 34356,
+        "slug" : "tron-uprising",
+        "tvdb" : 258480,
+        "trakt" : 34209,
+        "imdb" : "tt1812523"
+      }
+    }
+  },
+  {
+    "score" : 42.50835,
+    "show" : {
+      "title" : "Tron: Uprising",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 34356,
+        "slug" : "tron-uprising",
+        "tvdb" : 258480,
+        "trakt" : 34209,
+        "imdb" : "tt1812523"
+      }
+    },
+    "type" : "episode",
+    "episode" : {
+      "number" : 1,
+      "season" : 1,
+      "title" : "The Renegade (1)",
+      "ids" : {
+        "tmdb" : 786460,
+        "tvdb" : 4318713,
+        "trakt" : 793693,
+        "imdb" : null
+      }
+    }
+  },
+  {
+    "type" : "person",
+    "score" : 53.421607999999999,
+    "person" : {
+      "name" : "Jeff Bridges",
+      "ids" : {
+        "tmdb" : 1229,
+        "slug" : "jeff-bridges",
+        "trakt" : 4173,
+        "imdb" : "nm0000313"
+      }
+    }
+  },
+  {
+    "type" : "list",
+    "score" : 38.643196000000003,
+    "list" : {
+      "description" : "Let food be thy medicine and medicine be thy food.",
+      "comment_count" : 0,
+      "ids" : {
+        "trakt" : 2180135,
+        "slug" : "open-your-eyes"
+      },
+      "sort_by" : "rank",
+      "created_at" : "2016-04-22T05:54:55.000Z",
+      "likes" : 6,
+      "item_count" : 22,
+      "updated_at" : "2016-06-29T09:47:40.000Z",
+      "sort_how" : "asc",
+      "privacy" : "public",
+      "display_numbers" : true,
+      "user" : {
+        "username" : "justin",
+        "private" : false,
+        "vip" : true,
+        "vip_ep" : true,
+        "name" : "Justin Nemeth",
+        "ids" : {
+          "slug" : "justin"
+        }
+      },
+      "name" : "Open Your Eyes",
+      "allow_comments" : true
+    }
+  }
+]

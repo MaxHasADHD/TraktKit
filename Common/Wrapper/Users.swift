@@ -29,7 +29,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func getSettings(completion: @escaping ObjectCompletionHandler<AccountSettings>) -> URLSessionDataTask? {
+    public func getSettings(completion: @escaping ObjectCompletionHandler<AccountSettings>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "users/settings",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -47,7 +47,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func getFollowRequests(completion: @escaping ObjectCompletionHandler<FollowRequest>) -> URLSessionDataTask? {
+    public func getFollowRequests(completion: @escaping ObjectsCompletionHandler<FollowRequest>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "users/requests",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -67,7 +67,7 @@ extension TraktManager {
     - parameter id: ID of the follower request. Example: `123`.
      */
     @discardableResult
-    public func approveFollowRequest(requestID id: NSNumber, completion: @escaping ObjectCompletionHandler<FollowResult>) -> URLSessionDataTask? {
+    public func approveFollowRequest(requestID id: NSNumber, completion: @escaping ObjectCompletionHandler<FollowResult>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "users/requests/\(id)",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -85,7 +85,7 @@ extension TraktManager {
      - parameter id: ID of the follower request. Example: `123`.
      */
     @discardableResult
-    public func denyFollowRequest(requestID id: NSNumber, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func denyFollowRequest(requestID id: NSNumber, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "users/requests/\(id)",
                                            withQuery: [:],
                                            isAuthorized: true,
@@ -105,7 +105,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], page: Int, limit: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
+    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], page: Int, limit: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTaskProtocol? {
         var query: [String: String] = ["extended": extended.queryString()]
         if let type = type {
             query["type"] = type.rawValue
@@ -129,7 +129,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTask? {
+    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTaskProtocol? {
         var json: [String : Any] = [:]
         json["movies"] = movies
         json["shows"] = shows
@@ -150,7 +150,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTask? {
+    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTaskProtocol? {
         var json: [String : Any] = [:]
         json["movies"] = movies
         json["shows"] = shows
@@ -176,7 +176,7 @@ extension TraktManager {
     - Parameter type: Possible values:  comments, lists.
      */
     @discardableResult
-    public func getLikes(type: LikeType, completion: @escaping ObjectsCompletionHandler<Like>) -> URLSessionDataTask? {
+    public func getLikes(type: LikeType, completion: @escaping ObjectsCompletionHandler<Like>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "users/likes/\(type.rawValue)",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -194,10 +194,10 @@ extension TraktManager {
      🔓 OAuth Optional
      */
     @discardableResult
-    public func getUserProfile(username: String = "me", completion: @escaping ObjectCompletionHandler<User>) -> URLSessionDataTask? {
+    public func getUserProfile(username: String = "me", extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<User>) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)",
-                                         withQuery: [:],
+                                         withQuery: ["extended": extended.queryString()],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
@@ -215,7 +215,7 @@ extension TraktManager {
     🔓 OAuth Optional
      */
     @discardableResult
-    public func getCollection(username: String = "me", type: Type, completion: @escaping ObjectsCompletionHandler<UsersCollection>) -> URLSessionDataTask? {
+    public func getUserCollection(username: String = "me", type: Type, completion: @escaping ObjectsCompletionHandler<UsersCollection>) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)/collection/\(type.rawValue)",
                                          withQuery: [:],
@@ -233,10 +233,19 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getComments(username: String = "me", commentType: CommentType, type: Type2, completion: @escaping UserCommentsCompletionHandler) -> URLSessionDataTask? {
+    public func getUserComments(username: String = "me", commentType: CommentType? = nil, type: Type2? = nil, completion: @escaping UserCommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
+        var path = "users/\(username)/comments"
+        if let commentType = commentType {
+            path += "\(commentType.rawValue)/"
+
+            if let mediaType = type {
+                path += "\(mediaType.rawValue)"
+            }
+        }
+        
         guard
-            let request = mutableRequest(forPath: "users/\(username)/comments/\(commentType.rawValue)/\(type.rawValue)",
+            let request = mutableRequest(forPath: path,
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
@@ -251,7 +260,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getCustomLists(username: String = "me", completion: @escaping ListsCompletionHandler) -> URLSessionDataTask? {
+    public func getCustomLists(username: String = "me", completion: @escaping ListsCompletionHandler) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists",
@@ -273,7 +282,7 @@ extension TraktManager {
      - parameter allowComments: Are comments allowed?
      */
     @discardableResult
-    public func createCustomList(listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTask? {
+    public func createCustomList(listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTaskProtocol? {
         
         // JSON
         let json: [String: Any] = [
@@ -299,7 +308,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping ObjectCompletionHandler<TraktList>) -> URLSessionDataTask? {
+    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping ObjectCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists/\(listID)",
@@ -315,16 +324,15 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func updateCustomList(listID: NSNumber, listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTask? {
+    public func updateCustomList<T: CustomStringConvertible>(listID: T, listName: String? = nil, listDescription: String? = nil, privacy: String? = nil, displayNumbers: Bool? = nil, allowComments: Bool? = nil, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTaskProtocol? {
         
         // JSON
-        let json: [String: Any] = [
-            "name": listName,
-            "description": listDescription,
-            "privacy": privacy,
-            "display_numbers": displayNumbers,
-            "allow_comments": allowComments,
-        ]
+        var json = [String: Any]()
+        json["name"] = listName
+        json["description"] = listDescription
+        json["privacy"] = privacy
+        json["display_numbers"] = displayNumbers
+        json["allow_comments"] = allowComments
         
         // Request
         guard var request = mutableRequest(forPath: "users/me/lists/\(listID)", withQuery: [:], isAuthorized: true, withHTTPMethod: .PUT) else { return nil }
@@ -339,7 +347,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func DeleteCustomList(username: String = "me", listID: String, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func deleteCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists/\(listID)",
                                          withQuery: [:],
@@ -356,7 +364,7 @@ extension TraktManager {
     🔒 OAuth Required
     */
     @discardableResult
-    public func likeList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func likeList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists/\(listID)/like",
                                          withQuery: [:],
@@ -371,7 +379,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func removeListLike<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func removeListLike<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists/\(listID)/like",
                                          withQuery: [:],
@@ -388,12 +396,12 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, type: [ListItemType], extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
+    public func getItemsForCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, type: [ListItemType]? = nil, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         var path = "users/\(username)/lists/\(listID)/items"
         
-        if type.isEmpty == false {
-            let value = type.map { $0.rawValue }.joined(separator: ",")
+        if let types = type, types.isEmpty == false {
+            let value = types.map { $0.rawValue }.joined(separator: ",")
             path += "/\(value)"
         }
         
@@ -410,7 +418,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping AddListItemCompletion) throws -> URLSessionDataTask? {
+    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping AddListItemCompletion) throws -> URLSessionDataTaskProtocol? {
         guard var request = mutableRequest(forPath: "users/\(username)/lists/\(listID)/items",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -429,7 +437,7 @@ extension TraktManager {
     🔒 OAuth Required
     */
     @discardableResult
-    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping RemoveListItemCompletion) throws -> URLSessionDataTask? {
+    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping RemoveListItemCompletion) throws -> URLSessionDataTaskProtocol? {
         guard var request = mutableRequest(forPath: "users/\(username)/lists/\(listID)/items/remove",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -448,7 +456,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getAllListComments(username: String = "me", listID: String, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
+    public func getUserAllListComments(username: String = "me", listID: String, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard
             let request = mutableRequest(forPath: "users/\(username)/lists/\(listID)/comments",
                                          withQuery: [:],
@@ -467,7 +475,7 @@ extension TraktManager {
     🔒 OAuth Required
     */
     @discardableResult
-    public func followUser(username: String, completion: @escaping FollowUserCompletion) -> URLSessionDataTask? {
+    public func followUser(username: String, completion: @escaping FollowUserCompletion) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "users/\(username)/follow",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -481,7 +489,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func unfollowUser(username: String, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+    public func unfollowUser(username: String, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "users/\(username)/follow",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -497,7 +505,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getFollowers(username: String = "me", completion: @escaping FollowersCompletion) -> URLSessionDataTask? {
+    public func getUserFollowers(username: String = "me", completion: @escaping FollowersCompletion) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)/followers",
                                          withQuery: [:],
@@ -514,7 +522,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getFollowing(username: String = "me", completion: @escaping FollowersCompletion) -> URLSessionDataTask? {
+    public func getUserFollowing(username: String = "me", completion: @escaping FollowersCompletion) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard
             let request = mutableRequest(forPath: "users/\(username)/following",
@@ -532,7 +540,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getFriends(username: String = "me", completion: @escaping FriendsCompletion) -> URLSessionDataTask? {
+    public func getUserFriends(username: String = "me", completion: @escaping FriendsCompletion) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)/friends",
                                          withQuery: [:],
@@ -552,13 +560,13 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getWatchedHistory<T: CustomStringConvertible>(username: String = "me", type: WatchedType?, id: T?, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
+    public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
         var path = "users/\(username)/history"
         
         if let type = type {
             path += "/\(type.rawValue)"
             
-            if let id = id { // I think a type needs to be provided if an Id was specified
+            if let id = traktId { // I think a type needs to be provided if an Id was specified
                 path += "/\(id)"
             }
         }
@@ -579,12 +587,16 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getUsersRatings(username: String = "me", type: Type, rating: NSNumber?, completion: @escaping RatingsCompletionHandler) -> URLSessionDataTask? {
+    public func getUserRatings(username: String = "me", type: Type? = nil, rating: NSNumber? = nil, completion: @escaping RatingsCompletionHandler) -> URLSessionDataTaskProtocol? {
         
-        var path = "users/\(username)/ratings/\(type.rawValue)"
-        
-        if let rating = rating {
-            path += "/\(rating)"
+        var path = "users/\(username)/ratings"
+
+        if let type = type {
+            path += "/\(type.rawValue)"
+
+            if let rating = rating {
+                path += "/\(rating)"
+            }
         }
         
         let authorization = username == "me" ? true : false
@@ -604,7 +616,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getWatchlist(username: String = "me", type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
+    public func getUserWatchlist(username: String = "me", type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)/watchlist/\(type.rawValue)",
                                          withQuery: ["extended": extended.queryString()],
@@ -621,7 +633,7 @@ extension TraktManager {
      🔓 OAuth Optional
      */
     @discardableResult
-    public func getWatching(username: String = "me", completion: @escaping WatchingCompletion) -> URLSessionDataTask? {
+    public func getUserWatching(username: String = "me", completion: @escaping WatchingCompletion) -> URLSessionDataTaskProtocol? {
         // Should this function have a special completion handler? If it returns no data it is obvious that the user
         // is not watching anything, but checking a boolean in the completion block is also nice
         let authorization = username == "me" ? true : false
@@ -640,7 +652,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getWatched(username: String = "me", type: Type, extended: [ExtendedType] = [.Min], completion: @escaping WatchedMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getUserWatched(username: String = "me", type: Type, extended: [ExtendedType] = [.Min], completion: @escaping UserWatchedCompletion) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard var request = mutableRequest(forPath: "users/\(username)/watched/\(type.rawValue)",
                                            withQuery: ["extended": extended.queryString()],
@@ -658,7 +670,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getStats(username: String = "me", completion: @escaping UserStatsCompletion) -> URLSessionDataTask? {
+    public func getUserStats(username: String = "me", completion: @escaping UserStatsCompletion) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)/stats",
                                          withQuery: [:],

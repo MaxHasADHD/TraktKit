@@ -9,7 +9,6 @@
 import Foundation
 
 public struct TraktListItem: Codable {
-    
     public let rank: Int
     public let listedAt: Date
     public let type: String

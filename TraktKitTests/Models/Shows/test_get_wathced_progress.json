@@ -1,0 +1,86 @@
+{
+  "seasons" : [
+    {
+      "number" : 1,
+      "completed" : 6,
+      "aired" : 8,
+      "episodes" : [
+        {
+          "number" : 1,
+          "completed" : true,
+          "last_watched_at" : "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number" : 2,
+          "completed" : true,
+          "last_watched_at" : "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number" : 3,
+          "completed" : true,
+          "last_watched_at" : "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number" : 4,
+          "completed" : true,
+          "last_watched_at" : "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number" : 5,
+          "completed" : true,
+          "last_watched_at" : "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number" : 6,
+          "completed" : true,
+          "last_watched_at" : "2015-03-21T19:03:58.000Z"
+        },
+        {
+          "number" : 7,
+          "completed" : false,
+          "last_watched_at" : null
+        },
+        {
+          "number" : 8,
+          "completed" : false,
+          "last_watched_at" : null
+        }
+      ]
+    }
+  ],
+  "last_episode" : {
+    "number" : 6,
+    "season" : 1,
+    "title" : "Fire",
+    "ids" : {
+      "tmdb" : null,
+      "tvdb" : 4849872,
+      "trakt" : 62314,
+      "imdb" : null
+    }
+  },
+  "hidden_seasons" : [
+    {
+      "number" : 2,
+      "ids" : {
+        "trakt" : 3051,
+        "tvdb" : 498968,
+        "tmdb" : 53334
+      }
+    }
+  ],
+  "last_watched_at" : "2015-03-21T19:03:58.000Z",
+  "aired" : 8,
+  "completed" : 6,
+  "next_episode" : {
+    "number" : 7,
+    "season" : 1,
+    "title" : "Water",
+    "ids" : {
+      "tmdb" : null,
+      "tvdb" : 4849873,
+      "trakt" : 62315,
+      "imdb" : null
+    }
+  }
+}

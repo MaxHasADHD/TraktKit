@@ -1,0 +1,152 @@
+[
+  {
+    "movie" : {
+      "title" : "Frozen",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 109445,
+        "slug" : "frozen-2013",
+        "trakt" : 77349,
+        "imdb" : "tt2294629"
+      }
+    },
+    "watcher_count" : 66667,
+    "play_count" : 109736,
+    "collected_count" : 27584
+  },
+  {
+    "movie" : {
+      "title" : "The Dark Knight",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 155,
+        "slug" : "the-dark-knight-2008",
+        "trakt" : 120,
+        "imdb" : "tt0468569"
+      }
+    },
+    "watcher_count" : 76254,
+    "play_count" : 104242,
+    "collected_count" : 31877
+  },
+  {
+    "movie" : {
+      "title" : "The Avengers",
+      "year" : 2012,
+      "ids" : {
+        "tmdb" : 24428,
+        "slug" : "the-avengers-2012",
+        "trakt" : 14701,
+        "imdb" : "tt0848228"
+      }
+    },
+    "watcher_count" : 81289,
+    "play_count" : 102512,
+    "collected_count" : 33837
+  },
+  {
+    "movie" : {
+      "title" : "Guardians of the Galaxy",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 118340,
+        "slug" : "guardians-of-the-galaxy-2014",
+        "trakt" : 82405,
+        "imdb" : "tt2015381"
+      }
+    },
+    "watcher_count" : 72538,
+    "play_count" : 97715,
+    "collected_count" : 26662
+  },
+  {
+    "movie" : {
+      "title" : "Begin Again",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 198277,
+        "slug" : "begin-again-2013",
+        "trakt" : 123759,
+        "imdb" : "tt1980929"
+      }
+    },
+    "watcher_count" : 8487,
+    "play_count" : 95830,
+    "collected_count" : 6252
+  },
+  {
+    "movie" : {
+      "title" : "Inception",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 27205,
+        "slug" : "inception-2010",
+        "trakt" : 16662,
+        "imdb" : "tt1375666"
+      }
+    },
+    "watcher_count" : 74665,
+    "play_count" : 88597,
+    "collected_count" : 32044
+  },
+  {
+    "movie" : {
+      "title" : "Despicable Me",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 20352,
+        "slug" : "despicable-me-2010",
+        "trakt" : 12496,
+        "imdb" : "tt1323594"
+      }
+    },
+    "watcher_count" : 55443,
+    "play_count" : 82227,
+    "collected_count" : 25855
+  },
+  {
+    "movie" : {
+      "title" : "Iron Man 2",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 10138,
+        "slug" : "iron-man-2-2010",
+        "trakt" : 5355,
+        "imdb" : "tt1228705"
+      }
+    },
+    "watcher_count" : 55739,
+    "play_count" : 81167,
+    "collected_count" : 27441
+  },
+  {
+    "movie" : {
+      "title" : "Big Hero 6",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 177572,
+        "slug" : "big-hero-6-2014",
+        "trakt" : 112404,
+        "imdb" : "tt2245084"
+      }
+    },
+    "watcher_count" : 45472,
+    "play_count" : 80008,
+    "collected_count" : 16419
+  },
+  {
+    "movie" : {
+      "title" : "Iron Man",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 1726,
+        "slug" : "iron-man-2008",
+        "trakt" : 1157,
+        "imdb" : "tt0371746"
+      }
+    },
+    "watcher_count" : 63920,
+    "play_count" : 79998,
+    "collected_count" : 27721
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "episode" : {
+      "number" : 1,
+      "season" : 1,
+      "title" : "Pilot",
+      "ids" : {
+        "tmdb" : 983732,
+        "tvdb" : null,
+        "trakt" : 497,
+        "imdb" : "tt3203968"
+      }
+    },
+    "show" : {
+      "title" : "The Leftovers",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 54344,
+        "slug" : "the-leftovers",
+        "tvdb" : 269689,
+        "trakt" : 7,
+        "imdb" : "tt2699128"
+      }
+    },
+    "first_aired" : "2014-06-30T02:00:00.000Z"
+  }
+]

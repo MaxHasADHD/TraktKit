@@ -35,8 +35,7 @@ public class TraktManager {
     let accessTokenKey = "accessToken"
     let refreshTokenKey = "refreshToken"
     
-    // Lazy
-    lazy var session = URLSession(configuration: .default)
+    let session: URLSessionProtocol
     
     // MARK: Public
     public static let sharedManager = TraktManager()
@@ -101,13 +100,8 @@ public class TraktManager {
     
     // MARK: - Lifecycle
     
-    private init() {
-        #if DEBUG
-            assert(clientID == nil, "Client ID needs to be set")
-            assert(clientSecret == nil, "Client secret needs to be set")
-            assert(redirectURI == nil, "Redirect URI needs to be set")
-        #endif
-        
+    public init(session: URLSessionProtocol = URLSession(configuration: .default)) {
+        self.session = session
     }
     
     // MARK: - Setup
@@ -168,8 +162,7 @@ public class TraktManager {
     
     public func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
         let urlString = "https://api.trakt.tv/" + path
-        guard
-            var components = URLComponents(string: urlString) else { return nil }
+        guard var components = URLComponents(string: urlString) else { return nil }
         
         if query.isEmpty == false {
             var queryItems: [URLQueryItem] = []
@@ -179,8 +172,7 @@ public class TraktManager {
             components.queryItems = queryItems
         }
         
-        guard
-            let url = components.url else { return nil }
+        guard let url = components.url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         
@@ -189,14 +181,13 @@ public class TraktManager {
         if let clientID = clientID {
             request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
         }
-        
+
         if authorized {
             if let accessToken = accessToken {
                 request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            }
-            else {
+            } /*else {
                 return nil
-            }
+            }*/
         }
         
         return request
@@ -243,7 +234,7 @@ public class TraktManager {
             ]
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
-        session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard
                 let welf = self else { return }
             guard error == nil else {
@@ -371,7 +362,7 @@ public class TraktManager {
             ]
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
-        session.dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
             guard error == nil else {
                 completionHandler(.fail)

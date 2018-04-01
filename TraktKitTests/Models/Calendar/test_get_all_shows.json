@@ -1,0 +1,103 @@
+[
+  {
+    "episode" : {
+      "number" : 4,
+      "season" : 7,
+      "title" : "Death is Not the End",
+      "ids" : {
+        "tmdb" : 988123,
+        "tvdb" : 4851180,
+        "trakt" : 443,
+        "imdb" : "tt3500614"
+      }
+    },
+    "show" : {
+      "title" : "True Blood",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 10545,
+        "slug" : "true-blood",
+        "tvdb" : 82283,
+        "trakt" : 5,
+        "imdb" : "tt0844441"
+      }
+    },
+    "first_aired" : "2014-07-14T01:00:00.000Z"
+  },
+  {
+    "episode" : {
+      "number" : 3,
+      "season" : 1,
+      "title" : "Two Boats and a Helicopter",
+      "ids" : {
+        "tmdb" : 988346,
+        "tvdb" : 4854797,
+        "trakt" : 499,
+        "imdb" : "tt3631218"
+      }
+    },
+    "show" : {
+      "title" : "The Leftovers",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 54344,
+        "slug" : "the-leftovers",
+        "tvdb" : 269689,
+        "trakt" : 7,
+        "imdb" : "tt2699128"
+      }
+    },
+    "first_aired" : "2014-07-14T02:00:00.000Z"
+  },
+  {
+    "episode" : {
+      "number" : 5,
+      "season" : 7,
+      "title" : "Return to Oz",
+      "ids" : {
+        "tmdb" : 988124,
+        "tvdb" : 4851181,
+        "trakt" : 444,
+        "imdb" : "tt3500616"
+      }
+    },
+    "show" : {
+      "title" : "True Blood",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 10545,
+        "slug" : "true-blood",
+        "tvdb" : 82283,
+        "trakt" : 5,
+        "imdb" : "tt0844441"
+      }
+    },
+    "first_aired" : "2014-07-21T01:00:00.000Z"
+  },
+  {
+    "episode" : {
+      "number" : 4,
+      "season" : 1,
+      "title" : "B.J. and the A.C.",
+      "ids" : {
+        "tmdb" : 988347,
+        "tvdb" : 4854798,
+        "trakt" : 500,
+        "imdb" : "tt3594942"
+      }
+    },
+    "show" : {
+      "title" : "The Leftovers",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 54344,
+        "slug" : "the-leftovers",
+        "tvdb" : 269689,
+        "trakt" : 7,
+        "imdb" : "tt2699128"
+      }
+    },
+    "first_aired" : "2014-07-21T02:00:00.000Z"
+  }
+]
+

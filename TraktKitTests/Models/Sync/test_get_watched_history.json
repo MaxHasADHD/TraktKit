@@ -1,0 +1,62 @@
+[
+  {
+    "movie" : {
+      "title" : "The Dark Knight",
+      "year" : 2008,
+      "ids" : {
+        "tmdb" : 155,
+        "slug" : "the-dark-knight-2008",
+        "trakt" : 4,
+        "imdb" : "tt0468569"
+      }
+    },
+    "id" : 1982346,
+    "watched_at" : "2014-03-31T09:28:53.000Z",
+    "type" : "movie",
+    "action" : "scrobble"
+  },
+  {
+    "episode" : {
+      "number" : 1,
+      "season" : 2,
+      "title" : "Pawnee Zoo",
+      "ids" : {
+        "tmdb" : 397629,
+        "tvdb" : 797571,
+        "trakt" : 251,
+        "imdb" : null
+      }
+    },
+    "id" : 1982347,
+    "watched_at" : "2014-03-28T09:28:53.000Z",
+    "show" : {
+      "title" : "Parks and Recreation",
+      "year" : 2009,
+      "ids" : {
+        "tmdb" : 8592,
+        "slug" : "parks-and-recreation",
+        "tvdb" : 84912,
+        "trakt" : 4,
+        "imdb" : "tt1266020"
+      }
+    },
+    "type" : "episode",
+    "action" : "checkin"
+  },
+  {
+    "movie" : {
+      "title" : "TRON: Legacy",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 20526,
+        "slug" : "tron-legacy-2010",
+        "trakt" : 1,
+        "imdb" : "tt1104001"
+      }
+    },
+    "id" : 1982348,
+    "watched_at" : "2013-06-15T05:54:27.000Z",
+    "type" : "movie",
+    "action" : "watch"
+  }
+]

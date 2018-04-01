@@ -1,0 +1,14 @@
+{
+  "type" : "show",
+  "show" : {
+    "title" : "Game of Thrones",
+    "year" : 2011,
+    "ids" : {
+      "tmdb" : 1399,
+      "slug" : "game-of-thrones",
+      "tvdb" : 121361,
+      "trakt" : 353,
+      "imdb" : "tt0944947"
+    }
+  }
+}

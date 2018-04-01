@@ -1,0 +1,152 @@
+[
+  {
+    "watchers" : 252,
+    "show" : {
+      "title" : "Marvel's Jessica Jones",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 38472,
+        "slug" : "marvel-s-jessica-jones",
+        "tvdb" : 284190,
+        "tvrage" : 38797,
+        "trakt" : 79385,
+        "imdb" : "tt2357547"
+      }
+    }
+  },
+  {
+    "watchers" : 114,
+    "show" : {
+      "title" : "The Big Bang Theory",
+      "year" : 2007,
+      "ids" : {
+        "tmdb" : 1418,
+        "slug" : "the-big-bang-theory",
+        "tvdb" : 80379,
+        "tvrage" : 8511,
+        "trakt" : 1409,
+        "imdb" : "tt0898266"
+      }
+    }
+  },
+  {
+    "watchers" : 108,
+    "show" : {
+      "title" : "Marvel's Agents of S.H.I.E.L.D.",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 1403,
+        "slug" : "marvel-s-agents-of-s-h-i-e-l-d",
+        "tvdb" : 263365,
+        "tvrage" : 32656,
+        "trakt" : 1394,
+        "imdb" : "tt2364582"
+      }
+    }
+  },
+  {
+    "watchers" : 85,
+    "show" : {
+      "title" : "Blindspot",
+      "year" : 2015,
+      "ids" : {
+        "tmdb" : 62710,
+        "slug" : "blindspot",
+        "tvdb" : 295647,
+        "tvrage" : 44628,
+        "trakt" : 98980,
+        "imdb" : "tt4474344"
+      }
+    }
+  },
+  {
+    "watchers" : 83,
+    "show" : {
+      "title" : "The Blacklist",
+      "year" : 2013,
+      "ids" : {
+        "tmdb" : 46952,
+        "slug" : "the-blacklist",
+        "tvdb" : 266189,
+        "tvrage" : 35048,
+        "trakt" : 46676,
+        "imdb" : "tt2741602"
+      }
+    }
+  },
+  {
+    "watchers" : 80,
+    "show" : {
+      "title" : "The Walking Dead",
+      "year" : 2010,
+      "ids" : {
+        "tmdb" : 1402,
+        "slug" : "the-walking-dead",
+        "tvdb" : 153021,
+        "tvrage" : 25056,
+        "trakt" : 1393,
+        "imdb" : "tt1520211"
+      }
+    }
+  },
+  {
+    "watchers" : 79,
+    "show" : {
+      "title" : "Grey's Anatomy",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 1416,
+        "slug" : "grey-s-anatomy",
+        "tvdb" : 73762,
+        "tvrage" : 3741,
+        "trakt" : 1407,
+        "imdb" : "tt0413573"
+      }
+    }
+  },
+  {
+    "watchers" : 72,
+    "show" : {
+      "title" : "Supernatural",
+      "year" : 2005,
+      "ids" : {
+        "tmdb" : 1622,
+        "slug" : "supernatural",
+        "tvdb" : 78901,
+        "tvrage" : 5410,
+        "trakt" : 1611,
+        "imdb" : "tt0460681"
+      }
+    }
+  },
+  {
+    "watchers" : 70,
+    "show" : {
+      "title" : "Sneaky Pete",
+      "year" : 2017,
+      "ids" : {
+        "tmdb" : 64199,
+        "slug" : "sneaky-pete",
+        "tvdb" : 300166,
+        "tvrage" : null,
+        "trakt" : 101657,
+        "imdb" : "tt5011816"
+      }
+    }
+  },
+  {
+    "watchers" : 67,
+    "show" : {
+      "title" : "The Flash",
+      "year" : 2014,
+      "ids" : {
+        "tmdb" : 60735,
+        "slug" : "the-flash-2014",
+        "tvdb" : 279121,
+        "tvrage" : 36939,
+        "trakt" : 60300,
+        "imdb" : "tt3107288"
+      }
+    }
+  }
+]

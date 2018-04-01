@@ -1,0 +1,112 @@
+[
+  {
+    "title" : "Community",
+    "year" : 2009,
+    "ids" : {
+      "tmdb" : 18347,
+      "slug" : "community",
+      "tvdb" : 94571,
+      "trakt" : 41,
+      "imdb" : "tt1439629"
+    }
+  },
+  {
+    "title" : "The Walking Dead",
+    "year" : 2010,
+    "ids" : {
+      "tmdb" : 1402,
+      "slug" : "the-walking-dead",
+      "tvdb" : 153021,
+      "trakt" : 2,
+      "imdb" : "tt1520211"
+    }
+  },
+  {
+    "title" : "Dexter",
+    "year" : 2006,
+    "ids" : {
+      "tmdb" : 1405,
+      "slug" : "dexter",
+      "tvdb" : 79349,
+      "trakt" : 19,
+      "imdb" : "tt0773262"
+    }
+  },
+  {
+    "title" : "The Simpsons",
+    "year" : 1989,
+    "ids" : {
+      "tmdb" : 456,
+      "slug" : "the-simpsons",
+      "tvdb" : 71663,
+      "trakt" : 91,
+      "imdb" : "tt0096697"
+    }
+  },
+  {
+    "title" : "Game of Thrones",
+    "year" : 2011,
+    "ids" : {
+      "tmdb" : 1399,
+      "slug" : "game-of-thrones",
+      "tvdb" : 121361,
+      "trakt" : 353,
+      "imdb" : "tt0944947"
+    }
+  },
+  {
+    "title" : "Lost",
+    "year" : 2004,
+    "ids" : {
+      "tmdb" : 4607,
+      "slug" : "lost",
+      "tvdb" : 73739,
+      "trakt" : 511,
+      "imdb" : "tt0411008"
+    }
+  },
+  {
+    "title" : "24",
+    "year" : 2001,
+    "ids" : {
+      "tmdb" : 1973,
+      "slug" : "24",
+      "tvdb" : 76290,
+      "trakt" : 460,
+      "imdb" : "tt0285331"
+    }
+  },
+  {
+    "title" : "Battlestar Galactica",
+    "year" : 2005,
+    "ids" : {
+      "tmdb" : 1972,
+      "slug" : "battlestar-galactica",
+      "tvdb" : 73545,
+      "trakt" : 331,
+      "imdb" : "tt0407362"
+    }
+  },
+  {
+    "title" : "Breaking Bad",
+    "year" : 2008,
+    "ids" : {
+      "tmdb" : 1396,
+      "slug" : "breaking-bad",
+      "tvdb" : 81189,
+      "trakt" : 1,
+      "imdb" : "tt0903747"
+    }
+  },
+  {
+    "title" : "Firefly",
+    "year" : 2002,
+    "ids" : {
+      "tmdb" : 1437,
+      "slug" : "firefly",
+      "tvdb" : 78874,
+      "trakt" : 329,
+      "imdb" : "tt0303461"
+    }
+  }
+]

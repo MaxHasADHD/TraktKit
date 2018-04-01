@@ -18,4 +18,11 @@ public struct Like: Codable {
         case comment
         case list
     }
+
+    enum CodingKeys: String, CodingKey {
+        case likedAt = "liked_at"
+        case type
+        case list
+        case comment
+    }
 }

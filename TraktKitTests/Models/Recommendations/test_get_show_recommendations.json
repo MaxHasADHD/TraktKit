@@ -1,0 +1,112 @@
+[
+  {
+    "title" : "The Biggest Loser",
+    "year" : 2004,
+    "ids" : {
+      "tmdb" : 579,
+      "slug" : "the-biggest-loser",
+      "tvdb" : 75166,
+      "trakt" : 9,
+      "imdb" : "tt0429318"
+    }
+  },
+  {
+    "title" : "Shark Tank",
+    "year" : 2009,
+    "ids" : {
+      "tmdb" : 30703,
+      "slug" : "shark-tank",
+      "tvdb" : 100981,
+      "trakt" : 36,
+      "imdb" : "tt1442550"
+    }
+  },
+  {
+    "title" : "Hell's Kitchen",
+    "year" : 2005,
+    "ids" : {
+      "tmdb" : 2370,
+      "slug" : "hell-s-kitchen",
+      "tvdb" : 74897,
+      "trakt" : 40,
+      "imdb" : "tt0437005"
+    }
+  },
+  {
+    "title" : "The Big C",
+    "year" : 2010,
+    "ids" : {
+      "tmdb" : 32406,
+      "slug" : "the-big-c",
+      "tvdb" : 161501,
+      "trakt" : 51,
+      "imdb" : "tt1515193"
+    }
+  },
+  {
+    "title" : "United States of Tara",
+    "year" : 2009,
+    "ids" : {
+      "tmdb" : 7097,
+      "slug" : "united-states-of-tara",
+      "tvdb" : 83463,
+      "trakt" : 69,
+      "imdb" : "tt1001482"
+    }
+  },
+  {
+    "title" : "Hung",
+    "year" : 2009,
+    "ids" : {
+      "tmdb" : 18614,
+      "slug" : "hung",
+      "tvdb" : 82091,
+      "trakt" : 168,
+      "imdb" : "tt1229413"
+    }
+  },
+  {
+    "title" : "Big Love",
+    "year" : 2006,
+    "ids" : {
+      "tmdb" : 4392,
+      "slug" : "big-love",
+      "tvdb" : 74156,
+      "trakt" : 272,
+      "imdb" : "tt0421030"
+    }
+  },
+  {
+    "title" : "Brooklyn Nine-Nine",
+    "year" : 2013,
+    "ids" : {
+      "tmdb" : 48891,
+      "slug" : "brooklyn-nine-nine",
+      "tvdb" : 269586,
+      "trakt" : 599,
+      "imdb" : "tt2467372"
+    }
+  },
+  {
+    "title" : "FlashForward",
+    "year" : 2009,
+    "ids" : {
+      "tmdb" : 19092,
+      "slug" : "flashforward",
+      "tvdb" : 84024,
+      "trakt" : 677,
+      "imdb" : "tt1441135"
+    }
+  },
+  {
+    "title" : "Roswell",
+    "year" : 1999,
+    "ids" : {
+      "tmdb" : 4624,
+      "slug" : "roswell",
+      "tvdb" : 73965,
+      "trakt" : 717,
+      "imdb" : "tt0201391"
+    }
+  }
+]
