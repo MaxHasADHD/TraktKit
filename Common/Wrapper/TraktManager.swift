@@ -109,11 +109,11 @@ public class TraktManager {
     
     // MARK: - Setup
     
-    public func setClientID(staging: Bool, clientID: String, clientSecret secret: String, redirectURI: String) {
-        self.staging = staging
+    public func set(clientID: String, clientSecret secret: String, redirectURI: String, staging: Bool = false) {
         self.clientID = clientID
         self.clientSecret = secret
         self.redirectURI = redirectURI
+        self.staging = staging
         
         self.baseURL = !staging ? "trakt.tv" : "staging.trakt.tv"
         self.APIBaseURL = !staging ? "api.trakt.tv" : "api-staging.trakt.tv"
