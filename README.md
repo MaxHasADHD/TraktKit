@@ -64,7 +64,7 @@ Run `carthage update` to build the framework and drag the built `TraktKit.framew
 
 In your AppDelegate, under <code>application(application:, didFinishLaunchingWithOptions launchOptions:)</code> place:
 ```swift
-TraktManager.sharedManager.setClientID("Client ID", clientSecret: "Secret", redirectURI: "Redirect URI")
+TraktManager.sharedManager.set(clientID: "Client ID", clientSecret: "Secret", redirectURI: "Redirect URI")
 ```
 
 ### Authentication
