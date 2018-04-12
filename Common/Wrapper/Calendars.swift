@@ -104,7 +104,7 @@ extension TraktManager {
     public func allShows(startDateString dateString: String, days: Int, completion: @escaping ObjectsCompletionHandler<CalendarShow>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "calendars/all/shows/\(dateString)/\(days)",
                                            withQuery: [:],
-                                           isAuthorized: true,
+                                           isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
