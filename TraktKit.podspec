@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name      = "TraktKit"
-  s.version   = "1.0.0"
+  s.version   = "1.0.1"
   s.summary   = "Swift wrapper for Trakt.tv API"
   s.homepage  = "https://github.com/MaxHasADHD/TraktKit"
 
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.source        = { :git => "https://github.com/MaxHasADHD/TraktKit.git", :tag => "#{s.version}" }
   s.source_files  = "Common", "Common/**/*.{h,m,swift}"
-  
+
   s.requires_arc = true
 
 end
