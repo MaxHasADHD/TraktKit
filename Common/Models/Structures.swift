@@ -111,6 +111,7 @@ public struct TraktLastActivityMovies: Codable {
     public let watchlistedAt: Date
     public let commentedAt: Date
     public let pausedAt: Date
+    public let hiddenAt: Date
     
     enum CodingKeys: String, CodingKey {
         case watchedAt = "watched_at"
@@ -119,6 +120,7 @@ public struct TraktLastActivityMovies: Codable {
         case watchlistedAt = "watchlisted_at"
         case commentedAt = "commented_at"
         case pausedAt = "paused_at"
+        case hiddenAt = "hidden_at"
     }
 }
 
