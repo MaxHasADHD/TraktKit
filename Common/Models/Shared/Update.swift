@@ -9,9 +9,9 @@
 import Foundation
 
 public struct Update: Codable {
-    let updatedAt: Date
-    let movie: TraktMovie?
-    let show: TraktShow?
+    public let updatedAt: Date
+    public let movie: TraktMovie?
+    public let show: TraktShow?
     
     enum CodingKeys: String, CodingKey {
         case updatedAt = "updated_at"

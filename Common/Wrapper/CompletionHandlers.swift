@@ -68,7 +68,7 @@ extension TraktManager {
     public typealias statsCompletionHandler = ObjectCompletionHandler<TraktStats>
     
     // MARK: Shared
-    public typealias UpdateCompletionHandler = ObjectsCompletionHandler<Update>
+    public typealias UpdateCompletionHandler = paginatedCompletionHandler<Update>
     public typealias AliasCompletionHandler = ObjectsCompletionHandler<Alias>
     public typealias RatingDistributionCompletionHandler = ObjectCompletionHandler<RatingDistribution>
     

@@ -104,8 +104,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getUpdatedMovies(page: Int, limit: Int, startDate: Date?, completion: @escaping ObjectsCompletionHandler<Update>) -> URLSessionDataTaskProtocol? {
-        return getUpdated(.Movies, page: page, limit: limit, startDate: startDate, completion: completion)
+    public func getUpdatedMovies(startDate: Date?, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<Update>) -> URLSessionDataTaskProtocol? {
+        return getUpdated(.Movies, startDate: startDate, pagination: pagination, extended: extended, completion: completion)
     }
     
     // MARK: - Summary
