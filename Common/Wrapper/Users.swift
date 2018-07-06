@@ -558,9 +558,10 @@ extension TraktManager {
     
     🔓 OAuth Optional
     📄 Pagination
+    ✨ Extended Info
     */
     @discardableResult
-    public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
         var path = "users/\(username)/history"
         
         if let type = type {
@@ -570,10 +571,20 @@ extension TraktManager {
                 path += "/\(id)"
             }
         }
+
+        var query = ["extended": extended.queryString()]
+
+        if let startDate = startAt {
+            query["start_at"] = startDate.UTCDateString()
+        }
+
+        if let endDate = endAt {
+            query["end_at"] = endDate.UTCDateString()
+        }
         
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: path,
-                                         withQuery: [:],
+                                         withQuery: query,
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
