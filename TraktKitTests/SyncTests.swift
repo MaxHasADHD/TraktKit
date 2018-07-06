@@ -172,7 +172,7 @@ class SyncTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Get Watched")
         traktManager.getWatchedMovies { result in
-            if case .success(let watchedMovies) = result {
+            if case .success(let watchedMovies, _, _) = result {
                 XCTAssertEqual(watchedMovies.count, 2)
                 expectation.fulfill()
             }
@@ -339,7 +339,7 @@ class SyncTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Get watchlist")
         traktManager.getWatchlist(watchType: .Movies) { result in
-            if case .success(let watchlist) = result {
+            if case .success(let watchlist, _, _) = result {
                 XCTAssertEqual(watchlist.count, 2)
                 expectation.fulfill()
             }

@@ -61,7 +61,7 @@ extension TraktManager {
     
     public typealias DataResultCompletionHandler = (_ result: DataResultType) -> Void
     public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
-    public typealias CommentsCompletionHandler = ObjectsCompletionHandler<Comment>
+    public typealias CommentsCompletionHandler = paginatedCompletionHandler<Comment>
     public typealias CastCrewCompletionHandler = ObjectCompletionHandler<CastAndCrew>
     
     public typealias SearchCompletionHandler = ObjectsCompletionHandler<TraktSearchResult>
@@ -79,9 +79,9 @@ extension TraktManager {
     public typealias checkinCompletionHandler = (_ result: CheckinResultType) -> Void
     
     // MARK: Shows
-    public typealias TrendingShowsCompletionHandler = ObjectsCompletionHandler<TraktTrendingShow>
-    public typealias MostShowsCompletionHandler = ObjectsCompletionHandler<TraktMostShow>
-    public typealias AnticipatedShowCompletionHandler = ObjectsCompletionHandler<TraktAnticipatedShow>
+    public typealias TrendingShowsCompletionHandler = paginatedCompletionHandler<TraktTrendingShow>
+    public typealias MostShowsCompletionHandler = paginatedCompletionHandler<TraktMostShow>
+    public typealias AnticipatedShowCompletionHandler = paginatedCompletionHandler<TraktAnticipatedShow>
     public typealias ShowTranslationsCompletionHandler = ObjectsCompletionHandler<TraktShowTranslation>
     public typealias SeasonsCompletionHandler = ObjectsCompletionHandler<TraktSeason>
     
@@ -95,11 +95,11 @@ extension TraktManager {
     // MARK: Movies
     public typealias MovieCompletionHandler = ObjectCompletionHandler<TraktMovie>
     public typealias MoviesCompletionHandler = ObjectsCompletionHandler<TraktMovie>
-    public typealias TrendingMoviesCompletionHandler = ObjectsCompletionHandler<TraktTrendingMovie>
-    public typealias MostMoviesCompletionHandler = ObjectsCompletionHandler<TraktMostMovie>
-    public typealias AnticipatedMovieCompletionHandler = ObjectsCompletionHandler<TraktAnticipatedMovie>
+    public typealias TrendingMoviesCompletionHandler = paginatedCompletionHandler<TraktTrendingMovie>
+    public typealias MostMoviesCompletionHandler = paginatedCompletionHandler<TraktMostMovie>
+    public typealias AnticipatedMovieCompletionHandler = paginatedCompletionHandler<TraktAnticipatedMovie>
     public typealias MovieTranslationsCompletionHandler = ObjectsCompletionHandler<TraktMovieTranslation>
-    public typealias WatchedMoviesCompletionHandler = ObjectsCompletionHandler<TraktWatchedMovie>
+    public typealias WatchedMoviesCompletionHandler = paginatedCompletionHandler<TraktWatchedMovie>
     public typealias BoxOfficeMoviesCompletionHandler = ObjectsCompletionHandler<TraktBoxOfficeMovie>
     
     // MARK: Sync
@@ -112,6 +112,7 @@ extension TraktManager {
     public typealias ListCompletionHandler = ObjectCompletionHandler<TraktList>
     public typealias ListsCompletionHandler = ObjectsCompletionHandler<TraktList>
     public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktListItem>
+    public typealias WatchlistCompletionHandler = paginatedCompletionHandler<TraktListItem>
     public typealias HiddenItemsCompletionHandler = paginatedCompletionHandler<HiddenItem>
     public typealias UserCommentsCompletionHandler = ObjectsCompletionHandler<UsersComments>
     public typealias AddListItemCompletion = ObjectCompletionHandler<ListItemPostResult>

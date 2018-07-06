@@ -62,10 +62,19 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getEpisodeComments<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, pagination: Pagination? = nil, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = [:]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
 
         guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments",
-            withQuery: [:],
+            withQuery: query,
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
@@ -81,7 +90,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getListsContainingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
+    public func getListsContainingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, listType: ListType? = nil, sortBy: ListSortType? = nil, pagination: Pagination? = nil, completion: @escaping paginatedCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
         var path = "shows/\(id)/seasons/\(season)/episodes/\(episode)/lists"
         if let listType = listType {
             path += "/\(listType)"
@@ -91,8 +100,17 @@ extension TraktManager {
             }
         }
 
+        var query: [String: String] = [:]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard let request = mutableRequest(forPath: path,
-                                           withQuery: [:],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,

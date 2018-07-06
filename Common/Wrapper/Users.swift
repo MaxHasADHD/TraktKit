@@ -105,13 +105,18 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], page: Int, limit: Int, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTaskProtocol? {
         var query: [String: String] = ["extended": extended.queryString()]
         if let type = type {
             query["type"] = type.rawValue
         }
-        query["page"] = "\(page)"
-        query["limit"] = "\(limit)"
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
 
         guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
             withQuery: query,
@@ -233,7 +238,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getUserComments(username: String = "me", commentType: CommentType? = nil, type: Type2? = nil, completion: @escaping UserCommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getUserComments(username: String = "me", commentType: CommentType? = nil, type: Type2? = nil, pagination: Pagination? = nil, completion: @escaping UserCommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         var path = "users/\(username)/comments"
         if let commentType = commentType {
@@ -243,10 +248,19 @@ extension TraktManager {
                 path += "\(mediaType.rawValue)"
             }
         }
-        
+
+        var query: [String: String] = [:]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard
             let request = mutableRequest(forPath: path,
-                                         withQuery: [:],
+                                         withQuery: query,
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

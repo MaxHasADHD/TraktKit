@@ -28,8 +28,8 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "TrendingShows_Min")
 
         let expectation = XCTestExpectation(description: "TrendingShows")
-        traktManager.getTrendingShows(page: 1, limit: 10) { result in
-            if case .success(let trendingShows) = result {
+        traktManager.getTrendingShows(pagination: Pagination(page: 1, limit: 10)) { result in
+            if case .success(let trendingShows, _, _) = result {
                 XCTAssertEqual(trendingShows.count, 10)
                 expectation.fulfill()
             }
@@ -37,7 +37,7 @@ class ShowsTests: XCTestCase {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/trending?page=1&limit=10&extended=min")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/trending?extended=min&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -51,8 +51,8 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "TrendingShows_Full")
 
         let expectation = XCTestExpectation(description: "TrendingShows")
-        traktManager.getTrendingShows(page: 1, limit: 10, extended: [.Full]) { result in
-            if case .success(let trendingShows) = result {
+        traktManager.getTrendingShows(pagination: Pagination(page: 1, limit: 10), extended: [.Full]) { result in
+            if case .success(let trendingShows, _, _) = result {
                 XCTAssertEqual(trendingShows.count, 10)
                 expectation.fulfill()
             }
@@ -60,7 +60,7 @@ class ShowsTests: XCTestCase {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/trending?page=1&limit=10&extended=full")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/trending?extended=full&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -76,14 +76,14 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_popular_shows")
 
         let expectation = XCTestExpectation(description: "Get popular shows")
-        traktManager.getPopularShows(page: 1, limit: 10) { result in
-            if case .success(let popularShows) = result {
+        traktManager.getPopularShows(pagination: Pagination(page: 1, limit: 10)) { result in
+            if case .success(let popularShows, _, _) = result {
                 XCTAssertEqual(popularShows.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/popular?page=1&limit=10&extended=min")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/popular?extended=min&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -99,14 +99,14 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_most_played_shows")
 
         let expectation = XCTestExpectation(description: "Get most played shows")
-        traktManager.getPlayedShows(page: 1, limit: 10) { result in
-            if case .success(let playedShows) = result {
+        traktManager.getPlayedShows(pagination: Pagination(page: 1, limit: 10)) { result in
+            if case .success(let playedShows, _, _) = result {
                 XCTAssertEqual(playedShows.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/played/weekly?page=1&limit=10")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/played/weekly?extended=min&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -122,14 +122,14 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_most_watched_shows")
 
         let expectation = XCTestExpectation(description: "Get most watched shows")
-        traktManager.getWatchedShows(page: 1, limit: 10) { result in
-            if case .success(let watchedShows) = result {
+        traktManager.getWatchedShows(pagination: Pagination(page: 1, limit: 10)) { result in
+            if case .success(let watchedShows, _, _) = result {
                 XCTAssertEqual(watchedShows.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/watched/weekly?page=1&limit=10")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/watched/weekly?extended=min&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -145,14 +145,14 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_most_collected_shows")
 
         let expectation = XCTestExpectation(description: "Get most collected shows")
-        traktManager.getCollectedShows(page: 1, limit: 10) { result in
-            if case .success(let collectedShows) = result {
+        traktManager.getCollectedShows(pagination: Pagination(page: 1, limit: 10)) { result in
+            if case .success(let collectedShows, _, _) = result {
                 XCTAssertEqual(collectedShows.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/collected/weekly?page=1&limit=10")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/collected/weekly?extended=min&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -168,14 +168,14 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_most_anticipated_shows")
 
         let expectation = XCTestExpectation(description: "Get anticipated shows")
-        traktManager.getAnticipatedShows(page: 1, limit: 10) { result in
-            if case .success(let anticipatedShows) = result {
+        traktManager.getAnticipatedShows(pagination: Pagination(page: 1, limit: 10)) { result in
+            if case .success(let anticipatedShows, _, _) = result {
                 XCTAssertEqual(anticipatedShows.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/anticipated?page=1&limit=10&extended=min")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/anticipated?extended=min&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -191,14 +191,14 @@ class ShowsTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_updated_shows")
 
         let expectation = XCTestExpectation(description: "Get updated shows")
-        traktManager.getUpdatedShows(page: 1, limit: 10, startDate: try! Date.dateFromString("2014-09-22")) { result in
-            if case .success(let shows) = result {
+        traktManager.getUpdatedShows(startDate: try! Date.dateFromString("2014-09-22"), pagination: Pagination(page: 1, limit: 10)) { result in
+            if case .success(let shows, _, _) = result {
                 XCTAssertEqual(shows.count, 2)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/updates/2014-09-22?page=1&limit=10")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/updates/2014-09-22?extended=min&page=1&limit=10")
 
         switch result {
         case .timedOut:
@@ -353,7 +353,7 @@ class ShowsTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Get show comments")
         traktManager.getShowComments(showID: "game-of-thrones") { result in
-            if case .success(let comments) = result {
+            if case .success(let comments, _, _) = result {
                 XCTAssertEqual(comments.count, 1)
                 expectation.fulfill()
             }
