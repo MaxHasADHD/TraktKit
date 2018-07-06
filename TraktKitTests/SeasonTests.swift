@@ -116,7 +116,7 @@ class SeasonTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Get season comments")
         traktManager.getAllSeasonComments(showID: "game-of-thrones", season: 1) { result in
-            if case .success(let comments) = result {
+            if case .success(let comments, _, _) = result {
                 XCTAssertEqual(comments.count, 1)
                 expectation.fulfill()
             }
@@ -139,7 +139,7 @@ class SeasonTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Get lists containing season")
         traktManager.getListsContainingSeason(showID: "game-of-thrones", season: 1, listType: ListType.personal, sortBy: .added) { result in
-            if case .success(let lists) = result {
+            if case .success(let lists, _, _) = result {
                 XCTAssertEqual(lists.count, 1)
                 expectation.fulfill()
             }

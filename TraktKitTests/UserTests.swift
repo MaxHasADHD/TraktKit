@@ -127,7 +127,7 @@ class UserTests: XCTestCase {
         session.nextStatusCode = StatusCodes.Success
 
         let expectation = XCTestExpectation(description: "HiddenItems")
-        traktManager.hiddenItems(section: .ProgressWatched, type: .Show, page: 1, limit: 10) { result in
+        traktManager.hiddenItems(section: .ProgressWatched, type: .Show, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let hiddenShows, _, _) = result {
                 XCTAssertEqual(hiddenShows.count, 2)
                 expectation.fulfill()
@@ -652,7 +652,7 @@ class UserTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "List comments")
         traktManager.getUserAllListComments(username: "sean", listID: "star-wars-in-machete-order") { result in
-            if case .success(let comments) = result {
+            if case .success(let comments, _, _) = result {
                 XCTAssertEqual(comments.count, 1)
                 let firstComment = comments.first
                 XCTAssertNotNil(firstComment)
@@ -824,7 +824,7 @@ class UserTests: XCTestCase {
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/history")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/sean/history?extended=min")
 
         switch result {
         case .timedOut:

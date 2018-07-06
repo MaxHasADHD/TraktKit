@@ -18,8 +18,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getTrendingShows(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping TrendingShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getTrending(.Shows, page: page, limit: limit, extended: extended, completion: completion)
+    public func getTrendingShows(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping TrendingShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getTrending(.Shows, pagination: pagination, extended: extended, completion: completion)
     }
     
     // MARK: - Popular
@@ -30,8 +30,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getPopularShows(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTaskProtocol? {
-        return getPopular(.Shows, page: page, limit: limit, extended: extended, completion: completion)
+    public func getPopularShows(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<TraktShow>) -> URLSessionDataTaskProtocol? {
+        return getPopular(.Shows, pagination: pagination, extended: extended, completion: completion)
     }
     
     // MARK: - Played
@@ -42,8 +42,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getPlayedShows(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getPlayed(.Shows, page: page, limit: limit, period: period, completion: completion)
+    public func getPlayedShows(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getPlayed(.Shows, period: period, pagination: pagination, completion: completion)
     }
     
     // MARK: - Watched
@@ -54,8 +54,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getWatchedShows(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getWatched(.Shows, page: page, limit: limit, period: period, completion: completion)
+    public func getWatchedShows(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getWatched(.Shows, period: period, pagination: pagination, completion: completion)
     }
     
     // MARK: - Collected
@@ -66,8 +66,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getCollectedShows(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getCollected(.Shows, page: page, limit: limit, completion: completion)
+    public func getCollectedShows(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getCollected(.Shows, pagination: pagination, completion: completion)
     }
     
     // MARK: - Anticipated
@@ -78,8 +78,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getAnticipatedShows(page: Int, limit: Int, period: Period = .Weekly, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedShowCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getAnticipated(.Shows, page: page, limit: limit, extended: extended, completion: completion)
+    public func getAnticipatedShows(period: Period = .Weekly, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedShowCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getAnticipated(.Shows, pagination: pagination, extended: extended, completion: completion)
     }
     
     // MARK: - Updates
@@ -139,8 +139,8 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getShowComments<T: CustomStringConvertible>(showID id: T, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getComments(.Shows, id: id, completion: completion)
+    public func getShowComments<T: CustomStringConvertible>(showID id: T, pagination: Pagination? = nil, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getComments(.Shows, id: id, pagination: pagination, completion: completion)
     }
 
     // MARK: - Lists
@@ -151,7 +151,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getListsContainingShow<T: CustomStringConvertible>(showID id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
+    public func getListsContainingShow<T: CustomStringConvertible>(showID id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, pagination: Pagination? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
         var path = "shows/\(id)/lists"
         if let listType = listType {
             path += "/\(listType)"
@@ -161,8 +161,17 @@ extension TraktManager {
             }
         }
 
+        var query: [String: String] = [:]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard let request = mutableRequest(forPath: path,
-                                           withQuery: [:],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)

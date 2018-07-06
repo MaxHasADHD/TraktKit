@@ -18,8 +18,8 @@ extension TraktManager {
     📄 Pagination
      */
     @discardableResult
-    public func getTrendingMovies(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping TrendingMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getTrending(.Movies, page: page, limit: limit, extended: extended, completion: completion)
+    public func getTrendingMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping TrendingMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getTrending(.Movies, pagination: pagination, extended: extended, completion: completion)
     }
     
     // MARK: - Popular
@@ -30,8 +30,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getPopularMovies(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping MoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getPopular(.Movies, page: page, limit: limit, extended: extended, completion: completion)
+    public func getPopularMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<TraktMovie>) -> URLSessionDataTaskProtocol? {
+        return getPopular(.Movies, pagination: pagination, extended: extended, completion: completion)
     }
     
     // MARK: - Played
@@ -42,8 +42,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getPlayedMovies(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getPlayed(.Movies, page: page, limit: limit, period: period, completion: completion)
+    public func getPlayedMovies(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getPlayed(.Movies, period: period, pagination: pagination, completion: completion)
     }
     
     // MARK: - Watched
@@ -54,8 +54,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getWatchedMovies(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getWatched(.Movies, page: page, limit: limit, period: period, completion: completion)
+    public func getWatchedMovies(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getWatched(.Movies, period: period, pagination: pagination, completion: completion)
     }
     
     // MARK: - Collected
@@ -66,8 +66,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getCollectedMovies(page: Int, limit: Int, period: Period = .Weekly, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getCollected(.Movies, page: page, limit: limit, period: period, completion: completion)
+    public func getCollectedMovies(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getCollected(.Movies, period: period, pagination: pagination, completion: completion)
     }
     
     // MARK: - Anticipated
@@ -78,8 +78,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getAnticipatedMovies(page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedMovieCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getAnticipated(.Movies, page: page, limit: limit, extended: extended, completion: completion)
+    public func getAnticipatedMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedMovieCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getAnticipated(.Movies, pagination: pagination, extended: extended, completion: completion)
     }
     
     // MARK: - Box Office
@@ -170,8 +170,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getComments(.Movies, id: id, completion: completion)
+    public func getMovieComments<T: CustomStringConvertible>(movieID id: T, pagination: Pagination? = nil, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getComments(.Movies, id: id, pagination: pagination, completion: completion)
     }
 
     // MARK: - Lists
@@ -182,7 +182,11 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getListsContainingMovie<T: CustomStringConvertible>(movieID id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
+    public func getListsContainingMovie<T: CustomStringConvertible>(movieID id: T,
+                                                                    listType: ListType? = nil,
+                                                                    sortBy: ListSortType? = nil,
+                                                                    pagination: Pagination? = nil,
+                                                                    completion: @escaping paginatedCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
         var path = "movies/\(id)/lists"
         if let listType = listType {
             path += "/\(listType)"
@@ -192,8 +196,17 @@ extension TraktManager {
             }
         }
 
+        var query: [String: String] = [:]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard let request = mutableRequest(forPath: path,
-                                           withQuery: [:],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,

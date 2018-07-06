@@ -225,7 +225,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/all/movies/2014-09-01/7")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/all/movies/2014-09-01/7?extended=min")
 
         switch result {
         case .timedOut:

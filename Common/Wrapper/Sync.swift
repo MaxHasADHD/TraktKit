@@ -191,6 +191,8 @@ extension TraktManager {
      Specify a type and trakt id to limit the history for just that item. If the id is valid, but there is no history, an empty array will be returned.
      
      🔒 OAuth: Required
+     📄 Pagination
+     ✨ Extended Info
      */
     #if os(iOS)
     @discardableResult
@@ -386,12 +388,31 @@ extension TraktManager {
     // MARK: - Watchlist
     
     /**
-     Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.
+     Returns all items in a user's watchlist filtered by type.
+
+     All list items are sorted by ascending `rank`. We also send `X-Sort-By` and `X-Sort-How` headers which can be used to custom sort the watchlist in your app based on the user's preference. Values for X-Sort-By include `rank`, `added`, `title`, `released`, `runtime`, `popularity`, `percentage`, and `votes`. Values for `X-Sort-How` include `asc` and `desc`.
+
+     **AUTO REMOVAL**
+     When an item is watched, it will be automatically removed from the watchlist. For shows and seasons, watching 1 episode will remove the entire show or season. **The watchlist should not be used as a list of what the user is actively watching.** Use a combination of the **\/sync/watched** and **\/shows/:id/progress** methods to get what the user is actively watching.
+
+     🔒 OAuth Required
+     📄 Pagination Optional
+     ✨ Extended Info
      */
     @discardableResult
-    public func getWatchlist(watchType: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getWatchlist(watchType: WatchedType, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping WatchlistCompletionHandler) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard let request = mutableRequest(forPath: "sync/watchlist/\(watchType.rawValue)",
-                                         withQuery: ["extended": extended.queryString()],
+                                         withQuery: query,
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,

@@ -12,12 +12,19 @@ internal extension TraktManager {
     
     // MARK: - Trending
     
-    func getTrending<T>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getTrending<T>(_ type: WatchedType, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard var request = mutableRequest(forPath: "\(type)/trending",
-                                           withQuery: [
-                                            "page": "\(page)",
-                                            "limit": "\(limit)",
-                                            "extended": extended.queryString()],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
@@ -27,11 +34,19 @@ internal extension TraktManager {
     
     // MARK: - Popular
     
-    func getPopular<T>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min],  completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getPopular<T>(_ type: WatchedType, pagination: Pagination?, extended: [ExtendedType] = [.Min],  completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard var request = mutableRequest(forPath: "\(type)/popular",
-                                           withQuery: ["page": "\(page)",
-                                                       "limit": "\(limit)",
-                                                       "extended": extended.queryString()],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
@@ -41,10 +56,19 @@ internal extension TraktManager {
     
     // MARK: - Played
     
-    func getPlayed<T>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getPlayed<T>(_ type: WatchedType, period: Period = .Weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard var request = mutableRequest(forPath: "\(type)/played/\(period.rawValue)",
-                                           withQuery: ["page": "\(page)",
-                                                       "limit": "\(limit)"],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
@@ -54,10 +78,19 @@ internal extension TraktManager {
     
     // MARK: - Watched
     
-    func getWatched<T>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getWatched<T>(_ type: WatchedType, period: Period = .Weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard var request = mutableRequest(forPath: "\(type)/watched/\(period.rawValue)",
-                                           withQuery: ["page": "\(page)",
-                                                       "limit": "\(limit)"],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
@@ -67,10 +100,19 @@ internal extension TraktManager {
     
     // MARK: - Collected
     
-    func getCollected<T>(_ type: WatchedType, page: Int, limit: Int, period: Period = .Weekly, completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getCollected<T>(_ type: WatchedType, period: Period = .Weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard var request = mutableRequest(forPath: "\(type)/collected/\(period.rawValue)",
-                                           withQuery: ["page": "\(page)",
-                                                       "limit": "\(limit)"],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
@@ -80,11 +122,19 @@ internal extension TraktManager {
     
     // MARK: - Anticipated
     
-    func getAnticipated<U>(_ type: WatchedType, page: Int, limit: Int, extended: [ExtendedType] = [.Min], completion: @escaping ((_ result: ObjectsResultType<U>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getAnticipated<T>(_ type: WatchedType, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard var request = mutableRequest(forPath: "\(type)/anticipated",
-                                           withQuery: ["page": "\(page)",
-                                                       "limit": "\(limit)",
-                                                       "extended": extended.queryString()],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData        
@@ -156,9 +206,19 @@ internal extension TraktManager {
     
     // MARK: - Comments
     
-    func getComments<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
+    func getComments<T: CustomStringConvertible>(_ type: WatchedType, id: T, pagination: Pagination?, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = [:]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
         guard let request = mutableRequest(forPath: "\(type)/\(id)/comments",
-                                           withQuery: [:],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
