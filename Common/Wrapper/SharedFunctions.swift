@@ -93,7 +93,16 @@ internal extension TraktManager {
     
     // MARK: - Updates
     
-    func getUpdated(_ type: WatchedType, page: Int, limit: Int, startDate: Date?, completion: @escaping UpdateCompletionHandler) -> URLSessionDataTaskProtocol? {
+    func getUpdated(_ type: WatchedType, startDate: Date?, pagination: Pagination?, extended: [ExtendedType], completion: @escaping UpdateCompletionHandler) -> URLSessionDataTaskProtocol? {
+
+        var query: [String: String] = ["extended": extended.queryString()]
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
         
         var path = "\(type)/updates/"
         if let startDateString = startDate?.dateString(withFormat: "yyyy-MM-dd") {
@@ -101,8 +110,7 @@ internal extension TraktManager {
         }
         
         guard var request = mutableRequest(forPath: path,
-                                           withQuery: ["page": "\(page)",
-                                                       "limit": "\(limit)"],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
