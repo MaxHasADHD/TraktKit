@@ -42,7 +42,7 @@ internal extension Date {
             if let date = ISO8601DateFormatter.date(from: dateString) {
                 return date
             } else {
-                throw DateParserError.failedToParseDateFromString("String to parse: \(dateString), date format: \(ISO8601DateFormatter.dateFormat)")
+                throw DateParserError.failedToParseDateFromString("String to parse: \(dateString), date format: \(String(describing: ISO8601DateFormatter.dateFormat))")
             }
         } else if let date = string as? Date {
             return date

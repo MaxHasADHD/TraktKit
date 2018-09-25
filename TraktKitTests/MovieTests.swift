@@ -35,7 +35,10 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/trending?extended=min&page=1&limit=10")
+        XCTAssertEqual(session.lastURL?.path, "/movies/trending")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
 
         switch result {
         case .timedOut:
@@ -58,8 +61,10 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/popular?extended=min&page=1&limit=10")
-
+        XCTAssertEqual(session.lastURL?.path, "/movies/popular")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -81,8 +86,10 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/played/all?extended=min&page=1&limit=10")
-
+        XCTAssertEqual(session.lastURL?.path, "/movies/played/all")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -104,8 +111,10 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/watched/all?extended=min&page=1&limit=10")
-
+        XCTAssertEqual(session.lastURL?.path, "/movies/watched/all")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -127,8 +136,10 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/collected/all?extended=min&page=1&limit=10")
-
+        XCTAssertEqual(session.lastURL?.path, "/movies/collected/all")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -150,8 +161,10 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/anticipated?extended=min&page=1&limit=10")
-
+        XCTAssertEqual(session.lastURL?.path, "/movies/anticipated")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -196,8 +209,10 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/updates/2014-01-10?extended=min&page=1&limit=10")
-
+        XCTAssertEqual(session.lastURL?.path, "/movies/updates/2014-01-10")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")

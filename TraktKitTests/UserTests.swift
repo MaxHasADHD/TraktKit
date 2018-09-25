@@ -134,8 +134,11 @@ class UserTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/hidden/progress_watched?page=1&limit=10&type=show&extended=min")
-
+        XCTAssertEqual(session.lastURL?.path, "/users/hidden/progress_watched")
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("type=show") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
