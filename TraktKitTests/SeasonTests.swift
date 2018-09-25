@@ -99,8 +99,9 @@ class SeasonTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1?extended=min&translations=es")
-
+        XCTAssertEqual(session.lastURL?.path, "/shows/game-of-thrones/seasons/1")
+        XCTAssertTrue(session.lastURL?.query?.contains("translations=es") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
