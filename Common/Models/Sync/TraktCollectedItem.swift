@@ -11,6 +11,7 @@ import Foundation
 public struct TraktCollectedItem: Codable {
     
     public var lastCollectedAt: Date
+    public let lastUpdatedAt: Date?
     
     public var movie: TraktMovie?
     public var show: TraktShow?
@@ -19,6 +20,7 @@ public struct TraktCollectedItem: Codable {
     enum CodingKeys: String, CodingKey {
         case lastCollectedAt = "last_collected_at" // Can be last_collected_at / collected_at though
         case movieLastCollectAt = "collected_at"
+        case lastUpdatedAt = "last_updated_at"
         case movie
         case show
         case seasons
@@ -30,6 +32,7 @@ public struct TraktCollectedItem: Codable {
         movie = try container.decodeIfPresent(TraktMovie.self, forKey: .movie)
         show = try container.decodeIfPresent(TraktShow.self, forKey: .show)
         seasons = try container.decodeIfPresent([TraktCollectedSeason].self, forKey: .seasons)
+        lastUpdatedAt = try container.decodeIfPresent(Date.self, forKey: .lastUpdatedAt)
 
         do {
             self.lastCollectedAt = try container.decode(Date.self, forKey: .lastCollectedAt)
