@@ -18,8 +18,8 @@ extension TraktManager {
     📄 Pagination
      */
     @discardableResult
-    public func getTrendingMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping TrendingMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
-        return getTrending(.Movies, pagination: pagination, extended: extended, completion: completion)
+    public func getTrendingMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping TrendingMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
+        return getTrending(.Movies, pagination: pagination, extended: extended, filters: filters, completion: completion)
     }
     
     // MARK: - Popular
@@ -30,8 +30,8 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getPopularMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<TraktMovie>) -> URLSessionDataTaskProtocol? {
-        return getPopular(.Movies, pagination: pagination, extended: extended, completion: completion)
+    public func getPopularMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping paginatedCompletionHandler<TraktMovie>) -> URLSessionDataTaskProtocol? {
+        return getPopular(.Movies, pagination: pagination, extended: extended, filters: filters, completion: completion)
     }
     
     // MARK: - Played
