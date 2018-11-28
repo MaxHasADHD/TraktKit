@@ -12,13 +12,19 @@ internal extension TraktManager {
     
     // MARK: - Trending
     
-    func getTrending<T>(_ type: WatchedType, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getTrending<T>(_ type: WatchedType, pagination: Pagination?, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
 
         var query: [String: String] = ["extended": extended.queryString()]
 
         // pagination
         if let pagination = pagination {
             for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+
+        if let filters = filters {
+            for (key, value) in (filters.map { $0.value() }) {
                 query[key] = value
             }
         }
@@ -34,7 +40,7 @@ internal extension TraktManager {
     
     // MARK: - Popular
     
-    func getPopular<T>(_ type: WatchedType, pagination: Pagination?, extended: [ExtendedType] = [.Min],  completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func getPopular<T>(_ type: WatchedType, pagination: Pagination?, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
 
         var query: [String: String] = ["extended": extended.queryString()]
 
@@ -45,6 +51,12 @@ internal extension TraktManager {
             }
         }
 
+        if let filters = filters {
+            for (key, value) in (filters.map { $0.value() }) {
+                query[key] = value
+            }
+        }
+        
         guard var request = mutableRequest(forPath: "\(type)/popular",
                                            withQuery: query,
                                            isAuthorized: false,
