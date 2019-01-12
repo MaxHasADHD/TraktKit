@@ -142,7 +142,7 @@ public class TraktManager {
     
     // MARK: - Actions
     
-    public func mutableRequestForURL(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
+    internal func mutableRequestForURL(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
         guard
             let url = url else { return nil }
         var request = URLRequest(url: url)
@@ -166,7 +166,7 @@ public class TraktManager {
         return request
     }
     
-    public func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
+    internal func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
         guard let apiBaseURL = APIBaseURL else { preconditionFailure("Call `set(clientID:clientSecret:redirectURI:staging:)` before making any API requests") }
         let urlString = "https://\(apiBaseURL)/" + path
         guard var components = URLComponents(string: urlString) else { return nil }
@@ -198,7 +198,7 @@ public class TraktManager {
         return request
     }
     
-    func createJsonData(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], ids: [NSNumber]? = nil) throws -> Data? {
+    internal func createJsonData(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], ids: [NSNumber]? = nil) throws -> Data? {
         var json: [String: Any] = [
             "movies": movies,
             "shows": shows,
