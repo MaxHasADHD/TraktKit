@@ -13,7 +13,7 @@ import Foundation
 class CheckinTests: XCTestCase {
     
     let session = MockURLSession()
-    lazy var traktManager = TraktManager(session: session)
+    lazy var traktManager = TestTraktManager(session: session)
 
     override func tearDown() {
         super.tearDown()

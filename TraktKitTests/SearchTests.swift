@@ -12,7 +12,7 @@ import XCTest
 class SearchTests: XCTestCase {
 
     let session = MockURLSession()
-    lazy var traktManager = TraktManager(session: session)
+    lazy var traktManager = TestTraktManager(session: session)
 
     override func tearDown() {
         super.tearDown()
@@ -34,7 +34,7 @@ class SearchTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/search/movie,show,episode,person,list?extended=min&query=tron")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/search/movie,show,episode,person,list?query=tron&extended=min")
 
         switch result {
         case .timedOut:

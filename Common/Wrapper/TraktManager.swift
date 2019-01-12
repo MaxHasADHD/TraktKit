@@ -167,7 +167,8 @@ public class TraktManager {
     }
     
     public func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
-        let urlString = "https://\(APIBaseURL!)/" + path
+        guard let apiBaseURL = APIBaseURL else { preconditionFailure("Call `set(clientID:clientSecret:redirectURI:staging:)` before making any API requests") }
+        let urlString = "https://\(apiBaseURL)/" + path
         guard var components = URLComponents(string: urlString) else { return nil }
         
         if query.isEmpty == false {
@@ -191,9 +192,7 @@ public class TraktManager {
         if authorized {
             if let accessToken = accessToken {
                 request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            } /*else {
-                return nil
-            }*/
+            }
         }
         
         return request

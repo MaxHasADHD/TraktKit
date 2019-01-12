@@ -13,7 +13,7 @@ import Foundation
 class MovieTests: XCTestCase {
 
     let session = MockURLSession()
-    lazy var traktManager = TraktManager(session: session)
+    lazy var traktManager = TestTraktManager(session: session)
 
     override func tearDown() {
         super.tearDown()
@@ -224,9 +224,7 @@ class MovieTests: XCTestCase {
     // MARK: - Summary
 
     func test_get_min_movie() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "Movie_Min")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "MovieSummary")
         traktManager.getMovieSummary(movieID: "tron-legacy-2010") { result in
@@ -252,9 +250,7 @@ class MovieTests: XCTestCase {
     }
 
     func test_get_full_movie() {
-        let session = MockURLSession()
         session.nextData = jsonData(named: "Movie_Full")
-        let traktManager = TraktManager(session: session)
 
         let expectation = XCTestExpectation(description: "MovieSummary")
         traktManager.getMovieSummary(movieID: "tron-legacy-2010", extended: [.Full]) { result in
