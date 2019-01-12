@@ -142,6 +142,10 @@ public class TraktManager {
     
     // MARK: - Actions
     
+    public func signOut() {
+        accessToken = nil
+    }
+    
     internal func mutableRequestForURL(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
         guard
             let url = url else { return nil }
