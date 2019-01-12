@@ -115,6 +115,31 @@ class SyncTests: XCTestCase {
             break
         }
     }
+    
+    func test_get_collection_shows() {
+        session.nextData = jsonData(named: "test_get_collection_shows")
+        
+        let expectation = XCTestExpectation(description: "Get shows collection")
+        traktManager.getCollection(type: .Shows) { result in
+            if case .success(let collection) = result {
+                XCTAssertEqual(collection.count, 2)
+                collection.forEach {
+                    XCTAssertNotNil($0.lastCollectedAt)
+                    XCTAssertNotNil($0.lastUpdatedAt)
+                }
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/sync/collection/shows?extended=min")
+        
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
 
     // MARK: - Add to Collection
 
@@ -180,6 +205,31 @@ class SyncTests: XCTestCase {
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/sync/watched/movies?extended=min")
 
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+    
+    func test_get_watched_shows() {
+        session.nextData = jsonData(named: "test_get_watched_shows")
+        
+        let expectation = XCTestExpectation(description: "Get Watched")
+        traktManager.getWatchedShows { result in
+            if case .success(let watchedShows) = result {
+                XCTAssertEqual(watchedShows.count, 2)
+                watchedShows.forEach {
+                    XCTAssertNotNil($0.lastWatchedAt)
+                    XCTAssertNotNil($0.lastUpdatedAt)
+                }
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/sync/watched/shows?extended=min")
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")

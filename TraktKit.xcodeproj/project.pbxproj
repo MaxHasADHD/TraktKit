@@ -64,6 +64,7 @@
 		702631EC1E6682ED006F323B /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
 		702631ED1E6682F2006F323B /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764CB7F1D7B36960094BE66 /* HiddenItem.swift */; };
 		702631EE1E6682F9006F323B /* TraktWatchedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E56161D4E7663009CACC7 /* TraktWatchedProgress.swift */; };
+		7028E11421EA3253005F29D4 /* test_get_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7028E11321EA3253005F29D4 /* test_get_watched_shows.json */; };
 		7029D1571EEFFD3000BD926D /* Episode_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 7029D1561EEFFD3000BD926D /* Episode_Min.json */; };
 		7029D1591EEFFD3900BD926D /* Episode_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 7029D1581EEFFD3900BD926D /* Episode_Full.json */; };
 		7029D15B1EEFFD6600BD926D /* EpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029D15A1EEFFD6600BD926D /* EpisodeTests.swift */; };
@@ -312,6 +313,7 @@
 		70E96DAF1EEFF82A00EE34DA /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340631C079D2500A69EA1 /* Seasons.swift */; };
 		70E96DB21EEFF85700EE34DA /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405D1C07884B00A69EA1 /* Shows.swift */; };
 		70EC530121EA383B00AF7556 /* TestTraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EC530021EA383B00AF7556 /* TestTraktManager.swift */; };
+		70EC530321EA417100AF7556 /* test_get_collection_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EC530221EA417100AF7556 /* test_get_collection_shows.json */; };
 		70EDB5691F45971100D508AA /* TrendingShows_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EDB5681F45971100D508AA /* TrendingShows_Min.json */; };
 		70F5F1E21DC718E700CDE58E /* CompletionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C832351DC505C5003EB134 /* CompletionHandlers.swift */; };
 		70F5F1E31DC718E700CDE58E /* CompletionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C832351DC505C5003EB134 /* CompletionHandlers.swift */; };
@@ -506,6 +508,7 @@
 		702019DA205944BA002F744E /* test_get_items_on_custom_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_items_on_custom_list.json; sourceTree = "<group>"; };
 		702019DC205946D6002F744E /* test_add_item_to_custom_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_add_item_to_custom_list.json; sourceTree = "<group>"; };
 		702019DE205946E2002F744E /* test_remove_item_from_custom_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_remove_item_from_custom_list.json; sourceTree = "<group>"; };
+		7028E11321EA3253005F29D4 /* test_get_watched_shows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_watched_shows.json; sourceTree = "<group>"; };
 		7029D1561EEFFD3000BD926D /* Episode_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Episode_Min.json; sourceTree = "<group>"; };
 		7029D1581EEFFD3900BD926D /* Episode_Full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Episode_Full.json; sourceTree = "<group>"; };
 		7029D15A1EEFFD6600BD926D /* EpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTests.swift; sourceTree = "<group>"; };
@@ -651,6 +654,7 @@
 		70E96DAA1EEFE86F00EE34DA /* ShowsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsTests.swift; sourceTree = "<group>"; };
 		70E96DAC1EEFF23000EE34DA /* Show_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Show_Min.json; sourceTree = "<group>"; };
 		70EC530021EA383B00AF7556 /* TestTraktManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTraktManager.swift; sourceTree = "<group>"; };
+		70EC530221EA417100AF7556 /* test_get_collection_shows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_collection_shows.json; sourceTree = "<group>"; };
 		70EDB5681F45971100D508AA /* TrendingShows_Min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TrendingShows_Min.json; sourceTree = "<group>"; };
 		70F7732B1F3C76C60078110E /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		70F7732F1F3C77D80078110E /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
@@ -1165,9 +1169,11 @@
 				70AB1533206924C5002223E0 /* test_get_last_activity.json */,
 				70AB1535206924D0002223E0 /* test_get_playback_progress.json */,
 				70AB1539206924E2002223E0 /* test_get_collection.json */,
+				70EC530221EA417100AF7556 /* test_get_collection_shows.json */,
 				70AB153B206924EA002223E0 /* test_add_items_to_collection.json */,
 				70AB153D206924F0002223E0 /* test_remove_items_from_collection.json */,
 				70AB153F206924FA002223E0 /* test_get_watched.json */,
+				7028E11321EA3253005F29D4 /* test_get_watched_shows.json */,
 				70AB154120692502002223E0 /* test_get_watched_history.json */,
 				70AB154320692508002223E0 /* test_add_items_to_watched_history.json */,
 				70AB15452069250E002223E0 /* test_remove_items_from_history.json */,
@@ -1632,6 +1638,7 @@
 				7000567F206D0FD4005319DD /* test_get_trending_lists.json in Resources */,
 				70005671206D027D005319DD /* test_start_watching_in_media_center.json in Resources */,
 				70D369C72066FB5C0008B9D7 /* test_get_users_watching_movie_now.json in Resources */,
+				70EC530321EA417100AF7556 /* test_get_collection_shows.json in Resources */,
 				70D3698B2066CC690008B9D7 /* test_get_recently_updated_comments.json in Resources */,
 				70D97524206F204D001E3281 /* test_get_updated_shows.json in Resources */,
 				70C5D88F206509F2002E4356 /* test_follow_user.json in Resources */,
@@ -1665,6 +1672,7 @@
 				70E96DAD1EEFF23000EE34DA /* Show_Min.json in Resources */,
 				7000565B206C943A005319DD /* test_get_season_comments.json in Resources */,
 				70AB154E20692525002223E0 /* test_get_watchlist.json in Resources */,
+				7028E11421EA3253005F29D4 /* test_get_watched_shows.json in Resources */,
 				70D369BD2066F6BD0008B9D7 /* test_get_lists_containing_movie.json in Resources */,
 				70BF06C21F5D76AD00F351C8 /* test_post_remove_hidden_items.json in Resources */,
 				70AB155220692530002223E0 /* test_remove_items_from_watchlist.json in Resources */,

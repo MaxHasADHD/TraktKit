@@ -1,0 +1,88 @@
+[
+  {
+    "last_collected_at": "2014-09-01T09:10:11.000Z",
+    "last_updated_at": "2014-09-01T09:10:11.000Z",
+    "show": {
+      "title": "Breaking Bad",
+      "year": 2008,
+      "ids": {
+        "trakt": 1,
+        "slug": "breaking-bad",
+        "tvdb": 81189,
+        "imdb": "tt0903747",
+        "tmdb": 1396
+      }
+    },
+    "seasons": [
+      {
+        "number": 1,
+        "episodes": [
+          {
+            "number": 1,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          },
+          {
+            "number": 2,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "episodes": [
+          {
+            "number": 1,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          },
+          {
+            "number": 2,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "last_collected_at": "2014-09-01T09:10:11.000Z",
+    "last_updated_at": "2014-09-01T09:10:11.000Z",
+    "show": {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 2,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402
+      }
+    },
+    "seasons": [
+      {
+        "number": 1,
+        "episodes": [
+          {
+            "number": 1,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          },
+          {
+            "number": 2,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "episodes": [
+          {
+            "number": 1,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          },
+          {
+            "number": 2,
+            "collected_at": "2014-09-01T09:10:11.000Z"
+          }
+        ]
+      }
+    ]
+  }
+]
