@@ -71,7 +71,7 @@ TraktManager.sharedManager.set(clientID: "Client ID", clientSecret: "Secret", re
 ```swift
 guard let oauthURL = TraktManager.sharedManager.oauthURL else { return }
 
-let traktAuth = SFSafariViewController(URL: oathURL)
+let traktAuth = SFSafariViewController(URL: oauthURL)
 traktAuth.delegate = self
 self.presentViewController(traktAuth, animated: true, completion: nil)
 ```
