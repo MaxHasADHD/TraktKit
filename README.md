@@ -5,11 +5,11 @@
 # TraktKit
 Swift wrapper for Trakt.tv  API.
 
-## Requirements
-
-- iOS 10.0+ / macOS 10.10+ / watchOS 3.0+
-- Xcode 9.2+
-- Swift 4.0+
+[![Pod version](https://badge.fury.io/co/TraktKit.svg)](https://badge.fury.io/co/TraktKit)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
+[![License](https://img.shields.io/cocoapods/l/TraktKit.svg)](https://cocoapods.org/pods/TraktKit)
+[![Platform](https://img.shields.io/cocoapods/p/TraktKit.svg)](https://cocoapods.org/pods/TraktKit)
+![language Swift 4.2](https://img.shields.io/badge/language-Swift%204.2-orange.svg)
 
 ## Installation
 
@@ -21,18 +21,12 @@ Swift wrapper for Trakt.tv  API.
 $ gem install cocoapods
 ```
 
-> CocoaPods 1.1+ is required to build TraktKit 1.0.0+.
-
 To integrate TraktKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
 use_frameworks!
 
-target '<Your Target Name>' do
-    pod 'TraktKit', '~> 1.0.0'
-end
+pod 'TraktKit'
 ```
 
 Then, run the following command:
@@ -55,75 +49,13 @@ $ brew install carthage
 To integrate TraktKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "MaxHasADHD/TraktKit" ~> 1.0.0
+github "MaxHasADHD/TraktKit"
 ```
 
 Run `carthage update` to build the framework and drag the built `TraktKit.framework` into your Xcode project.    
 
 ### Usage
-
-In your AppDelegate, under <code>application(application:, didFinishLaunchingWithOptions launchOptions:)</code> place:
-```swift
-TraktManager.sharedManager.set(clientID: "Client ID", clientSecret: "Secret", redirectURI: "Redirect URI")
-```
-
-### Authentication
-```swift
-guard let oauthURL = TraktManager.sharedManager.oauthURL else { return }
-
-let traktAuth = SFSafariViewController(URL: oathURL)
-traktAuth.delegate = self
-self.presentViewController(traktAuth, animated: true, completion: nil)
-```
-
-In AppDelegate.swift
-```swift
-func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-    let urlString = url.absoluteString
-
-    let queryDict = url.queryDict() // Parse URL
-
-    if url.host == "auth" {
-        if let code = queryDict["code"] as? String { // Get authorization code
-            TraktManager.sharedManager.getTokenFromAuthorizationCode(code, completionHandler: nil)
-        }
-    }
-    return true
-}
-```
-
-### Get Show information
-```swift
-TraktManager.sharedManager.getShowSummary(showID: "the-last-man-on-earth", extended: [.Full, .Images]) { (result) in
-            switch result {
-            case .success(let result):
-                // Process result
-                break
-            case .error(let error):
-                // Handle error
-                break
-            }
-        }
-```
-
-### Search - This will find Batman movies with ratings between 75% and 100%
-```swift
-TraktManager.sharedManager.search(query: "Batman",
-                                          types: [.movie],
-                                          extended: [.Full, .Images],
-                                          pagination: Pagination(page: 1, limit: 20),
-                                          filters: [.ratings(ratings: (lower: 75, upper: 100))]) { (result) in
-            switch result {
-            case .success(let results):
-                for result in results {
-                    guard let movie = result.movie else { continue }
-                    // Handle movie
-                }
-            case .error(let error):
-                print(error?.localizedDescription)
-            }
-        }
-```
+See the [example project](https://github.com/MaxHasADHD/TraktKit/tree/master/Example) for usage
 
 ### License
 The MIT License (MIT)
