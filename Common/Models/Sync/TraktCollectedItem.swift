@@ -11,47 +11,52 @@ import Foundation
 public struct TraktCollectedItem: Codable {
     
     public var lastCollectedAt: Date
-    public let lastUpdatedAt: Date?
+    public let lastUpdatedAt: Date
     
     public var movie: TraktMovie?
     public var show: TraktShow?
     public var seasons: [TraktCollectedSeason]?
     
-    enum CodingKeys: String, CodingKey {
-        case lastCollectedAt = "last_collected_at" // Can be last_collected_at / collected_at though
-        case movieLastCollectAt = "collected_at"
-        case lastUpdatedAt = "last_updated_at"
+    enum MovieCodingKeys: String, CodingKey {
+        case lastCollectedAt = "collected_at"
+        case lastUpdatedAt = "updated_at"
         case movie
+    }
+    
+    enum ShowCodingKeys: String, CodingKey {
+        case lastCollectedAt = "last_collected_at"
+        case lastUpdatedAt = "last_updated_at"
         case show
         case seasons
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        movie = try container.decodeIfPresent(TraktMovie.self, forKey: .movie)
-        show = try container.decodeIfPresent(TraktShow.self, forKey: .show)
-        seasons = try container.decodeIfPresent([TraktCollectedSeason].self, forKey: .seasons)
-        lastUpdatedAt = try container.decodeIfPresent(Date.self, forKey: .lastUpdatedAt)
-
-        do {
-            self.lastCollectedAt = try container.decode(Date.self, forKey: .lastCollectedAt)
-        } catch {
-            self.lastCollectedAt = try container.decode(Date.self, forKey: .movieLastCollectAt)
+        if let movieContainer = try? decoder.container(keyedBy: MovieCodingKeys.self), !movieContainer.allKeys.isEmpty {
+            movie = try movieContainer.decodeIfPresent(TraktMovie.self, forKey: .movie)
+            lastUpdatedAt = try movieContainer.decode(Date.self, forKey: .lastUpdatedAt)
+            lastCollectedAt = try movieContainer.decode(Date.self, forKey: .lastCollectedAt)
+        } else {
+            let showContainer = try decoder.container(keyedBy: ShowCodingKeys.self)
+            show = try showContainer.decodeIfPresent(TraktShow.self, forKey: .show)
+            seasons = try showContainer.decodeIfPresent([TraktCollectedSeason].self, forKey: .seasons)
+            lastUpdatedAt = try showContainer.decode(Date.self, forKey: .lastUpdatedAt)
+            lastCollectedAt = try showContainer.decode(Date.self, forKey: .lastCollectedAt)
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        if movie != nil {
-            try container.encode(lastCollectedAt, forKey: .movieLastCollectAt)
-        } else {
+        if let movie = movie {
+            var container = encoder.container(keyedBy: MovieCodingKeys.self)
+            try container.encodeIfPresent(movie, forKey: .movie)
             try container.encode(lastCollectedAt, forKey: .lastCollectedAt)
+            try container.encode(lastUpdatedAt, forKey: .lastUpdatedAt)
+        } else {
+            var container = encoder.container(keyedBy: ShowCodingKeys.self)
+            try container.encodeIfPresent(show, forKey: .show)
+            try container.encodeIfPresent(seasons, forKey: .seasons)
+            try container.encode(lastCollectedAt, forKey: .lastCollectedAt)
+            try container.encode(lastUpdatedAt, forKey: .lastUpdatedAt)
         }
-        try container.encodeIfPresent(movie, forKey: .movie)
-        try container.encodeIfPresent(show, forKey: .show)
-        try container.encodeIfPresent(seasons, forKey: .seasons)
     }
 }
 

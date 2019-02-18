@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = "TraktKit"
-  s.version   = "1.0.4"
+  s.version   = "1.0.5"
   s.summary   = "Swift wrapper for Trakt.tv API"
   s.homepage  = "https://github.com/MaxHasADHD/TraktKit"
   s.license   = { :type => "MIT", :file => "License.md" }

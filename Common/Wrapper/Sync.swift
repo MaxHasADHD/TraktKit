@@ -81,11 +81,16 @@ extension TraktManager {
     /**
      Get all collected items in a user's collection. A collected item indicates availability to watch digitally or on physical media.
      
-     If you add `?extended=metadata` to the URL, it will return the additional `media_type`, `resolution`, `audio`, `audio_channels` and '3d' metadata. It will use `null` if the metadata isn't set for an item.
+     Each `movie` object contains `collected_at` and `updated_at` timestamps. Since users can set custom dates when they collected movies, it is possible for `collected_at` to be in the past. We also include `updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the show if you see a newer timestamp.
+     
+     Each `show` object contains `last_collected_at` and last_updated_at timestamps. Since users can set custom dates when they collected episodes, it is possible for `last_collected_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the show if you see a newer timestamp.
+     
+     If you add `?extended=metadata` to the URL, it will return the additional `media_type`, `resolution`, `audio`, `audio_channels` and `3d` metadata. It will use `null` if the metadata isn't set for an item.
      
      Status Code: 200
      
      🔒 OAuth: Required
+     ✨ Extended Info
      */
     @discardableResult
     public func getCollection(type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping CollectionCompletionHandler) -> URLSessionDataTaskProtocol? {
@@ -143,11 +148,16 @@ extension TraktManager {
     // MARK: -
     
     /**
-     Returns all movies or shows a user has watched.
+     Returns all movies or shows a user has watched sorted by most plays.
+     
+     If type is set to shows and you add `?extended=noseasons` to the URL, it won't return season or episode info.
+     
+     Each movie and show object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched movies and episodes, it is possible for `last_watched_at` to be in the past. We also include last_updated_at to help sync Trakt data with your app. Cache this timestamp locally and only re-process the show if you see a newer timestamp.
      
      Status Code: 200
      
      🔒 OAuth: Required
+     ✨ Extended Info
      
      - parameter type: which type of content to receive
      - parameter completion: completion handler
@@ -164,11 +174,16 @@ extension TraktManager {
     }
     
     /**
-     Returns all movies or shows a user has watched.
+     Returns all movies or shows a user has watched sorted by most plays.
+     
+     If type is set to shows and you add `?extended=noseasons` to the URL, it won't return season or episode info.
+     
+     Each movie and show object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched movies and episodes, it is possible for `last_watched_at` to be in the past. We also include last_updated_at to help sync Trakt data with your app. Cache this timestamp locally and only re-process the show if you see a newer timestamp.
      
      Status Code: 200
      
      🔒 OAuth: Required
+     ✨ Extended Info
      
      - parameter type: which type of content to receive
      - parameter completion: completion handler
