@@ -201,19 +201,26 @@ extension TraktManager {
     // MARK: - History
     
     /**
-     Returns movies and episodes that a user has watched, sorted by most recent. You can optionally limit the `type` to `movies` or `episodes`. The `id` in each history item uniquely identifies the event and can be used to remove individual events by using the POST /sync/history/remove method. The action will be set to scrobble, checkin, or watch.
+     Returns movies and episodes that a user has watched, sorted by most recent. You can optionally limit the type to `movies` or `episodes`. The id (64-bit integer) in each history item uniquely identifies the event and can be used to remove individual events by using the `/sync/history/remove` method. The action will be set to `scrobble`, `checkin`, or `watch`.
      
-     Specify a type and trakt id to limit the history for just that item. If the id is valid, but there is no history, an empty array will be returned.
+     Specify a `type` and trakt `id` to limit the history for just that item. If the `id` is valid, but there is no history, an empty array will be returned.
      
      🔒 OAuth: Required
      📄 Pagination
      ✨ Extended Info
      */
-    #if os(iOS)
     @discardableResult
-    public func getHistory(type: TraktKit.WatchedType?, traktID: String? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getHistory(type: WatchedType? = nil, traktID: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
         
         var query: [String: String] = ["extended": extended.queryString()]
+        
+        if let startDate = startAt {
+            query["start_at"] = startDate.UTCDateString()
+        }
+        
+        if let endDate = endAt {
+            query["end_at"] = endDate.UTCDateString()
+        }
         
         // pagination
         if let pagination = pagination {
@@ -239,10 +246,11 @@ extension TraktManager {
         
         return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
     }
-    #endif
     
     /**
-     Add items to a user's watch history.
+     Add items to a user's watch history. Accepts shows, seasons, episodes and movies. If only a show is passed, all episodes for the show will be added. If seasons are specified, only episodes in those seasons will be added.
+     
+     Send a `watched_at` UTC datetime to mark items as watched in the past. This is useful for syncing past watches from a media center.
      
      Status Code: 201
      
@@ -268,7 +276,9 @@ extension TraktManager {
     }
     
     /**
-     Removes items from a user's watch history including watches, scrobbles, and checkins.
+     Remove items from a user's watch history including all watches, scrobbles, and checkins. Accepts shows, seasons, episodes and movies. If only a show is passed, all episodes for the show will be removed. If seasons are specified, only episodes in those seasons will be removed.
+     
+     You can also send a list of raw history `ids` (64-bit integers) to delete single plays from the watched history. The `/sync/history` method will return an individual `id` (64-bit integer) for each history item.
      
      Status Code: 200
      
@@ -277,6 +287,7 @@ extension TraktManager {
      - parameter movies: array of movie objects
      - parameter shows: array of show objects
      - parameter episodes: array of episode objects
+     - parameter historyIDs: Array of history ids.
      - parameter completion: completion handler
      */
     @discardableResult
