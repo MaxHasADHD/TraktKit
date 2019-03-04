@@ -146,11 +146,13 @@ public struct TraktLastActivityShows: Codable {
     public let ratedAt: Date
     public let watchlistedAt: Date
     public let commentedAt: Date
+    public let hiddenAt: Date
     
     enum CodingKeys: String, CodingKey {
         case ratedAt = "rated_at"
         case watchlistedAt = "watchlisted_at"
         case commentedAt = "commented_at"
+        case hiddenAt = "hidden_at"
     }
 }
 
@@ -158,11 +160,13 @@ public struct TraktLastActivitySeasons: Codable {
     public let ratedAt: Date
     public let watchlistedAt: Date
     public let commentedAt: Date
+    public let hiddenAt: Date
     
     enum CodingKeys: String, CodingKey {
         case ratedAt = "rated_at"
         case watchlistedAt = "watchlisted_at"
         case commentedAt = "commented_at"
+        case hiddenAt = "hidden_at"
     }
 }
 
