@@ -20,7 +20,7 @@ public extension TraktManager {
      
      **Note**: Make sure to properly URL encode the parameters including spaces and special characters.
      */
-    public enum Filter: FilterType {
+    enum Filter: FilterType {
         /**
          4 digit year.
          */
@@ -64,7 +64,7 @@ public extension TraktManager {
         }
     }
     
-    public enum MovieFilter: FilterType {
+    enum MovieFilter: FilterType {
         /**
          US content certification.
          */
@@ -79,7 +79,7 @@ public extension TraktManager {
         }
     }
     
-    public enum ShowFilter: FilterType {
+    enum ShowFilter: FilterType {
         /**
          US content certification.
          */

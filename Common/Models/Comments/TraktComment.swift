@@ -35,7 +35,7 @@ public struct Comment: Codable {
 }
 
 public extension Sequence where Iterator.Element == Comment {
-    public func hideSpoilers() -> [Comment] {
+    func hideSpoilers() -> [Comment] {
         var copy: [Comment] = self as! [Comment]
         
         for (index, var comment) in copy.enumerated() {
