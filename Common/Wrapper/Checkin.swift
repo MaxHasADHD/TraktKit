@@ -40,7 +40,6 @@ extension TraktManager {
         request.httpBody = jsonData
         
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
                               completion: completionHandler)
     }
     

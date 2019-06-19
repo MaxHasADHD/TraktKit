@@ -35,7 +35,8 @@ internal extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Popular
@@ -63,7 +64,8 @@ internal extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Played
@@ -85,7 +87,8 @@ internal extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Watched
@@ -107,7 +110,8 @@ internal extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Collected
@@ -129,7 +133,8 @@ internal extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Anticipated
@@ -150,7 +155,8 @@ internal extension TraktManager {
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData        
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Updates
@@ -177,17 +183,19 @@ internal extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Summary
     
-    func getSummary<T: CustomStringConvertible, U>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<U>) -> URLSessionDataTaskProtocol? {
+    func getSummary<T: CustomStringConvertible, U: Decodable>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<U>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "\(type)/\(id)",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Aliases
@@ -197,7 +205,7 @@ internal extension TraktManager {
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Translations
@@ -213,7 +221,7 @@ internal extension TraktManager {
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Comments
@@ -233,7 +241,8 @@ internal extension TraktManager {
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - People
@@ -243,7 +252,8 @@ internal extension TraktManager {
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Ratings
@@ -253,7 +263,8 @@ internal extension TraktManager {
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Related
@@ -263,7 +274,8 @@ internal extension TraktManager {
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Stats
@@ -273,7 +285,8 @@ internal extension TraktManager {
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Watching
@@ -283,6 +296,7 @@ internal extension TraktManager {
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
 }

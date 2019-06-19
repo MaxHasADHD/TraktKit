@@ -24,7 +24,6 @@ extension TraktManager {
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 
@@ -50,7 +49,6 @@ extension TraktManager {
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 
@@ -78,7 +76,6 @@ extension TraktManager {
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 
@@ -114,7 +111,6 @@ extension TraktManager {
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 
@@ -130,7 +126,6 @@ extension TraktManager {
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 
@@ -146,7 +141,6 @@ extension TraktManager {
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 
@@ -162,7 +156,6 @@ extension TraktManager {
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 }

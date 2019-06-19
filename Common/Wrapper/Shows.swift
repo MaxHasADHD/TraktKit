@@ -174,7 +174,8 @@ extension TraktManager {
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
 
     // MARK: - Collection Progress
@@ -192,7 +193,8 @@ extension TraktManager {
                                                      "specials": "\(specials)"],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Watched Progress
@@ -210,7 +212,8 @@ extension TraktManager {
                                                      "specials": "\(specials)"],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - People
@@ -281,7 +284,6 @@ extension TraktManager {
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
     
@@ -299,7 +301,6 @@ extension TraktManager {
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 }

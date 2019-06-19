@@ -27,7 +27,8 @@ extension TraktManager {
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
 
     // MARK: - Season
@@ -52,7 +53,6 @@ extension TraktManager {
 
         request.cachePolicy = .reloadIgnoringCacheData
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 
@@ -79,7 +79,8 @@ extension TraktManager {
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
 
     // MARK: - Lists
@@ -113,7 +114,8 @@ extension TraktManager {
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
 
     // MARK: - Ratings
@@ -129,7 +131,8 @@ extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
 
     // MARK: - Stats
@@ -145,7 +148,8 @@ extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
 
     // MARK: - Watching
@@ -161,6 +165,6 @@ extension TraktManager {
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request, completion: completion)
     }
 }

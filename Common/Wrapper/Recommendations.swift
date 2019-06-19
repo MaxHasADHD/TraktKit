@@ -66,7 +66,6 @@ extension TraktManager {
         }
         
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
     
@@ -80,7 +79,6 @@ extension TraktManager {
                 return nil
         }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.SuccessNoContentToReturn,
                               completion: completion)
     }
 }

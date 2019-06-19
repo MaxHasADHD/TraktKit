@@ -159,7 +159,6 @@ extension TraktManager {
             withHTTPMethod: .POST) else { return nil }
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
                               completion: completion)
     }
 }

@@ -28,7 +28,6 @@ extension TraktManager {
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
     
@@ -54,7 +53,6 @@ extension TraktManager {
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
     
@@ -72,7 +70,6 @@ extension TraktManager {
                                          isAuthorized: true,
                                          withHTTPMethod: .DELETE) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.SuccessNoContentToReturn,
                               completion: completion)
     }
     
@@ -99,7 +96,6 @@ extension TraktManager {
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
     
@@ -122,7 +118,6 @@ extension TraktManager {
                                            withHTTPMethod: .POST) else { return nil }
         request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
                               completion: completion)
     }
     
@@ -142,7 +137,8 @@ extension TraktManager {
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
                                               episodes: episodes)
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: -
@@ -170,7 +166,8 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     /**
@@ -195,7 +192,8 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - History
@@ -244,7 +242,7 @@ extension TraktManager {
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -272,7 +270,8 @@ extension TraktManager {
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
                                               episodes: episodes)
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     /**
@@ -304,7 +303,8 @@ extension TraktManager {
                                               episodes: episodes,
                                               ids: historyIDs)
         
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Ratings
@@ -329,7 +329,8 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     /**
@@ -386,7 +387,8 @@ extension TraktManager {
                                            withHTTPMethod: .POST) else { return nil }
         request.httpBody = try JSONSerialization.data(withJSONObject: json,
                                                       options: [])
-        return performRequest(request: request, expectingStatusCode: StatusCodes.SuccessNewResourceCreated, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     /**
@@ -408,7 +410,8 @@ extension TraktManager {
         request.httpBody = try createJsonData(movies: movies,
                                               shows: shows,
                                               episodes: episodes)
-        return performRequest(request: request, expectingStatusCode: StatusCodes.Success, completion: completion)
+        return performRequest(request: request,
+                              completion: completion)
     }
     
     // MARK: - Watchlist
@@ -442,7 +445,6 @@ extension TraktManager {
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
     
@@ -463,7 +465,6 @@ extension TraktManager {
                                               shows: shows,
                                               episodes: episodes)
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.SuccessNewResourceCreated,
                               completion: completion)
     }
     
@@ -484,7 +485,6 @@ extension TraktManager {
                                               shows: shows,
                                               episodes: episodes)
         return performRequest(request: request,
-                              expectingStatusCode: StatusCodes.Success,
                               completion: completion)
     }
 }

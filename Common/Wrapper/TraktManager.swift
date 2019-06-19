@@ -381,7 +381,7 @@ public class TraktManager {
             // Check response
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
-                HTTPResponse.statusCode == StatusCodes.Success else {
+                200...299 ~= HTTPResponse.statusCode else {
                     completionHandler(.fail)
                     return
             }
