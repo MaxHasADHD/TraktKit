@@ -40,7 +40,7 @@ public class MLKeychain {
         let keychainQuery: [String: Any] = [
             kSecClassValue: kSecClassGenericPasswordValue,
             kSecAttrAccountValue: key,
-            kSecReturnDataValue: kCFBooleanTrue,
+            kSecReturnDataValue: kCFBooleanTrue!,
             kSecMatchLimitValue: kSecMatchLimitOneValue
         ]
         

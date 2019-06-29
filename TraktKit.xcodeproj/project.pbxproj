@@ -457,6 +457,433 @@
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
 		A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
+		D172FA2A22C6667E00C70BE7 /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D172FA2122C6667E00C70BE7 /* TraktKit.framework */; };
+		D172FA3122C6667E00C70BE7 /* TraktKitTvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D172FA2322C6667E00C70BE7 /* TraktKitTvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D172FA3A22C666E500C70BE7 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B9EE920557BA2002B59FC /* URLSessionProtocol.swift */; };
+		D172FA3B22C666E500C70BE7 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
+		D172FA3C22C666E500C70BE7 /* CompletionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C832351DC505C5003EB134 /* CompletionHandlers.swift */; };
+		D172FA3D22C666E500C70BE7 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
+		D172FA3E22C666E500C70BE7 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */; };
+		D172FA3F22C666E500C70BE7 /* Certifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5D8CD2066A8CD002E4356 /* Certifications.swift */; };
+		D172FA4022C666E500C70BE7 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */; };
+		D172FA4122C666E500C70BE7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */; };
+		D172FA4222C666E500C70BE7 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70005682206D102F005319DD /* Lists.swift */; };
+		D172FA4322C666E500C70BE7 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
+		D172FA4422C666E500C70BE7 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A61BF805E400A43AD3 /* People.swift */; };
+		D172FA4522C666E500C70BE7 /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */; };
+		D172FA4622C666E500C70BE7 /* Scrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */; };
+		D172FA4722C666E500C70BE7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405F1C07886500A69EA1 /* Search.swift */; };
+		D172FA4822C666E500C70BE7 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773405D1C07884B00A69EA1 /* Shows.swift */; };
+		D172FA4922C666E500C70BE7 /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340631C079D2500A69EA1 /* Seasons.swift */; };
+		D172FA4A22C666E500C70BE7 /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340651C079D2D00A69EA1 /* Episodes.swift */; };
+		D172FA4B22C666E500C70BE7 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CC79A01BF7C36E00A43AD3 /* Sync.swift */; };
+		D172FA4C22C666E500C70BE7 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE55AD1BD4560700A5DFFB /* Users.swift */; };
+		D172FA4D22C666E500C70BE7 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77340691C08D82D00A69EA1 /* SharedFunctions.swift */; };
+		D172FA4E22C666E500C70BE7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
+		D172FA4F22C666EE00C70BE7 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7033F2F1C3AE3C4000E40F7 /* Structures.swift */; };
+		D172FA5022C666EE00C70BE7 /* TraktSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98621CBF47BA00744566 /* TraktSearchResult.swift */; };
+		D172FA5122C666EE00C70BE7 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B81D47D49200E7F938 /* Pagination.swift */; };
+		D172FA5222C666EE00C70BE7 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A759C3B61D47D3BA00E7F938 /* Filters.swift */; };
+		D172FA5322C666F500C70BE7 /* RatingDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054625C1EF3622A003BB24B /* RatingDistribution.swift */; };
+		D172FA5422C666F500C70BE7 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7732B1F3C76C60078110E /* Update.swift */; };
+		D172FA5522C666F500C70BE7 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7732F1F3C77D80078110E /* Alias.swift */; };
+		D172FA5622C666FB00C70BE7 /* CalendarShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E6221EF220160026B8A1 /* CalendarShow.swift */; };
+		D172FA5722C666FB00C70BE7 /* CalendarMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E6241EF220CF0026B8A1 /* CalendarMovie.swift */; };
+		D172FA5822C6670500C70BE7 /* TraktCheckin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C832331DC50164003EB134 /* TraktCheckin.swift */; };
+		D172FA5922C6670A00C70BE7 /* Certification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7734F1F3D4F550078110E /* Certification.swift */; };
+		D172FA5A22C6670F00C70BE7 /* TraktComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98881CBF4A6A00744566 /* TraktComment.swift */; };
+		D172FA5B22C6670F00C70BE7 /* TraktTrendingComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D369832066C7580008B9D7 /* TraktTrendingComments.swift */; };
+		D172FA5C22C6670F00C70BE7 /* TraktAttachedMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D3698E2066DB0F0008B9D7 /* TraktAttachedMediaItem.swift */; };
+		D172FA5D22C6670F00C70BE7 /* TraktCommentLikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D369922066DE000008B9D7 /* TraktCommentLikedUser.swift */; };
+		D172FA5E22C6671400C70BE7 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E62A1EF2A3FC0026B8A1 /* Genre.swift */; };
+		D172FA5F22C6671900C70BE7 /* TraktTrendingMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF987F1CBF49E700744566 /* TraktTrendingMovie.swift */; };
+		D172FA6022C6671900C70BE7 /* TraktMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98811CBF49FF00744566 /* TraktMovie.swift */; };
+		D172FA6122C6671900C70BE7 /* TraktMovieTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98831CBF4A1C00744566 /* TraktMovieTranslation.swift */; };
+		D172FA6222C6671900C70BE7 /* TraktWatchedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98851CBF4A4000744566 /* TraktWatchedMovie.swift */; };
+		D172FA6322C6671900C70BE7 /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
+		D172FA6422C6671900C70BE7 /* TraktAnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A168CD1D445D0A0022E762 /* TraktAnticipatedMovie.swift */; };
+		D172FA6522C6671900C70BE7 /* TraktDVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701EF4B01E88713C00C56499 /* TraktDVDReleaseMovie.swift */; };
+		D172FA6622C6671900C70BE7 /* TraktMovieRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700FED1F1F3FB96A00169961 /* TraktMovieRelease.swift */; };
+		D172FA6722C6671900C70BE7 /* TraktMostMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D369AF2066EF690008B9D7 /* TraktMostMovie.swift */; };
+		D172FA6822C6671F00C70BE7 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988E1CBF4D3C00744566 /* Person.swift */; };
+		D172FA6922C6671F00C70BE7 /* TraktCrewMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98901CBF4E9D00744566 /* TraktCrewMember.swift */; };
+		D172FA6A22C6671F00C70BE7 /* TraktCastMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98921CBF4F7600744566 /* TraktCastMember.swift */; };
+		D172FA6B22C6671F00C70BE7 /* CastAndCrew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E6311EF2A7050026B8A1 /* CastAndCrew.swift */; };
+		D172FA6C22C6672500C70BE7 /* ScrobbleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700FED281F3FBD8C00169961 /* ScrobbleResult.swift */; };
+		D172FA6D22C6672D00C70BE7 /* TraktTrendingShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF986B1CBF483900744566 /* TraktTrendingShow.swift */; };
+		D172FA6E22C6672D00C70BE7 /* TraktMostShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF986D1CBF484B00744566 /* TraktMostShow.swift */; };
+		D172FA6F22C6672D00C70BE7 /* TraktAnticipatedShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF986F1CBF486C00744566 /* TraktAnticipatedShow.swift */; };
+		D172FA7022C6672D00C70BE7 /* TraktShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98711CBF487600744566 /* TraktShow.swift */; };
+		D172FA7122C6672D00C70BE7 /* TraktSeason.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98731CBF48D900744566 /* TraktSeason.swift */; };
+		D172FA7222C6672D00C70BE7 /* TraktEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98751CBF48E200744566 /* TraktEpisode.swift */; };
+		D172FA7322C6672D00C70BE7 /* TraktShowTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98771CBF490200744566 /* TraktShowTranslation.swift */; };
+		D172FA7422C6672D00C70BE7 /* TraktEpisodeTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70005647206BBF47005319DD /* TraktEpisodeTranslation.swift */; };
+		D172FA7522C6672D00C70BE7 /* TraktWatchedShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98791CBF495300744566 /* TraktWatchedShow.swift */; };
+		D172FA7622C6672D00C70BE7 /* TraktWatchedSeason.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF987B1CBF495D00744566 /* TraktWatchedSeason.swift */; };
+		D172FA7722C6672D00C70BE7 /* TraktWatchedEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF987D1CBF49C600744566 /* TraktWatchedEpisodes.swift */; };
+		D172FA7822C6672D00C70BE7 /* TraktWatchedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E56161D4E7663009CACC7 /* TraktWatchedProgress.swift */; };
+		D172FA7922C6672D00C70BE7 /* ShowCollectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70393F431F3F4A9100943D34 /* ShowCollectionProgress.swift */; };
+		D172FA7A22C6673500C70BE7 /* TraktRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A21701D394E1B006E5D92 /* TraktRating.swift */; };
+		D172FA7B22C6673500C70BE7 /* TraktHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */; };
+		D172FA7C22C6673500C70BE7 /* TraktCollectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C810B21DBAAE9A00A5AA28 /* TraktCollectedItem.swift */; };
+		D172FA7D22C6673500C70BE7 /* PlaybackProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462661EF367BA003BB24B /* PlaybackProgress.swift */; };
+		D172FA7E22C6673500C70BE7 /* AddToCollectionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70393F2B1F3F2AC500943D34 /* AddToCollectionResult.swift */; };
+		D172FA7F22C6673500C70BE7 /* RemoveFromCollectionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70393F2F1F3F2B4C00943D34 /* RemoveFromCollectionResult.swift */; };
+		D172FA8022C6673500C70BE7 /* AddRatingsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70393F331F3F2BE500943D34 /* AddRatingsResult.swift */; };
+		D172FA8122C6673500C70BE7 /* RemoveRatingsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70393F371F3F2C4700943D34 /* RemoveRatingsResult.swift */; };
+		D172FA8222C6673500C70BE7 /* RemoveFromWatchlistResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70393F3B1F3F34C300943D34 /* RemoveFromWatchlistResult.swift */; };
+		D172FA8322C6673C00C70BE7 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054626F1EF36D14003BB24B /* AccountSettings.swift */; };
+		D172FA8422C6673C00C70BE7 /* FollowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462741EF36F9F003BB24B /* FollowRequest.swift */; };
+		D172FA8522C6673C00C70BE7 /* Likes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054627E1EF3726B003BB24B /* Likes.swift */; };
+		D172FA8622C6673C00C70BE7 /* UsersCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462821EF3744A003BB24B /* UsersCollection.swift */; };
+		D172FA8722C6673C00C70BE7 /* UsersComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C39F3B1EF3869100C3F6A4 /* UsersComments.swift */; };
+		D172FA8822C6673C00C70BE7 /* TraktUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF988B1CBF4B8E00744566 /* TraktUser.swift */; };
+		D172FA8922C6673C00C70BE7 /* TraktWatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */; };
+		D172FA8A22C6673C00C70BE7 /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A764CB7F1D7B36960094BE66 /* HiddenItem.swift */; };
+		D172FA8B22C6673C00C70BE7 /* HideItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70374C271F635E7900173E12 /* HideItemResult.swift */; };
+		D172FA8C22C6673C00C70BE7 /* UnhideItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707FE6E91F5D70ED00407769 /* UnhideItemResult.swift */; };
+		D172FA8D22C6673C00C70BE7 /* ListItemPostResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F773351F3C80A10078110E /* ListItemPostResult.swift */; };
+		D172FA8E22C6673C00C70BE7 /* RemoveListItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F773581F3DC0DA0078110E /* RemoveListItemResult.swift */; };
+		D172FA8F22C6673C00C70BE7 /* FollowUserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7735D1F3DC2160078110E /* FollowUserResult.swift */; };
+		D172FA9022C6673C00C70BE7 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F773611F3DC8AF0078110E /* Friend.swift */; };
+		D172FA9122C6673C00C70BE7 /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70393F251F3F1D8400943D34 /* UserStats.swift */; };
+		D172FA9222C6673C00C70BE7 /* TraktList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF98951CBF50DE00744566 /* TraktList.swift */; };
+		D172FA9322C6673C00C70BE7 /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
+		D172FA9422C6673C00C70BE7 /* TraktWatchedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5D8A22065183E002E4356 /* TraktWatchedItem.swift */; };
+		D172FA9522C6674000C70BE7 /* MLKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76905B51B47B7A6003C7431 /* MLKeychain.swift */; };
+		D172FA9622C6674000C70BE7 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF28DC1C568FF600CA5B53 /* DateParser.swift */; };
+		D172FA9722C6674000C70BE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
+		D172FB3F22C67FB000C70BE7 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703D2ED21EF13E6300CAD268 /* HelperFunctions.swift */; };
+		D172FB4022C67FB000C70BE7 /* TestTraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EC530021EA383B00AF7556 /* TestTraktManager.swift */; };
+		D172FB4122C67FB000C70BE7 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5D8AE2065BE5B002E4356 /* CalendarTests.swift */; };
+		D172FB4222C67FB000C70BE7 /* CheckinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5D8C520669E39002E4356 /* CheckinTests.swift */; };
+		D172FB4322C67FB000C70BE7 /* CertificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7734C1F3D4EDA0078110E /* CertificationsTests.swift */; };
+		D172FB4422C67FB000C70BE7 /* CommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B844431EF0E5AB001BA900 /* CommentTests.swift */; };
+		D172FB4522C67FB000C70BE7 /* GenreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D3699A2066E0E20008B9D7 /* GenreTests.swift */; };
+		D172FB4622C67FB000C70BE7 /* ListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D369DC20691E140008B9D7 /* ListsTests.swift */; };
+		D172FB4722C67FB000C70BE7 /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B844361EF0DEC7001BA900 /* MovieTests.swift */; };
+		D172FB4822C67FB000C70BE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E63B1EF2A8290026B8A1 /* PeopleTests.swift */; };
+		D172FB4922C67FB000C70BE7 /* RecommendationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000566D206D0126005319DD /* RecommendationsTests.swift */; };
+		D172FB4A22C67FB000C70BE7 /* ScrobbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000566B206D0113005319DD /* ScrobbleTests.swift */; };
+		D172FB4B22C67FB000C70BE7 /* SearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70005664206CE89B005319DD /* SearchTests.swift */; };
+		D172FB4C22C67FB000C70BE7 /* ShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E96DAA1EEFE86F00EE34DA /* ShowsTests.swift */; };
+		D172FB4D22C67FB000C70BE7 /* SeasonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000564F206BC706005319DD /* SeasonTests.swift */; };
+		D172FB4E22C67FB000C70BE7 /* EpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029D15A1EEFFD6600BD926D /* EpisodeTests.swift */; };
+		D172FB4F22C67FB000C70BE7 /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054626C1EF36A7E003BB24B /* SyncTests.swift */; };
+		D172FB5022C67FB000C70BE7 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462881EF37A76003BB24B /* UserTests.swift */; };
+		D172FB5122C67FB000C70BE7 /* test_get_my_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B02065BFB5002E4356 /* test_get_my_shows.json */; };
+		D172FB5222C67FB000C70BE7 /* test_get_my_new_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B22065BFD7002E4356 /* test_get_my_new_shows.json */; };
+		D172FB5322C67FB000C70BE7 /* test_get_my_season_premieres.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B42065BFF5002E4356 /* test_get_my_season_premieres.json */; };
+		D172FB5422C67FB000C70BE7 /* test_get_my_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B620668CCC002E4356 /* test_get_my_movies.json */; };
+		D172FB5522C67FB000C70BE7 /* test_get_my_dvd.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B820668CDC002E4356 /* test_get_my_dvd.json */; };
+		D172FB5622C67FB000C70BE7 /* test_get_all_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8BA20668CE6002E4356 /* test_get_all_shows.json */; };
+		D172FB5722C67FB000C70BE7 /* test_get_all_new_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8BC20668CEE002E4356 /* test_get_all_new_shows.json */; };
+		D172FB5822C67FB000C70BE7 /* test_get_season_premieres.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8BE20668CFA002E4356 /* test_get_season_premieres.json */; };
+		D172FB5922C67FB000C70BE7 /* test_get_all_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C020668D02002E4356 /* test_get_all_movies.json */; };
+		D172FB5A22C67FB000C70BE7 /* test_get_all_dvd.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C220668D08002E4356 /* test_get_all_dvd.json */; };
+		D172FB5B22C67FB000C70BE7 /* test_checkin_movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C720669F67002E4356 /* test_checkin_movie.json */; };
+		D172FB5C22C67FB000C70BE7 /* test_checkin_episode.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C920669FDD002E4356 /* test_checkin_episode.json */; };
+		D172FB5D22C67FB000C70BE7 /* test_already_checked_in.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8CB2066A04B002E4356 /* test_already_checked_in.json */; };
+		D172FB5E22C67FB000C70BE7 /* test_get_certifications.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7734A1F3D4EBC0078110E /* test_get_certifications.json */; };
+		D172FB5F22C67FB000C70BE7 /* test_post_a_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3698C2066CD660008B9D7 /* test_post_a_comment.json */; };
+		D172FB6022C67FB000C70BE7 /* test_get_a_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8D52066B829002E4356 /* test_get_a_comment.json */; };
+		D172FB6122C67FB000C70BE7 /* test_update_a_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8D72066BA81002E4356 /* test_update_a_comment.json */; };
+		D172FB6222C67FB000C70BE7 /* test_get_replies_for_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8D92066C15A002E4356 /* test_get_replies_for_comment.json */; };
+		D172FB6322C67FB000C70BE7 /* test_post_reply_for_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8DB2066C242002E4356 /* test_post_reply_for_comment.json */; };
+		D172FB6422C67FB000C70BE7 /* test_get_attached_media_item.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369962066DF690008B9D7 /* test_get_attached_media_item.json */; };
+		D172FB6522C67FB000C70BE7 /* test_users_who_liked_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369982066DF820008B9D7 /* test_users_who_liked_comment.json */; };
+		D172FB6622C67FB000C70BE7 /* test_get_trending_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369812066C69B0008B9D7 /* test_get_trending_comments.json */; };
+		D172FB6722C67FB000C70BE7 /* test_get_recently_created_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369882066CB610008B9D7 /* test_get_recently_created_comments.json */; };
+		D172FB6822C67FB000C70BE7 /* test_get_recently_updated_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3698A2066CC690008B9D7 /* test_get_recently_updated_comments.json */; };
+		D172FB6922C67FB000C70BE7 /* test_get_genres.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3699D2066E1AD0008B9D7 /* test_get_genres.json */; };
+		D172FB6A22C67FB000C70BE7 /* test_get_trending_lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000567E206D0FD4005319DD /* test_get_trending_lists.json */; };
+		D172FB6B22C67FB000C70BE7 /* test_get_popular_lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005680206D0FEC005319DD /* test_get_popular_lists.json */; };
+		D172FB6C22C67FB000C70BE7 /* test_get_trending_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3699F2066E94F0008B9D7 /* test_get_trending_movies.json */; };
+		D172FB6D22C67FB000C70BE7 /* test_get_popular_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A12066E9770008B9D7 /* test_get_popular_movies.json */; };
+		D172FB6E22C67FB000C70BE7 /* test_get_most_played_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A32066E99D0008B9D7 /* test_get_most_played_movies.json */; };
+		D172FB6F22C67FB000C70BE7 /* test_get_most_watched_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A52066E9BD0008B9D7 /* test_get_most_watched_movies.json */; };
+		D172FB7022C67FB000C70BE7 /* test_get_most_collected_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A72066E9D90008B9D7 /* test_get_most_collected_movies.json */; };
+		D172FB7122C67FB000C70BE7 /* test_get_most_anticipated_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A92066EA050008B9D7 /* test_get_most_anticipated_movies.json */; };
+		D172FB7222C67FB000C70BE7 /* test_get_weekend_box_office.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369AB2066EA1F0008B9D7 /* test_get_weekend_box_office.json */; };
+		D172FB7322C67FB000C70BE7 /* test_get_recently_updated_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369AD2066EA410008B9D7 /* test_get_recently_updated_movies.json */; };
+		D172FB7422C67FB000C70BE7 /* Movie_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70B844321EF0DE9B001BA900 /* Movie_Min.json */; };
+		D172FB7522C67FB000C70BE7 /* Movie_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 70B844341EF0DEA6001BA900 /* Movie_Full.json */; };
+		D172FB7622C67FB000C70BE7 /* test_get_movie_aliases.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369B42066F5B70008B9D7 /* test_get_movie_aliases.json */; };
+		D172FB7722C67FB000C70BE7 /* test_get_movie_releases.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369B62066F6600008B9D7 /* test_get_movie_releases.json */; };
+		D172FB7822C67FB000C70BE7 /* test_get_movie_translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369B82066F68F0008B9D7 /* test_get_movie_translations.json */; };
+		D172FB7922C67FB000C70BE7 /* test_get_movie_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369BA2066F6A60008B9D7 /* test_get_movie_comments.json */; };
+		D172FB7A22C67FB000C70BE7 /* test_get_lists_containing_movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369BC2066F6BD0008B9D7 /* test_get_lists_containing_movie.json */; };
+		D172FB7B22C67FB000C70BE7 /* test_get_cast_and_crew.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369BE2066FB380008B9D7 /* test_get_cast_and_crew.json */; };
+		D172FB7C22C67FB000C70BE7 /* test_get_movie_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C02066FB400008B9D7 /* test_get_movie_ratings.json */; };
+		D172FB7D22C67FB000C70BE7 /* test_get_related_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C22066FB480008B9D7 /* test_get_related_movies.json */; };
+		D172FB7E22C67FB000C70BE7 /* test_get_movie_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C42066FB530008B9D7 /* test_get_movie_stats.json */; };
+		D172FB7F22C67FB000C70BE7 /* test_get_users_watching_movie_now.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C62066FB5C0008B9D7 /* test_get_users_watching_movie_now.json */; };
+		D172FB8022C67FB000C70BE7 /* Person_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C39B511F8508CB006D1708 /* Person_Min.json */; };
+		D172FB8122C67FB000C70BE7 /* Person_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C39B531F8508D3006D1708 /* Person_Full.json */; };
+		D172FB8222C67FB000C70BE7 /* test_get_movie_credits.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7E6391EF2A7C70026B8A1 /* test_get_movie_credits.json */; };
+		D172FB8322C67FB000C70BE7 /* test_get_show_credits.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369DE20691F310008B9D7 /* test_get_show_credits.json */; };
+		D172FB8422C67FB000C70BE7 /* test_get_lists_containing_this_person.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000567B206D0F5E005319DD /* test_get_lists_containing_this_person.json */; };
+		D172FB8522C67FB000C70BE7 /* test_get_movie_recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005677206D08B8005319DD /* test_get_movie_recommendations.json */; };
+		D172FB8622C67FB000C70BE7 /* test_get_show_recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005679206D08DF005319DD /* test_get_show_recommendations.json */; };
+		D172FB8722C67FB000C70BE7 /* test_start_watching_in_media_center.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005670206D027D005319DD /* test_start_watching_in_media_center.json */; };
+		D172FB8822C67FB000C70BE7 /* test_pause_watching_in_media_center.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005672206D0289005319DD /* test_pause_watching_in_media_center.json */; };
+		D172FB8922C67FB000C70BE7 /* test_stop_watching_in_media_center.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005674206D0293005319DD /* test_stop_watching_in_media_center.json */; };
+		D172FB8A22C67FB000C70BE7 /* test_search_query.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005667206CE96B005319DD /* test_search_query.json */; };
+		D172FB8B22C67FB000C70BE7 /* test_id_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005669206CEBA0005319DD /* test_id_lookup.json */; };
+		D172FB8C22C67FB000C70BE7 /* TrendingShows_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EDB5681F45971100D508AA /* TrendingShows_Min.json */; };
+		D172FB8D22C67FB000C70BE7 /* TrendingShows_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCB2055B36D00E6ECC0 /* TrendingShows_Full.json */; };
+		D172FB8E22C67FB000C70BE7 /* test_get_popular_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97519206E6475001E3281 /* test_get_popular_shows.json */; };
+		D172FB8F22C67FB000C70BE7 /* test_get_most_played_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9751B206E6484001E3281 /* test_get_most_played_shows.json */; };
+		D172FB9022C67FB000C70BE7 /* test_get_most_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9751D206E6493001E3281 /* test_get_most_watched_shows.json */; };
+		D172FB9122C67FB000C70BE7 /* test_get_most_collected_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9751F206E64A9001E3281 /* test_get_most_collected_shows.json */; };
+		D172FB9222C67FB000C70BE7 /* test_get_most_anticipated_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97521206E64B1001E3281 /* test_get_most_anticipated_shows.json */; };
+		D172FB9322C67FB000C70BE7 /* test_get_updated_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97523206F204D001E3281 /* test_get_updated_shows.json */; };
+		D172FB9422C67FB000C70BE7 /* Show_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E96DAC1EEFF23000EE34DA /* Show_Min.json */; };
+		D172FB9522C67FB000C70BE7 /* Show_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E96DA71EEFE81A00EE34DA /* Show_Full.json */; };
+		D172FB9622C67FB000C70BE7 /* ShowAliases.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCD2055B58B00E6ECC0 /* ShowAliases.json */; };
+		D172FB9722C67FB000C70BE7 /* test_get_show_translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97525206F2067001E3281 /* test_get_show_translations.json */; };
+		D172FB9822C67FB000C70BE7 /* test_get_show_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97527206F206F001E3281 /* test_get_show_comments.json */; };
+		D172FB9922C67FB000C70BE7 /* test_get_lists_containing_show.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97529206F2079001E3281 /* test_get_lists_containing_show.json */; };
+		D172FB9A22C67FB000C70BE7 /* ShowCollectionProgress.json in Resources */ = {isa = PBXBuildFile; fileRef = 70393F481F3F4BE600943D34 /* ShowCollectionProgress.json */; };
+		D172FB9B22C67FB000C70BE7 /* test_get_wathced_progress.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9752B206F208F001E3281 /* test_get_wathced_progress.json */; };
+		D172FB9C22C67FB000C70BE7 /* ShowCastAndCrew_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */; };
+		D172FB9D22C67FB000C70BE7 /* test_get_show_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9752D206F209D001E3281 /* test_get_show_ratings.json */; };
+		D172FB9E22C67FB000C70BE7 /* test_get_related_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9752F206F20AD001E3281 /* test_get_related_shows.json */; };
+		D172FB9F22C67FB000C70BE7 /* test_get_users_watching_show.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97531206F20B9001E3281 /* test_get_users_watching_show.json */; };
+		D172FBA022C67FB000C70BE7 /* ShowStats.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DD12055BF8400E6ECC0 /* ShowStats.json */; };
+		D172FBA122C67FB000C70BE7 /* LastEpisodeAired_min.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCF2055BD7400E6ECC0 /* LastEpisodeAired_min.json */; };
+		D172FBA222C67FB000C70BE7 /* test_get_all_seasons.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005652206BC80D005319DD /* test_get_all_seasons.json */; };
+		D172FBA322C67FB000C70BE7 /* test_get_all_seasons_and_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005654206BC814005319DD /* test_get_all_seasons_and_episodes.json */; };
+		D172FBA422C67FB000C70BE7 /* test_get_season.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005656206BC81D005319DD /* test_get_season.json */; };
+		D172FBA522C67FB000C70BE7 /* test_get_season_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000565A206C943A005319DD /* test_get_season_comments.json */; };
+		D172FBA622C67FB000C70BE7 /* test_get_lists_containing_season.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000565C206C9440005319DD /* test_get_lists_containing_season.json */; };
+		D172FBA722C67FB000C70BE7 /* test_get_season_rating.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000565E206C944A005319DD /* test_get_season_rating.json */; };
+		D172FBA822C67FB000C70BE7 /* test_get_season_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005660206C9450005319DD /* test_get_season_stats.json */; };
+		D172FBA922C67FB000C70BE7 /* test_get_users_watching_season.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005662206C9456005319DD /* test_get_users_watching_season.json */; };
+		D172FBAA22C67FB000C70BE7 /* Episode_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 7029D1561EEFFD3000BD926D /* Episode_Min.json */; };
+		D172FBAB22C67FB000C70BE7 /* Episode_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 7029D1581EEFFD3900BD926D /* Episode_Full.json */; };
+		D172FBAC22C67FB000C70BE7 /* test_get_episode_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1553206B3862002223E0 /* test_get_episode_comments.json */; };
+		D172FBAD22C67FB000C70BE7 /* test_get_episode_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1557206B39E2002223E0 /* test_get_episode_ratings.json */; };
+		D172FBAE22C67FB000C70BE7 /* test_get_episode_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1555206B39C9002223E0 /* test_get_episode_stats.json */; };
+		D172FBAF22C67FB000C70BE7 /* test_get_users_watching_now.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005645206BBD30005319DD /* test_get_users_watching_now.json */; };
+		D172FBB022C67FB000C70BE7 /* test_get_all_episode_translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000564B206BC209005319DD /* test_get_all_episode_translations.json */; };
+		D172FBB122C67FB000C70BE7 /* test_get_lists_containing_episode.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000564D206BC27A005319DD /* test_get_lists_containing_episode.json */; };
+		D172FBB222C67FB000C70BE7 /* test_get_last_activity.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1533206924C5002223E0 /* test_get_last_activity.json */; };
+		D172FBB322C67FB000C70BE7 /* test_get_playback_progress.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1535206924D0002223E0 /* test_get_playback_progress.json */; };
+		D172FBB422C67FB000C70BE7 /* test_get_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1539206924E2002223E0 /* test_get_collection.json */; };
+		D172FBB522C67FB000C70BE7 /* test_get_collection_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EC530221EA417100AF7556 /* test_get_collection_shows.json */; };
+		D172FBB622C67FB000C70BE7 /* test_add_items_to_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB153B206924EA002223E0 /* test_add_items_to_collection.json */; };
+		D172FBB722C67FB000C70BE7 /* test_remove_items_from_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB153D206924F0002223E0 /* test_remove_items_from_collection.json */; };
+		D172FBB822C67FB000C70BE7 /* test_get_watched.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB153F206924FA002223E0 /* test_get_watched.json */; };
+		D172FBB922C67FB000C70BE7 /* test_get_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7028E11321EA3253005F29D4 /* test_get_watched_shows.json */; };
+		D172FBBA22C67FB000C70BE7 /* test_get_watched_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154120692502002223E0 /* test_get_watched_history.json */; };
+		D172FBBB22C67FB000C70BE7 /* test_add_items_to_watched_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154320692508002223E0 /* test_add_items_to_watched_history.json */; };
+		D172FBBC22C67FB000C70BE7 /* test_remove_items_from_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB15452069250E002223E0 /* test_remove_items_from_history.json */; };
+		D172FBBD22C67FB000C70BE7 /* test_get_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154720692514002223E0 /* test_get_ratings.json */; };
+		D172FBBE22C67FB000C70BE7 /* test_add_new_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB15492069251B002223E0 /* test_add_new_ratings.json */; };
+		D172FBBF22C67FB000C70BE7 /* test_remove_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154B2069251F002223E0 /* test_remove_ratings.json */; };
+		D172FBC022C67FB000C70BE7 /* test_get_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154D20692525002223E0 /* test_get_watchlist.json */; };
+		D172FBC122C67FB000C70BE7 /* test_add_items_to_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154F2069252B002223E0 /* test_add_items_to_watchlist.json */; };
+		D172FBC222C67FB000C70BE7 /* test_remove_items_from_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB155120692530002223E0 /* test_remove_items_from_watchlist.json */; };
+		D172FBC322C67FB000C70BE7 /* test_get_settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7733C1F3D3D6D0078110E /* test_get_settings.json */; };
+		D172FBC422C67FB000C70BE7 /* test_get_follow_request.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7733E1F3D44A70078110E /* test_get_follow_request.json */; };
+		D172FBC522C67FB000C70BE7 /* test_approve_follow_request.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8A720651F45002E4356 /* test_approve_follow_request.json */; };
+		D172FBC622C67FB000C70BE7 /* test_get_hidden_items.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773401F3D45330078110E /* test_get_hidden_items.json */; };
+		D172FBC722C67FB000C70BE7 /* test_add_hidden_item.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8A92065207C002E4356 /* test_add_hidden_item.json */; };
+		D172FBC822C67FB000C70BE7 /* test_post_remove_hidden_items.json in Resources */ = {isa = PBXBuildFile; fileRef = 70BF06C11F5D76AD00F351C8 /* test_post_remove_hidden_items.json */; };
+		D172FBC922C67FB000C70BE7 /* test_get_comments_likes.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D020580322002F744E /* test_get_comments_likes.json */; };
+		D172FBCA22C67FB000C70BE7 /* test_get_lists_likes.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D22058033C002F744E /* test_get_lists_likes.json */; };
+		D172FBCB22C67FB000C70BE7 /* test_get_min_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773421F3D4A9A0078110E /* test_get_min_profile.json */; };
+		D172FBCC22C67FB000C70BE7 /* test_get_full_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773441F3D4AA50078110E /* test_get_full_profile.json */; };
+		D172FBCD22C67FB000C70BE7 /* test_get_VIP_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773461F3D4AD60078110E /* test_get_VIP_profile.json */; };
+		D172FBCE22C67FB000C70BE7 /* test_get_user_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 7095BCEB1F6BF53D00560A2F /* test_get_user_collection.json */; };
+		D172FBCF22C67FB000C70BE7 /* test_get_user_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D420583419002F744E /* test_get_user_comments.json */; };
+		D172FBD022C67FB000C70BE7 /* test_get_custom_lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D62058375D002F744E /* test_get_custom_lists.json */; };
+		D172FBD122C67FB000C70BE7 /* test_post_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 705AD15F1F819D7A00AB7C74 /* test_post_custom_list.json */; };
+		D172FBD222C67FB000C70BE7 /* test_get_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D820588777002F744E /* test_get_custom_list.json */; };
+		D172FBD322C67FB000C70BE7 /* test_update_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8AB2065238F002E4356 /* test_update_custom_list.json */; };
+		D172FBD422C67FB000C70BE7 /* test_get_items_on_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DA205944BA002F744E /* test_get_items_on_custom_list.json */; };
+		D172FBD522C67FB000C70BE7 /* test_add_item_to_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DC205946D6002F744E /* test_add_item_to_custom_list.json */; };
+		D172FBD622C67FB000C70BE7 /* test_remove_item_from_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DE205946E2002F744E /* test_remove_item_from_custom_list.json */; };
+		D172FBD722C67FB000C70BE7 /* test_get_all_list_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D88C206509D0002E4356 /* test_get_all_list_comments.json */; };
+		D172FBD822C67FB000C70BE7 /* test_follow_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D88E206509F2002E4356 /* test_follow_user.json */; };
+		D172FBD922C67FB000C70BE7 /* test_get_followers.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89220650A2F002E4356 /* test_get_followers.json */; };
+		D172FBDA22C67FB000C70BE7 /* test_get_following.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89420650A4A002E4356 /* test_get_following.json */; };
+		D172FBDB22C67FB000C70BE7 /* test_get_friends.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89620650A5F002E4356 /* test_get_friends.json */; };
+		D172FBDC22C67FB000C70BE7 /* test_get_user_watched_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89820650A80002E4356 /* test_get_user_watched_history.json */; };
+		D172FBDD22C67FB000C70BE7 /* test_get_user_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89A20650AA0002E4356 /* test_get_user_ratings.json */; };
+		D172FBDE22C67FB000C70BE7 /* test_get_user_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 708834DD1F5CA91A00AB0148 /* test_get_user_watchlist.json */; };
+		D172FBDF22C67FB000C70BE7 /* test_get_user_watching.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89C2065156B002E4356 /* test_get_user_watching.json */; };
+		D172FBE022C67FB000C70BE7 /* test_get_user_watched_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 708834DF1F5CAAFD00AB0148 /* test_get_user_watched_movies.json */; };
+		D172FBE122C67FB000C70BE7 /* test_get_user_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89E20651756002E4356 /* test_get_user_watched_shows.json */; };
+		D172FBE222C67FB000C70BE7 /* test_get_user_watched_shows_no_seasons.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8A020651767002E4356 /* test_get_user_watched_shows_no_seasons.json */; };
+		D172FBE322C67FB000C70BE7 /* test_get_user_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773561F3DBFD70078110E /* test_get_user_stats.json */; };
+		D172FBF122C684AC00C70BE7 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703D2ED21EF13E6300CAD268 /* HelperFunctions.swift */; };
+		D172FBF222C684AC00C70BE7 /* TestTraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EC530021EA383B00AF7556 /* TestTraktManager.swift */; };
+		D172FBF322C684AC00C70BE7 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5D8AE2065BE5B002E4356 /* CalendarTests.swift */; };
+		D172FBF422C684AC00C70BE7 /* CheckinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5D8C520669E39002E4356 /* CheckinTests.swift */; };
+		D172FBF522C684AC00C70BE7 /* CertificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7734C1F3D4EDA0078110E /* CertificationsTests.swift */; };
+		D172FBF622C684AC00C70BE7 /* CommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B844431EF0E5AB001BA900 /* CommentTests.swift */; };
+		D172FBF722C684AC00C70BE7 /* GenreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D3699A2066E0E20008B9D7 /* GenreTests.swift */; };
+		D172FBF822C684AC00C70BE7 /* ListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D369DC20691E140008B9D7 /* ListsTests.swift */; };
+		D172FBF922C684AC00C70BE7 /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B844361EF0DEC7001BA900 /* MovieTests.swift */; };
+		D172FBFA22C684AC00C70BE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7E63B1EF2A8290026B8A1 /* PeopleTests.swift */; };
+		D172FBFB22C684AC00C70BE7 /* RecommendationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000566D206D0126005319DD /* RecommendationsTests.swift */; };
+		D172FBFC22C684AC00C70BE7 /* ScrobbleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000566B206D0113005319DD /* ScrobbleTests.swift */; };
+		D172FBFD22C684AC00C70BE7 /* SearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70005664206CE89B005319DD /* SearchTests.swift */; };
+		D172FBFE22C684AC00C70BE7 /* ShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E96DAA1EEFE86F00EE34DA /* ShowsTests.swift */; };
+		D172FBFF22C684AC00C70BE7 /* SeasonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000564F206BC706005319DD /* SeasonTests.swift */; };
+		D172FC0022C684AC00C70BE7 /* EpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029D15A1EEFFD6600BD926D /* EpisodeTests.swift */; };
+		D172FC0122C684AC00C70BE7 /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054626C1EF36A7E003BB24B /* SyncTests.swift */; };
+		D172FC0222C684AC00C70BE7 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462881EF37A76003BB24B /* UserTests.swift */; };
+		D172FC0322C684AC00C70BE7 /* test_get_my_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B02065BFB5002E4356 /* test_get_my_shows.json */; };
+		D172FC0422C684AC00C70BE7 /* test_get_my_new_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B22065BFD7002E4356 /* test_get_my_new_shows.json */; };
+		D172FC0522C684AC00C70BE7 /* test_get_my_season_premieres.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B42065BFF5002E4356 /* test_get_my_season_premieres.json */; };
+		D172FC0622C684AC00C70BE7 /* test_get_my_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B620668CCC002E4356 /* test_get_my_movies.json */; };
+		D172FC0722C684AC00C70BE7 /* test_get_my_dvd.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8B820668CDC002E4356 /* test_get_my_dvd.json */; };
+		D172FC0822C684AC00C70BE7 /* test_get_all_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8BA20668CE6002E4356 /* test_get_all_shows.json */; };
+		D172FC0922C684AC00C70BE7 /* test_get_all_new_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8BC20668CEE002E4356 /* test_get_all_new_shows.json */; };
+		D172FC0A22C684AC00C70BE7 /* test_get_season_premieres.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8BE20668CFA002E4356 /* test_get_season_premieres.json */; };
+		D172FC0B22C684AC00C70BE7 /* test_get_all_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C020668D02002E4356 /* test_get_all_movies.json */; };
+		D172FC0C22C684AC00C70BE7 /* test_get_all_dvd.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C220668D08002E4356 /* test_get_all_dvd.json */; };
+		D172FC0D22C684AC00C70BE7 /* test_checkin_movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C720669F67002E4356 /* test_checkin_movie.json */; };
+		D172FC0E22C684AC00C70BE7 /* test_checkin_episode.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8C920669FDD002E4356 /* test_checkin_episode.json */; };
+		D172FC0F22C684AC00C70BE7 /* test_already_checked_in.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8CB2066A04B002E4356 /* test_already_checked_in.json */; };
+		D172FC1022C684AC00C70BE7 /* test_get_certifications.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7734A1F3D4EBC0078110E /* test_get_certifications.json */; };
+		D172FC1122C684AC00C70BE7 /* test_post_a_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3698C2066CD660008B9D7 /* test_post_a_comment.json */; };
+		D172FC1222C684AC00C70BE7 /* test_get_a_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8D52066B829002E4356 /* test_get_a_comment.json */; };
+		D172FC1322C684AC00C70BE7 /* test_update_a_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8D72066BA81002E4356 /* test_update_a_comment.json */; };
+		D172FC1422C684AC00C70BE7 /* test_get_replies_for_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8D92066C15A002E4356 /* test_get_replies_for_comment.json */; };
+		D172FC1522C684AC00C70BE7 /* test_post_reply_for_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8DB2066C242002E4356 /* test_post_reply_for_comment.json */; };
+		D172FC1622C684AC00C70BE7 /* test_get_attached_media_item.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369962066DF690008B9D7 /* test_get_attached_media_item.json */; };
+		D172FC1722C684AC00C70BE7 /* test_users_who_liked_comment.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369982066DF820008B9D7 /* test_users_who_liked_comment.json */; };
+		D172FC1822C684AC00C70BE7 /* test_get_trending_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369812066C69B0008B9D7 /* test_get_trending_comments.json */; };
+		D172FC1922C684AC00C70BE7 /* test_get_recently_created_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369882066CB610008B9D7 /* test_get_recently_created_comments.json */; };
+		D172FC1A22C684AC00C70BE7 /* test_get_recently_updated_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3698A2066CC690008B9D7 /* test_get_recently_updated_comments.json */; };
+		D172FC1B22C684AC00C70BE7 /* test_get_genres.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3699D2066E1AD0008B9D7 /* test_get_genres.json */; };
+		D172FC1C22C684AC00C70BE7 /* test_get_trending_lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000567E206D0FD4005319DD /* test_get_trending_lists.json */; };
+		D172FC1D22C684AC00C70BE7 /* test_get_popular_lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005680206D0FEC005319DD /* test_get_popular_lists.json */; };
+		D172FC1E22C684AC00C70BE7 /* test_get_trending_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D3699F2066E94F0008B9D7 /* test_get_trending_movies.json */; };
+		D172FC1F22C684AC00C70BE7 /* test_get_popular_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A12066E9770008B9D7 /* test_get_popular_movies.json */; };
+		D172FC2022C684AC00C70BE7 /* test_get_most_played_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A32066E99D0008B9D7 /* test_get_most_played_movies.json */; };
+		D172FC2122C684AC00C70BE7 /* test_get_most_watched_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A52066E9BD0008B9D7 /* test_get_most_watched_movies.json */; };
+		D172FC2222C684AC00C70BE7 /* test_get_most_collected_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A72066E9D90008B9D7 /* test_get_most_collected_movies.json */; };
+		D172FC2322C684AC00C70BE7 /* test_get_most_anticipated_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369A92066EA050008B9D7 /* test_get_most_anticipated_movies.json */; };
+		D172FC2422C684AC00C70BE7 /* test_get_weekend_box_office.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369AB2066EA1F0008B9D7 /* test_get_weekend_box_office.json */; };
+		D172FC2522C684AC00C70BE7 /* test_get_recently_updated_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369AD2066EA410008B9D7 /* test_get_recently_updated_movies.json */; };
+		D172FC2622C684AC00C70BE7 /* Movie_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70B844321EF0DE9B001BA900 /* Movie_Min.json */; };
+		D172FC2722C684AC00C70BE7 /* Movie_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 70B844341EF0DEA6001BA900 /* Movie_Full.json */; };
+		D172FC2822C684AC00C70BE7 /* test_get_movie_aliases.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369B42066F5B70008B9D7 /* test_get_movie_aliases.json */; };
+		D172FC2922C684AC00C70BE7 /* test_get_movie_releases.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369B62066F6600008B9D7 /* test_get_movie_releases.json */; };
+		D172FC2A22C684AC00C70BE7 /* test_get_movie_translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369B82066F68F0008B9D7 /* test_get_movie_translations.json */; };
+		D172FC2B22C684AC00C70BE7 /* test_get_movie_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369BA2066F6A60008B9D7 /* test_get_movie_comments.json */; };
+		D172FC2C22C684AC00C70BE7 /* test_get_lists_containing_movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369BC2066F6BD0008B9D7 /* test_get_lists_containing_movie.json */; };
+		D172FC2D22C684AC00C70BE7 /* test_get_cast_and_crew.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369BE2066FB380008B9D7 /* test_get_cast_and_crew.json */; };
+		D172FC2E22C684AC00C70BE7 /* test_get_movie_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C02066FB400008B9D7 /* test_get_movie_ratings.json */; };
+		D172FC2F22C684AC00C70BE7 /* test_get_related_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C22066FB480008B9D7 /* test_get_related_movies.json */; };
+		D172FC3022C684AC00C70BE7 /* test_get_movie_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C42066FB530008B9D7 /* test_get_movie_stats.json */; };
+		D172FC3122C684AC00C70BE7 /* test_get_users_watching_movie_now.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369C62066FB5C0008B9D7 /* test_get_users_watching_movie_now.json */; };
+		D172FC3222C684AC00C70BE7 /* Person_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C39B511F8508CB006D1708 /* Person_Min.json */; };
+		D172FC3322C684AC00C70BE7 /* Person_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C39B531F8508D3006D1708 /* Person_Full.json */; };
+		D172FC3422C684AC00C70BE7 /* test_get_movie_credits.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7E6391EF2A7C70026B8A1 /* test_get_movie_credits.json */; };
+		D172FC3522C684AC00C70BE7 /* test_get_show_credits.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D369DE20691F310008B9D7 /* test_get_show_credits.json */; };
+		D172FC3622C684AC00C70BE7 /* test_get_lists_containing_this_person.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000567B206D0F5E005319DD /* test_get_lists_containing_this_person.json */; };
+		D172FC3722C684AC00C70BE7 /* test_get_movie_recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005677206D08B8005319DD /* test_get_movie_recommendations.json */; };
+		D172FC3822C684AC00C70BE7 /* test_get_show_recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005679206D08DF005319DD /* test_get_show_recommendations.json */; };
+		D172FC3922C684AC00C70BE7 /* test_start_watching_in_media_center.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005670206D027D005319DD /* test_start_watching_in_media_center.json */; };
+		D172FC3A22C684AC00C70BE7 /* test_pause_watching_in_media_center.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005672206D0289005319DD /* test_pause_watching_in_media_center.json */; };
+		D172FC3B22C684AC00C70BE7 /* test_stop_watching_in_media_center.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005674206D0293005319DD /* test_stop_watching_in_media_center.json */; };
+		D172FC3C22C684AC00C70BE7 /* test_search_query.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005667206CE96B005319DD /* test_search_query.json */; };
+		D172FC3D22C684AC00C70BE7 /* test_id_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005669206CEBA0005319DD /* test_id_lookup.json */; };
+		D172FC3E22C684AC00C70BE7 /* TrendingShows_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EDB5681F45971100D508AA /* TrendingShows_Min.json */; };
+		D172FC3F22C684AC00C70BE7 /* TrendingShows_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCB2055B36D00E6ECC0 /* TrendingShows_Full.json */; };
+		D172FC4022C684AC00C70BE7 /* test_get_popular_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97519206E6475001E3281 /* test_get_popular_shows.json */; };
+		D172FC4122C684AC00C70BE7 /* test_get_most_played_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9751B206E6484001E3281 /* test_get_most_played_shows.json */; };
+		D172FC4222C684AC00C70BE7 /* test_get_most_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9751D206E6493001E3281 /* test_get_most_watched_shows.json */; };
+		D172FC4322C684AC00C70BE7 /* test_get_most_collected_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9751F206E64A9001E3281 /* test_get_most_collected_shows.json */; };
+		D172FC4422C684AC00C70BE7 /* test_get_most_anticipated_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97521206E64B1001E3281 /* test_get_most_anticipated_shows.json */; };
+		D172FC4522C684AC00C70BE7 /* test_get_updated_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97523206F204D001E3281 /* test_get_updated_shows.json */; };
+		D172FC4622C684AC00C70BE7 /* Show_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E96DAC1EEFF23000EE34DA /* Show_Min.json */; };
+		D172FC4722C684AC00C70BE7 /* Show_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 70E96DA71EEFE81A00EE34DA /* Show_Full.json */; };
+		D172FC4822C684AC00C70BE7 /* ShowAliases.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCD2055B58B00E6ECC0 /* ShowAliases.json */; };
+		D172FC4922C684AC00C70BE7 /* test_get_show_translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97525206F2067001E3281 /* test_get_show_translations.json */; };
+		D172FC4A22C684AC00C70BE7 /* test_get_show_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97527206F206F001E3281 /* test_get_show_comments.json */; };
+		D172FC4B22C684AC00C70BE7 /* test_get_lists_containing_show.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97529206F2079001E3281 /* test_get_lists_containing_show.json */; };
+		D172FC4C22C684AC00C70BE7 /* ShowCollectionProgress.json in Resources */ = {isa = PBXBuildFile; fileRef = 70393F481F3F4BE600943D34 /* ShowCollectionProgress.json */; };
+		D172FC4D22C684AC00C70BE7 /* test_get_wathced_progress.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9752B206F208F001E3281 /* test_get_wathced_progress.json */; };
+		D172FC4E22C684AC00C70BE7 /* ShowCastAndCrew_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */; };
+		D172FC4F22C684AC00C70BE7 /* test_get_show_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9752D206F209D001E3281 /* test_get_show_ratings.json */; };
+		D172FC5022C684AC00C70BE7 /* test_get_related_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D9752F206F20AD001E3281 /* test_get_related_shows.json */; };
+		D172FC5122C684AC00C70BE7 /* test_get_users_watching_show.json in Resources */ = {isa = PBXBuildFile; fileRef = 70D97531206F20B9001E3281 /* test_get_users_watching_show.json */; };
+		D172FC5222C684AC00C70BE7 /* ShowStats.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DD12055BF8400E6ECC0 /* ShowStats.json */; };
+		D172FC5322C684AC00C70BE7 /* LastEpisodeAired_min.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCF2055BD7400E6ECC0 /* LastEpisodeAired_min.json */; };
+		D172FC5422C684AC00C70BE7 /* test_get_all_seasons.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005652206BC80D005319DD /* test_get_all_seasons.json */; };
+		D172FC5522C684AC00C70BE7 /* test_get_all_seasons_and_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005654206BC814005319DD /* test_get_all_seasons_and_episodes.json */; };
+		D172FC5622C684AC00C70BE7 /* test_get_season.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005656206BC81D005319DD /* test_get_season.json */; };
+		D172FC5722C684AC00C70BE7 /* test_get_season_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000565A206C943A005319DD /* test_get_season_comments.json */; };
+		D172FC5822C684AC00C70BE7 /* test_get_lists_containing_season.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000565C206C9440005319DD /* test_get_lists_containing_season.json */; };
+		D172FC5922C684AC00C70BE7 /* test_get_season_rating.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000565E206C944A005319DD /* test_get_season_rating.json */; };
+		D172FC5A22C684AC00C70BE7 /* test_get_season_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005660206C9450005319DD /* test_get_season_stats.json */; };
+		D172FC5B22C684AC00C70BE7 /* test_get_users_watching_season.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005662206C9456005319DD /* test_get_users_watching_season.json */; };
+		D172FC5C22C684AC00C70BE7 /* Episode_Min.json in Resources */ = {isa = PBXBuildFile; fileRef = 7029D1561EEFFD3000BD926D /* Episode_Min.json */; };
+		D172FC5D22C684AC00C70BE7 /* Episode_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 7029D1581EEFFD3900BD926D /* Episode_Full.json */; };
+		D172FC5E22C684AC00C70BE7 /* test_get_episode_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1553206B3862002223E0 /* test_get_episode_comments.json */; };
+		D172FC5F22C684AC00C70BE7 /* test_get_episode_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1557206B39E2002223E0 /* test_get_episode_ratings.json */; };
+		D172FC6022C684AC00C70BE7 /* test_get_episode_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1555206B39C9002223E0 /* test_get_episode_stats.json */; };
+		D172FC6122C684AC00C70BE7 /* test_get_users_watching_now.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005645206BBD30005319DD /* test_get_users_watching_now.json */; };
+		D172FC6222C684AC00C70BE7 /* test_get_all_episode_translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000564B206BC209005319DD /* test_get_all_episode_translations.json */; };
+		D172FC6322C684AC00C70BE7 /* test_get_lists_containing_episode.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000564D206BC27A005319DD /* test_get_lists_containing_episode.json */; };
+		D172FC6422C684AC00C70BE7 /* test_get_last_activity.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1533206924C5002223E0 /* test_get_last_activity.json */; };
+		D172FC6522C684AC00C70BE7 /* test_get_playback_progress.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1535206924D0002223E0 /* test_get_playback_progress.json */; };
+		D172FC6622C684AC00C70BE7 /* test_get_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB1539206924E2002223E0 /* test_get_collection.json */; };
+		D172FC6722C684AC00C70BE7 /* test_get_collection_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EC530221EA417100AF7556 /* test_get_collection_shows.json */; };
+		D172FC6822C684AC00C70BE7 /* test_add_items_to_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB153B206924EA002223E0 /* test_add_items_to_collection.json */; };
+		D172FC6922C684AC00C70BE7 /* test_remove_items_from_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB153D206924F0002223E0 /* test_remove_items_from_collection.json */; };
+		D172FC6A22C684AC00C70BE7 /* test_get_watched.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB153F206924FA002223E0 /* test_get_watched.json */; };
+		D172FC6B22C684AC00C70BE7 /* test_get_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7028E11321EA3253005F29D4 /* test_get_watched_shows.json */; };
+		D172FC6C22C684AC00C70BE7 /* test_get_watched_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154120692502002223E0 /* test_get_watched_history.json */; };
+		D172FC6D22C684AC00C70BE7 /* test_add_items_to_watched_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154320692508002223E0 /* test_add_items_to_watched_history.json */; };
+		D172FC6E22C684AC00C70BE7 /* test_remove_items_from_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB15452069250E002223E0 /* test_remove_items_from_history.json */; };
+		D172FC6F22C684AC00C70BE7 /* test_get_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154720692514002223E0 /* test_get_ratings.json */; };
+		D172FC7022C684AC00C70BE7 /* test_add_new_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB15492069251B002223E0 /* test_add_new_ratings.json */; };
+		D172FC7122C684AC00C70BE7 /* test_remove_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154B2069251F002223E0 /* test_remove_ratings.json */; };
+		D172FC7222C684AC00C70BE7 /* test_get_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154D20692525002223E0 /* test_get_watchlist.json */; };
+		D172FC7322C684AC00C70BE7 /* test_add_items_to_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB154F2069252B002223E0 /* test_add_items_to_watchlist.json */; };
+		D172FC7422C684AC00C70BE7 /* test_remove_items_from_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AB155120692530002223E0 /* test_remove_items_from_watchlist.json */; };
+		D172FC7522C684AC00C70BE7 /* test_get_settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7733C1F3D3D6D0078110E /* test_get_settings.json */; };
+		D172FC7622C684AC00C70BE7 /* test_get_follow_request.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F7733E1F3D44A70078110E /* test_get_follow_request.json */; };
+		D172FC7722C684AC00C70BE7 /* test_approve_follow_request.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8A720651F45002E4356 /* test_approve_follow_request.json */; };
+		D172FC7822C684AC00C70BE7 /* test_get_hidden_items.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773401F3D45330078110E /* test_get_hidden_items.json */; };
+		D172FC7922C684AC00C70BE7 /* test_add_hidden_item.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8A92065207C002E4356 /* test_add_hidden_item.json */; };
+		D172FC7A22C684AC00C70BE7 /* test_post_remove_hidden_items.json in Resources */ = {isa = PBXBuildFile; fileRef = 70BF06C11F5D76AD00F351C8 /* test_post_remove_hidden_items.json */; };
+		D172FC7B22C684AC00C70BE7 /* test_get_comments_likes.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D020580322002F744E /* test_get_comments_likes.json */; };
+		D172FC7C22C684AC00C70BE7 /* test_get_lists_likes.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D22058033C002F744E /* test_get_lists_likes.json */; };
+		D172FC7D22C684AC00C70BE7 /* test_get_min_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773421F3D4A9A0078110E /* test_get_min_profile.json */; };
+		D172FC7E22C684AC00C70BE7 /* test_get_full_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773441F3D4AA50078110E /* test_get_full_profile.json */; };
+		D172FC7F22C684AC00C70BE7 /* test_get_VIP_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773461F3D4AD60078110E /* test_get_VIP_profile.json */; };
+		D172FC8022C684AC00C70BE7 /* test_get_user_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 7095BCEB1F6BF53D00560A2F /* test_get_user_collection.json */; };
+		D172FC8122C684AC00C70BE7 /* test_get_user_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D420583419002F744E /* test_get_user_comments.json */; };
+		D172FC8222C684AC00C70BE7 /* test_get_custom_lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D62058375D002F744E /* test_get_custom_lists.json */; };
+		D172FC8322C684AC00C70BE7 /* test_post_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 705AD15F1F819D7A00AB7C74 /* test_post_custom_list.json */; };
+		D172FC8422C684AC00C70BE7 /* test_get_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019D820588777002F744E /* test_get_custom_list.json */; };
+		D172FC8522C684AC00C70BE7 /* test_update_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8AB2065238F002E4356 /* test_update_custom_list.json */; };
+		D172FC8622C684AC00C70BE7 /* test_get_items_on_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DA205944BA002F744E /* test_get_items_on_custom_list.json */; };
+		D172FC8722C684AC00C70BE7 /* test_add_item_to_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DC205946D6002F744E /* test_add_item_to_custom_list.json */; };
+		D172FC8822C684AC00C70BE7 /* test_remove_item_from_custom_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 702019DE205946E2002F744E /* test_remove_item_from_custom_list.json */; };
+		D172FC8922C684AC00C70BE7 /* test_get_all_list_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D88C206509D0002E4356 /* test_get_all_list_comments.json */; };
+		D172FC8A22C684AC00C70BE7 /* test_follow_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D88E206509F2002E4356 /* test_follow_user.json */; };
+		D172FC8B22C684AC00C70BE7 /* test_get_followers.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89220650A2F002E4356 /* test_get_followers.json */; };
+		D172FC8C22C684AC00C70BE7 /* test_get_following.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89420650A4A002E4356 /* test_get_following.json */; };
+		D172FC8D22C684AC00C70BE7 /* test_get_friends.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89620650A5F002E4356 /* test_get_friends.json */; };
+		D172FC8E22C684AC00C70BE7 /* test_get_user_watched_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89820650A80002E4356 /* test_get_user_watched_history.json */; };
+		D172FC8F22C684AC00C70BE7 /* test_get_user_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89A20650AA0002E4356 /* test_get_user_ratings.json */; };
+		D172FC9022C684AC00C70BE7 /* test_get_user_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = 708834DD1F5CA91A00AB0148 /* test_get_user_watchlist.json */; };
+		D172FC9122C684AC00C70BE7 /* test_get_user_watching.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89C2065156B002E4356 /* test_get_user_watching.json */; };
+		D172FC9222C684AC00C70BE7 /* test_get_user_watched_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 708834DF1F5CAAFD00AB0148 /* test_get_user_watched_movies.json */; };
+		D172FC9322C684AC00C70BE7 /* test_get_user_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D89E20651756002E4356 /* test_get_user_watched_shows.json */; };
+		D172FC9422C684AC00C70BE7 /* test_get_user_watched_shows_no_seasons.json in Resources */ = {isa = PBXBuildFile; fileRef = 70C5D8A020651767002E4356 /* test_get_user_watched_shows_no_seasons.json */; };
+		D172FC9522C684AC00C70BE7 /* test_get_user_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 70F773561F3DBFD70078110E /* test_get_user_stats.json */; };
+		D172FC9722C6855F00C70BE7 /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A723DA891B917EF300CA217C /* TraktKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -466,6 +893,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = A77E86481B29F09100EABC2D;
 			remoteInfo = TraktKit;
+		};
+		D172FA2B22C6667E00C70BE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A77E86401B29F09100EABC2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D172FA2022C6667E00C70BE7;
+			remoteInfo = TraktKitTvOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -679,10 +1113,10 @@
 		70F7E6391EF2A7C70026B8A1 /* test_get_movie_credits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_movie_credits.json; sourceTree = "<group>"; };
 		70F7E63B1EF2A8290026B8A1 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		A7033F2F1C3AE3C4000E40F7 /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
-		A70807151D8E1F2D00176B0A /* TraktKitWatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitWatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A70807151D8E1F2D00176B0A /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70807171D8E1F2D00176B0A /* TraktKitWatchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitWatchOS.h; sourceTree = "<group>"; };
 		A70807181D8E1F2D00176B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A723DA891B917EF300CA217C /* TraktKitMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A723DA891B917EF300CA217C /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A723DA8B1B917EF300CA217C /* TraktKitMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitMac.h; sourceTree = "<group>"; };
 		A723DA8D1B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A759C3B61D47D3BA00E7F938 /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
@@ -740,6 +1174,15 @@
 		A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
 		A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		A7FF28DC1C568FF600CA5B53 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
+		D172FA2122C6667E00C70BE7 /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D172FA2322C6667E00C70BE7 /* TraktKitTvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitTvOS.h; sourceTree = "<group>"; };
+		D172FA2422C6667E00C70BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D172FA2922C6667E00C70BE7 /* TraktKitTvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraktKitTvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D172FA2E22C6667E00C70BE7 /* TraktKitTvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitTvOSTests.swift; sourceTree = "<group>"; };
+		D172FA3022C6667E00C70BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D172FBE822C6837200C70BE7 /* TraktKitMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraktKitMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D172FBEA22C6837200C70BE7 /* TraktKitMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitMacTests.swift; sourceTree = "<group>"; };
+		D172FBEC22C6837200C70BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -769,6 +1212,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FA1E22C6667E00C70BE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FA2622C6667E00C70BE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FA2A22C6667E00C70BE7 /* TraktKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FBE522C6837200C70BE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FC9722C6855F00C70BE7 /* TraktKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,9 +1760,13 @@
 				A723DAAB1B917F7200CA217C /* Common */,
 				A77E864B1B29F09100EABC2D /* TraktKit */,
 				A723DA8A1B917EF300CA217C /* TraktKitMac */,
+				D172FA2222C6667E00C70BE7 /* TraktKitTvOS */,
 				A70807161D8E1F2D00176B0A /* TraktKitWatchOS */,
 				A77E86581B29F09100EABC2D /* TraktKitTests */,
+				D172FA2D22C6667E00C70BE7 /* TraktKitTvOSTests */,
+				D172FBE922C6837200C70BE7 /* TraktKitMacTests */,
 				A77E864A1B29F09100EABC2D /* Products */,
+				D172FC9622C6855F00C70BE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1305,8 +1775,11 @@
 			children = (
 				A77E86491B29F09100EABC2D /* TraktKit.framework */,
 				A77E86541B29F09100EABC2D /* TraktKitTests.xctest */,
-				A723DA891B917EF300CA217C /* TraktKitMac.framework */,
-				A70807151D8E1F2D00176B0A /* TraktKitWatchOS.framework */,
+				A723DA891B917EF300CA217C /* TraktKit.framework */,
+				A70807151D8E1F2D00176B0A /* TraktKit.framework */,
+				D172FA2122C6667E00C70BE7 /* TraktKit.framework */,
+				D172FA2922C6667E00C70BE7 /* TraktKitTvOSTests.xctest */,
+				D172FBE822C6837200C70BE7 /* TraktKitMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1363,6 +1836,40 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D172FA2222C6667E00C70BE7 /* TraktKitTvOS */ = {
+			isa = PBXGroup;
+			children = (
+				D172FA2322C6667E00C70BE7 /* TraktKitTvOS.h */,
+				D172FA2422C6667E00C70BE7 /* Info.plist */,
+			);
+			path = TraktKitTvOS;
+			sourceTree = "<group>";
+		};
+		D172FA2D22C6667E00C70BE7 /* TraktKitTvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				D172FA3022C6667E00C70BE7 /* Info.plist */,
+				D172FA2E22C6667E00C70BE7 /* TraktKitTvOSTests.swift */,
+			);
+			path = TraktKitTvOSTests;
+			sourceTree = "<group>";
+		};
+		D172FBE922C6837200C70BE7 /* TraktKitMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				D172FBEA22C6837200C70BE7 /* TraktKitMacTests.swift */,
+				D172FBEC22C6837200C70BE7 /* Info.plist */,
+			);
+			path = TraktKitMacTests;
+			sourceTree = "<group>";
+		};
+		D172FC9622C6855F00C70BE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1390,6 +1897,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D172FA1C22C6667E00C70BE7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FA3122C6667E00C70BE7 /* TraktKitTvOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1408,7 +1923,7 @@
 			);
 			name = TraktKitWatchOS;
 			productName = TraktKitWatchOS;
-			productReference = A70807151D8E1F2D00176B0A /* TraktKitWatchOS.framework */;
+			productReference = A70807151D8E1F2D00176B0A /* TraktKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A723DA881B917EF300CA217C /* TraktKitMac */ = {
@@ -1426,7 +1941,7 @@
 			);
 			name = TraktKitMac;
 			productName = TraktKitMac;
-			productReference = A723DA891B917EF300CA217C /* TraktKitMac.framework */;
+			productReference = A723DA891B917EF300CA217C /* TraktKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A77E86481B29F09100EABC2D /* TraktKit */ = {
@@ -1465,14 +1980,67 @@
 			productReference = A77E86541B29F09100EABC2D /* TraktKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D172FA2022C6667E00C70BE7 /* TraktKitTvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D172FA3822C6667E00C70BE7 /* Build configuration list for PBXNativeTarget "TraktKitTvOS" */;
+			buildPhases = (
+				D172FA1C22C6667E00C70BE7 /* Headers */,
+				D172FA1D22C6667E00C70BE7 /* Sources */,
+				D172FA1E22C6667E00C70BE7 /* Frameworks */,
+				D172FA1F22C6667E00C70BE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TraktKitTvOS;
+			productName = TraktKitTvOS;
+			productReference = D172FA2122C6667E00C70BE7 /* TraktKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D172FA2822C6667E00C70BE7 /* TraktKitTvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D172FA3922C6667E00C70BE7 /* Build configuration list for PBXNativeTarget "TraktKitTvOSTests" */;
+			buildPhases = (
+				D172FA2522C6667E00C70BE7 /* Sources */,
+				D172FA2622C6667E00C70BE7 /* Frameworks */,
+				D172FA2722C6667E00C70BE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D172FA2C22C6667E00C70BE7 /* PBXTargetDependency */,
+			);
+			name = TraktKitTvOSTests;
+			productName = TraktKitTvOSTests;
+			productReference = D172FA2922C6667E00C70BE7 /* TraktKitTvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D172FBE722C6837200C70BE7 /* TraktKitMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D172FBED22C6837200C70BE7 /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */;
+			buildPhases = (
+				D172FBE422C6837200C70BE7 /* Sources */,
+				D172FBE522C6837200C70BE7 /* Frameworks */,
+				D172FBE622C6837200C70BE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TraktKitMacTests;
+			productName = TraktKitMacTests;
+			productReference = D172FBE822C6837200C70BE7 /* TraktKitMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A77E86401B29F09100EABC2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0930;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Maximilian Litteral";
 				TargetAttributes = {
 					A70807141D8E1F2D00176B0A = {
@@ -1495,6 +2063,21 @@
 						DevelopmentTeamName = "Maximilian Litteral";
 						LastSwiftMigration = "";
 					};
+					D172FA2022C6667E00C70BE7 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = 3F89ZY3P47;
+						ProvisioningStyle = Automatic;
+					};
+					D172FA2822C6667E00C70BE7 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = 3F89ZY3P47;
+						ProvisioningStyle = Automatic;
+					};
+					D172FBE722C6837200C70BE7 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = 3F89ZY3P47;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = A77E86431B29F09100EABC2D /* Build configuration list for PBXProject "TraktKit" */;
@@ -1502,6 +2085,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = A77E863F1B29F09100EABC2D;
@@ -1513,6 +2097,9 @@
 				A723DA881B917EF300CA217C /* TraktKitMac */,
 				A70807141D8E1F2D00176B0A /* TraktKitWatchOS */,
 				A77E86531B29F09100EABC2D /* TraktKitTests */,
+				D172FA2022C6667E00C70BE7 /* TraktKitTvOS */,
+				D172FA2822C6667E00C70BE7 /* TraktKitTvOSTests */,
+				D172FBE722C6837200C70BE7 /* TraktKitMacTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1690,6 +2277,321 @@
 				70C5D8DC2066C242002E4356 /* test_post_reply_for_comment.json in Resources */,
 				70D369DF20691F310008B9D7 /* test_get_show_credits.json in Resources */,
 				702019DD205946D6002F744E /* test_add_item_to_custom_list.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FA1F22C6667E00C70BE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FA2722C6667E00C70BE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FB7F22C67FB000C70BE7 /* test_get_users_watching_movie_now.json in Resources */,
+				D172FBC422C67FB000C70BE7 /* test_get_follow_request.json in Resources */,
+				D172FB8922C67FB000C70BE7 /* test_stop_watching_in_media_center.json in Resources */,
+				D172FB6022C67FB000C70BE7 /* test_get_a_comment.json in Resources */,
+				D172FB5822C67FB000C70BE7 /* test_get_season_premieres.json in Resources */,
+				D172FBBF22C67FB000C70BE7 /* test_remove_ratings.json in Resources */,
+				D172FB6422C67FB000C70BE7 /* test_get_attached_media_item.json in Resources */,
+				D172FBBC22C67FB000C70BE7 /* test_remove_items_from_history.json in Resources */,
+				D172FB8522C67FB000C70BE7 /* test_get_movie_recommendations.json in Resources */,
+				D172FBA722C67FB000C70BE7 /* test_get_season_rating.json in Resources */,
+				D172FBE322C67FB000C70BE7 /* test_get_user_stats.json in Resources */,
+				D172FB8D22C67FB000C70BE7 /* TrendingShows_Full.json in Resources */,
+				D172FB9122C67FB000C70BE7 /* test_get_most_collected_shows.json in Resources */,
+				D172FBD922C67FB000C70BE7 /* test_get_followers.json in Resources */,
+				D172FB5222C67FB000C70BE7 /* test_get_my_new_shows.json in Resources */,
+				D172FBBA22C67FB000C70BE7 /* test_get_watched_history.json in Resources */,
+				D172FBA522C67FB000C70BE7 /* test_get_season_comments.json in Resources */,
+				D172FBCC22C67FB000C70BE7 /* test_get_full_profile.json in Resources */,
+				D172FB9B22C67FB000C70BE7 /* test_get_wathced_progress.json in Resources */,
+				D172FBAF22C67FB000C70BE7 /* test_get_users_watching_now.json in Resources */,
+				D172FBAE22C67FB000C70BE7 /* test_get_episode_stats.json in Resources */,
+				D172FB5422C67FB000C70BE7 /* test_get_my_movies.json in Resources */,
+				D172FBBE22C67FB000C70BE7 /* test_add_new_ratings.json in Resources */,
+				D172FBD522C67FB000C70BE7 /* test_add_item_to_custom_list.json in Resources */,
+				D172FB6A22C67FB000C70BE7 /* test_get_trending_lists.json in Resources */,
+				D172FB9D22C67FB000C70BE7 /* test_get_show_ratings.json in Resources */,
+				D172FBA822C67FB000C70BE7 /* test_get_season_stats.json in Resources */,
+				D172FB5722C67FB000C70BE7 /* test_get_all_new_shows.json in Resources */,
+				D172FBB922C67FB000C70BE7 /* test_get_watched_shows.json in Resources */,
+				D172FBB822C67FB000C70BE7 /* test_get_watched.json in Resources */,
+				D172FBB322C67FB000C70BE7 /* test_get_playback_progress.json in Resources */,
+				D172FB7B22C67FB000C70BE7 /* test_get_cast_and_crew.json in Resources */,
+				D172FBDC22C67FB000C70BE7 /* test_get_user_watched_history.json in Resources */,
+				D172FB7D22C67FB000C70BE7 /* test_get_related_movies.json in Resources */,
+				D172FBCA22C67FB000C70BE7 /* test_get_lists_likes.json in Resources */,
+				D172FBD422C67FB000C70BE7 /* test_get_items_on_custom_list.json in Resources */,
+				D172FB7C22C67FB000C70BE7 /* test_get_movie_ratings.json in Resources */,
+				D172FB6822C67FB000C70BE7 /* test_get_recently_updated_comments.json in Resources */,
+				D172FB5322C67FB000C70BE7 /* test_get_my_season_premieres.json in Resources */,
+				D172FBC822C67FB000C70BE7 /* test_post_remove_hidden_items.json in Resources */,
+				D172FB8822C67FB000C70BE7 /* test_pause_watching_in_media_center.json in Resources */,
+				D172FB8622C67FB000C70BE7 /* test_get_show_recommendations.json in Resources */,
+				D172FB8722C67FB000C70BE7 /* test_start_watching_in_media_center.json in Resources */,
+				D172FB8B22C67FB000C70BE7 /* test_id_lookup.json in Resources */,
+				D172FB7722C67FB000C70BE7 /* test_get_movie_releases.json in Resources */,
+				D172FB7122C67FB000C70BE7 /* test_get_most_anticipated_movies.json in Resources */,
+				D172FBC922C67FB000C70BE7 /* test_get_comments_likes.json in Resources */,
+				D172FBB622C67FB000C70BE7 /* test_add_items_to_collection.json in Resources */,
+				D172FB9622C67FB000C70BE7 /* ShowAliases.json in Resources */,
+				D172FBDB22C67FB000C70BE7 /* test_get_friends.json in Resources */,
+				D172FBBD22C67FB000C70BE7 /* test_get_ratings.json in Resources */,
+				D172FBD722C67FB000C70BE7 /* test_get_all_list_comments.json in Resources */,
+				D172FB8122C67FB000C70BE7 /* Person_Full.json in Resources */,
+				D172FB6F22C67FB000C70BE7 /* test_get_most_watched_movies.json in Resources */,
+				D172FBBB22C67FB000C70BE7 /* test_add_items_to_watched_history.json in Resources */,
+				D172FBC722C67FB000C70BE7 /* test_add_hidden_item.json in Resources */,
+				D172FB9F22C67FB000C70BE7 /* test_get_users_watching_show.json in Resources */,
+				D172FB9222C67FB000C70BE7 /* test_get_most_anticipated_shows.json in Resources */,
+				D172FBA122C67FB000C70BE7 /* LastEpisodeAired_min.json in Resources */,
+				D172FBDF22C67FB000C70BE7 /* test_get_user_watching.json in Resources */,
+				D172FBAA22C67FB000C70BE7 /* Episode_Min.json in Resources */,
+				D172FB9522C67FB000C70BE7 /* Show_Full.json in Resources */,
+				D172FB5F22C67FB000C70BE7 /* test_post_a_comment.json in Resources */,
+				D172FB6B22C67FB000C70BE7 /* test_get_popular_lists.json in Resources */,
+				D172FBE122C67FB000C70BE7 /* test_get_user_watched_shows.json in Resources */,
+				D172FB9322C67FB000C70BE7 /* test_get_updated_shows.json in Resources */,
+				D172FB7022C67FB000C70BE7 /* test_get_most_collected_movies.json in Resources */,
+				D172FB7222C67FB000C70BE7 /* test_get_weekend_box_office.json in Resources */,
+				D172FBB722C67FB000C70BE7 /* test_remove_items_from_collection.json in Resources */,
+				D172FB7E22C67FB000C70BE7 /* test_get_movie_stats.json in Resources */,
+				D172FBA322C67FB000C70BE7 /* test_get_all_seasons_and_episodes.json in Resources */,
+				D172FB8222C67FB000C70BE7 /* test_get_movie_credits.json in Resources */,
+				D172FBB522C67FB000C70BE7 /* test_get_collection_shows.json in Resources */,
+				D172FBA622C67FB000C70BE7 /* test_get_lists_containing_season.json in Resources */,
+				D172FBDD22C67FB000C70BE7 /* test_get_user_ratings.json in Resources */,
+				D172FB9E22C67FB000C70BE7 /* test_get_related_shows.json in Resources */,
+				D172FB8A22C67FB000C70BE7 /* test_search_query.json in Resources */,
+				D172FB5E22C67FB000C70BE7 /* test_get_certifications.json in Resources */,
+				D172FB6622C67FB000C70BE7 /* test_get_trending_comments.json in Resources */,
+				D172FB8C22C67FB000C70BE7 /* TrendingShows_Min.json in Resources */,
+				D172FBAC22C67FB000C70BE7 /* test_get_episode_comments.json in Resources */,
+				D172FBCF22C67FB000C70BE7 /* test_get_user_comments.json in Resources */,
+				D172FBB422C67FB000C70BE7 /* test_get_collection.json in Resources */,
+				D172FBCB22C67FB000C70BE7 /* test_get_min_profile.json in Resources */,
+				D172FBB122C67FB000C70BE7 /* test_get_lists_containing_episode.json in Resources */,
+				D172FB8422C67FB000C70BE7 /* test_get_lists_containing_this_person.json in Resources */,
+				D172FBCD22C67FB000C70BE7 /* test_get_VIP_profile.json in Resources */,
+				D172FB5622C67FB000C70BE7 /* test_get_all_shows.json in Resources */,
+				D172FB5522C67FB000C70BE7 /* test_get_my_dvd.json in Resources */,
+				D172FBAB22C67FB000C70BE7 /* Episode_Full.json in Resources */,
+				D172FBDE22C67FB000C70BE7 /* test_get_user_watchlist.json in Resources */,
+				D172FB5122C67FB000C70BE7 /* test_get_my_shows.json in Resources */,
+				D172FB6522C67FB000C70BE7 /* test_users_who_liked_comment.json in Resources */,
+				D172FB7422C67FB000C70BE7 /* Movie_Min.json in Resources */,
+				D172FBA922C67FB000C70BE7 /* test_get_users_watching_season.json in Resources */,
+				D172FB7622C67FB000C70BE7 /* test_get_movie_aliases.json in Resources */,
+				D172FBC622C67FB000C70BE7 /* test_get_hidden_items.json in Resources */,
+				D172FB6322C67FB000C70BE7 /* test_post_reply_for_comment.json in Resources */,
+				D172FB6222C67FB000C70BE7 /* test_get_replies_for_comment.json in Resources */,
+				D172FBDA22C67FB000C70BE7 /* test_get_following.json in Resources */,
+				D172FB8F22C67FB000C70BE7 /* test_get_most_played_shows.json in Resources */,
+				D172FBD322C67FB000C70BE7 /* test_update_custom_list.json in Resources */,
+				D172FB6722C67FB000C70BE7 /* test_get_recently_created_comments.json in Resources */,
+				D172FB6C22C67FB000C70BE7 /* test_get_trending_movies.json in Resources */,
+				D172FBD222C67FB000C70BE7 /* test_get_custom_list.json in Resources */,
+				D172FB8022C67FB000C70BE7 /* Person_Min.json in Resources */,
+				D172FB7922C67FB000C70BE7 /* test_get_movie_comments.json in Resources */,
+				D172FB6122C67FB000C70BE7 /* test_update_a_comment.json in Resources */,
+				D172FB6E22C67FB000C70BE7 /* test_get_most_played_movies.json in Resources */,
+				D172FB5922C67FB000C70BE7 /* test_get_all_movies.json in Resources */,
+				D172FB5C22C67FB000C70BE7 /* test_checkin_episode.json in Resources */,
+				D172FB6922C67FB000C70BE7 /* test_get_genres.json in Resources */,
+				D172FBE222C67FB000C70BE7 /* test_get_user_watched_shows_no_seasons.json in Resources */,
+				D172FB7522C67FB000C70BE7 /* Movie_Full.json in Resources */,
+				D172FB9022C67FB000C70BE7 /* test_get_most_watched_shows.json in Resources */,
+				D172FB7A22C67FB000C70BE7 /* test_get_lists_containing_movie.json in Resources */,
+				D172FBC122C67FB000C70BE7 /* test_add_items_to_watchlist.json in Resources */,
+				D172FB5A22C67FB000C70BE7 /* test_get_all_dvd.json in Resources */,
+				D172FBB022C67FB000C70BE7 /* test_get_all_episode_translations.json in Resources */,
+				D172FBCE22C67FB000C70BE7 /* test_get_user_collection.json in Resources */,
+				D172FBD122C67FB000C70BE7 /* test_post_custom_list.json in Resources */,
+				D172FBD022C67FB000C70BE7 /* test_get_custom_lists.json in Resources */,
+				D172FB9C22C67FB000C70BE7 /* ShowCastAndCrew_Min.json in Resources */,
+				D172FB8E22C67FB000C70BE7 /* test_get_popular_shows.json in Resources */,
+				D172FB8322C67FB000C70BE7 /* test_get_show_credits.json in Resources */,
+				D172FBC322C67FB000C70BE7 /* test_get_settings.json in Resources */,
+				D172FBC022C67FB000C70BE7 /* test_get_watchlist.json in Resources */,
+				D172FB5B22C67FB000C70BE7 /* test_checkin_movie.json in Resources */,
+				D172FBA022C67FB000C70BE7 /* ShowStats.json in Resources */,
+				D172FBC222C67FB000C70BE7 /* test_remove_items_from_watchlist.json in Resources */,
+				D172FB5D22C67FB000C70BE7 /* test_already_checked_in.json in Resources */,
+				D172FB6D22C67FB000C70BE7 /* test_get_popular_movies.json in Resources */,
+				D172FBA422C67FB000C70BE7 /* test_get_season.json in Resources */,
+				D172FB9722C67FB000C70BE7 /* test_get_show_translations.json in Resources */,
+				D172FBB222C67FB000C70BE7 /* test_get_last_activity.json in Resources */,
+				D172FBD822C67FB000C70BE7 /* test_follow_user.json in Resources */,
+				D172FBE022C67FB000C70BE7 /* test_get_user_watched_movies.json in Resources */,
+				D172FBAD22C67FB000C70BE7 /* test_get_episode_ratings.json in Resources */,
+				D172FB9422C67FB000C70BE7 /* Show_Min.json in Resources */,
+				D172FB9A22C67FB000C70BE7 /* ShowCollectionProgress.json in Resources */,
+				D172FB9922C67FB000C70BE7 /* test_get_lists_containing_show.json in Resources */,
+				D172FB7822C67FB000C70BE7 /* test_get_movie_translations.json in Resources */,
+				D172FBC522C67FB000C70BE7 /* test_approve_follow_request.json in Resources */,
+				D172FB7322C67FB000C70BE7 /* test_get_recently_updated_movies.json in Resources */,
+				D172FB9822C67FB000C70BE7 /* test_get_show_comments.json in Resources */,
+				D172FBA222C67FB000C70BE7 /* test_get_all_seasons.json in Resources */,
+				D172FBD622C67FB000C70BE7 /* test_remove_item_from_custom_list.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FBE622C6837200C70BE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FC3122C684AC00C70BE7 /* test_get_users_watching_movie_now.json in Resources */,
+				D172FC7622C684AC00C70BE7 /* test_get_follow_request.json in Resources */,
+				D172FC3B22C684AC00C70BE7 /* test_stop_watching_in_media_center.json in Resources */,
+				D172FC1222C684AC00C70BE7 /* test_get_a_comment.json in Resources */,
+				D172FC0A22C684AC00C70BE7 /* test_get_season_premieres.json in Resources */,
+				D172FC7122C684AC00C70BE7 /* test_remove_ratings.json in Resources */,
+				D172FC1622C684AC00C70BE7 /* test_get_attached_media_item.json in Resources */,
+				D172FC6E22C684AC00C70BE7 /* test_remove_items_from_history.json in Resources */,
+				D172FC3722C684AC00C70BE7 /* test_get_movie_recommendations.json in Resources */,
+				D172FC5922C684AC00C70BE7 /* test_get_season_rating.json in Resources */,
+				D172FC9522C684AC00C70BE7 /* test_get_user_stats.json in Resources */,
+				D172FC3F22C684AC00C70BE7 /* TrendingShows_Full.json in Resources */,
+				D172FC4322C684AC00C70BE7 /* test_get_most_collected_shows.json in Resources */,
+				D172FC8B22C684AC00C70BE7 /* test_get_followers.json in Resources */,
+				D172FC0422C684AC00C70BE7 /* test_get_my_new_shows.json in Resources */,
+				D172FC6C22C684AC00C70BE7 /* test_get_watched_history.json in Resources */,
+				D172FC5722C684AC00C70BE7 /* test_get_season_comments.json in Resources */,
+				D172FC7E22C684AC00C70BE7 /* test_get_full_profile.json in Resources */,
+				D172FC4D22C684AC00C70BE7 /* test_get_wathced_progress.json in Resources */,
+				D172FC6122C684AC00C70BE7 /* test_get_users_watching_now.json in Resources */,
+				D172FC6022C684AC00C70BE7 /* test_get_episode_stats.json in Resources */,
+				D172FC0622C684AC00C70BE7 /* test_get_my_movies.json in Resources */,
+				D172FC7022C684AC00C70BE7 /* test_add_new_ratings.json in Resources */,
+				D172FC8722C684AC00C70BE7 /* test_add_item_to_custom_list.json in Resources */,
+				D172FC1C22C684AC00C70BE7 /* test_get_trending_lists.json in Resources */,
+				D172FC4F22C684AC00C70BE7 /* test_get_show_ratings.json in Resources */,
+				D172FC5A22C684AC00C70BE7 /* test_get_season_stats.json in Resources */,
+				D172FC0922C684AC00C70BE7 /* test_get_all_new_shows.json in Resources */,
+				D172FC6B22C684AC00C70BE7 /* test_get_watched_shows.json in Resources */,
+				D172FC6A22C684AC00C70BE7 /* test_get_watched.json in Resources */,
+				D172FC6522C684AC00C70BE7 /* test_get_playback_progress.json in Resources */,
+				D172FC2D22C684AC00C70BE7 /* test_get_cast_and_crew.json in Resources */,
+				D172FC8E22C684AC00C70BE7 /* test_get_user_watched_history.json in Resources */,
+				D172FC2F22C684AC00C70BE7 /* test_get_related_movies.json in Resources */,
+				D172FC7C22C684AC00C70BE7 /* test_get_lists_likes.json in Resources */,
+				D172FC8622C684AC00C70BE7 /* test_get_items_on_custom_list.json in Resources */,
+				D172FC2E22C684AC00C70BE7 /* test_get_movie_ratings.json in Resources */,
+				D172FC1A22C684AC00C70BE7 /* test_get_recently_updated_comments.json in Resources */,
+				D172FC0522C684AC00C70BE7 /* test_get_my_season_premieres.json in Resources */,
+				D172FC7A22C684AC00C70BE7 /* test_post_remove_hidden_items.json in Resources */,
+				D172FC3A22C684AC00C70BE7 /* test_pause_watching_in_media_center.json in Resources */,
+				D172FC3822C684AC00C70BE7 /* test_get_show_recommendations.json in Resources */,
+				D172FC3922C684AC00C70BE7 /* test_start_watching_in_media_center.json in Resources */,
+				D172FC3D22C684AC00C70BE7 /* test_id_lookup.json in Resources */,
+				D172FC2922C684AC00C70BE7 /* test_get_movie_releases.json in Resources */,
+				D172FC2322C684AC00C70BE7 /* test_get_most_anticipated_movies.json in Resources */,
+				D172FC7B22C684AC00C70BE7 /* test_get_comments_likes.json in Resources */,
+				D172FC6822C684AC00C70BE7 /* test_add_items_to_collection.json in Resources */,
+				D172FC4822C684AC00C70BE7 /* ShowAliases.json in Resources */,
+				D172FC8D22C684AC00C70BE7 /* test_get_friends.json in Resources */,
+				D172FC6F22C684AC00C70BE7 /* test_get_ratings.json in Resources */,
+				D172FC8922C684AC00C70BE7 /* test_get_all_list_comments.json in Resources */,
+				D172FC3322C684AC00C70BE7 /* Person_Full.json in Resources */,
+				D172FC2122C684AC00C70BE7 /* test_get_most_watched_movies.json in Resources */,
+				D172FC6D22C684AC00C70BE7 /* test_add_items_to_watched_history.json in Resources */,
+				D172FC7922C684AC00C70BE7 /* test_add_hidden_item.json in Resources */,
+				D172FC5122C684AC00C70BE7 /* test_get_users_watching_show.json in Resources */,
+				D172FC4422C684AC00C70BE7 /* test_get_most_anticipated_shows.json in Resources */,
+				D172FC5322C684AC00C70BE7 /* LastEpisodeAired_min.json in Resources */,
+				D172FC9122C684AC00C70BE7 /* test_get_user_watching.json in Resources */,
+				D172FC5C22C684AC00C70BE7 /* Episode_Min.json in Resources */,
+				D172FC4722C684AC00C70BE7 /* Show_Full.json in Resources */,
+				D172FC1122C684AC00C70BE7 /* test_post_a_comment.json in Resources */,
+				D172FC1D22C684AC00C70BE7 /* test_get_popular_lists.json in Resources */,
+				D172FC9322C684AC00C70BE7 /* test_get_user_watched_shows.json in Resources */,
+				D172FC4522C684AC00C70BE7 /* test_get_updated_shows.json in Resources */,
+				D172FC2222C684AC00C70BE7 /* test_get_most_collected_movies.json in Resources */,
+				D172FC2422C684AC00C70BE7 /* test_get_weekend_box_office.json in Resources */,
+				D172FC6922C684AC00C70BE7 /* test_remove_items_from_collection.json in Resources */,
+				D172FC3022C684AC00C70BE7 /* test_get_movie_stats.json in Resources */,
+				D172FC5522C684AC00C70BE7 /* test_get_all_seasons_and_episodes.json in Resources */,
+				D172FC3422C684AC00C70BE7 /* test_get_movie_credits.json in Resources */,
+				D172FC6722C684AC00C70BE7 /* test_get_collection_shows.json in Resources */,
+				D172FC5822C684AC00C70BE7 /* test_get_lists_containing_season.json in Resources */,
+				D172FC8F22C684AC00C70BE7 /* test_get_user_ratings.json in Resources */,
+				D172FC5022C684AC00C70BE7 /* test_get_related_shows.json in Resources */,
+				D172FC3C22C684AC00C70BE7 /* test_search_query.json in Resources */,
+				D172FC1022C684AC00C70BE7 /* test_get_certifications.json in Resources */,
+				D172FC1822C684AC00C70BE7 /* test_get_trending_comments.json in Resources */,
+				D172FC3E22C684AC00C70BE7 /* TrendingShows_Min.json in Resources */,
+				D172FC5E22C684AC00C70BE7 /* test_get_episode_comments.json in Resources */,
+				D172FC8122C684AC00C70BE7 /* test_get_user_comments.json in Resources */,
+				D172FC6622C684AC00C70BE7 /* test_get_collection.json in Resources */,
+				D172FC7D22C684AC00C70BE7 /* test_get_min_profile.json in Resources */,
+				D172FC6322C684AC00C70BE7 /* test_get_lists_containing_episode.json in Resources */,
+				D172FC3622C684AC00C70BE7 /* test_get_lists_containing_this_person.json in Resources */,
+				D172FC7F22C684AC00C70BE7 /* test_get_VIP_profile.json in Resources */,
+				D172FC0822C684AC00C70BE7 /* test_get_all_shows.json in Resources */,
+				D172FC0722C684AC00C70BE7 /* test_get_my_dvd.json in Resources */,
+				D172FC5D22C684AC00C70BE7 /* Episode_Full.json in Resources */,
+				D172FC9022C684AC00C70BE7 /* test_get_user_watchlist.json in Resources */,
+				D172FC0322C684AC00C70BE7 /* test_get_my_shows.json in Resources */,
+				D172FC1722C684AC00C70BE7 /* test_users_who_liked_comment.json in Resources */,
+				D172FC2622C684AC00C70BE7 /* Movie_Min.json in Resources */,
+				D172FC5B22C684AC00C70BE7 /* test_get_users_watching_season.json in Resources */,
+				D172FC2822C684AC00C70BE7 /* test_get_movie_aliases.json in Resources */,
+				D172FC7822C684AC00C70BE7 /* test_get_hidden_items.json in Resources */,
+				D172FC1522C684AC00C70BE7 /* test_post_reply_for_comment.json in Resources */,
+				D172FC1422C684AC00C70BE7 /* test_get_replies_for_comment.json in Resources */,
+				D172FC8C22C684AC00C70BE7 /* test_get_following.json in Resources */,
+				D172FC4122C684AC00C70BE7 /* test_get_most_played_shows.json in Resources */,
+				D172FC8522C684AC00C70BE7 /* test_update_custom_list.json in Resources */,
+				D172FC1922C684AC00C70BE7 /* test_get_recently_created_comments.json in Resources */,
+				D172FC1E22C684AC00C70BE7 /* test_get_trending_movies.json in Resources */,
+				D172FC8422C684AC00C70BE7 /* test_get_custom_list.json in Resources */,
+				D172FC3222C684AC00C70BE7 /* Person_Min.json in Resources */,
+				D172FC2B22C684AC00C70BE7 /* test_get_movie_comments.json in Resources */,
+				D172FC1322C684AC00C70BE7 /* test_update_a_comment.json in Resources */,
+				D172FC2022C684AC00C70BE7 /* test_get_most_played_movies.json in Resources */,
+				D172FC0B22C684AC00C70BE7 /* test_get_all_movies.json in Resources */,
+				D172FC0E22C684AC00C70BE7 /* test_checkin_episode.json in Resources */,
+				D172FC1B22C684AC00C70BE7 /* test_get_genres.json in Resources */,
+				D172FC9422C684AC00C70BE7 /* test_get_user_watched_shows_no_seasons.json in Resources */,
+				D172FC2722C684AC00C70BE7 /* Movie_Full.json in Resources */,
+				D172FC4222C684AC00C70BE7 /* test_get_most_watched_shows.json in Resources */,
+				D172FC2C22C684AC00C70BE7 /* test_get_lists_containing_movie.json in Resources */,
+				D172FC7322C684AC00C70BE7 /* test_add_items_to_watchlist.json in Resources */,
+				D172FC0C22C684AC00C70BE7 /* test_get_all_dvd.json in Resources */,
+				D172FC6222C684AC00C70BE7 /* test_get_all_episode_translations.json in Resources */,
+				D172FC8022C684AC00C70BE7 /* test_get_user_collection.json in Resources */,
+				D172FC8322C684AC00C70BE7 /* test_post_custom_list.json in Resources */,
+				D172FC8222C684AC00C70BE7 /* test_get_custom_lists.json in Resources */,
+				D172FC4E22C684AC00C70BE7 /* ShowCastAndCrew_Min.json in Resources */,
+				D172FC4022C684AC00C70BE7 /* test_get_popular_shows.json in Resources */,
+				D172FC3522C684AC00C70BE7 /* test_get_show_credits.json in Resources */,
+				D172FC7522C684AC00C70BE7 /* test_get_settings.json in Resources */,
+				D172FC7222C684AC00C70BE7 /* test_get_watchlist.json in Resources */,
+				D172FC0D22C684AC00C70BE7 /* test_checkin_movie.json in Resources */,
+				D172FC5222C684AC00C70BE7 /* ShowStats.json in Resources */,
+				D172FC7422C684AC00C70BE7 /* test_remove_items_from_watchlist.json in Resources */,
+				D172FC0F22C684AC00C70BE7 /* test_already_checked_in.json in Resources */,
+				D172FC1F22C684AC00C70BE7 /* test_get_popular_movies.json in Resources */,
+				D172FC5622C684AC00C70BE7 /* test_get_season.json in Resources */,
+				D172FC4922C684AC00C70BE7 /* test_get_show_translations.json in Resources */,
+				D172FC6422C684AC00C70BE7 /* test_get_last_activity.json in Resources */,
+				D172FC8A22C684AC00C70BE7 /* test_follow_user.json in Resources */,
+				D172FC9222C684AC00C70BE7 /* test_get_user_watched_movies.json in Resources */,
+				D172FC5F22C684AC00C70BE7 /* test_get_episode_ratings.json in Resources */,
+				D172FC4622C684AC00C70BE7 /* Show_Min.json in Resources */,
+				D172FC4C22C684AC00C70BE7 /* ShowCollectionProgress.json in Resources */,
+				D172FC4B22C684AC00C70BE7 /* test_get_lists_containing_show.json in Resources */,
+				D172FC2A22C684AC00C70BE7 /* test_get_movie_translations.json in Resources */,
+				D172FC7722C684AC00C70BE7 /* test_approve_follow_request.json in Resources */,
+				D172FC2522C684AC00C70BE7 /* test_get_recently_updated_movies.json in Resources */,
+				D172FC4A22C684AC00C70BE7 /* test_get_show_comments.json in Resources */,
+				D172FC5422C684AC00C70BE7 /* test_get_all_seasons.json in Resources */,
+				D172FC8822C684AC00C70BE7 /* test_remove_item_from_custom_list.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2023,6 +2925,157 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D172FA1D22C6667E00C70BE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FA6722C6671900C70BE7 /* TraktMostMovie.swift in Sources */,
+				D172FA7D22C6673500C70BE7 /* PlaybackProgress.swift in Sources */,
+				D172FA5022C666EE00C70BE7 /* TraktSearchResult.swift in Sources */,
+				D172FA4322C666E500C70BE7 /* Movies.swift in Sources */,
+				D172FA7322C6672D00C70BE7 /* TraktShowTranslation.swift in Sources */,
+				D172FA3F22C666E500C70BE7 /* Certifications.swift in Sources */,
+				D172FA6622C6671900C70BE7 /* TraktMovieRelease.swift in Sources */,
+				D172FA8422C6673C00C70BE7 /* FollowRequest.swift in Sources */,
+				D172FA3B22C666E500C70BE7 /* TraktManager.swift in Sources */,
+				D172FA8922C6673C00C70BE7 /* TraktWatching.swift in Sources */,
+				D172FA4A22C666E500C70BE7 /* Episodes.swift in Sources */,
+				D172FA7B22C6673500C70BE7 /* TraktHistoryItem.swift in Sources */,
+				D172FA8C22C6673C00C70BE7 /* UnhideItemResult.swift in Sources */,
+				D172FA4E22C666E500C70BE7 /* Enums.swift in Sources */,
+				D172FA4B22C666E500C70BE7 /* Sync.swift in Sources */,
+				D172FA4C22C666E500C70BE7 /* Users.swift in Sources */,
+				D172FA4F22C666EE00C70BE7 /* Structures.swift in Sources */,
+				D172FA6A22C6671F00C70BE7 /* TraktCastMember.swift in Sources */,
+				D172FA5C22C6670F00C70BE7 /* TraktAttachedMediaItem.swift in Sources */,
+				D172FA8022C6673500C70BE7 /* AddRatingsResult.swift in Sources */,
+				D172FA4622C666E500C70BE7 /* Scrobble.swift in Sources */,
+				D172FA4922C666E500C70BE7 /* Seasons.swift in Sources */,
+				D172FA5822C6670500C70BE7 /* TraktCheckin.swift in Sources */,
+				D172FA3A22C666E500C70BE7 /* URLSessionProtocol.swift in Sources */,
+				D172FA9122C6673C00C70BE7 /* UserStats.swift in Sources */,
+				D172FA5422C666F500C70BE7 /* Update.swift in Sources */,
+				D172FA4522C666E500C70BE7 /* Recommendations.swift in Sources */,
+				D172FA4122C666E500C70BE7 /* Genres.swift in Sources */,
+				D172FA8322C6673C00C70BE7 /* AccountSettings.swift in Sources */,
+				D172FA7022C6672D00C70BE7 /* TraktShow.swift in Sources */,
+				D172FA6322C6671900C70BE7 /* TraktBoxOfficeMovie.swift in Sources */,
+				D172FA5622C666FB00C70BE7 /* CalendarShow.swift in Sources */,
+				D172FA5322C666F500C70BE7 /* RatingDistribution.swift in Sources */,
+				D172FA9222C6673C00C70BE7 /* TraktList.swift in Sources */,
+				D172FA9422C6673C00C70BE7 /* TraktWatchedItem.swift in Sources */,
+				D172FA6022C6671900C70BE7 /* TraktMovie.swift in Sources */,
+				D172FA5922C6670A00C70BE7 /* Certification.swift in Sources */,
+				D172FA6822C6671F00C70BE7 /* Person.swift in Sources */,
+				D172FA7222C6672D00C70BE7 /* TraktEpisode.swift in Sources */,
+				D172FA6422C6671900C70BE7 /* TraktAnticipatedMovie.swift in Sources */,
+				D172FA8122C6673500C70BE7 /* RemoveRatingsResult.swift in Sources */,
+				D172FA6E22C6672D00C70BE7 /* TraktMostShow.swift in Sources */,
+				D172FA5A22C6670F00C70BE7 /* TraktComment.swift in Sources */,
+				D172FA9722C6674000C70BE7 /* Extensions.swift in Sources */,
+				D172FA8722C6673C00C70BE7 /* UsersComments.swift in Sources */,
+				D172FA4022C666E500C70BE7 /* Comments.swift in Sources */,
+				D172FA5B22C6670F00C70BE7 /* TraktTrendingComments.swift in Sources */,
+				D172FA8D22C6673C00C70BE7 /* ListItemPostResult.swift in Sources */,
+				D172FA5D22C6670F00C70BE7 /* TraktCommentLikedUser.swift in Sources */,
+				D172FA7A22C6673500C70BE7 /* TraktRating.swift in Sources */,
+				D172FA7F22C6673500C70BE7 /* RemoveFromCollectionResult.swift in Sources */,
+				D172FA6B22C6671F00C70BE7 /* CastAndCrew.swift in Sources */,
+				D172FA7422C6672D00C70BE7 /* TraktEpisodeTranslation.swift in Sources */,
+				D172FA7622C6672D00C70BE7 /* TraktWatchedSeason.swift in Sources */,
+				D172FA8522C6673C00C70BE7 /* Likes.swift in Sources */,
+				D172FA6222C6671900C70BE7 /* TraktWatchedMovie.swift in Sources */,
+				D172FA7122C6672D00C70BE7 /* TraktSeason.swift in Sources */,
+				D172FA6922C6671F00C70BE7 /* TraktCrewMember.swift in Sources */,
+				D172FA7722C6672D00C70BE7 /* TraktWatchedEpisodes.swift in Sources */,
+				D172FA5F22C6671900C70BE7 /* TraktTrendingMovie.swift in Sources */,
+				D172FA3C22C666E500C70BE7 /* CompletionHandlers.swift in Sources */,
+				D172FA9022C6673C00C70BE7 /* Friend.swift in Sources */,
+				D172FA6122C6671900C70BE7 /* TraktMovieTranslation.swift in Sources */,
+				D172FA7C22C6673500C70BE7 /* TraktCollectedItem.swift in Sources */,
+				D172FA8B22C6673C00C70BE7 /* HideItemResult.swift in Sources */,
+				D172FA4422C666E500C70BE7 /* People.swift in Sources */,
+				D172FA4822C666E500C70BE7 /* Shows.swift in Sources */,
+				D172FA6C22C6672500C70BE7 /* ScrobbleResult.swift in Sources */,
+				D172FA5522C666F500C70BE7 /* Alias.swift in Sources */,
+				D172FA8622C6673C00C70BE7 /* UsersCollection.swift in Sources */,
+				D172FA3D22C666E500C70BE7 /* Calendars.swift in Sources */,
+				D172FA4D22C666E500C70BE7 /* SharedFunctions.swift in Sources */,
+				D172FA3E22C666E500C70BE7 /* Checkin.swift in Sources */,
+				D172FA9522C6674000C70BE7 /* MLKeychain.swift in Sources */,
+				D172FA5222C666EE00C70BE7 /* Filters.swift in Sources */,
+				D172FA6F22C6672D00C70BE7 /* TraktAnticipatedShow.swift in Sources */,
+				D172FA7522C6672D00C70BE7 /* TraktWatchedShow.swift in Sources */,
+				D172FA6522C6671900C70BE7 /* TraktDVDReleaseMovie.swift in Sources */,
+				D172FA5122C666EE00C70BE7 /* Pagination.swift in Sources */,
+				D172FA8A22C6673C00C70BE7 /* HiddenItem.swift in Sources */,
+				D172FA8F22C6673C00C70BE7 /* FollowUserResult.swift in Sources */,
+				D172FA7E22C6673500C70BE7 /* AddToCollectionResult.swift in Sources */,
+				D172FA9322C6673C00C70BE7 /* TraktListItem.swift in Sources */,
+				D172FA7922C6672D00C70BE7 /* ShowCollectionProgress.swift in Sources */,
+				D172FA7822C6672D00C70BE7 /* TraktWatchedProgress.swift in Sources */,
+				D172FA8222C6673500C70BE7 /* RemoveFromWatchlistResult.swift in Sources */,
+				D172FA4222C666E500C70BE7 /* Lists.swift in Sources */,
+				D172FA6D22C6672D00C70BE7 /* TraktTrendingShow.swift in Sources */,
+				D172FA8822C6673C00C70BE7 /* TraktUser.swift in Sources */,
+				D172FA5722C666FB00C70BE7 /* CalendarMovie.swift in Sources */,
+				D172FA5E22C6671400C70BE7 /* Genre.swift in Sources */,
+				D172FA9622C6674000C70BE7 /* DateParser.swift in Sources */,
+				D172FA4722C666E500C70BE7 /* Search.swift in Sources */,
+				D172FA8E22C6673C00C70BE7 /* RemoveListItemResult.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FA2522C6667E00C70BE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FB4D22C67FB000C70BE7 /* SeasonTests.swift in Sources */,
+				D172FB4F22C67FB000C70BE7 /* SyncTests.swift in Sources */,
+				D172FB4B22C67FB000C70BE7 /* SearchTests.swift in Sources */,
+				D172FB4822C67FB000C70BE7 /* PeopleTests.swift in Sources */,
+				D172FB4A22C67FB000C70BE7 /* ScrobbleTests.swift in Sources */,
+				D172FB4522C67FB000C70BE7 /* GenreTests.swift in Sources */,
+				D172FB5022C67FB000C70BE7 /* UserTests.swift in Sources */,
+				D172FB4022C67FB000C70BE7 /* TestTraktManager.swift in Sources */,
+				D172FB4422C67FB000C70BE7 /* CommentTests.swift in Sources */,
+				D172FB4322C67FB000C70BE7 /* CertificationsTests.swift in Sources */,
+				D172FB4222C67FB000C70BE7 /* CheckinTests.swift in Sources */,
+				D172FB4E22C67FB000C70BE7 /* EpisodeTests.swift in Sources */,
+				D172FB4622C67FB000C70BE7 /* ListsTests.swift in Sources */,
+				D172FB4122C67FB000C70BE7 /* CalendarTests.swift in Sources */,
+				D172FB4C22C67FB000C70BE7 /* ShowsTests.swift in Sources */,
+				D172FB3F22C67FB000C70BE7 /* HelperFunctions.swift in Sources */,
+				D172FB4922C67FB000C70BE7 /* RecommendationsTests.swift in Sources */,
+				D172FB4722C67FB000C70BE7 /* MovieTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D172FBE422C6837200C70BE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D172FBFB22C684AC00C70BE7 /* RecommendationsTests.swift in Sources */,
+				D172FBF922C684AC00C70BE7 /* MovieTests.swift in Sources */,
+				D172FC0222C684AC00C70BE7 /* UserTests.swift in Sources */,
+				D172FBFD22C684AC00C70BE7 /* SearchTests.swift in Sources */,
+				D172FBF822C684AC00C70BE7 /* ListsTests.swift in Sources */,
+				D172FBF222C684AC00C70BE7 /* TestTraktManager.swift in Sources */,
+				D172FBF122C684AC00C70BE7 /* HelperFunctions.swift in Sources */,
+				D172FBFA22C684AC00C70BE7 /* PeopleTests.swift in Sources */,
+				D172FC0122C684AC00C70BE7 /* SyncTests.swift in Sources */,
+				D172FBFF22C684AC00C70BE7 /* SeasonTests.swift in Sources */,
+				D172FBFE22C684AC00C70BE7 /* ShowsTests.swift in Sources */,
+				D172FBF422C684AC00C70BE7 /* CheckinTests.swift in Sources */,
+				D172FBF522C684AC00C70BE7 /* CertificationsTests.swift in Sources */,
+				D172FBF322C684AC00C70BE7 /* CalendarTests.swift in Sources */,
+				D172FBF622C684AC00C70BE7 /* CommentTests.swift in Sources */,
+				D172FC0022C684AC00C70BE7 /* EpisodeTests.swift in Sources */,
+				D172FBFC22C684AC00C70BE7 /* ScrobbleTests.swift in Sources */,
+				D172FBF722C684AC00C70BE7 /* GenreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2030,6 +3083,11 @@
 			isa = PBXTargetDependency;
 			target = A77E86481B29F09100EABC2D /* TraktKit */;
 			targetProxy = A77E86561B29F09100EABC2D /* PBXContainerItemProxy */;
+		};
+		D172FA2C22C6667E00C70BE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D172FA2022C6667E00C70BE7 /* TraktKitTvOS */;
+			targetProxy = D172FA2B22C6667E00C70BE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2053,7 +3111,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitWatchOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2081,7 +3139,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitWatchOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2109,7 +3167,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitWatchOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2133,7 +3191,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -2153,7 +3211,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2174,7 +3232,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -2185,6 +3243,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2276,6 +3335,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2337,6 +3397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2468,6 +3529,258 @@
 			};
 			name = Release;
 		};
+		D172FA3222C6667E00C70BE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitTvOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitTvOS;
+				PRODUCT_NAME = "$(PROJECT)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Debug;
+		};
+		D172FA3322C6667E00C70BE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitTvOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitTvOS;
+				PRODUCT_NAME = "$(PROJECT)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Release;
+		};
+		D172FA3422C6667E00C70BE7 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitTvOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitTvOS;
+				PRODUCT_NAME = "$(PROJECT)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Distribution;
+		};
+		D172FA3522C6667E00C70BE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitTvOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Debug;
+		};
+		D172FA3622C6667E00C70BE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitTvOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Release;
+		};
+		D172FA3722C6667E00C70BE7 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitTvOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Distribution;
+		};
+		D172FBEE22C6837200C70BE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D172FBEF22C6837200C70BE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D172FBF022C6837200C70BE7 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.notsobright.TraktKitMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2517,6 +3830,36 @@
 				A77E86631B29F09100EABC2D /* Debug */,
 				A77E86641B29F09100EABC2D /* Release */,
 				A75B879E1B6A8BC9007F6B8F /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D172FA3822C6667E00C70BE7 /* Build configuration list for PBXNativeTarget "TraktKitTvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D172FA3222C6667E00C70BE7 /* Debug */,
+				D172FA3322C6667E00C70BE7 /* Release */,
+				D172FA3422C6667E00C70BE7 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D172FA3922C6667E00C70BE7 /* Build configuration list for PBXNativeTarget "TraktKitTvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D172FA3522C6667E00C70BE7 /* Debug */,
+				D172FA3622C6667E00C70BE7 /* Release */,
+				D172FA3722C6667E00C70BE7 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D172FBED22C6837200C70BE7 /* Build configuration list for PBXNativeTarget "TraktKitMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D172FBEE22C6837200C70BE7 /* Debug */,
+				D172FBEF22C6837200C70BE7 /* Release */,
+				D172FBF022C6837200C70BE7 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
