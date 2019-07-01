@@ -2059,7 +2059,7 @@
 					};
 					A77E86531B29F09100EABC2D = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = U6J8328WE2;
+						DevelopmentTeam = 3F89ZY3P47;
 						DevelopmentTeamName = "Maximilian Litteral";
 						LastSwiftMigration = "";
 					};
@@ -2094,12 +2094,12 @@
 			projectRoot = "";
 			targets = (
 				A77E86481B29F09100EABC2D /* TraktKit */,
-				A723DA881B917EF300CA217C /* TraktKitMac */,
-				A70807141D8E1F2D00176B0A /* TraktKitWatchOS */,
 				A77E86531B29F09100EABC2D /* TraktKitTests */,
+				A723DA881B917EF300CA217C /* TraktKitMac */,
+				D172FBE722C6837200C70BE7 /* TraktKitMacTests */,
 				D172FA2022C6667E00C70BE7 /* TraktKitTvOS */,
 				D172FA2822C6667E00C70BE7 /* TraktKitTvOSTests */,
-				D172FBE722C6837200C70BE7 /* TraktKitMacTests */,
+				A70807141D8E1F2D00176B0A /* TraktKitWatchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -3194,7 +3194,7 @@
 				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -3215,7 +3215,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -3235,7 +3235,7 @@
 				PRODUCT_NAME = "$(PROJECT)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Distribution;
 		};
@@ -3319,6 +3319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3496,6 +3497,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3516,6 +3518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 3F89ZY3P47;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3718,7 +3721,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 3F89ZY3P47;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				INFOPLIST_FILE = TraktKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -3744,7 +3747,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 3F89ZY3P47;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				INFOPLIST_FILE = TraktKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_FAST_MATH = YES;
@@ -3769,7 +3772,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 3F89ZY3P47;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TraktKitMacTests/Info.plist;
+				INFOPLIST_FILE = TraktKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_FAST_MATH = YES;

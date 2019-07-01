@@ -40,14 +40,14 @@ public class TraktManager {
     
     let session: URLSessionProtocol
     
-    // MARK: - MDA device codes
+    // MARK: - Device codes
     
+    // Would it be better to define a dictionary or a struct?
     public var deviceCode: String?
     public var userCode: String?
     public var verificationURL: String?
     public var timeInterval: TimeInterval?
     public var expiresIn: TimeInterval?
-    // END - MDA
     
     // MARK: Public
     public static let sharedManager = TraktManager()
@@ -126,12 +126,10 @@ public class TraktManager {
         
         self.baseURL = !staging ? "trakt.tv" : "staging.trakt.tv"
         self.APIBaseURL = !staging ? "api.trakt.tv" : "api-staging.trakt.tv"
-        self.oauthURL = URL(string: "https://\(baseURL!)/oauth/authorize?response_type=code&client_id=\(String(describing: clientID))&redirect_uri=\(redirectURI)")
-
-//        self.oauthURL = URL(string: "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(withClientID)&redirect_uri=\(redirectURI)")
+        self.oauthURL = URL(string: "https://\(baseURL!)/oauth/authorize?response_type=code&client_id=\(withClientID)&redirect_uri=\(redirectURI)")
     }
     
-    // MARK: Renamed
+    // MARK: Deprecated
     @available(*, deprecated, renamed: "setOauth2RedirectURL(withClientID:clientSecret:redirectURI:)")
     public func set(clientID: String, clientSecret secret: String, redirectURI: String, staging: Bool = false) {
         self.clientID = clientID
@@ -240,7 +238,7 @@ public class TraktManager {
         return try JSONSerialization.data(withJSONObject: json, options: [])
     }
     
-    // MARK: - MDA Authenticate Devices
+    // MARK: - Authenticate Devices
     
     public func getDeviceCode(completionHandler: @escaping DataResultCompletionHandler) throws {
         guard let clientID = clientID
@@ -250,7 +248,7 @@ public class TraktManager {
         }
         
         
-        let urlString = "https://trakt.tv/oauth/device/code"
+        let urlString = "https://\(baseURL!)/oauth/device/code"
         let url = URL(string: urlString)
         guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
             completionHandler(.error(error: nil))
@@ -325,7 +323,7 @@ public class TraktManager {
                 return
         }
         
-        let urlString = "https://trakt.tv/oauth/device/token"
+        let urlString = "https://\(baseURL!)/oauth/device/token"
         let url = URL(string: urlString)
         guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
             completionHandler?(.fail)
