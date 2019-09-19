@@ -1,29 +1,1592 @@
 [
-  {
-    "collected_at" : "2014-09-01T09:10:11.000Z",
-    "movie" : {
-      "title" : "TRON: Legacy",
-      "year" : 2010,
-      "ids" : {
-        "tmdb" : 20526,
-        "slug" : "tron-legacy-2010",
-        "trakt" : 1,
-        "imdb" : "tt1104001"
-      }
+    {
+        "last_collected_at": "2019-08-05T04:01:00.000Z",
+        "last_updated_at": "2019-09-19T22:17:05.000Z",
+        "show": {
+            "title": "Marvel's Agents of S.H.I.E.L.D.",
+            "year": 2013,
+            "ids": {
+                "trakt": 1394,
+                "slug": "marvel-s-agents-of-s-h-i-e-l-d",
+                "tvdb": 263365,
+                "imdb": "tt2364582",
+                "tmdb": 1403,
+                "tvrage": 32656
+            }
+        },
+        "seasons": [
+            {
+                "number": 1,
+                "episodes": [
+                    {
+                        "number": 1,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 2,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 3,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 4,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 5,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 6,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 7,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 8,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 9,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 10,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 11,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 12,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 13,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 14,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 15,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 16,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 17,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 18,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 19,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 20,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 21,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 22,
+                        "collected_at": "2019-03-12T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    }
+                ]
+            },
+            {
+                "number": 2,
+                "episodes": [
+                    {
+                        "number": 1,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 2,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 3,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 4,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 5,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 6,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 7,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 8,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 9,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 10,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 11,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 12,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 13,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 14,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 15,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 16,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 17,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 18,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 19,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 20,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 21,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 22,
+                        "collected_at": "2019-04-27T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    }
+                ]
+            },
+            {
+                "number": 3,
+                "episodes": [
+                    {
+                        "number": 1,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 2,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 3,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 4,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 5,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 6,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 7,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 8,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 9,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 10,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 11,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 12,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 13,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 14,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 15,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 16,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 17,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 18,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 19,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 20,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 21,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 22,
+                        "collected_at": "2019-08-05T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": null,
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": null,
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "last_collected_at": "2018-09-28T04:01:00.000Z",
+        "last_updated_at": "2019-09-19T22:11:45.000Z",
+        "show": {
+            "title": "Avatar: The Last Airbender",
+            "year": 2005,
+            "ids": {
+                "trakt": 245,
+                "slug": "avatar-the-last-airbender",
+                "tvdb": 74852,
+                "imdb": "tt0417299",
+                "tmdb": 246,
+                "tvrage": 2680
+            }
+        },
+        "seasons": [
+            {
+                "number": 1,
+                "episodes": [
+                    {
+                        "number": 1,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 2,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 3,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 4,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 5,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 6,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 7,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 8,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 9,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 10,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 11,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 12,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 13,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 14,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 15,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 16,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 17,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 18,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 19,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 20,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    }
+                ]
+            },
+            {
+                "number": 2,
+                "episodes": [
+                    {
+                        "number": 1,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 2,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 3,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 4,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 5,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 6,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 7,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 8,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 9,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 10,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 11,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 12,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 13,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 14,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 15,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 16,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 17,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 18,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 19,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 20,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    }
+                ]
+            },
+            {
+                "number": 3,
+                "episodes": [
+                    {
+                        "number": 1,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 2,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 3,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 4,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 5,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 6,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 7,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 8,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 9,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 10,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 11,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 12,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 13,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 14,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 15,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 16,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 17,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 18,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 19,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 20,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    },
+                    {
+                        "number": 21,
+                        "collected_at": "2018-09-28T04:01:00.000Z",
+                        "metadata": {
+                            "media_type": "bluray",
+                            "resolution": null,
+                            "hdr": null,
+                            "audio": "dts_ma",
+                            "audio_channels": null,
+                            "3d": false
+                        }
+                    }
+                ]
+            }
+        ]
     }
-  },
-  {
-    "collected_at" : "2014-09-01T09:10:11.000Z",
-    "movie" : {
-      "title" : "The Dark Knight",
-      "year" : 2008,
-      "ids" : {
-        "tmdb" : 155,
-        "slug" : "the-dark-knight-2008",
-        "trakt" : 6,
-        "imdb" : "tt0468569"
-      }
-    }
-  }
 ]
-

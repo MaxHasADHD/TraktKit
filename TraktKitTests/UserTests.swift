@@ -346,16 +346,30 @@ class UserTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_user_collection")
 
         let expectation = XCTestExpectation(description: "Get User Collection")
-        traktManager.getUserCollection(type: .Movies) { result in
+        traktManager.getUserCollection(type: .Shows) { result in
             if case .success(let collection) = result {
-                let movies = collection.map { $0.movie }
-                XCTAssertEqual(movies.count, 2)
+                let shows = collection.map { $0.show }
+                let seasons = collection.map { $0.seasons }
+                XCTAssertEqual(shows.count, 2)
+                XCTAssertEqual(seasons.count, 2)
+                
+                if let metadata = collection.first(where: { $0.show?.ids.trakt == 245 })?.seasons?.first?.episodes.first?.metadata {
+                    XCTAssertEqual(metadata.mediaType, .bluray)
+                    XCTAssertNil(metadata.resolution)
+                    XCTAssertNil(metadata.hdr)
+                    XCTAssertEqual(metadata.audio, .dtsHD)
+                    XCTAssertNil(metadata.audioChannels)
+                    XCTAssertFalse(metadata.is3D)
+                } else {
+                    XCTFail("Failed to parse metadata")
+                }
+                
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me/collection/movies")
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/users/me/collection/shows")
 
         switch result {
         case .timedOut:

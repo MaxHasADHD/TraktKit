@@ -215,7 +215,7 @@ extension TraktManager {
     🔓 OAuth Optional
      */
     @discardableResult
-    public func getUserCollection(username: String = "me", type: Type, completion: @escaping ObjectsCompletionHandler<UsersCollection>) -> URLSessionDataTaskProtocol? {
+    public func getUserCollection(username: String = "me", type: Type, completion: @escaping ObjectsCompletionHandler<TraktCollectedItem>) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)/collection/\(type.rawValue)",
                                          withQuery: [:],

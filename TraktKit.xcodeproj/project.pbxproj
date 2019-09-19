@@ -134,9 +134,6 @@
 		7054627F1EF3726B003BB24B /* Likes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054627E1EF3726B003BB24B /* Likes.swift */; };
 		705462801EF3726B003BB24B /* Likes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054627E1EF3726B003BB24B /* Likes.swift */; };
 		705462811EF3726B003BB24B /* Likes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7054627E1EF3726B003BB24B /* Likes.swift */; };
-		705462831EF3744A003BB24B /* UsersCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462821EF3744A003BB24B /* UsersCollection.swift */; };
-		705462841EF3744A003BB24B /* UsersCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462821EF3744A003BB24B /* UsersCollection.swift */; };
-		705462851EF3744A003BB24B /* UsersCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462821EF3744A003BB24B /* UsersCollection.swift */; };
 		705462891EF37A76003BB24B /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705462881EF37A76003BB24B /* UserTests.swift */; };
 		705A4DCC2055B36D00E6ECC0 /* TrendingShows_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCB2055B36D00E6ECC0 /* TrendingShows_Full.json */; };
 		705A4DCE2055B58B00E6ECC0 /* ShowAliases.json in Resources */ = {isa = PBXBuildFile; fileRef = 705A4DCD2055B58B00E6ECC0 /* ShowAliases.json */; };
@@ -528,7 +525,6 @@
 		7054626F1EF36D14003BB24B /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		705462741EF36F9F003BB24B /* FollowRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequest.swift; sourceTree = "<group>"; };
 		7054627E1EF3726B003BB24B /* Likes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Likes.swift; sourceTree = "<group>"; };
-		705462821EF3744A003BB24B /* UsersCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollection.swift; sourceTree = "<group>"; };
 		705462881EF37A76003BB24B /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		705A4DCB2055B36D00E6ECC0 /* TrendingShows_Full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TrendingShows_Full.json; sourceTree = "<group>"; };
 		705A4DCD2055B58B00E6ECC0 /* ShowAliases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowAliases.json; sourceTree = "<group>"; };
@@ -856,7 +852,6 @@
 				7054626F1EF36D14003BB24B /* AccountSettings.swift */,
 				705462741EF36F9F003BB24B /* FollowRequest.swift */,
 				7054627E1EF3726B003BB24B /* Likes.swift */,
-				705462821EF3744A003BB24B /* UsersCollection.swift */,
 				70C39F3B1EF3869100C3F6A4 /* UsersComments.swift */,
 				A7AF988B1CBF4B8E00744566 /* TraktUser.swift */,
 				A79E562F1D4FBE43009CACC7 /* TraktWatching.swift */,
@@ -1502,6 +1497,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = A77E863F1B29F09100EABC2D;
@@ -1725,7 +1721,6 @@
 				701EF4B31E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */,
 				A708072A1D8E1F5A00176B0A /* Episodes.swift in Sources */,
 				705462811EF3726B003BB24B /* Likes.swift in Sources */,
-				705462851EF3744A003BB24B /* UsersCollection.swift in Sources */,
 				A70807251D8E1F5A00176B0A /* Recommendations.swift in Sources */,
 				A70807421D8E1F5A00176B0A /* TraktWatchedMovie.swift in Sources */,
 				A708073F1D8E1F5A00176B0A /* TraktTrendingMovie.swift in Sources */,
@@ -1828,7 +1823,6 @@
 				701EF4B21E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */,
 				705462801EF3726B003BB24B /* Likes.swift in Sources */,
 				70F773371F3C80A10078110E /* ListItemPostResult.swift in Sources */,
-				705462841EF3744A003BB24B /* UsersCollection.swift in Sources */,
 				A7582BF31CCA6FE900B3CF63 /* TraktEpisode.swift in Sources */,
 				70C5D8D22066A96D002E4356 /* Certification.swift in Sources */,
 				A723DAAE1B917FE300CA217C /* Movies.swift in Sources */,
@@ -1948,7 +1942,6 @@
 				70F7E6261EF222190026B8A1 /* Checkin.swift in Sources */,
 				70F7E61F1EF21EE20026B8A1 /* Enums.swift in Sources */,
 				70B844391EF0DFBB001BA900 /* TraktWatchedMovie.swift in Sources */,
-				705462831EF3744A003BB24B /* UsersCollection.swift in Sources */,
 				70005683206D102F005319DD /* Lists.swift in Sources */,
 				70B844311EF0DE21001BA900 /* TraktMovie.swift in Sources */,
 				70393F301F3F2B4C00943D34 /* RemoveFromCollectionResult.swift in Sources */,
