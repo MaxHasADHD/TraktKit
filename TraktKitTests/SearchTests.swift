@@ -34,7 +34,7 @@ class SearchTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/search/movie,show,episode,person,list?query=tron&extended=min")
+        XCTAssertEqual(session.lastURL?.path, "/search/movie,show,episode,person,list")
 
         switch result {
         case .timedOut:

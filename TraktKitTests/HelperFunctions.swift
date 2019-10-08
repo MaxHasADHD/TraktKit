@@ -34,7 +34,7 @@ func jsonData(named: String) -> Data {
 
 extension XCTestCase {
     @discardableResult
-    func decode<T: Codable>(_ fileName: String, to type: T.Type = T.self) -> T? {
+    func decode<T: Decodable>(_ fileName: String, to type: T.Type = T.self) -> T? {
         let data = jsonData(named: fileName)
 
         let decoder = JSONDecoder()
