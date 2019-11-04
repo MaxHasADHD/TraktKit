@@ -114,10 +114,14 @@ public struct TraktCollectedItem: Codable {
     public enum Audio: String, Codable {
         case dolbyDigital = "dolby_digital"
         case dolbyDigitalPlus = "dolby_digital_plus"
+        case dolbyAtmos = "dolby_atmos"
         case dolbyTrueHD = "dolby_truehd"
         case dolbyProLogic = "dolby_prologic"
         case dts
-        case dtsHD = "dts_ma"
+        case dtsHDMA = "dts_ma"
+        case dtsHDHR = "dts_hr"
+        case dtsX = "dts_x"
+        case auro3D = "auro_3d"
         case mp3
         case aac
         case lpcm
