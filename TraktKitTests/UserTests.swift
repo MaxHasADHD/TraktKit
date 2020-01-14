@@ -357,7 +357,7 @@ class UserTests: XCTestCase {
                     XCTAssertEqual(metadata.mediaType, .bluray)
                     XCTAssertNil(metadata.resolution)
                     XCTAssertNil(metadata.hdr)
-                    XCTAssertEqual(metadata.audio, .dtsHD)
+                    XCTAssertEqual(metadata.audio, .dtsHDMA)
                     XCTAssertNil(metadata.audioChannels)
                     XCTAssertFalse(metadata.is3D)
                 } else {
