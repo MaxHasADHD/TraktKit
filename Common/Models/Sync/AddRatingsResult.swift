@@ -10,7 +10,7 @@ import Foundation
 
 public struct AddRatingsResult: Codable {
     public let added: Added
-//    public let notFound: NotFound
+    public let notFound: NotFound
 
     public struct Added: Codable {
         public let movies: Int
@@ -18,16 +18,20 @@ public struct AddRatingsResult: Codable {
         public let seasons: Int
         public let episodes: Int
     }
-    
-    public struct NotFound: Codable {
-        public let movies: [ID]
-        public let shows: [ID]
-        public let seasons: [ID]
-        public let episodes: [ID]
+
+    public struct NotFoundItem: Codable {
+        public let ids: ID
     }
-    
+
+    public struct NotFound: Codable {
+        public let movies: [NotFoundItem]
+        public let shows: [NotFoundItem]
+        public let seasons: [NotFoundItem]
+        public let episodes: [NotFoundItem]
+    }
+
     enum CodingKeys: String, CodingKey {
         case added
-//        case notFound = "not_found"
+        case notFound = "not_found"
     }
 }

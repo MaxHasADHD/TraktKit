@@ -10,7 +10,7 @@ import Foundation
 
 public struct RemoveListItemResult: Codable {
     let deleted: Added
-//    let notFound: NotFound
+    let notFound: NotFound
 
     public struct Added: Codable {
         let movies: Int
@@ -19,17 +19,20 @@ public struct RemoveListItemResult: Codable {
         let episodes: Int
         let people: Int
     }
-    
-    public struct NotFound: Codable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        let episodes: [ID]
-        let people: [ID]
+
+    public struct NotFoundItem: Codable {
+        let ids: ID
     }
-    
+
+    public struct NotFound: Codable {
+        let movies: [NotFoundItem]
+        let shows: [NotFoundItem]
+        let seasons: [NotFoundItem]
+        let episodes: [NotFoundItem]
+    }
+
     enum CodingKeys: String, CodingKey {
         case deleted
-//        case notFound = "not_found"
+        case notFound = "not_found"
     }
 }

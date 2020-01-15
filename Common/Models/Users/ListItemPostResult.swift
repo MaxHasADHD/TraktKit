@@ -11,7 +11,7 @@ import Foundation
 public struct ListItemPostResult: Codable {
     let added: Added
     let existing: Added
-//    let notFound: NotFound
+    let notFound: NotFound
 
     public struct Added: Codable {
         let movies: Int
@@ -20,18 +20,21 @@ public struct ListItemPostResult: Codable {
         let episodes: Int
         let people: Int
     }
-    
-    public struct NotFound: Codable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        let episodes: [ID]
-        let people: [ID]
+
+    public struct NotFoundItem: Codable {
+        let ids: ID
     }
-    
+
+    public struct NotFound: Codable {
+        let movies: [NotFoundItem]
+        let shows: [NotFoundItem]
+        let seasons: [NotFoundItem]
+        let episodes: [NotFoundItem]
+    }
+
     enum CodingKeys: String, CodingKey {
         case added
         case existing
-//        case notFound = "not_found"
+        case notFound = "not_found"
     }
 }
