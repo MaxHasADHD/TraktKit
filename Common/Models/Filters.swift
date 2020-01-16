@@ -26,6 +26,10 @@ public extension TraktManager {
          */
         case year(year: NSNumber)
         /**
+         4 digit year range.
+         */
+        case years(year: ClosedRange<Int>)
+        /**
          Genre slugs.
          */
         case genres(genres: [String])
@@ -50,6 +54,8 @@ public extension TraktManager {
             switch self {
             case .year(let year):
                 return ("years", "\(year)")
+            case .years(let years):
+                return ("years", "\(years.lowerBound)-\(years.upperBound)")
             case .genres(let genres):
                 return ("genres", genres.joined(separator: ","))
             case .languages(let languages):
