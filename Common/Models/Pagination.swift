@@ -11,7 +11,7 @@ import Foundation
 /**
  Some methods are paginated. By default, 1 page of 10 items will be returned. You can send these values by adding `?page={page}&limit={limit}` to the URL.
  */
-public struct Pagination {
+public struct Pagination: Hashable {
     /// Number of page of results to be returned.
     public let page: Int
     /// Number of results to return per page.

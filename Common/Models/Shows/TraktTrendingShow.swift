@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktTrendingShow: Codable {
+public struct TraktTrendingShow: Codable, Hashable {
     
     // Extended: Min
     public let watchers: Int

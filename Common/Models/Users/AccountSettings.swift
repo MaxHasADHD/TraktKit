@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct AccountSettings: Codable {
+public struct AccountSettings: Codable, Hashable {
     public let user: User
     public let connections: Connections
     
-    public struct Connections: Codable {
+    public struct Connections: Codable, Hashable {
         public let facebook: Bool
         public let twitter: Bool
         public let google: Bool

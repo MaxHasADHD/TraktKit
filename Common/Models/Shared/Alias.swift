@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Alias: Codable {
+public struct Alias: Codable, Hashable {
     let title: String
     let country: String
 }

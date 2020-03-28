@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct Certifications: Codable {
+public struct Certifications: Codable, Hashable {
     let us: [Certification]
     
     enum CodingKeys: String, CodingKey {
         case us
     }
     
-    struct Certification: Codable {
+    struct Certification: Codable, Hashable {
         let name: String
         let slug: String
         let description: String

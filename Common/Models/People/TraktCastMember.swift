@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CastMember: Codable {
+public struct CastMember: Codable, Hashable {
     public let character: String
     public let person: Person?
     public let movie: TraktMovie?

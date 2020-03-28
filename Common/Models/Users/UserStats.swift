@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct UserStats: Codable {
+public struct UserStats: Codable, Hashable {
     let movies: Movies
     let shows: Shows
     let seasons: Seasons
@@ -16,7 +16,7 @@ public struct UserStats: Codable {
     let network: Network
     let ratings: UserStatsRatingsDistribution
     
-    public struct Movies: Codable {
+    public struct Movies: Codable, Hashable {
         let plays: Int
         let watched: Int
         let minutes: Int
@@ -25,19 +25,19 @@ public struct UserStats: Codable {
         let comments: Int
     }
     
-    public struct Shows: Codable {
+    public struct Shows: Codable, Hashable {
         let watched: Int
         let collected: Int
         let ratings: Int
         let comments: Int
     }
     
-    public struct Seasons: Codable {
+    public struct Seasons: Codable, Hashable {
         let ratings: Int
         let comments: Int
     }
     
-    public struct Episodes: Codable {
+    public struct Episodes: Codable, Hashable {
         let plays: Int
         let watched: Int
         let minutes: Int
@@ -46,17 +46,17 @@ public struct UserStats: Codable {
         let comments: Int
     }
     
-    public struct Network: Codable {
+    public struct Network: Codable, Hashable {
         let friends: Int
         let followers: Int
         let following: Int
     }
     
-    public struct UserStatsRatingsDistribution: Codable {
+    public struct UserStatsRatingsDistribution: Codable, Hashable {
         let total: Int
         let distribution: Distribution
         
-        public struct Distribution: Codable {
+        public struct Distribution: Codable, Hashable {
             public let one: Int
             public let two: Int
             public let three: Int

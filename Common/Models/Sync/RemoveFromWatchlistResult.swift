@@ -8,18 +8,18 @@
 
 import Foundation
 
-public struct RemoveFromWatchlistResult: Codable {
+public struct RemoveFromWatchlistResult: Codable, Hashable {
     let deleted: Deleted
 //    let notFound: NotFound
 
-    public struct Deleted: Codable {
+    public struct Deleted: Codable, Hashable {
         let movies: Int
         let shows: Int
         let seasons: Int
         let episodes: Int
     }
     
-    public struct NotFound: Codable {
+    public struct NotFound: Codable, Hashable {
         let movies: [ID]
         let shows: [ID]
         let seasons: [ID]

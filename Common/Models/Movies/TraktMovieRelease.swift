@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktMovieRelease: Codable {
+public struct TraktMovieRelease: Codable, Hashable {
     let country: String
     let certification: String
     let releaseDate: Date

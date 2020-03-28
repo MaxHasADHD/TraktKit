@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CastAndCrew {
+public struct CastAndCrew: Hashable {
     public let cast: [CastMember]?
     public let directors: [CrewMember]?
     public let writers: [CrewMember]?

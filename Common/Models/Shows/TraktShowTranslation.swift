@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktShowTranslation: Codable {
+public struct TraktShowTranslation: Codable, Hashable {
     public let title: String
     public let overview: String
     public let language: String

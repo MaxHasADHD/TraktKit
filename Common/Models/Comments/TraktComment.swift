@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Comment: Codable {
+public struct Comment: Codable, Hashable {
     public let id: Int
     public let parentId: Int
     public let createdAt: Date
