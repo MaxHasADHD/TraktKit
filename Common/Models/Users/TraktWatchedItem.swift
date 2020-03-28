@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktWatchedItem: Codable {
+public struct TraktWatchedItem: Codable, Hashable {
     public let plays: Int
     public let lastWatchedAt: Date
     public var show: TraktShow? = nil
@@ -23,11 +23,11 @@ public struct TraktWatchedItem: Codable {
         case movie
     }
 
-    public struct TraktWatchedSeason: Codable {
+    public struct TraktWatchedSeason: Codable, Hashable {
         public let number: Int
         public let episodes: [TraktWatchedEpisode]?
 
-        public struct TraktWatchedEpisode: Codable {
+        public struct TraktWatchedEpisode: Codable, Hashable {
             public let number: Int
             public let plays: Int
             public let lastWatchedAt: Date

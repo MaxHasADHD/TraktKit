@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CalendarShow: Codable {
+public struct CalendarShow: Codable, Hashable {
     let firstAired: Date
     let episode: TraktEpisode
     let show: TraktShow

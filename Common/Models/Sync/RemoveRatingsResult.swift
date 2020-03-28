@@ -8,18 +8,18 @@
 
 import Foundation
 
-public struct RemoveRatingsResult: Codable {
+public struct RemoveRatingsResult: Codable, Hashable {
     public let deleted: Deleted
 //    public let notFound: NotFound
 
-    public struct Deleted: Codable {
+    public struct Deleted: Codable, Hashable {
         public let movies: Int
         public let shows: Int
         public let seasons: Int
         public let episodes: Int
     }
     
-    public struct NotFound: Codable {
+    public struct NotFound: Codable, Hashable {
         public let movies: [ID]
         public let shows: [ID]
         public let seasons: [ID]

@@ -8,18 +8,18 @@
 
 import Foundation
 
-public struct AddToCollectionResult: Codable {
+public struct AddToCollectionResult: Codable, Hashable {
     let added: Added
     let updated: Added
     let existing: Added
 //    let notFound: NotFound
 
-    public struct Added: Codable {
+    public struct Added: Codable, Hashable {
         let movies: Int
         let episodes: Int
     }
     
-    public struct NotFound: Codable {
+    public struct NotFound: Codable, Hashable {
         let movies: [ID]
         let shows: [ID]
         let seasons: [ID]

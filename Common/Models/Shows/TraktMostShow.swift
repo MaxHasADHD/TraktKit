@@ -9,7 +9,7 @@
 import Foundation
 
 /// Used for most played, watched, and collected shows
-public struct TraktMostShow: Codable {
+public struct TraktMostShow: Codable, Hashable {
     
     // Extended: Min
     public let watcherCount: Int

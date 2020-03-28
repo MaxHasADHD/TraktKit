@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ScrobbleResult: Codable {
+public struct ScrobbleResult: Codable, Hashable {
     let id: Int
     let action: String
     let progress: Float

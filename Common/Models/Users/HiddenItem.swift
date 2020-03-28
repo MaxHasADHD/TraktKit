@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct HiddenItem: Codable {
+public struct HiddenItem: Codable, Hashable {
     public let hiddenAt: Date
     public let type: String
     

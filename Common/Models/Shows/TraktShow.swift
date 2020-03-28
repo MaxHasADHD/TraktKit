@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct Airs: Codable {
+public struct Airs: Codable, Hashable {
     public let day: String?
     public let time: String?
     public let timezone: String?
 }
 
-public struct TraktShow: Codable {
+public struct TraktShow: Codable, Hashable {
     
     // Extended: Min
     public let title: String

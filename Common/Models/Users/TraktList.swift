@@ -14,7 +14,7 @@ public enum ListPrivacy: String, Codable {
     case `public`
 }
 
-public struct TraktList: Codable {
+public struct TraktList: Codable, Hashable {
     public let allowComments: Bool
     public let commentCount: Int
     public let createdAt: Date?
@@ -42,7 +42,7 @@ public struct TraktList: Codable {
     }
 }
 
-public struct TraktTrendingList: Codable {
+public struct TraktTrendingList: Codable, Hashable {
     public let likeCount: Int
     public let commentCount: Int
     public let list: TraktList
