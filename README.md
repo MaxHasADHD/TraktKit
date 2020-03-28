@@ -54,6 +54,17 @@ github "MaxHasADHD/TraktKit"
 
 Run `carthage update` to build the framework and drag the built `TraktKit.framework` into your Xcode project.    
 
+### Swift Package Manager
+
+You can use Xcode 11 or later to integrate TraktKit into your project using [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
+
+To integrate TraktKit into your Xcode project using Swift Package Manager. Select **File > Swift Packages > Add Package Dependency...**.
+
+When prompted, simply search for TraktKit or specify the project's GitHub repository:
+
+```git@github.com:MaxHasADHD/TraktKit.git
+```
+
 ### Usage
 See the [example project](https://github.com/MaxHasADHD/TraktKit/tree/master/Example) for usage
 
