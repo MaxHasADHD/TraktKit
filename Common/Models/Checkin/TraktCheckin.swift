@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct ShareSettings: Codable {
+public struct ShareSettings: Codable, Hashable {
     public let facebook: Bool
     public let twitter: Bool
     public let tumblr: Bool
 }
 
-public struct TraktCheckin: Codable {
+public struct TraktCheckin: Codable, Hashable {
     
     /// Trakt History ID
     public let id: Int

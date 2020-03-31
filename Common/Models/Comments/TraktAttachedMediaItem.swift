@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktAttachedMediaItem: Codable {
+public struct TraktAttachedMediaItem: Codable, Hashable {
     public let type: String
     public let movie: TraktMovie?
     public let show: TraktShow?

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktCollectedItem: Codable {
+public struct TraktCollectedItem: Codable, Hashable {
     
     public var lastCollectedAt: Date
     public let lastUpdatedAt: Date
@@ -64,7 +64,7 @@ public struct TraktCollectedItem: Codable {
         }
     }
     
-    public struct Metadata: Codable {
+    public struct Metadata: Codable, Hashable {
         public let mediaType: MediaType?
         public let resolution: Resolution?
         public let hdr: HDR?
@@ -150,14 +150,14 @@ public struct TraktCollectedItem: Codable {
     }
 }
 
-public struct TraktCollectedSeason: Codable {
+public struct TraktCollectedSeason: Codable, Hashable {
     
     /// Season number
     public var number: Int
     public var episodes: [TraktCollectedEpisode]
 }
 
-public struct TraktCollectedEpisode: Codable {
+public struct TraktCollectedEpisode: Codable, Hashable {
     
     public var number: Int
     public var collectedAt: Date

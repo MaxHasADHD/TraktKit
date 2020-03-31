@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktMovie: Codable {
+public struct TraktMovie: Codable, Hashable {
     // Extended: Min
     public let title: String
     public let year: Int?

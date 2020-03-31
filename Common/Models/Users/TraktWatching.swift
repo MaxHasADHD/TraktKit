@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktWatching: Codable {
+public struct TraktWatching: Codable, Hashable {
     public let expiresAt: Date
     public let startedAt: Date
     public let action: String

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Like: Codable {
+public struct Like: Codable, Hashable {
     public let likedAt: Date
     public let type: LikeType
     public let list: TraktList?

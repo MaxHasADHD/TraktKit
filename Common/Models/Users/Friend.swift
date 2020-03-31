@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Friend: Codable {
+public struct Friend: Codable, Hashable {
     let friendsAt: Date
     let user: User
     

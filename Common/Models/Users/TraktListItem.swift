@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktListItem: Codable {
+public struct TraktListItem: Codable, Hashable {
     public let rank: Int
     public let listedAt: Date
     public let type: String

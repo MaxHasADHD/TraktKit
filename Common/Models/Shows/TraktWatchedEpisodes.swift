@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktWatchedEpisodes: Codable {
+public struct TraktWatchedEpisodes: Codable, Hashable {
     // Extended: Min
     public let number: Int
     public let plays: Int

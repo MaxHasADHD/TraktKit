@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ShowCollectionProgress: Codable {
+public struct ShowCollectionProgress: Codable, Hashable {
     
     public let aired: Int
     public let completed: Int
@@ -26,14 +26,14 @@ public struct ShowCollectionProgress: Codable {
         case nextEpisode = "next_episode"
     }
     
-    public struct CollectedSeason: Codable {
+    public struct CollectedSeason: Codable, Hashable {
         let number: Int
         let aired: Int
         let completed: Int
         let episodes: [CollectedEpisode]
     }
     
-    public struct CollectedEpisode: Codable {
+    public struct CollectedEpisode: Codable, Hashable {
         let number: Int
         let completed: Bool
         let collectedAt: Date?

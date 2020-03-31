@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AuthenticationInfo: Decodable {
+public struct AuthenticationInfo: Decodable, Hashable {
     public let accessToken: String
     public let tokenType: String
     public let expiresIn: TimeInterval

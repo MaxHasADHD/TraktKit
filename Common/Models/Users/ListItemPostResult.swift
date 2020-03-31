@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct ListItemPostResult: Codable {
+public struct ListItemPostResult: Codable, Hashable {
     let added: Added
     let existing: Added
 //    let notFound: NotFound
 
-    public struct Added: Codable {
+    public struct Added: Codable, Hashable {
         let movies: Int
         let shows: Int
         let seasons: Int
@@ -21,7 +21,7 @@ public struct ListItemPostResult: Codable {
         let people: Int
     }
     
-    public struct NotFound: Codable {
+    public struct NotFound: Codable, Hashable {
         let movies: [ID]
         let shows: [ID]
         let seasons: [ID]
