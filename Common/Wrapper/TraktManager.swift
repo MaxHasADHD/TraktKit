@@ -47,6 +47,15 @@ public class TraktManager {
     
     let session: URLSessionProtocol
     
+    // MARK: - Device codes
+    
+    // Would it be better to define a dictionary or a struct?
+    public var deviceCode: String?
+    public var userCode: String?
+    public var verificationURL: String?
+    public var timeInterval: TimeInterval?
+    public var expiresIn: TimeInterval?
+    
     // MARK: Public
     public static let sharedManager = TraktManager()
     
@@ -114,8 +123,21 @@ public class TraktManager {
         self.session = session
     }
     
-    // MARK: - Setup
+    // MARK: - Setup Clients
+    public func setOauth2RedirectURL(withClientID: String, clientSecret secret: String, redirectURI: String, staging: Bool = false) {
+        self.clientID = withClientID
+        self.clientSecret = secret
+        self.redirectURI = redirectURI
+        
+        self.staging = staging
+        
+        self.baseURL = !staging ? "trakt.tv" : "staging.trakt.tv"
+        self.APIBaseURL = !staging ? "api.trakt.tv" : "api-staging.trakt.tv"
+        self.oauthURL = URL(string: "https://\(baseURL!)/oauth/authorize?response_type=code&client_id=\(withClientID)&redirect_uri=\(redirectURI)")
+    }
     
+    // MARK: Deprecated
+    @available(*, deprecated, renamed: "setOauth2RedirectURL(withClientID:clientSecret:redirectURI:)")
     public func set(clientID: String, clientSecret secret: String, redirectURI: String, staging: Bool = false) {
         self.clientID = clientID
         self.clientSecret = secret
@@ -223,6 +245,156 @@ public class TraktManager {
         return try JSONSerialization.data(withJSONObject: json, options: [])
     }
     
+    // MARK: - Authenticate Devices
+    
+    public func getDeviceCode(completionHandler: @escaping DataResultCompletionHandler) throws {
+        guard let clientID = clientID
+            else {
+                completionHandler(.error(error: nil))
+                return
+        }
+        
+        
+        let urlString = "https://\(baseURL!)/oauth/device/code"
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler(.error(error: nil))
+            return
+        }
+        
+        let json = [
+            "client_id": clientID,
+        ]
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
+            guard let welf = self else { return }
+            guard error == nil else {
+                completionHandler(.error(error: error))
+                return
+            }
+            
+            // Check response
+            guard let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success
+                else {
+                    if let HTTPResponse = response as? HTTPURLResponse {
+                        completionHandler(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+                    } else {
+                        completionHandler(.error(error: nil))
+                    }
+                    return
+            }
+            // Check data
+            guard
+                let data = data else {
+                    completionHandler(.error(error: nil))
+                    return
+            }
+            
+            do {
+                if let deviceCodeDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+                    
+                    welf.deviceCode = deviceCodeDict["device_code"] as? String
+                    welf.userCode = deviceCodeDict["user_code"] as? String
+                    welf.verificationURL = deviceCodeDict["verification_url"] as? String
+                    welf.timeInterval = deviceCodeDict["interval"] as? TimeInterval
+                    welf.expiresIn = deviceCodeDict["expires_in"] as? TimeInterval
+                    
+                    
+                    #if DEBUG
+                    print("[\(#function)] Device Code is \(String(describing: welf.deviceCode))")
+                    print("[\(#function)] User Code is \(String(describing: welf.userCode))")
+                    print("[\(#function)] Verification URL is \(String(describing: welf.verificationURL))")
+                    print("[\(#function)] Time Interval is \(String(describing: welf.timeInterval)) sec.")
+                    print("[\(#function)] Expires in \(String(describing: welf.expiresIn)) sec.")
+                    #endif
+                    
+                    completionHandler(.success(data: data))
+                }
+            }
+            catch {
+                welf.deviceCode = nil
+                welf.userCode = nil
+                welf.verificationURL = nil
+                completionHandler(.error(error: nil))
+            }
+            }.resume()
+    }
+    
+    public func getTokenFromDeviceCode(completionHandler: SuccessCompletionHandler?) throws {
+        guard
+            let clientID = clientID,
+            let clientSecret = clientSecret,
+            let deviceCode = deviceCode else {
+                completionHandler?(.fail)
+                return
+        }
+        
+        let urlString = "https://\(baseURL!)/oauth/device/token"
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler?(.fail)
+            return
+        }
+        
+        let json = [
+            "code": deviceCode,
+            "client_id": clientID,
+            "client_secret": clientSecret,
+        ]
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+        
+        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
+            guard let welf = self else { return }
+            guard error == nil else {
+                completionHandler?(.fail)
+                return
+            }
+            
+            // Check response
+            guard let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success else {
+                    completionHandler?(.fail)
+                    return
+            }
+            
+            // Check data
+            guard let data = data else {
+                completionHandler?(.fail)
+                return
+            }
+            
+            do {
+                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+                    
+                    welf.accessToken = accessTokenDict["access_token"] as? String
+                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
+                    
+                    #if DEBUG
+                    print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
+                    print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
+                    #endif
+                    
+                    // Save expiration date
+                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
+                    let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
+                    
+                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard.synchronize()
+                    
+                    // Post notification
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
+                    }
+                    
+                    completionHandler?(.success)
+                }
+            }
+            catch {
+                completionHandler?(.fail)
+            }
+            }.resume()
+    }
     // MARK: - Authentication
     
     public func getTokenFromAuthorizationCode(code: String, completionHandler: SuccessCompletionHandler?) throws {

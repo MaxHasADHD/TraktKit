@@ -40,7 +40,7 @@ public class MLKeychain {
         let keychainQuery: [String: Any] = [
             kSecClassValue: kSecClassGenericPasswordValue,
             kSecAttrAccountValue: key,
-            kSecReturnDataValue: kCFBooleanTrue,
+            kSecReturnDataValue: kCFBooleanTrue!,
             kSecMatchLimitValue: kSecMatchLimitOneValue
         ]
         
@@ -55,6 +55,13 @@ public class MLKeychain {
         if status == noErr {
             return dataTypeRef as? Data
         } else {
+            if #available(iOSApplicationExtension 11.3, *) {
+                #if DEBUG
+                print("[\(#function)] Security result error code is: \(String(SecCopyErrorMessageString(status, nil) ?? "UNKNOWN"))")
+                #endif
+            } else {
+                // Fallback on earlier versions
+            }
             return nil
         }
     }
