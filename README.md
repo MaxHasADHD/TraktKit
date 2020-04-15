@@ -62,7 +62,8 @@ To integrate TraktKit into your Xcode project using Swift Package Manager. Selec
 
 When prompted, simply search for TraktKit or specify the project's GitHub repository:
 
-```git@github.com:MaxHasADHD/TraktKit.git
+```
+git@github.com:MaxHasADHD/TraktKit.git
 ```
 
 ### Usage
