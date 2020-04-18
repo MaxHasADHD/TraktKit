@@ -232,4 +232,34 @@ class SeasonTests: XCTestCase {
             break
         }
     }
+    
+    // MARK: - People
+    
+    func test_get_show_people_min() {
+        session.nextData = jsonData(named: "test_get_season_cast")
+        
+        let expectation = XCTestExpectation(description: "ShowCastAndCrew")
+        traktManager.getPeopleInSeason(showID: "game-of-thrones", season: 1) { result in
+            if case .success(let castAndCrew) = result {
+                XCTAssertNotNil(castAndCrew.cast)
+                XCTAssertNotNil(castAndCrew.producers)
+                XCTAssertEqual(castAndCrew.cast!.count, 20)
+                XCTAssertEqual(castAndCrew.producers!.count, 14)
+                
+                guard let actor = castAndCrew.cast?.first else { XCTFail("Cast is empty"); return }
+                XCTAssertEqual(actor.person.name, "Emilia Clarke")
+                XCTAssertEqual(actor.characters, ["Daenerys Targaryen"])
+            }
+            expectation.fulfill()
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/people?extended=min")
+        
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
 }

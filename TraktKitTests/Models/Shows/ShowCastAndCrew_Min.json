@@ -1,555 +1,2384 @@
 {
-  "crew" : {
-    "production" : [
-      {
-        "job" : "Executive Producer",
-        "person" : {
-          "name" : "David Benioff",
-          "ids" : {
-            "tmdb" : 9813,
-            "slug" : "david-benioff",
-            "tvrage" : null,
-            "trakt" : 664,
-            "imdb" : "nm1125275"
-          }
+    "cast": [
+        {
+            "character": "Daenerys Targaryen",
+            "characters": [
+                "Daenerys Targaryen"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Emilia Clarke",
+                "ids": {
+                    "trakt": 436511,
+                    "slug": "emilia-clarke",
+                    "imdb": "nm3592338",
+                    "tmdb": 1223786,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Jon Snow",
+            "characters": [
+                "Jon Snow"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Kit Harington",
+                "ids": {
+                    "trakt": 436512,
+                    "slug": "kit-harington",
+                    "imdb": "nm3229685",
+                    "tmdb": 239019,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Tyrion Lannister",
+            "characters": [
+                "Tyrion Lannister"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Peter Dinklage",
+                "ids": {
+                    "trakt": 412933,
+                    "slug": "peter-dinklage",
+                    "imdb": "nm0227759",
+                    "tmdb": 22970,
+                    "tvrage": 34516
+                }
+            }
+        },
+        {
+            "character": "Cersei Lannister",
+            "characters": [
+                "Cersei Lannister"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Lena Headey",
+                "ids": {
+                    "trakt": 9739,
+                    "slug": "lena-headey",
+                    "imdb": "nm0372176",
+                    "tmdb": 17286,
+                    "tvrage": 98569
+                }
+            }
+        },
+        {
+            "character": "Jaime Lannister",
+            "characters": [
+                "Jaime Lannister"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Nikolaj Coster-Waldau",
+                "ids": {
+                    "trakt": 414839,
+                    "slug": "nikolaj-coster-waldau",
+                    "imdb": "nm0182666",
+                    "tmdb": 12795,
+                    "tvrage": 180684
+                }
+            }
+        },
+        {
+            "character": "Sansa Stark",
+            "characters": [
+                "Sansa Stark"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Sophie Turner",
+                "ids": {
+                    "trakt": 436539,
+                    "slug": "sophie-turner",
+                    "imdb": "nm3849842",
+                    "tmdb": 1001657,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Arya Stark",
+            "characters": [
+                "Arya Stark"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Maisie Williams",
+                "ids": {
+                    "trakt": 436541,
+                    "slug": "maisie-williams",
+                    "imdb": "nm3586035",
+                    "tmdb": 1181313,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Varys",
+            "characters": [
+                "Varys"
+            ],
+            "episode_count": 73,
+            "person": {
+                "name": "Conleth Hill",
+                "ids": {
+                    "trakt": 432873,
+                    "slug": "conleth-hill",
+                    "imdb": "nm0384152",
+                    "tmdb": 84423,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Petyr Baelish",
+            "characters": [
+                "Petyr Baelish"
+            ],
+            "episode_count": 67,
+            "person": {
+                "name": "Aidan Gillen",
+                "ids": {
+                    "trakt": 420752,
+                    "slug": "aidan-gillen",
+                    "imdb": "nm0318821",
+                    "tmdb": 49735,
+                    "tvrage": 36542
+                }
+            }
+        },
+        {
+            "character": "Jorah Mormont",
+            "characters": [
+                "Jorah Mormont"
+            ],
+            "episode_count": 67,
+            "person": {
+                "name": "Iain Glen",
+                "ids": {
+                    "trakt": 11439,
+                    "slug": "iain-glen",
+                    "imdb": "nm0322513",
+                    "tmdb": 20508,
+                    "tvrage": 105767
+                }
+            }
+        },
+        {
+            "character": "Theon Greyjoy",
+            "characters": [
+                "Theon Greyjoy"
+            ],
+            "episode_count": 67,
+            "person": {
+                "name": "Alfie Allen",
+                "ids": {
+                    "trakt": 419217,
+                    "slug": "alfie-allen",
+                    "imdb": "nm0654295",
+                    "tmdb": 71586,
+                    "tvrage": 128136
+                }
+            }
+        },
+        {
+            "character": "Davos Seaworth",
+            "characters": [
+                "Davos Seaworth"
+            ],
+            "episode_count": 63,
+            "person": {
+                "name": "Liam Cunningham",
+                "ids": {
+                    "trakt": 415442,
+                    "slug": "liam-cunningham",
+                    "imdb": "nm0192377",
+                    "tmdb": 15498,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Samwell Tarly",
+            "characters": [
+                "Samwell Tarly"
+            ],
+            "episode_count": 63,
+            "person": {
+                "name": "John Bradley",
+                "ids": {
+                    "trakt": 413734,
+                    "slug": "john-bradley-ff703964-4593-4530-a7f6-c83a7f367e88",
+                    "imdb": "nm4263213",
+                    "tmdb": 1010135,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Bran Stark",
+            "characters": [
+                "Bran Stark"
+            ],
+            "episode_count": 63,
+            "person": {
+                "name": "Isaac Hempstead-Wright",
+                "ids": {
+                    "trakt": 436592,
+                    "slug": "isaac-hempstead-wright",
+                    "imdb": "nm3652842",
+                    "tmdb": 239020,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Sandor Clegane",
+            "characters": [
+                "Sandor Clegane"
+            ],
+            "episode_count": 63,
+            "person": {
+                "name": "Rory McCann",
+                "ids": {
+                    "trakt": 412041,
+                    "slug": "rory-mccann",
+                    "imdb": "nm0564920",
+                    "tmdb": 3075,
+                    "tvrage": 92391
+                }
+            }
+        },
+        {
+            "character": "Grey Worm",
+            "characters": [
+                "Grey Worm"
+            ],
+            "episode_count": 53,
+            "person": {
+                "name": "Jacob Anderson",
+                "ids": {
+                    "trakt": 150561,
+                    "slug": "jacob-anderson",
+                    "imdb": "nm2760664",
+                    "tmdb": 964792,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Bronn",
+            "characters": [
+                "Bronn"
+            ],
+            "episode_count": 53,
+            "person": {
+                "name": "Jerome Flynn",
+                "ids": {
+                    "trakt": 436590,
+                    "slug": "jerome-flynn",
+                    "imdb": "nm0283492",
+                    "tmdb": 195930,
+                    "tvrage": 65682
+                }
+            }
+        },
+        {
+            "character": "Margaery Tyrell",
+            "characters": [
+                "Margaery Tyrell"
+            ],
+            "episode_count": 50,
+            "person": {
+                "name": "Natalie Dormer",
+                "ids": {
+                    "trakt": 16612,
+                    "slug": "natalie-dormer",
+                    "imdb": "nm1754059",
+                    "tmdb": 58502,
+                    "tvrage": 173448
+                }
+            }
+        },
+        {
+            "character": "Melisandre",
+            "characters": [
+                "Melisandre"
+            ],
+            "episode_count": 50,
+            "person": {
+                "name": "Carice van Houten",
+                "ids": {
+                    "trakt": 417048,
+                    "slug": "carice-van-houten",
+                    "imdb": "nm0396924",
+                    "tmdb": 23229,
+                    "tvrage": 230892
+                }
+            }
+        },
+        {
+            "character": "Brienne of Tarth",
+            "characters": [
+                "Brienne of Tarth"
+            ],
+            "episode_count": 43,
+            "person": {
+                "name": "Gwendoline Christie",
+                "ids": {
+                    "trakt": 421890,
+                    "slug": "gwendoline-christie",
+                    "imdb": "nm3729225",
+                    "tmdb": 1011904,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Stannis Baratheon",
+            "characters": [
+                "Stannis Baratheon"
+            ],
+            "episode_count": 40,
+            "person": {
+                "name": "Stephen Dillane",
+                "ids": {
+                    "trakt": 9415,
+                    "slug": "stephen-dillane",
+                    "imdb": "nm0226820",
+                    "tmdb": 8435,
+                    "tvrage": 152454
+                }
+            }
+        },
+        {
+            "character": "Tormund Giantsbane",
+            "characters": [
+                "Tormund Giantsbane"
+            ],
+            "episode_count": 37,
+            "person": {
+                "name": "Kristofer Hivju",
+                "ids": {
+                    "trakt": 448107,
+                    "slug": "kristofer-hivju",
+                    "imdb": "nm1970465",
+                    "tmdb": 571418,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Joffrey Baratheon",
+            "characters": [
+                "Joffrey Baratheon"
+            ],
+            "episode_count": 30,
+            "person": {
+                "name": "Jack Gleeson",
+                "ids": {
+                    "trakt": 412241,
+                    "slug": "jack-gleeson",
+                    "imdb": "nm0322416",
+                    "tmdb": 489467,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Ramsay Bolton, Ramsay Snow",
+            "characters": [
+                "Ramsay Bolton",
+                "Ramsay Snow"
+            ],
+            "episode_count": 30,
+            "person": {
+                "name": "Iwan Rheon",
+                "ids": {
+                    "trakt": 454937,
+                    "slug": "iwan-rheon",
+                    "imdb": "nm3701064",
+                    "tmdb": 221978,
+                    "tvrage": 336010
+                }
+            }
+        },
+        {
+            "character": "Robb Stark",
+            "characters": [
+                "Robb Stark"
+            ],
+            "episode_count": 30,
+            "person": {
+                "name": "Richard Madden",
+                "ids": {
+                    "trakt": 457070,
+                    "slug": "richard-madden",
+                    "imdb": "nm0534635",
+                    "tmdb": 512991,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Tywin Lannister",
+            "characters": [
+                "Tywin Lannister"
+            ],
+            "episode_count": 30,
+            "person": {
+                "name": "Charles Dance",
+                "ids": {
+                    "trakt": 301962,
+                    "slug": "charles-dance",
+                    "imdb": "nm0001097",
+                    "tmdb": 4391,
+                    "tvrage": 81300
+                }
+            }
+        },
+        {
+            "character": "Catelyn Stark",
+            "characters": [
+                "Catelyn Stark"
+            ],
+            "episode_count": 30,
+            "person": {
+                "name": "Michelle Fairley",
+                "ids": {
+                    "trakt": 416253,
+                    "slug": "michelle-fairley",
+                    "imdb": "nm0265610",
+                    "tmdb": 20057,
+                    "tvrage": 63033
+                }
+            }
+        },
+        {
+            "character": "Missandei",
+            "characters": [
+                "Missandei"
+            ],
+            "episode_count": 27,
+            "person": {
+                "name": "Nathalie Emmanuel",
+                "ids": {
+                    "trakt": 458178,
+                    "slug": "nathalie-emmanuel",
+                    "imdb": "nm2812026",
+                    "tmdb": 1251069,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Gendry",
+            "characters": [
+                "Gendry"
+            ],
+            "episode_count": 26,
+            "person": {
+                "name": "Joe Dempsie",
+                "ids": {
+                    "trakt": 446497,
+                    "slug": "joe-dempsie",
+                    "imdb": "nm1478079",
+                    "tmdb": 570296,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Ygritte",
+            "characters": [
+                "Ygritte"
+            ],
+            "episode_count": 20,
+            "person": {
+                "name": "Rose Leslie",
+                "ids": {
+                    "trakt": 454271,
+                    "slug": "rose-leslie",
+                    "imdb": "nm3310211",
+                    "tmdb": 1223793,
+                    "tvrage": 342808
+                }
+            }
+        },
+        {
+            "character": "Daario Naharis",
+            "characters": [
+                "Daario Naharis"
+            ],
+            "episode_count": 20,
+            "person": {
+                "name": "Michiel Huisman",
+                "ids": {
+                    "trakt": 423153,
+                    "slug": "michiel-huisman",
+                    "imdb": "nm0401264",
+                    "tmdb": 91520,
+                    "tvrage": 115595
+                }
+            }
+        },
+        {
+            "character": "Jaqen H'ghar",
+            "characters": [
+                "Jaqen H'ghar"
+            ],
+            "episode_count": 20,
+            "person": {
+                "name": "Tom Wlaschiha",
+                "ids": {
+                    "trakt": 421563,
+                    "slug": "tom-wlaschiha",
+                    "imdb": "nm0937239",
+                    "tmdb": 52639,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Gilly",
+            "characters": [
+                "Gilly"
+            ],
+            "episode_count": 20,
+            "person": {
+                "name": "Hannah Murray",
+                "ids": {
+                    "trakt": 444513,
+                    "slug": "hannah-murray",
+                    "imdb": "nm2356940",
+                    "tmdb": 213395,
+                    "tvrage": 176601
+                }
+            }
+        },
+        {
+            "character": "Ellaria Sand",
+            "characters": [
+                "Ellaria Sand"
+            ],
+            "episode_count": 17,
+            "person": {
+                "name": "Indira Varma",
+                "ids": {
+                    "trakt": 294603,
+                    "slug": "indira-varma",
+                    "imdb": "nm0890055",
+                    "tmdb": 30430,
+                    "tvrage": 69948
+                }
+            }
+        },
+        {
+            "character": "Robert Baratheon",
+            "characters": [
+                "Robert Baratheon"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Mark Addy",
+                "ids": {
+                    "trakt": 414973,
+                    "slug": "mark-addy",
+                    "imdb": "nm0004692",
+                    "tmdb": 13633,
+                    "tvrage": 37728
+                }
+            }
+        },
+        {
+            "character": "High Sparrow",
+            "characters": [
+                "High Sparrow"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Jonathan Pryce",
+                "ids": {
+                    "trakt": 478,
+                    "slug": "jonathan-pryce",
+                    "imdb": "nm0000596",
+                    "tmdb": 378,
+                    "tvrage": 102820
+                }
+            }
+        },
+        {
+            "character": "Roose Bolton",
+            "characters": [
+                "Roose Bolton"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Michael McElhatton",
+                "ids": {
+                    "trakt": 427900,
+                    "slug": "michael-mcelhatton",
+                    "imdb": "nm0568385",
+                    "tmdb": 73288,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Viserys Targaryen",
+            "characters": [
+                "Viserys Targaryen"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Harry Lloyd",
+                "ids": {
+                    "trakt": 440937,
+                    "slug": "harry-lloyd",
+                    "imdb": "nm0516003",
+                    "tmdb": 205258,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Jeor Mormont",
+            "characters": [
+                "Jeor Mormont"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "James Cosmo",
+                "ids": {
+                    "trakt": 16777,
+                    "slug": "james-cosmo",
+                    "imdb": "nm0181920",
+                    "tmdb": 2467,
+                    "tvrage": 42953
+                }
+            }
+        },
+        {
+            "character": "Talisa Maegyr",
+            "characters": [
+                "Talisa Maegyr"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Oona Chaplin",
+                "ids": {
+                    "trakt": 425996,
+                    "slug": "oona-chaplin",
+                    "imdb": "nm2772105",
+                    "tmdb": 566331,
+                    "tvrage": 236667
+                }
+            }
+        },
+        {
+            "character": "Tommen Baratheon",
+            "characters": [
+                "Tommen Baratheon"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Dean-Charles Chapman",
+                "ids": {
+                    "trakt": 329052,
+                    "slug": "dean-charles-chapman",
+                    "imdb": "nm2835616",
+                    "tmdb": 1332971,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Ned Stark",
+            "characters": [
+                "Ned Stark"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Sean Bean",
+                "ids": {
+                    "trakt": 272,
+                    "slug": "sean-bean",
+                    "imdb": "nm0000293",
+                    "tmdb": 48,
+                    "tvrage": 42090
+                }
+            }
+        },
+        {
+            "character": "Drogo",
+            "characters": [
+                "Drogo"
+            ],
+            "episode_count": 10,
+            "person": {
+                "name": "Jason Momoa",
+                "ids": {
+                    "trakt": 432791,
+                    "slug": "jason-momoa",
+                    "imdb": "nm0597388",
+                    "tmdb": 117642,
+                    "tvrage": 35980
+                }
+            }
         }
-      },
-      {
-        "job" : "Executive Producer",
-        "person" : {
-          "name" : "D. B. Weiss",
-          "ids" : {
-            "tmdb" : 1223783,
-            "slug" : "d-b-weiss",
-            "tvrage" : null,
-            "trakt" : 665,
-            "imdb" : "nm1888967"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Mark Huffam",
-          "ids" : {
-            "tmdb" : 8401,
-            "slug" : "mark-huffam",
-            "tvrage" : null,
-            "trakt" : 666,
-            "imdb" : "nm0400240"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Frank Doelger",
-          "ids" : {
-            "tmdb" : 1223796,
-            "slug" : "frank-doelger",
-            "tvrage" : 69927,
-            "trakt" : 667,
-            "imdb" : "nm0230361"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "George R. R. Martin",
-          "ids" : {
-            "tmdb" : 1222463,
-            "slug" : "george-r-r-martin",
-            "tvrage" : 79951,
-            "trakt" : 668,
-            "imdb" : "nm0552333"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Vince Gerardis",
-          "ids" : {
-            "tmdb" : 54268,
-            "slug" : "vince-gerardis",
-            "tvrage" : null,
-            "trakt" : 669,
-            "imdb" : "nm1136210"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Ralph Vicinanza",
-          "ids" : {
-            "tmdb" : 54269,
-            "slug" : "ralph-vicinanza",
-            "tvrage" : null,
-            "trakt" : 670,
-            "imdb" : "nm2088223"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Guymon Casady",
-          "ids" : {
-            "tmdb" : 53758,
-            "slug" : "guymon-casady",
-            "tvrage" : 121700,
-            "trakt" : 671,
-            "imdb" : "nm0143939"
-          }
-        }
-      },
-      {
-        "job" : "Executive Producer",
-        "person" : {
-          "name" : "Carolyn Strauss",
-          "ids" : {
-            "tmdb" : 1223797,
-            "slug" : "carolyn-strauss",
-            "tvrage" : null,
-            "trakt" : 672,
-            "imdb" : "nm1865467"
-          }
-        }
-      },
-      {
-        "job" : "Executive Producer",
-        "person" : {
-          "name" : "Frank Doelger",
-          "ids" : {
-            "tmdb" : 1223796,
-            "slug" : "frank-doelger",
-            "tvrage" : 69927,
-            "trakt" : 667,
-            "imdb" : "nm0230361"
-          }
-        }
-      },
-      {
-        "job" : "Executive Producer",
-        "person" : {
-          "name" : "Bernadette Caulfield",
-          "ids" : {
-            "tmdb" : 1223798,
-            "slug" : "bernadette-caulfield",
-            "tvrage" : null,
-            "trakt" : 673,
-            "imdb" : "nm0146529"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Bernadette Caulfield",
-          "ids" : {
-            "tmdb" : 1223798,
-            "slug" : "bernadette-caulfield",
-            "tvrage" : null,
-            "trakt" : 673,
-            "imdb" : "nm0146529"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Vanessa Taylor",
-          "ids" : {
-            "tmdb" : 1223785,
-            "slug" : "vanessa-taylor",
-            "tvrage" : 8043,
-            "trakt" : 674,
-            "imdb" : "nm0961827"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Greg Spence",
-          "ids" : {
-            "tmdb" : 56746,
-            "slug" : "greg-spence",
-            "tvrage" : null,
-            "trakt" : 675,
-            "imdb" : "nm0817770"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Chris Newman",
-          "ids" : {
-            "tmdb" : 1223799,
-            "slug" : "chris-newman",
-            "tvrage" : null,
-            "trakt" : 676,
-            "imdb" : "nm0628040"
-          }
-        }
-      }
-    ]
-  },
-  "cast" : [
-    {
-      "character" : "Tyrion Lannister",
-      "person" : {
-        "name" : "Peter Dinklage",
-        "ids" : {
-          "tmdb" : 22970,
-          "slug" : "peter-dinklage",
-          "tvrage" : 34516,
-          "trakt" : 639,
-          "imdb" : "nm0227759"
-        }
-      }
-    },
-    {
-      "character" : "Jaime Lannister",
-      "person" : {
-        "name" : "Nikolaj Coster-Waldau",
-        "ids" : {
-          "tmdb" : 12795,
-          "slug" : "nikolaj-coster-waldau",
-          "tvrage" : 180684,
-          "trakt" : 640,
-          "imdb" : "nm0182666"
-        }
-      }
-    },
-    {
-      "character" : "Cersei Baratheon",
-      "person" : {
-        "name" : "Lena Headey",
-        "ids" : {
-          "tmdb" : 17286,
-          "slug" : "lena-headey",
-          "tvrage" : 98569,
-          "trakt" : 641,
-          "imdb" : "nm0372176"
-        }
-      }
-    },
-    {
-      "character" : "Daenerys Targaryen",
-      "person" : {
-        "name" : "Emilia Clarke",
-        "ids" : {
-          "tmdb" : 1223786,
-          "slug" : "emilia-clarke",
-          "tvrage" : null,
-          "trakt" : 642,
-          "imdb" : "nm3592338"
-        }
-      }
-    },
-    {
-      "character" : "Jon Snow",
-      "person" : {
-        "name" : "Kit Harington",
-        "ids" : {
-          "tmdb" : 239019,
-          "slug" : "kit-harington",
-          "tvrage" : null,
-          "trakt" : 643,
-          "imdb" : "nm3229685"
-        }
-      }
-    },
-    {
-      "character" : "Tywin Lannister",
-      "person" : {
-        "name" : "Charles Dance",
-        "ids" : {
-          "tmdb" : 4391,
-          "slug" : "charles-dance",
-          "tvrage" : 81300,
-          "trakt" : 644,
-          "imdb" : "nm0001097"
-        }
-      }
-    },
-    {
-      "character" : "Margaery Tyrell",
-      "person" : {
-        "name" : "Natalie Dormer",
-        "ids" : {
-          "tmdb" : 58502,
-          "slug" : "natalie-dormer",
-          "tvrage" : 173448,
-          "trakt" : 645,
-          "imdb" : "nm1754059"
-        }
-      }
-    },
-    {
-      "character" : "Joffrey Baratheon",
-      "person" : {
-        "name" : "Jack Gleeson",
-        "ids" : {
-          "tmdb" : 489467,
-          "slug" : "jack-gleeson",
-          "tvrage" : null,
-          "trakt" : 138,
-          "imdb" : "nm0322416"
-        }
-      }
-    },
-    {
-      "character" : "Sansa Stark",
-      "person" : {
-        "name" : "Sophie Turner",
-        "ids" : {
-          "tmdb" : 1001657,
-          "slug" : "sophie-turner",
-          "tvrage" : null,
-          "trakt" : 646,
-          "imdb" : "nm3849842"
-        }
-      }
-    },
-    {
-      "character" : "Arya Stark",
-      "person" : {
-        "name" : "Maisie Williams",
-        "ids" : {
-          "tmdb" : 1181313,
-          "slug" : "maisie-williams",
-          "tvrage" : null,
-          "trakt" : 647,
-          "imdb" : "nm3586035"
-        }
-      }
-    },
-    {
-      "character" : "Samwell Tarly",
-      "person" : {
-        "name" : "John Bradley-West",
-        "ids" : {
-          "tmdb" : 1223788,
-          "slug" : "john-bradley-west",
-          "tvrage" : null,
-          "trakt" : 648,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Ygritte",
-      "person" : {
-        "name" : "Rose Leslie",
-        "ids" : {
-          "tmdb" : 1223793,
-          "slug" : "rose-leslie",
-          "tvrage" : 342808,
-          "trakt" : 649,
-          "imdb" : "nm3310211"
-        }
-      }
-    },
-    {
-      "character" : "Tormund Giantsbane",
-      "person" : {
-        "name" : "Kristofer Hivju",
-        "ids" : {
-          "tmdb" : 571418,
-          "slug" : "kristofer-hivju",
-          "tvrage" : null,
-          "trakt" : 650,
-          "imdb" : "nm1970465"
-        }
-      }
-    },
-    {
-      "character" : "Sandor Clegane",
-      "person" : {
-        "name" : "Rory McCann",
-        "ids" : {
-          "tmdb" : 3075,
-          "slug" : "rory-mccann",
-          "tvrage" : 92391,
-          "trakt" : 651,
-          "imdb" : "nm0564920"
-        }
-      }
-    },
-    {
-      "character" : "Brienne of Tarth",
-      "person" : {
-        "name" : "Gwendoline Christie",
-        "ids" : {
-          "tmdb" : 1011904,
-          "slug" : "gwendoline-christie",
-          "tvrage" : null,
-          "trakt" : 525,
-          "imdb" : "nm3729225"
-        }
-      }
-    },
-    {
-      "character" : "Bronn",
-      "person" : {
-        "name" : "Jerome Flynn",
-        "ids" : {
-          "tmdb" : 195930,
-          "slug" : "jerome-flynn",
-          "tvrage" : 65682,
-          "trakt" : 652,
-          "imdb" : "nm0283492"
-        }
-      }
-    },
-    {
-      "character" : "Shae",
-      "person" : {
-        "name" : "Sibel Kekilli",
-        "ids" : {
-          "tmdb" : 5118,
-          "slug" : "sibel-kekilli",
-          "tvrage" : null,
-          "trakt" : 653,
-          "imdb" : "nm1402546"
-        }
-      }
-    },
-    {
-      "character" : "Jorah Mormont",
-      "person" : {
-        "name" : "Iain Glen",
-        "ids" : {
-          "tmdb" : 20508,
-          "slug" : "iain-glen",
-          "tvrage" : 105767,
-          "trakt" : 654,
-          "imdb" : "nm0322513"
-        }
-      }
-    },
-    {
-      "character" : "Petyr Baelish",
-      "person" : {
-        "name" : "Aidan Gillen",
-        "ids" : {
-          "tmdb" : 49735,
-          "slug" : "aidan-gillen",
-          "tvrage" : 36542,
-          "trakt" : 655,
-          "imdb" : "nm0318821"
-        }
-      }
-    },
-    {
-      "character" : "Davos Seaworth",
-      "person" : {
-        "name" : "Liam Cunningham",
-        "ids" : {
-          "tmdb" : 15498,
-          "slug" : "liam-cunningham",
-          "tvrage" : null,
-          "trakt" : 656,
-          "imdb" : "nm0192377"
-        }
-      }
-    },
-    {
-      "character" : "Stannis Baratheon",
-      "person" : {
-        "name" : "Stephen Dillane",
-        "ids" : {
-          "tmdb" : 8435,
-          "slug" : "stephen-dillane",
-          "tvrage" : 152454,
-          "trakt" : 657,
-          "imdb" : "nm0226820"
-        }
-      }
-    },
-    {
-      "character" : "Melisandre",
-      "person" : {
-        "name" : "Carice van Houten",
-        "ids" : {
-          "tmdb" : 23229,
-          "slug" : "carice-van-houten",
-          "tvrage" : 230892,
-          "trakt" : 658,
-          "imdb" : "nm0396924"
-        }
-      }
-    },
-    {
-      "character" : "Bran Stark",
-      "person" : {
-        "name" : "Isaac Hempstead Wright",
-        "ids" : {
-          "tmdb" : 239020,
-          "slug" : "isaac-hempstead-wright",
-          "tvrage" : null,
-          "trakt" : 659,
-          "imdb" : "nm3652842"
-        }
-      }
-    },
-    {
-      "character" : "Theon Greyjoy",
-      "person" : {
-        "name" : "Alfie Allen",
-        "ids" : {
-          "tmdb" : 71586,
-          "slug" : "alfie-allen",
-          "tvrage" : 128136,
-          "trakt" : 660,
-          "imdb" : "nm0654295"
-        }
-      }
-    },
-    {
-      "character" : "Lord Varys",
-      "person" : {
-        "name" : "Conleth Hill",
-        "ids" : {
-          "tmdb" : 84423,
-          "slug" : "conleth-hill",
-          "tvrage" : null,
-          "trakt" : 661,
-          "imdb" : "nm0384152"
-        }
-      }
-    },
-    {
-      "character" : "Ramsay Snow",
-      "person" : {
-        "name" : "Iwan Rheon",
-        "ids" : {
-          "tmdb" : 221978,
-          "slug" : "iwan-rheon",
-          "tvrage" : 336010,
-          "trakt" : 662,
-          "imdb" : "nm3701064"
-        }
-      }
-    },
-    {
-      "character" : "Roose Bolton",
-      "person" : {
-        "name" : "Michael McElhatton",
-        "ids" : {
-          "tmdb" : 73288,
-          "slug" : "michael-mcelhatton",
-          "tvrage" : null,
-          "trakt" : 663,
-          "imdb" : "nm0568385"
-        }
-      }
+    ],
+    "crew": {
+        "costume & make-up": [
+            {
+                "job": "Costume Design",
+                "jobs": [
+                    "Costume Design"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Michele Clapton",
+                    "ids": {
+                        "trakt": 31234,
+                        "slug": "michele-clapton",
+                        "imdb": "nm0163449",
+                        "tmdb": 50953,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Costume Design",
+                "jobs": [
+                    "Costume Design"
+                ],
+                "episode_count": 10,
+                "person": {
+                    "name": "April Ferry",
+                    "ids": {
+                        "trakt": 3240,
+                        "slug": "april-ferry",
+                        "imdb": "nm0275067",
+                        "tmdb": 7238,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Makeup Effects Designer",
+                "jobs": [
+                    "Makeup Effects Designer"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Rob Bottin",
+                    "ids": {
+                        "trakt": 21434,
+                        "slug": "rob-bottin",
+                        "imdb": "nm0001964",
+                        "tmdb": 101608,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "art": [
+            {
+                "job": "Production Design",
+                "jobs": [
+                    "Production Design"
+                ],
+                "episode_count": 43,
+                "person": {
+                    "name": "Deborah Riley",
+                    "ids": {
+                        "trakt": 4980,
+                        "slug": "deborah-riley",
+                        "imdb": "nm0727015",
+                        "tmdb": 6411,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Production Design",
+                "jobs": [
+                    "Production Design"
+                ],
+                "episode_count": 30,
+                "person": {
+                    "name": "Gemma Jackson",
+                    "ids": {
+                        "trakt": 7439,
+                        "slug": "gemma-jackson",
+                        "imdb": "nm0413541",
+                        "tmdb": 9153,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Art Direction",
+                "jobs": [
+                    "Art Direction"
+                ],
+                "episode_count": 21,
+                "person": {
+                    "name": "Philip Elton",
+                    "ids": {
+                        "trakt": 21108,
+                        "slug": "philip-elton",
+                        "imdb": "nm0255797",
+                        "tmdb": 80424,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Set Decoration",
+                "jobs": [
+                    "Set Decoration"
+                ],
+                "episode_count": 10,
+                "person": {
+                    "name": "Richard Roberts",
+                    "ids": {
+                        "trakt": 6457,
+                        "slug": "richard-roberts",
+                        "imdb": "nm0731517",
+                        "tmdb": 8410,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Art Direction",
+                "jobs": [
+                    "Art Direction"
+                ],
+                "episode_count": 10,
+                "person": {
+                    "name": "Brendan Rankin",
+                    "ids": {
+                        "trakt": 482519,
+                        "slug": "brendan-rankin",
+                        "imdb": "nm0710239",
+                        "tmdb": 1406918,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Art Direction",
+                "jobs": [
+                    "Art Direction"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Hauke Richter",
+                    "ids": {
+                        "trakt": 630024,
+                        "slug": "hauke-richter",
+                        "imdb": "nm0725262",
+                        "tmdb": 1530218,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Art Direction",
+                "jobs": [
+                    "Art Direction"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Simon McGuire",
+                    "ids": {
+                        "trakt": 23356,
+                        "slug": "simon-mcguire",
+                        "imdb": "nm1166298",
+                        "tmdb": 29474,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Set Decoration",
+                "jobs": [
+                    "Set Decoration"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Rob Cameron",
+                    "ids": {
+                        "trakt": 966275,
+                        "slug": "rob-cameron-05a95882-990a-4d32-a12a-6447b58dce41",
+                        "imdb": "nm1298510",
+                        "tmdb": 1878421,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Supervising Art Director",
+                "jobs": [
+                    "Supervising Art Director"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Paul Ghirardani",
+                    "ids": {
+                        "trakt": 12245,
+                        "slug": "paul-ghirardani",
+                        "imdb": "nm0003690",
+                        "tmdb": 17794,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "production": [
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "David Benioff",
+                    "ids": {
+                        "trakt": 7779,
+                        "slug": "david-benioff",
+                        "imdb": "nm1125275",
+                        "tmdb": 9813,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Casting",
+                "jobs": [
+                    "Casting"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Nina Gold",
+                    "ids": {
+                        "trakt": 13206,
+                        "slug": "nina-gold",
+                        "imdb": "nm0002274",
+                        "tmdb": 16363,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Co-Executive Producer, Producer",
+                "jobs": [
+                    "Co-Executive Producer",
+                    "Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Guymon Casady",
+                    "ids": {
+                        "trakt": 39036,
+                        "slug": "guymon-casady",
+                        "imdb": "nm0143939",
+                        "tmdb": 53758,
+                        "tvrage": 121700
+                    }
+                }
+            },
+            {
+                "job": "Co-Executive Producer",
+                "jobs": [
+                    "Co-Executive Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Vince Gerardis",
+                    "ids": {
+                        "trakt": 39394,
+                        "slug": "vince-gerardis",
+                        "imdb": "nm1136210",
+                        "tmdb": 54268,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Executive Producer, Producer",
+                "jobs": [
+                    "Executive Producer",
+                    "Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Bernadette Caulfield",
+                    "ids": {
+                        "trakt": 286890,
+                        "slug": "bernadette-caulfield",
+                        "imdb": "nm0146529",
+                        "tmdb": 1187530,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Casting",
+                "jobs": [
+                    "Casting"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Robert Sterne",
+                    "ids": {
+                        "trakt": 314227,
+                        "slug": "robert-sterne",
+                        "imdb": "nm1414435",
+                        "tmdb": 1019426,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Executive Producer, Producer",
+                "jobs": [
+                    "Executive Producer",
+                    "Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Frank Doelger",
+                    "ids": {
+                        "trakt": 400198,
+                        "slug": "frank-doelger",
+                        "imdb": "nm0230361",
+                        "tmdb": 1223796,
+                        "tvrage": 69927
+                    }
+                }
+            },
+            {
+                "job": "Co-Executive Producer",
+                "jobs": [
+                    "Co-Executive Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "George R. R. Martin",
+                    "ids": {
+                        "trakt": 448663,
+                        "slug": "george-r-r-martin-448663",
+                        "imdb": "nm0552333",
+                        "tmdb": 237053,
+                        "tvrage": 79951
+                    }
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "D. B. Weiss",
+                    "ids": {
+                        "trakt": 499669,
+                        "slug": "d-b-weiss",
+                        "imdb": "nm1888967",
+                        "tmdb": 228068,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Co-Producer, Line Producer, Producer",
+                "jobs": [
+                    "Co-Producer",
+                    "Line Producer",
+                    "Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Christopher Newman",
+                    "ids": {
+                        "trakt": 548920,
+                        "slug": "christopher-newman",
+                        "imdb": "nm0628040",
+                        "tmdb": 1467116,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Carolyn Strauss",
+                    "ids": {
+                        "trakt": 1124583,
+                        "slug": "carolyn-strauss-a2099b67-2a28-4694-ac77-354199032eb7",
+                        "imdb": "nm1865467",
+                        "tmdb": 1223797,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Co-Producer, Producer",
+                "jobs": [
+                    "Co-Producer",
+                    "Producer"
+                ],
+                "episode_count": 63,
+                "person": {
+                    "name": "Greg Spence",
+                    "ids": {
+                        "trakt": 42209,
+                        "slug": "greg-spence",
+                        "imdb": "nm0817770",
+                        "tmdb": 56746,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Line Producer, Producer",
+                "jobs": [
+                    "Line Producer",
+                    "Producer"
+                ],
+                "episode_count": 63,
+                "person": {
+                    "name": "Lisa McAtackney",
+                    "ids": {
+                        "trakt": 966497,
+                        "slug": "lisa-mcatackney",
+                        "imdb": null,
+                        "tmdb": 1878409,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Co-Executive Producer, Co-Producer, Producer, Supervising Producer",
+                "jobs": [
+                    "Co-Executive Producer",
+                    "Co-Producer",
+                    "Producer",
+                    "Supervising Producer"
+                ],
+                "episode_count": 43,
+                "person": {
+                    "name": "Bryan Cogman",
+                    "ids": {
+                        "trakt": 1188399,
+                        "slug": "bryan-cogman",
+                        "imdb": "nm2643685",
+                        "tmdb": 1223784,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Producer",
+                "jobs": [
+                    "Producer"
+                ],
+                "episode_count": 40,
+                "person": {
+                    "name": "Mark Huffam",
+                    "ids": {
+                        "trakt": 6374,
+                        "slug": "mark-huffam",
+                        "imdb": "nm0400240",
+                        "tmdb": 8401,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Producer",
+                "jobs": [
+                    "Producer"
+                ],
+                "episode_count": 40,
+                "person": {
+                    "name": "Ralph Vicinanza",
+                    "ids": {
+                        "trakt": 39396,
+                        "slug": "ralph-vicinanza",
+                        "imdb": "nm2088223",
+                        "tmdb": 54269,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Co-Executive Producer",
+                "jobs": [
+                    "Co-Executive Producer"
+                ],
+                "episode_count": 20,
+                "person": {
+                    "name": "Vanessa Taylor",
+                    "ids": {
+                        "trakt": 200459,
+                        "slug": "vanessa-taylor",
+                        "imdb": "nm0961827",
+                        "tmdb": 176489,
+                        "tvrage": 8043
+                    }
+                }
+            },
+            {
+                "job": "Co-Producer",
+                "jobs": [
+                    "Co-Producer"
+                ],
+                "episode_count": 18,
+                "person": {
+                    "name": "Oliver Butler",
+                    "ids": {
+                        "trakt": 966496,
+                        "slug": "oliver-butler",
+                        "imdb": null,
+                        "tmdb": 1878405,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Co-Executive Producer",
+                "jobs": [
+                    "Co-Executive Producer"
+                ],
+                "episode_count": 10,
+                "person": {
+                    "name": "Alan Taylor",
+                    "ids": {
+                        "trakt": 424278,
+                        "slug": "alan-taylor-d74566bb-dc5b-4254-86c9-dc0483684a9e",
+                        "imdb": "nm0851930",
+                        "tmdb": 47005,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Line Producer",
+                "jobs": [
+                    "Line Producer"
+                ],
+                "episode_count": 10,
+                "person": {
+                    "name": "Peter Welter Soler",
+                    "ids": {
+                        "trakt": 548921,
+                        "slug": "peter-welter-soler",
+                        "imdb": "nm1466754",
+                        "tmdb": 1467117,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "David Nutter",
+                    "ids": {
+                        "trakt": 43286,
+                        "slug": "david-nutter",
+                        "imdb": "nm0638354",
+                        "tmdb": 33316,
+                        "tvrage": 373
+                    }
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Miguel Sapochnik",
+                    "ids": {
+                        "trakt": 438600,
+                        "slug": "miguel-sapochnik",
+                        "imdb": "nm0764601",
+                        "tmdb": 114404,
+                        "tvrage": 349527
+                    }
+                }
+            },
+            {
+                "job": "Producer",
+                "jobs": [
+                    "Producer"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Duncan Muggoch",
+                    "ids": {
+                        "trakt": 482469,
+                        "slug": "duncan-muggoch",
+                        "imdb": "nm0611208",
+                        "tmdb": 1406855,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Co-Producer",
+                "jobs": [
+                    "Co-Producer"
+                ],
+                "episode_count": 3,
+                "person": {
+                    "name": "Dave Hill",
+                    "ids": {
+                        "trakt": 1033796,
+                        "slug": "dave-hill-d1b2973c-7311-4fbd-972f-2ba9a518bae8",
+                        "imdb": "nm4984276",
+                        "tmdb": 1575063,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "sound": [
+            {
+                "job": "Original Music Composer",
+                "jobs": [
+                    "Original Music Composer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "Ramin Djawadi",
+                    "ids": {
+                        "trakt": 15629,
+                        "slug": "ramin-djawadi",
+                        "imdb": "nm1014697",
+                        "tmdb": 10851,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Sound Designer",
+                "jobs": [
+                    "Sound Designer"
+                ],
+                "episode_count": 40,
+                "person": {
+                    "name": "Paula Fairfield",
+                    "ids": {
+                        "trakt": 79027,
+                        "slug": "paula-fairfield",
+                        "imdb": "nm0265584",
+                        "tmdb": 85960,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "writing": [
+            {
+                "job": "Novel, Writer",
+                "jobs": [
+                    "Novel",
+                    "Writer"
+                ],
+                "episode_count": 73,
+                "person": {
+                    "name": "George R. R. Martin",
+                    "ids": {
+                        "trakt": 448663,
+                        "slug": "george-r-r-martin-448663",
+                        "imdb": "nm0552333",
+                        "tmdb": 237053,
+                        "tvrage": 79951
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "episode_count": 52,
+                "person": {
+                    "name": "David Benioff",
+                    "ids": {
+                        "trakt": 7779,
+                        "slug": "david-benioff",
+                        "imdb": "nm1125275",
+                        "tmdb": 9813,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "episode_count": 52,
+                "person": {
+                    "name": "D. B. Weiss",
+                    "ids": {
+                        "trakt": 499669,
+                        "slug": "d-b-weiss",
+                        "imdb": "nm1888967",
+                        "tmdb": 228068,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "episode_count": 11,
+                "person": {
+                    "name": "Bryan Cogman",
+                    "ids": {
+                        "trakt": 1188399,
+                        "slug": "bryan-cogman",
+                        "imdb": "nm2643685",
+                        "tmdb": 1223784,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "episode_count": 3,
+                "person": {
+                    "name": "Vanessa Taylor",
+                    "ids": {
+                        "trakt": 200459,
+                        "slug": "vanessa-taylor",
+                        "imdb": "nm0961827",
+                        "tmdb": 176489,
+                        "tvrage": 8043
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "episode_count": 3,
+                "person": {
+                    "name": "Dave Hill",
+                    "ids": {
+                        "trakt": 1033796,
+                        "slug": "dave-hill-d1b2973c-7311-4fbd-972f-2ba9a518bae8",
+                        "imdb": "nm4984276",
+                        "tmdb": 1575063,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Jane Espenson",
+                    "ids": {
+                        "trakt": 432364,
+                        "slug": "jane-espenson",
+                        "imdb": "nm0260870",
+                        "tmdb": 77213,
+                        "tvrage": 11618
+                    }
+                }
+            }
+        ],
+        "visual effects": [
+            {
+                "job": "Visual Effects",
+                "jobs": [
+                    "Visual Effects"
+                ],
+                "episode_count": 10,
+                "person": {
+                    "name": "Jeremy Stewart",
+                    "ids": {
+                        "trakt": 544645,
+                        "slug": "jeremy-stewart",
+                        "imdb": "nm2108603",
+                        "tmdb": 1463785,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Animation",
+                "jobs": [
+                    "Animation"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Ronan Binding",
+                    "ids": {
+                        "trakt": 1735412,
+                        "slug": "ronan-binding",
+                        "imdb": null,
+                        "tmdb": 2553002,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "editing": [
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 20,
+                "person": {
+                    "name": "Katie Weiland",
+                    "ids": {
+                        "trakt": 512706,
+                        "slug": "katie-weiland",
+                        "imdb": null,
+                        "tmdb": 1432055,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 13,
+                "person": {
+                    "name": "Frances Parker",
+                    "ids": {
+                        "trakt": 218673,
+                        "slug": "frances-parker",
+                        "imdb": "nm0662241",
+                        "tmdb": 1204180,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 13,
+                "person": {
+                    "name": "Crispin Green",
+                    "ids": {
+                        "trakt": 23975,
+                        "slug": "crispin-green",
+                        "imdb": "nm0337742",
+                        "tmdb": 30312,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 13,
+                "person": {
+                    "name": "Tim Porter",
+                    "ids": {
+                        "trakt": 512712,
+                        "slug": "tim-porter-c321829b-5cde-45d6-9e6d-cf6ab5d46004",
+                        "imdb": null,
+                        "tmdb": 1432103,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 8,
+                "person": {
+                    "name": "Oral Norrie Ottey",
+                    "ids": {
+                        "trakt": 12960,
+                        "slug": "oral-norrie-ottey",
+                        "imdb": "nm0653205",
+                        "tmdb": 18077,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 3,
+                "person": {
+                    "name": "Martin Nicholson",
+                    "ids": {
+                        "trakt": 66119,
+                        "slug": "martin-nicholson",
+                        "imdb": "nm0629882",
+                        "tmdb": 81827,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Jesse Parker",
+                    "ids": {
+                        "trakt": 780785,
+                        "slug": "jesse-parker",
+                        "imdb": null,
+                        "tmdb": 1736378,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Yan Miles",
+                    "ids": {
+                        "trakt": 855265,
+                        "slug": "yan-miles",
+                        "imdb": null,
+                        "tmdb": 1533583,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "camera": [
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 10,
+                "person": {
+                    "name": "Anette Haellmigk",
+                    "ids": {
+                        "trakt": 512711,
+                        "slug": "anette-haellmigk",
+                        "imdb": "nm0353010",
+                        "tmdb": 1432089,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 9,
+                "person": {
+                    "name": "Jonathan Freeman",
+                    "ids": {
+                        "trakt": 49664,
+                        "slug": "jonathan-freeman",
+                        "imdb": "nm0293456",
+                        "tmdb": 1171528,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 8,
+                "person": {
+                    "name": "Robert McLachlan",
+                    "ids": {
+                        "trakt": 42642,
+                        "slug": "robert-mclachlan",
+                        "imdb": "nm0572123",
+                        "tmdb": 57135,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 8,
+                "person": {
+                    "name": "Fabian Wagner",
+                    "ids": {
+                        "trakt": 384749,
+                        "slug": "fabian-wagner",
+                        "imdb": "nm1234835",
+                        "tmdb": 1345974,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Gregory Middleton",
+                    "ids": {
+                        "trakt": 65054,
+                        "slug": "gregory-middleton",
+                        "imdb": "nm0004545",
+                        "tmdb": 957150,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "David Franco",
+                    "ids": {
+                        "trakt": 17903,
+                        "slug": "david-franco",
+                        "imdb": "nm0290527",
+                        "tmdb": 21222,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 5,
+                "person": {
+                    "name": "P.J. Dillon",
+                    "ids": {
+                        "trakt": 186621,
+                        "slug": "p-j-dillon",
+                        "imdb": "nm0227047",
+                        "tmdb": 443498,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 4,
+                "person": {
+                    "name": "Martin Kenzie",
+                    "ids": {
+                        "trakt": 479271,
+                        "slug": "martin-kenzie",
+                        "imdb": "nm0449027",
+                        "tmdb": 1394783,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 4,
+                "person": {
+                    "name": "Matthew Jensen",
+                    "ids": {
+                        "trakt": 90466,
+                        "slug": "matthew-jensen",
+                        "imdb": "nm0421608",
+                        "tmdb": 94545,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 4,
+                "person": {
+                    "name": "Alik Sakharov",
+                    "ids": {
+                        "trakt": 564397,
+                        "slug": "alik-sakharov",
+                        "imdb": "nm0002399",
+                        "tmdb": 1318704,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 3,
+                "person": {
+                    "name": "Marco Pontecorvo",
+                    "ids": {
+                        "trakt": 44464,
+                        "slug": "marco-pontecorvo",
+                        "imdb": "nm0690602",
+                        "tmdb": 59984,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Kramer Morgenthau",
+                    "ids": {
+                        "trakt": 34948,
+                        "slug": "kramer-morgenthau",
+                        "imdb": "nm0605190",
+                        "tmdb": 50140,
+                        "tvrage": 113684
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Chris Seager",
+                    "ids": {
+                        "trakt": 12959,
+                        "slug": "chris-seager",
+                        "imdb": "nm0003372",
+                        "tmdb": 34004,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "David Katznelson",
+                    "ids": {
+                        "trakt": 23977,
+                        "slug": "david-katznelson",
+                        "imdb": "nm1065667",
+                        "tmdb": 30313,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Sam McCurdy",
+                    "ids": {
+                        "trakt": 43184,
+                        "slug": "sam-mccurdy",
+                        "imdb": "nm0567302",
+                        "tmdb": 57585,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "directing": [
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 9,
+                "person": {
+                    "name": "David Nutter",
+                    "ids": {
+                        "trakt": 43286,
+                        "slug": "david-nutter",
+                        "imdb": "nm0638354",
+                        "tmdb": 33316,
+                        "tvrage": 373
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 7,
+                "person": {
+                    "name": "Alan Taylor",
+                    "ids": {
+                        "trakt": 424278,
+                        "slug": "alan-taylor-d74566bb-dc5b-4254-86c9-dc0483684a9e",
+                        "imdb": "nm0851930",
+                        "tmdb": 47005,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Jeremy Podeswa",
+                    "ids": {
+                        "trakt": 301580,
+                        "slug": "jeremy-podeswa",
+                        "imdb": "nm0687964",
+                        "tmdb": 88391,
+                        "tvrage": 26059
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Alex Graves",
+                    "ids": {
+                        "trakt": 316989,
+                        "slug": "alex-graves",
+                        "imdb": "nm0336241",
+                        "tmdb": 1177777,
+                        "tvrage": 10178
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Miguel Sapochnik",
+                    "ids": {
+                        "trakt": 438600,
+                        "slug": "miguel-sapochnik",
+                        "imdb": "nm0764601",
+                        "tmdb": 114404,
+                        "tvrage": 349527
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 6,
+                "person": {
+                    "name": "Mark Mylod",
+                    "ids": {
+                        "trakt": 423293,
+                        "slug": "mark-mylod",
+                        "imdb": "nm0617042",
+                        "tmdb": 57199,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 5,
+                "person": {
+                    "name": "Daniel Minahan",
+                    "ids": {
+                        "trakt": 77501,
+                        "slug": "daniel-minahan",
+                        "imdb": "nm0590889",
+                        "tmdb": 88743,
+                        "tvrage": 28917
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 4,
+                "person": {
+                    "name": "Michelle MacLaren",
+                    "ids": {
+                        "trakt": 12427,
+                        "slug": "michelle-maclaren",
+                        "imdb": "nm0533713",
+                        "tmdb": 29779,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 4,
+                "person": {
+                    "name": "Alik Sakharov",
+                    "ids": {
+                        "trakt": 564397,
+                        "slug": "alik-sakharov",
+                        "imdb": "nm0002399",
+                        "tmdb": 1318704,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 3,
+                "person": {
+                    "name": "Brian Kirk",
+                    "ids": {
+                        "trakt": 88452,
+                        "slug": "brian-kirk",
+                        "imdb": "nm1047532",
+                        "tmdb": 93223,
+                        "tvrage": 115091
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Michael Slovis",
+                    "ids": {
+                        "trakt": 36125,
+                        "slug": "michael-slovis",
+                        "imdb": "nm0806252",
+                        "tmdb": 52034,
+                        "tvrage": 129175
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Daniel Sackheim",
+                    "ids": {
+                        "trakt": 414782,
+                        "slug": "daniel-sackheim",
+                        "imdb": "nm0755261",
+                        "tmdb": 12632,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Neil Marshall",
+                    "ids": {
+                        "trakt": 423505,
+                        "slug": "neil-marshall",
+                        "imdb": "nm0551076",
+                        "tmdb": 57581,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "David Benioff",
+                    "ids": {
+                        "trakt": 7779,
+                        "slug": "david-benioff",
+                        "imdb": "nm1125275",
+                        "tmdb": 9813,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "First Assistant Director",
+                "jobs": [
+                    "First Assistant Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Mark Taylor",
+                    "ids": {
+                        "trakt": 1219187,
+                        "slug": "mark-taylor-44da8db4-899a-432d-b1d9-d5f1c888b2d2",
+                        "imdb": "nm0852845",
+                        "tmdb": 2074898,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "David Petrarca",
+                    "ids": {
+                        "trakt": 45199,
+                        "slug": "david-petrarca",
+                        "imdb": "nm0007008",
+                        "tmdb": 59584,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Timothy Van Patten",
+                    "ids": {
+                        "trakt": 32659,
+                        "slug": "timothy-van-patten-32659",
+                        "imdb": "nm0887700",
+                        "tmdb": 44797,
+                        "tvrage": 47577
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "D. B. Weiss",
+                    "ids": {
+                        "trakt": 499669,
+                        "slug": "d-b-weiss",
+                        "imdb": "nm1888967",
+                        "tmdb": 228068,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Jack Bender",
+                    "ids": {
+                        "trakt": 426456,
+                        "slug": "jack-bender",
+                        "imdb": "nm0070474",
+                        "tmdb": 28976,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Matt Shakman",
+                    "ids": {
+                        "trakt": 441331,
+                        "slug": "matt-shakman",
+                        "imdb": "nm0787687",
+                        "tmdb": 1212522,
+                        "tvrage": 23982
+                    }
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Stephanie West",
+                    "ids": {
+                        "trakt": 938568,
+                        "slug": "stephanie-west",
+                        "imdb": null,
+                        "tmdb": 1853333,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "crew": [
+            {
+                "job": "Stunts",
+                "jobs": [
+                    "Stunts"
+                ],
+                "episode_count": 2,
+                "person": {
+                    "name": "Cassandra Ebner",
+                    "ids": {
+                        "trakt": 336533,
+                        "slug": "cassandra-ebner",
+                        "imdb": "nm5071850",
+                        "tmdb": 1281629,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Stunts",
+                "jobs": [
+                    "Stunts"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Arnoddur Magnus Danks",
+                    "ids": {
+                        "trakt": 623724,
+                        "slug": "arnoddur-magnus-danks",
+                        "imdb": null,
+                        "tmdb": 1580674,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Special Effects",
+                "jobs": [
+                    "Special Effects"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Alex Landrum Jr.",
+                    "ids": {
+                        "trakt": 945011,
+                        "slug": "alex-landrum-jr",
+                        "imdb": null,
+                        "tmdb": 1858476,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Stunt Coordinator",
+                "jobs": [
+                    "Stunt Coordinator"
+                ],
+                "episode_count": 1,
+                "person": {
+                    "name": "Rowley Irlam",
+                    "ids": {
+                        "trakt": 456953,
+                        "slug": "rowley-irlam",
+                        "imdb": "nm0410034",
+                        "tmdb": 1388878,
+                        "tvrage": null
+                    }
+                }
+            }
+        ]
     }
-  ]
 }
-

@@ -158,4 +158,27 @@ extension TraktManager {
         return performRequest(request: request,
                               completion: completion)
     }
+    
+    // MARK: - People
+    
+    /**
+     ✨ **Extended Info**
+     Returns all `cast` and `crew` for a show, including the `episode_count` for which they appears. Each `cast` member will have a `characters` array and a standard person object.
+     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, `camera`, `visual effects`, `lighting`, and `editing` (if there are people for those crew positions). Each of those members will have a `jobs` array and a standard `person` object.
+     
+     **Guest Stars**
+     
+     If you add `?extended=guest_stars` to the URL, it will return all guest stars that appeared in at least 1 episode of the show.
+     
+     **Note**: This returns a lot of data, so please only use this extended parameter if you actually need it!
+     */
+    @discardableResult
+    public func getPeopleInEpisode<T: CustomStringConvertible>(showID id: T, season: NSNumber, episode: NSNumber, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<TVCastMember, TVCrewMember>>) -> URLSessionDataTaskProtocol? {
+        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/people",
+            withQuery: ["extended": extended.queryString()],
+            isAuthorized: false,
+            withHTTPMethod: .GET) else { return nil }
+        return performRequest(request: request,
+                              completion: completion)
+    }
 }

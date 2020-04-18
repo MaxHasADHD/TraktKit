@@ -247,7 +247,7 @@ internal extension TraktManager {
     
     // MARK: - People
     
-    func getPeople<T: CustomStringConvertible>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTaskProtocol? {
+    func getPeople<T: CustomStringConvertible, Cast: Codable & Hashable, Crew: Codable & Hashable>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<Cast, Crew>>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "\(type)/\(id)/people",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,

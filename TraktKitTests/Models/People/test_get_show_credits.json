@@ -1,36 +1,3748 @@
 {
-  "crew" : {
-    "production" : [
-      {
-        "job" : "Producer",
-        "show" : {
-          "title" : "Breaking Bad",
-          "year" : 2008,
-          "ids" : {
-            "tmdb" : 1396,
-            "slug" : "breaking-bad",
-            "tvdb" : 81189,
-            "trakt" : 1,
-            "imdb" : "tt0903747"
-          }
+    "cast": [
+        {
+            "character": "Silas Herrick",
+            "characters": [
+                "Silas Herrick"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Philip K. Dick's Electric Dreams",
+                "year": 2018,
+                "ids": {
+                    "trakt": 123063,
+                    "slug": "philip-k-dick-s-electric-dreams",
+                    "tvdb": 329083,
+                    "imdb": "tt5711280",
+                    "tmdb": 70391,
+                    "tvrage": null
+                },
+                "overview": "A sci-fi anthology series of epic, ambitious and moving standalone episodes - each set in a different and unique world, inspired by one of Philip K. Dick’s renowned short stories.",
+                "first_aired": "2018-01-12T00:00:00.000Z",
+                "airs": {
+                    "day": "Monday",
+                    "time": null,
+                    "timezone": "Europe/London"
+                },
+                "runtime": 52,
+                "certification": "TV-MA",
+                "country": "gb",
+                "trailer": "http://youtube.com/watch?v=8mLR1IlTeqs",
+                "homepage": "http://www.channel4.com/programmes/electric-dreams",
+                "status": "ended",
+                "rating": 7.37147,
+                "votes": 708,
+                "comment_count": 13,
+                "network": "Channel 4",
+                "updated_at": "2020-04-12T08:19:55.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "ko",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ru",
+                    "sv",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "fantasy",
+                    "science-fiction",
+                    "drama"
+                ],
+                "aired_episodes": 10
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Geeking Out",
+                "year": 2016,
+                "ids": {
+                    "trakt": 109938,
+                    "slug": "geeking-out",
+                    "tvdb": 314564,
+                    "imdb": "tt5460480",
+                    "tmdb": 68010,
+                    "tvrage": null
+                },
+                "overview": "A 30-minute talk show that takes a timely look at pop culture through a fanboy lens and features celebrity interviews, discussion and out-of-the-studio segments.",
+                "first_aired": "2016-07-25T03:00:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "23:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 21,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://www.amc.com/shows/geeking-out",
+                "status": "canceled",
+                "rating": 7.21739,
+                "votes": 23,
+                "comment_count": 0,
+                "network": "AMC",
+                "updated_at": "2020-04-17T08:08:43.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en"
+                ],
+                "genres": [
+                    "talk-show",
+                    "comedy"
+                ],
+                "aired_episodes": 9
+            }
+        },
+        {
+            "character": "Titanium Rex",
+            "characters": [
+                "Titanium Rex"
+            ],
+            "episode_count": 42,
+            "series_regular": true,
+            "show": {
+                "title": "SuperMansion",
+                "year": 2015,
+                "ids": {
+                    "trakt": 101644,
+                    "slug": "supermansion",
+                    "tvdb": 300147,
+                    "imdb": "tt4843640",
+                    "tmdb": 63214,
+                    "tvrage": 48645
+                },
+                "overview": "Aging superhero, Titanium Rex, and his has-been team known as The League of Freedom struggle to stay relevant in a changing world.",
+                "first_aired": "2015-10-08T04:00:00.000Z",
+                "airs": {
+                    "day": "Thursday",
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=faJaL8XMhBM",
+                "homepage": "http://www.crackle.com/c/supermansion",
+                "status": "returning series",
+                "rating": 7.59615,
+                "votes": 52,
+                "comment_count": 1,
+                "network": "MCM",
+                "updated_at": "2020-04-15T08:15:04.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "fr",
+                    "ru"
+                ],
+                "genres": [
+                    "animation",
+                    "comedy",
+                    "superhero"
+                ],
+                "aired_episodes": 42
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "The Late Show with Stephen Colbert",
+                "year": 2015,
+                "ids": {
+                    "trakt": 93737,
+                    "slug": "the-late-show-with-stephen-colbert",
+                    "tvdb": 289574,
+                    "imdb": "tt3697842",
+                    "tmdb": 63770,
+                    "tvrage": 41941
+                },
+                "overview": "Improv actor and comic Stephen Colbert leaves his \"The Colbert Report\" character behind as he makes his long-awaited return to television. As the host of The Late Show franchise redux taped at the historic Ed Sullivan Theatre at New York  Colbert talks to actors, athletes, politicians, comics, artists and musicians as himself for the first time. Loyal fans, however, will also be treated to consistency as Colbert remains backed by many members of his writing and digital team from his former venture. Julliard-trained Jon Batiste serves as the bandleader. ",
+                "first_aired": "2015-09-09T03:30:00.000Z",
+                "airs": {
+                    "day": "Saturday",
+                    "time": "23:30",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=nWufb0qL1xU",
+                "homepage": "http://www.cbs.com/shows/the-late-show-with-stephen-colbert/",
+                "status": "returning series",
+                "rating": 6.96768,
+                "votes": 526,
+                "comment_count": 3,
+                "network": "CBS",
+                "updated_at": "2020-04-18T08:42:07.000Z",
+                "language": "en",
+                "available_translations": [
+                    "da",
+                    "en",
+                    "he",
+                    "ko",
+                    "ro",
+                    "ru"
+                ],
+                "genres": [
+                    "comedy",
+                    "talk-show"
+                ],
+                "aired_episodes": 913
+            }
+        },
+        {
+            "character": "Vince",
+            "characters": [
+                "Vince"
+            ],
+            "episode_count": 10,
+            "series_regular": true,
+            "show": {
+                "title": "Sneaky Pete",
+                "year": 2015,
+                "ids": {
+                    "trakt": 101657,
+                    "slug": "sneaky-pete",
+                    "tvdb": 300166,
+                    "imdb": "tt5011816",
+                    "tmdb": 64199,
+                    "tvrage": null
+                },
+                "overview": "After leaving prison, Marius takes cover from his past by assuming the identity of his cellmate Pete. He moves in with Pete's long-estranged unsuspecting family and is roped into the family's bail bond business. He's a criminal taking down other criminals and, in the process, discovers the family life he never had.",
+                "first_aired": "2015-08-07T04:00:00.000Z",
+                "airs": {
+                    "day": "Friday",
+                    "time": "00:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 50,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=KCM-I4j-Rv4",
+                "homepage": "https://www.amazon.com/dp/B013488XFS",
+                "status": "canceled",
+                "rating": 7.96473,
+                "votes": 1219,
+                "comment_count": 15,
+                "network": "Amazon",
+                "updated_at": "2020-04-07T08:16:10.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "it",
+                    "ko",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ru",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "drama",
+                    "crime"
+                ],
+                "aired_episodes": 30
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Close Up with The Hollywood Reporter",
+                "year": 2015,
+                "ids": {
+                    "trakt": 100048,
+                    "slug": "close-up-with-the-hollywood-reporter",
+                    "tvdb": 297128,
+                    "imdb": "tt4931888",
+                    "tmdb": 63498,
+                    "tvrage": 49761
+                },
+                "overview": "The Hollywood Reporter looks at the awards seasons through the eyes of the nominees. Oscar and Emmy nominees discuss their experiences and process with each other during round-table discussions that include the actors, actresses and producers whose work has been noticed by the academies.",
+                "first_aired": "2015-08-02T14:00:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "10:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": null,
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=N_7ItHW0TsY",
+                "homepage": "http://www.sundance.tv/series/close-up-with-the-hollywood-reporter",
+                "status": "returning series",
+                "rating": 8.5,
+                "votes": 10,
+                "comment_count": 1,
+                "network": "SundanceTV",
+                "updated_at": "2020-04-18T08:33:58.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "ru"
+                ],
+                "genres": [
+                    "talk-show"
+                ],
+                "aired_episodes": 70
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Hot Ones",
+                "year": 2015,
+                "ids": {
+                    "trakt": 118373,
+                    "slug": "hot-ones",
+                    "tvdb": 327172,
+                    "imdb": "tt6556992",
+                    "tmdb": 72649,
+                    "tvrage": null
+                },
+                "overview": "The show with hot questions and even hotter wings. Watch Sean interview celebrities such as T.J. Miller, Tommy Chong, and DJ Khaled as they burn their tastebuds.",
+                "first_aired": "2015-03-12T15:00:00.000Z",
+                "airs": {
+                    "day": "Thursday",
+                    "time": "11:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 25,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://firstwefeast.com/",
+                "status": "returning series",
+                "rating": 8.4186,
+                "votes": 43,
+                "comment_count": 0,
+                "network": "YouTube",
+                "updated_at": "2020-04-17T08:39:25.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en"
+                ],
+                "genres": [
+                    "talk-show"
+                ],
+                "aired_episodes": 180
+            }
+        },
+        {
+            "character": "Richard Sackler",
+            "characters": [
+                "Richard Sackler"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Last Week Tonight with John Oliver",
+                "year": 2014,
+                "ids": {
+                    "trakt": 60267,
+                    "slug": "last-week-tonight-with-john-oliver",
+                    "tvdb": 278518,
+                    "imdb": "tt3530232",
+                    "tmdb": 60694,
+                    "tvrage": 40882
+                },
+                "overview": "Last Week Tonight with John Oliver is an American late-night talk and news satire television program.  \r\nL.W.T draws its comedy and satire from recent news stories, political figures, media organizations, pop culture and often aspects of the show itself.",
+                "first_aired": "2014-04-28T03:00:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "23:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=f0X-8tSgiuA",
+                "homepage": "http://www.hbo.com/last-week-tonight-with-john-oliver",
+                "status": "returning series",
+                "rating": 8.79271,
+                "votes": 4771,
+                "comment_count": 17,
+                "network": "HBO",
+                "updated_at": "2020-04-16T08:33:46.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "da",
+                    "de",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "ko",
+                    "pt",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "comedy",
+                    "talk-show"
+                ],
+                "aired_episodes": 187
+            }
+        },
+        {
+            "character": "Narrator",
+            "characters": [
+                "Narrator"
+            ],
+            "episode_count": 17,
+            "series_regular": true,
+            "show": {
+                "title": "Big History",
+                "year": 2013,
+                "ids": {
+                    "trakt": 60618,
+                    "slug": "big-history",
+                    "tvdb": 274939,
+                    "imdb": "tt3250010",
+                    "tmdb": 61098,
+                    "tvrage": null
+                },
+                "overview": "Each episode of Big History will begin with an iconic topic from the pages of traditional history such as the Great Pyramids, The Titanic or the American Revolution but then will spin into surprising journeys through other fields, weaving together insights and evidence from various disciplines such as astronomy, physics, chemistry, biology, anthropology, history and economics. Spanning 13.7 billion years, Big History will ultimately pull together the puzzle pieces from all 16 half-hour episodes into an epic two-hour finale, creating one grand narrative and revealing the unifying link among all events.",
+                "first_aired": "2013-11-03T02:00:00.000Z",
+                "airs": {
+                    "day": "Saturday",
+                    "time": "22:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": "TV-G",
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://www.history.com/shows/big-history",
+                "status": "ended",
+                "rating": 8.65625,
+                "votes": 32,
+                "comment_count": 0,
+                "network": "H2",
+                "updated_at": "2020-02-25T09:25:15.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "es",
+                    "pt",
+                    "zh"
+                ],
+                "genres": [
+                    "documentary"
+                ],
+                "aired_episodes": 17
+            }
+        },
+        {
+            "character": "Commander Tony Drake",
+            "characters": [
+                "Commander Tony Drake"
+            ],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "Archer",
+                "year": 2009,
+                "ids": {
+                    "trakt": 10234,
+                    "slug": "archer",
+                    "tvdb": 110381,
+                    "imdb": "tt1486217",
+                    "tmdb": 10283,
+                    "tvrage": 23354
+                },
+                "overview": "Archer follows the exploits of eight dysfunctional secret agents of the International Secret Intelligence Service (ISIS), a fictional New York-based intelligence agency. They are : Sterling Archer, the show's narcissistic, womanizing protagonist, Malory Archer, ISIS director and Sterling's snarky, emotionally distant mother, Lana Kane, Sterling's love interest and mother of his infant daughter, and by far the most professional field agent at ISIS, Ray Gillette, the agency's openly gay bomb specialist, Pam Poovey, the head of the agency's Human Resources department who is often ridiculed by her peers, Cyril Figgis, a mild-mannered accountant-turned-agent, Cheryl Tunt, Malory's delusional, psychotic personal assistant and Dr. Algernop Krieger, a bizarre, morally bankrupt scientist with little regard for the well-being of his subjects.",
+                "first_aired": "2009-09-18T02:00:00.000Z",
+                "airs": {
+                    "day": "Wednesday",
+                    "time": "22:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=EB-mWJ7f0_I",
+                "homepage": "http://www.fxnetworks.com/shows/archer",
+                "status": "returning series",
+                "rating": 8.733,
+                "votes": 10116,
+                "comment_count": 34,
+                "network": "FXX",
+                "updated_at": "2020-04-18T08:33:58.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "ja",
+                    "ko",
+                    "lt",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "animation",
+                    "comedy",
+                    "drama",
+                    "action",
+                    "adventure"
+                ],
+                "aired_episodes": 107
+            }
+        },
+        {
+            "character": "Walter White",
+            "characters": [
+                "Walter White"
+            ],
+            "episode_count": 62,
+            "series_regular": true,
+            "show": {
+                "title": "Breaking Bad",
+                "year": 2008,
+                "ids": {
+                    "trakt": 1388,
+                    "slug": "breaking-bad",
+                    "tvdb": 81189,
+                    "imdb": "tt0903747",
+                    "tmdb": 1396,
+                    "tvrage": 18164
+                },
+                "overview": "Walter White, a struggling high school chemistry teacher, is diagnosed with advanced lung cancer. He turns to a life of crime, producing and selling methamphetamine accompanied by a former student, Jesse Pinkman, with the aim of securing his family's financial future before he dies.",
+                "first_aired": "2008-01-21T02:00:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "21:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=XZ8daibM3AE",
+                "homepage": "http://www.amc.com/shows/breaking-bad",
+                "status": "ended",
+                "rating": 9.30175,
+                "votes": 74828,
+                "comment_count": 441,
+                "network": "AMC",
+                "updated_at": "2020-04-18T08:12:46.000Z",
+                "language": "en",
+                "available_translations": [
+                    "ar",
+                    "bg",
+                    "bs",
+                    "ca",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "et",
+                    "fa",
+                    "fi",
+                    "fr",
+                    "he",
+                    "hr",
+                    "hu",
+                    "id",
+                    "it",
+                    "ja",
+                    "ko",
+                    "lt",
+                    "nl",
+                    "no",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sr",
+                    "sv",
+                    "th",
+                    "tr",
+                    "uk",
+                    "vi",
+                    "zh"
+                ],
+                "genres": [
+                    "drama"
+                ],
+                "aired_episodes": 62
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "The Graham Norton Show",
+                "year": 2007,
+                "ids": {
+                    "trakt": 1214,
+                    "slug": "the-graham-norton-show",
+                    "tvdb": 80660,
+                    "imdb": "tt0924651",
+                    "tmdb": 1220,
+                    "tvrage": 15181
+                },
+                "overview": "Each week celebrity guests join Graham Norton to discuss what's being going on around the world that week. The guests poke fun and share their opinions on the main news stories that have happened. Graham is often joined by a band or artist to play the show out with.",
+                "first_aired": "2007-02-22T21:00:00.000Z",
+                "airs": {
+                    "day": "Friday",
+                    "time": "21:00",
+                    "timezone": "Europe/London"
+                },
+                "runtime": 45,
+                "certification": "TV-MA",
+                "country": "gb",
+                "trailer": "http://youtube.com/watch?v=MxmbSyQLrks",
+                "homepage": "http://www.bbc.co.uk/programmes/b006xnzc",
+                "status": "returning series",
+                "rating": 7.95668,
+                "votes": 554,
+                "comment_count": 4,
+                "network": "BBC One",
+                "updated_at": "2020-04-18T08:42:13.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "el",
+                    "en",
+                    "es",
+                    "ko",
+                    "nl",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "uk"
+                ],
+                "genres": [
+                    "talk-show",
+                    "comedy"
+                ],
+                "aired_episodes": 412
+            }
+        },
+        {
+            "character": "Hammond Druthers",
+            "characters": [
+                "Hammond Druthers"
+            ],
+            "episode_count": 3,
+            "series_regular": false,
+            "show": {
+                "title": "How I Met Your Mother",
+                "year": 2005,
+                "ids": {
+                    "trakt": 1095,
+                    "slug": "how-i-met-your-mother",
+                    "tvdb": 75760,
+                    "imdb": "tt0460649",
+                    "tmdb": 1100,
+                    "tvrage": 3918
+                },
+                "overview": "The year is 2030. Ted Mosby is relaying the story of how he met his wife to his daughter and son. The story starts in the year 2005, when then twenty-seven year old architect Ted was spurred on to want to get married after his best friends from his college days at Wesleyan, lawyer Marshall Eriksen, who was his roommate at the time and kindergarten teacher Lily Aldrin, got engaged after nine years of dating each other. Ted's new quest in life was much to the dismay of his womanizing friend, Barney Stinson. But soon after Marshall and Lily's engagement, Ted believed that his life mate was going to be news reporter and aspiring news anchor Robin Scherbatsky, who, despite having had a romantic relationship with her after this time, ended up being who the kids know as their \"Aunt\" Robin. As Ted relays the story to his kids, the constants are that their Uncle Marshall, Aunt Lily, Uncle Barney and Aunt Robin are always in the picture and thus have something to do with how he got together with their mother.",
+                "first_aired": "2005-09-20T00:00:00.000Z",
+                "airs": {
+                    "day": "Monday",
+                    "time": "20:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=apRiP2h-O5o",
+                "homepage": "http://www.cbs.com/shows/how_i_met_your_mother/",
+                "status": "ended",
+                "rating": 8.27497,
+                "votes": 36975,
+                "comment_count": 133,
+                "network": "CBS",
+                "updated_at": "2020-04-18T08:16:10.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fa",
+                    "fi",
+                    "fr",
+                    "he",
+                    "hr",
+                    "hu",
+                    "it",
+                    "ko",
+                    "lt",
+                    "lv",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sr",
+                    "sv",
+                    "tr",
+                    "uk",
+                    "vi",
+                    "zh"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 208
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 3,
+            "series_regular": false,
+            "show": {
+                "title": "American Dad!",
+                "year": 2005,
+                "ids": {
+                    "trakt": 1424,
+                    "slug": "american-dad",
+                    "tvdb": 73141,
+                    "imdb": "tt0397306",
+                    "tmdb": 1433,
+                    "tvrage": 2594
+                },
+                "overview": "C.I.A. Agent Stan Smith is constantly fighting off terrorists who threaten the safety of the USA (sometimes causing more harm than good). His wife Francine is an average house wife with two kids, Hayley, Stan's only daughter, an average rebellious teenager and Steve, Stan's only son, a geek who enjoys Dungeons and Dragons, gaming and comic book conventions. Then there's Roger, the home's illegal (space) alien who the Smith's are keeping protected. Last but not least, there's Klaus, the Smith's wisecracking talking fish (swapped from  his human body years ago by the CIA).",
+                "first_aired": "2005-02-07T03:00:00.000Z",
+                "airs": {
+                    "day": "Monday",
+                    "time": "22:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=apr31MFjg08",
+                "homepage": "http://www.tbs.com/shows/american-dad.html",
+                "status": "returning series",
+                "rating": 7.75767,
+                "votes": 7040,
+                "comment_count": 30,
+                "network": "TBS",
+                "updated_at": "2020-04-18T08:47:16.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fi",
+                    "fr",
+                    "he",
+                    "hr",
+                    "hu",
+                    "it",
+                    "ja",
+                    "ko",
+                    "lb",
+                    "lt",
+                    "nl",
+                    "no",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "tr",
+                    "uk",
+                    "uz",
+                    "zh"
+                ],
+                "genres": [
+                    "animation",
+                    "comedy"
+                ],
+                "aired_episodes": 278
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "The Tony Danza Show",
+                "year": 2004,
+                "ids": {
+                    "trakt": 318,
+                    "slug": "the-tony-danza-show",
+                    "tvdb": 74800,
+                    "imdb": "tt0421470",
+                    "tmdb": 319,
+                    "tvrage": 6248
+                },
+                "overview": "Hosted by one of America's most recognized and likeable television personalities, The Tony Danza Show is an entertaining one-hour talk show produced live daily from New York. Guests will include actors, athletes, news-makers, and real people with interesting stories to tell. Tony will also highlight incredible kids, and get into the kitchen to cook some of his own favorite family recipes.  This show will occasionally extend beyond the studio, as Tony gets up close and personal with people who are making a difference in our culture or just to have a little fun.",
+                "first_aired": "2004-09-13T14:00:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "10:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 0.0,
+                "votes": 0,
+                "comment_count": 0,
+                "network": "Syndication",
+                "updated_at": "2020-03-29T08:34:26.000Z",
+                "language": "en",
+                "available_translations": [
+                    "de",
+                    "en",
+                    "ro",
+                    "ru"
+                ],
+                "genres": [
+                    "talk-show"
+                ],
+                "aired_episodes": 173
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Alf's Hit Talk Show",
+                "year": 2004,
+                "ids": {
+                    "trakt": 10453,
+                    "slug": "alf-s-hit-talk-show",
+                    "tvdb": 215861,
+                    "imdb": "tt0417296",
+                    "tmdb": 10504,
+                    "tvrage": 13376
+                },
+                "overview": "TV's popular alien makes his triumphant return to prime time - this time as host of a television talk show who interviews celebrity guests. Executive Produced by Paul Fusco (\"Alf\") and Burt Dubrow (\"The Tom Green Show,\" \"It's Christopher Lowell,\" \"Jerry Springer\").",
+                "first_aired": "2004-07-07T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 23,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 0.0,
+                "votes": 0,
+                "comment_count": 0,
+                "network": "TV Land",
+                "updated_at": "2020-02-03T08:58:13.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en"
+                ],
+                "genres": [
+                    "comedy",
+                    "talk-show"
+                ],
+                "aired_episodes": 7
+            }
+        },
+        {
+            "character": "Mr. Jamieson (voice)",
+            "characters": [
+                "Mr. Jamieson (voice)"
+            ],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "Lilo & Stitch: The Series",
+                "year": 2003,
+                "ids": {
+                    "trakt": 2341,
+                    "slug": "lilo-stitch-the-series",
+                    "tvdb": 71624,
+                    "imdb": "tt0364774",
+                    "tmdb": 2355,
+                    "tvrage": 4247
+                },
+                "overview": "Picking up where the 2002 Walt Disney movie hit left off, this animated series chronicles the further adventures of renegade scientist Dr. Jumba Jookiba's beloved Experiment 626, who is now living happily as Lilo's alien buddy Stitch. The previous 625 experiments become activated when submerged in water and, like Stitch, each experiment has its own terrible talent. Lilo and Stitch's mission is to catch Stitch's cousins before they fall into the clutches of wrongdoers and redirect them to live productively.",
+                "first_aired": "2003-09-20T09:00:00.000Z",
+                "airs": {
+                    "day": "Thursday",
+                    "time": "05:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": "TV-Y",
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://disneychannel.disney.com/lilo-stitch-the-series",
+                "status": "ended",
+                "rating": 7.23305,
+                "votes": 236,
+                "comment_count": 1,
+                "network": "ABC",
+                "updated_at": "2020-04-09T08:21:46.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "cs",
+                    "de",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "nl",
+                    "pl",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "uk"
+                ],
+                "genres": [
+                    "animation",
+                    "comedy",
+                    "family"
+                ],
+                "aired_episodes": 65
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "Real Time with Bill Maher",
+                "year": 2003,
+                "ids": {
+                    "trakt": 4395,
+                    "slug": "real-time-with-bill-maher",
+                    "tvdb": 72231,
+                    "imdb": "tt0350448",
+                    "tmdb": 4419,
+                    "tvrage": 4950
+                },
+                "overview": "Each week Bill Maher surrounds himself with a panel of guests which include politicians, actors, comedians, musicians and the like to discuss what's going on in the world.",
+                "first_aired": "2003-02-22T03:00:00.000Z",
+                "airs": {
+                    "day": "Friday",
+                    "time": "22:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=6yW-9RE7qVY",
+                "homepage": "http://www.hbo.com/real-time-with-bill-maher",
+                "status": "returning series",
+                "rating": 7.58077,
+                "votes": 1071,
+                "comment_count": 11,
+                "network": "HBO",
+                "updated_at": "2020-04-18T10:39:32.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "en",
+                    "es",
+                    "he",
+                    "ro",
+                    "ru",
+                    "sk"
+                ],
+                "genres": [
+                    "comedy",
+                    "talk-show"
+                ],
+                "aired_episodes": 526
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Jimmy Kimmel Live",
+                "year": 2003,
+                "ids": {
+                    "trakt": 1480,
+                    "slug": "jimmy-kimmel-live",
+                    "tvdb": 71998,
+                    "imdb": "tt0320037",
+                    "tmdb": 1489,
+                    "tvrage": 4055
+                },
+                "overview": "Emmy-winner Jimmy Kimmel serves as host and executive producer of \"Jimmy Kimmel Live,\" ABC Television Network's distinctive late-night talk show. The show features a diverse line up of guests, including celebrities, athletes, comedians and human interest subjects. Along with a light-hearted and recognizable cast of characters, a hip house band and comedy bits in Kimmel's inimitable style, the show additionally offers one of the funniest, freshest monologues on television today. \"Jimmy Kimmel Live\" often features elaborate, innovative stunts - such as having Quentin Tarantino guest-direct an entire episode, or building a state of the art performance stage in the center of Hollywood Boulevard.",
+                "first_aired": "2003-01-27T04:30:00.000Z",
+                "airs": {
+                    "day": "Saturday",
+                    "time": "23:30",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": null,
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=2kqZi3RoA5I",
+                "homepage": "http://abc.go.com/shows/jimmy-kimmel-live",
+                "status": "returning series",
+                "rating": 6.57769,
+                "votes": 251,
+                "comment_count": 1,
+                "network": "ABC",
+                "updated_at": "2020-04-18T08:55:17.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "he",
+                    "ko",
+                    "ro",
+                    "ru"
+                ],
+                "genres": [
+                    "comedy",
+                    "talk-show"
+                ],
+                "aired_episodes": 2146
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Gary & Mike",
+                "year": 2001,
+                "ids": {
+                    "trakt": 10595,
+                    "slug": "gary-mike",
+                    "tvdb": 140891,
+                    "imdb": "tt0264634",
+                    "tmdb": 10646,
+                    "tvrage": 3649
+                },
+                "overview": "This mid-season replacement show was about best friends traveling across the United States on a road trip, accomplishing nothing of importance, and unwittingly destroying hopes, dreams, and personal property. Gary is a fairly normal, good hearted loser while Mike is the fun-loving \"best friend from hell\" with a sex addiction. They meet hookers, mole people, and a scheming murderer, all while a vengeful father pursues them for Mike bedding his daughter.",
+                "first_aired": "2001-01-11T05:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 5.33333,
+                "votes": 3,
+                "comment_count": 0,
+                "network": "Comedy Central",
+                "updated_at": "2020-02-22T08:23:53.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en"
+                ],
+                "genres": [
+                    "animation",
+                    "comedy"
+                ],
+                "aired_episodes": 13
+            }
+        },
+        {
+            "character": "Dr. Templeton",
+            "characters": [
+                "Dr. Templeton"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Curb Your Enthusiasm",
+                "year": 2000,
+                "ids": {
+                    "trakt": 4522,
+                    "slug": "curb-your-enthusiasm",
+                    "tvdb": 76203,
+                    "imdb": "tt0264235",
+                    "tmdb": 4546,
+                    "tvrage": 3188
+                },
+                "overview": "The unscripted Curb Your Enthusiasm brings the off-kilter comic vision of Larry David, who plays himself in a parallel universe in which he can't seem to do anything right, and, by his standards, neither can anyone else.",
+                "first_aired": "2000-10-16T02:30:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "22:30",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=PbPVlCbYVsY",
+                "homepage": "http://www.hbo.com/curb-your-enthusiasm/",
+                "status": "returning series",
+                "rating": 8.66851,
+                "votes": 3261,
+                "comment_count": 18,
+                "network": "HBO",
+                "updated_at": "2020-04-18T08:35:11.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "de",
+                    "en",
+                    "es",
+                    "fi",
+                    "fr",
+                    "he",
+                    "hu",
+                    "lv",
+                    "no",
+                    "pt",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "zh"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 100
+            }
+        },
+        {
+            "character": "Hal",
+            "characters": [
+                "Hal"
+            ],
+            "episode_count": 151,
+            "series_regular": true,
+            "show": {
+                "title": "Malcolm in the Middle",
+                "year": 2000,
+                "ids": {
+                    "trakt": 1991,
+                    "slug": "malcolm-in-the-middle",
+                    "tvdb": 73838,
+                    "imdb": "tt0212671",
+                    "tmdb": 2004,
+                    "tvrage": null
+                },
+                "overview": "A gifted and smart young man tries to navigate life, puberty, and love while trying to survive his often dimwitted, dysfunctional family.",
+                "first_aired": "2000-01-10T00:30:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "19:30",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 25,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=o6gPg-P5FPg",
+                "homepage": null,
+                "status": "ended",
+                "rating": 8.14738,
+                "votes": 4200,
+                "comment_count": 5,
+                "network": "FOX",
+                "updated_at": "2020-04-13T08:14:57.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 151
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 8,
+            "series_regular": false,
+            "show": {
+                "title": "Family Guy",
+                "year": 1999,
+                "ids": {
+                    "trakt": 1425,
+                    "slug": "family-guy",
+                    "tvdb": 75978,
+                    "imdb": "tt0182576",
+                    "tmdb": 1434,
+                    "tvrage": 3506
+                },
+                "overview": "Sick, twisted, politically incorrect and Freakin' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a brilliant but sadistic baby bent on killing his mother and taking over the world), Meg (the oldest, and is the most unpopular girl in town) and Chris (the middle kid, he's not very bright but has a passion for movies). The final member of the family is Brian - a talking dog and much more than a pet, he keeps Stewie in check whilst sipping Martinis and sorting through his own life issues.",
+                "first_aired": "1999-02-01T02:30:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "21:30",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": "TV-MA",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=t3VtKdoPIYE",
+                "homepage": "http://www.fox.com/familyguy/",
+                "status": "returning series",
+                "rating": 8.07878,
+                "votes": 16693,
+                "comment_count": 54,
+                "network": "FOX",
+                "updated_at": "2020-04-18T08:21:09.000Z",
+                "language": "en",
+                "available_translations": [
+                    "ar",
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fa",
+                    "fi",
+                    "fr",
+                    "he",
+                    "hr",
+                    "hu",
+                    "id",
+                    "it",
+                    "ja",
+                    "ka",
+                    "ko",
+                    "lb",
+                    "lt",
+                    "lv",
+                    "nl",
+                    "no",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sr",
+                    "sv",
+                    "tr",
+                    "uk",
+                    "uz",
+                    "zh"
+                ],
+                "genres": [
+                    "animation",
+                    "comedy"
+                ],
+                "aired_episodes": 344
+            }
+        },
+        {
+            "character": "Tim",
+            "characters": [
+                "Tim"
+            ],
+            "episode_count": 4,
+            "series_regular": false,
+            "show": {
+                "title": "The King of Queens",
+                "year": 1998,
+                "ids": {
+                    "trakt": 4214,
+                    "slug": "the-king-of-queens",
+                    "tvdb": 73641,
+                    "imdb": "tt0165581",
+                    "tmdb": 4238,
+                    "tvrage": 5907
+                },
+                "overview": "Three's definitely a crowd for parcel post deliveryman Doug Heffernan (Kevin James), whose newly widowed father-in-law, Arthur (Jerry Stiller), has moved in with him and his wife, Carrie (Leah Remini). Doug's no longer the king of his domain -- the renovated basement that houses his beloved supersized TV set -- let alone the king of Queens, where he lives. Can they all just get along?",
+                "first_aired": "1998-09-22T00:00:00.000Z",
+                "airs": {
+                    "day": "Monday",
+                    "time": "20:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 21,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://www.sonypictures.com/tv/shows/kingofqueens/",
+                "status": "ended",
+                "rating": 7.63167,
+                "votes": 2419,
+                "comment_count": 15,
+                "network": "CBS",
+                "updated_at": "2020-04-17T08:41:02.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fi",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "nl",
+                    "no",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "tr",
+                    "uk"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 207
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 12,
+            "series_regular": true,
+            "show": {
+                "title": "From the Earth to the Moon",
+                "year": 1998,
+                "ids": {
+                    "trakt": 3534,
+                    "slug": "from-the-earth-to-the-moon",
+                    "tvdb": 77831,
+                    "imdb": "tt0120570",
+                    "tmdb": 3556,
+                    "tvrage": null
+                },
+                "overview": "The story of the United States' space program, from its beginnings in 1961 to the final moon mission in 1972.",
+                "first_aired": "1998-04-05T05:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=_3CH_azOMh4",
+                "homepage": "https://www.hbo.com/from-the-earth-to-the-moon",
+                "status": "ended",
+                "rating": 8.56158,
+                "votes": 203,
+                "comment_count": 4,
+                "network": "HBO",
+                "updated_at": "2020-04-18T08:09:25.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "cs",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "ko",
+                    "lv",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "zh"
+                ],
+                "genres": [
+                    "drama",
+                    "action",
+                    "adventure"
+                ],
+                "aired_episodes": 12
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": true,
+            "show": {
+                "title": "Pocket Dragon Adventures",
+                "year": 1998,
+                "ids": {
+                    "trakt": 13675,
+                    "slug": "pocket-dragon-adventures",
+                    "tvdb": 183031,
+                    "imdb": "tt0158854",
+                    "tmdb": 13734,
+                    "tvrage": null
+                },
+                "overview": "Pocket Dragon Adventures was a short-lived 1996 syndicated cartoon series, based on the Pocket Dragon character created by artist Real Musgrave, best known from Pocket Dragons figurines also based on his work. The cartoon was about the Pocket Dragons who live with a kindly old wizard, and their many adventures. The series was produced by BKN Entertainment. The show was also produced by D'Ocon Productions and DIC Entertainment. The show first aired in the late-1990s/early-2000s in syndication in the US and about 50 other countries. The series is still playing in some countries, including just having been sold to Russian television in 2008.\n\nThe show itself was created by Craig Miller and Marv Wolfman, who produced and story edited the series. Together or separately, they wrote over 40% of the total number of episodes. Pocket Dragon Adventures was also the very first animated series signed to a labor contract with the Writers Guild of America.",
+                "first_aired": "1998-01-01T05:00:00.000Z",
+                "airs": {
+                    "day": "Daily",
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 10,
+                "certification": "TV-Y7",
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 6.0,
+                "votes": 1,
+                "comment_count": 0,
+                "network": "FOX",
+                "updated_at": "2020-01-08T11:40:59.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "it",
+                    "sk"
+                ],
+                "genres": [
+                    "animation"
+                ],
+                "aired_episodes": 1
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "Brooklyn South",
+                "year": 1997,
+                "ids": {
+                    "trakt": 15150,
+                    "slug": "brooklyn-south",
+                    "tvdb": 75517,
+                    "imdb": "tt0118275",
+                    "tmdb": 15215,
+                    "tvrage": null
+                },
+                "overview": "An American ensemble police drama series following the life of police officers from the 74th Precinct in southern Brooklyn, New York City.Co-created by Steven Bochco (NYPD Blue) it was the first debut TV program to earn a \"mature\" rating.",
+                "first_aired": "1997-09-22T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": null,
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=is_nxkAbERw",
+                "homepage": null,
+                "status": "ended",
+                "rating": 8.25,
+                "votes": 4,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-02-28T10:29:46.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en"
+                ],
+                "genres": [
+                    "drama"
+                ],
+                "aired_episodes": 22
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "The View",
+                "year": 1997,
+                "ids": {
+                    "trakt": 2208,
+                    "slug": "the-view",
+                    "tvdb": 72104,
+                    "imdb": "tt0123366",
+                    "tmdb": 2221,
+                    "tvrage": null
+                },
+                "overview": "\"The View\", recipient of the 2003 Daytime Emmy® Award for Outstanding Talk Show, is ABC Daytime's morning chatfest, featuring a team of dynamic women of different ages, experiences and backgrounds discussing the most exciting events of the day. The current panel consists of Whoopi Goldberg, Joy Behar, Sunny Hostin, Meghan McCain, and Abby Huntsman",
+                "first_aired": "1997-08-11T15:00:00.000Z",
+                "airs": {
+                    "day": "Saturday",
+                    "time": "11:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 36,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://www.theview.tv/",
+                "status": "returning series",
+                "rating": 5.05556,
+                "votes": 36,
+                "comment_count": 0,
+                "network": "ABC",
+                "updated_at": "2020-04-18T08:50:24.000Z",
+                "language": "en",
+                "available_translations": [
+                    "cs",
+                    "de",
+                    "en",
+                    "he",
+                    "it",
+                    "ko",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "uk"
+                ],
+                "genres": [
+                    "talk-show"
+                ],
+                "aired_episodes": 1876
+            }
+        },
+        {
+            "character": "Witch Lawyer",
+            "characters": [
+                "Witch Lawyer"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Sabrina, the Teenage Witch",
+                "year": 1996,
+                "ids": {
+                    "trakt": 604,
+                    "slug": "sabrina-the-teenage-witch",
+                    "tvdb": 76876,
+                    "imdb": "tt0115341",
+                    "tmdb": 605,
+                    "tvrage": null
+                },
+                "overview": "Based on the Archie comic book series of the same name. The show stars Melissa Joan Hart as Sabrina Spellman, an American teenage half-witch who, on her sixteenth birthday, discovers she has magical powers. She lives with her 600-year-old aunts, European witches Hilda and Zelda, and their magical talking cat Salem in the fictional town of Westbridge, Massachusetts through most of the series.",
+                "first_aired": "1996-09-27T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": "TV-Y",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=LwwSOH6dWUw",
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.31579,
+                "votes": 1311,
+                "comment_count": 6,
+                "network": "The WB",
+                "updated_at": "2020-04-18T08:15:39.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "no",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk"
+                ],
+                "genres": [
+                    "comedy",
+                    "fantasy",
+                    "family",
+                    "science-fiction"
+                ],
+                "aired_episodes": 163
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "The Pretender",
+                "year": 1996,
+                "ids": {
+                    "trakt": 1694,
+                    "slug": "the-pretender",
+                    "tvdb": 70704,
+                    "imdb": "tt0115320",
+                    "tmdb": 1706,
+                    "tvrage": 6107
+                },
+                "overview": "The Pretender is an American television series that aired on NBC from 1996 to 2000. The series starred Michael T. Weiss as Jarod, a genius and former child prodigy with the ability to become anyone he wants to be, i.e., to flawlessly impersonate anyone in virtually any line of work. Patrick Bauchau and Andrea Parker co-starred as Sydney, Jarod's childhood teacher and mentor, and Miss Parker, a childhood friend. They are both operatives for a mysterious organization called \"The Centre\", which took Jarod from his parents as a child and developed his special talents with the intention of making him one of their agents, while also using his brilliant intellect for their own evil purposes. After escaping from their custody, Jarod begins traveling the country, searching for clues to his true identity while posing as a doctor, police officer, attorney, or some other character who helps those in trouble. The Centre's directors are determined to return Jarod to The Centre to further their mysterious plan. A team of operatives, led by Miss Parker, attempts to find and capture The Pretender. Jarod's extreme intelligence combined with his childlike innocence create a memorable and endearing character that was popular with viewers.",
+                "first_aired": "1996-09-19T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 43,
+                "certification": null,
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=70qpAt9fAiM",
+                "homepage": null,
+                "status": "ended",
+                "rating": 8.00449,
+                "votes": 668,
+                "comment_count": 3,
+                "network": "NBC",
+                "updated_at": "2020-04-11T08:38:03.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "de",
+                    "en",
+                    "fr",
+                    "hu",
+                    "lt",
+                    "ru",
+                    "zh"
+                ],
+                "genres": [
+                    "drama",
+                    "mystery",
+                    "science-fiction",
+                    "fantasy"
+                ],
+                "aired_episodes": 86
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Goode Behavior",
+                "year": 1996,
+                "ids": {
+                    "trakt": 9989,
+                    "slug": "goode-behavior",
+                    "tvdb": 70610,
+                    "imdb": "tt0115188",
+                    "tmdb": 10038,
+                    "tvrage": null
+                },
+                "overview": "Goode Behavior is an American sitcom that premiered August 26, 1996 on UPN. The series was cancelled after its first season, airing its last episode on May 19, 1997, for a total of 23 episodes.",
+                "first_aired": "1996-08-26T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 0.0,
+                "votes": 0,
+                "comment_count": 0,
+                "network": "UPN",
+                "updated_at": "2020-02-01T08:43:51.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 23
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 5,
+            "series_regular": true,
+            "show": {
+                "title": "The Louie Show",
+                "year": 1996,
+                "ids": {
+                    "trakt": 29958,
+                    "slug": "the-louie-show",
+                    "tvdb": 75482,
+                    "imdb": "tt0115251",
+                    "tmdb": 30090,
+                    "tvrage": null
+                },
+                "overview": "Welcome to The Louie Show guide at TV Tome. This creative, short-lived sitcom starred Louie Anderson as Louie Lundregen. The topics were what most of basic sitcoms focus on, and it only lasted 6 episodes (one remains unaired). After about a year everyone forgot about this show, and everyone moved on. \r\nThis is Louie's first live-action sitcom, but he also did Life With Louie, which was animated.",
+                "first_aired": "1996-01-31T05:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 0.0,
+                "votes": 0,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-04-03T08:47:58.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "ro"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 5
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "MADtv",
+                "year": 1995,
+                "ids": {
+                    "trakt": 4445,
+                    "slug": "madtv",
+                    "tvdb": 77897,
+                    "imdb": "tt0112056",
+                    "tmdb": 4469,
+                    "tvrage": null
+                },
+                "overview": "Like a demented offspring of Saturday Night Live and In Living Color, sketch comedy series Mad TV mines the world of popular culture for subjects ripe for parody. Based on the comic stylings of Mad magazine, the series satirizes celebrities, music videos, television shows, and more through outrageous sketches, a unique assembly of recurring characters, and the uninhibited zaniness of cast members. MADtv is now currently in its 10th season on FOX. The very talented cast includes Ike Barinholtz, Frank Caliendo, Crista Flanagan, Daniele Gaither, Spencer Kayden, Keegan-Michael Key, Bobby Lee, Michael McDonald, Nicole Parker, Ron Pederson, Jordan Peele, Aries Spears, Paul Vogt, and Stephnie Weir - the largest full cast in MADtv history.",
+                "first_aired": "1995-10-15T01:00:00.000Z",
+                "airs": {
+                    "day": "Tuesday",
+                    "time": "21:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://www.madtv.com/",
+                "status": "ended",
+                "rating": 6.9759,
+                "votes": 83,
+                "comment_count": 0,
+                "network": "The CW",
+                "updated_at": "2020-04-18T08:44:09.000Z",
+                "language": "en",
+                "available_translations": [
+                    "de",
+                    "en",
+                    "ru"
+                ],
+                "genres": [
+                    "animation",
+                    "comedy"
+                ],
+                "aired_episodes": 330
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Brotherly Love",
+                "year": 1995,
+                "ids": {
+                    "trakt": 4418,
+                    "slug": "brotherly-love",
+                    "tvdb": 77662,
+                    "imdb": "tt0111901",
+                    "tmdb": 4442,
+                    "tvrage": 2919
+                },
+                "overview": "Joe Roman has come by his self-reliance naturally. His parents divorced when he was little, and his dad”a race car driver”remarried and focused primarily on his new family with his young wife Claire. Joe spent his childhood on the move with his mother, venturing out on his own when he was just 15.  A year after his father's fatal accident, Joe returns to Philadelphia to collect his share of his Dad's estate, a car customizing business. His reunion with Claire and his half brothers is a little rocky. Despite her best efforts, Claire is struggling to keep the business afloat. Fifteen-year-old Matt, tormented by a number of teen crises both real and imagined, harbors a lot of resentment toward Joe. And Andy, a wildly imaginative seven-year-old, can't quite hide his need for a father figure. It doesn't take long for Joe to realize how much he's needed, so he accepts Claire's offer to move in and work in the family business.  Downstairs in the garage, Joe works alongside",
+                "first_aired": "1995-09-16T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.69697,
+                "votes": 33,
+                "comment_count": 0,
+                "network": "The WB",
+                "updated_at": "2020-03-25T08:33:28.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "it",
+                    "pt"
+                ],
+                "genres": [
+                    "comedy",
+                    "family"
+                ],
+                "aired_episodes": 40
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Touched by an Angel",
+                "year": 1994,
+                "ids": {
+                    "trakt": 2229,
+                    "slug": "touched-by-an-angel",
+                    "tvdb": 73768,
+                    "imdb": "tt0108968",
+                    "tmdb": 2243,
+                    "tvrage": null
+                },
+                "overview": "Tess and Monica  are two angels sent to earth to help people with their problems. Helping them are Andrew and the new angel, Gloria.",
+                "first_aired": "1994-09-22T00:00:00.000Z",
+                "airs": {
+                    "day": "Sunday",
+                    "time": "20:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 48,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.04444,
+                "votes": 90,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-04-18T08:36:18.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "de",
+                    "en",
+                    "es",
+                    "hu",
+                    "it",
+                    "ro",
+                    "ru",
+                    "zh"
+                ],
+                "genres": [
+                    "drama",
+                    "family",
+                    "fantasy",
+                    "science-fiction"
+                ],
+                "aired_episodes": 215
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Chicago Hope",
+                "year": 1994,
+                "ids": {
+                    "trakt": 6428,
+                    "slug": "chicago-hope",
+                    "tvdb": 75544,
+                    "imdb": "tt0108724",
+                    "tmdb": 6467,
+                    "tvrage": null
+                },
+                "overview": "Television medical drama in soap-opera style. Surgeons Jeffrey Geiger and Aaron Shutte battle valiantly for their patients, often coming into conflict with the hospital administration, run by Dr. Phillip Watters. Their cases are usually ethically complex, highly sensationalistic, and very melodramatic. Meanwhile, Jeffrey and Aaron, who are best friends, commiserate about the shambles their tumultuous personal lives have become.... ",
+                "first_aired": "1994-09-18T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.31818,
+                "votes": 66,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-04-14T08:35:32.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bs",
+                    "de",
+                    "en",
+                    "es",
+                    "fr",
+                    "hu",
+                    "it",
+                    "ro",
+                    "ru"
+                ],
+                "genres": [
+                    "drama",
+                    "soap"
+                ],
+                "aired_episodes": 141
+            }
+        },
+        {
+            "character": "Ericsson",
+            "characters": [
+                "Ericsson"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Babylon 5",
+                "year": 1994,
+                "ids": {
+                    "trakt": 3117,
+                    "slug": "babylon-5",
+                    "tvdb": 70726,
+                    "imdb": "tt0105946",
+                    "tmdb": 3137,
+                    "tvrage": 2693
+                },
+                "overview": "Babylon 5 is a five-mile long space station located in neutral space. Built by the Earth Alliance in the 2250s, its goal is to maintain peace among the various alien races by providing a sanctuary where grievances and negotiations can be worked out among duly appointed ambassadors. A council made up of representatives from the five major space-faring civilizations - the Earth Alliance, Minbari Federation, Centauri Republic, Narn Regime, and Vorlon Empire - work with the League of Non-Aligned Worlds to keep interstellar relations under control. Aside from its diplomatic function, Babylon 5 also serves as a military post for Earth and a port of call for travelers, traders, businessmen, criminals, and Rangers. ",
+                "first_aired": "1994-01-27T00:00:00.000Z",
+                "airs": {
+                    "day": "Monday",
+                    "time": "19:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=nQvPx9WsmAw",
+                "homepage": "http://babylon5.warnerbros.com/",
+                "status": "ended",
+                "rating": 8.51984,
+                "votes": 1991,
+                "comment_count": 9,
+                "network": "TNT",
+                "updated_at": "2020-04-14T08:37:04.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "ca",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "pl",
+                    "pt",
+                    "ru",
+                    "sk",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "drama",
+                    "fantasy",
+                    "science-fiction"
+                ],
+                "aired_episodes": 110
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "The X-Files",
+                "year": 1993,
+                "ids": {
+                    "trakt": 4063,
+                    "slug": "the-x-files",
+                    "tvdb": 77398,
+                    "imdb": "tt0106179",
+                    "tmdb": 4087,
+                    "tvrage": 6312
+                },
+                "overview": "`The truth is out there,' and FBI agents Scully and Mulder seek it in this sci-fi phenomenon about their quest to explain the seemingly unexplainable. Their strange cases include UFO sightings, alien abductions and just about anything else paranormal. ",
+                "first_aired": "1993-09-11T00:00:00.000Z",
+                "airs": {
+                    "day": "Wednesday",
+                    "time": "20:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=_HTByz4RlqI",
+                "homepage": "http://www.fox.com/the-x-files",
+                "status": "ended",
+                "rating": 8.63993,
+                "votes": 10359,
+                "comment_count": 41,
+                "network": "FOX",
+                "updated_at": "2020-04-18T08:39:05.000Z",
+                "language": "en",
+                "available_translations": [
+                    "ar",
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fi",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "ja",
+                    "ko",
+                    "lt",
+                    "lv",
+                    "nl",
+                    "no",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "drama",
+                    "mystery",
+                    "fantasy",
+                    "science-fiction"
+                ],
+                "aired_episodes": 218
+            }
+        },
+        {
+            "character": "Snizard, Twin Man",
+            "characters": [
+                "Snizard",
+                "Twin Man"
+            ],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "Power Rangers",
+                "year": 1993,
+                "ids": {
+                    "trakt": 2314,
+                    "slug": "power-rangers-1993",
+                    "tvdb": 72553,
+                    "imdb": "tt0106064",
+                    "tmdb": 2328,
+                    "tvrage": 4877
+                },
+                "overview": "Power Rangers is a long-running American children's television series adapted from the Japanese tokusatsu Super Sentai Series. A team of five high school students are selected by Zordon to battle evil. Using martial arts, special weapons, and gigantic robots called \"Zords\", they protect their city Angel Grove from monsters and witches.",
+                "first_aired": "1993-08-28T12:00:00.000Z",
+                "airs": {
+                    "day": "Saturday",
+                    "time": "08:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": "TV-Y7",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=LBPYbMRWaWA",
+                "homepage": "http://www.powerrangers.com",
+                "status": "returning series",
+                "rating": 6.54801,
+                "votes": 427,
+                "comment_count": 2,
+                "network": "Fox Kids",
+                "updated_at": "2020-04-18T08:43:41.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "co",
+                    "cs",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "id",
+                    "it",
+                    "ko",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sr",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "action",
+                    "adventure",
+                    "fantasy",
+                    "science-fiction",
+                    "superhero"
+                ],
+                "aired_episodes": 906
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Walker, Texas Ranger",
+                "year": 1993,
+                "ids": {
+                    "trakt": 3749,
+                    "slug": "walker-texas-ranger",
+                    "tvdb": 73756,
+                    "imdb": "tt0106168",
+                    "tmdb": 3772,
+                    "tvrage": null
+                },
+                "overview": "Modern-day Texas Ranger, Cordell Walker's independent crime-solving methods have their roots in the rugged traditions of the Old West.\r\n\r\nWalker's closest friend is former Ranger, C.D. Parker, who retired after a knee injury, and now owns \"C.D.'s,\" a Country/Western saloon/restaurant.\r\n\r\nRookie Ranger, James \"Jimmy\" Trivette is an ex-football player who bases his crime-solving methods on reason and uses computers and cellular phones. \r\n\r\nAlex Cahill is the Assistant DA who shares a mutual attraction with Walker, but often disagrees with his unorthodox approach to law enforcement.\r\n",
+                "first_aired": "1993-04-21T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 43,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 6.18341,
+                "votes": 229,
+                "comment_count": 2,
+                "network": "CBS",
+                "updated_at": "2020-04-18T08:16:53.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "hu",
+                    "it",
+                    "lt",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "uk"
+                ],
+                "genres": [
+                    "drama",
+                    "action",
+                    "adventure"
+                ],
+                "aired_episodes": 202
+            }
+        },
+        {
+            "character": "Philip Moses",
+            "characters": [
+                "Philip Moses"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "The Flash",
+                "year": 1990,
+                "ids": {
+                    "trakt": 235,
+                    "slug": "the-flash",
+                    "tvdb": 78650,
+                    "imdb": "tt0098798",
+                    "tmdb": 236,
+                    "tvrage": 5781
+                },
+                "overview": "Central City Police forensic scientist Barry Allen's crime lab is struck by lightning. Allen's electrified body is flung into and shatters a cabinet of chemicals, which are both electrified and forced to interact with each other and with his physiology when they come into physical contact with his body. He soon discovers that the accident has changed his body's metabolism and as a result he has gained the ability to move at superhuman speed. \r\nBarry Allen has become the Flash.",
+                "first_aired": "1990-09-21T00:00:00.000Z",
+                "airs": {
+                    "day": "Tuesday",
+                    "time": "20:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://www.dccomics.com/tv/the-flash-1990-1991",
+                "status": "canceled",
+                "rating": 7.20979,
+                "votes": 429,
+                "comment_count": 5,
+                "network": "CBS",
+                "updated_at": "2020-04-13T08:18:35.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "hu",
+                    "it",
+                    "pt",
+                    "ro",
+                    "ru"
+                ],
+                "genres": [
+                    "drama",
+                    "action",
+                    "crime",
+                    "fantasy",
+                    "adventure",
+                    "science-fiction",
+                    "superhero"
+                ],
+                "aired_episodes": 22
+            }
+        },
+        {
+            "character": "Tom Logan",
+            "characters": [
+                "Tom Logan"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Baywatch",
+                "year": 1989,
+                "ids": {
+                    "trakt": 4362,
+                    "slug": "baywatch",
+                    "tvdb": 70874,
+                    "imdb": "tt0096542",
+                    "tmdb": 4386,
+                    "tvrage": null
+                },
+                "overview": "This long-running series follows the adventures of a team of lifeguards on the crowded beaches of Los Angeles County. Veteran lifeguard Mitch Buchannon watches over the younger lifeguards that come and go with each passing season as they keep the beaches safe for vacationers. Frequently he must take action to save them from the raging seas and from the raging tempers that sometimes flare up between the young guards in this stressful job.",
+                "first_aired": "1989-09-22T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 42,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=V3YE977cSuU",
+                "homepage": "http://www.baywatch.com/",
+                "status": "ended",
+                "rating": 6.05543,
+                "votes": 451,
+                "comment_count": 0,
+                "network": "NBC",
+                "updated_at": "2020-04-12T08:38:41.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "it",
+                    "ko",
+                    "lt",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "drama",
+                    "action",
+                    "adventure"
+                ],
+                "aired_episodes": 242
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 5,
+            "series_regular": false,
+            "show": {
+                "title": "Seinfeld",
+                "year": 1989,
+                "ids": {
+                    "trakt": 1391,
+                    "slug": "seinfeld",
+                    "tvdb": 79169,
+                    "imdb": "tt0098904",
+                    "tmdb": 1400,
+                    "tvrage": 5145
+                },
+                "overview": "Jerry Seinfeld is a very successful stand-up comedian, mainly because the people around him offer an endless supply of great material. His best friend is George Costanza, a bald, whiny loser who craves the kind of success Jerry has but is never willing to do what it takes to get it. Jerry's neighbor Kramer often barges into his apartment and imposes onto his life. In the second episode Jerry's former girlfriend Elaine Benes comes back into his life, and the four of them are able to form a friendship together. The episodes were rarely very plot-heavy, focusing more on mundane conversations and situations that could be found during everyday life in New York.",
+                "first_aired": "1989-07-06T01:00:00.000Z",
+                "airs": {
+                    "day": "Thursday",
+                    "time": "21:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 22,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=SOsbYJ4CfTA",
+                "homepage": "http://www.sonypictures.com/tv/shows/seinfeld/",
+                "status": "ended",
+                "rating": 8.71691,
+                "votes": 9050,
+                "comment_count": 37,
+                "network": "NBC",
+                "updated_at": "2020-04-14T08:19:45.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hr",
+                    "hu",
+                    "it",
+                    "ja",
+                    "ko",
+                    "lt",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "tr",
+                    "uk",
+                    "zh"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 180
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 7,
+            "series_regular": true,
+            "show": {
+                "title": "Raising Miranda",
+                "year": 1988,
+                "ids": {
+                    "trakt": 11569,
+                    "slug": "raising-miranda",
+                    "tvdb": 73775,
+                    "imdb": "tt0094532",
+                    "tmdb": 11622,
+                    "tvrage": 10259
+                },
+                "overview": "After his wife Bonnie leaves, Donald Marshack struggles to raise their teenaged daughter Miranda with occasional help from his friends the Hoodenpyles.",
+                "first_aired": "1988-11-05T05:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 30,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 0.0,
+                "votes": 0,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2019-08-29T20:36:02.000Z",
+                "language": "en",
+                "available_translations": [
+                    "de",
+                    "en"
+                ],
+                "genres": [
+                    "comedy"
+                ],
+                "aired_episodes": 7
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Jake and the Fatman",
+                "year": 1987,
+                "ids": {
+                    "trakt": 4497,
+                    "slug": "jake-and-the-fatman",
+                    "tvdb": 72235,
+                    "imdb": "tt0092381",
+                    "tmdb": 4521,
+                    "tvrage": null
+                },
+                "overview": "District attorney J.L. McCabe strikes down on the crime in Los Angeles together with his special investigator Jake Styles and assistant D.A. Derek Mitchell.",
+                "first_aired": "1987-09-26T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 60,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 6.73171,
+                "votes": 41,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-04-03T08:34:37.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "de",
+                    "en",
+                    "es",
+                    "it",
+                    "ru"
+                ],
+                "genres": [
+                    "drama"
+                ],
+                "aired_episodes": 106
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "L.A. Law",
+                "year": 1986,
+                "ids": {
+                    "trakt": 730,
+                    "slug": "l-a-law",
+                    "tvdb": 72419,
+                    "imdb": "tt0090466",
+                    "tmdb": 732,
+                    "tvrage": 4170
+                },
+                "overview": "On this critically acclaimed drama about a top Los Angeles law firm, some of the best battles take place outside of the courtroom. In the bedroom, in the courtroom, or at McKenzie, Brackman, Chaney & Kuzak's staff meetings, the firm's ambitious, competitive attorneys confront conflict between their own desires, their obligations as attorneys, and their principles as human beings.",
+                "first_aired": "1986-09-15T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.51163,
+                "votes": 43,
+                "comment_count": 0,
+                "network": "NBC",
+                "updated_at": "2020-04-11T08:39:18.000Z",
+                "language": "en",
+                "available_translations": [
+                    "de",
+                    "en",
+                    "es",
+                    "fr",
+                    "it",
+                    "ru"
+                ],
+                "genres": [
+                    "drama"
+                ],
+                "aired_episodes": 171
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Matlock",
+                "year": 1986,
+                "ids": {
+                    "trakt": 2080,
+                    "slug": "matlock",
+                    "tvdb": 73064,
+                    "imdb": "tt0090481",
+                    "tmdb": 2093,
+                    "tvrage": null
+                },
+                "overview": "Ben Matlock is a very expensive criminal defense attorney who charges $100,000 to take a case. Fortunately, he's worth every penny as he and his associates defend his clients by finding the real killer. ",
+                "first_aired": "1986-03-04T01:00:00.000Z",
+                "airs": {
+                    "day": "Thursday",
+                    "time": "20:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.1203,
+                "votes": 133,
+                "comment_count": 1,
+                "network": "NBC",
+                "updated_at": "2020-04-18T08:40:05.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "cs",
+                    "de",
+                    "en",
+                    "ru"
+                ],
+                "genres": [
+                    "drama",
+                    "crime"
+                ],
+                "aired_episodes": 195
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 2,
+            "series_regular": false,
+            "show": {
+                "title": "Murder, She Wrote",
+                "year": 1984,
+                "ids": {
+                    "trakt": 483,
+                    "slug": "murder-she-wrote",
+                    "tvdb": 78049,
+                    "imdb": "tt0086765",
+                    "tmdb": 484,
+                    "tvrage": 4554
+                },
+                "overview": "Murder seems to follow Jessica Fletcher, a former English teacher and a mystery writer full of charm, zest-for-life, and personality; who happens to become \"the investigator\" when traveling around the country to promote a series of novels. Murder always occurs when she is present. Even in Cabot Cove!",
+                "first_aired": "1984-09-30T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 45,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=xq9D_wlTcuw",
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.56808,
+                "votes": 426,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-04-13T08:16:28.000Z",
+                "language": "en",
+                "available_translations": [
+                    "bg",
+                    "bs",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "he",
+                    "hu",
+                    "id",
+                    "it",
+                    "lt",
+                    "pl",
+                    "ro",
+                    "ru",
+                    "sk",
+                    "sv",
+                    "uk"
+                ],
+                "genres": [
+                    "crime",
+                    "drama",
+                    "mystery"
+                ],
+                "aired_episodes": 264
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Cover Up",
+                "year": 1984,
+                "ids": {
+                    "trakt": 4764,
+                    "slug": "cover-up",
+                    "tvdb": 77293,
+                    "imdb": "tt0086690",
+                    "tmdb": 4788,
+                    "tvrage": 1719
+                },
+                "overview": "Dani Reynolds is a fashion photographer who must deal with the revelation that her husband was an undercover CIA agent. After discovering that he was murdered, she recruits Mac Harper, a former Green Beret, to track down her husband's killer. Meanwhile, her husband's old boss offers her a job as a CIA agent where she would pose as a photographer, with Mac as one of her models.",
+                "first_aired": "1984-09-22T04:00:00.000Z",
+                "airs": {
+                    "day": "Saturday",
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 46,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.33333,
+                "votes": 3,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-04-11T08:17:41.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en",
+                    "es",
+                    "nl",
+                    "pl",
+                    "pt"
+                ],
+                "genres": [
+                    "action",
+                    "adventure",
+                    "drama",
+                    "crime"
+                ],
+                "aired_episodes": 22
+            }
+        },
+        {
+            "character": "Robert Hollis",
+            "characters": [
+                "Robert Hollis"
+            ],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Airwolf",
+                "year": 1984,
+                "ids": {
+                    "trakt": 2106,
+                    "slug": "airwolf",
+                    "tvdb": 73200,
+                    "imdb": "tt0086662",
+                    "tmdb": 2119,
+                    "tvrage": null
+                },
+                "overview": "'Airwolf' followed the adventures of a hi-tech helicopter and its reclusive pilot, Stringfellow Hawke. Airwolf itself was a hi-tech attack helicopter, equipped with cutting-edge on-board computer, surveillance and radar systems.",
+                "first_aired": "1984-01-22T05:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 48,
+                "certification": null,
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=_4lM1SPH7p8",
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.47368,
+                "votes": 361,
+                "comment_count": 5,
+                "network": "USA Network",
+                "updated_at": "2020-04-07T08:35:40.000Z",
+                "language": "en",
+                "available_translations": [
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "hu",
+                    "ja",
+                    "pl",
+                    "pt",
+                    "ru",
+                    "tr",
+                    "zh"
+                ],
+                "genres": [
+                    "action",
+                    "adventure",
+                    "fantasy",
+                    "science-fiction"
+                ],
+                "aired_episodes": 80
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Falcon Crest",
+                "year": 1981,
+                "ids": {
+                    "trakt": 92,
+                    "slug": "falcon-crest",
+                    "tvdb": 77109,
+                    "imdb": "tt0081858",
+                    "tmdb": 93,
+                    "tvrage": 3493
+                },
+                "overview": "Set in the vineyards of California, this prime-time soap opera featured the conflict within the powerful Gioberti family, owners of the vast Falcon Crest Winery.",
+                "first_aired": "1981-12-04T05:00:00.000Z",
+                "airs": {
+                    "day": "Friday",
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 50,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": "http://www.falconcrest.org/",
+                "status": "ended",
+                "rating": 6.88462,
+                "votes": 52,
+                "comment_count": 0,
+                "network": "CBS",
+                "updated_at": "2020-04-03T08:35:23.000Z",
+                "language": "en",
+                "available_translations": [
+                    "de",
+                    "en",
+                    "es",
+                    "nl",
+                    "ru"
+                ],
+                "genres": [
+                    "drama",
+                    "soap"
+                ],
+                "aired_episodes": 227
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "Hill Street Blues",
+                "year": 1981,
+                "ids": {
+                    "trakt": 3805,
+                    "slug": "hill-street-blues",
+                    "tvdb": 74449,
+                    "imdb": "tt0081873",
+                    "tmdb": 3828,
+                    "tvrage": 3865
+                },
+                "overview": "This groundbreaking and award-winning NBC crime drama provided a very realistic view into the lives of the dedicated cops and detectives of an urban police station. From January 1981 to August 1986, the show ran on Thursdays at 10/9 Central, with occasional repeats on Saturdays at 10/9 Central.  From August 1986 to August 1987 first-run episodes aired Tuesdays at 10/9 Central.",
+                "first_aired": "1981-01-16T03:00:00.000Z",
+                "airs": {
+                    "day": "Tuesday",
+                    "time": "22:00",
+                    "timezone": "America/New_York"
+                },
+                "runtime": 49,
+                "certification": "TV-14",
+                "country": "us",
+                "trailer": null,
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.93846,
+                "votes": 130,
+                "comment_count": 1,
+                "network": "NBC",
+                "updated_at": "2020-03-24T08:39:37.000Z",
+                "language": "en",
+                "available_translations": [
+                    "de",
+                    "el",
+                    "en",
+                    "es",
+                    "fr",
+                    "it",
+                    "ru",
+                    "sv"
+                ],
+                "genres": [
+                    "drama"
+                ],
+                "aired_episodes": 146
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 1,
+            "series_regular": false,
+            "show": {
+                "title": "CHiPs",
+                "year": 1977,
+                "ids": {
+                    "trakt": 508,
+                    "slug": "chips",
+                    "tvdb": 78270,
+                    "imdb": "tt0075488",
+                    "tmdb": 509,
+                    "tvrage": 3057
+                },
+                "overview": "Lighthearted look at the adventures of two Highway Patrol officers in Los Angeles. The main characters are Jon Baker and Frank Poncherello, two motorcycle officers always on the street to save lives.",
+                "first_aired": "1977-09-15T04:00:00.000Z",
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": 48,
+                "certification": "TV-PG",
+                "country": "us",
+                "trailer": "http://youtube.com/watch?v=PzAJ5P97MsA",
+                "homepage": null,
+                "status": "ended",
+                "rating": 7.33846,
+                "votes": 195,
+                "comment_count": 0,
+                "network": "NBC",
+                "updated_at": "2020-04-12T08:39:26.000Z",
+                "language": "en",
+                "available_translations": [
+                    "de",
+                    "en",
+                    "fr",
+                    "it",
+                    "pt",
+                    "ru"
+                ],
+                "genres": [
+                    "drama",
+                    "action",
+                    "adventure"
+                ],
+                "aired_episodes": 139
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "episode_count": 0,
+            "series_regular": true,
+            "show": {
+                "title": "Your Honor",
+                "year": null,
+                "ids": {
+                    "trakt": 144121,
+                    "slug": "your-honor-144121",
+                    "tvdb": 359579,
+                    "imdb": "tt7440726",
+                    "tmdb": 86430,
+                    "tvrage": null
+                },
+                "overview": "The son of a respected judge is involved in a hit-and-run that leads to a high-stakes game of lies, deceit and impossible choices. A legal thriller that rips through all strata of New Orleans society.",
+                "first_aired": null,
+                "airs": {
+                    "day": null,
+                    "time": null,
+                    "timezone": "America/New_York"
+                },
+                "runtime": null,
+                "certification": null,
+                "country": "us",
+                "trailer": null,
+                "homepage": "https://www.sho.com/your-honor",
+                "status": "planned",
+                "rating": 0.0,
+                "votes": 0,
+                "comment_count": 0,
+                "network": "Showtime",
+                "updated_at": "2020-02-16T08:52:34.000Z",
+                "language": "en",
+                "available_translations": [
+                    "en"
+                ],
+                "genres": [
+                    "drama"
+                ],
+                "aired_episodes": 0
+            }
         }
-      }
-    ]
-  },
-  "cast" : [
-    {
-      "character" : "Walter White",
-      "show" : {
-        "title" : "Breaking Bad",
-        "year" : 2008,
-        "ids" : {
-          "tmdb" : 1396,
-          "slug" : "breaking-bad",
-          "tvdb" : 81189,
-          "trakt" : 1,
-          "imdb" : "tt0903747"
-        }
-      }
+    ],
+    "crew": {
+        "directing": [
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 1,
+                "show": {
+                    "title": "Modern Family",
+                    "year": 2009,
+                    "ids": {
+                        "trakt": 1412,
+                        "slug": "modern-family",
+                        "tvdb": 95011,
+                        "imdb": "tt1442437",
+                        "tmdb": 1421,
+                        "tvrage": 22622
+                    },
+                    "overview": "This mockumentary explores the many different types of a modern family through the stories of a gay couple, comprised of Mitchell and Cameron, and their daughter Lily, a straight couple, comprised of Phil and Claire, and their three kids, Haley, Alex, and Luke, and a multi-ethnic couple, which is comprised of Jay and Gloria, and her son Manny.",
+                    "first_aired": "2009-09-24T01:00:00.000Z",
+                    "airs": {
+                        "day": "Wednesday",
+                        "time": "21:00",
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 25,
+                    "certification": "TV-14",
+                    "country": "us",
+                    "trailer": null,
+                    "homepage": "http://abc.go.com/shows/modern-family",
+                    "status": "ended",
+                    "rating": 8.37838,
+                    "votes": 21243,
+                    "comment_count": 77,
+                    "network": "ABC",
+                    "updated_at": "2020-04-17T08:37:08.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "bg",
+                        "bs",
+                        "cs",
+                        "da",
+                        "de",
+                        "el",
+                        "en",
+                        "es",
+                        "fi",
+                        "fr",
+                        "he",
+                        "hr",
+                        "hu",
+                        "id",
+                        "it",
+                        "ja",
+                        "ko",
+                        "lb",
+                        "lt",
+                        "ms",
+                        "nl",
+                        "pl",
+                        "pt",
+                        "ro",
+                        "ru",
+                        "sk",
+                        "sv",
+                        "th",
+                        "tr",
+                        "uk",
+                        "zh"
+                    ],
+                    "genres": [
+                        "comedy"
+                    ],
+                    "aired_episodes": 250
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 3,
+                "show": {
+                    "title": "Breaking Bad",
+                    "year": 2008,
+                    "ids": {
+                        "trakt": 1388,
+                        "slug": "breaking-bad",
+                        "tvdb": 81189,
+                        "imdb": "tt0903747",
+                        "tmdb": 1396,
+                        "tvrage": 18164
+                    },
+                    "overview": "Walter White, a struggling high school chemistry teacher, is diagnosed with advanced lung cancer. He turns to a life of crime, producing and selling methamphetamine accompanied by a former student, Jesse Pinkman, with the aim of securing his family's financial future before he dies.",
+                    "first_aired": "2008-01-21T02:00:00.000Z",
+                    "airs": {
+                        "day": "Sunday",
+                        "time": "21:00",
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 45,
+                    "certification": "TV-MA",
+                    "country": "us",
+                    "trailer": "http://youtube.com/watch?v=XZ8daibM3AE",
+                    "homepage": "http://www.amc.com/shows/breaking-bad",
+                    "status": "ended",
+                    "rating": 9.30175,
+                    "votes": 74828,
+                    "comment_count": 441,
+                    "network": "AMC",
+                    "updated_at": "2020-04-18T08:12:46.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "ar",
+                        "bg",
+                        "bs",
+                        "ca",
+                        "cs",
+                        "da",
+                        "de",
+                        "el",
+                        "en",
+                        "es",
+                        "et",
+                        "fa",
+                        "fi",
+                        "fr",
+                        "he",
+                        "hr",
+                        "hu",
+                        "id",
+                        "it",
+                        "ja",
+                        "ko",
+                        "lt",
+                        "nl",
+                        "no",
+                        "pl",
+                        "pt",
+                        "ro",
+                        "ru",
+                        "sk",
+                        "sr",
+                        "sv",
+                        "th",
+                        "tr",
+                        "uk",
+                        "vi",
+                        "zh"
+                    ],
+                    "genres": [
+                        "drama"
+                    ],
+                    "aired_episodes": 62
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 1,
+                "show": {
+                    "title": "Big Day",
+                    "year": 2006,
+                    "ids": {
+                        "trakt": 219,
+                        "slug": "big-day",
+                        "tvdb": 79602,
+                        "imdb": "tt0805660",
+                        "tmdb": 220,
+                        "tvrage": 11227
+                    },
+                    "overview": "Everything matters at a wedding, and the smallest imperfections can reverberate throughout the event as if lives actually hang in the balance. Things are about to get even more complicated for Danny and Alice, as their day turns into a season-long roller coaster where nothing goes according to plan.",
+                    "first_aired": "2006-11-29T02:00:00.000Z",
+                    "airs": {
+                        "day": "Tuesday",
+                        "time": "21:00",
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 30,
+                    "certification": "TV-14",
+                    "country": "us",
+                    "trailer": null,
+                    "homepage": null,
+                    "status": "ended",
+                    "rating": 6.5,
+                    "votes": 4,
+                    "comment_count": 0,
+                    "network": "ABC",
+                    "updated_at": "2020-02-21T08:38:46.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "bg",
+                        "en",
+                        "es",
+                        "he",
+                        "ro"
+                    ],
+                    "genres": [
+                        "comedy"
+                    ],
+                    "aired_episodes": 12
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 1,
+                "show": {
+                    "title": "The Office",
+                    "year": 2005,
+                    "ids": {
+                        "trakt": 2302,
+                        "slug": "the-office",
+                        "tvdb": 73244,
+                        "imdb": "tt0386676",
+                        "tmdb": 2316,
+                        "tvrage": 6061
+                    },
+                    "overview": "A fresh and funny mockumentary-style glimpse into the daily interactions of the eccentric workers at the Dunder Mifflin paper supply company. This fast-paced comedy parodies contemporary American water-cooler culture.",
+                    "first_aired": "2005-03-24T05:00:00.000Z",
+                    "airs": {
+                        "day": null,
+                        "time": null,
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 20,
+                    "certification": "TV-14",
+                    "country": "us",
+                    "trailer": "http://youtube.com/watch?v=jz1omRneAGg",
+                    "homepage": "http://www.nbc.com/The_Office/",
+                    "status": "ended",
+                    "rating": 8.69103,
+                    "votes": 14846,
+                    "comment_count": 59,
+                    "network": "NBC",
+                    "updated_at": "2020-04-18T08:11:59.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "bg",
+                        "bs",
+                        "cs",
+                        "da",
+                        "de",
+                        "el",
+                        "en",
+                        "es",
+                        "fi",
+                        "fr",
+                        "he",
+                        "hu",
+                        "it",
+                        "ko",
+                        "lt",
+                        "lv",
+                        "nl",
+                        "no",
+                        "pl",
+                        "pt",
+                        "ro",
+                        "ru",
+                        "sv",
+                        "tr",
+                        "uk",
+                        "zh"
+                    ],
+                    "genres": [
+                        "comedy"
+                    ],
+                    "aired_episodes": 195
+                }
+            },
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "episode_count": 11,
+                "show": {
+                    "title": "Malcolm in the Middle",
+                    "year": 2000,
+                    "ids": {
+                        "trakt": 1991,
+                        "slug": "malcolm-in-the-middle",
+                        "tvdb": 73838,
+                        "imdb": "tt0212671",
+                        "tmdb": 2004,
+                        "tvrage": null
+                    },
+                    "overview": "A gifted and smart young man tries to navigate life, puberty, and love while trying to survive his often dimwitted, dysfunctional family.",
+                    "first_aired": "2000-01-10T00:30:00.000Z",
+                    "airs": {
+                        "day": "Sunday",
+                        "time": "19:30",
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 25,
+                    "certification": "TV-PG",
+                    "country": "us",
+                    "trailer": "http://youtube.com/watch?v=o6gPg-P5FPg",
+                    "homepage": null,
+                    "status": "ended",
+                    "rating": 8.14738,
+                    "votes": 4200,
+                    "comment_count": 5,
+                    "network": "FOX",
+                    "updated_at": "2020-04-13T08:14:57.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "bg",
+                        "bs",
+                        "cs",
+                        "da",
+                        "de",
+                        "en",
+                        "es",
+                        "fr",
+                        "he",
+                        "hu",
+                        "it",
+                        "nl",
+                        "pl",
+                        "pt",
+                        "ro",
+                        "ru",
+                        "sk",
+                        "sv",
+                        "uk",
+                        "zh"
+                    ],
+                    "genres": [
+                        "comedy"
+                    ],
+                    "aired_episodes": 151
+                }
+            }
+        ],
+        "writing": [
+            {
+                "job": "Story",
+                "jobs": [
+                    "Story"
+                ],
+                "episode_count": 1,
+                "show": {
+                    "title": "Sneaky Pete",
+                    "year": 2015,
+                    "ids": {
+                        "trakt": 101657,
+                        "slug": "sneaky-pete",
+                        "tvdb": 300166,
+                        "imdb": "tt5011816",
+                        "tmdb": 64199,
+                        "tvrage": null
+                    },
+                    "overview": "After leaving prison, Marius takes cover from his past by assuming the identity of his cellmate Pete. He moves in with Pete's long-estranged unsuspecting family and is roped into the family's bail bond business. He's a criminal taking down other criminals and, in the process, discovers the family life he never had.",
+                    "first_aired": "2015-08-07T04:00:00.000Z",
+                    "airs": {
+                        "day": "Friday",
+                        "time": "00:00",
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 50,
+                    "certification": "TV-MA",
+                    "country": "us",
+                    "trailer": "http://youtube.com/watch?v=KCM-I4j-Rv4",
+                    "homepage": "https://www.amazon.com/dp/B013488XFS",
+                    "status": "canceled",
+                    "rating": 7.96473,
+                    "votes": 1219,
+                    "comment_count": 15,
+                    "network": "Amazon",
+                    "updated_at": "2020-04-07T08:16:10.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "bg",
+                        "cs",
+                        "da",
+                        "de",
+                        "el",
+                        "en",
+                        "es",
+                        "fr",
+                        "he",
+                        "it",
+                        "ko",
+                        "nl",
+                        "pl",
+                        "pt",
+                        "ru",
+                        "tr",
+                        "uk",
+                        "zh"
+                    ],
+                    "genres": [
+                        "drama",
+                        "crime"
+                    ],
+                    "aired_episodes": 30
+                }
+            }
+        ],
+        "production": [
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 10,
+                "show": {
+                    "title": "Philip K. Dick's Electric Dreams",
+                    "year": 2018,
+                    "ids": {
+                        "trakt": 123063,
+                        "slug": "philip-k-dick-s-electric-dreams",
+                        "tvdb": 329083,
+                        "imdb": "tt5711280",
+                        "tmdb": 70391,
+                        "tvrage": null
+                    },
+                    "overview": "A sci-fi anthology series of epic, ambitious and moving standalone episodes - each set in a different and unique world, inspired by one of Philip K. Dick’s renowned short stories.",
+                    "first_aired": "2018-01-12T00:00:00.000Z",
+                    "airs": {
+                        "day": "Monday",
+                        "time": null,
+                        "timezone": "Europe/London"
+                    },
+                    "runtime": 52,
+                    "certification": "TV-MA",
+                    "country": "gb",
+                    "trailer": "http://youtube.com/watch?v=8mLR1IlTeqs",
+                    "homepage": "http://www.channel4.com/programmes/electric-dreams",
+                    "status": "ended",
+                    "rating": 7.37147,
+                    "votes": 708,
+                    "comment_count": 13,
+                    "network": "Channel 4",
+                    "updated_at": "2020-04-12T08:19:55.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "bg",
+                        "da",
+                        "de",
+                        "el",
+                        "en",
+                        "es",
+                        "fr",
+                        "he",
+                        "hu",
+                        "it",
+                        "ko",
+                        "nl",
+                        "pl",
+                        "pt",
+                        "ru",
+                        "sv",
+                        "tr",
+                        "uk",
+                        "zh"
+                    ],
+                    "genres": [
+                        "fantasy",
+                        "science-fiction",
+                        "drama"
+                    ],
+                    "aired_episodes": 10
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 10,
+                "show": {
+                    "title": "Sneaky Pete",
+                    "year": 2015,
+                    "ids": {
+                        "trakt": 101657,
+                        "slug": "sneaky-pete",
+                        "tvdb": 300166,
+                        "imdb": "tt5011816",
+                        "tmdb": 64199,
+                        "tvrage": null
+                    },
+                    "overview": "After leaving prison, Marius takes cover from his past by assuming the identity of his cellmate Pete. He moves in with Pete's long-estranged unsuspecting family and is roped into the family's bail bond business. He's a criminal taking down other criminals and, in the process, discovers the family life he never had.",
+                    "first_aired": "2015-08-07T04:00:00.000Z",
+                    "airs": {
+                        "day": "Friday",
+                        "time": "00:00",
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 50,
+                    "certification": "TV-MA",
+                    "country": "us",
+                    "trailer": "http://youtube.com/watch?v=KCM-I4j-Rv4",
+                    "homepage": "https://www.amazon.com/dp/B013488XFS",
+                    "status": "canceled",
+                    "rating": 7.96473,
+                    "votes": 1219,
+                    "comment_count": 15,
+                    "network": "Amazon",
+                    "updated_at": "2020-04-07T08:16:10.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "bg",
+                        "cs",
+                        "da",
+                        "de",
+                        "el",
+                        "en",
+                        "es",
+                        "fr",
+                        "he",
+                        "it",
+                        "ko",
+                        "nl",
+                        "pl",
+                        "pt",
+                        "ru",
+                        "tr",
+                        "uk",
+                        "zh"
+                    ],
+                    "genres": [
+                        "drama",
+                        "crime"
+                    ],
+                    "aired_episodes": 30
+                }
+            },
+            {
+                "job": "Producer",
+                "jobs": [
+                    "Producer"
+                ],
+                "episode_count": 62,
+                "show": {
+                    "title": "Breaking Bad",
+                    "year": 2008,
+                    "ids": {
+                        "trakt": 1388,
+                        "slug": "breaking-bad",
+                        "tvdb": 81189,
+                        "imdb": "tt0903747",
+                        "tmdb": 1396,
+                        "tvrage": 18164
+                    },
+                    "overview": "Walter White, a struggling high school chemistry teacher, is diagnosed with advanced lung cancer. He turns to a life of crime, producing and selling methamphetamine accompanied by a former student, Jesse Pinkman, with the aim of securing his family's financial future before he dies.",
+                    "first_aired": "2008-01-21T02:00:00.000Z",
+                    "airs": {
+                        "day": "Sunday",
+                        "time": "21:00",
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": 45,
+                    "certification": "TV-MA",
+                    "country": "us",
+                    "trailer": "http://youtube.com/watch?v=XZ8daibM3AE",
+                    "homepage": "http://www.amc.com/shows/breaking-bad",
+                    "status": "ended",
+                    "rating": 9.30175,
+                    "votes": 74828,
+                    "comment_count": 441,
+                    "network": "AMC",
+                    "updated_at": "2020-04-18T08:12:46.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "ar",
+                        "bg",
+                        "bs",
+                        "ca",
+                        "cs",
+                        "da",
+                        "de",
+                        "el",
+                        "en",
+                        "es",
+                        "et",
+                        "fa",
+                        "fi",
+                        "fr",
+                        "he",
+                        "hr",
+                        "hu",
+                        "id",
+                        "it",
+                        "ja",
+                        "ko",
+                        "lt",
+                        "nl",
+                        "no",
+                        "pl",
+                        "pt",
+                        "ro",
+                        "ru",
+                        "sk",
+                        "sr",
+                        "sv",
+                        "th",
+                        "tr",
+                        "uk",
+                        "vi",
+                        "zh"
+                    ],
+                    "genres": [
+                        "drama"
+                    ],
+                    "aired_episodes": 62
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "episode_count": 0,
+                "show": {
+                    "title": "Your Honor",
+                    "year": null,
+                    "ids": {
+                        "trakt": 144121,
+                        "slug": "your-honor-144121",
+                        "tvdb": 359579,
+                        "imdb": "tt7440726",
+                        "tmdb": 86430,
+                        "tvrage": null
+                    },
+                    "overview": "The son of a respected judge is involved in a hit-and-run that leads to a high-stakes game of lies, deceit and impossible choices. A legal thriller that rips through all strata of New Orleans society.",
+                    "first_aired": null,
+                    "airs": {
+                        "day": null,
+                        "time": null,
+                        "timezone": "America/New_York"
+                    },
+                    "runtime": null,
+                    "certification": null,
+                    "country": "us",
+                    "trailer": null,
+                    "homepage": "https://www.sho.com/your-honor",
+                    "status": "planned",
+                    "rating": 0.0,
+                    "votes": 0,
+                    "comment_count": 0,
+                    "network": "Showtime",
+                    "updated_at": "2020-02-16T08:52:34.000Z",
+                    "language": "en",
+                    "available_translations": [
+                        "en"
+                    ],
+                    "genres": [
+                        "drama"
+                    ],
+                    "aired_episodes": 0
+                }
+            }
+        ]
     }
-  ]
 }

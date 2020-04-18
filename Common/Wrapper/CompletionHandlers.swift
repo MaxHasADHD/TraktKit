@@ -62,7 +62,7 @@ extension TraktManager {
     public typealias DataResultCompletionHandler = (_ result: DataResultType) -> Void
     public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
     public typealias CommentsCompletionHandler = paginatedCompletionHandler<Comment>
-    public typealias CastCrewCompletionHandler = ObjectCompletionHandler<CastAndCrew>
+//    public typealias CastCrewCompletionHandler = ObjectCompletionHandler<CastAndCrew>
     
     public typealias SearchCompletionHandler = ObjectsCompletionHandler<TraktSearchResult>
     public typealias statsCompletionHandler = ObjectCompletionHandler<TraktStats>

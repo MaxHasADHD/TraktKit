@@ -411,6 +411,10 @@
 		A723DA8C1B917EF300CA217C /* TraktKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = A723DA8B1B917EF300CA217C /* TraktKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A723DAAE1B917FE300CA217C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
 		A72B584E1B918044002561A4 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
+		A74C2A21244B1FEB005CAFBE /* ShowCastAndCrew_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A20244B1FEB005CAFBE /* ShowCastAndCrew_Full.json */; };
+		A74C2A23244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A22244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json */; };
+		A74C2A25244B48D3005CAFBE /* test_get_season_cast.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A24244B48D3005CAFBE /* test_get_season_cast.json */; };
+		A74C2A27244B4A39005CAFBE /* test_get_episode_cast.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A26244B4A39005CAFBE /* test_get_episode_cast.json */; };
 		A7582BDD1CCA6FDB00B3CF63 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */; };
 		A7582BDE1CCA6FDB00B3CF63 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */; };
 		A7582BDF1CCA6FDB00B3CF63 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */; };
@@ -684,6 +688,10 @@
 		A723DA891B917EF300CA217C /* TraktKitMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A723DA8B1B917EF300CA217C /* TraktKitMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitMac.h; sourceTree = "<group>"; };
 		A723DA8D1B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A74C2A20244B1FEB005CAFBE /* ShowCastAndCrew_Full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowCastAndCrew_Full.json; sourceTree = "<group>"; };
+		A74C2A22244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowCastAndCrew_GuestStars.json; sourceTree = "<group>"; };
+		A74C2A24244B48D3005CAFBE /* test_get_season_cast.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_season_cast.json; sourceTree = "<group>"; };
+		A74C2A26244B4A39005CAFBE /* test_get_episode_cast.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_episode_cast.json; sourceTree = "<group>"; };
 		A759C3B61D47D3BA00E7F938 /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		A759C3B81D47D49200E7F938 /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInfo.swift; sourceTree = "<group>"; };
@@ -788,6 +796,7 @@
 				7000565E206C944A005319DD /* test_get_season_rating.json */,
 				70005660206C9450005319DD /* test_get_season_stats.json */,
 				70005662206C9456005319DD /* test_get_users_watching_season.json */,
+				A74C2A24244B48D3005CAFBE /* test_get_season_cast.json */,
 			);
 			path = Season;
 			sourceTree = "<group>";
@@ -1022,6 +1031,8 @@
 				70393F481F3F4BE600943D34 /* ShowCollectionProgress.json */,
 				70D9752B206F208F001E3281 /* test_get_wathced_progress.json */,
 				70706ECC1F47001C00117E11 /* ShowCastAndCrew_Min.json */,
+				A74C2A20244B1FEB005CAFBE /* ShowCastAndCrew_Full.json */,
+				A74C2A22244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json */,
 				70D9752D206F209D001E3281 /* test_get_show_ratings.json */,
 				70D9752F206F20AD001E3281 /* test_get_related_shows.json */,
 				70D97531206F20B9001E3281 /* test_get_users_watching_show.json */,
@@ -1097,6 +1108,7 @@
 				70005645206BBD30005319DD /* test_get_users_watching_now.json */,
 				7000564B206BC209005319DD /* test_get_all_episode_translations.json */,
 				7000564D206BC27A005319DD /* test_get_lists_containing_episode.json */,
+				A74C2A26244B4A39005CAFBE /* test_get_episode_cast.json */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -1361,8 +1373,8 @@
 				70D369DC20691E140008B9D7 /* ListsTests.swift */,
 				70B844361EF0DEC7001BA900 /* MovieTests.swift */,
 				70F7E63B1EF2A8290026B8A1 /* PeopleTests.swift */,
-				7000566D206D0126005319DD /* RecommendationsTests.swift */,
 				7000566B206D0113005319DD /* ScrobbleTests.swift */,
+				7000566D206D0126005319DD /* RecommendationsTests.swift */,
 				70005664206CE89B005319DD /* SearchTests.swift */,
 				70E96DAA1EEFE86F00EE34DA /* ShowsTests.swift */,
 				7000564F206BC706005319DD /* SeasonTests.swift */,
@@ -1582,6 +1594,7 @@
 				70AB154220692502002223E0 /* test_get_watched_history.json in Resources */,
 				708834E01F5CAAFD00AB0148 /* test_get_user_watched_movies.json in Resources */,
 				70D369992066DF820008B9D7 /* test_users_who_liked_comment.json in Resources */,
+				A74C2A21244B1FEB005CAFBE /* ShowCastAndCrew_Full.json in Resources */,
 				70F773451F3D4AA50078110E /* test_get_full_profile.json in Resources */,
 				70D369A02066E94F0008B9D7 /* test_get_trending_movies.json in Resources */,
 				70D369C52066FB530008B9D7 /* test_get_movie_stats.json in Resources */,
@@ -1653,6 +1666,7 @@
 				705AD1601F819D7B00AB7C74 /* test_post_custom_list.json in Resources */,
 				70D97530206F20AD001E3281 /* test_get_related_shows.json in Resources */,
 				70D369B52066F5B70008B9D7 /* test_get_movie_aliases.json in Resources */,
+				A74C2A25244B48D3005CAFBE /* test_get_season_cast.json in Resources */,
 				70D369C32066FB480008B9D7 /* test_get_related_movies.json in Resources */,
 				7029D1571EEFFD3000BD926D /* Episode_Min.json in Resources */,
 				70005646206BBD30005319DD /* test_get_users_watching_now.json in Resources */,
@@ -1704,10 +1718,12 @@
 				705A4DD02055BD7400E6ECC0 /* LastEpisodeAired_min.json in Resources */,
 				70D9752E206F209D001E3281 /* test_get_show_ratings.json in Resources */,
 				70F773431F3D4A9A0078110E /* test_get_min_profile.json in Resources */,
+				A74C2A23244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json in Resources */,
 				70AB1534206924C5002223E0 /* test_get_last_activity.json in Resources */,
 				70D369B92066F68F0008B9D7 /* test_get_movie_translations.json in Resources */,
 				70D369BB2066F6A60008B9D7 /* test_get_movie_comments.json in Resources */,
 				702019D120580322002F744E /* test_get_comments_likes.json in Resources */,
+				A74C2A27244B4A39005CAFBE /* test_get_episode_cast.json in Resources */,
 				70D369B72066F6600008B9D7 /* test_get_movie_releases.json in Resources */,
 				70C5D8DC2066C242002E4356 /* test_post_reply_for_comment.json in Resources */,
 				70D369DF20691F310008B9D7 /* test_get_show_credits.json in Resources */,

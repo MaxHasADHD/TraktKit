@@ -466,7 +466,7 @@ class ShowsTests: XCTestCase {
 
     // MARK: - People
 
-    func test_get_show_people() {
+    func test_get_show_people_min() {
         session.nextData = jsonData(named: "ShowCastAndCrew_Min")
 
         let expectation = XCTestExpectation(description: "ShowCastAndCrew")
@@ -474,14 +474,68 @@ class ShowsTests: XCTestCase {
             if case .success(let castAndCrew) = result {
                 XCTAssertNotNil(castAndCrew.cast)
                 XCTAssertNotNil(castAndCrew.producers)
-                XCTAssertEqual(castAndCrew.cast!.count, 27)
-                XCTAssertEqual(castAndCrew.producers!.count, 15)
+                XCTAssertEqual(castAndCrew.cast!.count, 43)
+                XCTAssertEqual(castAndCrew.producers!.count, 24)
+                
+                guard let actor = castAndCrew.cast?.first else { XCTFail("Cast is empty"); return }
+                XCTAssertEqual(actor.person.name, "Emilia Clarke")
+                XCTAssertEqual(actor.characters, ["Daenerys Targaryen"])
             }
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/people?extended=min")
 
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+    
+    func test_get_show_people_full() {
+        session.nextData = jsonData(named: "ShowCastAndCrew_Full")
+        
+        let expectation = XCTestExpectation(description: "ShowCastAndCrew")
+        traktManager.getPeopleInShow(showID: "game-of-thrones", extended: [.Full]) { result in
+            if case .success(let castAndCrew) = result {
+                XCTAssertNotNil(castAndCrew.cast)
+                XCTAssertNotNil(castAndCrew.producers)
+                XCTAssertEqual(castAndCrew.cast!.count, 43)
+                XCTAssertEqual(castAndCrew.producers!.count, 24)
+            }
+            expectation.fulfill()
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/people?extended=full")
+        
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+    
+    func test_get_show_people_guest_stars() {
+        session.nextData = jsonData(named: "ShowCastAndCrew_GuestStars")
+        
+        let expectation = XCTestExpectation(description: "ShowCastAndCrew")
+        traktManager.getPeopleInShow(showID: "game-of-thrones", extended: [.guestStars]) { result in
+            if case .success(let castAndCrew) = result {
+                XCTAssertNotNil(castAndCrew.cast)
+                XCTAssertNotNil(castAndCrew.guestStars)
+                XCTAssertNotNil(castAndCrew.producers)
+                XCTAssertEqual(castAndCrew.cast!.count, 43)
+                XCTAssertEqual(castAndCrew.producers!.count, 24)
+                XCTAssertEqual(castAndCrew.guestStars!.count, 24)
+            }
+            expectation.fulfill()
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/people?extended=guest_stars")
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")

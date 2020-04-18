@@ -74,9 +74,9 @@ class PeopleTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Get movie credits for person")
         traktManager.getMovieCredits(personID: "bryan-cranston", extended: [.Min]) { result in
             if case .success(let movieCredits) = result {
-                XCTAssertEqual(movieCredits.writers?.count, 1)
+                XCTAssertEqual(movieCredits.writers?.count, 2)
                 XCTAssertEqual(movieCredits.directors?.count, 1)
-                XCTAssertEqual(movieCredits.cast?.count, 1)
+                XCTAssertEqual(movieCredits.cast?.count, 69)
                 expectation.fulfill()
             }
         }
@@ -99,8 +99,8 @@ class PeopleTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Get show credits for person")
         traktManager.getShowCredits(personID: "bryan-cranston", extended: [.Min]) { result in
             if case .success(let showCredits) = result {
-                XCTAssertEqual(showCredits.producers?.count, 1)
-                XCTAssertEqual(showCredits.cast?.count, 1)
+                XCTAssertEqual(showCredits.producers?.count, 4)
+                XCTAssertEqual(showCredits.cast?.count, 54)
                 expectation.fulfill()
             }
         }

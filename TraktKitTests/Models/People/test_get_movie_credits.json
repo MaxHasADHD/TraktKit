@@ -1,65 +1,1178 @@
 {
-  "crew" : {
-    "writing" : [
-      {
-        "job" : "Screenplay",
-        "movie" : {
-          "title" : "Godzilla",
-          "year" : 2014,
-          "ids" : {
-            "tmdb" : 124905,
-            "slug" : "godzilla-2014",
-            "trakt" : 24,
-            "imdb" : "tt0831387"
-          }
+    "cast": [
+        {
+            "character": "Mack",
+            "characters": [
+                "Mack"
+            ],
+            "movie": {
+                "title": "The One and Only Ivan",
+                "year": 2020,
+                "ids": {
+                    "trakt": 355809,
+                    "slug": "the-one-and-only-ivan-2020",
+                    "imdb": "tt3661394",
+                    "tmdb": 508570
+                }
+            }
+        },
+        {
+            "character": "Walter White",
+            "characters": [
+                "Walter White"
+            ],
+            "movie": {
+                "title": "El Camino: A Breaking Bad Movie",
+                "year": 2019,
+                "ids": {
+                    "trakt": 410927,
+                    "slug": "el-camino-a-breaking-bad-movie-2019",
+                    "imdb": "tt9243946",
+                    "tmdb": 559969
+                }
+            }
+        },
+        {
+            "character": "Phillip Lacasse",
+            "characters": [
+                "Phillip Lacasse"
+            ],
+            "movie": {
+                "title": "The Upside",
+                "year": 2019,
+                "ids": {
+                    "trakt": 286245,
+                    "slug": "the-upside-2019",
+                    "imdb": "tt1987680",
+                    "tmdb": 440472
+                }
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "movie": {
+                "title": "CinemAbility: The Art of Inclusion",
+                "year": 2018,
+                "ids": {
+                    "trakt": 405267,
+                    "slug": "cinemability-the-art-of-inclusion-2018",
+                    "imdb": "tt8531366",
+                    "tmdb": 554295
+                }
+            }
+        },
+        {
+            "character": "John Steinbeck (voice)",
+            "characters": [
+                "John Steinbeck (voice)"
+            ],
+            "movie": {
+                "title": "Every Act of Life",
+                "year": 2018,
+                "ids": {
+                    "trakt": 360615,
+                    "slug": "every-act-of-life-2018",
+                    "imdb": "tt6259198",
+                    "tmdb": 513146
+                }
+            }
+        },
+        {
+            "character": "Chief (voice)",
+            "characters": [
+                "Chief (voice)"
+            ],
+            "movie": {
+                "title": "Isle of Dogs",
+                "year": 2018,
+                "ids": {
+                    "trakt": 268663,
+                    "slug": "isle-of-dogs-2018",
+                    "imdb": "tt5104604",
+                    "tmdb": 399174
+                }
+            }
+        },
+        {
+            "character": "Silas",
+            "characters": [
+                "Silas"
+            ],
+            "movie": {
+                "title": "Philip K. Dick's Electric Dreams: Human Is",
+                "year": 2018,
+                "ids": {
+                    "trakt": 354611,
+                    "slug": "philip-k-dick-s-electric-dreams-human-is-2018",
+                    "imdb": "tt6810186",
+                    "tmdb": 507254
+                }
+            }
+        },
+        {
+            "character": "Himself (uncredited)",
+            "characters": [
+                "Himself (uncredited)"
+            ],
+            "movie": {
+                "title": "The Disaster Artist",
+                "year": 2017,
+                "ids": {
+                    "trakt": 224277,
+                    "slug": "the-disaster-artist-2017",
+                    "imdb": "tt3521126",
+                    "tmdb": 371638
+                }
+            }
+        },
+        {
+            "character": "Sal Nealon",
+            "characters": [
+                "Sal Nealon"
+            ],
+            "movie": {
+                "title": "Last Flag Flying",
+                "year": 2017,
+                "ids": {
+                    "trakt": 264725,
+                    "slug": "last-flag-flying-2017",
+                    "imdb": "tt6018306",
+                    "tmdb": 419709
+                }
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "movie": {
+                "title": "The Words That Built America",
+                "year": 2017,
+                "ids": {
+                    "trakt": 311833,
+                    "slug": "the-words-that-built-america-2017",
+                    "imdb": "tt7370322",
+                    "tmdb": 464655
+                }
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "movie": {
+                "title": "The Power of the Present",
+                "year": 2017,
+                "ids": {
+                    "trakt": 450735,
+                    "slug": "the-power-of-the-present-2017",
+                    "imdb": null,
+                    "tmdb": 605928
+                }
+            }
+        },
+        {
+            "character": "Howard Wakefield",
+            "characters": [
+                "Howard Wakefield"
+            ],
+            "movie": {
+                "title": "Wakefield",
+                "year": 2017,
+                "ids": {
+                    "trakt": 258813,
+                    "slug": "wakefield-2017",
+                    "imdb": "tt5195412",
+                    "tmdb": 369894
+                }
+            }
+        },
+        {
+            "character": "Zordon",
+            "characters": [
+                "Zordon"
+            ],
+            "movie": {
+                "title": "Power Rangers",
+                "year": 2017,
+                "ids": {
+                    "trakt": 194894,
+                    "slug": "power-rangers-2017",
+                    "imdb": "tt3717490",
+                    "tmdb": 305470
+                }
+            }
+        },
+        {
+            "character": "Sheriff",
+            "characters": [
+                "Sheriff"
+            ],
+            "movie": {
+                "title": "In Dubious Battle",
+                "year": 2017,
+                "ids": {
+                    "trakt": 218424,
+                    "slug": "in-dubious-battle-2017",
+                    "imdb": "tt4411618",
+                    "tmdb": 337844
+                }
+            }
+        },
+        {
+            "character": "Ned Fleming",
+            "characters": [
+                "Ned Fleming"
+            ],
+            "movie": {
+                "title": "Why Him?",
+                "year": 2016,
+                "ids": {
+                    "trakt": 230555,
+                    "slug": "why-him-2016",
+                    "imdb": "tt4501244",
+                    "tmdb": 356305
+                }
+            }
+        },
+        {
+            "character": "Robert Mazur",
+            "characters": [
+                "Robert Mazur"
+            ],
+            "movie": {
+                "title": "The Infiltrator",
+                "year": 2016,
+                "ids": {
+                    "trakt": 214309,
+                    "slug": "the-infiltrator-2016",
+                    "imdb": "tt1355631",
+                    "tmdb": 325789
+                }
+            }
+        },
+        {
+            "character": "Lyndon B. Johnson",
+            "characters": [
+                "Lyndon B. Johnson"
+            ],
+            "movie": {
+                "title": "All the Way",
+                "year": 2016,
+                "ids": {
+                    "trakt": 231247,
+                    "slug": "all-the-way-2016",
+                    "imdb": "tt3791216",
+                    "tmdb": 347123
+                }
+            }
+        },
+        {
+            "character": "Roger Davis",
+            "characters": [
+                "Roger Davis"
+            ],
+            "movie": {
+                "title": "Get a Job",
+                "year": 2016,
+                "ids": {
+                    "trakt": 116989,
+                    "slug": "get-a-job-2016",
+                    "imdb": "tt1468846",
+                    "tmdb": 186759
+                }
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "movie": {
+                "title": "Journey to the Oscars",
+                "year": 2016,
+                "ids": {
+                    "trakt": 234515,
+                    "slug": "journey-to-the-oscars-2016",
+                    "imdb": "tt5501988",
+                    "tmdb": 381947
+                }
+            }
+        },
+        {
+            "character": "Li (voice)",
+            "characters": [
+                "Li (voice)"
+            ],
+            "movie": {
+                "title": "Kung Fu Panda 3",
+                "year": 2016,
+                "ids": {
+                    "trakt": 93870,
+                    "slug": "kung-fu-panda-3-2016",
+                    "imdb": "tt2267968",
+                    "tmdb": 140300
+                }
+            }
+        },
+        {
+            "character": "Dalton Trumbo",
+            "characters": [
+                "Dalton Trumbo"
+            ],
+            "movie": {
+                "title": "Trumbo",
+                "year": 2015,
+                "ids": {
+                    "trakt": 190767,
+                    "slug": "trumbo-2015",
+                    "imdb": "tt3203606",
+                    "tmdb": 294016
+                }
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "movie": {
+                "title": "The Concert for Valor",
+                "year": 2014,
+                "ids": {
+                    "trakt": 195430,
+                    "slug": "the-concert-for-valor-2014",
+                    "imdb": "tt4083124",
+                    "tmdb": 315085
+                }
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "movie": {
+                "title": "Godzilla: Force of Nature",
+                "year": 2014,
+                "ids": {
+                    "trakt": 441502,
+                    "slug": "godzilla-force-of-nature-2014",
+                    "imdb": "tt4052432",
+                    "tmdb": 595645
+                }
+            }
+        },
+        {
+            "character": "Joe Brody",
+            "characters": [
+                "Joe Brody"
+            ],
+            "movie": {
+                "title": "Godzilla",
+                "year": 2014,
+                "ids": {
+                    "trakt": 85943,
+                    "slug": "godzilla-2014",
+                    "imdb": "tt0831387",
+                    "tmdb": 124905
+                }
+            }
+        },
+        {
+            "character": "Himself",
+            "characters": [
+                "Himself"
+            ],
+            "movie": {
+                "title": "David Blaine: Real or Magic",
+                "year": 2013,
+                "ids": {
+                    "trakt": 145562,
+                    "slug": "david-blaine-real-or-magic-2013",
+                    "imdb": "tt3345310",
+                    "tmdb": 238466
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Writer's Block",
+                "year": 2013,
+                "ids": {
+                    "trakt": 143735,
+                    "slug": "writer-s-block-2013",
+                    "imdb": "tt2760792",
+                    "tmdb": 235588
+                }
+            }
+        },
+        {
+            "character": "Topo",
+            "characters": [
+                "Topo"
+            ],
+            "movie": {
+                "title": "Cold Comes the Night",
+                "year": 2013,
+                "ids": {
+                    "trakt": 130109,
+                    "slug": "cold-comes-the-night-2013",
+                    "imdb": "tt2511428",
+                    "tmdb": 210047
+                }
+            }
+        },
+        {
+            "character": "Titanium Rex",
+            "characters": [
+                "Titanium Rex"
+            ],
+            "movie": {
+                "title": "Übermansion",
+                "year": 2013,
+                "ids": {
+                    "trakt": 478066,
+                    "slug": "ubermansion-2013",
+                    "imdb": "tt3148316",
+                    "tmdb": 639275
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Seth Rogen = Worst Person in the World",
+                "year": 2013,
+                "ids": {
+                    "trakt": 214058,
+                    "slug": "seth-rogen-worst-person-in-the-world-2013",
+                    "imdb": "tt2836520",
+                    "tmdb": 333118
+                }
+            }
+        },
+        {
+            "character": "Jack O'Donnell",
+            "characters": [
+                "Jack O'Donnell"
+            ],
+            "movie": {
+                "title": "Argo",
+                "year": 2012,
+                "ids": {
+                    "trakt": 50144,
+                    "slug": "argo-2012",
+                    "imdb": "tt1024648",
+                    "tmdb": 68734
+                }
+            }
+        },
+        {
+            "character": "Cohaagen",
+            "characters": [
+                "Cohaagen"
+            ],
+            "movie": {
+                "title": "Total Recall",
+                "year": 2012,
+                "ids": {
+                    "trakt": 46685,
+                    "slug": "total-recall-2012",
+                    "imdb": "tt1386703",
+                    "tmdb": 64635
+                }
+            }
+        },
+        {
+            "character": "Mayor Mike Whitmore",
+            "characters": [
+                "Mayor Mike Whitmore"
+            ],
+            "movie": {
+                "title": "Rock of Ages",
+                "year": 2012,
+                "ids": {
+                    "trakt": 60021,
+                    "slug": "rock-of-ages-2012",
+                    "imdb": "tt1336608",
+                    "tmdb": 80585
+                }
+            }
+        },
+        {
+            "character": "Vitaly (voice)",
+            "characters": [
+                "Vitaly (voice)"
+            ],
+            "movie": {
+                "title": "Madagascar 3: Europe's Most Wanted",
+                "year": 2012,
+                "ids": {
+                    "trakt": 59799,
+                    "slug": "madagascar-3-europe-s-most-wanted-2012",
+                    "imdb": "tt1277953",
+                    "tmdb": 80321
+                }
+            }
+        },
+        {
+            "character": "Powell",
+            "characters": [
+                "Powell"
+            ],
+            "movie": {
+                "title": "John Carter",
+                "year": 2012,
+                "ids": {
+                    "trakt": 34515,
+                    "slug": "john-carter-2012",
+                    "imdb": "tt0401729",
+                    "tmdb": 49529
+                }
+            }
+        },
+        {
+            "character": "Colonel William Mortamus",
+            "characters": [
+                "Colonel William Mortamus"
+            ],
+            "movie": {
+                "title": "Red Tails",
+                "year": 2012,
+                "ids": {
+                    "trakt": 53205,
+                    "slug": "red-tails-2012",
+                    "imdb": "tt0485985",
+                    "tmdb": 72431
+                }
+            }
+        },
+        {
+            "character": "Jim Gordon (voice)",
+            "characters": [
+                "Jim Gordon (voice)"
+            ],
+            "movie": {
+                "title": "Batman: Year One",
+                "year": 2011,
+                "ids": {
+                    "trakt": 50979,
+                    "slug": "batman-year-one-2011",
+                    "imdb": "tt1672723",
+                    "tmdb": 69735
+                }
+            }
+        },
+        {
+            "character": "Shannon",
+            "characters": [
+                "Shannon"
+            ],
+            "movie": {
+                "title": "Drive",
+                "year": 2011,
+                "ids": {
+                    "trakt": 46736,
+                    "slug": "drive-2011",
+                    "imdb": "tt0780504",
+                    "tmdb": 64690
+                }
+            }
+        },
+        {
+            "character": "Lyle Haggerty",
+            "characters": [
+                "Lyle Haggerty"
+            ],
+            "movie": {
+                "title": "Contagion",
+                "year": 2011,
+                "ids": {
+                    "trakt": 25724,
+                    "slug": "contagion-2011",
+                    "imdb": "tt1598778",
+                    "tmdb": 39538
+                }
+            }
+        },
+        {
+            "character": "Dean Tainot",
+            "characters": [
+                "Dean Tainot"
+            ],
+            "movie": {
+                "title": "Larry Crowne",
+                "year": 2011,
+                "ids": {
+                    "trakt": 42811,
+                    "slug": "larry-crowne-2011",
+                    "imdb": "tt1583420",
+                    "tmdb": 59861
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Leave",
+                "year": 2011,
+                "ids": {
+                    "trakt": 91500,
+                    "slug": "leave-2011",
+                    "imdb": "tt1446695",
+                    "tmdb": 135678
+                }
+            }
+        },
+        {
+            "character": "Richard Dearden",
+            "characters": [
+                "Richard Dearden"
+            ],
+            "movie": {
+                "title": "Detachment",
+                "year": 2011,
+                "ids": {
+                    "trakt": 54694,
+                    "slug": "detachment-2011",
+                    "imdb": "tt1683526",
+                    "tmdb": 74308
+                }
+            }
+        },
+        {
+            "character": "Detective Lankford",
+            "characters": [
+                "Detective Lankford"
+            ],
+            "movie": {
+                "title": "The Lincoln Lawyer",
+                "year": 2011,
+                "ids": {
+                    "trakt": 35197,
+                    "slug": "the-lincoln-lawyer-2011",
+                    "imdb": "tt1189340",
+                    "tmdb": 50348
+                }
+            }
+        },
+        {
+            "character": "James Pettis",
+            "characters": [
+                "James Pettis"
+            ],
+            "movie": {
+                "title": "Love Ranch",
+                "year": 2010,
+                "ids": {
+                    "trakt": 26004,
+                    "slug": "love-ranch-2010",
+                    "imdb": "tt1125929",
+                    "tmdb": 39845
+                }
+            }
+        },
+        {
+            "character": "Lucifer",
+            "characters": [
+                "Lucifer"
+            ],
+            "movie": {
+                "title": "Fallen 3 - The Destiny",
+                "year": 2008,
+                "ids": {
+                    "trakt": 456942,
+                    "slug": "fallen-3-the-destiny-2008",
+                    "imdb": null,
+                    "tmdb": 613449
+                }
+            }
+        },
+        {
+            "character": "Stan Grossman",
+            "characters": [
+                "Stan Grossman"
+            ],
+            "movie": {
+                "title": "Little Miss Sunshine",
+                "year": 2006,
+                "ids": {
+                    "trakt": 616,
+                    "slug": "little-miss-sunshine-2006",
+                    "imdb": "tt0449059",
+                    "tmdb": 773
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Illusion",
+                "year": 2004,
+                "ids": {
+                    "trakt": 59041,
+                    "slug": "illusion-2004",
+                    "imdb": "tt0290218",
+                    "tmdb": 79463
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Seeing Other People",
+                "year": 2004,
+                "ids": {
+                    "trakt": 20762,
+                    "slug": "seeing-other-people-2004",
+                    "imdb": "tt0362129",
+                    "tmdb": 32298
+                }
+            }
+        },
+        {
+            "character": "Woodrow Snider",
+            "characters": [
+                "Woodrow Snider"
+            ],
+            "movie": {
+                "title": "Holiday Reunion",
+                "year": 2003,
+                "ids": {
+                    "trakt": 11026,
+                    "slug": "holiday-reunion-2003",
+                    "imdb": "tt0374275",
+                    "tmdb": 18038
+                }
+            }
+        },
+        {
+            "character": "Santa Claus (voice)",
+            "characters": [
+                "Santa Claus (voice)"
+            ],
+            "movie": {
+                "title": "The Santa Claus Brothers",
+                "year": 2002,
+                "ids": {
+                    "trakt": 26100,
+                    "slug": "the-santa-claus-brothers-2002",
+                    "imdb": "tt0307410",
+                    "tmdb": 39945
+                }
+            }
+        },
+        {
+            "character": "Nick Wrigley",
+            "characters": [
+                "Nick Wrigley"
+            ],
+            "movie": {
+                "title": "'Twas the Night",
+                "year": 2001,
+                "ids": {
+                    "trakt": 73634,
+                    "slug": "twas-the-night-2001",
+                    "imdb": "tt0282223",
+                    "tmdb": 103014
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Terror Tract",
+                "year": 2001,
+                "ids": {
+                    "trakt": 65958,
+                    "slug": "terror-tract-2001",
+                    "imdb": "tt0211661",
+                    "tmdb": 87867
+                }
+            }
+        },
+        {
+            "character": "lance",
+            "characters": [
+                "lance"
+            ],
+            "movie": {
+                "title": "Last Chance",
+                "year": 1999,
+                "ids": {
+                    "trakt": 169591,
+                    "slug": "last-chance-1999",
+                    "imdb": "tt0183392",
+                    "tmdb": 271612
+                }
+            }
+        },
+        {
+            "character": "War Department Colonel",
+            "characters": [
+                "War Department Colonel"
+            ],
+            "movie": {
+                "title": "Saving Private Ryan",
+                "year": 1998,
+                "ids": {
+                    "trakt": 700,
+                    "slug": "saving-private-ryan-1998",
+                    "imdb": "tt0120815",
+                    "tmdb": 857
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Time Under Fire",
+                "year": 1997,
+                "ids": {
+                    "trakt": 80014,
+                    "slug": "time-under-fire-1997",
+                    "imdb": "tt0117912",
+                    "tmdb": 114322
+                }
+            }
+        },
+        {
+            "character": "Virgil \"Gus\" Grissom",
+            "characters": [
+                "Virgil \"Gus\" Grissom"
+            ],
+            "movie": {
+                "title": "That Thing You Do!",
+                "year": 1996,
+                "ids": {
+                    "trakt": 4867,
+                    "slug": "that-thing-you-do-1996",
+                    "imdb": "tt0117887",
+                    "tmdb": 9591
+                }
+            }
+        },
+        {
+            "character": "Father Brophy",
+            "characters": [
+                "Father Brophy"
+            ],
+            "movie": {
+                "title": "Street Corner Justice",
+                "year": 1996,
+                "ids": {
+                    "trakt": 166715,
+                    "slug": "street-corner-justice-1996",
+                    "imdb": "tt0117761",
+                    "tmdb": 268397
+                }
+            }
+        },
+        {
+            "character": "Patrick Dougherty",
+            "characters": [
+                "Patrick Dougherty"
+            ],
+            "movie": {
+                "title": "The Rockford Files: Punishment and Crime",
+                "year": 1996,
+                "ids": {
+                    "trakt": 135295,
+                    "slug": "the-rockford-files-punishment-and-crime-1996",
+                    "imdb": "tt0117501",
+                    "tmdb": 219732
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Erotique",
+                "year": 1995,
+                "ids": {
+                    "trakt": 32027,
+                    "slug": "erotique-1995",
+                    "imdb": "tt0109742",
+                    "tmdb": 46643
+                }
+            }
+        },
+        {
+            "character": "Alan",
+            "characters": [
+                "Alan"
+            ],
+            "movie": {
+                "title": "The Companion",
+                "year": 1994,
+                "ids": {
+                    "trakt": 152990,
+                    "slug": "the-companion-1994",
+                    "imdb": "tt0109464",
+                    "tmdb": 252316
+                }
+            }
+        },
+        {
+            "character": "Dr. Frank Darden",
+            "characters": [
+                "Dr. Frank Darden"
+            ],
+            "movie": {
+                "title": "Dead Space",
+                "year": 1991,
+                "ids": {
+                    "trakt": 33427,
+                    "slug": "dead-space-1991",
+                    "imdb": "tt0101675",
+                    "tmdb": 48291
+                }
+            }
+        },
+        {
+            "character": "Prof. Harris",
+            "characters": [
+                "Prof. Harris"
+            ],
+            "movie": {
+                "title": "Dead Silence",
+                "year": 1991,
+                "ids": {
+                    "trakt": 350615,
+                    "slug": "dead-silence-1991",
+                    "imdb": "tt0101674",
+                    "tmdb": 370576
+                }
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "movie": {
+                "title": "Corporate Affairs",
+                "year": 1990,
+                "ids": {
+                    "trakt": 177431,
+                    "slug": "corporate-affairs-1990",
+                    "imdb": "tt0099305",
+                    "tmdb": 279930
+                }
+            }
+        },
+        {
+            "character": "Jim",
+            "characters": [
+                "Jim"
+            ],
+            "movie": {
+                "title": "The Big Turnaround",
+                "year": 1988,
+                "ids": {
+                    "trakt": 132662,
+                    "slug": "the-big-turnaround-1988",
+                    "imdb": "tt0204165",
+                    "tmdb": 214736
+                }
+            }
+        },
+        {
+            "character": "Paramedic #1",
+            "characters": [
+                "Paramedic #1"
+            ],
+            "movie": {
+                "title": "Amazon Women on the Moon",
+                "year": 1987,
+                "ids": {
+                    "trakt": 3229,
+                    "slug": "amazon-women-on-the-moon-1987",
+                    "imdb": "tt0092546",
+                    "tmdb": 5709
+                }
+            }
+        },
+        {
+            "character": "Dr. Shepherd",
+            "characters": [
+                "Dr. Shepherd"
+            ],
+            "movie": {
+                "title": "The Return of the Six-Million-Dollar Man and the Bionic Woman",
+                "year": 1987,
+                "ids": {
+                    "trakt": 61350,
+                    "slug": "the-return-of-the-six-million-dollar-man-and-the-bionic-woman-1987",
+                    "imdb": "tt0093853",
+                    "tmdb": 82085
+                }
+            }
+        },
+        {
+            "character": "Quarterback (uncredited)",
+            "characters": [
+                "Quarterback (uncredited)"
+            ],
+            "movie": {
+                "title": "To Race The Wind",
+                "year": 1980,
+                "ids": {
+                    "trakt": 500960,
+                    "slug": "to-race-the-wind-1980",
+                    "imdb": "tt0081638",
+                    "tmdb": 667140
+                }
+            }
+        },
+        {
+            "character": "Tyler",
+            "characters": [
+                "Tyler"
+            ],
+            "movie": {
+                "title": "Sense of Smell",
+                "year": null,
+                "ids": {
+                    "trakt": 323525,
+                    "slug": "sense-of-smell",
+                    "imdb": null,
+                    "tmdb": 476210
+                }
+            }
+        },
+        {
+            "character": "Walter White",
+            "characters": [
+                "Walter White"
+            ],
+            "movie": {
+                "title": "Untitled Breaking Bad Movie",
+                "year": null,
+                "ids": {
+                    "trakt": 410522,
+                    "slug": "untitled-breaking-bad-movie",
+                    "imdb": null,
+                    "tmdb": 560190
+                }
+            }
+        },
+        {
+            "character": "Walter White",
+            "characters": [
+                "Walter White"
+            ],
+            "movie": {
+                "title": "Breaking Bad",
+                "year": null,
+                "ids": {
+                    "trakt": 527510,
+                    "slug": "breaking-bad",
+                    "imdb": "tt0903747",
+                    "tmdb": 682728
+                }
+            }
         }
-      }
     ],
-    "directing" : [
-      {
-        "job" : "Director",
-        "movie" : {
-          "title" : "Godzilla",
-          "year" : 2014,
-          "ids" : {
-            "tmdb" : 124905,
-            "slug" : "godzilla-2014",
-            "trakt" : 24,
-            "imdb" : "tt0831387"
-          }
-        }
-      }
-    ],
-    "producing" : [
-      {
-        "job" : "Producer",
-        "movie" : {
-          "title" : "Godzilla",
-          "year" : 2014,
-          "ids" : {
-            "tmdb" : 124905,
-            "slug" : "godzilla-2014",
-            "trakt" : 24,
-            "imdb" : "tt0831387"
-          }
-        }
-      }
-    ]
-  },
-  "cast" : [
-    {
-      "character" : "Joe Brody",
-      "movie" : {
-        "title" : "Godzilla",
-        "year" : 2014,
-        "ids" : {
-          "tmdb" : 124905,
-          "slug" : "godzilla-2014",
-          "trakt" : 24,
-          "imdb" : "tt0831387"
-        }
-      }
+    "crew": {
+        "writing": [
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "movie": {
+                    "title": "Last Chance",
+                    "year": 1999,
+                    "ids": {
+                        "trakt": 169591,
+                        "slug": "last-chance-1999",
+                        "imdb": "tt0183392",
+                        "tmdb": 271612
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "movie": {
+                    "title": "Breaking Bad",
+                    "year": null,
+                    "ids": {
+                        "trakt": 527510,
+                        "slug": "breaking-bad",
+                        "imdb": "tt0903747",
+                        "tmdb": 682728
+                    }
+                }
+            }
+        ],
+        "directing": [
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "movie": {
+                    "title": "Last Chance",
+                    "year": 1999,
+                    "ids": {
+                        "trakt": 169591,
+                        "slug": "last-chance-1999",
+                        "imdb": "tt0183392",
+                        "tmdb": 271612
+                    }
+                }
+            }
+        ],
+        "production": [
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "movie": {
+                    "title": "The Infiltrator",
+                    "year": 2016,
+                    "ids": {
+                        "trakt": 214309,
+                        "slug": "the-infiltrator-2016",
+                        "imdb": "tt1355631",
+                        "tmdb": 325789
+                    }
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "movie": {
+                    "title": "All the Way",
+                    "year": 2016,
+                    "ids": {
+                        "trakt": 231247,
+                        "slug": "all-the-way-2016",
+                        "imdb": "tt3791216",
+                        "tmdb": 347123
+                    }
+                }
+            }
+        ]
     }
-  ]
 }
-

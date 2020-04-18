@@ -409,9 +409,9 @@ class MovieTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Get movie cast and crew")
         traktManager.getPeopleInMovie(movieID: "tron-legacy-2010") { result in
             if case .success(let castAndCrew) = result {
-                XCTAssertEqual(castAndCrew.writers?.count, 4)
-                XCTAssertEqual(castAndCrew.directors?.count, 1)
-                XCTAssertEqual(castAndCrew.cast?.count, 18)
+                XCTAssertEqual(castAndCrew.writers?.count, 8)
+                XCTAssertEqual(castAndCrew.directors?.count, 2)
+                XCTAssertEqual(castAndCrew.cast?.count, 89)
                 expectation.fulfill()
             }
         }

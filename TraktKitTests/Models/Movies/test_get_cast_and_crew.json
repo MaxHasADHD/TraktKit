@@ -1,538 +1,2655 @@
 {
-  "crew" : {
-    "writing" : [
-      {
-        "job" : "Screenplay",
-        "person" : {
-          "name" : "Adam Horowitz",
-          "ids" : {
-            "tmdb" : 44035,
-            "slug" : "adam-horowitz",
-            "trakt" : 30,
-            "imdb" : ""
-          }
+    "cast": [
+        {
+            "character": "Tony Stark, Iron Man",
+            "characters": [
+                "Tony Stark",
+                "Iron Man"
+            ],
+            "person": {
+                "name": "Robert Downey Jr.",
+                "ids": {
+                    "trakt": 15987,
+                    "slug": "robert-downey-jr",
+                    "imdb": "nm0000375",
+                    "tmdb": 3223,
+                    "tvrage": 10038
+                },
+                "biography": "Robert John Downey Jr. (born April 4, 1965) is an American actor and producer. Downey made his screen debut in 1970, at the age of five, when he appeared in his father's film Pound, and has worked consistently in film and television ever since. He received two Academy Award nominations for his roles in films Chaplin (1992) and Tropic Thunder (2008).",
+                "birthday": "1965-04-04",
+                "death": null,
+                "birthplace": "Manhattan, New York City, New York, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "James \"Rhodey\" Rhodes",
+            "characters": [
+                "James \"Rhodey\" Rhodes"
+            ],
+            "person": {
+                "name": "Terrence Howard",
+                "ids": {
+                    "trakt": 14122,
+                    "slug": "terrence-howard",
+                    "imdb": "nm0005024",
+                    "tmdb": 18288,
+                    "tvrage": 59344
+                },
+                "biography": "Terrence Dashon Howard (born March 11, 1969) is an Academy Award-nominated American actor. Having his first major role in the 1995 film Mr. Holland's Opus, which subsequently led to a number of roles in films and high visibility among African American audiences. Howard broke into the mainstream with a succession of well-reviewed television and film roles between 2004 and 2006. Among his roles in movies includes Ray, Lackawanna Blues, Crash, Four Brothers, Hustle &amp; Flow, Get Rich or Die Tryin', Idlewild, The Brave One. Howard co-starred in Iron Man and reprised the role in the video game adaption. He was replaced in this role in the sequel Iron Man 2, by Academy Award nominee Don Cheadle (his Crash co-star). Howard was born in Chicago, Illinois and raised in Cleveland, Ohio. At 18, he moved to New York City to pursue an acting career. He had auditioned for The Cosby Show and was cast in the role and later, Howard had a principal role in a short-lived CBS sitcom, Tall Hopes. He went on to portray Jackie Jackson in The Jacksons: An American Dream, an ABC miniseries. Three years later, he made his big film break in 1995's Mr. Holland's Opus. He continued with television and movie roles and co-starred as Greg Sparks in the late-1990s television series Sparks. Howard also appeared in The Best Man in 1999, in Ashanti's music video for her 2002 single \"Foolish\", and in Mary J. Blige's video for \"Be Without You\". Howard also made an appearance on the TV series Family Matters. Howard has also worked as a film producer for the movie Pride. In 2008, Howard hosted the PBS' series Independent Lens. Also in 2008, he made his Broadway debut, playing Brick in an all-African-American production of Tennessee Williams' Cat on a Hot Tin Roof, directed by Debbie Allen. Later that year, Howard made a guest appearance in the short film For All Mankind directed by Daniel L. Clifton and in 2009, he starred in the movie Fighting. In 2010, Howard joined the cast of the new Law &amp; Order: Los Angeles installment of the Law &amp; Order franchise, wherein he will play Deputy District Attorney Joe Dekker. Terrence ventured into the music industry with his debut pop album, Shine through It, heavily inspired by popular soul singers such as Marvin Gaye and Curtis Mayfield, was released in September 2008. Howard, who lives outside Philadelphia in Lafayette Hill, He has three children from a previous marriage: two daughters (Aubrey and Heaven) and a son (Hunter).",
+                "birthday": "1969-03-11",
+                "death": null,
+                "birthplace": "Chicago, Illinois, USA ",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Obadiah Stane, Iron Monger",
+            "characters": [
+                "Obadiah Stane",
+                "Iron Monger"
+            ],
+            "person": {
+                "name": "Jeff Bridges",
+                "ids": {
+                    "trakt": 4173,
+                    "slug": "jeff-bridges",
+                    "imdb": "nm0000313",
+                    "tmdb": 1229,
+                    "tvrage": 59067
+                },
+                "biography": "American actor Jeff Bridges has starred in over 50 films during his lengthy career. He comes from a family of performers and was introduced to show business by his father Lloyd. Jeff is most famous for his work in the films Big Lebowski (1998), Seabiscuit (2003), Crazy Heart (2009), and most recently True Grit (2010). His accolades include a long list of Academy Award nominations, and one win for Best Actor in 2010.\n\nBridges was born in 1949 and grew up in Los Angeles, California. After high school Jeff traveled to New York to study acting at the famous Herbert Berghof Studio. In the late 1960's Jeff served in the US Coast Guard, and stayed on reserve through the early 1970's to avoid Vietnam. As a child Jeff got a start in acting through his father Lloyd, and even starred in two of his television shows. Jeff achieved major success early in his career when he was nominated for an Academy Award in his first major film, the 1971 drama Last Picture Show. Three years later he starred opposite of Clint Eastwood in Thunderbolt and Lightfoot.\n\nBy 1976 Bridges was casted in the first remake of King Kong, which turned out to be a huge commercial success raking in more than 90 million dollars. Over the next three decades Bridges went on to star in over 50 films and win countless awards for his work. More recently Jeff starred in the 2009 film Crazy Heart, which earned him his first Academy Award for Best Actor.\n\nIn 1977 Jeff married Susan Geston, the two met while filming Ranch Deluxe. Together they have three daughters.\n\nAlong with other entertainment industry leaders, in 1984 Bridges founded the End Hunger Network, a humanitarian effort which aims to eliminate childhood hunger in the US by 2015.\n\nAlong with his charitable work, Jeff is also known for his music and photography.",
+                "birthday": "1949-12-04",
+                "death": null,
+                "birthplace": "Los Angeles, California, USA",
+                "homepage": "http://www.jeffbridges.com"
+            }
+        },
+        {
+            "character": "Virginia \"Pepper\" Potts",
+            "characters": [
+                "Virginia \"Pepper\" Potts"
+            ],
+            "person": {
+                "name": "Gwyneth Paltrow",
+                "ids": {
+                    "trakt": 16015,
+                    "slug": "gwyneth-paltrow",
+                    "imdb": "nm0000569",
+                    "tmdb": 12052,
+                    "tvrage": 58927
+                },
+                "biography": "Paltrow made her acting debut on stage in 1990 and started appearing in films in 1991. She gained early notice for her work in films such as Se7en (1995), Emma (1996), in which she played the title role, and Sliding Doors (1998). She garnered worldwide recognition through her performance in Shakespeare in Love (1998), for which she won the Academy Award for Best Actress, a Golden Globe Award and two Screen Actors Guild Awards, for Outstanding Lead Actress and as a member of the Outstanding Cast. Since then, Paltrow has portrayed supporting as well as lead roles in films such as The Talented Mr. Ripley (1999), Shallow Hal (2001) and Proof (2005), for which she earned a Golden Globe nomination as Best Actress in Motion Picture Drama. In 2008, she appeared in the highest grossing movie of her career, the superhero film Iron Man, and then reprised her role as Pepper Potts in its sequel, Iron Man 2 (2010). Paltrow has been the face of Estée Lauder's Pleasures perfume since 2005.",
+                "birthday": "1972-09-27",
+                "death": null,
+                "birthplace": "Los Angeles, California, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Christine Everhart",
+            "characters": [
+                "Christine Everhart"
+            ],
+            "person": {
+                "name": "Leslie Bibb",
+                "ids": {
+                    "trakt": 16034,
+                    "slug": "leslie-bibb",
+                    "imdb": "nm0004753",
+                    "tmdb": 57451,
+                    "tvrage": 35954
+                },
+                "biography": "Leslie Louise Bibb (born November 17, 1974) is an American actress and former fashion model. She transitioned into film and television in late 1990s. She appeared in television shows such as Home Improvement (1996), before she appeared in her first film, the comedy Private Parts (1997), which was followed by her first show The Big Easy. She received a role in This Space Between Us (1999).\n\nHer role as Brooke McQueen on the WB Network comedy–drama series Popular (1999–2001) brought her to the attention of a wider audience, and received a Teen Choice Award for Television Choice Actress. During the series, she also gained recognition for her roles in the thriller The Skulls (2000) and in the comedy See Spot Run (2001). She had a recurring role in the medical–drama show ER (2002–2003).\n\nBibb was cast as Carley Bobby, in the comedy Talladega Nights: The Ballad of Ricky Bobby (2006). She had a minor supporting role in the hit action film Iron Man (2008) and appeared in the crime-thriller Law Abiding Citizen (2009). She reprised her role in the sequel to Iron Man, Iron Man 2 (2010). Recently, she joined the cast of the upcoming family–comedy Zookeeper (2011) as Miranda Davis.\n\nDescription above from the Wikipedia article  Leslie Bibb, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+                "birthday": "1974-11-17",
+                "death": null,
+                "birthplace": "Bismarck, North Dakota, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Yinsen",
+            "characters": [
+                "Yinsen"
+            ],
+            "person": {
+                "name": "Shaun Toub",
+                "ids": {
+                    "trakt": 12404,
+                    "slug": "shaun-toub",
+                    "imdb": "nm0869467",
+                    "tmdb": 17857,
+                    "tvrage": 22694
+                },
+                "biography": "Shaun Toub is an Iranian-American film and television actor. He is perhaps best known for his role as Farhad in the 2004 movie Crash, as Rahim Khan in the movie The Kite Runner, and as Yinsen in the film adaptation of the Iron Man comic book series.\n\nToub, who is of Persian Jewish background, was born in Tehran, Iran and raised in Manchester, England (his family left Iran before the 1979 revolution). At the age of fourteen, he moved to Switzerland and after a two year stay, he crossed the Atlantic to Nashua, New Hampshire to finish his last year of high school. His high school yearbook notes: \"The funniest guy in school and the most likely to succeed in the entertainment world.\" After two years of college in Massachusetts, Shaun transferred to USC.\n\nShaun is active in the Iranian Jewish community. Through various charity events and public speaking engagements, he inspires the community to embrace the arts, as the arts enhance everyday life. He has been a recipient of the Sephard award at the Los Angeles Sephardic Film Festival. Toub currently resides in Los Angeles.",
+                "birthday": "1963-01-01",
+                "death": null,
+                "birthplace": "Tehran - Iran",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Raza",
+            "characters": [
+                "Raza"
+            ],
+            "person": {
+                "name": "Faran Tahir",
+                "ids": {
+                    "trakt": 16055,
+                    "slug": "faran-tahir",
+                    "imdb": "nm0846687",
+                    "tmdb": 57452,
+                    "tvrage": null
+                },
+                "biography": "Faran Tahir is actor.",
+                "birthday": "1963-02-16",
+                "death": null,
+                "birthplace": "Los Angeles, California, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Phil Coulson",
+            "characters": [
+                "Phil Coulson"
+            ],
+            "person": {
+                "name": "Clark Gregg",
+                "ids": {
+                    "trakt": 16080,
+                    "slug": "clark-gregg",
+                    "imdb": "nm0163988",
+                    "tmdb": 9048,
+                    "tvrage": 28033
+                },
+                "biography": "From Wikipedia, the free encyclopedia\n\nRobert Clark Gregg (born April 2, 1962) is an American actor, screenwriter and director. He co-starred as Christine Campbell's ex-husband Richard in the CBS sitcom The New Adventures of Old Christine, which debuted in March 2006 and concluded in May 2010. He is best known for playing Agent Phil Coulson in the Marvel Cinematic Universe.",
+                "birthday": "1962-04-02",
+                "death": null,
+                "birthplace": "Boston - Massachusetts - USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "General Gabriel",
+            "characters": [
+                "General Gabriel"
+            ],
+            "person": {
+                "name": "Bill Smitrovich",
+                "ids": {
+                    "trakt": 16131,
+                    "slug": "bill-smitrovich",
+                    "imdb": "nm0810488",
+                    "tmdb": 17200,
+                    "tvrage": 15300
+                },
+                "biography": "Bill Smitrovich (born June 16, 1947) is an American actor.",
+                "birthday": "1947-05-16",
+                "death": null,
+                "birthplace": "Bridgeport, Connecticut, USA",
+                "homepage": "http://www.billsmitrovich.com/"
+            }
+        },
+        {
+            "character": "Abu Bakaar",
+            "characters": [
+                "Abu Bakaar"
+            ],
+            "person": {
+                "name": "Sayed Badreya",
+                "ids": {
+                    "trakt": 16104,
+                    "slug": "sayed-badreya",
+                    "imdb": "nm0046223",
+                    "tmdb": 173810,
+                    "tvrage": 8046
+                },
+                "biography": "Egyptian-born film-maker and actor Sayed Badreya realized a childhood dream by winning roles in major Hollywood films such as The Insider, Three Kings, and Independence Day.  Growing up in poverty in Port Said, Sayed Badreya's dreams of movie stardom looked as bleak as the prospect of peace in the Middle East. From the Six Day War in '67 through the Yom Kippur War in '73, his only escape from the world he knew was the movie theater, where films transported him to a magical land. But it was here that he determined he was destined to be a part of that magic.  After attending New York University film school, and then moving to Hollywood, Sayed first worked in the film industry as an assistant to actor/director Anthony Perkins, and then with director James Cameron on True Lies.  His mission - to make movies that told the Arabic- American story, since it had yet to be told - led to the creation of his own production company, Zoom In Focus. Under this banner, he directed and produced the documentary, Saving Egyptian Film Classics as well as The Interrogation, which won Best Creative Short Film at New York International Film Festival. He also produced and starred in Hesham Issawi's short, T for Terrorist, which was awarded Best Short Film at the Boston International Film Festival and the San Francisco World Film Festival. In 2007, he played his first leading role in the English language motion picture American East, a film that he also co-wrote.  2008 was Sayed Badreya's breakout year. He captivated audiences as Abu Bakaar, the villainous arms dealer who kidnaps Tony Stark (Robert Downey Jr.) in the summer's blockbuster Iron Man. Also that year, Sayed played the comedic Palestinian cab driver opposite Adam Sandler in You Don't Mess with the Zohan.  This summer, Sayed can be seen in Paramount Pictures' feature film El traspatio aka Backyard, directed by Oscar-nominated Carlos Carrera in which he plays a serial killer opposite Ana de la Reguera. Sayed can also be seen this summer in Movie 43, where he plays opposite Halle Berry. Additional forthcoming films include The Three Stooges, his fifth film with the Farrelly brothers; The Dictator, playing Sascha Baron Cohen's father as the original Dictator, and Just Like a Woman, with Oscar nominated director Rachid Bouchareb. Also, Sayed is going to a new frontier in the new video game Uncharted 3, playing Ramses the Great Pirate Captain.  Most recently he completed his second leading role in the New York independent feature, Cargo, about human traffickers, directed by Yan Vizinberg. And he just finished co-starring opposite Oscar-nominated actress Melissa Leo in film The Space Between, directed by Travis Fine.  Sayed has also worked as an actor, Arabic dialect coach, and Islamic technical advisor on Path to 9/11, a $40 million mini-series about the events leading up to 9/11 produced by ABC/Touchstone.  Sayed's efforts to bring attention to Arab-Americans in the motion picture industry have received much coverage over the years on radio, television, and in major publications around the world, such as The New York Times, GQ, NPR, ABC's \"Politically Incorrect\" with Bill Maher, BBC's \"Panorama,\" CNN, \"Fox Report with Shepard Smith\", The Hollywood Reporter and Egypt Today.",
+                "birthday": "1957-05-01",
+                "death": null,
+                "birthplace": "Port Said, Egypt",
+                "homepage": "http://www.sayedbadreya.com/"
+            }
+        },
+        {
+            "character": "J.A.R.V.I.S. (voice)",
+            "characters": [
+                "J.A.R.V.I.S. (voice)"
+            ],
+            "person": {
+                "name": "Paul Bettany",
+                "ids": {
+                    "trakt": 16158,
+                    "slug": "paul-bettany",
+                    "imdb": "nm0079273",
+                    "tmdb": 6162,
+                    "tvrage": 59102
+                },
+                "biography": "Paul Bettany was born into a theatre family. His father, Thane Bettany, is still an actor but his mother, Anne Kettle, has retired from acting. His maternal grandmother, Olga Gwynne, was a successful actress, while his maternal grandfather, Lesley Kettle, was a musician and promoter. He was brought up in North West London and, after the age of 9, in Hertfordshire (Brookmans Park). Immediately after finishing at Drama Centre, he went into the West End to join the cast of \"An Inspector Calls\", though when asked to go on tour with this play, he chose to stay in England.",
+                "birthday": "1971-05-27",
+                "death": null,
+                "birthplace": "Harlesden, London, England, UK ",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Harold \"Happy\" Hogan",
+            "characters": [
+                "Harold \"Happy\" Hogan"
+            ],
+            "person": {
+                "name": "Jon Favreau",
+                "ids": {
+                    "trakt": 16183,
+                    "slug": "jon-favreau",
+                    "imdb": "nm0269463",
+                    "tmdb": 15277,
+                    "tvrage": 29076
+                },
+                "biography": "Jonathan Favreau (/ˈfævroʊ/; born October 19, 1966) is an American actor, director, producer, and screenwriter.\n\nAs an actor, he is known for roles in films such as \"Rudy\" (1993), \"Swingers\" (1996) (which he also wrote), \"Very Bad Things\" (1998), \"Daredevil\" (2003), \"The Break-Up\" (2006), \"Couples Retreat\" (2009), and \"Chef\" (2014) (which he also wrote and directed).\n\nHe has additionally directed the films \"Elf\" (2003), \"Zathura: A Space Adventure\" (2005), \"Iron Man\" (2008), \"Iron Man 2\" (2010), \"Cowboys & Aliens\" (2011), \"The Jungle Book\" (2016), and \"The Lion King\" (2019) and served as an executive producer on \"The Avengers\" (2012), \"Iron Man 3\" (2013), \"Avengers: Age of Ultron\" (2015), \"Avengers: Infinity War\" (2018) and \"Avengers: Endgame\" (2019).  Favreau also portrays Happy Hogan in the Marvel Cinematic Universe and played Pete Becker during season three of the television sitcom \"Friends\". He produces films under his banner, Fairview Entertainment. The company has been credited as co-producers in most of Favreau's directorial ventures.\n\nDescription above from the Wikipedia article Jon Favreau, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+                "birthday": "1966-10-19",
+                "death": null,
+                "birthplace": "Queens, New York, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "William Ginter Riva",
+            "characters": [
+                "William Ginter Riva"
+            ],
+            "person": {
+                "name": "Peter Billingsley",
+                "ids": {
+                    "trakt": 16197,
+                    "slug": "peter-billingsley",
+                    "imdb": "nm0082526",
+                    "tmdb": 12708,
+                    "tvrage": 73749
+                },
+                "biography": "From Wikipedia, the free encyclopedia.  \n\nPeter Billingsley (born 16 April 1971), also known as Peter Michaelsen and Peter Billingsley-Michaelsen, is an American actor, director, and producer best known for his role as Ralphie in the 1983 movie A Christmas Story. He began his career as an infant, in television commercials.\n\nDescription above from the Wikipedia article Peter Billingsley licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+                "birthday": "1971-04-16",
+                "death": null,
+                "birthplace": "New York City, New York, US",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Major Allen",
+            "characters": [
+                "Major Allen"
+            ],
+            "person": {
+                "name": "Tim Guinee",
+                "ids": {
+                    "trakt": 16204,
+                    "slug": "tim-guinee",
+                    "imdb": "nm0347375",
+                    "tmdb": 40275,
+                    "tvrage": 27953
+                },
+                "biography": "Tim Guinee (born November 18, 1962) is an American stage, television, and film actor.",
+                "birthday": "1962-11-18",
+                "death": null,
+                "birthplace": "Los Angeles, California, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Award Ceremony Narrator (voice)",
+            "characters": [
+                "Award Ceremony Narrator (voice)"
+            ],
+            "person": {
+                "name": "Will Lyman",
+                "ids": {
+                    "trakt": 16214,
+                    "slug": "will-lyman",
+                    "imdb": "nm0528164",
+                    "tmdb": 163671,
+                    "tvrage": 33553
+                },
+                "biography": "",
+                "birthday": "1948-05-20",
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Guard",
+            "characters": [
+                "Guard"
+            ],
+            "person": {
+                "name": "Tom Morello",
+                "ids": {
+                    "trakt": 16232,
+                    "slug": "tom-morello",
+                    "imdb": "nm0603780",
+                    "tmdb": 78299,
+                    "tvrage": 210054
+                },
+                "biography": "Tom Morello was born on May 30, 1964 in New York city. He has become an influential guitarist due to his work with Rage Against The Machine in the 1990s. Tom got his Social Studies degree from Harvard and went to L.A to start a band. He briefly played guitarist for a band named Lock Up with fellow Rage member Zack De La Rocha.  IMDb Mini Biography By: Anonymous",
+                "birthday": "1964-05-30",
+                "death": null,
+                "birthplace": "New York City, New York, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Guard",
+            "characters": [
+                "Guard"
+            ],
+            "person": {
+                "name": "Marco Khan",
+                "ids": {
+                    "trakt": 16256,
+                    "slug": "marco-khan",
+                    "imdb": "nm0434879",
+                    "tmdb": 54809,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": "Tehran, Iran",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Guard",
+            "characters": [
+                "Guard"
+            ],
+            "person": {
+                "name": "Daston Kalili",
+                "ids": {
+                    "trakt": 16265,
+                    "slug": "daston-kalili",
+                    "imdb": "nm0435771",
+                    "tmdb": 944830,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Guard",
+            "characters": [
+                "Guard"
+            ],
+            "person": {
+                "name": "Ido Ezra",
+                "ids": {
+                    "trakt": 16285,
+                    "slug": "ido-ezra",
+                    "imdb": "nm2789241",
+                    "tmdb": 1209417,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Jimmy",
+            "characters": [
+                "Jimmy"
+            ],
+            "person": {
+                "name": "Kevin Foster",
+                "ids": {
+                    "trakt": 542,
+                    "slug": "kevin-foster",
+                    "imdb": "nm1080555",
+                    "tmdb": 95698,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Pratt",
+            "characters": [
+                "Pratt"
+            ],
+            "person": {
+                "name": "Garret Noël",
+                "ids": {
+                    "trakt": 15482,
+                    "slug": "garret-noel",
+                    "imdb": "nm2111652",
+                    "tmdb": 1209418,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": "USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Ramirez",
+            "characters": [
+                "Ramirez"
+            ],
+            "person": {
+                "name": "Eileen Weisinger",
+                "ids": {
+                    "trakt": 15484,
+                    "slug": "eileen-weisinger",
+                    "imdb": "nm0918814",
+                    "tmdb": 62037,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Ahmed",
+            "characters": [
+                "Ahmed"
+            ],
+            "person": {
+                "name": "Ahmed Ahmed",
+                "ids": {
+                    "trakt": 16295,
+                    "slug": "ahmed-ahmed",
+                    "imdb": "nm0014135",
+                    "tmdb": 183439,
+                    "tvrage": 36506
+                },
+                "biography": "",
+                "birthday": "1970-06-27",
+                "death": null,
+                "birthplace": "Helwan, Egypt",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Omar",
+            "characters": [
+                "Omar"
+            ],
+            "person": {
+                "name": "Fahim Fazli",
+                "ids": {
+                    "trakt": 16308,
+                    "slug": "fahim-fazli",
+                    "imdb": "nm2390252",
+                    "tmdb": 109669,
+                    "tvrage": null
+                },
+                "biography": "Born and raised in Kabul, Afghanistan, Fahim Fazli came to the United States as a refugee in his teens. He enjoyed a privileged childhood until the Russians invaded Afghanistan. As a young adult he supported the resistance and when he and his remaining family saw the opportunity they fled to Pakistan and then eventually to the United States. Fahim lives in Orange County, California. Fahim has written a memoir, Fahim Speaks, to be released in early 2012.",
+                "birthday": "1966-05-30",
+                "death": null,
+                "birthplace": "Kabul, Afghanistan",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Howard Stark",
+            "characters": [
+                "Howard Stark"
+            ],
+            "person": {
+                "name": "Gerard Sanders",
+                "ids": {
+                    "trakt": 15496,
+                    "slug": "gerard-sanders",
+                    "imdb": "nm0761562",
+                    "tmdb": 104669,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Viper 1",
+            "characters": [
+                "Viper 1"
+            ],
+            "person": {
+                "name": "Tim Rigby",
+                "ids": {
+                    "trakt": 15499,
+                    "slug": "tim-rigby",
+                    "imdb": "nm0726601",
+                    "tmdb": 1209419,
+                    "tvrage": null
+                },
+                "biography": "After serving for five years in the British Royal Navy as a Mine Clearance Diver, Tim came from England to Hollywood in 1992 to pursue his dream of a career as a stuntman. For the last 25 years, Tim has worked on most of the big budget action movies, and has been fortunate to have played a key role, stunt-wise in many of them. He has crashed, slid, jumped, and turned over cars, (“Mr & Mrs Smith”, “Dukes of Hazzard”, “Man of the House”, Fast & Furious 4), performed high falls and skydives; he has been strapped to an ejection seat during freefall (“Stealth” & Iron Man), BASE jumped from a moving car, (“xXx”), BASE jumped into Downtown L.A. (“Along Came Polly”), BASE jumped live into the 2004 Superbowl at Houston Reliant Stadium (in front of 80,000 people), flown his wingsuit over L.A. and landed in Paramount studios, (“World Stunt Awards”), Spent hours, days, & weeks underwater (“Sphere & “The Hunley” \"Man of Steel), been involved in extensive fight & weapons based work, with the finest fight choreographers in the business, (“300”), as well as all of the “nuts & bolts” of stunt work; falls, wire-work, crashes, fire burns, etc.\n\nDoubles: Brian Van Holt, Thomas Hayden Church, Daniel Bernhardt, Brian Thomson, Rupert Everett, Rhys Ifans, Dash Mihok.\n\nAwards & Achievements:\n\n2002 World Stunt Awards Nominee, Best Specialty Stunt: Swordfish\n\n2003 World Stunt Awards Winner, Best Specialty Stunt: xXx\n\n2003 World Stunt Awards Nominee, Best Overall Stunt: xXx\n\n2005 World Stunt Awards Nominee, Best Specialty Stunt: Along Came Polly\n\n2008 Screen Actors Guild Awards Nominee, Outstanding Performance By A Stunt Ensemble: 300\n\n2008 World Stunt Awards Winner, Best Fight: 300\n\n2009 Screen Actors Guild Awards Nominee, Outstanding Performance By A Stunt Ensemble\n\n2010 World Stunt Awards Nominee, Best Fire Stunt: Gamer\n\n2010 World Stunt Awards Nominee, Best Work With A Vehicle: Fast & Furious 4\n\n2001 World Stunt Awards Nominee, Best Water Work: Perfect Storm",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": "http://www.timrigby.com/"
+            }
+        },
+        {
+            "character": "Viper 2",
+            "characters": [
+                "Viper 2"
+            ],
+            "person": {
+                "name": "Russell Richardson",
+                "ids": {
+                    "trakt": 15501,
+                    "slug": "russell-richardson",
+                    "imdb": "nm1212050",
+                    "tmdb": 195442,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Amira Ahmed",
+            "characters": [
+                "Amira Ahmed"
+            ],
+            "person": {
+                "name": "Nazanin Boniadi",
+                "ids": {
+                    "trakt": 16326,
+                    "slug": "nazanin-boniadi",
+                    "imdb": "nm2258164",
+                    "tmdb": 142213,
+                    "tvrage": 186060
+                },
+                "biography": "Nazanin Boniadi was born in Tehran, Iran, at the height of the Iranian Revolution; her parents relocated to London shortly thereafter. She performed violin and ballet as a young girl.\n\nShe attended a private high school and later moved to the United States where she earned a bachelor's degree, with honors, in biological sciences from the University of California, Irvine. At UCI, she won the Chang Pin-Chun Undergraduate Research Award for molecular research involving cancer treatment and heart transplant rejection. She was also Assistant Editor-in-Chief of MedTimes, UCI's undergraduate medical newspaper.\n\nNazanin Boniadi is rapidly making her mark in both film and television. She co-starred as CIA analyst Fara Sherazi on seasons three and four of the Emmy and Golden Globe award-winning drama Homeland (2011), for which she shared a 2015 SAG Award nomination in the Outstanding Performance by an Ensemble in a Drama Series category. Boniadi appeared in the 2016 MGM-Paramount remake of Ben-Hur. Directed by Timur Bekmambetov, the film stars Ms. Boniadi in the female lead role of Esther opposite Jack Huston, Morgan Freeman and Toby Kebbell. She will next appear in a leading role opposite Armie Hammer and Dev Patel in Anthony Maras's Hotel Mumbai.\n\nAmong her many television credits, Boniadi portrayed Nora, a relatively longstanding love interest to Neil Patrick Harris's Barney Stinson, in seasons six and seven of How I Met Your Mother (2005). She also appeared as the notorious Adnan Salif in season three of Shonda Rhimes' hit political drama Scandal (2012). She will next star alongside J.K. Simmons in the original Starz series Counterpart (2017), created by Justin Marks and Executive Produced by Morten Tyldum.\n\nOn film, Boniadi appeared as Amira Ahmed in Jon Favreau's Iron Man (2008) and portrayed a young mother, Elaine, in Paul Haggis' The Next Three Days (2010). She also has several independent features to her credit.\n\nBorn in Tehran at the height of the Iranian Revolution, Boniadi's parents relocated to London, England, shortly thereafter, where she was raised with an emphasis on education. While she was involved in theatre early in life, Boniadi later decided she wanted to become a physician. She moved to the United States at the age of 19 to attend the University of California, Irvine, where she received her Bachelor's Degree, with Honors (Dean's Academic Achievement and Service Award) in Biological Sciences, and won the \"Chang Pin Chun\" Undergraduate Research Award for her work in heart-transplant rejection and cancer research.\n\nSwitching gears to pursue her first love, Boniadi then decided to study acting, which included training in Contemporary Drama at the Royal Academy of Dramatic Arts in London under the supervision of dramaturge Lloyd Trott.\n\nBoniadi is fluent in both English and Persian. She is a dedicated human rights activist. Boniadi served as a spokesperson for Amnesty International USA (AIUSA) 2009-2015, and continues to partner with the non-profit as an AIUSA Artist of Conscience.",
+                "birthday": "1980-05-22",
+                "death": null,
+                "birthplace": "Tehran, Iran",
+                "homepage": "https://nazaninboniadi.com"
+            }
+        },
+        {
+            "character": "Colonel Craig",
+            "characters": [
+                "Colonel Craig"
+            ],
+            "person": {
+                "name": "Thomas Craig Plumer",
+                "ids": {
+                    "trakt": 15509,
+                    "slug": "thomas-craig-plumer",
+                    "imdb": "nm2987980",
+                    "tmdb": 1209702,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Dealer at Craps Table",
+            "characters": [
+                "Dealer at Craps Table"
+            ],
+            "person": {
+                "name": "Robert Berkman",
+                "ids": {
+                    "trakt": 15512,
+                    "slug": "robert-berkman",
+                    "imdb": "nm2987240",
+                    "tmdb": 1209703,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Woman at Craps Table",
+            "characters": [
+                "Woman at Craps Table"
+            ],
+            "person": {
+                "name": "Stacy Stas",
+                "ids": {
+                    "trakt": 16343,
+                    "slug": "stacy-stas",
+                    "imdb": "nm1680105",
+                    "tmdb": 183037,
+                    "tvrage": null
+                },
+                "biography": "Stacy Stas is an actress.",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Woman at Craps Table",
+            "characters": [
+                "Woman at Craps Table"
+            ],
+            "person": {
+                "name": "Lauren Scyphers",
+                "ids": {
+                    "trakt": 15519,
+                    "slug": "lauren-scyphers",
+                    "imdb": "nm2246617",
+                    "tmdb": 1209704,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Engineer",
+            "characters": [
+                "Engineer"
+            ],
+            "person": {
+                "name": "Frank Nyi",
+                "ids": {
+                    "trakt": 15521,
+                    "slug": "frank-nyi",
+                    "imdb": "nm1386651",
+                    "tmdb": 214951,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Air Force Officer",
+            "characters": [
+                "Air Force Officer"
+            ],
+            "person": {
+                "name": "Marvin Jordan",
+                "ids": {
+                    "trakt": 15523,
+                    "slug": "marvin-jordan",
+                    "imdb": "nm0430096",
+                    "tmdb": 205362,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Jim Cramer",
+            "characters": [
+                "Jim Cramer"
+            ],
+            "person": {
+                "name": "Jim Cramer",
+                "ids": {
+                    "trakt": 15525,
+                    "slug": "jim-cramer",
+                    "imdb": "nm1977586",
+                    "tmdb": 203468,
+                    "tvrage": null
+                },
+                "biography": "Jim Cramer is an American television personality, former hedge fund manager, and best-selling author, best known for hosting CNBC's television show _Mad Money_.",
+                "birthday": "1955-02-10",
+                "death": null,
+                "birthplace": "Wyndmoor, Pennsylvania, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Woman In SUV",
+            "characters": [
+                "Woman In SUV"
+            ],
+            "person": {
+                "name": "Donna Evans",
+                "ids": {
+                    "trakt": 15526,
+                    "slug": "donna-evans",
+                    "imdb": "nm0262719",
+                    "tmdb": 939869,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Kid in SUV",
+            "characters": [
+                "Kid in SUV"
+            ],
+            "person": {
+                "name": "Reid Harper",
+                "ids": {
+                    "trakt": 15528,
+                    "slug": "reid-harper",
+                    "imdb": "nm1735719",
+                    "tmdb": 1209705,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Kid in SUV",
+            "characters": [
+                "Kid in SUV"
+            ],
+            "person": {
+                "name": "Summer Kylie Remington",
+                "ids": {
+                    "trakt": 15532,
+                    "slug": "summer-kylie-remington",
+                    "imdb": "nm2988527",
+                    "tmdb": 1209706,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Kid in SUV",
+            "characters": [
+                "Kid in SUV"
+            ],
+            "person": {
+                "name": "Ava Rose Williams",
+                "ids": {
+                    "trakt": 15533,
+                    "slug": "ava-rose-williams",
+                    "imdb": "nm1771540",
+                    "tmdb": 1209707,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Kid in SUV",
+            "characters": [
+                "Kid in SUV"
+            ],
+            "person": {
+                "name": "Vladimir Kubr",
+                "ids": {
+                    "trakt": 15534,
+                    "slug": "vladimir-kubr",
+                    "imdb": "nm2655812",
+                    "tmdb": 1209708,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Kid in SUV",
+            "characters": [
+                "Kid in SUV"
+            ],
+            "person": {
+                "name": "Callie Croughwell",
+                "ids": {
+                    "trakt": 15535,
+                    "slug": "callie-croughwell",
+                    "imdb": "nm1023022",
+                    "tmdb": 1209709,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": "1995-12-20",
+                "death": null,
+                "birthplace": "California, - USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Gulmira Kid",
+            "characters": [
+                "Gulmira Kid"
+            ],
+            "person": {
+                "name": "Javan Tahir",
+                "ids": {
+                    "trakt": 15538,
+                    "slug": "javan-tahir",
+                    "imdb": "nm2930275",
+                    "tmdb": 1209710,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Gulmira Mom",
+            "characters": [
+                "Gulmira Mom"
+            ],
+            "person": {
+                "name": "Sahar Bibiyan",
+                "ids": {
+                    "trakt": 15540,
+                    "slug": "sahar-bibiyan",
+                    "imdb": "nm1892588",
+                    "tmdb": 206423,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter",
+            "characters": [
+                "Reporter"
+            ],
+            "person": {
+                "name": "Patrick O'Connell",
+                "ids": {
+                    "trakt": 15541,
+                    "slug": "patrick-o-connell",
+                    "imdb": "nm0640148",
+                    "tmdb": 133121,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": "1957-07-07",
+                "death": null,
+                "birthplace": "Norwalk, Connecticut, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter",
+            "characters": [
+                "Reporter"
+            ],
+            "person": {
+                "name": "Adam Harrington",
+                "ids": {
+                    "trakt": 16367,
+                    "slug": "adam-harrington",
+                    "imdb": "nm1286077",
+                    "tmdb": 181895,
+                    "tvrage": null
+                },
+                "biography": "Adam Harrington is an American film and television actor and stand-up comedian.",
+                "birthday": null,
+                "death": null,
+                "birthplace": "Wellesley Hills, Massachusetts, USA",
+                "homepage": "https://www.theadamharrington.com"
+            }
+        },
+        {
+            "character": "Reporter",
+            "characters": [
+                "Reporter"
+            ],
+            "person": {
+                "name": "Meera Simhan",
+                "ids": {
+                    "trakt": 15551,
+                    "slug": "meera-simhan",
+                    "imdb": "nm0621244",
+                    "tmdb": 62843,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter",
+            "characters": [
+                "Reporter"
+            ],
+            "person": {
+                "name": "Ben Newmark",
+                "ids": {
+                    "trakt": 15552,
+                    "slug": "ben-newmark",
+                    "imdb": "nm1797112",
+                    "tmdb": 204606,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Flight Attendant",
+            "characters": [
+                "Flight Attendant"
+            ],
+            "person": {
+                "name": "Ricki Lander",
+                "ids": {
+                    "trakt": 15553,
+                    "slug": "ricki-lander",
+                    "imdb": "nm2164693",
+                    "tmdb": 210842,
+                    "tvrage": null
+                },
+                "biography": "Ricki Lander is an actress and producer.",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Flight Attendant",
+            "characters": [
+                "Flight Attendant"
+            ],
+            "person": {
+                "name": "Jeannine Kaspar",
+                "ids": {
+                    "trakt": 15555,
+                    "slug": "jeannine-kaspar",
+                    "imdb": "nm1822910",
+                    "tmdb": 205720,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": "Columbus, Georgia, USA",
+                "homepage": "https://sunorstars.com/our-team/jeannine-kaspar/"
+            }
+        },
+        {
+            "character": "Flight Attendant",
+            "characters": [
+                "Flight Attendant"
+            ],
+            "person": {
+                "name": "Sarah Cahill",
+                "ids": {
+                    "trakt": 15556,
+                    "slug": "sarah-cahill",
+                    "imdb": "nm1477097",
+                    "tmdb": 1005698,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Stan Lee",
+            "characters": [
+                "Stan Lee"
+            ],
+            "person": {
+                "name": "Stan Lee",
+                "ids": {
+                    "trakt": 16093,
+                    "slug": "stan-lee",
+                    "imdb": "nm0498278",
+                    "tmdb": 7624,
+                    "tvrage": 37350
+                },
+                "biography": "Stan Lee (born Stanley Martin Lieber, December 28, 1922 – November 12, 2018)  was an American comic book writer, editor, actor, producer, publisher, television personality, and the former president and chairman of Marvel Comics.\n\nIn collaboration with several artists, most notably Jack Kirby and Steve Ditko, he co-created Spider-Man, the Fantastic Four, the X-Men, the Avengers, Iron Man, the Hulk, Thor, Daredevil, Doctor Strange, and many other fictional characters, introducing complex, naturalistic characters and a thoroughly shared universe into superhero comic books. In addition, he headed the first major successful challenge to the industry's censorship organization, the Comics Code Authority, and forced it to reform its policies. Lee subsequently led the expansion of Marvel Comics from a small division of a publishing house to a large multimedia corporation.\n\nHe was inducted into the comic book industry's Will Eisner Comic Book Hall of Fame in 1994 and the Jack Kirby Hall of Fame in 1995.",
+                "birthday": "1922-12-28",
+                "death": "2018-11-12",
+                "birthplace": "New York City, New York, USA",
+                "homepage": "http://therealstanlee.com/"
+            }
+        },
+        {
+            "character": "Air Force Lieutenant",
+            "characters": [
+                "Air Force Lieutenant"
+            ],
+            "person": {
+                "name": "Justin Rex",
+                "ids": {
+                    "trakt": 15561,
+                    "slug": "justin-rex",
+                    "imdb": "nm2988617",
+                    "tmdb": 1209711,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Zorianna Kit",
+            "characters": [
+                "Zorianna Kit"
+            ],
+            "person": {
+                "name": "Zorianna Kit",
+                "ids": {
+                    "trakt": 15562,
+                    "slug": "zorianna-kit",
+                    "imdb": "nm1932193",
+                    "tmdb": 90721,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Stan's Girl",
+            "characters": [
+                "Stan's Girl"
+            ],
+            "person": {
+                "name": "Lana Kinnear",
+                "ids": {
+                    "trakt": 15563,
+                    "slug": "lana-kinnear",
+                    "imdb": "nm0455698",
+                    "tmdb": 169681,
+                    "tvrage": 49259
+                },
+                "biography": "Lana Kinnear is an American film and television actress and professional wrestler.",
+                "birthday": "1976-07-29",
+                "death": null,
+                "birthplace": "Burbank, California, USA",
+                "homepage": "http://absolutelana.com"
+            }
+        },
+        {
+            "character": "Stan's Girl",
+            "characters": [
+                "Stan's Girl"
+            ],
+            "person": {
+                "name": "Nicole Lindeblad",
+                "ids": {
+                    "trakt": 15565,
+                    "slug": "nicole-lindeblad",
+                    "imdb": "nm2738616",
+                    "tmdb": 1209712,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Stan's Girl",
+            "characters": [
+                "Stan's Girl"
+            ],
+            "person": {
+                "name": "Masha Lund",
+                "ids": {
+                    "trakt": 15569,
+                    "slug": "masha-lund",
+                    "imdb": "nm2502264",
+                    "tmdb": 1209713,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Stan's Girl",
+            "characters": [
+                "Stan's Girl"
+            ],
+            "person": {
+                "name": "Gabrielle Tuite",
+                "ids": {
+                    "trakt": 15571,
+                    "slug": "gabrielle-tuite",
+                    "imdb": "nm0876266",
+                    "tmdb": 169642,
+                    "tvrage": 58572
+                },
+                "biography": "Gabrielle Tuite is an American actress and model best known for her five years on CBS's \"The Price is Right\". She has appeared on the covers of international magazines Maxim, Stuff, Muscle &amp; Fitness, Iron Man, People and Men's Health.",
+                "birthday": "1977-12-03",
+                "death": null,
+                "birthplace": "Brooklyn, New York,  USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "CAOC Analyst",
+            "characters": [
+                "CAOC Analyst"
+            ],
+            "person": {
+                "name": "Tim Griffin",
+                "ids": {
+                    "trakt": 16390,
+                    "slug": "tim-griffin",
+                    "imdb": "nm0341377",
+                    "tmdb": 27031,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": "Chicago, Illinois, USA",
+                "homepage": "http://timgriffin.org/timgriffin.org/TIMGRIFFIN.ORG.html"
+            }
+        },
+        {
+            "character": "CAOC Analyst",
+            "characters": [
+                "CAOC Analyst"
+            ],
+            "person": {
+                "name": "Joshua Harto",
+                "ids": {
+                    "trakt": 16408,
+                    "slug": "joshua-harto",
+                    "imdb": "nm0367176",
+                    "tmdb": 34544,
+                    "tvrage": 233807
+                },
+                "biography": "",
+                "birthday": "1979-01-09",
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "CAOC Analyst",
+            "characters": [
+                "CAOC Analyst"
+            ],
+            "person": {
+                "name": "Micah A. Hauptman",
+                "ids": {
+                    "trakt": 15575,
+                    "slug": "micah-a-hauptman",
+                    "imdb": null,
+                    "tmdb": 150669,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": "1973-12-26",
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "CAOC Analyst",
+            "characters": [
+                "CAOC Analyst"
+            ],
+            "person": {
+                "name": "James Bethea",
+                "ids": {
+                    "trakt": 15576,
+                    "slug": "james-bethea",
+                    "imdb": "nm1084018",
+                    "tmdb": 1209714,
+                    "tvrage": 83621
+                },
+                "biography": "James A. Bethea Jr. is an American television writer, producer and occasional performer.",
+                "birthday": "1965-01-14",
+                "death": null,
+                "birthplace": "Harlem, New York City, New York, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Nick Fury (uncredited), Nick Fury",
+            "characters": [
+                "Nick Fury (uncredited)",
+                "Nick Fury"
+            ],
+            "person": {
+                "name": "Samuel L. Jackson",
+                "ids": {
+                    "trakt": 9486,
+                    "slug": "samuel-l-jackson",
+                    "imdb": "nm0000168",
+                    "tmdb": 2231,
+                    "tvrage": 55720
+                },
+                "biography": "An American film and television actor and film producer. After Jackson became involved with the Civil Rights Movement, he moved on to acting in theater at Morehouse College, and then films. He had several small roles such as in the film Goodfellas, Def by Temptation, before meeting his mentor, Morgan Freeman, and the director Spike Lee. After gaining critical acclaim for his role in Jungle Fever in 1991, he appeared in films such as Patriot Games, Amos & Andrew, True Romance and Jurassic Park. In 1994 he was cast as Jules Winnfield in Pulp Fiction, and his performance received several award nominations and critical acclaim.\n\nJackson has since appeared in over 100 films including Die Hard with a Vengeance, The 51st State, Jackie Brown, Unbreakable, The Incredibles, Black Snake Moan, Shaft, Snakes on a Plane, as well as the Star Wars prequel trilogy and small roles in Quentin Tarantino's Kill Bill Vol. 2 and Inglourious Basterds. He played Nick Fury in Iron Man and Iron Man 2, Thor, the first two of a nine-film commitment as the character for the Marvel Cinematic Universe franchise. Jackson's many roles have made him one of the highest grossing actors at the box office. Jackson has won multiple awards throughout his career and has been portrayed in various forms of media including films, television series, and songs. In 1980, Jackson married LaTanya Richardson, with whom he has one daughter, Zoe.\n\nDescription above from the Wikipedia article Samuel L. Jackson, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+                "birthday": "1948-12-21",
+                "death": null,
+                "birthplace": "Washington, D.C., USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Photographer (uncredited)",
+            "characters": [
+                "Photographer (uncredited)"
+            ],
+            "person": {
+                "name": "Jeffrey Ashkin",
+                "ids": {
+                    "trakt": 15578,
+                    "slug": "jeffrey-ashkin",
+                    "imdb": "nm1644068",
+                    "tmdb": 1209715,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": "1983-11-19",
+                "death": null,
+                "birthplace": "Brooklyn - New York - USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Georgio (uncredited)",
+            "characters": [
+                "Georgio (uncredited)"
+            ],
+            "person": {
+                "name": "Russell Bobbitt",
+                "ids": {
+                    "trakt": 15582,
+                    "slug": "russell-bobbitt",
+                    "imdb": "nm0090309",
+                    "tmdb": 1004624,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Fireman's Wife (uncredited)",
+            "characters": [
+                "Fireman's Wife (uncredited)"
+            ],
+            "person": {
+                "name": "Vianessa Castaños",
+                "ids": {
+                    "trakt": 15583,
+                    "slug": "vianessa-castanos",
+                    "imdb": "nm3095343",
+                    "tmdb": 984619,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Gulmira Villager (uncredited)",
+            "characters": [
+                "Gulmira Villager (uncredited)"
+            ],
+            "person": {
+                "name": "Mike Cochrane",
+                "ids": {
+                    "trakt": 16412,
+                    "slug": "mike-cochrane",
+                    "imdb": "nm2490987",
+                    "tmdb": 1209716,
+                    "tvrage": null
+                },
+                "biography": "Mike Cochrane is Actor and Stunts.",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Dubai Beauty (uncredited)",
+            "characters": [
+                "Dubai Beauty (uncredited)"
+            ],
+            "person": {
+                "name": "Crystal Marie Denha",
+                "ids": {
+                    "trakt": 15586,
+                    "slug": "crystal-marie-denha",
+                    "imdb": "nm2407968",
+                    "tmdb": 1209717,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": "1984-02-08",
+                "death": null,
+                "birthplace": "Detroit, Michigan, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Dubai Girl (uncredited)",
+            "characters": [
+                "Dubai Girl (uncredited)"
+            ],
+            "person": {
+                "name": "Mellany Gandara",
+                "ids": {
+                    "trakt": 15588,
+                    "slug": "mellany-gandara",
+                    "imdb": "nm2081556",
+                    "tmdb": 970218,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "House wife at Award Ceremony (uncredited)",
+            "characters": [
+                "House wife at Award Ceremony (uncredited)"
+            ],
+            "person": {
+                "name": "Halla",
+                "ids": {
+                    "trakt": 15589,
+                    "slug": "halla",
+                    "imdb": "nm2955994",
+                    "tmdb": 1209718,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Insurgent (uncredited)",
+            "characters": [
+                "Insurgent (uncredited)"
+            ],
+            "person": {
+                "name": "Rodrick Hersh",
+                "ids": {
+                    "trakt": 15590,
+                    "slug": "rodrick-hersh",
+                    "imdb": "nm2555437",
+                    "tmdb": 1202546,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter (uncredited)",
+            "characters": [
+                "Reporter (uncredited)"
+            ],
+            "person": {
+                "name": "Kristin J. Hooper",
+                "ids": {
+                    "trakt": 15592,
+                    "slug": "kristin-j-hooper",
+                    "imdb": "nm3923280",
+                    "tmdb": 1209719,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Dubai Waiter (uncredited)",
+            "characters": [
+                "Dubai Waiter (uncredited)"
+            ],
+            "person": {
+                "name": "Chris Jalandoni",
+                "ids": {
+                    "trakt": 15593,
+                    "slug": "chris-jalandoni",
+                    "imdb": "nm1599104",
+                    "tmdb": 1209720,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Party Guest (uncredited)",
+            "characters": [
+                "Party Guest (uncredited)"
+            ],
+            "person": {
+                "name": "Stephen Janousek",
+                "ids": {
+                    "trakt": 15594,
+                    "slug": "stephen-janousek",
+                    "imdb": "nm2999525",
+                    "tmdb": 1209721,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Dancer in Ballroom (uncredited)",
+            "characters": [
+                "Dancer in Ballroom (uncredited)"
+            ],
+            "person": {
+                "name": "Laura Liguori",
+                "ids": {
+                    "trakt": 15597,
+                    "slug": "laura-liguori",
+                    "imdb": "nm2266584",
+                    "tmdb": 1209722,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter (uncredited)",
+            "characters": [
+                "Reporter (uncredited)"
+            ],
+            "person": {
+                "name": "Flavia Manes Rossi",
+                "ids": {
+                    "trakt": 15598,
+                    "slug": "flavia-manes-rossi",
+                    "imdb": "nm1098431",
+                    "tmdb": 1089759,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Village Dad (uncredited)",
+            "characters": [
+                "Village Dad (uncredited)"
+            ],
+            "person": {
+                "name": "Anthony Martins",
+                "ids": {
+                    "trakt": 15601,
+                    "slug": "anthony-martins",
+                    "imdb": "nm1215266",
+                    "tmdb": 1096679,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter (uncredited)",
+            "characters": [
+                "Reporter (uncredited)"
+            ],
+            "person": {
+                "name": "Robert McMurrer",
+                "ids": {
+                    "trakt": 15602,
+                    "slug": "robert-mcmurrer",
+                    "imdb": "nm2258412",
+                    "tmdb": 1209723,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Airforce Officer (uncredited)",
+            "characters": [
+                "Airforce Officer (uncredited)"
+            ],
+            "person": {
+                "name": "James M. Myers",
+                "ids": {
+                    "trakt": 15604,
+                    "slug": "james-m-myers",
+                    "imdb": "nm2653588",
+                    "tmdb": 1209724,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Dubai Beauty #1 (uncredited)",
+            "characters": [
+                "Dubai Beauty #1 (uncredited)"
+            ],
+            "person": {
+                "name": "America Olivo",
+                "ids": {
+                    "trakt": 16432,
+                    "slug": "america-olivo",
+                    "imdb": "nm1760388",
+                    "tmdb": 78434,
+                    "tvrage": 31732
+                },
+                "biography": "From Wikipedia, the free encyclopedia.\n\nAmerica Olivo (a.k.a. America Campbell; born January 5, 1978) is an actress and singer most notable for her membership in the Spanish- &amp; English-language band Soluna. Born in Los Angeles, she has multiple citizenships: US, Canadian, and Italian. Born to father Nello Olivo and mother Danica d'Hondt (Miss Canada 1959). She is currently appearing on Broadway as Arachne in Spider-Man: Turn Off the Dark.",
+                "birthday": "1978-01-05",
+                "death": null,
+                "birthplace": "Van Nuys, California, USA",
+                "homepage": "https://www.americaolivo.com/"
+            }
+        },
+        {
+            "character": "Staff Sergeant (uncredited)",
+            "characters": [
+                "Staff Sergeant (uncredited)"
+            ],
+            "person": {
+                "name": "Sylvette Ortiz",
+                "ids": {
+                    "trakt": 15610,
+                    "slug": "sylvette-ortiz",
+                    "imdb": "nm3066181",
+                    "tmdb": 1209725,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Journalist (uncredited)",
+            "characters": [
+                "Journalist (uncredited)"
+            ],
+            "person": {
+                "name": "Brett Padelford",
+                "ids": {
+                    "trakt": 15611,
+                    "slug": "brett-padelford",
+                    "imdb": "nm2703513",
+                    "tmdb": 1209726,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Voice (uncredited)",
+            "characters": [
+                "Voice (uncredited)"
+            ],
+            "person": {
+                "name": "Ajani Perkins",
+                "ids": {
+                    "trakt": 15612,
+                    "slug": "ajani-perkins",
+                    "imdb": "nm3567687",
+                    "tmdb": 1209727,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": "Oakland, California, USA",
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter (uncredited)",
+            "characters": [
+                "Reporter (uncredited)"
+            ],
+            "person": {
+                "name": "Chris Reid",
+                "ids": {
+                    "trakt": 15613,
+                    "slug": "chris-reid",
+                    "imdb": "nm1308942",
+                    "tmdb": 1209728,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "News Cameraman (uncredited)",
+            "characters": [
+                "News Cameraman (uncredited)"
+            ],
+            "person": {
+                "name": "Toi Rose",
+                "ids": {
+                    "trakt": 15614,
+                    "slug": "toi-rose",
+                    "imdb": "nm3649434",
+                    "tmdb": 1209729,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Rooftop Fireman (uncredited)",
+            "characters": [
+                "Rooftop Fireman (uncredited)"
+            ],
+            "person": {
+                "name": "George F. Watson",
+                "ids": {
+                    "trakt": 15616,
+                    "slug": "george-f-watson",
+                    "imdb": "nm1222064",
+                    "tmdb": 1209730,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Whiplash One (voice) (uncredited)",
+            "characters": [
+                "Whiplash One (voice) (uncredited)"
+            ],
+            "person": {
+                "name": "David Zyler",
+                "ids": {
+                    "trakt": 15617,
+                    "slug": "david-zyler",
+                    "imdb": "nm0469487",
+                    "tmdb": 1209731,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Reporter (uncredited)",
+            "characters": [
+                "Reporter (uncredited)"
+            ],
+            "person": {
+                "name": "Nick W. Nicholson",
+                "ids": {
+                    "trakt": 509352,
+                    "slug": "nick-w-nicholson",
+                    "imdb": "nm4414026",
+                    "tmdb": 1429470,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "Waiter, Reporter (uncredited)",
+            "characters": [
+                "Waiter",
+                "Reporter (uncredited)"
+            ],
+            "person": {
+                "name": "Elijah Samuel Quesada",
+                "ids": {
+                    "trakt": 1259394,
+                    "slug": "elijah-samuel-quesada",
+                    "imdb": "nm6392685",
+                    "tmdb": 2114972,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
+        },
+        {
+            "character": "",
+            "characters": [],
+            "person": {
+                "name": "Garrett Noel",
+                "ids": {
+                    "trakt": 1791089,
+                    "slug": "garrett-noel",
+                    "imdb": null,
+                    "tmdb": 2604526,
+                    "tvrage": null
+                },
+                "biography": "",
+                "birthday": null,
+                "death": null,
+                "birthplace": null,
+                "homepage": null
+            }
         }
-      },
-      {
-        "job" : "Screenplay",
-        "person" : {
-          "name" : "Richard Jefferies",
-          "ids" : {
-            "tmdb" : 73570,
-            "slug" : "richard-jefferies",
-            "trakt" : 31,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Screenplay",
-        "person" : {
-          "name" : "Edward Kitsis",
-          "ids" : {
-            "tmdb" : 44034,
-            "slug" : "edward-kitsis",
-            "trakt" : 32,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Screenplay",
-        "person" : {
-          "name" : "Steven Lisberger",
-          "ids" : {
-            "tmdb" : 12859,
-            "slug" : "steven-lisberger",
-            "trakt" : 33,
-            "imdb" : ""
-          }
-        }
-      }
     ],
-    "camera" : [
-      {
-        "job" : "Director of Photography",
-        "person" : {
-          "name" : "Claudio Miranda",
-          "ids" : {
-            "tmdb" : 51333,
-            "slug" : "claudio-miranda",
-            "trakt" : 41,
-            "imdb" : ""
-          }
-        }
-      }
-    ],
-    "crew" : [
-      {
-        "job" : "Supervising Art Director",
-        "person" : {
-          "name" : "Kevin Ishioka",
-          "ids" : {
-            "tmdb" : 6878,
-            "slug" : "kevin-ishioka",
-            "trakt" : 23,
-            "imdb" : "nm0411131"
-          }
-        }
-      },
-      {
-        "job" : "Supervising Art Director",
-        "person" : {
-          "name" : "Mark W. Mansbridge",
-          "ids" : {
-            "tmdb" : 21070,
-            "slug" : "mark-w-mansbridge",
-            "trakt" : 24,
-            "imdb" : "nm0543729"
-          }
-        }
-      }
-    ],
-    "production" : [
-      {
-        "job" : "Casting",
-        "person" : {
-          "name" : "Heike Brandstatter",
-          "ids" : {
-            "tmdb" : 5362,
-            "slug" : "heike-brandstatter",
-            "trakt" : 19,
-            "imdb" : "nm0104840"
-          }
-        }
-      },
-      {
-        "job" : "Casting",
-        "person" : {
-          "name" : "Sarah Finn",
-          "ids" : {
-            "tmdb" : 7232,
-            "slug" : "sarah-finn",
-            "trakt" : 20,
-            "imdb" : "nm0278168"
-          }
-        }
-      },
-      {
-        "job" : "Casting",
-        "person" : {
-          "name" : "Coreen Mayrs",
-          "ids" : {
-            "tmdb" : 5363,
-            "slug" : "coreen-mayrs",
-            "trakt" : 21,
-            "imdb" : "nm0563042"
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Sean Bailey",
-          "ids" : {
-            "tmdb" : 39387,
-            "slug" : "sean-bailey",
-            "trakt" : 34,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Steven Lisberger",
-          "ids" : {
-            "tmdb" : 12859,
-            "slug" : "steven-lisberger",
-            "trakt" : 33,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Jeffrey Silver",
-          "ids" : {
-            "tmdb" : 20908,
-            "slug" : "jeffrey-silver",
-            "trakt" : 35,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Bruce Franklin",
-          "ids" : {
-            "tmdb" : 113981,
-            "slug" : "bruce-franklin",
-            "trakt" : 36,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Steve Gaub",
-          "ids" : {
-            "tmdb" : 63289,
-            "slug" : "steve-gaub",
-            "trakt" : 37,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Justis Greene",
-          "ids" : {
-            "tmdb" : 113982,
-            "slug" : "justis-greene",
-            "trakt" : 38,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Producer",
-        "person" : {
-          "name" : "Julien Lemaitre",
-          "ids" : {
-            "tmdb" : 113983,
-            "slug" : "julien-lemaitre",
-            "trakt" : 39,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Executive Producer",
-        "person" : {
-          "name" : "Donald Kushner",
-          "ids" : {
-            "tmdb" : 6889,
-            "slug" : "donald-kushner",
-            "trakt" : 40,
-            "imdb" : ""
-          }
-        }
-      }
-    ],
-    "costume & make-up" : [
-      {
-        "job" : "Costume Design",
-        "person" : {
-          "name" : "Michael Wilkinson",
-          "ids" : {
-            "tmdb" : 5392,
-            "slug" : "michael-wilkinson",
-            "trakt" : 26,
-            "imdb" : "nm0929452"
-          }
-        }
-      },
-      {
-        "job" : "Makeup Department Head",
-        "person" : {
-          "name" : "Rosalina Da Silva",
-          "ids" : {
-            "tmdb" : 75294,
-            "slug" : "rosalina-da-silva",
-            "trakt" : 27,
-            "imdb" : "nm0196301"
-          }
-        }
-      },
-      {
-        "job" : "Costume Supervisor",
-        "person" : {
-          "name" : "Tangi Crawford",
-          "ids" : {
-            "tmdb" : 1323289,
-            "slug" : "tangi-crawford",
-            "trakt" : 28,
-            "imdb" : ""
-          }
-        }
-      }
-    ],
-    "sound" : [
-      {
-        "job" : "Music",
-        "person" : {
-          "name" : "Daft Punk",
-          "ids" : {
-            "tmdb" : 67931,
-            "slug" : "daft-punk",
-            "trakt" : 15,
-            "imdb" : ""
-          }
-        }
-      }
-    ],
-    "art" : [
-      {
-        "job" : "Production Design",
-        "person" : {
-          "name" : "Darren Gilford",
-          "ids" : {
-            "tmdb" : 411385,
-            "slug" : "darren-gilford",
-            "trakt" : 22,
-            "imdb" : ""
-          }
-        }
-      },
-      {
-        "job" : "Set Decoration",
-        "person" : {
-          "name" : "Lin MacDonald",
-          "ids" : {
-            "tmdb" : 12384,
-            "slug" : "lin-macdonald",
-            "trakt" : 25,
-            "imdb" : "nm0003106"
-          }
-        }
-      }
-    ],
-    "directing" : [
-      {
-        "job" : "Director",
-        "person" : {
-          "name" : "Joseph Kosinski",
-          "ids" : {
-            "tmdb" : 86270,
-            "slug" : "joseph-kosinski",
-            "trakt" : 29,
-            "imdb" : "nm2676052"
-          }
-        }
-      }
-    ]
-  },
-  "cast" : [
-    {
-      "character" : "Sam Flynn",
-      "person" : {
-        "name" : "Garrett Hedlund",
-        "ids" : {
-          "tmdb" : 9828,
-          "slug" : "garrett-hedlund",
-          "trakt" : 1,
-          "imdb" : "nm1330560"
-        }
-      }
-    },
-    {
-      "character" : "Kevin Flynn \/ Clu",
-      "person" : {
-        "name" : "Jeff Bridges",
-        "ids" : {
-          "tmdb" : 1229,
-          "slug" : "jeff-bridges",
-          "trakt" : 2,
-          "imdb" : "nm0000313"
-        }
-      }
-    },
-    {
-      "character" : "Quorra",
-      "person" : {
-        "name" : "Olivia Wilde",
-        "ids" : {
-          "tmdb" : 59315,
-          "slug" : "olivia-wilde",
-          "trakt" : 3,
-          "imdb" : "nm1312575"
-        }
-      }
-    },
-    {
-      "character" : "Alan Bradley \/ Tron",
-      "person" : {
-        "name" : "Bruce Boxleitner",
-        "ids" : {
-          "tmdb" : 2547,
-          "slug" : "bruce-boxleitner",
-          "trakt" : 4,
-          "imdb" : "nm0000310"
-        }
-      }
-    },
-    {
-      "character" : "Siren",
-      "person" : {
-        "name" : "Yaya DaCosta",
-        "ids" : {
-          "tmdb" : 60033,
-          "slug" : "yaya-dacosta",
-          "trakt" : 5,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Siren",
-      "person" : {
-        "name" : "Serinda Swan",
-        "ids" : {
-          "tmdb" : 86268,
-          "slug" : "serinda-swan",
-          "trakt" : 6,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Siren",
-      "person" : {
-        "name" : "Beau Garrett",
-        "ids" : {
-          "tmdb" : 20403,
-          "slug" : "beau-garrett",
-          "trakt" : 7,
-          "imdb" : "nm1683768"
-        }
-      }
-    },
-    {
-      "character" : "Siren",
-      "person" : {
-        "name" : "Elizabeth Mathis",
-        "ids" : {
-          "tmdb" : 130108,
-          "slug" : "elizabeth-mathis",
-          "trakt" : 8,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Jarvis",
-      "person" : {
-        "name" : "James Frain",
-        "ids" : {
-          "tmdb" : 22063,
-          "slug" : "james-frain",
-          "trakt" : 9,
-          "imdb" : "nm0289656"
-        }
-      }
-    },
-    {
-      "character" : "Young Mrs. Flynn",
-      "person" : {
-        "name" : "Amy Esterle",
-        "ids" : {
-          "tmdb" : 86269,
-          "slug" : "amy-esterle",
-          "trakt" : 10,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Sobel",
-      "person" : {
-        "name" : "Brandon Jay McLaren",
-        "ids" : {
-          "tmdb" : 58371,
-          "slug" : "brandon-jay-mclaren",
-          "trakt" : 11,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Castor \/ Zuse",
-      "person" : {
-        "name" : "Michael Sheen",
-        "ids" : {
-          "tmdb" : 3968,
-          "slug" : "michael-sheen",
-          "trakt" : 12,
-          "imdb" : "nm0790688"
-        }
-      }
-    },
-    {
-      "character" : "Young Sam",
-      "person" : {
-        "name" : "Owen Best",
-        "ids" : {
-          "tmdb" : 109205,
-          "slug" : "owen-best",
-          "trakt" : 13,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Green Light Cycle Rider",
-      "person" : {
-        "name" : "Michael Teigen",
-        "ids" : {
-          "tmdb" : 37980,
-          "slug" : "michael-teigen",
-          "trakt" : 14,
-          "imdb" : "nm1083137"
-        }
-      }
-    },
-    {
-      "character" : "Masked DJ's",
-      "person" : {
-        "name" : "Daft Punk",
-        "ids" : {
-          "tmdb" : 67931,
-          "slug" : "daft-punk",
-          "trakt" : 15,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Chattering Homeless Man",
-      "person" : {
-        "name" : "Ron Selmour",
-        "ids" : {
-          "tmdb" : 10874,
-          "slug" : "ron-selmour",
-          "trakt" : 16,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Bartik",
-      "person" : {
-        "name" : "Conrad Coates",
-        "ids" : {
-          "tmdb" : 43263,
-          "slug" : "conrad-coates",
-          "trakt" : 17,
-          "imdb" : ""
-        }
-      }
-    },
-    {
-      "character" : "Half Faced Man (as Yurij Kis)",
-      "person" : {
-        "name" : "Kis Yurij",
-        "ids" : {
-          "tmdb" : 145110,
-          "slug" : "kis-yurij",
-          "trakt" : 18,
-          "imdb" : ""
-        }
-      }
+    "crew": {
+        "production": [
+            {
+                "job": "Casting",
+                "jobs": [
+                    "Casting"
+                ],
+                "person": {
+                    "name": "Sarah Finn",
+                    "ids": {
+                        "trakt": 3223,
+                        "slug": "sarah-finn",
+                        "imdb": "nm0278168",
+                        "tmdb": 7232,
+                        "tvrage": null
+                    },
+                    "biography": "Sarah Finn, sometimes credited Sarah Halley Finn is an American casting director. She has a casting director credit on every Marvel Studios film except The Incredible Hulk.",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Producer",
+                "jobs": [
+                    "Producer"
+                ],
+                "person": {
+                    "name": "Avi Arad",
+                    "ids": {
+                        "trakt": 5928,
+                        "slug": "avi-arad",
+                        "imdb": "nm0032696",
+                        "tmdb": 7626,
+                        "tvrage": null
+                    },
+                    "biography": "Avi Arad is an Israeli-American businessman. He became the CEO of the company Toy Biz in the 1990s, and soon afterward became the chief creative officer of Marvel Entertainment, a Marvel director, and the chairman, CEO, and founder of Marvel Studios.",
+                    "birthday": "1948-08-01",
+                    "death": null,
+                    "birthplace": "Givatayim, Israel",
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "person": {
+                    "name": "Ari Arad",
+                    "ids": {
+                        "trakt": 15632,
+                        "slug": "ari-arad",
+                        "imdb": "nm7191024",
+                        "tmdb": 937174,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Casting",
+                "jobs": [
+                    "Casting"
+                ],
+                "person": {
+                    "name": "Randi Hiller",
+                    "ids": {
+                        "trakt": 15636,
+                        "slug": "randi-hiller",
+                        "imdb": "nm0384900",
+                        "tmdb": 20540,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Co-Producer",
+                "jobs": [
+                    "Co-Producer"
+                ],
+                "person": {
+                    "name": "Victoria Alonso",
+                    "ids": {
+                        "trakt": 15745,
+                        "slug": "victoria-alonso",
+                        "imdb": "nm0022285",
+                        "tmdb": 113674,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Executive Producer",
+                "jobs": [
+                    "Executive Producer"
+                ],
+                "person": {
+                    "name": "Stan Lee",
+                    "ids": {
+                        "trakt": 16093,
+                        "slug": "stan-lee",
+                        "imdb": "nm0498278",
+                        "tmdb": 7624,
+                        "tvrage": 37350
+                    },
+                    "biography": "Stan Lee (born Stanley Martin Lieber, December 28, 1922 – November 12, 2018)  was an American comic book writer, editor, actor, producer, publisher, television personality, and the former president and chairman of Marvel Comics.\n\nIn collaboration with several artists, most notably Jack Kirby and Steve Ditko, he co-created Spider-Man, the Fantastic Four, the X-Men, the Avengers, Iron Man, the Hulk, Thor, Daredevil, Doctor Strange, and many other fictional characters, introducing complex, naturalistic characters and a thoroughly shared universe into superhero comic books. In addition, he headed the first major successful challenge to the industry's censorship organization, the Comics Code Authority, and forced it to reform its policies. Lee subsequently led the expansion of Marvel Comics from a small division of a publishing house to a large multimedia corporation.\n\nHe was inducted into the comic book industry's Will Eisner Comic Book Hall of Fame in 1994 and the Jack Kirby Hall of Fame in 1995.",
+                    "birthday": "1922-12-28",
+                    "death": "2018-11-12",
+                    "birthplace": "New York City, New York, USA",
+                    "homepage": "http://therealstanlee.com/"
+                }
+            },
+            {
+                "job": "Producer",
+                "jobs": [
+                    "Producer"
+                ],
+                "person": {
+                    "name": "Kevin Feige",
+                    "ids": {
+                        "trakt": 16185,
+                        "slug": "kevin-feige",
+                        "imdb": "nm0270559",
+                        "tmdb": 10850,
+                        "tvrage": null
+                    },
+                    "biography": "Kevin Feige was born on June 2, 1973 in Boston, Massachusetts, USA. He is a producer, known for The Avengers (2012), Guardians of the Galaxy (2014) and Iron Man (2008). He is married to Caitlin Feige.",
+                    "birthday": "1973-06-02",
+                    "death": null,
+                    "birthplace": "Boston, Massachusetts, USA",
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Production Assistant",
+                "jobs": [
+                    "Production Assistant"
+                ],
+                "person": {
+                    "name": "Trinh Tran",
+                    "ids": {
+                        "trakt": 1456711,
+                        "slug": "trinh-tran",
+                        "imdb": null,
+                        "tmdb": 2275675,
+                        "tvrage": null
+                    },
+                    "biography": "Trinh T. Tran was an associate producer on Captain America: Civil War and an executive producer on Avengers: Infinity War and Avengers: Endgame.\n\nShe was also an assistant to Matt Finick and Charlie Davis on Iron Man and The Incredible Hulk, an assistant to Louis D'Esposito on Iron Man 2, Thor, Captain America: The First Avenger and The Avengers and a creative executive on Captain America: The Winter Soldier and Captain America: Civil War.",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": "Ho Chi Minh City, Vietnam",
+                    "homepage": null
+                }
+            }
+        ],
+        "camera": [
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "person": {
+                    "name": "Matthew Libatique",
+                    "ids": {
+                        "trakt": 3739,
+                        "slug": "matthew-libatique",
+                        "imdb": "nm0508732",
+                        "tmdb": 4867,
+                        "tvrage": null
+                    },
+                    "biography": "Matthew Libatique is an American cinematographer best known for his work with director Darren Aronofsky on such films as π, Requiem for a Dream, The Fountain, and Black Swan.",
+                    "birthday": "1968-07-19",
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            }
+        ],
+        "art": [
+            {
+                "job": "Art Direction",
+                "jobs": [
+                    "Art Direction"
+                ],
+                "person": {
+                    "name": "J. Michael Riva",
+                    "ids": {
+                        "trakt": 5968,
+                        "slug": "j-michael-riva",
+                        "imdb": "nm0728951",
+                        "tmdb": 13304,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": "1948-06-28",
+                    "death": "2012-06-07",
+                    "birthplace": "Manhattan, New York, USA",
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Property Master",
+                "jobs": [
+                    "Property Master"
+                ],
+                "person": {
+                    "name": "Russell Bobbitt",
+                    "ids": {
+                        "trakt": 15582,
+                        "slug": "russell-bobbitt",
+                        "imdb": "nm0090309",
+                        "tmdb": 1004624,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            }
+        ],
+        "costume & make-up": [
+            {
+                "job": "Costume Design",
+                "jobs": [
+                    "Costume Design"
+                ],
+                "person": {
+                    "name": "Laura Jean Shannon",
+                    "ids": {
+                        "trakt": 7542,
+                        "slug": "laura-jean-shannon",
+                        "imdb": "nm0788320",
+                        "tmdb": 9551,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Costume Design",
+                "jobs": [
+                    "Costume Design"
+                ],
+                "person": {
+                    "name": "Rebecca Bentjen",
+                    "ids": {
+                        "trakt": 15637,
+                        "slug": "rebecca-bentjen",
+                        "imdb": null,
+                        "tmdb": 962467,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            }
+        ],
+        "editing": [
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "person": {
+                    "name": "Dan Lebental",
+                    "ids": {
+                        "trakt": 9072,
+                        "slug": "dan-lebental",
+                        "imdb": "nm0495603",
+                        "tmdb": 11455,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            }
+        ],
+        "crew": [
+            {
+                "job": "Special Effects Coordinator",
+                "jobs": [
+                    "Special Effects Coordinator"
+                ],
+                "person": {
+                    "name": "Daniel Sudick",
+                    "ids": {
+                        "trakt": 12238,
+                        "slug": "daniel-sudick",
+                        "imdb": "nm0837203",
+                        "tmdb": 15356,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Utility Stunts",
+                "jobs": [
+                    "Utility Stunts"
+                ],
+                "person": {
+                    "name": "Tad Griffith",
+                    "ids": {
+                        "trakt": 952530,
+                        "slug": "tad-griffith",
+                        "imdb": "nm0341498",
+                        "tmdb": 1866579,
+                        "tvrage": null
+                    },
+                    "biography": "Screen Actors Guild Awards Nominee:\n\n2008 Outstanding Performance By A Stunt Ensemble In A Motion Picture: The Kingdom\n\n2008 Outstanding Performance By A Stunt Ensemble In A Motion Picture: 300\n\n2010 World Stunt Awards Winner — Best Work With A Vehicle: Fast And Furious 4\n\nWorld Stunt Awards Nominee:\n\n2005 Best Work With A Vehicle: Spiderman II\n\n2004 Best Stunt By A Stuntman: Seabiscuit\n\n2004 Best Specialty Stunt: Seabiscuit\n\n2004 Best Stunt By A Stuntman: Cradle 2 The Grave\n\n2004 Best Work With A Vehicle: Cradle 2 The Grave\n\n2002 Best Fire Stunt: Last Castle\n\n2002 Best Work With An Animal: American Outlaws\n\nOther Awards & Achievements:\n\n— World Champion Trick Rider\n\n— Third Generation Professional Rodeo Cowboy Association Contestant & Performer",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": "http://www.atadwest.com/"
+                }
+            },
+            {
+                "job": "Utility Stunts",
+                "jobs": [
+                    "Utility Stunts"
+                ],
+                "person": {
+                    "name": "Riley Harper",
+                    "ids": {
+                        "trakt": 1118940,
+                        "slug": "riley-harper",
+                        "imdb": "nm0363947",
+                        "tmdb": 2020105,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": "Los Angeles, California, USA",
+                    "homepage": "http://www.lifeof-riley.com/"
+                }
+            }
+        ],
+        "writing": [
+            {
+                "job": "Screenplay",
+                "jobs": [
+                    "Screenplay"
+                ],
+                "person": {
+                    "name": "Art Marcum",
+                    "ids": {
+                        "trakt": 15618,
+                        "slug": "art-marcum",
+                        "imdb": "nm1436466",
+                        "tmdb": 18873,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Screenplay",
+                "jobs": [
+                    "Screenplay"
+                ],
+                "person": {
+                    "name": "Matt Holloway",
+                    "ids": {
+                        "trakt": 15619,
+                        "slug": "matt-holloway",
+                        "imdb": "nm0391344",
+                        "tmdb": 18875,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Characters",
+                "jobs": [
+                    "Characters"
+                ],
+                "person": {
+                    "name": "Larry Lieber",
+                    "ids": {
+                        "trakt": 15622,
+                        "slug": "larry-lieber",
+                        "imdb": "nm1293367",
+                        "tmdb": 18876,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": "1931-10-26",
+                    "death": null,
+                    "birthplace": "New York City, New York",
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Characters",
+                "jobs": [
+                    "Characters"
+                ],
+                "person": {
+                    "name": "Don Heck",
+                    "ids": {
+                        "trakt": 15624,
+                        "slug": "don-heck",
+                        "imdb": "nm1411347",
+                        "tmdb": 18877,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": "1929-01-02",
+                    "death": "1995-02-23",
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Characters",
+                "jobs": [
+                    "Characters"
+                ],
+                "person": {
+                    "name": "Stan Lee",
+                    "ids": {
+                        "trakt": 16093,
+                        "slug": "stan-lee",
+                        "imdb": "nm0498278",
+                        "tmdb": 7624,
+                        "tvrage": 37350
+                    },
+                    "biography": "Stan Lee (born Stanley Martin Lieber, December 28, 1922 – November 12, 2018)  was an American comic book writer, editor, actor, producer, publisher, television personality, and the former president and chairman of Marvel Comics.\n\nIn collaboration with several artists, most notably Jack Kirby and Steve Ditko, he co-created Spider-Man, the Fantastic Four, the X-Men, the Avengers, Iron Man, the Hulk, Thor, Daredevil, Doctor Strange, and many other fictional characters, introducing complex, naturalistic characters and a thoroughly shared universe into superhero comic books. In addition, he headed the first major successful challenge to the industry's censorship organization, the Comics Code Authority, and forced it to reform its policies. Lee subsequently led the expansion of Marvel Comics from a small division of a publishing house to a large multimedia corporation.\n\nHe was inducted into the comic book industry's Will Eisner Comic Book Hall of Fame in 1994 and the Jack Kirby Hall of Fame in 1995.",
+                    "birthday": "1922-12-28",
+                    "death": "2018-11-12",
+                    "birthplace": "New York City, New York, USA",
+                    "homepage": "http://therealstanlee.com/"
+                }
+            },
+            {
+                "job": "Characters",
+                "jobs": [
+                    "Characters"
+                ],
+                "person": {
+                    "name": "Jack Kirby",
+                    "ids": {
+                        "trakt": 16156,
+                        "slug": "jack-kirby",
+                        "imdb": "nm0456158",
+                        "tmdb": 18866,
+                        "tvrage": 73874
+                    },
+                    "biography": "From Wikipedia, the free encyclopedia. Jack Kirby (August 28, 1917 – February 6, 1994),  born Jacob Kurtzberg, was an American comic book artist, writer and editor. Growing up poor in New York City, Kurtzberg entered the nascent comics industry in the 1930s. He drew various comic strips under different pen names, ultimately settling on Jack Kirby. In 1941, Kirby and writer Joe Simon created the highly successful superhero character Captain America for Timely Comics. During the 1940s, Kirby would create a number of comics for various publishers, often teaming with Simon.\n\nAfter serving in World War II, Kirby returned to comics and worked in a variety of genres. He contributed to a number of publishers, including Archie Comics and DC Comics, but ultimately found himself at Timely's 1950s iteration, Atlas Comics, later to be known as Marvel Comics. In the 1960s, Kirby co-created many of Marvel Comics' major characters, including the Fantastic Four, the X-Men, and the Hulk, along with writer-editor Stan Lee. Despite the high sales and critical acclaim of the Lee-Kirby titles, Kirby felt treated unfairly, and left the company in 1970 for rival DC Comics.\n\nWhile working for DC, Kirby created his Fourth World saga, which spanned several comics titles. While these and other titles proved commercially unsuccessful and were canceled, several of their characters and the Fourth World mythos have continued as a significant part of the DC Comics universe. Kirby returned to Marvel briefly in the mid-to-late 1970s, then ventured into television animation and independent comics. In his later years, Kirby received great recognition for his career accomplishments, and is regarded by historians and fans as one of the major innovators and most influential creators in the comic book medium.\n\nIn 1987, Kirby, along with Carl Barks and Will Eisner, was one of the three inaugural inductees of the Will Eisner Comic Book Hall of Fame.\n\nDescription above from the Wikipedia article Jack Kirby, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+                    "birthday": "1917-08-28",
+                    "death": "1994-02-06",
+                    "birthplace": "New York City, New York, USA",
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Screenplay",
+                "jobs": [
+                    "Screenplay"
+                ],
+                "person": {
+                    "name": "Hawk Ostby",
+                    "ids": {
+                        "trakt": 44426,
+                        "slug": "hawk-ostby",
+                        "imdb": "nm1319757",
+                        "tmdb": 79209,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Screenplay",
+                "jobs": [
+                    "Screenplay"
+                ],
+                "person": {
+                    "name": "Mark Fergus",
+                    "ids": {
+                        "trakt": 424055,
+                        "slug": "mark-fergus",
+                        "imdb": "nm1318843",
+                        "tmdb": 79207,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            }
+        ],
+        "sound": [
+            {
+                "job": "Original Music Composer",
+                "jobs": [
+                    "Original Music Composer"
+                ],
+                "person": {
+                    "name": "Ramin Djawadi",
+                    "ids": {
+                        "trakt": 15629,
+                        "slug": "ramin-djawadi",
+                        "imdb": "nm1014697",
+                        "tmdb": 10851,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Supervising Sound Editor",
+                "jobs": [
+                    "Supervising Sound Editor"
+                ],
+                "person": {
+                    "name": "Frank E. Eulner",
+                    "ids": {
+                        "trakt": 143888,
+                        "slug": "frank-e-eulner",
+                        "imdb": "nm0262361",
+                        "tmdb": 1339446,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Sound Re-Recording Mixer",
+                "jobs": [
+                    "Sound Re-Recording Mixer"
+                ],
+                "person": {
+                    "name": "Christopher Boyes",
+                    "ids": {
+                        "trakt": 411301,
+                        "slug": "christopher-boyes",
+                        "imdb": "nm0102110",
+                        "tmdb": 900,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            }
+        ],
+        "directing": [
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "person": {
+                    "name": "Jon Favreau",
+                    "ids": {
+                        "trakt": 16183,
+                        "slug": "jon-favreau",
+                        "imdb": "nm0269463",
+                        "tmdb": 15277,
+                        "tvrage": 29076
+                    },
+                    "biography": "Jonathan Favreau (/ˈfævroʊ/; born October 19, 1966) is an American actor, director, producer, and screenwriter.\n\nAs an actor, he is known for roles in films such as \"Rudy\" (1993), \"Swingers\" (1996) (which he also wrote), \"Very Bad Things\" (1998), \"Daredevil\" (2003), \"The Break-Up\" (2006), \"Couples Retreat\" (2009), and \"Chef\" (2014) (which he also wrote and directed).\n\nHe has additionally directed the films \"Elf\" (2003), \"Zathura: A Space Adventure\" (2005), \"Iron Man\" (2008), \"Iron Man 2\" (2010), \"Cowboys & Aliens\" (2011), \"The Jungle Book\" (2016), and \"The Lion King\" (2019) and served as an executive producer on \"The Avengers\" (2012), \"Iron Man 3\" (2013), \"Avengers: Age of Ultron\" (2015), \"Avengers: Infinity War\" (2018) and \"Avengers: Endgame\" (2019).  Favreau also portrays Happy Hogan in the Marvel Cinematic Universe and played Pete Becker during season three of the television sitcom \"Friends\". He produces films under his banner, Fairview Entertainment. The company has been credited as co-producers in most of Favreau's directorial ventures.\n\nDescription above from the Wikipedia article Jon Favreau, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+                    "birthday": "1966-10-19",
+                    "death": null,
+                    "birthplace": "Queens, New York, USA",
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Script Supervisor",
+                "jobs": [
+                    "Script Supervisor"
+                ],
+                "person": {
+                    "name": "Cristina Weigmann",
+                    "ids": {
+                        "trakt": 469606,
+                        "slug": "cristina-weigmann",
+                        "imdb": "nm0917881",
+                        "tmdb": 1397300,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": "1971-01-27",
+                    "death": "2009-07-28",
+                    "birthplace": "Beirut, Lebanon",
+                    "homepage": null
+                }
+            }
+        ],
+        "visual effects": [
+            {
+                "job": "Animation Supervisor",
+                "jobs": [
+                    "Animation Supervisor"
+                ],
+                "person": {
+                    "name": "Hal T. Hickel",
+                    "ids": {
+                        "trakt": 506279,
+                        "slug": "hal-t-hickel",
+                        "imdb": "nm0382579",
+                        "tmdb": 1426773,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Visual Effects",
+                "jobs": [
+                    "Visual Effects"
+                ],
+                "person": {
+                    "name": "Andy Hass",
+                    "ids": {
+                        "trakt": 535241,
+                        "slug": "andy-hass",
+                        "imdb": "nm3037885",
+                        "tmdb": 1453929,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Senior Visual Effects Supervisor",
+                "jobs": [
+                    "Senior Visual Effects Supervisor"
+                ],
+                "person": {
+                    "name": "John Nelson",
+                    "ids": {
+                        "trakt": 537827,
+                        "slug": "john-nelson-ce5eee21-c0df-40fe-ad63-ba2fa5b563f7",
+                        "imdb": "nm0625471",
+                        "tmdb": 1456374,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Effects Supervisor",
+                "jobs": [
+                    "Effects Supervisor"
+                ],
+                "person": {
+                    "name": "Shane Mahan",
+                    "ids": {
+                        "trakt": 602263,
+                        "slug": "shane-mahan",
+                        "imdb": null,
+                        "tmdb": 1600624,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            },
+            {
+                "job": "Visual Effects Supervisor",
+                "jobs": [
+                    "Visual Effects Supervisor"
+                ],
+                "person": {
+                    "name": "Ben Snow",
+                    "ids": {
+                        "trakt": 747447,
+                        "slug": "ben-snow",
+                        "imdb": null,
+                        "tmdb": 1715666,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": null,
+                    "death": null,
+                    "birthplace": null,
+                    "homepage": null
+                }
+            }
+        ],
+        "lighting": [
+            {
+                "job": "Lighting Technician",
+                "jobs": [
+                    "Lighting Technician"
+                ],
+                "person": {
+                    "name": "Gary Scalzo",
+                    "ids": {
+                        "trakt": 1629252,
+                        "slug": "gary-scalzo",
+                        "imdb": null,
+                        "tmdb": 2457356,
+                        "tvrage": null
+                    },
+                    "biography": "",
+                    "birthday": "1958-03-29",
+                    "death": "2019-11-13",
+                    "birthplace": "Los Angeles, California, USA",
+                    "homepage": null
+                }
+            }
+        ]
     }
-  ]
 }

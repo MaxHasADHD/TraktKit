@@ -1,0 +1,720 @@
+{
+    "cast": [
+        {
+            "character": "Daenerys Targaryen",
+            "characters": [
+                "Daenerys Targaryen"
+            ],
+            "person": {
+                "name": "Emilia Clarke",
+                "ids": {
+                    "trakt": 436511,
+                    "slug": "emilia-clarke",
+                    "imdb": "nm3592338",
+                    "tmdb": 1223786,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Robert Baratheon",
+            "characters": [
+                "Robert Baratheon"
+            ],
+            "person": {
+                "name": "Mark Addy",
+                "ids": {
+                    "trakt": 414973,
+                    "slug": "mark-addy",
+                    "imdb": "nm0004692",
+                    "tmdb": 13633,
+                    "tvrage": 37728
+                }
+            }
+        },
+        {
+            "character": "Jon Snow",
+            "characters": [
+                "Jon Snow"
+            ],
+            "person": {
+                "name": "Kit Harington",
+                "ids": {
+                    "trakt": 436512,
+                    "slug": "kit-harington",
+                    "imdb": "nm3229685",
+                    "tmdb": 239019,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Tyrion Lannister",
+            "characters": [
+                "Tyrion Lannister"
+            ],
+            "person": {
+                "name": "Peter Dinklage",
+                "ids": {
+                    "trakt": 412933,
+                    "slug": "peter-dinklage",
+                    "imdb": "nm0227759",
+                    "tmdb": 22970,
+                    "tvrage": 34516
+                }
+            }
+        },
+        {
+            "character": "Cersei Lannister",
+            "characters": [
+                "Cersei Lannister"
+            ],
+            "person": {
+                "name": "Lena Headey",
+                "ids": {
+                    "trakt": 9739,
+                    "slug": "lena-headey",
+                    "imdb": "nm0372176",
+                    "tmdb": 17286,
+                    "tvrage": 98569
+                }
+            }
+        },
+        {
+            "character": "Jaime Lannister",
+            "characters": [
+                "Jaime Lannister"
+            ],
+            "person": {
+                "name": "Nikolaj Coster-Waldau",
+                "ids": {
+                    "trakt": 414839,
+                    "slug": "nikolaj-coster-waldau",
+                    "imdb": "nm0182666",
+                    "tmdb": 12795,
+                    "tvrage": 180684
+                }
+            }
+        },
+        {
+            "character": "Sansa Stark",
+            "characters": [
+                "Sansa Stark"
+            ],
+            "person": {
+                "name": "Sophie Turner",
+                "ids": {
+                    "trakt": 436539,
+                    "slug": "sophie-turner",
+                    "imdb": "nm3849842",
+                    "tmdb": 1001657,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Arya Stark",
+            "characters": [
+                "Arya Stark"
+            ],
+            "person": {
+                "name": "Maisie Williams",
+                "ids": {
+                    "trakt": 436541,
+                    "slug": "maisie-williams",
+                    "imdb": "nm3586035",
+                    "tmdb": 1181313,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Joffrey Baratheon",
+            "characters": [
+                "Joffrey Baratheon"
+            ],
+            "person": {
+                "name": "Jack Gleeson",
+                "ids": {
+                    "trakt": 412241,
+                    "slug": "jack-gleeson",
+                    "imdb": "nm0322416",
+                    "tmdb": 489467,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Varys",
+            "characters": [
+                "Varys"
+            ],
+            "person": {
+                "name": "Conleth Hill",
+                "ids": {
+                    "trakt": 432873,
+                    "slug": "conleth-hill",
+                    "imdb": "nm0384152",
+                    "tmdb": 84423,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Petyr Baelish",
+            "characters": [
+                "Petyr Baelish"
+            ],
+            "person": {
+                "name": "Aidan Gillen",
+                "ids": {
+                    "trakt": 420752,
+                    "slug": "aidan-gillen",
+                    "imdb": "nm0318821",
+                    "tmdb": 49735,
+                    "tvrage": 36542
+                }
+            }
+        },
+        {
+            "character": "Bran Stark",
+            "characters": [
+                "Bran Stark"
+            ],
+            "person": {
+                "name": "Isaac Hempstead-Wright",
+                "ids": {
+                    "trakt": 436592,
+                    "slug": "isaac-hempstead-wright",
+                    "imdb": "nm3652842",
+                    "tmdb": 239020,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Sandor Clegane",
+            "characters": [
+                "Sandor Clegane"
+            ],
+            "person": {
+                "name": "Rory McCann",
+                "ids": {
+                    "trakt": 412041,
+                    "slug": "rory-mccann",
+                    "imdb": "nm0564920",
+                    "tmdb": 3075,
+                    "tvrage": 92391
+                }
+            }
+        },
+        {
+            "character": "Viserys Targaryen",
+            "characters": [
+                "Viserys Targaryen"
+            ],
+            "person": {
+                "name": "Harry Lloyd",
+                "ids": {
+                    "trakt": 440937,
+                    "slug": "harry-lloyd",
+                    "imdb": "nm0516003",
+                    "tmdb": 205258,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Robb Stark",
+            "characters": [
+                "Robb Stark"
+            ],
+            "person": {
+                "name": "Richard Madden",
+                "ids": {
+                    "trakt": 457070,
+                    "slug": "richard-madden",
+                    "imdb": "nm0534635",
+                    "tmdb": 512991,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Jorah Mormont",
+            "characters": [
+                "Jorah Mormont"
+            ],
+            "person": {
+                "name": "Iain Glen",
+                "ids": {
+                    "trakt": 11439,
+                    "slug": "iain-glen",
+                    "imdb": "nm0322513",
+                    "tmdb": 20508,
+                    "tvrage": 105767
+                }
+            }
+        },
+        {
+            "character": "Catelyn Stark",
+            "characters": [
+                "Catelyn Stark"
+            ],
+            "person": {
+                "name": "Michelle Fairley",
+                "ids": {
+                    "trakt": 416253,
+                    "slug": "michelle-fairley",
+                    "imdb": "nm0265610",
+                    "tmdb": 20057,
+                    "tvrage": 63033
+                }
+            }
+        },
+        {
+            "character": "Theon Greyjoy",
+            "characters": [
+                "Theon Greyjoy"
+            ],
+            "person": {
+                "name": "Alfie Allen",
+                "ids": {
+                    "trakt": 419217,
+                    "slug": "alfie-allen",
+                    "imdb": "nm0654295",
+                    "tmdb": 71586,
+                    "tvrage": 128136
+                }
+            }
+        },
+        {
+            "character": "Ned Stark",
+            "characters": [
+                "Ned Stark"
+            ],
+            "person": {
+                "name": "Sean Bean",
+                "ids": {
+                    "trakt": 272,
+                    "slug": "sean-bean",
+                    "imdb": "nm0000293",
+                    "tmdb": 48,
+                    "tvrage": 42090
+                }
+            }
+        },
+        {
+            "character": "Drogo",
+            "characters": [
+                "Drogo"
+            ],
+            "person": {
+                "name": "Jason Momoa",
+                "ids": {
+                    "trakt": 432791,
+                    "slug": "jason-momoa",
+                    "imdb": "nm0597388",
+                    "tmdb": 117642,
+                    "tvrage": 35980
+                }
+            }
+        }
+    ],
+    "guest_stars": [
+        {
+            "character": "Khal Drogo",
+            "characters": [
+                "Khal Drogo"
+            ],
+            "person": {
+                "name": "Jason Momoa",
+                "ids": {
+                    "trakt": 432791,
+                    "slug": "jason-momoa",
+                    "imdb": "nm0597388",
+                    "tmdb": 117642,
+                    "tvrage": 35980
+                }
+            }
+        },
+        {
+            "character": "Benjen Stark",
+            "characters": [
+                "Benjen Stark"
+            ],
+            "person": {
+                "name": "Joseph Mawle",
+                "ids": {
+                    "trakt": 440577,
+                    "slug": "joseph-mawle",
+                    "imdb": "nm1152798",
+                    "tmdb": 119783,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Wun Weg Wun Dar Wun",
+            "characters": [
+                "Wun Weg Wun Dar Wun"
+            ],
+            "person": {
+                "name": "Ian Whyte",
+                "ids": {
+                    "trakt": 304507,
+                    "slug": "ian-whyte",
+                    "imdb": "nm1613839",
+                    "tmdb": 946696,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Septa Mordane",
+            "characters": [
+                "Septa Mordane"
+            ],
+            "person": {
+                "name": "Susan Brown",
+                "ids": {
+                    "trakt": 180476,
+                    "slug": "susan-brown",
+                    "imdb": "nm0114742",
+                    "tmdb": 438859,
+                    "tvrage": 4032
+                }
+            }
+        },
+        {
+            "character": "Jory Cassel",
+            "characters": [
+                "Jory Cassel"
+            ],
+            "person": {
+                "name": "Jamie Sives",
+                "ids": {
+                    "trakt": 411586,
+                    "slug": "jamie-sives",
+                    "imdb": "nm0803397",
+                    "tmdb": 1833,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Qotho",
+            "characters": [
+                "Qotho"
+            ],
+            "person": {
+                "name": "Dar Salim",
+                "ids": {
+                    "trakt": 68810,
+                    "slug": "dar-salim",
+                    "imdb": "nm1502469",
+                    "tmdb": 234907,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Illyrio Mopatis",
+            "characters": [
+                "Illyrio Mopatis"
+            ],
+            "person": {
+                "name": "Roger Allam",
+                "ids": {
+                    "trakt": 18909,
+                    "slug": "roger-allam",
+                    "imdb": "nm0019885",
+                    "tmdb": 11279,
+                    "tvrage": 103706
+                }
+            }
+        },
+        {
+            "character": "Myrcella Baratheon",
+            "characters": [
+                "Myrcella Baratheon"
+            ],
+            "person": {
+                "name": "Aimee Richardson",
+                "ids": {
+                    "trakt": 602351,
+                    "slug": "aimee-richardson",
+                    "imdb": "nm4048461",
+                    "tmdb": 1600544,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Tommen Baratheon",
+            "characters": [
+                "Tommen Baratheon"
+            ],
+            "person": {
+                "name": "Callum Wharry",
+                "ids": {
+                    "trakt": 602352,
+                    "slug": "callum-wharry",
+                    "imdb": null,
+                    "tmdb": 1600543,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Gared",
+            "characters": [
+                "Gared"
+            ],
+            "person": {
+                "name": "Dermot Keaney",
+                "ids": {
+                    "trakt": 123640,
+                    "slug": "dermot-keaney",
+                    "imdb": "nm0443825",
+                    "tmdb": 191751,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Maester Luwin",
+            "characters": [
+                "Maester Luwin"
+            ],
+            "person": {
+                "name": "Donald Sumpter",
+                "ids": {
+                    "trakt": 417049,
+                    "slug": "donald-sumpter",
+                    "imdb": "nm0838910",
+                    "tmdb": 20425,
+                    "tvrage": 4208
+                }
+            }
+        },
+        {
+            "character": "Rodrik Cassel",
+            "characters": [
+                "Rodrik Cassel"
+            ],
+            "person": {
+                "name": "Ron Donachie",
+                "ids": {
+                    "trakt": 424856,
+                    "slug": "ron-donachie",
+                    "imdb": "nm0231871",
+                    "tmdb": 63141,
+                    "tvrage": 13644
+                }
+            }
+        },
+        {
+            "character": "Ros",
+            "characters": [
+                "Ros"
+            ],
+            "person": {
+                "name": "Esmé Bianco",
+                "ids": {
+                    "trakt": 438788,
+                    "slug": "esme-bianco",
+                    "imdb": "nm2657974",
+                    "tmdb": 1014921,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Will",
+            "characters": [
+                "Will"
+            ],
+            "person": {
+                "name": "Bronson Webb",
+                "ids": {
+                    "trakt": 428668,
+                    "slug": "bronson-webb",
+                    "imdb": "nm0916037",
+                    "tmdb": 75076,
+                    "tvrage": 44839
+                }
+            }
+        },
+        {
+            "character": "Jon Arryn",
+            "characters": [
+                "Jon Arryn"
+            ],
+            "person": {
+                "name": "John Standing",
+                "ids": {
+                    "trakt": 414380,
+                    "slug": "john-standing",
+                    "imdb": "nm0822062",
+                    "tmdb": 11282,
+                    "tvrage": 41031
+                }
+            }
+        },
+        {
+            "character": "Waymar Royce",
+            "characters": [
+                "Waymar Royce"
+            ],
+            "person": {
+                "name": "Rob Ostlere",
+                "ids": {
+                    "trakt": 951294,
+                    "slug": "rob-ostlere",
+                    "imdb": null,
+                    "tmdb": 1864916,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Pentoshi Servant",
+            "characters": [
+                "Pentoshi Servant"
+            ],
+            "person": {
+                "name": "Rania Zouari",
+                "ids": {
+                    "trakt": 951299,
+                    "slug": "rania-zouari",
+                    "imdb": null,
+                    "tmdb": 1864921,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Hodor",
+            "characters": [
+                "Hodor"
+            ],
+            "person": {
+                "name": "Kristian Nairn",
+                "ids": {
+                    "trakt": 517729,
+                    "slug": "kristian-nairn",
+                    "imdb": "nm3964231",
+                    "tmdb": 1223792,
+                    "tvrage": null
+                }
+            }
+        },
+        {
+            "character": "Rickon Stark",
+            "characters": [
+                "Rickon Stark"
+            ],
+            "person": {
+                "name": "Art Parkinson",
+                "ids": {
+                    "trakt": 430179,
+                    "slug": "art-parkinson",
+                    "imdb": "nm3280686",
+                    "tmdb": 1050248,
+                    "tvrage": 354005
+                }
+            }
+        }
+    ],
+    "crew": {
+        "writing": [
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "person": {
+                    "name": "David Benioff",
+                    "ids": {
+                        "trakt": 7779,
+                        "slug": "david-benioff",
+                        "imdb": "nm1125275",
+                        "tmdb": 9813,
+                        "tvrage": null
+                    }
+                }
+            },
+            {
+                "job": "Writer",
+                "jobs": [
+                    "Writer"
+                ],
+                "person": {
+                    "name": "D. B. Weiss",
+                    "ids": {
+                        "trakt": 499669,
+                        "slug": "d-b-weiss",
+                        "imdb": "nm1888967",
+                        "tmdb": 228068,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "editing": [
+            {
+                "job": "Editor",
+                "jobs": [
+                    "Editor"
+                ],
+                "person": {
+                    "name": "Oral Norrie Ottey",
+                    "ids": {
+                        "trakt": 12960,
+                        "slug": "oral-norrie-ottey",
+                        "imdb": "nm0653205",
+                        "tmdb": 18077,
+                        "tvrage": null
+                    }
+                }
+            }
+        ],
+        "directing": [
+            {
+                "job": "Director",
+                "jobs": [
+                    "Director"
+                ],
+                "person": {
+                    "name": "Timothy Van Patten",
+                    "ids": {
+                        "trakt": 32659,
+                        "slug": "timothy-van-patten-32659",
+                        "imdb": "nm0887700",
+                        "tmdb": 44797,
+                        "tvrage": 47577
+                    }
+                }
+            }
+        ],
+        "camera": [
+            {
+                "job": "Director of Photography",
+                "jobs": [
+                    "Director of Photography"
+                ],
+                "person": {
+                    "name": "Alik Sakharov",
+                    "ids": {
+                        "trakt": 564397,
+                        "slug": "alik-sakharov",
+                        "imdb": "nm0002399",
+                        "tmdb": 1318704,
+                        "tvrage": null
+                    }
+                }
+            }
+        ]
+    }
+}

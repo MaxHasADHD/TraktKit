@@ -234,6 +234,8 @@ public enum ExtendedType: String, CustomStringConvertible {
     case Episodes = "episodes"
     /// Get watched shows without seasons. https://trakt.docs.apiary.io/#reference/users/watched/get-watched
     case noSeasons = "noseasons"
+    /// For the show and season `/people` methods.
+    case guestStars = "guest_stars"
 
     public var description: String {
         return self.rawValue

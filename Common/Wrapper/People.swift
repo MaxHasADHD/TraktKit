@@ -40,21 +40,21 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleMovieCastMember, PeopleMovieCrewMember>>) -> URLSessionDataTaskProtocol? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
 
     // MARK: - Shows
 
     /**
-     Returns all shows where this person is in the `cast` or `crew`. Each `cast` object will have a `character` and a standard `show` object.
+     Returns all shows where this person is in the `cast` or `crew`, including the `episode_count` for which they appear. Each `cast` object will have a `characters` array and a standard `show` object. If `series_regular` is `true`, this person is a series regular and not simply a guest star.
      
-     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `show` object.
+     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, `camera`, `visual effects`, `lighting`, and `editing` (if there are people for those crew positions). Each of those members will have a jobs array and a standard `show` object.
      
      ✨ Extended Info
      */
     @discardableResult
-    public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleTVCastMember, PeopleTVCrewMember>>) -> URLSessionDataTaskProtocol? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
 
@@ -87,7 +87,7 @@ extension TraktManager {
     // MARK: - Private
     
     @discardableResult
-    private func getCredits<T: CustomStringConvertible>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping CastCrewCompletionHandler) -> URLSessionDataTaskProtocol? {
+    private func getCredits<T: CustomStringConvertible, Cast: Codable & Hashable, Crew: Codable & Hashable>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<Cast, Crew>>) -> URLSessionDataTaskProtocol? {
         guard let request = mutableRequest(forPath: "people/\(id)/\(type)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
