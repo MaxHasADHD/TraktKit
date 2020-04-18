@@ -31,7 +31,7 @@ extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 
 // MARK: MOCK
 
-public class MockURLSession: URLSessionProtocol {
+class MockURLSession: URLSessionProtocol {
     var nextDataTask = MockURLSessionDataTask()
     var nextData: Data?
     var nextStatusCode: Int = StatusCodes.Success
