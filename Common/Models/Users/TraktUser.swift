@@ -48,15 +48,15 @@ public struct User: Codable, Hashable {
         case vipYears = "vip_years"
     }
 
-    public struct IDs: Codable {
+    public struct IDs: Codable, Hashable {
         public let slug: String
     }
 
-    public struct Images: Codable {
+    public struct Images: Codable, Hashable {
         public let avatar: Image
     }
 
-    public struct Image: Codable {
+    public struct Image: Codable, Hashable {
         public let full: String
     }
 }
