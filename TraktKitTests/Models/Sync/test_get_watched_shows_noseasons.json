@@ -1,0 +1,38 @@
+[
+    {
+        "last_watched_at": "2020-05-05T23:54:22.000Z",
+        "reset_at": null,
+        "last_updated_at": "2020-05-05T23:57:07.000Z",
+        "plays": 6,
+        "show": {
+            "title": "Driven",
+            "year": 2020,
+            "ids": {
+                "tmdb": null,
+                "slug": "driven-2020",
+                "tvdb": 378677,
+                "tvrage": null,
+                "trakt": 159421,
+                "imdb": null
+            }
+        }
+    },
+    {
+        "last_watched_at": "2020-05-05T23:54:10.000Z",
+        "reset_at": null,
+        "last_updated_at": "2020-05-05T23:59:06.000Z",
+        "plays": 37,
+        "show": {
+            "title": "Street Outlaws: Memphis",
+            "year": 2018,
+            "ids": {
+                "tmdb": 76107,
+                "slug": "street-outlaws-memphis",
+                "tvdb": 340321,
+                "tvrage": null,
+                "trakt": 126601,
+                "imdb": "tt9177338"
+            }
+        }
+    }
+]
