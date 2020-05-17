@@ -213,6 +213,31 @@ class SyncTests: XCTestCase {
         }
     }
     
+    func test_get_watched_shows_noseasons() {
+        session.nextData = jsonData(named: "test_get_watched_shows_noseasons")
+        
+        let expectation = XCTestExpectation(description: "Get Watched - noSeasons")
+        traktManager.getWatchedShows(extended: [.noSeasons]) { result in
+            if case .success(let watchedShows) = result {
+                XCTAssertEqual(watchedShows.count, 2)
+                watchedShows.forEach {
+                    XCTAssertNotNil($0.lastWatchedAt)
+                    XCTAssertNotNil($0.lastUpdatedAt)
+                }
+                expectation.fulfill()
+            }
+        }
+        let result = XCTWaiter().wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/sync/watched/shows?extended=noseasons")
+        
+        switch result {
+        case .timedOut:
+            XCTFail("Something isn't working")
+        default:
+            break
+        }
+    }
+    
     func test_get_watched_shows() {
         session.nextData = jsonData(named: "test_get_watched_shows")
         

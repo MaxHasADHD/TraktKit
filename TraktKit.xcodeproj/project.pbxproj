@@ -461,6 +461,7 @@
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
 		A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
+		EFAB936D246504E700DAA9F6 /* test_get_watched_shows_noseasons.json in Resources */ = {isa = PBXBuildFile; fileRef = EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -750,6 +751,7 @@
 		A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
 		A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		A7FF28DC1C568FF600CA5B53 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
+		EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_get_watched_shows_noseasons.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1188,6 +1190,7 @@
 				70AB153D206924F0002223E0 /* test_remove_items_from_collection.json */,
 				70AB153F206924FA002223E0 /* test_get_watched.json */,
 				7028E11321EA3253005F29D4 /* test_get_watched_shows.json */,
+				EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */,
 				70AB154120692502002223E0 /* test_get_watched_history.json */,
 				70AB154320692508002223E0 /* test_add_items_to_watched_history.json */,
 				70AB15452069250E002223E0 /* test_remove_items_from_history.json */,
@@ -1633,6 +1636,7 @@
 				70005673206D0289005319DD /* test_pause_watching_in_media_center.json in Resources */,
 				70D97520206E64A9001E3281 /* test_get_most_collected_shows.json in Resources */,
 				A75DB4E4234C0E2A0028E0D0 /* AuthenticationInfo.json in Resources */,
+				EFAB936D246504E700DAA9F6 /* test_get_watched_shows_noseasons.json in Resources */,
 				70C5D8B12065BFB5002E4356 /* test_get_my_shows.json in Resources */,
 				7000567C206D0F5E005319DD /* test_get_lists_containing_this_person.json in Resources */,
 				70D97526206F2067001E3281 /* test_get_show_translations.json in Resources */,

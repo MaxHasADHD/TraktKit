@@ -15,7 +15,7 @@ public struct TraktWatchedShow: Codable, Hashable {
     public let lastWatchedAt: Date?
     public let lastUpdatedAt: Date?
     public let show: TraktShow
-    public let seasons: [TraktWatchedSeason]
+    public let seasons: [TraktWatchedSeason]?
     
     enum CodingKeys: String, CodingKey {
         case plays
