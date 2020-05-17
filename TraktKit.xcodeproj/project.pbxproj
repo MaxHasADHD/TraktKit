@@ -461,6 +461,8 @@
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
 		A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
+		B3167ECC2459FDBB00D51968 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECB2459FDBB00D51968 /* Languages.swift */; };
+		B3167ED02459FDF800D51968 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECF2459FDF800D51968 /* Language.swift */; };
 		EFAB936D246504E700DAA9F6 /* test_get_watched_shows_noseasons.json in Resources */ = {isa = PBXBuildFile; fileRef = EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */; };
 /* End PBXBuildFile section */
 
@@ -751,6 +753,8 @@
 		A7FB7FCF1BF8EC990003BBD7 /* Calendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
 		A7FB7FD11BF8ECA20003BBD7 /* Checkin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		A7FF28DC1C568FF600CA5B53 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
+		B3167ECB2459FDBB00D51968 /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
+		B3167ECF2459FDF800D51968 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_get_watched_shows_noseasons.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -843,6 +847,7 @@
 		700FED301F3FC2C400169961 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B3167ECE2459FDF800D51968 /* Languages */,
 				A7033F2F1C3AE3C4000E40F7 /* Structures.swift */,
 				A7AF98621CBF47BA00744566 /* TraktSearchResult.swift */,
 				A759C3B81D47D49200E7F938 /* Pagination.swift */,
@@ -1047,6 +1052,7 @@
 		7061FA041F3FC6050051036B /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				B3167ECB2459FDBB00D51968 /* Languages.swift */,
 				706B9EE920557BA2002B59FC /* URLSessionProtocol.swift */,
 				A77E86851B29F16C00EABC2D /* TraktManager.swift */,
 				70C832351DC505C5003EB134 /* CompletionHandlers.swift */,
@@ -1396,6 +1402,14 @@
 				A77E865A1B29F09100EABC2D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3167ECE2459FDF800D51968 /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				B3167ECF2459FDF800D51968 /* Language.swift */,
+			);
+			path = Languages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1945,6 +1959,7 @@
 				703D2ED91EF1428500CAD268 /* TraktHistoryItem.swift in Sources */,
 				705462641EF36598003BB24B /* Episodes.swift in Sources */,
 				703D2EDB1EF147E700CAD268 /* TraktCrewMember.swift in Sources */,
+				B3167ECC2459FDBB00D51968 /* Languages.swift in Sources */,
 				70B8442B1EF0DC4D001BA900 /* TraktWatchedShow.swift in Sources */,
 				70B844291EF0DC4D001BA900 /* TraktEpisode.swift in Sources */,
 				70B844281EF0DC4D001BA900 /* TraktSeason.swift in Sources */,
@@ -2022,6 +2037,7 @@
 				70F7735E1F3DC2160078110E /* FollowUserResult.swift in Sources */,
 				707FE6EA1F5D70ED00407769 /* UnhideItemResult.swift in Sources */,
 				70B8443B1EF0DFEE001BA900 /* TraktAnticipatedMovie.swift in Sources */,
+				B3167ED02459FDF800D51968 /* Language.swift in Sources */,
 				70B8442F1EF0DC7C001BA900 /* Structures.swift in Sources */,
 				70393F441F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
 				70F773531F3DBEFE0078110E /* Users.swift in Sources */,
