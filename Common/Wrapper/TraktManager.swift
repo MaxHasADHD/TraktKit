@@ -309,7 +309,7 @@ public class TraktManager {
     }
     
     public enum RefreshTokenError: Error {
-        case missingRefreshToken, invalidRequest, invalidRefreshToken, unsuccessfulNetworkResponse(Int), missingData
+        case missingRefreshToken, invalidRequest, invalidRefreshToken, unsuccessfulNetworkResponse(Int), missingData, expiredTokens
     }
     
     /// Returns the local token state. This could be wrong if a user revokes application access from Trakt.tv
@@ -340,7 +340,7 @@ public class TraktManager {
                 completion(.failure(error))
             }
         case .expiredTokens:
-            break
+            completion(.failure(RefreshTokenError.expiredTokens))
         default:
             completion(.success(()))
         }
