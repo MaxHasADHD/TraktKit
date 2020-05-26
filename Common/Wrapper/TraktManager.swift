@@ -57,10 +57,15 @@ public class TraktManager {
     }
     public var oauthURL: URL?
     
+    private var _accessToken: String?
     public var accessToken: String? {
         get {
+            if _accessToken != nil {
+                return _accessToken
+            }
             if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
-                if let accessTokenString = String.init(data: accessTokenData, encoding: .utf8) {
+                if let accessTokenString = String(data: accessTokenData, encoding: .utf8) {
+                    _accessToken = accessTokenString
                     return accessTokenString
                 }
             }
@@ -69,7 +74,7 @@ public class TraktManager {
         }
         set {
             // Save somewhere secure
-            
+            _accessToken = newValue
             if newValue == nil {
                 // Remove from keychain
                 MLKeychain.deleteItem(forKey: accessTokenKey)
@@ -83,11 +88,16 @@ public class TraktManager {
         }
     }
     
+    private var _refreshToken: String?
     public var refreshToken: String? {
         get {
+            if _refreshToken != nil {
+                return _refreshToken
+            }
             if let refreshTokenData = MLKeychain.loadData(forKey: refreshTokenKey) {
-                if let accessTokenString = String.init(data: refreshTokenData, encoding: .utf8) {
-                    return accessTokenString
+                if let refreshTokenString = String.init(data: refreshTokenData, encoding: .utf8) {
+                    _refreshToken = refreshTokenString
+                    return refreshTokenString
                 }
             }
             
@@ -95,6 +105,7 @@ public class TraktManager {
         }
         set {
             // Save somewhere secure
+            _refreshToken = newValue
             if newValue == nil {
                 // Remove from keychain
                 MLKeychain.deleteItem(forKey: refreshTokenKey)
@@ -151,6 +162,8 @@ public class TraktManager {
     
     public func signOut() {
         accessToken = nil
+        refreshToken = nil
+        UserDefaults.standard.removeObject(forKey: Constants.tokenExpirationDefaultsKey)
     }
     
     internal func mutableRequestForURL(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
@@ -287,7 +300,6 @@ public class TraktManager {
                 // Save expiration date
                 let expiresDate = Date(timeIntervalSinceNow: authenticationInfo.expiresIn)
                 UserDefaults.standard.set(expiresDate, forKey: Constants.tokenExpirationDefaultsKey)
-                UserDefaults.standard.synchronize()
                 
                 // Post notification
                 DispatchQueue.main.async {

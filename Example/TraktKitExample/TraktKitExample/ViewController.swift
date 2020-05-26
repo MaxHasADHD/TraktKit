@@ -34,7 +34,7 @@ final class ViewController: UIViewController {
     }
 
     private func signOut() {
-        TraktManager.sharedManager.accessToken = nil
+        TraktManager.sharedManager.signOut()
         refreshUI()
     }
 
