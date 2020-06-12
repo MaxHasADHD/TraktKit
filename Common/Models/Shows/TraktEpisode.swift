@@ -24,6 +24,7 @@ public struct TraktEpisode: Codable, Hashable {
     public let updatedAt: Date?
     public let availableTranslations: [String]?
     public let translations: [TraktShowTranslation]?
+    public let runtime: Int?
     
     enum CodingKeys: String, CodingKey {
         case season
@@ -38,5 +39,6 @@ public struct TraktEpisode: Codable, Hashable {
         case updatedAt = "updated_at"
         case availableTranslations = "available_translations"
         case translations
+        case runtime
     }
 }
