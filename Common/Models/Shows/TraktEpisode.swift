@@ -23,7 +23,7 @@ public struct TraktEpisode: Codable, Hashable {
     public let firstAired: Date?
     public let updatedAt: Date?
     public let availableTranslations: [String]?
-    public let translations: TraktShowTranslation?
+    public let translations: [TraktShowTranslation]?
     
     enum CodingKeys: String, CodingKey {
         case season
