@@ -5,7 +5,7 @@
 //  Copyright © 2020 Maximilian Litteral. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public struct DeviceCode {
     public let device_code:String
