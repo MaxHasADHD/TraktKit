@@ -40,6 +40,11 @@ extension TraktManager {
         case fail
     }
     
+    public enum ProgressResultType {
+        case success
+        case fail(_ progress:Int)
+    }
+    
     public enum WatchingResultType {
         case checkedIn(watching: TraktWatching)
         case notCheckedIn
@@ -61,6 +66,7 @@ extension TraktManager {
     
     public typealias DataResultCompletionHandler = (_ result: DataResultType) -> Void
     public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
+    public typealias ProgressCompletionHandler = (_ result: ProgressResultType) -> Void
     public typealias CommentsCompletionHandler = paginatedCompletionHandler<Comment>
 //    public typealias CastCrewCompletionHandler = ObjectCompletionHandler<CastAndCrew>
     
