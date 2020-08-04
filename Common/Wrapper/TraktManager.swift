@@ -33,6 +33,7 @@ public class TraktManager {
     private var redirectURI: String?
     private var baseURL: String?
     private var APIBaseURL: String?
+    private var isWaitingToToken: Bool = false
     
     // Keys
     let accessTokenKey = "accessToken"
@@ -293,8 +294,8 @@ public class TraktManager {
     
     public func getTokenFromDevice(code: DeviceCode?, completionHandler: ProgressCompletionHandler?) {
         guard
-            let clientID = clientID,
-            let clientSecret = clientSecret,
+            let clientID = self.clientID,
+            let clientSecret = self.clientSecret,
             let deviceCode = code else {
                 completionHandler?(.fail(0))
                 return
@@ -317,12 +318,30 @@ public class TraktManager {
             return
         }
         request.httpBody = body
+        self.isWaitingToToken = true
         
-        for i in 1...deviceCode.expires_in {
-            self.sendReques(request: request, count: i, completionHandler: completionHandler)
-            sleep(1)
+        DispatchQueue.global().async {
+            var i = 1
+            while self.isWaitingToToken {
+                if i >= deviceCode.expires_in {
+                    self.isWaitingToToken = false
+                    continue
+                }
+                self.sendReques(request: request, count: i) { result in
+                    completionHandler?(result)
+                    switch result {
+                    case .success:
+                        self.isWaitingToToken = false
+                    case .fail(let progress):
+                        if progress == 0 {
+                            self.isWaitingToToken = false
+                        }
+                    }
+                }
+                i += 1
+                sleep(1)
+            }
         }
-        
     }
     
     private func sendReques(request:URLRequest, count:Int, completionHandler: ProgressCompletionHandler?) {
