@@ -20,6 +20,10 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // Do any additional setup after loading the view, typically from a nib.
         setup()
     }
@@ -27,10 +31,32 @@ final class ViewController: UIViewController {
     // MARK: - Actions
 
     private func presentLogIn() {
-        guard let oauthURL = TraktManager.sharedManager.oauthURL else { return }
-
-        let traktAuth = SFSafariViewController(url: oauthURL)
-        present(traktAuth, animated: true, completion: nil)
+        
+        // For Code register devices
+        TraktManager.sharedManager.getAppCode { [weak self] deviceData in
+            guard let self = self else { return }
+            if let deviceCode = deviceData {
+                DispatchQueue.main.sync {
+                    self.showQRCode(data: deviceCode)
+                }
+            }
+            
+        }
+        
+        
+        // For web supported devices
+//        guard let oauthURL = TraktManager.sharedManager.oauthURL else { return }
+//
+//        let traktAuth = SFSafariViewController(url: oauthURL)
+//        present(traktAuth, animated: true, completion: nil)
+        
+    }
+    
+    
+    func showQRCode(data: DeviceCode) {
+        let qrVC = QRCodeViewController()
+        qrVC.set(data)
+        self.navigationController?.pushViewController(qrVC, animated: true)
     }
 
     private func signOut() {
