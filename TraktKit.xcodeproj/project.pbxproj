@@ -463,6 +463,7 @@
 		A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
 		B3167ECC2459FDBB00D51968 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECB2459FDBB00D51968 /* Languages.swift */; };
 		B3167ED02459FDF800D51968 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECF2459FDF800D51968 /* Language.swift */; };
+		E69A4B2F24D9BE4F00E2467A /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69A4B2E24D9BE4F00E2467A /* DeviceCode.swift */; };
 		EFAB936D246504E700DAA9F6 /* test_get_watched_shows_noseasons.json in Resources */ = {isa = PBXBuildFile; fileRef = EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */; };
 /* End PBXBuildFile section */
 
@@ -755,6 +756,7 @@
 		A7FF28DC1C568FF600CA5B53 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		B3167ECB2459FDBB00D51968 /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		B3167ECF2459FDF800D51968 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		E69A4B2E24D9BE4F00E2467A /* DeviceCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCode.swift; sourceTree = "<group>"; };
 		EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_get_watched_shows_noseasons.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -865,6 +867,7 @@
 				700FED391F3FC3B700169961 /* Shows */,
 				700FED341F3FC31800169961 /* Sync */,
 				700FED331F3FC30F00169961 /* Users */,
+				E69A4B2E24D9BE4F00E2467A /* DeviceCode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2042,6 +2045,7 @@
 				70393F441F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
 				70F773531F3DBEFE0078110E /* Users.swift in Sources */,
 				70393F2C1F3F2AC500943D34 /* AddToCollectionResult.swift in Sources */,
+				E69A4B2F24D9BE4F00E2467A /* DeviceCode.swift in Sources */,
 				70B844271EF0DC4D001BA900 /* TraktShow.swift in Sources */,
 				70B844261EF0DC4D001BA900 /* TraktAnticipatedShow.swift in Sources */,
 				70393F3C1F3F34C300943D34 /* RemoveFromWatchlistResult.swift in Sources */,
