@@ -294,6 +294,81 @@ public class TraktManager {
         }.resume()
     }
     
+    public func getTokenFromDevice(code: DeviceCode?, completionHandler: SuccessCompletionHandler?) throws {
+        guard
+            let clientID = clientID,
+            let clientSecret = clientSecret,
+            let deviceCode = code?.device_code else {
+                completionHandler?(.fail)
+                return
+        }
+
+        let urlString = "https://trakt.tv/oauth/device/token"
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler?(.fail)
+            return
+        }
+
+        let json = [
+            "code": deviceCode,
+            "client_id": clientID,
+            "client_secret": clientSecret,
+        ]
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+
+        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
+            guard let welf = self else { return }
+            guard error == nil else {
+                completionHandler?(.fail)
+                return
+            }
+
+            // Check response
+            guard let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success else {
+                    completionHandler?(.fail)
+                    return
+            }
+
+            // Check data
+            guard let data = data else {
+                completionHandler?(.fail)
+                return
+            }
+
+            do {
+                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+
+                    welf.accessToken = accessTokenDict["access_token"] as? String
+                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
+
+                    #if DEBUG
+                    print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
+                    print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
+                    #endif
+
+                    // Save expiration date
+                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
+                    let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
+
+                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard.synchronize()
+
+                    // Post notification
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
+                    }
+
+                    completionHandler?(.success)
+                }
+            }
+            catch {
+                completionHandler?(.fail)
+            }
+            }.resume()
+    }
+    
     public func getTokenFromAuthorizationCode(code: String, completionHandler: SuccessCompletionHandler?) throws {
         guard
             let clientID = clientID,
