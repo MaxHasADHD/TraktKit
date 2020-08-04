@@ -16,6 +16,7 @@
 		217335D621E940030080BC5B /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217335D521E940030080BC5B /* TraktKit.framework */; };
 		217335D721E940100080BC5B /* TraktKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217335D521E940030080BC5B /* TraktKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217335DA21E949C60080BC5B /* TraktProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217335D921E949C60080BC5B /* TraktProfileViewController.swift */; };
+		E69A4B3124D9C04400E2467A /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69A4B3024D9C04400E2467A /* QRCodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		217335C021E9355F0080BC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		217335D521E940030080BC5B /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		217335D921E949C60080BC5B /* TraktProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktProfileViewController.swift; sourceTree = "<group>"; };
+		E69A4B3024D9C04400E2467A /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				217335B421E9355D0080BC5B /* AppDelegate.swift */,
 				217335B621E9355D0080BC5B /* ViewController.swift */,
+				E69A4B3024D9C04400E2467A /* QRCodeViewController.swift */,
 				217335D921E949C60080BC5B /* TraktProfileViewController.swift */,
 				21124BFE21F0C7E700C19EA0 /* SearchResultsViewController.swift */,
 				217335B821E9355D0080BC5B /* Main.storyboard */,
@@ -173,6 +176,7 @@
 				21124BFF21F0C7E700C19EA0 /* SearchResultsViewController.swift in Sources */,
 				217335DA21E949C60080BC5B /* TraktProfileViewController.swift in Sources */,
 				217335B521E9355D0080BC5B /* AppDelegate.swift in Sources */,
+				E69A4B3124D9C04400E2467A /* QRCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
