@@ -8,14 +8,6 @@
 
 import Foundation
 
-public struct DeviceCode {
-    public let device_code:String
-    public let user_code:String
-    public let verification_url:String
-    public let expires_in:Int
-    public let interval:Int
-}
-
 // Errors
 let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit",
                                   code: -10,
@@ -210,7 +202,7 @@ public class TraktManager {
         return request
     }
     
-    internal func mutableRequestForCode(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
+    internal func mutableRequestForCode(_ url: URL?, HTTPMethod: Method) -> URLRequest? {
         guard
             let url = url else { return nil }
         var request = URLRequest(url: url)
@@ -237,7 +229,7 @@ public class TraktManager {
     
     // MARK: - Authentication
     
-    public func getAppCode(completionHandler: @escaping (_ result: DeviceCode?) -> Void) throws {
+    public func getAppCode(completionHandler: @escaping (_ result: DeviceCode?) -> Void) {
         guard
             let clientID = clientID else {
                 completionHandler(nil)
@@ -246,7 +238,7 @@ public class TraktManager {
         let urlString = "https://\(APIBaseURL!)/oauth/device/code/"
         
         let url = URL(string: urlString)
-        guard var request = mutableRequestForCode(url, authorization: false, HTTPMethod: .POST) else {
+        guard var request = mutableRequestForCode(url, HTTPMethod: .POST) else {
             completionHandler(nil)
             return
         }
@@ -254,119 +246,144 @@ public class TraktManager {
         let json = [
             "client_id": clientID,
             ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        session._dataTask(with: request) {(data, response, error) -> Void in
-            guard error == nil else {
-                completionHandler(nil)
-                return
-            }
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
             
-            // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                HTTPResponse.statusCode == StatusCodes.Success else {
+            session._dataTask(with: request) {(data, response, error) -> Void in
+                guard error == nil else {
                     completionHandler(nil)
                     return
-            }
-            
-            // Check data
-            guard
-                let data = data else {
-                    completionHandler(nil)
-                    return
-            }
-            do {
-                if let deviceCodeDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
-                    let device_code = deviceCodeDict["device_code"] as? String,
-                    let user_code = deviceCodeDict["user_code"] as? String,
-                    let verification_url = deviceCodeDict["verification_url"] as? String,
-                    let expires_in = deviceCodeDict["expires_in"] as? Int,
-                    let interval = deviceCodeDict["interval"] as? Int {
-                    
-                    let codeData = DeviceCode(device_code: device_code, user_code: user_code, verification_url: verification_url, expires_in: expires_in, interval: interval)
-                    completionHandler(codeData)
-                    print(deviceCodeDict)
                 }
-            } catch {
-                completionHandler(nil)
-            }
-        }.resume()
+                
+                // Check response
+                guard
+                    let HTTPResponse = response as? HTTPURLResponse,
+                    HTTPResponse.statusCode == StatusCodes.Success else {
+                        completionHandler(nil)
+                        return
+                }
+                
+                // Check data
+                guard
+                    let data = data else {
+                        completionHandler(nil)
+                        return
+                }
+                do {
+                    if let deviceCodeDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
+                        let device_code = deviceCodeDict["device_code"] as? String,
+                        let user_code = deviceCodeDict["user_code"] as? String,
+                        let verification_url = deviceCodeDict["verification_url"] as? String,
+                        let expires_in = deviceCodeDict["expires_in"] as? Int,
+                        let interval = deviceCodeDict["interval"] as? Int {
+                        
+                        let codeData = DeviceCode(device_code: device_code, user_code: user_code, verification_url: verification_url, expires_in: expires_in, interval: interval)
+                        completionHandler(codeData)
+                        print(deviceCodeDict)
+                    }
+                } catch {
+                    completionHandler(nil)
+                }
+            }.resume()
+        } catch let error {
+            print(error)
+            completionHandler(nil)
+        }
     }
     
-    public func getTokenFromDevice(code: DeviceCode?, completionHandler: SuccessCompletionHandler?) throws {
+    public func getTokenFromDevice(code: DeviceCode?, completionHandler: ProgressCompletionHandler?) {
         guard
             let clientID = clientID,
             let clientSecret = clientSecret,
-            let deviceCode = code?.device_code else {
-                completionHandler?(.fail)
+            let deviceCode = code else {
+                completionHandler?(.fail(0))
                 return
         }
 
-        let urlString = "https://trakt.tv/oauth/device/token"
+        let urlString = "https://\(APIBaseURL!)/oauth/device/token"
         let url = URL(string: urlString)
         guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
-            completionHandler?(.fail)
+            completionHandler?(.fail(0))
             return
         }
 
         let json = [
-            "code": deviceCode,
+            "code": deviceCode.device_code,
             "client_id": clientID,
             "client_secret": clientSecret,
         ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-
+        guard let body = try? JSONSerialization.data(withJSONObject: json, options: []) else {
+            completionHandler?(.fail(0))
+            return
+        }
+        request.httpBody = body
+        
+        for i in 1...deviceCode.expires_in {
+            self.sendReques(request: request, count: i, completionHandler: completionHandler)
+            sleep(1)
+        }
+        
+    }
+    
+    private func sendReques(request:URLRequest, count:Int, completionHandler: ProgressCompletionHandler?) {
         session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
             guard error == nil else {
-                completionHandler?(.fail)
+                completionHandler?(.fail(0))
                 return
             }
 
             // Check response
+            if let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.BadRequestion {
+                completionHandler?(.fail(count))
+                return
+            }
+            
             guard let HTTPResponse = response as? HTTPURLResponse,
                 HTTPResponse.statusCode == StatusCodes.Success else {
-                    completionHandler?(.fail)
+                    completionHandler?(.fail(0))
                     return
             }
 
             // Check data
             guard let data = data else {
-                completionHandler?(.fail)
+                completionHandler?(.fail(0))
                 return
             }
 
             do {
                 if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
-
-                    welf.accessToken = accessTokenDict["access_token"] as? String
-                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
-
-                    #if DEBUG
-                    print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
-                    print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
-                    #endif
-
-                    // Save expiration date
-                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
-                    let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
-
-                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
-                    UserDefaults.standard.synchronize()
-
-                    // Post notification
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
-                    }
-
+                    welf.saveCredentials(accessTokenDict)
                     completionHandler?(.success)
                 }
             }
             catch {
-                completionHandler?(.fail)
+                completionHandler?(.fail(0))
             }
-            }.resume()
+        }.resume()
+    }
+    
+    private func saveCredentials(_ credentials: [String: AnyObject]) {
+        self.accessToken = credentials["access_token"] as? String
+        self.refreshToken = credentials["refresh_token"] as? String
+
+        #if DEBUG
+        print("[\(#function)] Access token is \(String(describing: self.accessToken))")
+        print("[\(#function)] Refresh token is \(String(describing: self.refreshToken))")
+        #endif
+
+        // Save expiration date
+        let timeInterval = credentials["expires_in"] as! NSNumber
+        let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
+
+        UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+        UserDefaults.standard.synchronize()
+
+        // Post notification
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
+        }
     }
     
     public func getTokenFromAuthorizationCode(code: String, completionHandler: SuccessCompletionHandler?) throws {
@@ -420,25 +437,7 @@ public class TraktManager {
             do {
                 if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                     
-                    welf.accessToken = accessTokenDict["access_token"] as? String
-                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
-                    
-                    #if DEBUG
-                        print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
-                        print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
-                    #endif
-                    
-                    // Save expiration date
-                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
-                    let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
-                    
-                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
-                    UserDefaults.standard.synchronize()
-                    
-                    // Post notification
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
-                    }
+                    welf.saveCredentials(accessTokenDict)
                     
                     completionHandler?(.success)
                 }
