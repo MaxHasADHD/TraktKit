@@ -14,7 +14,7 @@ public struct DeviceCode {
     public let expires_in:Int
     public let interval:Int
     
-    func getQRCode() -> UIImage? {
+    public func getQRCode() -> UIImage? {
         let data = self.verification_url.data(using: String.Encoding.ascii)
 
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
