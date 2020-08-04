@@ -8,6 +8,14 @@
 
 import Foundation
 
+public struct DeviceCode {
+    public let device_code:String
+    public let user_code:String
+    public let verification_url:String
+    public let expires_in:Int
+    public let interval:Int
+}
+
 // Errors
 let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit",
                                   code: -10,
@@ -25,13 +33,6 @@ public class TraktManager {
     // TODO List:
     // 1. Create a limit object, double check every paginated API call is marked as paginated
     // 2. Call completion with custom error when creating request fails
-    
-    // MARK: - Properties
-    
-    private enum Constants {
-        static let tokenExpirationDefaultsKey = "accessTokenExpirationDate"
-        static let oneMonth: TimeInterval = 2629800
-    }
     
     // MARK: Internal
     private var staging: Bool?
@@ -57,15 +58,10 @@ public class TraktManager {
     }
     public var oauthURL: URL?
     
-    private var _accessToken: String?
     public var accessToken: String? {
         get {
-            if _accessToken != nil {
-                return _accessToken
-            }
             if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
-                if let accessTokenString = String(data: accessTokenData, encoding: .utf8) {
-                    _accessToken = accessTokenString
+                if let accessTokenString = String.init(data: accessTokenData, encoding: .utf8) {
                     return accessTokenString
                 }
             }
@@ -74,7 +70,7 @@ public class TraktManager {
         }
         set {
             // Save somewhere secure
-            _accessToken = newValue
+            
             if newValue == nil {
                 // Remove from keychain
                 MLKeychain.deleteItem(forKey: accessTokenKey)
@@ -88,16 +84,11 @@ public class TraktManager {
         }
     }
     
-    private var _refreshToken: String?
     public var refreshToken: String? {
         get {
-            if _refreshToken != nil {
-                return _refreshToken
-            }
             if let refreshTokenData = MLKeychain.loadData(forKey: refreshTokenKey) {
-                if let refreshTokenString = String.init(data: refreshTokenData, encoding: .utf8) {
-                    _refreshToken = refreshTokenString
-                    return refreshTokenString
+                if let accessTokenString = String.init(data: refreshTokenData, encoding: .utf8) {
+                    return accessTokenString
                 }
             }
             
@@ -105,7 +96,6 @@ public class TraktManager {
         }
         set {
             // Save somewhere secure
-            _refreshToken = newValue
             if newValue == nil {
                 // Remove from keychain
                 MLKeychain.deleteItem(forKey: refreshTokenKey)
@@ -162,8 +152,6 @@ public class TraktManager {
     
     public func signOut() {
         accessToken = nil
-        refreshToken = nil
-        UserDefaults.standard.removeObject(forKey: Constants.tokenExpirationDefaultsKey)
     }
     
     internal func mutableRequestForURL(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
@@ -177,7 +165,7 @@ public class TraktManager {
         if let clientID = clientID {
             request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
         }
-        
+
         if authorization {
             if let accessToken = accessToken {
                 request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
@@ -222,6 +210,17 @@ public class TraktManager {
         return request
     }
     
+    internal func mutableRequestForCode(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
+        guard
+            let url = url else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.rawValue
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        return request
+    }
+    
     internal func createJsonData(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], ids: [NSNumber]? = nil) throws -> Data? {
         var json: [String: Any] = [
             "movies": movies,
@@ -237,6 +236,63 @@ public class TraktManager {
     }
     
     // MARK: - Authentication
+    
+    public func getAppCode(completionHandler: @escaping (_ result: DeviceCode?) -> Void) throws {
+        guard
+            let clientID = clientID else {
+                completionHandler(nil)
+                return
+        }
+        let urlString = "https://\(APIBaseURL!)/oauth/device/code/"
+        
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForCode(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler(nil)
+            return
+        }
+        
+        let json = [
+            "client_id": clientID,
+            ]
+        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+        
+        session._dataTask(with: request) {(data, response, error) -> Void in
+            guard error == nil else {
+                completionHandler(nil)
+                return
+            }
+            
+            // Check response
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success else {
+                    completionHandler(nil)
+                    return
+            }
+            
+            // Check data
+            guard
+                let data = data else {
+                    completionHandler(nil)
+                    return
+            }
+            do {
+                if let deviceCodeDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
+                    let device_code = deviceCodeDict["device_code"] as? String,
+                    let user_code = deviceCodeDict["user_code"] as? String,
+                    let verification_url = deviceCodeDict["verification_url"] as? String,
+                    let expires_in = deviceCodeDict["expires_in"] as? Int,
+                    let interval = deviceCodeDict["interval"] as? Int {
+                    
+                    let codeData = DeviceCode(device_code: device_code, user_code: user_code, verification_url: verification_url, expires_in: expires_in, interval: interval)
+                    completionHandler(codeData)
+                    print(deviceCodeDict)
+                }
+            } catch {
+                completionHandler(nil)
+            }
+        }.resume()
+    }
     
     public func getTokenFromAuthorizationCode(code: String, completionHandler: SuccessCompletionHandler?) throws {
         guard
@@ -287,26 +343,30 @@ public class TraktManager {
             }
             
             do {
-                let decoder = JSONDecoder()
-                let authenticationInfo = try decoder.decode(AuthenticationInfo.self, from: data)
-                #if DEBUG
-                print(authenticationInfo)
-                print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
-                print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
-                #endif
-                
-                welf.accessToken = authenticationInfo.accessToken
-                welf.refreshToken = authenticationInfo.refreshToken
-                // Save expiration date
-                let expiresDate = Date(timeIntervalSinceNow: authenticationInfo.expiresIn)
-                UserDefaults.standard.set(expiresDate, forKey: Constants.tokenExpirationDefaultsKey)
-                
-                // Post notification
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
+                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+                    
+                    welf.accessToken = accessTokenDict["access_token"] as? String
+                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
+                    
+                    #if DEBUG
+                        print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
+                        print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
+                    #endif
+                    
+                    // Save expiration date
+                    let timeInterval = accessTokenDict["expires_in"] as! NSNumber
+                    let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
+                    
+                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard.synchronize()
+                    
+                    // Post notification
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
+                    }
+                    
+                    completionHandler?(.success)
                 }
-                
-                completionHandler?(.success)
             }
             catch {
                 completionHandler?(.fail)
@@ -316,63 +376,65 @@ public class TraktManager {
     
     // MARK: Refresh access token
     
-    public enum RefreshState {
-        case noTokens, validTokens, refreshTokens, expiredTokens
-    }
-    
-    public enum RefreshTokenError: Error {
-        case missingRefreshToken, invalidRequest, invalidRefreshToken, unsuccessfulNetworkResponse(Int), missingData, expiredTokens
-    }
-    
-    /// Returns the local token state. This could be wrong if a user revokes application access from Trakt.tv
-    public var refreshState: RefreshState {
-        guard let expiredDate = UserDefaults.standard.object(forKey: Constants.tokenExpirationDefaultsKey) as? Date else {
-            return .noTokens
-        }
-        let refreshDate = expiredDate.addingTimeInterval(-Constants.oneMonth)
-        let now = Date()
-        
-        if now >= expiredDate {
-            return .expiredTokens
-        }
-        
-        if now >= refreshDate {
-            return .refreshTokens
-        }
-        
-        return .validTokens
-    }
-    
-    public func checkToRefresh(completion: @escaping (_ result: Swift.Result<Void, Error>) -> Void) {
-        switch refreshState {
-        case .refreshTokens:
-            do {
-                try getAccessTokenFromRefreshToken(completionHandler: completion)
-            } catch {
-                completion(.failure(error))
+    public func needToRefresh() -> Bool {
+        if let expirationDate = UserDefaults.standard.object(forKey: "accessTokenExpirationDate") as? Date {
+            let today = Date()
+            
+            if today.compare(expirationDate) == .orderedDescending ||
+                today.compare(expirationDate) == .orderedSame {
+                return true
+            } else {
+                return false
             }
-        case .expiredTokens:
-            completion(.failure(RefreshTokenError.expiredTokens))
-        default:
-            completion(.success(()))
+        }
+        
+        return false
+    }
+    
+    public func checkToRefresh(completion: @escaping (_ success: Bool) -> Void) {
+        if let expirationDate = UserDefaults.standard.object(forKey: "accessTokenExpirationDate") as? Date {
+            let today = Date()
+            
+            if today.compare(expirationDate) == .orderedDescending ||
+                today.compare(expirationDate) == .orderedSame {
+                do {
+                    try getAccessTokenFromRefreshToken { result in
+                        switch result {
+                        case .success:
+                            completion(true)
+                        case .fail:
+                            completion(false)
+                        }
+                    }
+                } catch {
+                    completion(false)
+                }
+            } else {
+                completion(true)
+            }
+        } else {
+            completion(true)
         }
     }
     
-    public func getAccessTokenFromRefreshToken(completionHandler: @escaping (_ result: Swift.Result<Void, Error>) -> Void) throws {
+    public func getAccessTokenFromRefreshToken(completionHandler: @escaping SuccessCompletionHandler) throws {
         guard
             let clientID = clientID,
             let clientSecret = clientSecret,
-            let redirectURI = redirectURI,
-            let rToken = refreshToken
-            else {
-                completionHandler(.failure(RefreshTokenError.missingRefreshToken))
+            let redirectURI = redirectURI else {
+                completionHandler(.fail)
                 return
+        }
+        
+        guard let rToken = refreshToken else {
+            completionHandler(.fail)
+            return
         }
         
         let urlString = "https://\(baseURL!)/oauth/token"
         let url = URL(string: urlString)
         guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
-            completionHandler(.failure(RefreshTokenError.invalidRequest))
+            completionHandler(.fail)
             return
         }
         
@@ -387,48 +449,51 @@ public class TraktManager {
         
         session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
             guard let welf = self else { return }
-            if let error = error {
-                completionHandler(.failure(error))
+            guard error == nil else {
+                completionHandler(.fail)
                 return
             }
             
             // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse else { return }
-            
-            switch HTTPResponse.statusCode {
-            case 401:
-                completionHandler(.failure(RefreshTokenError.invalidRefreshToken))
-            case 200...299: // Success
-                break
-            default:
-                completionHandler(.failure(RefreshTokenError.unsuccessfulNetworkResponse(HTTPResponse.statusCode)))
+            guard
+                let HTTPResponse = response as? HTTPURLResponse,
+                HTTPResponse.statusCode == StatusCodes.Success else {
+                    completionHandler(.fail)
+                    return
             }
             
             // Check data
             guard let data = data else {
-                completionHandler(.failure(RefreshTokenError.missingData))
+                completionHandler(.fail)
                 return
             }
             
             do {
-                let decoder = JSONDecoder()
-                let authenticationInfo = try decoder.decode(AuthenticationInfo.self, from: data)
-                #if DEBUG
-                print(authenticationInfo)
-                print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
-                print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
-                #endif
-                
-                welf.accessToken = authenticationInfo.accessToken
-                welf.refreshToken = authenticationInfo.refreshToken
-                // Save expiration date
-                let expiresDate = Date(timeIntervalSinceNow: authenticationInfo.expiresIn)
-                UserDefaults.standard.set(expiresDate, forKey: Constants.tokenExpirationDefaultsKey)
-                UserDefaults.standard.synchronize()
-                
-                completionHandler(.success(()))
+                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+                    
+                    welf.accessToken = accessTokenDict["access_token"] as? String
+                    welf.refreshToken = accessTokenDict["refresh_token"] as? String
+                    
+                    #if DEBUG
+                        print(accessTokenDict)
+                        print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
+                        print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
+                    #endif
+                    
+                    // Save expiration date
+                    guard let timeInterval = accessTokenDict["expires_in"] as? NSNumber else {
+                        completionHandler(.fail)
+                        return
+                    }
+                    let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
+                    
+                    UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+                    UserDefaults.standard.synchronize()
+                    
+                    completionHandler(.success)
+                }
             } catch {
-                completionHandler(.failure(error))
+                completionHandler(.fail)
             }
         }.resume()
     }
