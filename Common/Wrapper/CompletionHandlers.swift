@@ -128,24 +128,31 @@ extension TraktManager {
     
     /// Data
     func performRequest(request: URLRequest, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let welf = self else { return }
+        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+            guard 200...299 ~= httpResponse.statusCode else {
+                switch httpResponse.statusCode {
+                case StatusCodes.RateLimitExceeded:
+                    if let retryAfter = httpResponse.allHeaderFields["Retry-After"] as? String,
+                       let retryInterval = TimeInterval(retryAfter) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
+                            _ = self.performRequest(request: request, completion: completion)
+                        }
                     } else {
-                        completion(.error(error: nil))
+                        completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
                     }
-                    return
+                default:
+                    completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
+                }
+                return
             }
             
             // Check data
@@ -156,39 +163,48 @@ extension TraktManager {
             completion(.success(data: data))
         }
         datatask.resume()
-
         return datatask
     }
     
     /// Success / Failure
     func performRequest(request: URLRequest, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { (data, response, error) -> Void in
+        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.fail)
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.fail) }
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
+            guard 200...299 ~= httpResponse.statusCode else {
+                switch httpResponse.statusCode {
+                case StatusCodes.RateLimitExceeded:
+                    if let retryAfter = httpResponse.allHeaderFields["Retry-After"] as? String,
+                       let retryInterval = TimeInterval(retryAfter) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
+                            _ = self.performRequest(request: request, completion: completion)
+                        }
+                    } else {
+                        completion(.fail)
+                    }
+                default:
                     completion(.fail)
-                    return
+                }
+                return
             }
             
             completion(.success)
         }
         datatask.resume()
-        
         return datatask
     }
     
     /// Checkin
     func performRequest(request: URLRequest, completion: @escaping checkinCompletionHandler) -> URLSessionDataTaskProtocol? {
-
         let datatask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let welf = self else { return }
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
@@ -213,18 +229,25 @@ extension TraktManager {
                 completion(.checkedIn(expiration: expirationDate))
                 return
             }
+            
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
 
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+            guard 200...299 ~= httpResponse.statusCode else {
+                switch httpResponse.statusCode {
+                case StatusCodes.RateLimitExceeded:
+                    if let retryAfter = httpResponse.allHeaderFields["Retry-After"] as? String,
+                       let retryInterval = TimeInterval(retryAfter) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
+                            _ = self.performRequest(request: request, completion: completion)
+                        }
                     } else {
-                        completion(.error(error: nil))
+                        completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
                     }
-                    return
+                default:
+                    completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
+                }
+                return
             }
 
             completion(.error(error: nil))
@@ -234,8 +257,7 @@ extension TraktManager {
     }
     
     // Generic array of Trakt objects
-    func performRequest<T>(request: URLRequest, completion: @escaping  ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        
+    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
         let aCompletion: DataResultCompletionHandler = { (result) -> Void in
             switch result {
             case .success(let data):
@@ -257,26 +279,32 @@ extension TraktManager {
     }
     
     /// Array of TraktProtocol objects
-    func performRequest<T: Decodable>(request: URLRequest, completion: @escaping  ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        
-        let dataTask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let welf = self else { return }
+    func performRequest<T: Decodable>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+            guard 200...299 ~= httpResponse.statusCode else {
+                switch httpResponse.statusCode {
+                case StatusCodes.RateLimitExceeded:
+                    if let retryAfter = httpResponse.allHeaderFields["Retry-After"] as? String,
+                       let retryInterval = TimeInterval(retryAfter) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
+                            _ = self.performRequest(request: request, completion: completion)
+                        }
                     } else {
-                        completion(.error(error: nil))
+                        completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
                     }
-                    return
+                default:
+                    completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
+                }
+                return
             }
             
             // Check data
@@ -300,37 +328,42 @@ extension TraktManager {
     }
     
     /// Array of ObjectsResultTypePagination objects
-    func performRequest<T>(request: URLRequest, completion: @escaping  ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        
-        let dataTask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let welf = self else { return }
+    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
+            guard 200...299 ~= httpResponse.statusCode else {
+                switch httpResponse.statusCode {
+                case StatusCodes.RateLimitExceeded:
+                    if let retryAfter = httpResponse.allHeaderFields["Retry-After"] as? String,
+                       let retryInterval = TimeInterval(retryAfter) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
+                            _ = self.performRequest(request: request, completion: completion)
+                        }
                     } else {
-                        completion(.error(error: nil))
+                        completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
                     }
-                    
-                    return
+                default:
+                    completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
+                }
+                return
             }
             
             var pageCount: Int = 0
-            if let pCount = HTTPResponse.allHeaderFields["x-pagination-page-count"] as? String,
+            if let pCount = httpResponse.allHeaderFields["x-pagination-page-count"] as? String,
                 let pCountInt = Int(pCount) {
                 pageCount = pCountInt
             }
             
             var currentPage: Int = 0
-            if let cPage = HTTPResponse.allHeaderFields["x-pagination-page"] as? String,
+            if let cPage = httpResponse.allHeaderFields["x-pagination-page"] as? String,
                 let cPageInt = Int(cPage) {
                 currentPage = cPageInt
             }
@@ -357,27 +390,34 @@ extension TraktManager {
     
     // Watching
     func performRequest(request: URLRequest, completion: @escaping WatchingCompletion) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { data, response, error in
+        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                HTTPResponse.statusCode == StatusCodes.Success ||
-                    HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
+            guard httpResponse.statusCode == StatusCodes.Success || httpResponse.statusCode == StatusCodes.SuccessNoContentToReturn else {
+                switch httpResponse.statusCode {
+                case StatusCodes.RateLimitExceeded:
+                    if let retryAfter = httpResponse.allHeaderFields["Retry-After"] as? String,
+                       let retryInterval = TimeInterval(retryAfter) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
+                            _ = self.performRequest(request: request, completion: completion)
+                        }
                     } else {
-                        completion(.error(error: TraktKitNoDataError))
+                        completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
                     }
-                    return
+                default:
+                    completion(.error(error: self.createErrorWithStatusCode(httpResponse.statusCode)))
+                }
+                return
             }
             
-            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
+            if httpResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
                 completion(.notCheckedIn)
                 return
             }
