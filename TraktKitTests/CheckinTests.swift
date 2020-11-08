@@ -27,7 +27,8 @@ class CheckinTests: XCTestCase {
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
 
         let expectation = XCTestExpectation(description: "Checkin a movie")
-        try! traktManager.checkIn(movie: [:], episode: nil) { result in
+        let checkin = TraktCheckinBody(movie: SyncId(trakt: 12345))
+        try! traktManager.checkIn(checkin) { result in
             if case .success(let checkin) = result {
                 XCTAssertEqual(checkin.id, 3373536619)
                 XCTAssertNotNil(checkin.movie)
@@ -50,7 +51,8 @@ class CheckinTests: XCTestCase {
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
 
         let expectation = XCTestExpectation(description: "Checkin a episode")
-        try! traktManager.checkIn(movie: nil, episode: [:]) { result in
+        let checkin = TraktCheckinBody(episode: SyncId(trakt: 12345))
+        try! traktManager.checkIn(checkin) { result in
             if case .success(let checkin) = result {
                 XCTAssertEqual(checkin.id, 3373536620)
                 XCTAssertNotNil(checkin.episode)
@@ -74,7 +76,8 @@ class CheckinTests: XCTestCase {
         session.nextStatusCode = StatusCodes.Conflict
 
         let expectation = XCTestExpectation(description: "Checkin an existing item")
-        try! traktManager.checkIn(movie: nil, episode: [:]) { result in
+        let checkin = TraktCheckinBody(episode: SyncId(trakt: 12345))
+        try! traktManager.checkIn(checkin) { result in
             if case .checkedIn(let expiration) = result {
                 XCTAssertEqual(expiration.dateString(withFormat: "YYYY-MM-dd"), "2014-10-15")
                 expectation.fulfill()

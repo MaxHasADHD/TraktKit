@@ -1,0 +1,147 @@
+//
+//  BodyPost.swift
+//  TraktKitTests
+//
+//  Created by Maximilian Litteral on 11/7/20.
+//  Copyright © 2020 Maximilian Litteral. All rights reserved.
+//
+
+import Foundation
+
+/// Body data for endpoints like `/sync/history` that contains Trakt Ids.
+struct TraktMediaBody<ID: Encodable>: Encodable {
+    let movies: [ID]?
+    let shows: [ID]?
+    let seasons: [ID]?
+    let episodes: [ID]?
+    let ids: [Int]?
+    let people: [ID]?
+    
+    init(movies: [ID]? = nil, shows: [ID]? = nil, seasons: [ID]? = nil, episodes: [ID]? = nil, ids: [Int]? = nil, people: [ID]? = nil) {
+        self.movies = movies
+        self.shows = shows
+        self.seasons = seasons
+        self.episodes = episodes
+        self.ids = ids
+        self.people = people
+    }
+}
+
+/// ID used to sync with Trakt.
+public struct SyncId: Codable, Hashable {
+    /// Trakt id of the movie / show / season / episode
+    public let trakt: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case ids
+    }
+    
+    enum IDCodingKeys: String, CodingKey {
+        case trakt
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var nested = container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .ids)
+        try nested.encode(trakt, forKey: .trakt)
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let nested = try container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .ids)
+        self.trakt = try nested.decode(Int.self, forKey: .trakt)
+    }
+    
+    public init(trakt: Int) {
+        self.trakt = trakt
+    }
+}
+
+public struct AddToHistoryId: Encodable, Hashable {
+    /// Trakt id of the movie / show / season / episode
+    public let trakt: Int
+    /// UTC datetime when the item was watched.
+    public let watchedAt: Date?
+    
+    enum CodingKeys: String, CodingKey {
+        case ids, watchedAt = "watched_at"
+    }
+    
+    enum IDCodingKeys: String, CodingKey {
+        case trakt
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var nested = container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .ids)
+        try nested.encode(trakt, forKey: .trakt)
+        try container.encodeIfPresent(watchedAt, forKey: .watchedAt)
+    }
+}
+
+public struct RatingId: Encodable, Hashable {
+    /// Trakt id of the movie / show / season / episode
+    public let trakt: Int
+    /// Between 1 and 10.
+    public let rating: Int
+    /// UTC datetime when the item was rated.
+    public let ratedAt: Date?
+    
+    enum CodingKeys: String, CodingKey {
+        case ids, rating, ratedAt = "rated_at"
+    }
+    
+    enum IDCodingKeys: String, CodingKey {
+        case trakt
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var nested = container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .ids)
+        try nested.encode(trakt, forKey: .trakt)
+        try container.encode(rating, forKey: .rating)
+        try container.encodeIfPresent(ratedAt, forKey: .ratedAt)
+    }
+}
+
+public struct CollectionId: Encodable, Hashable {
+    /// Trakt id of the movie / show / season / episode
+    public let trakt: Int
+    /// UTC datetime when the item was collected. Set to `released` to automatically use the inital release date.
+    public let collectedAt: Date
+    public let mediaType: TraktCollectedItem.MediaType?
+    public let resolution: TraktCollectedItem.Resolution?
+    public let hdr: TraktCollectedItem.HDR?
+    public let audio: TraktCollectedItem.Audio?
+    public let audioChannels: TraktCollectedItem.AudioChannels?
+    /// Set true if in 3D.
+    public let is3D: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case ids
+        case collectedAt = "collected_at"
+        case mediaType = "media_type"
+        case resolution
+        case hdr
+        case audio
+        case audioChannels = "audio_channels"
+        case is3D = "3d"
+    }
+    
+    enum IDCodingKeys: String, CodingKey {
+        case trakt
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var nested = container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .ids)
+        try nested.encode(trakt, forKey: .trakt)
+        try container.encode(collectedAt, forKey: .collectedAt)
+        try container.encodeIfPresent(mediaType, forKey: .mediaType)
+        try container.encodeIfPresent(resolution, forKey: .resolution)
+        try container.encodeIfPresent(hdr, forKey: .hdr)
+        try container.encodeIfPresent(audio, forKey: .audio)
+        try container.encodeIfPresent(audioChannels, forKey: .audioChannels)
+        try container.encodeIfPresent(is3D, forKey: .is3D)
+    }
+}

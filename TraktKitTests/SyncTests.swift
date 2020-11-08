@@ -361,7 +361,7 @@ class SyncTests: XCTestCase {
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
 
         let expectation = XCTestExpectation(description: "Add rating")
-        try! traktManager.addRatings(rating: 12, ratedAt: Date(), movies: [], shows: [], episodes: []) { result in
+        try! traktManager.addRatings(movies: [RatingId(trakt: 12345, rating: 10, ratedAt: Date())]) { result in
             if case .success(let result) = result {
                 XCTAssertEqual(result.added.movies, 1)
                 XCTAssertEqual(result.added.shows, 1)

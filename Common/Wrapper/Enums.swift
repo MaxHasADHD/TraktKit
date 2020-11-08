@@ -264,9 +264,13 @@ public enum Period: String {
 }
 
 public enum SectionType: String {
+    /// Can hide movie, show objects
     case Calendar = "calendar"
+    /// Can hide show, season objects
     case ProgressWatched = "progress_watched"
+    /// Can hide show, season objects
     case ProgressCollected = "progress_collected"
+    /// Can hide movie, show objects
     case Recommendations = "recommendations"
 }
 

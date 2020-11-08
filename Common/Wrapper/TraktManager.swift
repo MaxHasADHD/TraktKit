@@ -40,6 +40,11 @@ public class TraktManager {
     private var redirectURI: String?
     private var baseURL: String?
     private var APIBaseURL: String?
+    let jsonEncoder: JSONEncoder = {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        return encoder
+    }()
     
     // Keys
     let accessTokenKey = "accessToken"
@@ -222,20 +227,42 @@ public class TraktManager {
         return request
     }
     
-    internal func createJsonData(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], ids: [NSNumber]? = nil) throws -> Data? {
-        var json: [String: Any] = [
-            "movies": movies,
-            "shows": shows,
-            "episodes": episodes,
-            ]
+    func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) -> URLRequest? {
+        guard let apiBaseURL = APIBaseURL else { preconditionFailure("Call `set(clientID:clientSecret:redirectURI:staging:)` before making any API requests") }
+        let urlString = "https://\(apiBaseURL)/" + path
+        guard var components = URLComponents(string: urlString) else { return nil }
         
-        if let ids = ids {
-            json["ids"] = ids
+        if query.isEmpty == false {
+            var queryItems: [URLQueryItem] = []
+            for (key, value) in query {
+                queryItems.append(URLQueryItem(name: key, value: value))
+            }
+            components.queryItems = queryItems
         }
         
-        return try JSONSerialization.data(withJSONObject: json, options: [])
+        guard let url = components.url else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = Method.POST.rawValue
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
+        if let clientID = clientID {
+            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
+        }
+        
+        if let accessToken = accessToken {
+            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
+        
+        do {
+            request.httpBody = try jsonEncoder.encode(body)
+        } catch {
+            return nil
+        }
+        
+        return request
     }
-    
+
     // MARK: - Authentication
     
     public func getTokenFromAuthorizationCode(code: String, completionHandler: SuccessCompletionHandler?) throws {

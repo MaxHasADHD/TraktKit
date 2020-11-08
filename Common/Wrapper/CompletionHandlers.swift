@@ -47,7 +47,7 @@ extension TraktManager {
     }
     
     public enum CheckinResultType {
-        case success(checkin: TraktCheckin)
+        case success(checkin: TraktCheckinResponse)
         case checkedIn(expiration: Date)
         case error(error: Error?)
     }
@@ -219,7 +219,7 @@ extension TraktManager {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
 
-            if let checkin = try? decoder.decode(TraktCheckin.self, from: data) {
+            if let checkin = try? decoder.decode(TraktCheckinResponse.self, from: data) {
                 completion(.success(checkin: checkin))
                 return
             } else if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
