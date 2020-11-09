@@ -77,6 +77,11 @@ public struct AddToHistoryId: Encodable, Hashable {
         try nested.encode(trakt, forKey: .trakt)
         try container.encodeIfPresent(watchedAt, forKey: .watchedAt)
     }
+    
+    public init(trakt: Int, watchedAt: Date?) {
+        self.trakt = trakt
+        self.watchedAt = watchedAt
+    }
 }
 
 public struct RatingId: Encodable, Hashable {
@@ -101,6 +106,12 @@ public struct RatingId: Encodable, Hashable {
         try nested.encode(trakt, forKey: .trakt)
         try container.encode(rating, forKey: .rating)
         try container.encodeIfPresent(ratedAt, forKey: .ratedAt)
+    }
+    
+    public init(trakt: Int, rating: Int, ratedAt: Date?) {
+        self.trakt = trakt
+        self.rating = rating
+        self.ratedAt = ratedAt
     }
 }
 
@@ -143,5 +154,16 @@ public struct CollectionId: Encodable, Hashable {
         try container.encodeIfPresent(audio, forKey: .audio)
         try container.encodeIfPresent(audioChannels, forKey: .audioChannels)
         try container.encodeIfPresent(is3D, forKey: .is3D)
+    }
+    
+    public init(trakt: Int, collectedAt: Date, mediaType: TraktCollectedItem.MediaType? = nil, resolution: TraktCollectedItem.Resolution? = nil, hdr: TraktCollectedItem.HDR? = nil, audio: TraktCollectedItem.Audio? = nil, audioChannels: TraktCollectedItem.AudioChannels? = nil, is3D: Bool? = nil) {
+        self.trakt = trakt
+        self.collectedAt = collectedAt
+        self.mediaType = mediaType
+        self.resolution = resolution
+        self.hdr = hdr
+        self.audio = audio
+        self.audioChannels = audioChannels
+        self.is3D = is3D
     }
 }

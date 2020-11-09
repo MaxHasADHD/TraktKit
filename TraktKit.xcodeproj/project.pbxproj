@@ -467,6 +467,7 @@
 		A7D396362558557D00088DFD /* TraktScrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396352558557D00088DFD /* TraktScrobble.swift */; };
 		A7D396372558557D00088DFD /* TraktScrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396352558557D00088DFD /* TraktScrobble.swift */; };
 		A7D396382558557D00088DFD /* TraktScrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396352558557D00088DFD /* TraktScrobble.swift */; };
+		A7D39667255965C900088DFD /* AuthenticationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */; };
 		B3167ECC2459FDBB00D51968 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECB2459FDBB00D51968 /* Languages.swift */; };
 		B3167ED02459FDF800D51968 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECF2459FDF800D51968 /* Language.swift */; };
 		EFAB936D246504E700DAA9F6 /* test_get_watched_shows_noseasons.json in Resources */ = {isa = PBXBuildFile; fileRef = EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */; };
@@ -1964,6 +1965,7 @@
 				A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */,
 				702631EC1E6682ED006F323B /* TraktWatching.swift in Sources */,
 				700FED211F3FB96A00169961 /* TraktMovieRelease.swift in Sources */,
+				A7D39667255965C900088DFD /* AuthenticationInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2212,7 +2214,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2234,7 +2236,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2255,7 +2257,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Distribution;
 		};
