@@ -27,7 +27,7 @@ public struct StatusCodes {
     /// Success - no content to return (DELETE)
     public static let SuccessNoContentToReturn = 204
     /// Bad Request - request couldn't be parsed
-    public static let BadRequestion = 400
+    public static let BadRequest = 400
     /// Unauthorized - OAuth must be provided
     public static let Unauthorized = 401
     /// Forbidden - invalid API key or unapproved app
@@ -42,6 +42,10 @@ public struct StatusCodes {
     public static let PreconditionFailed = 412
     /// Unprocessable Entity - validation errors
     public static let UnprocessableEntity = 422
+    /// Trakt account locked. Have user contact Trakt https://github.com/trakt/api-help/issues/228
+    public static let acountLocked = 423
+    /// VIP Only - user must upgrade to VIP
+    public static let vipOnly = 426
     /// Rate Limit Exceeded
     public static let RateLimitExceeded = 429
     /// Server Error
@@ -61,6 +65,8 @@ public struct StatusCodes {
             return "Invalid API Key"
         case NotFound:
             return "API not found"
+        case RateLimitExceeded:
+            return "Trakt.tv has indicated that this account is locked. Please contact Trakt support to unlock your account."
         case RateLimitExceeded:
             return "Rate Limit Exceeded. Please try again in a minute."
         case ServerError..<CloudflareError:

@@ -9,27 +9,27 @@
 import Foundation
 
 public struct RemoveListItemResult: Codable, Hashable {
-    let deleted: Added
-//    let notFound: NotFound
+    public let deleted: Deleted
+    public let notFound: NotFound
 
-    public struct Added: Codable, Hashable {
-        let movies: Int
-        let shows: Int
-        let seasons: Int
-        let episodes: Int
-        let people: Int
+    public struct Deleted: Codable, Hashable {
+        public let movies: Int
+        public let shows: Int
+        public let seasons: Int
+        public let episodes: Int
+        public let people: Int
     }
     
     public struct NotFound: Codable, Hashable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        let episodes: [ID]
-        let people: [ID]
+        public let movies: [NotFoundIds]
+        public let shows: [NotFoundIds]
+        public let seasons: [NotFoundIds]
+        public let episodes: [NotFoundIds]
+        public let people: [NotFoundIds]
     }
     
     enum CodingKeys: String, CodingKey {
         case deleted
-//        case notFound = "not_found"
+        case notFound = "not_found"
     }
 }

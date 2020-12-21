@@ -8,14 +8,6 @@
 
 import Foundation
 
-// Errors
-let TraktKitNoDataError = NSError(domain: "com.litteral.TraktKit",
-                                  code: -10,
-                                  userInfo: ["title": "Trakt",
-                                             NSLocalizedDescriptionKey: "No data returned",
-                                             NSLocalizedFailureReasonErrorKey: "",
-                                             NSLocalizedRecoverySuggestionErrorKey: ""])
-
 public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }

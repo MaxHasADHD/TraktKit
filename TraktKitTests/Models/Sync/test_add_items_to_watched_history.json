@@ -1,24 +1,19 @@
 {
-  "added" : {
-    "movies" : 2,
-    "episodes" : 72
+  "added": {
+    "movies": 2,
+    "episodes": 72
   },
-  "not_found" : {
-    "seasons" : [
-
-    ],
-    "movies" : [
+  "not_found": {
+    "seasons": [],
+    "movies": [
       {
         "ids" : {
           "imdb" : "tt0000111"
         }
       }
     ],
-    "shows" : [
-
-    ],
-    "episodes" : [
-
-    ]
+    "shows": [],
+    "episodes": [],
+    "people": []
   }
 }

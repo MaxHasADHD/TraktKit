@@ -456,6 +456,9 @@
 		A75DB4DF234C0BAE0028E0D0 /* AuthenticationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */; };
 		A75DB4E1234C0DFF0028E0D0 /* AuthenticationInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4E0234C0DFF0028E0D0 /* AuthenticationInfoTests.swift */; };
 		A75DB4E4234C0E2A0028E0D0 /* AuthenticationInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = A75DB4E3234C0E290028E0D0 /* AuthenticationInfo.json */; };
+		A76FBCAA257EF302009593B2 /* AddToHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */; };
+		A76FBCAB257EF302009593B2 /* AddToHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */; };
+		A76FBCAC257EF302009593B2 /* AddToHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */; };
 		A77602BC1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
 		A77602BF1D1BB66D000FA8C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -709,6 +712,7 @@
 		A75DB4E3234C0E290028E0D0 /* AuthenticationInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AuthenticationInfo.json; sourceTree = "<group>"; };
 		A764CB7F1D7B36960094BE66 /* HiddenItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenItem.swift; sourceTree = "<group>"; };
 		A76905B51B47B7A6003C7431 /* MLKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKeychain.swift; sourceTree = "<group>"; };
+		A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToHistoryResult.swift; sourceTree = "<group>"; };
 		A773405D1C07884B00A69EA1 /* Shows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		A773405F1C07886500A69EA1 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A77340631C079D2500A69EA1 /* Seasons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seasons.swift; sourceTree = "<group>"; };
@@ -912,6 +916,7 @@
 				70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */,
 				70C810B21DBAAE9A00A5AA28 /* TraktCollectedItem.swift */,
 				705462661EF367BA003BB24B /* PlaybackProgress.swift */,
+				A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */,
 				70393F2B1F3F2AC500943D34 /* AddToCollectionResult.swift */,
 				70393F2F1F3F2B4C00943D34 /* RemoveFromCollectionResult.swift */,
 				70393F331F3F2BE500943D34 /* AddRatingsResult.swift */,
@@ -1855,6 +1860,7 @@
 				70F773381F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
 				A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */,
+				A76FBCAC257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */,
 				A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */,
 				70C5D8A620651A3D002E4356 /* TraktWatchedItem.swift in Sources */,
@@ -1891,6 +1897,7 @@
 				70C5D8CF2066A8CD002E4356 /* Certifications.swift in Sources */,
 				70D369862066C76F0008B9D7 /* TraktTrendingComments.swift in Sources */,
 				70393F451F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
+				A76FBCAB257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A7582BF71CCA6FE900B3CF63 /* TraktWatchedEpisodes.swift in Sources */,
 				70393F391F3F2C4700943D34 /* RemoveRatingsResult.swift in Sources */,
 				70C810B41DBAE34400A5AA28 /* TraktCollectedItem.swift in Sources */,
@@ -2023,6 +2030,7 @@
 				70005683206D102F005319DD /* Lists.swift in Sources */,
 				70B844311EF0DE21001BA900 /* TraktMovie.swift in Sources */,
 				70393F301F3F2B4C00943D34 /* RemoveFromCollectionResult.swift in Sources */,
+				A76FBCAA257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				70F7E6321EF2A7050026B8A1 /* CastAndCrew.swift in Sources */,
 				70B844301EF0DD74001BA900 /* DateParser.swift in Sources */,
 				700FED241F3FBC7C00169961 /* People.swift in Sources */,
