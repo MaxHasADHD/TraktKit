@@ -27,6 +27,34 @@ struct TraktMediaBody<ID: Encodable>: Encodable {
     }
 }
 
+/// Data for containing a single object
+class TraktSingleObjectBody<ID: Encodable>: Encodable {
+    let movie: ID?
+    let show: ID?
+    let season: ID?
+    let episode: ID?
+    let list: ID?
+    
+    init(movie: ID? = nil, show: ID? = nil, season: ID? = nil, episode: ID? = nil, list: ID? = nil) {
+        self.movie = movie
+        self.show = show
+        self.season = season
+        self.episode = episode
+        self.list = list
+    }
+}
+
+class TraktCommentBody: TraktSingleObjectBody<SyncId> {
+    let comment: String
+    let spoiler: Bool?
+    
+    init(movie: SyncId? = nil, show: SyncId? = nil, season: SyncId? = nil, episode: SyncId? = nil, list: SyncId? = nil, comment: String, spoiler: Bool?) {
+        self.comment = comment
+        self.spoiler = spoiler
+        super.init(movie: movie, show: show, season: season, episode: episode, list: list)
+    }
+}
+
 /// ID used to sync with Trakt.
 public struct SyncId: Codable, Hashable {
     /// Trakt id of the movie / show / season / episode
