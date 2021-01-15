@@ -334,6 +334,68 @@ public class TraktManager {
             }.resume()
     }
     
+    public func getAppCode(completionHandler: @escaping (_ result: DeviceCode?) -> Void) {
+        guard
+            let clientID = clientID else {
+                completionHandler(nil)
+                return
+        }
+        let urlString = "https://\(APIBaseURL!)/oauth/device/code/"
+        
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForCode(url, HTTPMethod: .POST) else {
+            completionHandler(nil)
+            return
+        }
+        
+        let json = [
+            "client_id": clientID,
+            ]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+            
+            session._dataTask(with: request) {(data, response, error) -> Void in
+                guard error == nil else {
+                    completionHandler(nil)
+                    return
+                }
+                
+                // Check response
+                guard
+                    let HTTPResponse = response as? HTTPURLResponse,
+                    HTTPResponse.statusCode == StatusCodes.Success else {
+                        completionHandler(nil)
+                        return
+                }
+                
+                // Check data
+                guard
+                    let data = data else {
+                        completionHandler(nil)
+                        return
+                }
+                do {
+                    if let deviceCodeDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
+                        let device_code = deviceCodeDict["device_code"] as? String,
+                        let user_code = deviceCodeDict["user_code"] as? String,
+                        let verification_url = deviceCodeDict["verification_url"] as? String,
+                        let expires_in = deviceCodeDict["expires_in"] as? Int,
+                        let interval = deviceCodeDict["interval"] as? Int {
+                        
+                        let codeData = DeviceCode(device_code: device_code, user_code: user_code, verification_url: verification_url, expires_in: expires_in, interval: interval)
+                        completionHandler(codeData)
+                        print(deviceCodeDict)
+                    }
+                } catch {
+                    completionHandler(nil)
+                }
+            }.resume()
+        } catch let error {
+            print(error)
+            completionHandler(nil)
+        }
+    }
+    
     public func getTokenFromDevice(code: DeviceCode?, completionHandler: ProgressCompletionHandler?) {
             guard
                 let clientID = self.clientID,
