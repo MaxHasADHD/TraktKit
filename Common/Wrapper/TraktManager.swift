@@ -343,7 +343,7 @@ public class TraktManager {
         let urlString = "https://\(APIBaseURL!)/oauth/device/code/"
         
         let url = URL(string: urlString)
-        guard var request = mutableRequestForCode(url, HTTPMethod: .POST) else {
+        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
             completionHandler(nil)
             return
         }
