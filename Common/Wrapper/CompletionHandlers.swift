@@ -52,9 +52,40 @@ extension TraktManager {
     }
     
     public enum CheckinResultType {
-        case success(checkin: TraktCheckin)
+        case success(checkin: TraktCheckinResponse)
         case checkedIn(expiration: Date)
         case error(error: Error?)
+    }
+    
+    public enum TraktKitError: Error {
+        case couldNotParseData
+    }
+    
+    public enum TraktError: Error {
+        /// Bad Request - request couldn't be parsed
+        case badRequest
+        /// Oauth must be provided
+        case unauthorized
+        /// Forbidden - invalid API key or unapproved app
+        case forbidden
+        /// Not Found - method exists, but no record found
+        case noRecordFound
+        /// Method Not Found - method doesn't exist
+        case noMethodFound
+        /// Conflict - resource already created
+        case resourceAlreadyCreated
+        /// Locked User Account - have the user contact support
+        case accountLocked
+        /// VIP Only - user must upgrade to VIP
+        case vipOnly
+        /// Rate Limit Exceeded
+        case rateLimitExceeded(HTTPURLResponse)
+        /// Service Unavailable - server overloaded (try again in 30s)
+        case serverOverloaded
+        /// Service Unavailable - Cloudflare error
+        case cloudflareError
+        /// Full url response
+        case unhandled(HTTPURLResponse)
     }
     
     // MARK: - Completion handlers
@@ -130,71 +161,111 @@ extension TraktManager {
     public typealias UserStatsCompletion = ObjectCompletionHandler<UserStats>
     public typealias UserWatchedCompletion = ObjectsCompletionHandler<TraktWatchedItem>
     
+    // MARK: - Error handling
+    
+    private func handleResponse(response: URLResponse?, retry: @escaping (() -> Void)) throws {
+        guard let httpResponse = response as? HTTPURLResponse else { throw TraktKitError.couldNotParseData }
+        
+        guard 200...299 ~= httpResponse.statusCode else {
+            switch httpResponse.statusCode {
+            case StatusCodes.BadRequest:
+                throw TraktError.badRequest
+            case StatusCodes.Unauthorized:
+                throw TraktError.unauthorized
+            case StatusCodes.Forbidden:
+                throw TraktError.forbidden
+            case StatusCodes.NotFound:
+                throw TraktError.noRecordFound
+            case StatusCodes.MethodNotFound:
+                throw TraktError.noMethodFound
+            case StatusCodes.Conflict:
+                throw TraktError.resourceAlreadyCreated
+            case StatusCodes.acountLocked:
+                throw TraktError.accountLocked
+            case StatusCodes.vipOnly:
+                throw TraktError.vipOnly
+            case StatusCodes.RateLimitExceeded:
+                if let retryAfter = httpResponse.allHeaderFields["retry-after"] as? String,
+                   let retryInterval = TimeInterval(retryAfter) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
+                        retry()
+                    }
+                } else {
+                    throw TraktError.rateLimitExceeded(httpResponse)
+                }
+                
+            case 503, 504:
+                throw TraktError.serverOverloaded
+            case 500...600:
+                throw TraktError.cloudflareError
+            default:
+                throw TraktError.unhandled(httpResponse)
+            }
+            return
+        }
+    }
+    
     // MARK: - Perform Requests
     
     /// Data
     func performRequest(request: URLRequest, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let welf = self else { return }
+        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
-                    } else {
-                        completion(.error(error: nil))
-                    }
-                    return
+            do {
+                try self.handleResponse(response: response, retry: {
+                    _ = self.performRequest(request: request, completion: completion)
+                })
+            } catch {
+                completion(.error(error: error))
+                return
             }
             
             // Check data
             guard let data = data else {
-                completion(.error(error: TraktKitNoDataError))
+                completion(.error(error: TraktKitError.couldNotParseData))
                 return
             }
             completion(.success(data: data))
         }
         datatask.resume()
-
         return datatask
     }
     
     /// Success / Failure
     func performRequest(request: URLRequest, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { (data, response, error) -> Void in
+        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.fail)
                 return
             }
             
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    completion(.fail)
-                    return
+            do {
+                try self.handleResponse(response: response, retry: {
+                    _ = self.performRequest(request: request, completion: completion)
+                })
+            } catch {
+                completion(.fail)
+                return
             }
             
             completion(.success)
         }
         datatask.resume()
-        
         return datatask
     }
     
     /// Checkin
     func performRequest(request: URLRequest, completion: @escaping checkinCompletionHandler) -> URLSessionDataTaskProtocol? {
-
         let datatask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let welf = self else { return }
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
@@ -202,14 +273,14 @@ extension TraktManager {
 
             // Check data
             guard let data = data else {
-                completion(.error(error: TraktKitNoDataError))
+                completion(.error(error: TraktKitError.couldNotParseData))
                 return
             }
 
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
 
-            if let checkin = try? decoder.decode(TraktCheckin.self, from: data) {
+            if let checkin = try? decoder.decode(TraktCheckinResponse.self, from: data) {
                 completion(.success(checkin: checkin))
                 return
             } else if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
@@ -219,18 +290,15 @@ extension TraktManager {
                 completion(.checkedIn(expiration: expirationDate))
                 return
             }
-
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
-                    } else {
-                        completion(.error(error: nil))
-                    }
-                    return
+            do {
+                try self.handleResponse(response: response, retry: {
+                    _ = self.performRequest(request: request, completion: completion)
+                })
+            } catch {
+                completion(.error(error: error))
+                return
             }
 
             completion(.error(error: nil))
@@ -240,8 +308,7 @@ extension TraktManager {
     }
     
     // Generic array of Trakt objects
-    func performRequest<T>(request: URLRequest, completion: @escaping  ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        
+    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
         let aCompletion: DataResultCompletionHandler = { (result) -> Void in
             switch result {
             case .success(let data):
@@ -263,31 +330,27 @@ extension TraktManager {
     }
     
     /// Array of TraktProtocol objects
-    func performRequest<T: Decodable>(request: URLRequest, completion: @escaping  ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        
-        let dataTask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let welf = self else { return }
+    func performRequest<T: Decodable>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
-                    } else {
-                        completion(.error(error: nil))
-                    }
-                    return
+            do {
+                try self.handleResponse(response: response, retry: {
+                    _ = self.performRequest(request: request, completion: completion)
+                })
+            } catch {
+                completion(.error(error: error))
+                return
             }
             
             // Check data
             guard let data = data else {
-                completion(.error(error: TraktKitNoDataError))
+                completion(.error(error: TraktKitError.couldNotParseData))
                 return
             }
             
@@ -306,44 +369,41 @@ extension TraktManager {
     }
     
     /// Array of ObjectsResultTypePagination objects
-    func performRequest<T>(request: URLRequest, completion: @escaping  ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        
-        let dataTask = session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let welf = self else { return }
+    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                200...299 ~= HTTPResponse.statusCode
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: welf.createErrorWithStatusCode(HTTPResponse.statusCode)))
-                    } else {
-                        completion(.error(error: nil))
-                    }
-                    
-                    return
+            do {
+                try self.handleResponse(response: response, retry: {
+                    _ = self.performRequest(request: request, completion: completion)
+                })
+            } catch {
+                completion(.error(error: error))
+                return
             }
             
             var pageCount: Int = 0
-            if let pCount = HTTPResponse.allHeaderFields["x-pagination-page-count"] as? String,
+            if let pCount = httpResponse.allHeaderFields["x-pagination-page-count"] as? String,
                 let pCountInt = Int(pCount) {
                 pageCount = pCountInt
             }
             
             var currentPage: Int = 0
-            if let cPage = HTTPResponse.allHeaderFields["x-pagination-page"] as? String,
+            if let cPage = httpResponse.allHeaderFields["x-pagination-page"] as? String,
                 let cPageInt = Int(cPage) {
                 currentPage = cPageInt
             }
             
             // Check data
             guard let data = data else {
-                completion(.error(error: TraktKitNoDataError))
+                completion(.error(error: TraktKitError.couldNotParseData))
                 return
             }
             
@@ -363,34 +423,33 @@ extension TraktManager {
     
     // Watching
     func performRequest(request: URLRequest, completion: @escaping WatchingCompletion) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { data, response, error in
+        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
             guard error == nil else {
                 completion(.error(error: error))
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
+            
             // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                HTTPResponse.statusCode == StatusCodes.Success ||
-                    HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn
-                else {
-                    if let HTTPResponse = response as? HTTPURLResponse {
-                        completion(.error(error: self.createErrorWithStatusCode(HTTPResponse.statusCode)))
-                    } else {
-                        completion(.error(error: TraktKitNoDataError))
-                    }
-                    return
+            do {
+                try self.handleResponse(response: response, retry: {
+                    _ = self.performRequest(request: request, completion: completion)
+                })
+            } catch {
+                completion(.error(error: error))
+                return
             }
             
-            if HTTPResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
+            if httpResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
                 completion(.notCheckedIn)
                 return
             }
             
             // Check data
             guard let data = data else {
-                completion(.error(error: TraktKitNoDataError))
+                completion(.error(error: TraktKitError.couldNotParseData))
                 return
             }
             

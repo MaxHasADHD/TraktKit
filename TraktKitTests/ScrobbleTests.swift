@@ -26,9 +26,10 @@ class ScrobbleTests: XCTestCase {
     func test_start_watching_in_media_center() {
         session.nextData = jsonData(named: "test_start_watching_in_media_center")
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
-
+        
         let expectation = XCTestExpectation(description: "Start watching in media center")
-        try! traktManager.scrobbleStart(movie: [:], progress: 1.25, appVersion: 1.0, appBuildDate: Date()) { result in
+        let scrobble = TraktScrobble(movie: SyncId(trakt: 12345), progress: 1.25)
+        try! traktManager.scrobbleStart(scrobble) { result in
             if case .success(let response) = result {
                 XCTAssertEqual(response.action, "start")
                 XCTAssertEqual(response.progress, 1.25)
@@ -54,7 +55,8 @@ class ScrobbleTests: XCTestCase {
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
 
         let expectation = XCTestExpectation(description: "Pause watching in media center")
-        try! traktManager.scrobblePause(movie: [:], progress: 75, appVersion: 1.0, appBuildDate: Date()) { result in
+        let scrobble = TraktScrobble(movie: SyncId(trakt: 12345), progress: 75)
+        try! traktManager.scrobblePause(scrobble) { result in
             if case .success(let response) = result {
                 XCTAssertEqual(response.action, "pause")
                 XCTAssertEqual(response.progress, 75)
@@ -80,7 +82,8 @@ class ScrobbleTests: XCTestCase {
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
 
         let expectation = XCTestExpectation(description: "Stop watching in media center")
-        try! traktManager.scrobbleStop(movie: [:], progress: 99.9, appVersion: 1.0, appBuildDate: Date()) { result in
+        let scrobble = TraktScrobble(movie: SyncId(trakt: 12345), progress: 99.9)
+        try! traktManager.scrobbleStop(scrobble) { result in
             if case .success(let response) = result {
                 XCTAssertEqual(response.action, "scrobble")
                 XCTAssertEqual(response.progress, 99.9)

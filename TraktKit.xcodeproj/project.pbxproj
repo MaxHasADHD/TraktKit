@@ -456,14 +456,26 @@
 		A75DB4DF234C0BAE0028E0D0 /* AuthenticationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */; };
 		A75DB4E1234C0DFF0028E0D0 /* AuthenticationInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4E0234C0DFF0028E0D0 /* AuthenticationInfoTests.swift */; };
 		A75DB4E4234C0E2A0028E0D0 /* AuthenticationInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = A75DB4E3234C0E290028E0D0 /* AuthenticationInfo.json */; };
+		A76FBCAA257EF302009593B2 /* AddToHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */; };
+		A76FBCAB257EF302009593B2 /* AddToHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */; };
+		A76FBCAC257EF302009593B2 /* AddToHistoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */; };
 		A77602BC1D1B9DCD000FA8C4 /* TraktListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BA1D1B9DCD000FA8C4 /* TraktListItem.swift */; };
 		A77602BF1D1BB66D000FA8C4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77602BD1D1BB66D000FA8C4 /* Enums.swift */; };
 		A77E864F1B29F09100EABC2D /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A77E864E1B29F09100EABC2D /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77E86551B29F09100EABC2D /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E86491B29F09100EABC2D /* TraktKit.framework */; };
 		A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */; };
+		A7D3961C2556408D00088DFD /* JSONEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3961B2556408D00088DFD /* JSONEncodingTests.swift */; };
+		A7D396272556E36C00088DFD /* BodyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396212556E36900088DFD /* BodyPost.swift */; };
+		A7D3962C2556E36D00088DFD /* BodyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396212556E36900088DFD /* BodyPost.swift */; };
+		A7D396362558557D00088DFD /* TraktScrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396352558557D00088DFD /* TraktScrobble.swift */; };
+		A7D396372558557D00088DFD /* TraktScrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396352558557D00088DFD /* TraktScrobble.swift */; };
+		A7D396382558557D00088DFD /* TraktScrobble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396352558557D00088DFD /* TraktScrobble.swift */; };
+		A7D39667255965C900088DFD /* AuthenticationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */; };
 		B3167ECC2459FDBB00D51968 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECB2459FDBB00D51968 /* Languages.swift */; };
 		B3167ED02459FDF800D51968 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECF2459FDF800D51968 /* Language.swift */; };
-		E69A4B2F24D9BE4F00E2467A /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69A4B2E24D9BE4F00E2467A /* DeviceCode.swift */; };
+		E628DF1D25B224DB00D674E4 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628DF1C25B224DB00D674E4 /* DeviceCode.swift */; };
+		E628DF1E25B224DB00D674E4 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628DF1C25B224DB00D674E4 /* DeviceCode.swift */; };
+		E628DF1F25B224DB00D674E4 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628DF1C25B224DB00D674E4 /* DeviceCode.swift */; };
 		EFAB936D246504E700DAA9F6 /* test_get_watched_shows_noseasons.json in Resources */ = {isa = PBXBuildFile; fileRef = EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */; };
 /* End PBXBuildFile section */
 
@@ -703,6 +715,7 @@
 		A75DB4E3234C0E290028E0D0 /* AuthenticationInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AuthenticationInfo.json; sourceTree = "<group>"; };
 		A764CB7F1D7B36960094BE66 /* HiddenItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenItem.swift; sourceTree = "<group>"; };
 		A76905B51B47B7A6003C7431 /* MLKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKeychain.swift; sourceTree = "<group>"; };
+		A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToHistoryResult.swift; sourceTree = "<group>"; };
 		A773405D1C07884B00A69EA1 /* Shows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		A773405F1C07886500A69EA1 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A77340631C079D2500A69EA1 /* Seasons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seasons.swift; sourceTree = "<group>"; };
@@ -748,6 +761,9 @@
 		A7CC79A21BF805CF00A43AD3 /* Scrobble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrobble.swift; sourceTree = "<group>"; };
 		A7CC79A41BF805DC00A43AD3 /* Recommendations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
 		A7CC79A61BF805E400A43AD3 /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		A7D3961B2556408D00088DFD /* JSONEncodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodingTests.swift; sourceTree = "<group>"; };
+		A7D396212556E36900088DFD /* BodyPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPost.swift; sourceTree = "<group>"; };
+		A7D396352558557D00088DFD /* TraktScrobble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktScrobble.swift; sourceTree = "<group>"; };
 		A7DC47C91CD6C98F005B0B17 /* TraktBoxOfficeMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktBoxOfficeMovie.swift; sourceTree = "<group>"; };
 		A7FB7FCB1BF8DD960003BBD7 /* Genres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		A7FB7FCD1BF8DD9E0003BBD7 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
@@ -756,7 +772,7 @@
 		A7FF28DC1C568FF600CA5B53 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		B3167ECB2459FDBB00D51968 /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		B3167ECF2459FDF800D51968 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		E69A4B2E24D9BE4F00E2467A /* DeviceCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCode.swift; sourceTree = "<group>"; };
+		E628DF1C25B224DB00D674E4 /* DeviceCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCode.swift; sourceTree = "<group>"; };
 		EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_get_watched_shows_noseasons.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -849,11 +865,14 @@
 		700FED301F3FC2C400169961 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E628DF1C25B224DB00D674E4 /* DeviceCode.swift */,
 				B3167ECE2459FDF800D51968 /* Languages */,
 				A7033F2F1C3AE3C4000E40F7 /* Structures.swift */,
+				A7D396212556E36900088DFD /* BodyPost.swift */,
 				A7AF98621CBF47BA00744566 /* TraktSearchResult.swift */,
 				A759C3B81D47D49200E7F938 /* Pagination.swift */,
 				A759C3B61D47D3BA00E7F938 /* Filters.swift */,
+				A7D396352558557D00088DFD /* TraktScrobble.swift */,
 				A75DB4DD234C0B460028E0D0 /* Authentication */,
 				700FED3F1F3FC4B300169961 /* Shared */,
 				700FED3E1F3FC46400169961 /* Calendar */,
@@ -867,7 +886,6 @@
 				700FED391F3FC3B700169961 /* Shows */,
 				700FED341F3FC31800169961 /* Sync */,
 				700FED331F3FC30F00169961 /* Users */,
-				E69A4B2E24D9BE4F00E2467A /* DeviceCode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -903,6 +921,7 @@
 				70B6813D1DA5A97A00D7EAF1 /* TraktHistoryItem.swift */,
 				70C810B21DBAAE9A00A5AA28 /* TraktCollectedItem.swift */,
 				705462661EF367BA003BB24B /* PlaybackProgress.swift */,
+				A76FBCA9257EF302009593B2 /* AddToHistoryResult.swift */,
 				70393F2B1F3F2AC500943D34 /* AddToCollectionResult.swift */,
 				70393F2F1F3F2B4C00943D34 /* RemoveFromCollectionResult.swift */,
 				70393F331F3F2BE500943D34 /* AddRatingsResult.swift */,
@@ -1393,6 +1412,7 @@
 				7029D15A1EEFFD6600BD926D /* EpisodeTests.swift */,
 				7054626C1EF36A7E003BB24B /* SyncTests.swift */,
 				705462881EF37A76003BB24B /* UserTests.swift */,
+				A7D3961B2556408D00088DFD /* JSONEncodingTests.swift */,
 				70E96DA61EEFE7FA00EE34DA /* Models */,
 				A77E86591B29F09100EABC2D /* Supporting Files */,
 			);
@@ -1524,7 +1544,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Maximilian Litteral";
 				TargetAttributes = {
 					A70807141D8E1F2D00176B0A = {
@@ -1799,6 +1819,7 @@
 				A708073E1D8E1F5A00176B0A /* TraktWatchedProgress.swift in Sources */,
 				A70807221D8E1F5A00176B0A /* Genres.swift in Sources */,
 				A70807501D8E1F5A00176B0A /* DateParser.swift in Sources */,
+				A7D396382558557D00088DFD /* TraktScrobble.swift in Sources */,
 				A70807411D8E1F5A00176B0A /* TraktMovieTranslation.swift in Sources */,
 				A708074E1D8E1F5A00176B0A /* TraktRating.swift in Sources */,
 				A70807441D8E1F5A00176B0A /* TraktAnticipatedMovie.swift in Sources */,
@@ -1844,6 +1865,8 @@
 				70F773381F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
 				A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */,
+				E628DF1F25B224DB00D674E4 /* DeviceCode.swift in Sources */,
+				A76FBCAC257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */,
 				A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */,
 				70C5D8A620651A3D002E4356 /* TraktWatchedItem.swift in Sources */,
@@ -1872,13 +1895,16 @@
 				A7582BEB1CCA6FE900B3CF63 /* Structures.swift in Sources */,
 				A7582BE71CCA6FDB00B3CF63 /* Episodes.swift in Sources */,
 				70393F311F3F2B4C00943D34 /* RemoveFromCollectionResult.swift in Sources */,
+				A7D3962C2556E36D00088DFD /* BodyPost.swift in Sources */,
 				70005684206D102F005319DD /* Lists.swift in Sources */,
 				707FE6EB1F5D716400407769 /* UnhideItemResult.swift in Sources */,
 				705462721EF36D19003BB24B /* AccountSettings.swift in Sources */,
 				700FED2A1F3FBD8C00169961 /* ScrobbleResult.swift in Sources */,
 				70C5D8CF2066A8CD002E4356 /* Certifications.swift in Sources */,
 				70D369862066C76F0008B9D7 /* TraktTrendingComments.swift in Sources */,
+				E628DF1E25B224DB00D674E4 /* DeviceCode.swift in Sources */,
 				70393F451F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
+				A76FBCAB257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A7582BF71CCA6FE900B3CF63 /* TraktWatchedEpisodes.swift in Sources */,
 				70393F391F3F2C4700943D34 /* RemoveRatingsResult.swift in Sources */,
 				70C810B41DBAE34400A5AA28 /* TraktCollectedItem.swift in Sources */,
@@ -1946,12 +1972,14 @@
 				70F7735F1F3DC2160078110E /* FollowUserResult.swift in Sources */,
 				A7582BDE1CCA6FDB00B3CF63 /* Checkin.swift in Sources */,
 				A7582BF41CCA6FE900B3CF63 /* TraktShowTranslation.swift in Sources */,
+				A7D396372558557D00088DFD /* TraktScrobble.swift in Sources */,
 				70C5D8A520651A3C002E4356 /* TraktWatchedItem.swift in Sources */,
 				A7582BDF1CCA6FDB00B3CF63 /* Comments.swift in Sources */,
 				70393F2D1F3F2AC500943D34 /* AddToCollectionResult.swift in Sources */,
 				A79604401CE98270004F7B4D /* TraktBoxOfficeMovie.swift in Sources */,
 				702631EC1E6682ED006F323B /* TraktWatching.swift in Sources */,
 				700FED211F3FB96A00169961 /* TraktMovieRelease.swift in Sources */,
+				A7D39667255965C900088DFD /* AuthenticationInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1997,6 +2025,7 @@
 				70005648206BBF47005319DD /* TraktEpisodeTranslation.swift in Sources */,
 				703D2EE01EF1490900CAD268 /* Pagination.swift in Sources */,
 				703D2EE51EF14B2900CAD268 /* CompletionHandlers.swift in Sources */,
+				E628DF1D25B224DB00D674E4 /* DeviceCode.swift in Sources */,
 				70374C281F635E7900173E12 /* HideItemResult.swift in Sources */,
 				70B844381EF0DFAB001BA900 /* TraktMovieTranslation.swift in Sources */,
 				70F7E6231EF220160026B8A1 /* CalendarShow.swift in Sources */,
@@ -2009,6 +2038,7 @@
 				70005683206D102F005319DD /* Lists.swift in Sources */,
 				70B844311EF0DE21001BA900 /* TraktMovie.swift in Sources */,
 				70393F301F3F2B4C00943D34 /* RemoveFromCollectionResult.swift in Sources */,
+				A76FBCAA257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				70F7E6321EF2A7050026B8A1 /* CastAndCrew.swift in Sources */,
 				70B844301EF0DD74001BA900 /* DateParser.swift in Sources */,
 				700FED241F3FBC7C00169961 /* People.swift in Sources */,
@@ -2020,6 +2050,7 @@
 				703D2EDE1EF1487100CAD268 /* HiddenItem.swift in Sources */,
 				70B8443D1EF0E012001BA900 /* TraktTrendingMovie.swift in Sources */,
 				700FED261F3FBC8100169961 /* Scrobble.swift in Sources */,
+				A7D396272556E36C00088DFD /* BodyPost.swift in Sources */,
 				70C5D8CE2066A8CD002E4356 /* Certifications.swift in Sources */,
 				70F7E6201EF21FB70026B8A1 /* Calendars.swift in Sources */,
 				70F7732C1F3C76C60078110E /* Update.swift in Sources */,
@@ -2045,10 +2076,10 @@
 				70393F441F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
 				70F773531F3DBEFE0078110E /* Users.swift in Sources */,
 				70393F2C1F3F2AC500943D34 /* AddToCollectionResult.swift in Sources */,
-				E69A4B2F24D9BE4F00E2467A /* DeviceCode.swift in Sources */,
 				70B844271EF0DC4D001BA900 /* TraktShow.swift in Sources */,
 				70B844261EF0DC4D001BA900 /* TraktAnticipatedShow.swift in Sources */,
 				70393F3C1F3F34C300943D34 /* RemoveFromWatchlistResult.swift in Sources */,
+				A7D396362558557D00088DFD /* TraktScrobble.swift in Sources */,
 				70B8443C1EF0E008001BA900 /* TraktDVDReleaseMovie.swift in Sources */,
 				70B844401EF0E295001BA900 /* TraktUser.swift in Sources */,
 				7054625A1EF35C06003BB24B /* Search.swift in Sources */,
@@ -2076,6 +2107,7 @@
 				70D369DD20691E140008B9D7 /* ListsTests.swift in Sources */,
 				705462891EF37A76003BB24B /* UserTests.swift in Sources */,
 				A75DB4E1234C0DFF0028E0D0 /* AuthenticationInfoTests.swift in Sources */,
+				A7D3961C2556408D00088DFD /* JSONEncodingTests.swift in Sources */,
 				70B844371EF0DEC7001BA900 /* MovieTests.swift in Sources */,
 				7029D15B1EEFFD6600BD926D /* EpisodeTests.swift in Sources */,
 				70D3699B2066E0E20008B9D7 /* GenreTests.swift in Sources */,
@@ -2193,11 +2225,12 @@
 				INFOPLIST_FILE = TraktKitMac/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2213,12 +2246,13 @@
 				INFOPLIST_FILE = TraktKitMac/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2234,11 +2268,12 @@
 				INFOPLIST_FILE = TraktKitMac/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.TraktKitMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Distribution;
 		};
@@ -2264,6 +2299,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2283,8 +2319,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
@@ -2307,7 +2343,7 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = TraktKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
@@ -2352,6 +2388,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2378,8 +2415,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2413,6 +2450,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2432,8 +2470,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
@@ -2456,7 +2494,7 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = TraktKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";
@@ -2478,7 +2516,7 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = TraktKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.$(PRODUCT_NAME:rfc1034identifier)";

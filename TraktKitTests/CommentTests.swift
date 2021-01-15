@@ -29,7 +29,7 @@ class CommentTests: XCTestCase {
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
 
         let expectation = XCTestExpectation(description: "Post a comment")
-        try! traktManager.postComment(movie: [:], comment: "Oh, I wasn't really listening.", isSpoiler: false) { result in
+        try! traktManager.postComment(movie: SyncId(trakt: 12345), comment: "Oh, I wasn't really listening.", isSpoiler: false) { result in
             if case .success = result {
                 expectation.fulfill()
             }
@@ -143,7 +143,7 @@ class CommentTests: XCTestCase {
         let reply = "Couldn't agree more with your review!"
 
         let expectation = XCTestExpectation(description: "Get replies for comment")
-        try! traktManager.postReply(commentID: "417", newComment: reply) { result in
+        try! traktManager.postReply(commentID: "417", comment: reply) { result in
             if case .success(let postedReply) = result {
                 XCTAssertEqual(postedReply.comment, reply)
                 expectation.fulfill()
