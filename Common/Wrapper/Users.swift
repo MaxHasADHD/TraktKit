@@ -545,7 +545,7 @@ extension TraktManager {
     ✨ Extended Info
     */
     @discardableResult
-    public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
         var path = "users/\(username)/history"
         
         if let type = type {
@@ -564,6 +564,13 @@ extension TraktManager {
 
         if let endDate = endAt {
             query["end_at"] = endDate.UTCDateString()
+        }
+     
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
         }
         
         let authorization = username == "me" ? true : false
