@@ -9,52 +9,52 @@
 import Foundation
 
 public struct UserStats: Codable, Hashable {
-    let movies: Movies
-    let shows: Shows
-    let seasons: Seasons
-    let episodes: Episodes
-    let network: Network
-    let ratings: UserStatsRatingsDistribution
+    public let movies: Movies
+    public let shows: Shows
+    public let seasons: Seasons
+    public let episodes: Episodes
+    public let network: Network
+    public let ratings: UserStatsRatingsDistribution
     
     public struct Movies: Codable, Hashable {
-        let plays: Int
-        let watched: Int
-        let minutes: Int
-        let collected: Int
-        let ratings: Int
-        let comments: Int
+        public let plays: Int
+        public let watched: Int
+        public let minutes: Int
+        public let collected: Int
+        public let ratings: Int
+        public let comments: Int
     }
     
     public struct Shows: Codable, Hashable {
-        let watched: Int
-        let collected: Int
-        let ratings: Int
-        let comments: Int
+        public let watched: Int
+        public let collected: Int
+        public let ratings: Int
+        public let comments: Int
     }
     
     public struct Seasons: Codable, Hashable {
-        let ratings: Int
-        let comments: Int
+        public let ratings: Int
+        public let comments: Int
     }
     
     public struct Episodes: Codable, Hashable {
-        let plays: Int
-        let watched: Int
-        let minutes: Int
-        let collected: Int
-        let ratings: Int
-        let comments: Int
+        public let plays: Int
+        public let watched: Int
+        public let minutes: Int
+        public let collected: Int
+        public let ratings: Int
+        public let comments: Int
     }
     
     public struct Network: Codable, Hashable {
-        let friends: Int
-        let followers: Int
-        let following: Int
+        public let friends: Int
+        public let followers: Int
+        public let following: Int
     }
     
     public struct UserStatsRatingsDistribution: Codable, Hashable {
-        let total: Int
-        let distribution: Distribution
+        public let total: Int
+        public let distribution: Distribution
         
         public struct Distribution: Codable, Hashable {
             public let one: Int

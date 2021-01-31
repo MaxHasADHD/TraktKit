@@ -9,36 +9,23 @@
 import Foundation
 
 public struct HideItemResult: Codable, Hashable {
-    
-    let added: Added
-//    let notFound: NotFound
+    public let added: Added
+    public let notFound: NotFound
 
     public struct Added: Codable, Hashable {
-        let movies: Int
-        let shows: Int
-        let seasons: Int
+        public let movies: Int
+        public let shows: Int
+        public let seasons: Int
     }
     
     public struct NotFound: Codable, Hashable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        
-        enum CodingKeys: String, CodingKey {
-            case movies
-            case shows
-            case seasons
-        }
-        
-        public init(from decoder: Decoder) throws {
-            movies = []
-            shows = []
-            seasons = []
-        }
+        public let movies: [NotFoundIds]
+        public let shows: [NotFoundIds]
+        public let seasons: [NotFoundIds]
     }
     
     enum CodingKeys: String, CodingKey {
         case added
-//        case notFound = "not_found"
+        case notFound = "not_found"
     }
 }

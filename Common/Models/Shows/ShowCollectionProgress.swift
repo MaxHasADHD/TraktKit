@@ -27,16 +27,16 @@ public struct ShowCollectionProgress: Codable, Hashable {
     }
     
     public struct CollectedSeason: Codable, Hashable {
-        let number: Int
-        let aired: Int
-        let completed: Int
-        let episodes: [CollectedEpisode]
+        public let number: Int
+        public let aired: Int
+        public let completed: Int
+        public let episodes: [CollectedEpisode]
     }
     
     public struct CollectedEpisode: Codable, Hashable {
-        let number: Int
-        let completed: Bool
-        let collectedAt: Date?
+        public let number: Int
+        public let completed: Bool
+        public let collectedAt: Date?
         
         enum CodingKeys: String, CodingKey {
             case number

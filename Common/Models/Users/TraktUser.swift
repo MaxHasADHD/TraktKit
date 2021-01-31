@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public struct User: Codable, Hashable {
 
     // Min

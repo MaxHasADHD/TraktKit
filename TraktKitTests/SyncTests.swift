@@ -176,6 +176,8 @@ class SyncTests: XCTestCase {
             if case .success(let result) = result {
                 XCTAssertEqual(result.deleted.movies, 1)
                 XCTAssertEqual(result.deleted.episodes, 12)
+                XCTAssertEqual(result.notFound.episodes.count, 0)
+                XCTAssertEqual(result.notFound.movies.count, 1)
                 expectation.fulfill()
             }
         }
@@ -326,7 +328,7 @@ class SyncTests: XCTestCase {
                 XCTAssertEqual(ids.deleted.movies, 2)
                 XCTAssertEqual(ids.deleted.episodes, 72)
             case .error(let error):
-                XCTFail("Wrong status: \(error)")
+                XCTFail("Wrong status: \(String(describing: error))")
             }
             expectation.fulfill()
         }
