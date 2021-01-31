@@ -9,9 +9,9 @@
 import Foundation
 
 public struct CalendarShow: Codable, Hashable {
-    let firstAired: Date
-    let episode: TraktEpisode
-    let show: TraktShow
+    public let firstAired: Date
+    public let episode: TraktEpisode
+    public let show: TraktShow
     
     enum CodingKeys: String, CodingKey {
         case firstAired = "first_aired"

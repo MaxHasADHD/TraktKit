@@ -9,6 +9,6 @@
 import Foundation
 
 public struct Alias: Codable, Hashable {
-    let title: String
-    let country: String
+    public let title: String
+    public let country: String
 }

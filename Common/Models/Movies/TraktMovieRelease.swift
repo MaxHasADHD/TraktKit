@@ -9,11 +9,11 @@
 import Foundation
 
 public struct TraktMovieRelease: Codable, Hashable {
-    let country: String
-    let certification: String
-    let releaseDate: Date
-    let releaseType: ReleaseType
-    let note: String?
+    public let country: String
+    public let certification: String
+    public let releaseDate: Date
+    public let releaseType: ReleaseType
+    public let note: String?
     
     enum CodingKeys: String, CodingKey {
         case country

@@ -473,9 +473,6 @@
 		A7D39667255965C900088DFD /* AuthenticationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */; };
 		B3167ECC2459FDBB00D51968 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECB2459FDBB00D51968 /* Languages.swift */; };
 		B3167ED02459FDF800D51968 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECF2459FDF800D51968 /* Language.swift */; };
-		E628DF1D25B224DB00D674E4 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628DF1C25B224DB00D674E4 /* DeviceCode.swift */; };
-		E628DF1E25B224DB00D674E4 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628DF1C25B224DB00D674E4 /* DeviceCode.swift */; };
-		E628DF1F25B224DB00D674E4 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628DF1C25B224DB00D674E4 /* DeviceCode.swift */; };
 		EFAB936D246504E700DAA9F6 /* test_get_watched_shows_noseasons.json in Resources */ = {isa = PBXBuildFile; fileRef = EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */; };
 /* End PBXBuildFile section */
 
@@ -772,7 +769,6 @@
 		A7FF28DC1C568FF600CA5B53 /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		B3167ECB2459FDBB00D51968 /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		B3167ECF2459FDF800D51968 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		E628DF1C25B224DB00D674E4 /* DeviceCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCode.swift; sourceTree = "<group>"; };
 		EFAB936C246504E700DAA9F6 /* test_get_watched_shows_noseasons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_get_watched_shows_noseasons.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -865,7 +861,6 @@
 		700FED301F3FC2C400169961 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E628DF1C25B224DB00D674E4 /* DeviceCode.swift */,
 				B3167ECE2459FDF800D51968 /* Languages */,
 				A7033F2F1C3AE3C4000E40F7 /* Structures.swift */,
 				A7D396212556E36900088DFD /* BodyPost.swift */,
@@ -1865,7 +1860,6 @@
 				70F773381F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
 				A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */,
-				E628DF1F25B224DB00D674E4 /* DeviceCode.swift in Sources */,
 				A76FBCAC257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */,
 				A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */,
@@ -1902,7 +1896,6 @@
 				700FED2A1F3FBD8C00169961 /* ScrobbleResult.swift in Sources */,
 				70C5D8CF2066A8CD002E4356 /* Certifications.swift in Sources */,
 				70D369862066C76F0008B9D7 /* TraktTrendingComments.swift in Sources */,
-				E628DF1E25B224DB00D674E4 /* DeviceCode.swift in Sources */,
 				70393F451F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
 				A76FBCAB257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A7582BF71CCA6FE900B3CF63 /* TraktWatchedEpisodes.swift in Sources */,
@@ -2025,7 +2018,6 @@
 				70005648206BBF47005319DD /* TraktEpisodeTranslation.swift in Sources */,
 				703D2EE01EF1490900CAD268 /* Pagination.swift in Sources */,
 				703D2EE51EF14B2900CAD268 /* CompletionHandlers.swift in Sources */,
-				E628DF1D25B224DB00D674E4 /* DeviceCode.swift in Sources */,
 				70374C281F635E7900173E12 /* HideItemResult.swift in Sources */,
 				70B844381EF0DFAB001BA900 /* TraktMovieTranslation.swift in Sources */,
 				70F7E6231EF220160026B8A1 /* CalendarShow.swift in Sources */,
