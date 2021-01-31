@@ -224,7 +224,6 @@ public class TraktManager {
         guard let apiBaseURL = APIBaseURL else { preconditionFailure("Call `set(clientID:clientSecret:redirectURI:staging:)` before making any API requests") }
         let urlString = "https://\(apiBaseURL)/" + path
         guard var components = URLComponents(string: urlString) else { return nil }
-        
         if query.isEmpty == false {
             var queryItems: [URLQueryItem] = []
             for (key, value) in query {
@@ -252,7 +251,6 @@ public class TraktManager {
         } catch {
             return nil
         }
-        
         return request
     }
 
