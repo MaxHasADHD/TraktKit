@@ -260,9 +260,10 @@ public class TraktManager {
         guard
             let clientID = clientID,
             let clientSecret = clientSecret,
-            let redirectURI = redirectURI else {
-                completionHandler?(.fail)
-                return
+            let redirectURI = redirectURI
+        else {
+            completionHandler?(.fail)
+            return
         }
         
         let urlString = "https://\(baseURL!)/oauth/token"
@@ -281,7 +282,7 @@ public class TraktManager {
             ]
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
-        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
+        session._dataTask(with: request) { [weak self] data, response, error in
             guard
                 let welf = self else { return }
             guard error == nil else {
@@ -293,15 +294,15 @@ public class TraktManager {
             guard
                 let HTTPResponse = response as? HTTPURLResponse,
                 HTTPResponse.statusCode == StatusCodes.Success else {
-                    completionHandler?(.fail)
-                    return
+                completionHandler?(.fail)
+                return
             }
             
             // Check data
             guard
                 let data = data else {
-                    completionHandler?(.fail)
-                    return
+                completionHandler?(.fail)
+                return
             }
             
             do {
@@ -325,18 +326,16 @@ public class TraktManager {
                 }
                 
                 completionHandler?(.success)
-            }
-            catch {
+            } catch {
                 completionHandler?(.fail)
             }
-            }.resume()
+        }.resume()
     }
     
     public func getAppCode(completionHandler: @escaping (_ result: DeviceCode?) -> Void) {
-        guard
-            let clientID = clientID else {
-                completionHandler(nil)
-                return
+        guard let clientID = clientID else {
+            completionHandler(nil)
+            return
         }
         let urlString = "https://\(APIBaseURL!)/oauth/device/code/"
         
@@ -346,13 +345,11 @@ public class TraktManager {
             return
         }
         
-        let json = [
-            "client_id": clientID,
-            ]
+        let json = ["client_id": clientID]
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
             
-            session._dataTask(with: request) {(data, response, error) -> Void in
+            session._dataTask(with: request) { data, response, error in
                 guard error == nil else {
                     completionHandler(nil)
                     return
@@ -361,9 +358,10 @@ public class TraktManager {
                 // Check response
                 guard
                     let HTTPResponse = response as? HTTPURLResponse,
-                    HTTPResponse.statusCode == StatusCodes.Success else {
-                        completionHandler(nil)
-                        return
+                    HTTPResponse.statusCode == StatusCodes.Success
+                else {
+                    completionHandler(nil)
+                    return
                 }
                 
                 // Check data
@@ -382,130 +380,128 @@ public class TraktManager {
                         
                         let codeData = DeviceCode(device_code: device_code, user_code: user_code, verification_url: verification_url, expires_in: expires_in, interval: interval)
                         completionHandler(codeData)
-                        print(deviceCodeDict)
                     }
                 } catch {
                     completionHandler(nil)
                 }
             }.resume()
-        } catch let error {
-            print(error)
+        } catch {
             completionHandler(nil)
         }
     }
     
     public func getTokenFromDevice(code: DeviceCode?, completionHandler: ProgressCompletionHandler?) {
-            guard
-                let clientID = self.clientID,
-                let clientSecret = self.clientSecret,
-                let deviceCode = code else {
-                    completionHandler?(.fail(0))
-                    return
-            }
-
-            let urlString = "https://\(APIBaseURL!)/oauth/device/token"
-            let url = URL(string: urlString)
-            guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
-                completionHandler?(.fail(0))
-                return
-            }
-
-            let json = [
-                "code": deviceCode.device_code,
-                "client_id": clientID,
-                "client_secret": clientSecret,
-            ]
-            guard let body = try? JSONSerialization.data(withJSONObject: json, options: []) else {
-                completionHandler?(.fail(0))
-                return
-            }
-            request.httpBody = body
-            self.isWaitingToToken = true
-            
-            DispatchQueue.global().async {
-                var i = 1
-                while self.isWaitingToToken {
-                    if i >= deviceCode.expires_in {
+        guard
+            let clientID = self.clientID,
+            let clientSecret = self.clientSecret,
+            let deviceCode = code
+        else {
+            completionHandler?(.fail(0))
+            return
+        }
+        
+        let urlString = "https://\(APIBaseURL!)/oauth/device/token"
+        let url = URL(string: urlString)
+        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
+            completionHandler?(.fail(0))
+            return
+        }
+        
+        let json = [
+            "code": deviceCode.device_code,
+            "client_id": clientID,
+            "client_secret": clientSecret,
+        ]
+        guard let body = try? JSONSerialization.data(withJSONObject: json, options: []) else {
+            completionHandler?(.fail(0))
+            return
+        }
+        request.httpBody = body
+        self.isWaitingToToken = true
+        
+        DispatchQueue.global().async {
+            var i = 1
+            while self.isWaitingToToken {
+                if i >= deviceCode.expires_in {
+                    self.isWaitingToToken = false
+                    continue
+                }
+                self.send(request: request, count: i) { result in
+                    completionHandler?(result)
+                    switch result {
+                    case .success:
                         self.isWaitingToToken = false
-                        continue
-                    }
-                    self.send(request: request, count: i) { result in
-                        completionHandler?(result)
-                        switch result {
-                        case .success:
+                    case .fail(let progress):
+                        if progress == 0 {
                             self.isWaitingToToken = false
-                        case .fail(let progress):
-                            if progress == 0 {
-                                self.isWaitingToToken = false
-                            }
                         }
                     }
-                    i += 1
-                    sleep(1)
                 }
+                i += 1
+                sleep(1)
             }
         }
+    }
     
-    private func send(request:URLRequest, count:Int, completionHandler: ProgressCompletionHandler?) {
-            session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-                guard let welf = self else { return }
-                guard error == nil else {
-                    completionHandler?(.fail(0))
-                    return
+    private func send(request: URLRequest, count: Int, completionHandler: ProgressCompletionHandler?) {
+        session._dataTask(with: request) { [weak self] data, response, error in
+            guard let self = self else { return }
+            guard error == nil else {
+                completionHandler?(.fail(0))
+                return
+            }
+            
+            // Check response
+            if let HTTPResponse = response as? HTTPURLResponse,
+               HTTPResponse.statusCode == StatusCodes.BadRequest {
+                completionHandler?(.fail(count))
+                return
+            }
+            
+            guard let HTTPResponse = response as? HTTPURLResponse,
+                  HTTPResponse.statusCode == StatusCodes.Success else {
+                completionHandler?(.fail(0))
+                return
+            }
+            
+            // Check data
+            guard let data = data else {
+                completionHandler?(.fail(0))
+                return
+            }
+            
+            do {
+                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+                    self.saveCredentials(accessTokenDict)
+                    completionHandler?(.success)
                 }
-
-                // Check response
-                if let HTTPResponse = response as? HTTPURLResponse,
-                    HTTPResponse.statusCode == StatusCodes.BadRequest {
-                    completionHandler?(.fail(count))
-                    return
-                }
-                
-                guard let HTTPResponse = response as? HTTPURLResponse,
-                    HTTPResponse.statusCode == StatusCodes.Success else {
-                        completionHandler?(.fail(0))
-                        return
-                }
-
-                // Check data
-                guard let data = data else {
-                    completionHandler?(.fail(0))
-                    return
-                }
-
-                do {
-                    if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
-                        welf.saveCredentials(accessTokenDict)
-                        completionHandler?(.success)
-                    }
-                }
-                catch {
-                    completionHandler?(.fail(0))
-                }
-            }.resume()
+            } catch {
+                completionHandler?(.fail(0))
+            }
+        }.resume()
     }
     
     private func saveCredentials(_ credentials: [String: AnyObject]) {
-            self.accessToken = credentials["access_token"] as? String
-            self.refreshToken = credentials["refresh_token"] as? String
-
-            #if DEBUG
-            print("[\(#function)] Access token is \(String(describing: self.accessToken))")
-            print("[\(#function)] Refresh token is \(String(describing: self.refreshToken))")
-            #endif
-
-            // Save expiration date
-            let timeInterval = credentials["expires_in"] as! NSNumber
-            let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
-
-            UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
-            UserDefaults.standard.synchronize()
-
-            // Post notification
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
-            }
+        self.accessToken = credentials["access_token"] as? String
+        self.refreshToken = credentials["refresh_token"] as? String
+        
+        #if DEBUG
+        print("[\(#function)] Access token is \(String(describing: self.accessToken))")
+        print("[\(#function)] Refresh token is \(String(describing: self.refreshToken))")
+        #endif
+        
+        // Save expiration date
+        let timeInterval = credentials["expires_in"] as! NSNumber
+        let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
+        
+        UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+        UserDefaults.standard.synchronize()
+        
+        // Post notification
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
         }
+    }
     
     // MARK: Refresh access token
     

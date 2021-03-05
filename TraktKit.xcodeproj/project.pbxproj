@@ -410,6 +410,9 @@
 		A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79163A41C0D46F200E791BC /* Extensions.swift */; };
 		A723DA8C1B917EF300CA217C /* TraktKitMac.h in Headers */ = {isa = PBXBuildFile; fileRef = A723DA8B1B917EF300CA217C /* TraktKitMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A723DAAE1B917FE300CA217C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
+		A72959A125F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
+		A72959A225F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
+		A72959A325F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
 		A72B584E1B918044002561A4 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		A74C2A21244B1FEB005CAFBE /* ShowCastAndCrew_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A20244B1FEB005CAFBE /* ShowCastAndCrew_Full.json */; };
 		A74C2A23244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A22244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json */; };
@@ -701,6 +704,7 @@
 		A723DA891B917EF300CA217C /* TraktKitMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKitMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A723DA8B1B917EF300CA217C /* TraktKitMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKitMac.h; sourceTree = "<group>"; };
 		A723DA8D1B917EF300CA217C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A72959A025F2589500C0EC30 /* DeviceCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCode.swift; sourceTree = "<group>"; };
 		A74C2A20244B1FEB005CAFBE /* ShowCastAndCrew_Full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowCastAndCrew_Full.json; sourceTree = "<group>"; };
 		A74C2A22244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowCastAndCrew_GuestStars.json; sourceTree = "<group>"; };
 		A74C2A24244B48D3005CAFBE /* test_get_season_cast.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_season_cast.json; sourceTree = "<group>"; };
@@ -868,6 +872,7 @@
 				A759C3B81D47D49200E7F938 /* Pagination.swift */,
 				A759C3B61D47D3BA00E7F938 /* Filters.swift */,
 				A7D396352558557D00088DFD /* TraktScrobble.swift */,
+				A72959A025F2589500C0EC30 /* DeviceCode.swift */,
 				A75DB4DD234C0B460028E0D0 /* Authentication */,
 				700FED3F1F3FC4B300169961 /* Shared */,
 				700FED3E1F3FC46400169961 /* Calendar */,
@@ -1860,6 +1865,7 @@
 				70F773381F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
 				A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */,
+				A72959A325F2589500C0EC30 /* DeviceCode.swift in Sources */,
 				A76FBCAC257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */,
 				A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */,
@@ -1896,6 +1902,7 @@
 				700FED2A1F3FBD8C00169961 /* ScrobbleResult.swift in Sources */,
 				70C5D8CF2066A8CD002E4356 /* Certifications.swift in Sources */,
 				70D369862066C76F0008B9D7 /* TraktTrendingComments.swift in Sources */,
+				A72959A225F2589500C0EC30 /* DeviceCode.swift in Sources */,
 				70393F451F3F4A9100943D34 /* ShowCollectionProgress.swift in Sources */,
 				A76FBCAB257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A7582BF71CCA6FE900B3CF63 /* TraktWatchedEpisodes.swift in Sources */,
@@ -2018,6 +2025,7 @@
 				70005648206BBF47005319DD /* TraktEpisodeTranslation.swift in Sources */,
 				703D2EE01EF1490900CAD268 /* Pagination.swift in Sources */,
 				703D2EE51EF14B2900CAD268 /* CompletionHandlers.swift in Sources */,
+				A72959A125F2589500C0EC30 /* DeviceCode.swift in Sources */,
 				70374C281F635E7900173E12 /* HideItemResult.swift in Sources */,
 				70B844381EF0DFAB001BA900 /* TraktMovieTranslation.swift in Sources */,
 				70F7E6231EF220160026B8A1 /* CalendarShow.swift in Sources */,
