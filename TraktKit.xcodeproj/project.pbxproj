@@ -412,6 +412,13 @@
 		A723DAAE1B917FE300CA217C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
 		A72959A125F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
 		A72959A225F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
+		A72959E825F26FDE00C0EC30 /* BodyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D396212556E36900088DFD /* BodyPost.swift */; };
+		A72959ED25F26FFE00C0EC30 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECB2459FDBB00D51968 /* Languages.swift */; };
+		A72959F225F26FFF00C0EC30 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECB2459FDBB00D51968 /* Languages.swift */; };
+		A72959F725F2701B00C0EC30 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECF2459FDF800D51968 /* Language.swift */; };
+		A72959FC25F2701B00C0EC30 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3167ECF2459FDF800D51968 /* Language.swift */; };
+		A7295A0125F2703A00C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
+		A7295A0625F270E400C0EC30 /* AuthenticationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */; };
 		A72B584E1B918044002561A4 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		A74C2A21244B1FEB005CAFBE /* ShowCastAndCrew_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A20244B1FEB005CAFBE /* ShowCastAndCrew_Full.json */; };
 		A74C2A23244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A22244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json */; };
@@ -1795,6 +1802,7 @@
 				707FE6EC1F5D716500407769 /* UnhideItemResult.swift in Sources */,
 				A70807361D8E1F5A00176B0A /* TraktAnticipatedShow.swift in Sources */,
 				700FED2B1F3FBD8C00169961 /* ScrobbleResult.swift in Sources */,
+				A72959F725F2701B00C0EC30 /* Language.swift in Sources */,
 				70C5D8D02066A8CD002E4356 /* Certifications.swift in Sources */,
 				70D369872066C76F0008B9D7 /* TraktTrendingComments.swift in Sources */,
 				705462711EF36D19003BB24B /* AccountSettings.swift in Sources */,
@@ -1815,6 +1823,7 @@
 				70C39F3E1EF3869100C3F6A4 /* UsersComments.swift in Sources */,
 				A70807461D8E1F5A00176B0A /* TraktUser.swift in Sources */,
 				7078C5531F40FE0400EC6ABD /* CalendarShow.swift in Sources */,
+				A7295A0125F2703A00C0EC30 /* DeviceCode.swift in Sources */,
 				A708073E1D8E1F5A00176B0A /* TraktWatchedProgress.swift in Sources */,
 				A70807221D8E1F5A00176B0A /* Genres.swift in Sources */,
 				A70807501D8E1F5A00176B0A /* DateParser.swift in Sources */,
@@ -1838,7 +1847,9 @@
 				A70807201D8E1F5A00176B0A /* Checkin.swift in Sources */,
 				70F5F1E41DC718F300CDE58E /* TraktCheckin.swift in Sources */,
 				700FED251F3FBC8000169961 /* Scrobble.swift in Sources */,
+				A72959ED25F26FFE00C0EC30 /* Languages.swift in Sources */,
 				A708074A1D8E1F5A00176B0A /* TraktCrewMember.swift in Sources */,
+				A72959E825F26FDE00C0EC30 /* BodyPost.swift in Sources */,
 				705462781EF36FA2003BB24B /* FollowRequest.swift in Sources */,
 				70393F2E1F3F2AC500943D34 /* AddToCollectionResult.swift in Sources */,
 				A708073B1D8E1F5A00176B0A /* TraktWatchedShow.swift in Sources */,
@@ -1857,6 +1868,7 @@
 				A70807271D8E1F5A00176B0A /* Search.swift in Sources */,
 				700FED231F3FBC7C00169961 /* People.swift in Sources */,
 				A70807211D8E1F5A00176B0A /* Comments.swift in Sources */,
+				A7295A0625F270E400C0EC30 /* AuthenticationInfo.swift in Sources */,
 				7000564A206BBF47005319DD /* TraktEpisodeTranslation.swift in Sources */,
 				A70807491D8E1F5A00176B0A /* Person.swift in Sources */,
 				70F7735A1F3DC0E00078110E /* RemoveListItemResult.swift in Sources */,
@@ -1906,6 +1918,7 @@
 				A7582BF71CCA6FE900B3CF63 /* TraktWatchedEpisodes.swift in Sources */,
 				70393F391F3F2C4700943D34 /* RemoveRatingsResult.swift in Sources */,
 				70C810B41DBAE34400A5AA28 /* TraktCollectedItem.swift in Sources */,
+				A72959F225F26FFF00C0EC30 /* Languages.swift in Sources */,
 				A77602BF1D1BB66D000FA8C4 /* Enums.swift in Sources */,
 				701EF4B21E88713E00C56499 /* TraktDVDReleaseMovie.swift in Sources */,
 				705462801EF3726B003BB24B /* Likes.swift in Sources */,
@@ -1940,6 +1953,7 @@
 				A7582C0B1CCA6FF600B3CF63 /* DateParser.swift in Sources */,
 				A7582BEF1CCA6FE900B3CF63 /* TraktMostShow.swift in Sources */,
 				A7582BF91CCA6FE900B3CF63 /* TraktMovie.swift in Sources */,
+				A72959FC25F2701B00C0EC30 /* Language.swift in Sources */,
 				A7582C081CCA6FF600B3CF63 /* TraktCastMember.swift in Sources */,
 				A7582BE21CCA6FDB00B3CF63 /* Recommendations.swift in Sources */,
 				702631EB1E6682E5006F323B /* TraktAnticipatedMovie.swift in Sources */,

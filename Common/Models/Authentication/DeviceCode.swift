@@ -17,6 +17,7 @@ public struct DeviceCode: Codable {
     public let interval: Int
     
     #if canImport(UIKit)
+    #if canImport(CoreImage)
     public func getQRCode() -> UIImage? {
         let data = self.verificationURL.data(using: String.Encoding.ascii)
 
@@ -31,6 +32,7 @@ public struct DeviceCode: Codable {
 
         return nil
     }
+    #endif
     #endif
     
     enum CodingKeys: String, CodingKey {
