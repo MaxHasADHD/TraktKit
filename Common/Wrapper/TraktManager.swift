@@ -365,22 +365,13 @@ public class TraktManager {
                 }
                 
                 // Check data
-                guard
-                    let data = data else {
-                        completionHandler(nil)
-                        return
+                guard let data = data else {
+                    completionHandler(nil)
+                    return
                 }
                 do {
-                    if let deviceCodeDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject],
-                        let device_code = deviceCodeDict["device_code"] as? String,
-                        let user_code = deviceCodeDict["user_code"] as? String,
-                        let verification_url = deviceCodeDict["verification_url"] as? String,
-                        let expires_in = deviceCodeDict["expires_in"] as? Int,
-                        let interval = deviceCodeDict["interval"] as? Int {
-                        
-                        let codeData = DeviceCode(device_code: device_code, user_code: user_code, verification_url: verification_url, expires_in: expires_in, interval: interval)
-                        completionHandler(codeData)
-                    }
+                    let deviceCode = try JSONDecoder().decode(DeviceCode.self, from: data)
+                    completionHandler(deviceCode)
                 } catch {
                     completionHandler(nil)
                 }
@@ -408,7 +399,7 @@ public class TraktManager {
         }
         
         let json = [
-            "code": deviceCode.device_code,
+            "code": deviceCode.deviceCode,
             "client_id": clientID,
             "client_secret": clientSecret,
         ]
@@ -422,7 +413,7 @@ public class TraktManager {
         DispatchQueue.global().async {
             var i = 1
             while self.isWaitingToToken {
-                if i >= deviceCode.expires_in {
+                if i >= deviceCode.expiresIn {
                     self.isWaitingToToken = false
                     continue
                 }

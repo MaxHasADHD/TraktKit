@@ -412,7 +412,6 @@
 		A723DAAE1B917FE300CA217C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78D13591B2A341000BA2068 /* Movies.swift */; };
 		A72959A125F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
 		A72959A225F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
-		A72959A325F2589500C0EC30 /* DeviceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72959A025F2589500C0EC30 /* DeviceCode.swift */; };
 		A72B584E1B918044002561A4 /* TraktManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E86851B29F16C00EABC2D /* TraktManager.swift */; };
 		A74C2A21244B1FEB005CAFBE /* ShowCastAndCrew_Full.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A20244B1FEB005CAFBE /* ShowCastAndCrew_Full.json */; };
 		A74C2A23244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json in Resources */ = {isa = PBXBuildFile; fileRef = A74C2A22244B4137005CAFBE /* ShowCastAndCrew_GuestStars.json */; };
@@ -872,7 +871,6 @@
 				A759C3B81D47D49200E7F938 /* Pagination.swift */,
 				A759C3B61D47D3BA00E7F938 /* Filters.swift */,
 				A7D396352558557D00088DFD /* TraktScrobble.swift */,
-				A72959A025F2589500C0EC30 /* DeviceCode.swift */,
 				A75DB4DD234C0B460028E0D0 /* Authentication */,
 				700FED3F1F3FC4B300169961 /* Shared */,
 				700FED3E1F3FC46400169961 /* Calendar */,
@@ -1338,6 +1336,7 @@
 			isa = PBXGroup;
 			children = (
 				A75DB4DE234C0BAE0028E0D0 /* AuthenticationInfo.swift */,
+				A72959A025F2589500C0EC30 /* DeviceCode.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -1865,7 +1864,6 @@
 				70F773381F3C80A10078110E /* ListItemPostResult.swift in Sources */,
 				A70807311D8E1F5A00176B0A /* Pagination.swift in Sources */,
 				A708074F1D8E1F5A00176B0A /* MLKeychain.swift in Sources */,
-				A72959A325F2589500C0EC30 /* DeviceCode.swift in Sources */,
 				A76FBCAC257EF302009593B2 /* AddToHistoryResult.swift in Sources */,
 				A70807511D8E1F5A00176B0A /* Extensions.swift in Sources */,
 				A708073C1D8E1F5A00176B0A /* TraktWatchedSeason.swift in Sources */,
