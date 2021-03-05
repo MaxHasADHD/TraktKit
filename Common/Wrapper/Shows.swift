@@ -94,6 +94,33 @@ extension TraktManager {
         return getUpdated(.Shows, startDate: startDate, pagination: pagination, extended: extended, completion: completion)
     }
     
+    // MARK: - Updated IDs
+    
+    /**
+     Returns all show Trakt IDs updated since the specified UTC date and time. We recommended storing the X-Start-Date header you can be efficient using this method moving forward. By default, 10 results are returned. You can send a limit to get up to 100 results per page.
+     
+     */
+    @discardableResult
+    public func getUpdatedShowTraktIds(from startDate: Date, pagination: Pagination? = nil, completion: @escaping paginatedCompletionHandler<Int>)  -> URLSessionDataTaskProtocol? {
+        var query = [String: String]()
+
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
+        let path = "shows/updates/id/\(startDate.dateString(withFormat: "yyyy-MM-dd'T'HH:mm:ss").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? startDate.dateString(withFormat: "yyyy-MM-dd"))"
+        guard var request = mutableRequest(forPath: path,
+                                           withQuery: query,
+                                           isAuthorized: false,
+                                           withHTTPMethod: .GET)
+        else { return nil }
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        return performRequest(request: request,
+                              completion: completion)
+    }
+    
     // MARK: - Summary
     
     /**

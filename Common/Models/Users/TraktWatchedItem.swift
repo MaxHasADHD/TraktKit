@@ -22,21 +22,4 @@ public struct TraktWatchedItem: Codable, Hashable {
         case seasons
         case movie
     }
-
-    public struct TraktWatchedSeason: Codable, Hashable {
-        public let number: Int
-        public let episodes: [TraktWatchedEpisode]?
-
-        public struct TraktWatchedEpisode: Codable, Hashable {
-            public let number: Int
-            public let plays: Int
-            public let lastWatchedAt: Date
-
-            enum CodingKeys: String, CodingKey {
-                case number
-                case plays
-                case lastWatchedAt = "last_watched_at"
-            }
-        }
-    }
 }
