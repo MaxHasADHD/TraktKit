@@ -59,6 +59,7 @@ extension TraktManager {
     
     public enum TraktKitError: Error {
         case couldNotParseData
+        case handlingRetry
     }
     
     public enum TraktError: Error {
@@ -190,6 +191,8 @@ extension TraktManager {
                     DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
                         retry()
                     }
+                    /// To ensure completionHandler isn't called when retrying.
+                    throw TraktKitError.handlingRetry
                 } else {
                     throw TraktError.rateLimitExceeded(httpResponse)
                 }
@@ -222,7 +225,12 @@ extension TraktManager {
                     _ = self.performRequest(request: request, completion: completion)
                 })
             } catch {
-                completion(.error(error: error))
+                switch error {
+                case TraktKitError.handlingRetry:
+                    break
+                default:
+                    completion(.error(error: error))
+                }
                 return
             }
             
@@ -252,7 +260,12 @@ extension TraktManager {
                     _ = self.performRequest(request: request, completion: completion)
                 })
             } catch {
-                completion(.fail)
+                switch error {
+                case TraktKitError.handlingRetry:
+                    break
+                default:
+                    completion(.fail)
+                }
                 return
             }
             
@@ -297,7 +310,12 @@ extension TraktManager {
                     _ = self.performRequest(request: request, completion: completion)
                 })
             } catch {
-                completion(.error(error: error))
+                switch error {
+                case TraktKitError.handlingRetry:
+                    break
+                default:
+                    completion(.error(error: error))
+                }
                 return
             }
 
@@ -344,7 +362,12 @@ extension TraktManager {
                     _ = self.performRequest(request: request, completion: completion)
                 })
             } catch {
-                completion(.error(error: error))
+                switch error {
+                case TraktKitError.handlingRetry:
+                    break
+                default:
+                    completion(.error(error: error))
+                }
                 return
             }
             
@@ -385,7 +408,12 @@ extension TraktManager {
                     _ = self.performRequest(request: request, completion: completion)
                 })
             } catch {
-                completion(.error(error: error))
+                switch error {
+                case TraktKitError.handlingRetry:
+                    break
+                default:
+                    completion(.error(error: error))
+                }
                 return
             }
             
@@ -438,7 +466,12 @@ extension TraktManager {
                     _ = self.performRequest(request: request, completion: completion)
                 })
             } catch {
-                completion(.error(error: error))
+                switch error {
+                case TraktKitError.handlingRetry:
+                    break
+                default:
+                    completion(.error(error: error))
+                }
                 return
             }
             
