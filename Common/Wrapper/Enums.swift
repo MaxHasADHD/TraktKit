@@ -164,9 +164,8 @@ public enum LookupType {
     }
 }
 
-public enum Type: String, CustomStringConvertible {
-    case Movies = "movies"
-    case Shows = "shows"
+public enum MediaType: String, CustomStringConvertible {
+    case movies, shows
 
     public var description: String {
         return self.rawValue

@@ -44,6 +44,9 @@ public class TraktManager {
     let refreshTokenKey = "refreshToken"
     
     let session: URLSessionProtocol
+
+    @available(macOS 12.0, iOS 15.0, *)
+    lazy var explore: ExploreResource = ExploreResource(traktManager: self)
     
     // MARK: Public
     public static let sharedManager = TraktManager()

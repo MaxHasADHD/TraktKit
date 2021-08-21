@@ -24,6 +24,22 @@ class ShowsTests: XCTestCase {
 
     // MARK: - Trending
 
+    @available(iOS 15.0, *)
+    func test_get_min_trending_shows_await() async throws {
+        session.nextData = jsonData(named: "TrendingShows_Min")
+
+        let trendingShows = try await traktManager.explore.trending.shows()
+            .extend(.Min)
+            .page(1)
+            .limit(10)
+            .perform()
+        XCTAssertEqual(trendingShows.count, 10)
+        XCTAssertEqual(session.lastURL?.path, "/shows/trending")
+        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
+        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+    }
+
     func test_get_min_trending_shows() {
         session.nextData = jsonData(named: "TrendingShows_Min")
 
@@ -335,6 +351,15 @@ class ShowsTests: XCTestCase {
         default:
             break
         }
+    }
+
+    @available(iOS 15.0, *)
+    func test_get_show_aliases_await() async throws {
+        session.nextData = jsonData(named: "ShowAliases")
+
+        let aliases = try await traktManager.show(id: "game-of-thrones").aliases().perform()
+        XCTAssertEqual(aliases.count, 32)
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/aliases")
     }
 
     // MARK: - Translations

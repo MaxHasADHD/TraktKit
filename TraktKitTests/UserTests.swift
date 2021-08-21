@@ -346,7 +346,7 @@ class UserTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_user_collection")
 
         let expectation = XCTestExpectation(description: "Get User Collection")
-        traktManager.getUserCollection(type: .Shows) { result in
+        traktManager.getUserCollection(type: .shows) { result in
             if case .success(let collection) = result {
                 let shows = collection.map { $0.show }
                 let seasons = collection.map { $0.seasons }
@@ -932,7 +932,7 @@ class UserTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_user_watched_movies")
 
         let expectation = XCTestExpectation(description: "User Watched movies")
-        traktManager.getUserWatched(type: .Movies) { result in
+        traktManager.getUserWatched(type: .movies) { result in
             if case .success(let watched) = result {
                 XCTAssertEqual(watched.count, 2)
                 let expectedMovieTitles = ["Batman Begins", "The Dark Knight"]
@@ -958,7 +958,7 @@ class UserTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_user_watched_shows")
 
         let expectation = XCTestExpectation(description: "User Watched shows")
-        traktManager.getUserWatched(type: .Shows) { result in
+        traktManager.getUserWatched(type: .shows) { result in
             if case .success(let watched) = result {
                 XCTAssertEqual(watched.count, 2)
                 let expectedShowTitles = ["Breaking Bad", "Parks and Recreation"]
@@ -984,7 +984,7 @@ class UserTests: XCTestCase {
         session.nextData = jsonData(named: "test_get_user_watched_shows_no_seasons")
 
         let expectation = XCTestExpectation(description: "User Watched shows without seasons")
-        traktManager.getUserWatched(type: .Shows, extended: [.noSeasons]) { result in
+        traktManager.getUserWatched(type: .shows, extended: [.noSeasons]) { result in
             if case .success(let watched) = result {
                 XCTAssertEqual(watched.count, 2)
                 let expectedShowTitles = ["Breaking Bad", "Parks and Recreation"]
