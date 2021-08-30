@@ -230,14 +230,17 @@ class EpisodeTests: XCTestCase {
         traktManager.getPeopleInEpisode(showID: "game-of-thrones", season: 1, episode: 1) { result in
             if case .success(let castAndCrew) = result {
                 XCTAssertNotNil(castAndCrew.cast)
-                XCTAssertNotNil(castAndCrew.producers)
+                XCTAssertNotNil(castAndCrew.writers)
                 XCTAssertEqual(castAndCrew.cast!.count, 20)
-                XCTAssertEqual(castAndCrew.producers!.count, 14)
+				XCTAssertEqual(castAndCrew.writers!.count, 2)
                 
                 guard let actor = castAndCrew.cast?.first else { XCTFail("Cast is empty"); return }
                 XCTAssertEqual(actor.person.name, "Emilia Clarke")
                 XCTAssertEqual(actor.characters, ["Daenerys Targaryen"])
             }
+			else {
+				XCTFail("Invalid result")
+			}
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
