@@ -614,7 +614,7 @@ class UserTests: XCTestCase {
                 XCTAssertEqual(response.existing.shows, 0)
                 XCTAssertEqual(response.existing.episodes, 0)
 
-//                XCTAssertEqual(response.notFound.movies.count, 1)
+                XCTAssertEqual(response.notFound.movies.count, 1)
                 expectation.fulfill()
             }
         }
@@ -645,7 +645,7 @@ class UserTests: XCTestCase {
                 XCTAssertEqual(response.deleted.shows, 1)
                 XCTAssertEqual(response.deleted.episodes, 2)
 
-//                XCTAssertEqual(response.notFound.movies.count, 1)
+                XCTAssertEqual(response.notFound.movies.count, 1)
                 expectation.fulfill()
             }
         }

@@ -10,22 +10,22 @@ import Foundation
 
 public struct RemoveFromCollectionResult: Codable, Hashable {
     public let deleted: deleted
-//    public let notFound: NotFound
+    public let notFound: NotFound
 
     public struct deleted: Codable, Hashable {
-        let movies: Int
-        let episodes: Int
+        public let movies: Int
+        public let episodes: Int
     }
     
     public struct NotFound: Codable, Hashable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        let episodes: [ID]
+        public let movies: [NotFoundIds]
+        public let shows: [NotFoundIds]
+        public let seasons: [NotFoundIds]
+        public let episodes: [NotFoundIds]
     }
     
     enum CodingKeys: String, CodingKey {
         case deleted
-//        case notFound = "not_found"
+        case notFound = "not_found"
     }
 }

@@ -34,8 +34,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Follower Requests
@@ -51,8 +50,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Approve or Deny follower Requests
@@ -70,8 +68,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .POST) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -87,8 +84,7 @@ extension TraktManager {
                                            withQuery: [:],
                                            isAuthorized: true,
                                            withHTTPMethod: .DELETE) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Hidden Items
@@ -119,8 +115,7 @@ extension TraktManager {
             isAuthorized: true,
             withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringLocalCacheData
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -129,20 +124,10 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func hide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTaskProtocol? {
-        var json: [String : Any] = [:]
-        json["movies"] = movies
-        json["shows"] = shows
-        json["seasons"] = seasons
-        
-        guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
-            withQuery: [:],
-            isAuthorized: true,
-            withHTTPMethod: .POST) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-        return performRequest(request: request,
-                              completion: completion)
+    public func hide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
+        guard let request = post("users/hidden/\(section.rawValue)", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -151,20 +136,10 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func unhide(movies: [RawJSON]? = nil, shows: [RawJSON]? = nil, seasons: [RawJSON]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTaskProtocol? {
-        var json: [String : Any] = [:]
-        json["movies"] = movies
-        json["shows"] = shows
-        json["seasons"] = seasons
-        
-        guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)/remove",
-            withQuery: [:],
-            isAuthorized: true,
-            withHTTPMethod: .POST) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-        return performRequest(request: request,
-                              completion: completion)
+    public func unhide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
+        guard let request = post("users/hidden/\(section.rawValue)/remove", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Likes
@@ -183,8 +158,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Profile
@@ -201,8 +175,7 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Collection
@@ -221,8 +194,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Comments
@@ -259,8 +231,7 @@ extension TraktManager {
                                          withQuery: query,
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Lists
@@ -278,8 +249,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -309,8 +279,7 @@ extension TraktManager {
         guard var request = mutableRequest(forPath: "users/me/lists", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - List
@@ -328,8 +297,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -352,8 +320,7 @@ extension TraktManager {
         guard var request = mutableRequest(forPath: "users/me/lists/\(listID)", withQuery: [:], isAuthorized: true, withHTTPMethod: .PUT) else { return nil }
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
         
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -368,8 +335,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .DELETE) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - List Like
@@ -386,8 +352,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .POST) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -402,8 +367,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .DELETE) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - List Items
@@ -427,26 +391,25 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
      Add one or more items to a custom list. Items can be movies, shows, seasons, episodes, or people.
      
      🔒 OAuth Required
+     
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
+     - parameter people: Array of people Trakt ids
      */
     @discardableResult
-    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping AddListItemCompletion) throws -> URLSessionDataTaskProtocol? {
-        guard var request = mutableRequest(forPath: "users/\(username)/lists/\(listID)/items",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil, completion: @escaping AddListItemCompletion) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+        guard let request = post("users/\(username)/lists/\(listID)/items", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Remove List Items
@@ -455,18 +418,18 @@ extension TraktManager {
     Remove one or more items from a custom list.
     
     🔒 OAuth Required
+     
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
+     - parameter people: Array of people Trakt ids
     */
     @discardableResult
-    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping RemoveListItemCompletion) throws -> URLSessionDataTaskProtocol? {
-        guard var request = mutableRequest(forPath: "users/\(username)/lists/\(listID)/items/remove",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil, completion: @escaping RemoveListItemCompletion) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+        guard let request = post("users/\(username)/lists/\(listID)/items/remove", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - List Comments
@@ -483,8 +446,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Follow
@@ -502,8 +464,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .POST) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -517,8 +478,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .DELETE) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Followers
@@ -535,8 +495,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Following
@@ -554,8 +513,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Friends
@@ -572,8 +530,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - History
@@ -588,7 +545,7 @@ extension TraktManager {
     ✨ Extended Info
     */
     @discardableResult
-    public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTaskProtocol? {
         var path = "users/\(username)/history"
         
         if let type = type {
@@ -608,14 +565,20 @@ extension TraktManager {
         if let endDate = endAt {
             query["end_at"] = endDate.UTCDateString()
         }
+     
+        // pagination
+        if let pagination = pagination {
+            for (key, value) in pagination.value() {
+                query[key] = value
+            }
+        }
         
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: path,
                                          withQuery: query,
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Ratings
@@ -661,8 +624,7 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Watching
@@ -681,8 +643,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Watched
@@ -700,8 +661,7 @@ extension TraktManager {
                                            isAuthorized: authorization,
                                            withHTTPMethod: .GET) else { return nil }
         request.timeoutInterval = 60*2 // 2 minutes
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Stats
@@ -718,7 +678,6 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: authorization,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
 }

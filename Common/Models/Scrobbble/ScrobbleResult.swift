@@ -9,10 +9,10 @@
 import Foundation
 
 public struct ScrobbleResult: Codable, Hashable {
-    let id: Int
-    let action: String
-    let progress: Float
-    let movie: TraktMovie?
-    let episode: TraktEpisode?
-    let show: TraktShow?
+    public let id: Int
+    public let action: String
+    public let progress: Float
+    public let movie: TraktMovie?
+    public let episode: TraktEpisode?
+    public let show: TraktShow?
 }

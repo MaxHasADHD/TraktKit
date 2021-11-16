@@ -80,6 +80,17 @@ public struct TraktCollectedItem: Codable, Hashable {
             case audioChannels = "audio_channels"
             case is3D = "3d"
         }
+        
+        /// Custom decoder to fail silently if Trakt adds new metadata option.
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            mediaType = try? container.decodeIfPresent(MediaType.self, forKey: .mediaType)
+            resolution = try? container.decodeIfPresent(Resolution.self, forKey: .resolution)
+            hdr = try? container.decodeIfPresent(HDR.self, forKey: .hdr)
+            audio = try? container.decodeIfPresent(Audio.self, forKey: .audio)
+            audioChannels = try? container.decodeIfPresent(AudioChannels.self, forKey: .audioChannels)
+            is3D = try container.decodeIfPresent(Bool.self, forKey: .is3D) ?? false
+        }
     }
     
     public enum MediaType: String, Codable {
@@ -114,8 +125,10 @@ public struct TraktCollectedItem: Codable, Hashable {
     public enum Audio: String, Codable {
         case dolbyDigital = "dolby_digital"
         case dolbyDigitalPlus = "dolby_digital_plus"
+        case dolbyDigitalPlusAtmos = "dolby_digital_plus_atmos"
         case dolbyAtmos = "dolby_atmos"
         case dolbyTrueHD = "dolby_truehd"
+        case dolbyTrueHDAtmos = "dolby_truehd_atmos"
         case dolbyProLogic = "dolby_prologic"
         case dts
         case dtsHDMA = "dts_ma"
@@ -123,10 +136,12 @@ public struct TraktCollectedItem: Codable, Hashable {
         case dtsX = "dts_x"
         case auro3D = "auro_3d"
         case mp3
+        case mp2
         case aac
         case lpcm
         case ogg
         case wma
+        case flac
     }
     
     public enum AudioChannels: String, Codable {

@@ -24,4 +24,12 @@ public struct TraktWatchedShow: Codable, Hashable {
         case show
         case seasons
     }
+    
+    public init(plays: Int, lastWatchedAt: Date?, lastUpdatedAt: Date?, show: TraktShow, seasons: [TraktWatchedSeason]?) {
+        self.plays = plays
+        self.lastWatchedAt = lastWatchedAt
+        self.lastUpdatedAt = lastUpdatedAt
+        self.show = show
+        self.seasons = seasons
+    }
 }

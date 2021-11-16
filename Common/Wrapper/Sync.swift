@@ -27,8 +27,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Playback
@@ -52,8 +51,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -69,8 +67,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .DELETE) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Collection
@@ -95,8 +92,7 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -109,16 +105,17 @@ extension TraktManager {
      Status Code: 201
      
      🔒 OAuth: Required
+     
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
      */
     @discardableResult
-    public func addToCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<AddToCollectionResult>) throws -> URLSessionDataTaskProtocol? {
-        guard var request = mutableRequest(forPath: "sync/collection",
-                                           withQuery: [:],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies, shows: shows, episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func addToCollection(movies: [CollectionId]? = nil, shows: [CollectionId]? = nil, seasons: [CollectionId]? = nil, episodes: [CollectionId]? = nil, completion: @escaping ObjectCompletionHandler<AddToCollectionResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
+        guard let request = post("sync/collection", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -127,18 +124,17 @@ extension TraktManager {
      Status Code: 200
      
      🔒 OAuth: Required
+     
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
      */
     @discardableResult
-    public func removeFromCollection(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<RemoveFromCollectionResult>) throws -> URLSessionDataTaskProtocol? {
-        guard var request = mutableRequest(forPath: "sync/collection/remove",
-                                           withQuery: [:],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func removeFromCollection(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromCollectionResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
+        guard let request = post("sync/collection/remove", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: -
@@ -166,8 +162,7 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -192,8 +187,7 @@ extension TraktManager {
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - History
@@ -260,18 +254,10 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     @discardableResult
-    public func addToHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTaskProtocol? {
-        
-        // Request
-        guard var request = mutableRequest(forPath: "sync/history",
-                                           withQuery: [:],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func addToHistory(movies: [AddToHistoryId]? = nil, shows: [AddToHistoryId]? = nil, seasons: [AddToHistoryId]? = nil, episodes: [AddToHistoryId]? = nil, completion: @escaping ObjectCompletionHandler<AddToHistoryResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
+        guard let request = post("sync/history", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -290,21 +276,10 @@ extension TraktManager {
      - parameter completion: completion handler
      */
     @discardableResult
-    public func removeFromHistory(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], historyIDs: [NSNumber]? = nil, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTaskProtocol? {
-        
-        // Request
-        guard var request = mutableRequest(forPath: "sync/history/remove",
-                                           withQuery: [:],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .POST) else { return nil }
-        
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes,
-                                              ids: historyIDs)
-        
-        return performRequest(request: request,
-                              completion: completion)
+    public func removeFromHistory(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, historyIDs: [Int]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromHistoryResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, ids: historyIDs)
+        guard let request = post("sync/history/remove", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Ratings
@@ -329,8 +304,7 @@ extension TraktManager {
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -340,55 +314,16 @@ extension TraktManager {
      
      🔒 OAuth: Required
      
-     - parameter rating: Between 1 and 10.
-     - parameter ratedAt: Date when the item was rated.
-     - parameter movies: Array of movie objects
-     - parameter shows: Array of show objects
-     - parameter episodes: Array of episode objects
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
      */
     @discardableResult
-    public func addRatings(rating: NSNumber, ratedAt: Date, movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<AddRatingsResult>) throws -> URLSessionDataTaskProtocol? {
-        
-        // JSON
-        var json = RawJSON()
-        let ratedAtString = ratedAt.UTCDateString()
-        
-        // Movies
-        var ratedMovies: [RawJSON] = []
-        for var movie in movies {
-            movie["rated_at"] = ratedAtString
-            movie["rating"] = rating
-            ratedMovies.append(movie)
-        }
-        json["movies"] = ratedMovies
-        
-        // Shows
-        var ratedShows: [RawJSON] = []
-        for var show in shows {
-            show["rated_at"] = ratedAtString
-            show["rating"] = rating
-            ratedShows.append(show)
-        }
-        json["shows"] = ratedShows
-        
-        // Episodes
-        var ratedEpisodes: [RawJSON] = []
-        for var episode in episodes {
-            episode["rated_at"] = ratedAtString
-            episode["rating"] = rating
-            ratedEpisodes.append(episode)
-        }
-        json["episodes"] = ratedEpisodes
-        
-        // Request
-        guard var request = mutableRequest(forPath: "sync/ratings",
-                                           withQuery: [:],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try JSONSerialization.data(withJSONObject: json,
-                                                      options: [])
-        return performRequest(request: request,
-                              completion: completion)
+    public func addRatings(movies: [RatingId]? = nil, shows: [RatingId]? = nil, seasons: [RatingId]? = nil, episodes: [RatingId]? = nil, completion: @escaping ObjectCompletionHandler<AddRatingsResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
+        guard let request = post("sync/ratings", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -396,22 +331,16 @@ extension TraktManager {
      
      🔒 OAuth: Required
      
-     - parameter movies: array of movie object JSON strings
-     - parameter shows: array of show object JSON strings
-     - parameter episodes: array of episode object JSON strings
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
      */
     @discardableResult
-    public func removeRatings(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<RemoveRatingsResult>) throws -> URLSessionDataTaskProtocol? {
-        guard
-            var request = mutableRequest(forPath: "sync/ratings/remove",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .POST) else { return nil }
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func removeRatings(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveRatingsResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
+        guard let request = post("sync/ratings/remove", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     // MARK: - Watchlist
@@ -444,8 +373,7 @@ extension TraktManager {
                                          withQuery: query,
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
-        return performRequest(request: request,
-                              completion: completion)
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -454,18 +382,17 @@ extension TraktManager {
      Status Code: 201
      
      🔒 OAuth: Required
+     
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
      */
     @discardableResult
-    public func addToWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTaskProtocol? {
-        guard var request = mutableRequest(forPath: "sync/watchlist",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .POST) else { completion(.fail); return nil }
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func addToWatchlist(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<WatchlistItemPostResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
+        guard let request = post("sync/watchlist", body: body) else { completion(.error(error: nil)); return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -474,17 +401,16 @@ extension TraktManager {
      Status Code: 201
      
      🔒 OAuth: Required
+     
+     - parameter movies: Array of movie Trakt ids
+     - parameter shows: Array of show Trakt ids
+     - parameter seasons: Array of season Trakt ids
+     - parameter episodes: Array of episode Trakt ids
      */
     @discardableResult
-    public func removeFromWatchlist(movies: [RawJSON], shows: [RawJSON], episodes: [RawJSON], completion: @escaping ObjectCompletionHandler<RemoveFromWatchlistResult>) throws -> URLSessionDataTaskProtocol? {
-        guard var request = mutableRequest(forPath: "sync/watchlist/remove",
-                                         withQuery: [:],
-                                         isAuthorized: true,
-                                         withHTTPMethod: .POST) else { completion(.error(error: nil)); return nil }
-        request.httpBody = try createJsonData(movies: movies,
-                                              shows: shows,
-                                              episodes: episodes)
-        return performRequest(request: request,
-                              completion: completion)
+    public func removeFromWatchlist(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromWatchlistResult>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
+        guard let request = post("sync/watchlist/remove", body: body) else { completion(.error(error: nil)); return nil }
+        return performRequest(request: request, completion: completion)
     }
 }
