@@ -1580,7 +1580,7 @@
                             "media_type": "bluray",
                             "resolution": null,
                             "hdr": null,
-                            "audio": "dts_ma",
+                            "audio": "new_audio_format",
                             "audio_channels": null,
                             "3d": false
                         }

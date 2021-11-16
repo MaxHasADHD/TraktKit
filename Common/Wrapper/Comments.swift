@@ -18,24 +18,10 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postComment(movie: RawJSON? = nil, show: RawJSON? = nil, episode: RawJSON? = nil, comment: String, isSpoiler spoiler: Bool, completionHandler: @escaping SuccessCompletionHandler) throws -> URLSessionDataTaskProtocol? {
-        
-        // JSON
-        var json: RawJSON = [
-            "comment": comment,
-            "spoiler": spoiler
-        ]
-        json["movie"] = movie
-        json["show"] = show
-        json["episode"] = episode
-        
-        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        // Request
-        guard var request = mutableRequest(forPath: "comments", withQuery: [:], isAuthorized: true, withHTTPMethod: .POST) else { return nil }
-        request.httpBody = jsonData
-        
-        return performRequest(request: request, completion: completionHandler)
+    public func postComment(movie: SyncId? = nil, show: SyncId? = nil, season: SyncId? = nil, episode: SyncId? = nil, list: SyncId? = nil, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktCommentBody(movie: movie, show: show, season: season, episode: episode, list: list, comment: comment, spoiler: spoiler)
+        guard let request = post("comments", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
     
     /**
@@ -57,22 +43,13 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTaskProtocol? {
-        
-        // JSON
-        let json: RawJSON = [
-            "comment": newComment,
-            "spoiler": isSpoiler,
-            ]
-        
-        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        // Request
+    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktCommentBody(comment: comment, spoiler: spoiler)
         guard var request = mutableRequest(forPath: "comments/\(id)",
                                            withQuery: [:],
                                            isAuthorized: true,
                                            withHTTPMethod: .PUT) else { return nil }
-        request.httpBody = jsonData
+        request.httpBody = try jsonEncoder.encode(body)
         return performRequest(request: request,
                               completion: completion)
     }
@@ -115,24 +92,10 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postReply<T: CustomStringConvertible>(commentID id: T, newComment: String, isSpoiler: Bool = false, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTaskProtocol? {
-        
-        // JSON
-        let json: RawJSON = [
-            "comment": newComment,
-            "spoiler": isSpoiler,
-            ]
-    
-        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        // Request
-        guard var request = mutableRequest(forPath: "comments/\(id)/replies",
-                                           withQuery: [:],
-                                           isAuthorized: true,
-                                           withHTTPMethod: .POST) else { return nil }
-        request.httpBody = jsonData
-        return performRequest(request: request,
-                              completion: completion)
+    public func postReply<T: CustomStringConvertible>(commentID id: T, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTaskProtocol? {
+        let body = TraktCommentBody(comment: comment, spoiler: spoiler)
+        guard let request = post("comments/\(id)/replies", body: body) else { return nil }
+        return performRequest(request: request, completion: completion)
     }
 
     // MARK: - Item

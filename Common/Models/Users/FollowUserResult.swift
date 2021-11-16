@@ -9,8 +9,8 @@
 import Foundation
 
 public struct FollowUserResult: Codable, Hashable {
-    let approvedAt: Date
-    let user: User
+    public let approvedAt: Date
+    public let user: User
     
     enum CodingKeys: String, CodingKey {
         case approvedAt = "approved_at"

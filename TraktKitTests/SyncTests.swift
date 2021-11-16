@@ -176,6 +176,8 @@ class SyncTests: XCTestCase {
             if case .success(let result) = result {
                 XCTAssertEqual(result.deleted.movies, 1)
                 XCTAssertEqual(result.deleted.episodes, 12)
+                XCTAssertEqual(result.notFound.episodes.count, 0)
+                XCTAssertEqual(result.notFound.movies.count, 1)
                 expectation.fulfill()
             }
         }
@@ -294,9 +296,14 @@ class SyncTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Add items to history")
         try! traktManager.addToHistory(movies: [], shows: [], episodes: []) { result in
-            if case .success = result {
-                expectation.fulfill()
+            switch result {
+            case .success(let ids):
+                XCTAssertEqual(ids.added.movies, 2)
+                XCTAssertEqual(ids.added.episodes, 72)
+            case .error:
+                XCTFail("Wrong status")
             }
+            expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/sync/history")
@@ -316,9 +323,14 @@ class SyncTests: XCTestCase {
 
         let expectation = XCTestExpectation(description: "Remove items from history")
         try! traktManager.removeFromHistory(movies: [], shows: [], episodes: []) { result in
-            if case .success = result {
-                expectation.fulfill()
+            switch result {
+            case .success(let ids):
+                XCTAssertEqual(ids.deleted.movies, 2)
+                XCTAssertEqual(ids.deleted.episodes, 72)
+            case .error(let error):
+                XCTFail("Wrong status: \(String(describing: error))")
             }
+            expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
         XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/sync/history/remove")
@@ -361,12 +373,13 @@ class SyncTests: XCTestCase {
         session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
 
         let expectation = XCTestExpectation(description: "Add rating")
-        try! traktManager.addRatings(rating: 12, ratedAt: Date(), movies: [], shows: [], episodes: []) { result in
+        try! traktManager.addRatings(movies: [RatingId(trakt: 12345, rating: 10, ratedAt: Date())]) { result in
             if case .success(let result) = result {
                 XCTAssertEqual(result.added.movies, 1)
                 XCTAssertEqual(result.added.shows, 1)
                 XCTAssertEqual(result.added.seasons, 1)
                 XCTAssertEqual(result.added.episodes, 2)
+                XCTAssertEqual(result.notFound.movies.count, 1)
                 expectation.fulfill()
             }
         }

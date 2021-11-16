@@ -9,27 +9,27 @@
 import Foundation
 
 public struct AddToCollectionResult: Codable, Hashable {
-    let added: Added
-    let updated: Added
-    let existing: Added
-//    let notFound: NotFound
+    public let added: Added
+    public let updated: Added
+    public let existing: Added
+    public let notFound: NotFound
 
     public struct Added: Codable, Hashable {
-        let movies: Int
-        let episodes: Int
+        public let movies: Int
+        public let episodes: Int
     }
     
     public struct NotFound: Codable, Hashable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        let episodes: [ID]
+        public let movies: [NotFoundIds]
+        public let shows: [NotFoundIds]
+        public let seasons: [NotFoundIds]
+        public let episodes: [NotFoundIds]
     }
     
     enum CodingKeys: String, CodingKey {
         case added
         case updated
         case existing
-//        case notFound = "not_found"
+        case notFound = "not_found"
     }
 }
