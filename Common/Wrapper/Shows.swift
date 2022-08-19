@@ -9,7 +9,7 @@
 import Foundation
 
 extension TraktManager {
-    
+
     // MARK: - Trending
     
     /**

@@ -44,7 +44,7 @@ class ShowTests: XCTestCase {
                         if let traktID = showIDs["trakt"] as? NSNumber {
                             
                             TraktManager.sharedManager.getShowSummary(showID: traktID, extended: extendedType.Full) { (dictionary, error) -> Void in
-                                count+= 1
+                                count = count + 1
                                 
                                 guard error == nil else {
                                     print("Error getting Show Summary: \(error)")
@@ -67,7 +67,7 @@ class ShowTests: XCTestCase {
                                 let showYear = summary["year"] as? NSNumber
                                 let _ = summary["language"] as? String ?? "en"
                                 
-                                if let title = showTitle, _ = showRuntime, _ = showOverview, _ = showNetwork, _ = showStatus, _ = showYear {
+                                if let title = showTitle, let _ = showRuntime, let _ = showOverview, let _ = showNetwork, let _ = showStatus, let _ = showYear {
                                     print("Parsed \(title) succesfully!")
                                     XCTAssert(true, "JSON was parsed correctly")
                                 }

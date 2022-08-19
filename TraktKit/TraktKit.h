@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Maximilian Litteral. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for TraktKit.
 FOUNDATION_EXPORT double TraktKitVersionNumber;

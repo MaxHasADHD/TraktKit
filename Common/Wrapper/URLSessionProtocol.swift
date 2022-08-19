@@ -12,6 +12,8 @@ public protocol URLSessionProtocol {
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
     func _dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+    func data(for request: URLRequest) async throws -> (Data, URLResponse)
 }
 
 public protocol URLSessionDataTaskProtocol {
@@ -23,7 +25,12 @@ public protocol URLSessionDataTaskProtocol {
 
 extension URLSession: URLSessionProtocol {
     public func _dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
-        return dataTask(with: request, completionHandler: completion) as URLSessionDataTaskProtocol
+        dataTask(with: request, completionHandler: completion) as URLSessionDataTaskProtocol
+    }
+
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+    public func data(for request: URLRequest) async throws -> (Data, URLResponse) {
+        try await data(for: request, delegate: nil)
     }
 }
 
@@ -47,6 +54,19 @@ class MockURLSession: URLSessionProtocol {
         lastURL = request.url
         completion(nextData, successHttpURLResponse(request: request), nextError)
         return nextDataTask
+    }
+
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+    public func data(for request: URLRequest) async throws -> (Data, URLResponse) {
+        lastURL = request.url
+
+        if let nextData = nextData {
+            return (nextData, successHttpURLResponse(request: request))
+        } else if let nextError = nextError {
+            throw nextError
+        } else {
+            fatalError("No error or data")
+        }
     }
 }
 

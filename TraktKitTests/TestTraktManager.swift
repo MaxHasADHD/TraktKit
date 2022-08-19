@@ -11,6 +11,6 @@
 final class TestTraktManager: TraktManager {
     override init(session: URLSessionProtocol) {
         super.init(session: session)
-        set(clientID: "", clientSecret: "", redirectURI: "", staging: false)
+        self.set(clientID: "", clientSecret: "", redirectURI: "", staging: false)
     }
 }

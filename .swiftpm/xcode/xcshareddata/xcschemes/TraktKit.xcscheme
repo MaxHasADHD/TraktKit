@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1210"
+   LastUpgradeVersion = "1330"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A70807141D8E1F2D00176B0A"
-               BuildableName = "TraktKitWatchOS.framework"
-               BlueprintName = "TraktKitWatchOS"
-               ReferencedContainer = "container:TraktKit.xcodeproj">
+               BlueprintIdentifier = "TraktKit"
+               BuildableName = "TraktKit"
+               BlueprintName = "TraktKit"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,15 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A70807141D8E1F2D00176B0A"
-            BuildableName = "TraktKitWatchOS.framework"
-            BlueprintName = "TraktKitWatchOS"
-            ReferencedContainer = "container:TraktKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -59,10 +50,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A70807141D8E1F2D00176B0A"
-            BuildableName = "TraktKitWatchOS.framework"
-            BlueprintName = "TraktKitWatchOS"
-            ReferencedContainer = "container:TraktKit.xcodeproj">
+            BlueprintIdentifier = "TraktKit"
+            BuildableName = "TraktKit"
+            BlueprintName = "TraktKit"
+            ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

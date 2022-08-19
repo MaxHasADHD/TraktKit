@@ -188,7 +188,7 @@ extension TraktManager {
     🔓 OAuth Optional
      */
     @discardableResult
-    public func getUserCollection(username: String = "me", type: Type, completion: @escaping ObjectsCompletionHandler<TraktCollectedItem>) -> URLSessionDataTaskProtocol? {
+    public func getUserCollection(username: String = "me", type: MediaType, completion: @escaping ObjectsCompletionHandler<TraktCollectedItem>) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard let request = mutableRequest(forPath: "users/\(username)/collection/\(type.rawValue)",
                                          withQuery: [:],
@@ -589,7 +589,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getUserRatings(username: String = "me", type: Type? = nil, rating: NSNumber? = nil, completion: @escaping RatingsCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getUserRatings(username: String = "me", type: MediaType? = nil, rating: NSNumber? = nil, completion: @escaping RatingsCompletionHandler) -> URLSessionDataTaskProtocol? {
         
         var path = "users/\(username)/ratings"
 
@@ -654,7 +654,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getUserWatched(username: String = "me", type: Type, extended: [ExtendedType] = [.Min], completion: @escaping UserWatchedCompletion) -> URLSessionDataTaskProtocol? {
+    public func getUserWatched(username: String = "me", type: MediaType, extended: [ExtendedType] = [.Min], completion: @escaping UserWatchedCompletion) -> URLSessionDataTaskProtocol? {
         let authorization = username == "me" ? true : false
         guard var request = mutableRequest(forPath: "users/\(username)/watched/\(type.rawValue)",
                                            withQuery: ["extended": extended.queryString()],

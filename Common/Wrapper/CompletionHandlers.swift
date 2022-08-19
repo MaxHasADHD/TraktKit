@@ -204,11 +204,19 @@ extension TraktManager {
             default:
                 throw TraktError.unhandled(httpResponse)
             }
-            return
         }
     }
     
     // MARK: - Perform Requests
+
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+    func perform<T: Codable>(request: URLRequest) async throws -> T {
+        let (data, _) = try await session.data(for: request)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+        let object = try decoder.decode(T.self, from: data)
+        return object
+    }
     
     /// Data
     func performRequest(request: URLRequest, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTaskProtocol? {
