@@ -24,7 +24,7 @@ class ShowsTests: XCTestCase {
 
     // MARK: - Trending
 
-    @available(iOS 15.0, *)
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     func test_get_min_trending_shows_await() async throws {
         session.nextData = jsonData(named: "TrendingShows_Min")
 
@@ -327,6 +327,37 @@ class ShowsTests: XCTestCase {
             break
         }
     }
+    
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+    func test_get_full_show_await() async throws {
+        session.nextData = jsonData(named: "Show_Full")
+        
+        let show = try await traktManager.show(id: "game-of-thrones").summary()
+            .extend(.Full)
+            .perform()
+        
+        XCTAssertEqual(show.title, "Game of Thrones")
+        XCTAssertEqual(show.year, 2011)
+        XCTAssertEqual(show.ids.trakt, 353)
+        XCTAssertEqual(show.ids.slug, "game-of-thrones")
+        XCTAssertNotNil(show.overview)
+        XCTAssertNotNil(show.firstAired)
+        XCTAssertEqual(show.airs?.day, "Sunday")
+        XCTAssertEqual(show.airs?.time, "21:00")
+        XCTAssertEqual(show.airs?.timezone, "America/New_York")
+        XCTAssertEqual(show.runtime, 60)
+        XCTAssertEqual(show.certification, "TV-MA")
+        XCTAssertEqual(show.network, "HBO")
+        XCTAssertEqual(show.country, "us")
+        XCTAssertNotNil(show.updatedAt)
+        XCTAssertNil(show.trailer)
+        XCTAssertEqual(show.homepage?.absoluteString, "http://www.hbo.com/game-of-thrones/index.html")
+        XCTAssertEqual(show.status, "returning series")
+        XCTAssertEqual(show.language, "en")
+        XCTAssertEqual(show.availableTranslations?.count, 18)
+        XCTAssertEqual(show.genres!, ["drama", "fantasy"])
+        XCTAssertEqual(show.airedEpisodes, 50)
+    }
 
     // MARK: - Aliases
 
@@ -353,7 +384,7 @@ class ShowsTests: XCTestCase {
         }
     }
 
-    @available(iOS 15.0, *)
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     func test_get_show_aliases_await() async throws {
         session.nextData = jsonData(named: "ShowAliases")
 

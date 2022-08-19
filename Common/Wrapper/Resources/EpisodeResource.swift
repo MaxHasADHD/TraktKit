@@ -7,3 +7,32 @@
 //
 
 import Foundation
+
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+public struct EpisodeResource {
+    public let showId: CustomStringConvertible
+    public let seasonNumber: Int
+    public let episodeNumber: Int
+    public let traktManager: TraktManager
+    private let path: String
+    
+    init(showId: CustomStringConvertible, seasonNumber: Int, episodeNumber: Int, traktManager: TraktManager = .sharedManager) {
+        self.showId = showId
+        self.seasonNumber = seasonNumber
+        self.episodeNumber = episodeNumber
+        self.traktManager = traktManager
+        self.path = "shows/\(showId)/seasons/\(seasonNumber)/episodes/\(episodeNumber)"
+    }
+    
+    public func summary() async throws -> Route<TraktEpisode> {
+        try await traktManager.get(path)
+    }
+    
+    public func comments() async throws -> Route<[Comment]> {
+        try await traktManager.get(path + "/comments")
+    }
+    
+    public func people() async throws -> Route<CastAndCrew<TVCastMember, TVCrewMember>> {
+        try await traktManager.get(path + "/people")
+    }
+}

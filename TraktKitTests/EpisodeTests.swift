@@ -75,6 +75,29 @@ class EpisodeTests: XCTestCase {
             break
         }
     }
+    
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+    func test_get_full_episode_async() async throws {
+        session.nextData = jsonData(named: "Episode_Full")
+        
+        let episode = try await traktManager
+            .show(id: "game-of-thrones")
+            .season(1).episode(1)
+            .summary()
+            .extend(.Full)
+            .perform()
+        
+        XCTAssertEqual(episode.title, "Winter Is Coming")
+        XCTAssertEqual(episode.season, 1)
+        XCTAssertEqual(episode.number, 1)
+        XCTAssertEqual(episode.ids.trakt, 36440)
+        XCTAssertNotNil(episode.overview)
+        XCTAssertNotNil(episode.firstAired)
+        XCTAssertNotNil(episode.updatedAt)
+        XCTAssertEqual(episode.availableTranslations!, ["en"])
+        
+        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full")
+    }
 
     // MARK: - Translations
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@available(macOS 12.0, iOS 15.0, *)
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
 extension TraktManager {
 
     func show(id: CustomStringConvertible) -> ShowResource {
@@ -17,5 +17,9 @@ extension TraktManager {
 
     func season(showId: CustomStringConvertible, season: Int) -> SeasonResource {
         SeasonResource(showId: showId, seasonNumber: season, traktManager: self)
+    }
+    
+    func episode(showId: CustomStringConvertible, season: Int, episode: Int) -> EpisodeResource {
+        EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
 }

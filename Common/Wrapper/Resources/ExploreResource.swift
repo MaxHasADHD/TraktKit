@@ -8,22 +8,28 @@
 
 import Foundation
 
-@available(macOS 12.0, iOS 15.0, *)
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
 public struct ExploreResource {
     public let traktManager: TraktManager
-    public let trending = Trending()
+    public lazy var trending = Trending(traktManager: traktManager)
 
     public init(traktManager: TraktManager = .sharedManager) {
         self.traktManager = traktManager
     }
 
     public struct Trending {
+        
+        public let traktManager: TraktManager
+        public init(traktManager: TraktManager = .sharedManager) {
+            self.traktManager = traktManager
+        }
+        
         public func shows() -> Route<[TraktTrendingShow]> {
-            Route(path: "shows/trending", method: .GET, traktManager: .sharedManager)
+            Route(path: "shows/trending", method: .GET, traktManager: traktManager)
         }
 
         public func movies() -> Route<[TraktTrendingMovie]> {
-            Route(path: "movies/trending", method: .GET, traktManager: .sharedManager)
+            Route(path: "movies/trending", method: .GET, traktManager: traktManager)
         }
     }
 

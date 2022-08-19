@@ -8,7 +8,7 @@
 
 import Foundation
 
-@available(macOS 12.0, iOS 15.0, *)
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
 public class Route<T: Codable> {
     public let path: String
     public let method: Method

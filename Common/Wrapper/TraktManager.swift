@@ -45,7 +45,7 @@ public class TraktManager {
     
     let session: URLSessionProtocol
 
-    @available(macOS 12.0, iOS 15.0, *)
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     lazy var explore: ExploreResource = ExploreResource(traktManager: self)
     
     // MARK: Public

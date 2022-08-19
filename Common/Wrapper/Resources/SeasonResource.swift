@@ -8,7 +8,7 @@
 
 import Foundation
 
-@available(macOS 12.0, iOS 15.0, *)
+@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
 public struct SeasonResource {
     public let showId: CustomStringConvertible
     public let seasonNumber: Int
@@ -19,6 +19,8 @@ public struct SeasonResource {
         self.seasonNumber = seasonNumber
         self.traktManager = traktManager
     }
+    
+    // MARK: - Methods
 
     public func summary() async throws -> Route<TraktSeason> {
         try await traktManager.get("shows/\(showId)/seasons/\(seasonNumber)")
@@ -26,5 +28,16 @@ public struct SeasonResource {
 
     public func comments() async throws -> Route<[Comment]> {
         try await traktManager.get("shows/\(showId)/seasons/\(seasonNumber)/comments")
+    }
+    
+    // MARK: - Resources
+    
+    public func episode(_ number: Int) -> EpisodeResource {
+        EpisodeResource(
+            showId: showId,
+            seasonNumber: seasonNumber,
+            episodeNumber: number,
+            traktManager: traktManager
+        )
     }
 }

@@ -12,7 +12,7 @@ public protocol URLSessionProtocol {
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
     func _dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
-    @available(iOS 15.0, *)
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     func data(for request: URLRequest) async throws -> (Data, URLResponse)
 }
 
@@ -28,7 +28,7 @@ extension URLSession: URLSessionProtocol {
         dataTask(with: request, completionHandler: completion) as URLSessionDataTaskProtocol
     }
 
-    @available(iOS 15.0, *)
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     public func data(for request: URLRequest) async throws -> (Data, URLResponse) {
         try await data(for: request, delegate: nil)
     }
@@ -56,6 +56,7 @@ class MockURLSession: URLSessionProtocol {
         return nextDataTask
     }
 
+    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     public func data(for request: URLRequest) async throws -> (Data, URLResponse) {
         lastURL = request.url
 
