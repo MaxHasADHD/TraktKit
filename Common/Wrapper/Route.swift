@@ -76,7 +76,7 @@ public class Route<T: Codable> {
     
     // MARK: - Filters
     
-    public func filter(_ filter: FilterType) -> Self {
+    public func filter(_ filter: TraktManager.Filter) -> Self {
         filters.append(filter)
         return self
     }
