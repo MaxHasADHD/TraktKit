@@ -19,6 +19,7 @@ public class Route<T: Codable> {
     private var _page: Int?
     private var _limit: Int?
     
+    private var filters = [FilterType]()
 
     private var request: URLRequest {
         var query: [String: String] = [:]
@@ -34,6 +35,13 @@ public class Route<T: Codable> {
 
         if let limit = _limit {
             query["limit"] = limit.description
+        }
+        
+        // Filters
+        if filters.isEmpty == false {
+            for (key, value) in (filters.map { $0.value() }) {
+                query[key] = value
+            }
         }
 
         return traktManager.mutableRequest(forPath: path,
@@ -53,6 +61,8 @@ public class Route<T: Codable> {
         self.extended = extended
         return self
     }
+    
+    // MARK: - Pagination
 
     public func page(_ page: Int?) -> Self {
         self._page = page
@@ -63,6 +73,15 @@ public class Route<T: Codable> {
         self._limit = limit
         return self
     }
+    
+    // MARK: - Filters
+    
+    public func filter(_ filter: FilterType) -> Self {
+        filters.append(filter)
+        return self
+    }
+    
+    // MARK: - Perform
 
     public func perform() async throws -> T {
         try await traktManager.perform(request: request)
