@@ -11,23 +11,23 @@ import Foundation
 @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
 extension TraktManager {
 
-    func show(id: CustomStringConvertible) -> ShowResource {
+    public func show(id: CustomStringConvertible) -> ShowResource {
         ShowResource(id: id, traktManager: self)
     }
 
-    func season(showId: CustomStringConvertible, season: Int) -> SeasonResource {
+    public func season(showId: CustomStringConvertible, season: Int) -> SeasonResource {
         SeasonResource(showId: showId, seasonNumber: season, traktManager: self)
     }
     
-    func episode(showId: CustomStringConvertible, season: Int, episode: Int) -> EpisodeResource {
+    public func episode(showId: CustomStringConvertible, season: Int, episode: Int) -> EpisodeResource {
         EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
     
-    func currentUser() -> CurrentUserResource {
+    public func currentUser() -> CurrentUserResource {
         CurrentUserResource()
     }
     
-    func user(_ username: String) -> UsersResource {
+    public func user(_ username: String) -> UsersResource {
         UsersResource(username: username, traktManager: self)
     }
 }
