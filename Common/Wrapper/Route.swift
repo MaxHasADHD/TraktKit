@@ -14,6 +14,7 @@ public class Route<T: Codable> {
     public let method: Method
     private let resultType: T.Type
     public let traktManager: TraktManager
+    public let requiresAuthentication: Bool
 
     private var extended: [ExtendedType] = []
     private var _page: Int?
@@ -46,13 +47,14 @@ public class Route<T: Codable> {
 
         return traktManager.mutableRequest(forPath: path,
                                            withQuery: query,
-                                           isAuthorized: false,
+                                           isAuthorized: requiresAuthentication,
                                            withHTTPMethod: method)!
     }
 
-    public init(path: String, method: Method, traktManager: TraktManager, resultType: T.Type = T.self) {
+    public init(path: String, method: Method, requiresAuthentication: Bool = false, traktManager: TraktManager, resultType: T.Type = T.self) {
         self.path = path
         self.method = method
+        self.requiresAuthentication = requiresAuthentication
         self.resultType = resultType
         self.traktManager = traktManager
     }

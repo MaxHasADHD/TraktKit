@@ -255,11 +255,11 @@ extension Sequence where Iterator.Element: CustomStringConvertible {
 
 /// Possible values for items in Lists
 public enum ListItemType: String {
-    case movies
-    case shows
-    case seasons
-    case episodes
-    case people
+    case movies = "movie"
+    case shows = "show"
+    case seasons = "season"
+    case episodes = "episode"
+    case people = "person"
 }
 
 public enum Period: String {

@@ -22,4 +22,12 @@ extension TraktManager {
     func episode(showId: CustomStringConvertible, season: Int, episode: Int) -> EpisodeResource {
         EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
+    
+    func currentUser() -> CurrentUserResource {
+        CurrentUserResource()
+    }
+    
+    func user(_ username: String) -> UsersResource {
+        UsersResource(username: username, traktManager: self)
+    }
 }

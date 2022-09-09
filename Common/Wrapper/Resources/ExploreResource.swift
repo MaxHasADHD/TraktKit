@@ -57,7 +57,7 @@ public struct ExploreResource {
         Route(path: "\(mediaType)/collected", method: .GET, traktManager: traktManager)
     }
 
-    public func anticipated(_ mediaType: MediaType) -> Route<[TraktTrendingShow]> {
+    public func anticipated(_ mediaType: MediaType) -> Route<[TraktAnticipatedShow]> {
         Route(path: "\(mediaType)/anticipated", method: .GET, traktManager: traktManager)
     }
 }
