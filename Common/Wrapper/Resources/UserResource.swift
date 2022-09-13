@@ -9,7 +9,6 @@ import Foundation
 
 extension TraktManager {
     /// Resource for authenticated user
-    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     public struct CurrentUserResource {
         public let traktManager: TraktManager
         
@@ -25,7 +24,6 @@ extension TraktManager {
     }
     
     /// Resource for /Users/id
-    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     public struct UsersResource {
         
         public let username: String

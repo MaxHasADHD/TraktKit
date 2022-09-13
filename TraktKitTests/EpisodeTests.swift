@@ -76,7 +76,6 @@ class EpisodeTests: XCTestCase {
         }
     }
     
-    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     func test_get_full_episode_async() async throws {
         session.nextData = jsonData(named: "Episode_Full")
         

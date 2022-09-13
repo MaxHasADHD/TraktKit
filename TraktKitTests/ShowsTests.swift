@@ -24,7 +24,6 @@ class ShowsTests: XCTestCase {
 
     // MARK: - Trending
 
-    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     func test_get_min_trending_shows_await() async throws {
         session.nextData = jsonData(named: "TrendingShows_Min")
 
@@ -328,7 +327,6 @@ class ShowsTests: XCTestCase {
         }
     }
     
-    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     func test_get_full_show_await() async throws {
         session.nextData = jsonData(named: "Show_Full")
         
@@ -384,7 +382,6 @@ class ShowsTests: XCTestCase {
         }
     }
 
-    @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
     func test_get_show_aliases_await() async throws {
         session.nextData = jsonData(named: "ShowAliases")
 

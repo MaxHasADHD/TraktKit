@@ -8,7 +8,6 @@
 
 import Foundation
 
-@available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
 public struct ExploreResource {
     public let traktManager: TraktManager
     public lazy var trending = Trending(traktManager: traktManager)
