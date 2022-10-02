@@ -20,6 +20,8 @@ public class Route<T: Codable> {
     private var _limit: Int?
     
     private var filters = [FilterType]()
+    private var searchType: SearchType?
+    private var searchQuery: String?
 
     private var request: URLRequest {
         var query: [String: String] = [:]
@@ -35,6 +37,14 @@ public class Route<T: Codable> {
 
         if let limit = _limit {
             query["limit"] = limit.description
+        }
+        
+        if let searchType {
+            query["type"] = searchType.rawValue
+        }
+        
+        if let searchQuery {
+            query["query"] = searchQuery
         }
         
         // Filters
@@ -79,6 +89,18 @@ public class Route<T: Codable> {
     
     public func filter(_ filter: TraktManager.Filter) -> Self {
         filters.append(filter)
+        return self
+    }
+    
+    public func type(_ type: SearchType?) -> Self {
+        searchType = type
+        return self
+    }
+    
+    // MARK: - Search
+    
+    public func query(_ query: String?) -> Self {
+        searchQuery = query
         return self
     }
     

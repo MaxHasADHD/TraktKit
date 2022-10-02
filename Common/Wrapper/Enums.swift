@@ -133,22 +133,22 @@ public enum LookupType {
     case TVDB(id: NSNumber)
     case TVRage(id: NSNumber)
 
-    func name() -> String {
+    var name: String {
         switch self {
-        case .Trakt(_):
-            return "trakt"
-        case .IMDB(_):
-            return "imdb"
-        case .TMDB(_):
-            return "tmdb"
-        case .TVDB(_):
-            return "tvdb"
-        case .TVRage(_):
-            return "tvrage"
+            case .Trakt:
+                return "trakt"
+            case .IMDB:
+                return "imdb"
+            case .TMDB:
+                return "tmdb"
+            case .TVDB:
+                return "tvdb"
+            case .TVRage:
+                return "tvrage"
         }
     }
 
-    func id() -> String {
+    var id: String {
         switch self {
         case .Trakt(let id):
             return "\(id)"

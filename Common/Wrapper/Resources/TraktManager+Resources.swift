@@ -29,4 +29,8 @@ extension TraktManager {
     public func user(_ username: String) -> UsersResource {
         UsersResource(username: username, traktManager: self)
     }
+    
+    public func search() -> SearchResource {
+        SearchResource(traktManager: self)
+    }
 }

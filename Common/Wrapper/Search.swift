@@ -84,7 +84,7 @@ extension TraktManager {
             }
         }
         
-        guard let request = mutableRequest(forPath: "search/\(id.name())/\(id.id())",
+        guard let request = mutableRequest(forPath: "search/\(id.name)/\(id.id)",
             withQuery: query,
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
