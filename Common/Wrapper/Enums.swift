@@ -40,6 +40,8 @@ public struct StatusCodes {
     public static let Conflict = 409
     /// Precondition Failed - use application/json content type
     public static let PreconditionFailed = 412
+    /// Account Limit Exceeded - list count, item count, etc
+    public static let AccountLimitExceeded = 420
     /// Unprocessable Entity - validation errors
     public static let UnprocessableEntity = 422
     /// Trakt account locked. Have user contact Trakt https://github.com/trakt/api-help/issues/228
@@ -65,8 +67,12 @@ public struct StatusCodes {
             return "Invalid API Key"
         case NotFound:
             return "API not found"
-        case RateLimitExceeded:
+        case AccountLimitExceeded:
+            return "The number of Trakt lists or list items has been exceeded. Please see Trakt.tv for account limits and support."
+        case acountLocked:
             return "Trakt.tv has indicated that this account is locked. Please contact Trakt support to unlock your account."
+        case vipOnly:
+            return "This feature is VIP only with Trakt. Please see Trakt.tv for more information."
         case RateLimitExceeded:
             return "Rate Limit Exceeded. Please try again in a minute."
         case ServerError..<CloudflareError:

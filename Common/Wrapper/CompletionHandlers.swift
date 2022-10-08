@@ -75,6 +75,8 @@ extension TraktManager {
         case noMethodFound
         /// Conflict - resource already created
         case resourceAlreadyCreated
+        /// Account Limit Exceeded - list count, item count, etc
+        case accountLimitExceeded
         /// Locked User Account - have the user contact support
         case accountLocked
         /// VIP Only - user must upgrade to VIP
@@ -181,6 +183,8 @@ extension TraktManager {
                 throw TraktError.noMethodFound
             case StatusCodes.Conflict:
                 throw TraktError.resourceAlreadyCreated
+            case StatusCodes.AccountLimitExceeded:
+                throw TraktError.accountLimitExceeded
             case StatusCodes.acountLocked:
                 throw TraktError.accountLocked
             case StatusCodes.vipOnly:
