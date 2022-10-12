@@ -21,7 +21,14 @@ let package = Package(
             name: "TraktKit",
             dependencies: [],
             path: "Common"
-            )
+            ),
+        .testTarget(
+            name: "TraktKitTests",
+            dependencies: ["TraktKit"],
+            resources: [
+                .process("Models")
+            ]
+        ),
     ],
     swiftLanguageVersions: [.version("5.7")]
 )

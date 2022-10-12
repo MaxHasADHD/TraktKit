@@ -22,6 +22,8 @@ public struct TraktSeason: Codable, Hashable {
     public let title: String?
     public let overview: String?
     public let firstAired: Date?
+    public let updatedAt: Date?
+    public let network: String?
     
     // Extended: Episodes
     public let episodes: [TraktEpisode]?
@@ -37,6 +39,8 @@ public struct TraktSeason: Codable, Hashable {
         case title
         case overview
         case firstAired = "first_aired"
+        case updatedAt = "updated_at"
+        case network
         
         case episodes
     }
