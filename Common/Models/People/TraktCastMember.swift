@@ -13,7 +13,8 @@ public struct TVCastMember: Codable, Hashable {
     public let characters: [String]
     @available(*, deprecated, renamed: "characters")
     public let character: String
-    public let episodeCount: Int
+    /// Not available for /episodes/{number}/people
+    public let episodeCount: Int?
     public let person: Person
     
     enum CodingKeys: String, CodingKey {

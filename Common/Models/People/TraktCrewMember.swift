@@ -13,7 +13,8 @@ public struct TVCrewMember: Codable, Hashable {
     public let jobs: [String]
     @available(*, deprecated, renamed: "jobs")
     public let job: String
-    public let episodeCount: Int
+    /// Not available for /episodes/{number}/people
+    public let episodeCount: Int?
     public let person: Person
     
     enum CodingKeys: String, CodingKey {
