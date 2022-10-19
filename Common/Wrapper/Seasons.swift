@@ -21,9 +21,13 @@ extension TraktManager {
      
      */
     @discardableResult
-    public func getSeasons<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping SeasonsCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func getSeasons<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], translatedInto language: String? = nil, completion: @escaping SeasonsCompletionHandler) -> URLSessionDataTaskProtocol? {
+        
+        var query = ["extended": extended.queryString()]
+        query["translations"] = language
+        
         guard var request = mutableRequest(forPath: "shows/\(id)/seasons",
-                                           withQuery: ["extended": extended.queryString()],
+                                           withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
         request.cachePolicy = .reloadIgnoringCacheData

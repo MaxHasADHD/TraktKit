@@ -10,10 +10,10 @@ import Foundation
 
 /// Cast member for (show/season/episode)/people API
 public struct TVCrewMember: Codable, Hashable {
-    public let jobs: [String]
+    public let jobs: [String]?
     @available(*, deprecated, renamed: "jobs")
-    public let job: String
-    public let episodeCount: Int
+    public let job: String?
+    public let episodeCount: Int?
     public let person: Person
     
     enum CodingKeys: String, CodingKey {
@@ -26,9 +26,9 @@ public struct TVCrewMember: Codable, Hashable {
 
 /// Cast member for /movies/.../people API
 public struct MovieCrewMember: Codable, Hashable {
-    public let jobs: [String]
+    public let jobs: [String]?
     @available(*, deprecated, renamed: "jobs")
-    public let job: String
+    public let job: String?
     public let person: Person
     
     enum CodingKeys: String, CodingKey {
@@ -40,10 +40,10 @@ public struct MovieCrewMember: Codable, Hashable {
 
 /// Cast member for /people/.../shows API
 public struct PeopleTVCrewMember: Codable, Hashable {
-    public let jobs: [String]
+    public let jobs: [String]?
     @available(*, deprecated, renamed: "jobs")
-    public let job: String
-    public let episodeCount: Int
+    public let job: String?
+    public let episodeCount: Int?
     public let show: TraktShow
     
     enum CodingKeys: String, CodingKey {
@@ -57,9 +57,9 @@ public struct PeopleTVCrewMember: Codable, Hashable {
 
 /// Cast member for /people/.../movies API
 public struct PeopleMovieCrewMember: Codable, Hashable {
-    public let jobs: [String]
+    public let jobs: [String]?
     @available(*, deprecated, renamed: "jobs")
-    public let job: String
+    public let job: String?
     public let movie: TraktMovie
     
     enum CodingKeys: String, CodingKey {
