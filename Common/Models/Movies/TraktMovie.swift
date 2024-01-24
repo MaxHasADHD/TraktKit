@@ -9,6 +9,7 @@
 import Foundation
 
 public struct TraktMovie: Codable, Hashable {
+
     // Extended: Min
     public let title: String
     public let year: Int?
@@ -68,5 +69,24 @@ public struct TraktMovie: Codable, Hashable {
         language = try container.decodeIfPresent(String.self, forKey: .language)
         availableTranslations = try container.decodeIfPresent([String].self, forKey: .availableTranslations)
         genres = try container.decodeIfPresent([String].self, forKey: .genres)
+    }
+    
+    public init(title: String, year: Int? = nil, ids: ID, tagline: String? = nil, overview: String? = nil, released: Date? = nil, runtime: Int? = nil, trailer: URL? = nil, homepage: URL? = nil, rating: Double? = nil, votes: Int? = nil, updatedAt: Date? = nil, language: String? = nil, availableTranslations: [String]? = nil, genres: [String]? = nil, certification: String? = nil) {
+        self.title = title
+        self.year = year
+        self.ids = ids
+        self.tagline = tagline
+        self.overview = overview
+        self.released = released
+        self.runtime = runtime
+        self.trailer = trailer
+        self.homepage = homepage
+        self.rating = rating
+        self.votes = votes
+        self.updatedAt = updatedAt
+        self.language = language
+        self.availableTranslations = availableTranslations
+        self.genres = genres
+        self.certification = certification
     }
 }

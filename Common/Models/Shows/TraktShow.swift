@@ -12,6 +12,12 @@ public struct Airs: Codable, Hashable {
     public let day: String?
     public let time: String?
     public let timezone: String?
+    
+    public init(day: String? = nil, time: String? = nil, timezone: String? = nil) {
+        self.day = day
+        self.time = time
+        self.timezone = timezone
+    }
 }
 
 public struct TraktShow: Codable, Hashable {
@@ -87,5 +93,28 @@ public struct TraktShow: Codable, Hashable {
         availableTranslations = try container.decodeIfPresent([String].self, forKey: .availableTranslations)
         genres = try container.decodeIfPresent([String].self, forKey: .genres)
         airedEpisodes = try container.decodeIfPresent(Int.self, forKey: .airedEpisodes)
+    }
+    
+    public init(title: String, year: Int? = nil, ids: ID, overview: String? = nil, firstAired: Date? = nil, airs: Airs? = nil, runtime: Int? = nil, certification: String? = nil, network: String? = nil, country: String? = nil, trailer: URL? = nil, homepage: URL? = nil, status: String? = nil, rating: Double? = nil, votes: Int? = nil, updatedAt: Date? = nil, language: String? = nil, availableTranslations: [String]? = nil, genres: [String]? = nil, airedEpisodes: Int? = nil) {
+        self.title = title
+        self.year = year
+        self.ids = ids
+        self.overview = overview
+        self.firstAired = firstAired
+        self.airs = airs
+        self.runtime = runtime
+        self.certification = certification
+        self.network = network
+        self.country = country
+        self.trailer = trailer
+        self.homepage = homepage
+        self.status = status
+        self.rating = rating
+        self.votes = votes
+        self.updatedAt = updatedAt
+        self.language = language
+        self.availableTranslations = availableTranslations
+        self.genres = genres
+        self.airedEpisodes = airedEpisodes
     }
 }

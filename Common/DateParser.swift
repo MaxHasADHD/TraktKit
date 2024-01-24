@@ -12,6 +12,7 @@ import Foundation
 internal let calendar = Calendar.current
 internal let dateFormatter = DateFormatter()
 
+@Sendable
 public func customDateDecodingStrategy(decoder: Decoder) throws -> Date {
     let container = try decoder.singleValueContainer()
     let str = try container.decode(String.self)

@@ -13,6 +13,7 @@ public typealias RawJSON = [String: Any] // Dictionary
 // MARK: - TV & Movies
 
 public struct ID: Codable, Hashable {
+
     public let trakt: Int
     public let slug: String
     public let tvdb: Int?
@@ -28,9 +29,19 @@ public struct ID: Codable, Hashable {
         case tmdb
         case tvRage = "tvrage"
     }
+    
+    public init(trakt: Int, slug: String, tvdb: Int? = nil, imdb: String? = nil, tmdb: Int? = nil, tvRage: Int? = nil) {
+        self.trakt = trakt
+        self.slug = slug
+        self.tvdb = tvdb
+        self.imdb = imdb
+        self.tmdb = tmdb
+        self.tvRage = tvRage
+    }
 }
 
 public struct SeasonId: Codable, Hashable {
+    
     public let trakt: Int
     public let tvdb: Int?
     public let tmdb: Int?
@@ -41,6 +52,13 @@ public struct SeasonId: Codable, Hashable {
         case tvdb
         case tmdb
         case tvRage = "tvrage"
+    }
+    
+    public init(trakt: Int, tvdb: Int? = nil, tmdb: Int? = nil, tvRage: Int? = nil) {
+        self.trakt = trakt
+        self.tvdb = tvdb
+        self.tmdb = tmdb
+        self.tvRage = tvRage
     }
 }
 
@@ -58,6 +76,14 @@ public struct EpisodeId: Codable, Hashable {
         case tmdb
         case tvRage = "tvrage"
     }
+    
+    public init(trakt: Int, tvdb: Int? = nil, imdb: String? = nil, tmdb: Int? = nil, tvRage: Int? = nil) {
+        self.trakt = trakt
+        self.tvdb = tvdb
+        self.imdb = imdb
+        self.tmdb = tmdb
+        self.tvRage = tvRage
+    }
 }
 
 public struct ListId: Codable, Hashable {
@@ -67,6 +93,11 @@ public struct ListId: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case trakt
         case slug
+    }
+    
+    public init(trakt: Int, slug: String) {
+        self.trakt = trakt
+        self.slug = slug
     }
 }
 

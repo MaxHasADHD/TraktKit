@@ -43,4 +43,20 @@ public struct TraktEpisode: Codable, Hashable {
         case runtime
         case commentCount = "comment_count"
     }
+    
+    public init(season: Int, number: Int, title: String? = nil, ids: EpisodeId, overview: String? = nil, rating: Double? = nil, votes: Int? = nil, firstAired: Date? = nil, updatedAt: Date? = nil, availableTranslations: [String]? = nil, absoluteNumber: Int? = nil, runtime: Int? = nil, commentCount: Int? = nil) {
+        self.season = season
+        self.number = number
+        self.title = title
+        self.ids = ids
+        self.overview = overview
+        self.rating = rating
+        self.votes = votes
+        self.firstAired = firstAired
+        self.updatedAt = updatedAt
+        self.availableTranslations = availableTranslations
+        self.absoluteNumber = absoluteNumber
+        self.runtime = runtime
+        self.commentCount = commentCount
+    }
 }
