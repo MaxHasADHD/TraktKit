@@ -9,15 +9,26 @@
 import Foundation
 
 public struct ExploreResource {
+    
+    // MARK: - Properties
+    
     public let traktManager: TraktManager
+    
     public lazy var trending = Trending(traktManager: traktManager)
+    public lazy var popular = Popular(traktManager: traktManager)
+    public lazy var recommended = Recommended(traktManager: traktManager)
+    public lazy var played = Played(traktManager: traktManager)
+    public lazy var watched = Watched(traktManager: traktManager)
+    public lazy var collected = Collected(traktManager: traktManager)
+    public lazy var anticipated = Anticipated(traktManager: traktManager)
 
     public init(traktManager: TraktManager = .sharedManager) {
         self.traktManager = traktManager
     }
+    
+    // MARK: - Routes
 
     public struct Trending {
-        
         public let traktManager: TraktManager
         public init(traktManager: TraktManager = .sharedManager) {
             self.traktManager = traktManager
@@ -31,32 +42,94 @@ public struct ExploreResource {
             Route(path: "movies/trending", method: .GET, traktManager: traktManager)
         }
     }
-
-    public func trending(_ mediaType: MediaType) -> Route<[TraktTrendingShow]> {
-        Route(path: "\(mediaType)/trending", method: .GET, traktManager: traktManager)
+    
+    public struct Popular {
+        public let traktManager: TraktManager
+        public init(traktManager: TraktManager = .sharedManager) {
+            self.traktManager = traktManager
+        }
+        
+        public func shows() -> Route<[TraktShow]> {
+            Route(path: "shows/popular", method: .GET, traktManager: traktManager)
+        }
+        
+        public func movies() -> Route<[TraktMovie]> {
+            Route(path: "movies/popular", method: .GET, traktManager: traktManager)
+        }
+    }
+    
+    public struct Recommended {
+        public let traktManager: TraktManager
+        public init(traktManager: TraktManager = .sharedManager) {
+            self.traktManager = traktManager
+        }
+        
+        public func shows() -> Route<[TraktTrendingShow]> {
+            Route(path: "shows/recommended", method: .GET, traktManager: traktManager)
+        }
+        
+        public func movies() -> Route<[TraktTrendingMovie]> {
+            Route(path: "movies/recommended", method: .GET, traktManager: traktManager)
+        }
+    }
+    
+    public struct Played {
+        public let traktManager: TraktManager
+        public init(traktManager: TraktManager = .sharedManager) {
+            self.traktManager = traktManager
+        }
+        
+        public func shows() -> Route<[TraktMostShow]> {
+            Route(path: "shows/played", method: .GET, traktManager: traktManager)
+        }
+        
+        public func movies() -> Route<[TraktMostMovie]> {
+            Route(path: "movies/played", method: .GET, traktManager: traktManager)
+        }
+    }
+    
+    public struct Watched {
+        public let traktManager: TraktManager
+        public init(traktManager: TraktManager = .sharedManager) {
+            self.traktManager = traktManager
+        }
+        
+        public func shows() -> Route<[TraktMostShow]> {
+            Route(path: "shows/watched", method: .GET, traktManager: traktManager)
+        }
+        
+        public func movies() -> Route<[TraktMostMovie]> {
+            Route(path: "movies/watched", method: .GET, traktManager: traktManager)
+        }
+    }
+    
+    public struct Collected {
+        public let traktManager: TraktManager
+        public init(traktManager: TraktManager = .sharedManager) {
+            self.traktManager = traktManager
+        }
+        
+        public func shows() -> Route<[TraktTrendingShow]> {
+            Route(path: "shows/collected", method: .GET, traktManager: traktManager)
+        }
+        
+        public func movies() -> Route<[TraktTrendingMovie]> {
+            Route(path: "movies/collected", method: .GET, traktManager: traktManager)
+        }
     }
 
-    public func popular(_ mediaType: MediaType) -> Route<[TraktShow]> {
-        Route(path: "\(mediaType)/popular", method: .GET, traktManager: traktManager)
-    }
-
-    public func recommended(_ mediaType: MediaType) -> Route<[TraktTrendingShow]> {
-        Route(path: "\(mediaType)/recommended", method: .GET, traktManager: traktManager)
-    }
-
-    public func played(_ mediaType: MediaType) -> Route<[TraktMostShow]> {
-        Route(path: "\(mediaType)/played", method: .GET, traktManager: traktManager)
-    }
-
-    public func watched(_ mediaType: MediaType) -> Route<[TraktMostShow]> {
-        Route(path: "\(mediaType)/watched", method: .GET, traktManager: traktManager)
-    }
-
-    public func collected(_ mediaType: MediaType) -> Route<[TraktTrendingShow]> {
-        Route(path: "\(mediaType)/collected", method: .GET, traktManager: traktManager)
-    }
-
-    public func anticipated(_ mediaType: MediaType) -> Route<[TraktAnticipatedShow]> {
-        Route(path: "\(mediaType)/anticipated", method: .GET, traktManager: traktManager)
+    public struct Anticipated {
+        public let traktManager: TraktManager
+        public init(traktManager: TraktManager = .sharedManager) {
+            self.traktManager = traktManager
+        }
+        
+        public func shows() -> Route<[TraktAnticipatedShow]> {
+            Route(path: "shows/anticipated", method: .GET, traktManager: traktManager)
+        }
+        
+        public func movies() -> Route<[TraktAnticipatedMovie]> {
+            Route(path: "movies/anticipated", method: .GET, traktManager: traktManager)
+        }
     }
 }
