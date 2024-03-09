@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license   = { :type => "MIT", :file => "License.md" }
   s.authors   = "Maximilian Litteral"
   s.swift_version             = "5.0"
-  s.ios.deployment_target     = "12.0"
+  s.ios.deployment_target     = "13.0"
   s.osx.deployment_target     = "10.12"
   s.watchos.deployment_target = "3.0"
   s.tvos.deployment_target    = "15.0"
