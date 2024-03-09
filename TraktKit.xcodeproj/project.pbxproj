@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		269487002B9C6B6D00455FAA /* UserResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269486FF2B9C6B6D00455FAA /* UserResource.swift */; };
+		269487022B9C6BAC00455FAA /* SearchResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269487012B9C6BAC00455FAA /* SearchResource.swift */; };
 		70005646206BBD30005319DD /* test_get_users_watching_now.json in Resources */ = {isa = PBXBuildFile; fileRef = 70005645206BBD30005319DD /* test_get_users_watching_now.json */; };
 		70005648206BBF47005319DD /* TraktEpisodeTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70005647206BBF47005319DD /* TraktEpisodeTranslation.swift */; };
 		7000564C206BC209005319DD /* test_get_all_episode_translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 7000564B206BC209005319DD /* test_get_all_episode_translations.json */; };
@@ -302,6 +304,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		269486FF2B9C6B6D00455FAA /* UserResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResource.swift; sourceTree = "<group>"; };
+		269487012B9C6BAC00455FAA /* SearchResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResource.swift; sourceTree = "<group>"; };
 		70005645206BBD30005319DD /* test_get_users_watching_now.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_users_watching_now.json; sourceTree = "<group>"; };
 		70005647206BBF47005319DD /* TraktEpisodeTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktEpisodeTranslation.swift; sourceTree = "<group>"; };
 		7000564B206BC209005319DD /* test_get_all_episode_translations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test_get_all_episode_translations.json; sourceTree = "<group>"; };
@@ -1108,6 +1112,7 @@
 		74A88269267772220075491B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				269487012B9C6BAC00455FAA /* SearchResource.swift */,
 				74A8827E267772B10075491B /* TraktManager+AsyncAwait.swift */,
 				74A8827A267772A30075491B /* TraktManager+Resources.swift */,
 				74A8826A267772360075491B /* ShowResource.swift */,
@@ -1115,6 +1120,7 @@
 				74A88272267772490075491B /* EpisodeResource.swift */,
 				74A882762677724E0075491B /* MovieResource.swift */,
 				74A8828226777C770075491B /* ExploreResource.swift */,
+				269486FF2B9C6B6D00455FAA /* UserResource.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1525,6 +1531,7 @@
 				70F773301F3C77D80078110E /* Alias.swift in Sources */,
 				703D2ED71EF1422300CAD268 /* Person.swift in Sources */,
 				700FED291F3FBD8C00169961 /* ScrobbleResult.swift in Sources */,
+				269487002B9C6B6D00455FAA /* UserResource.swift in Sources */,
 				70B8442E1EF0DC4D001BA900 /* TraktWatchedProgress.swift in Sources */,
 				70D369932066DE000008B9D7 /* TraktCommentLikedUser.swift in Sources */,
 				70B844251EF0DC4D001BA900 /* TraktMostShow.swift in Sources */,
@@ -1545,6 +1552,7 @@
 				74A8828326777C770075491B /* ExploreResource.swift in Sources */,
 				70F7E6231EF220160026B8A1 /* CalendarShow.swift in Sources */,
 				705462671EF367BA003BB24B /* PlaybackProgress.swift in Sources */,
+				269487022B9C6BAC00455FAA /* SearchResource.swift in Sources */,
 				70393F381F3F2C4700943D34 /* RemoveRatingsResult.swift in Sources */,
 				74A882772677724E0075491B /* MovieResource.swift in Sources */,
 				70B8443E1EF0E020001BA900 /* TraktCheckin.swift in Sources */,
