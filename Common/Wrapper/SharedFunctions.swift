@@ -29,12 +29,10 @@ internal extension TraktManager {
             }
         }
 
-        guard var request = mutableRequest(forPath: "\(type)/trending",
+        guard let request = mutableRequest(forPath: "\(type)/trending",
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        
         return performRequest(request: request,
                               completion: completion)
     }
@@ -58,12 +56,10 @@ internal extension TraktManager {
             }
         }
         
-        guard var request = mutableRequest(forPath: "\(type)/popular",
+        guard let request = mutableRequest(forPath: "\(type)/popular",
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        
         return performRequest(request: request,
                               completion: completion)
     }
@@ -81,12 +77,10 @@ internal extension TraktManager {
             }
         }
 
-        guard var request = mutableRequest(forPath: "\(type)/played/\(period.rawValue)",
+        guard let request = mutableRequest(forPath: "\(type)/played/\(period.rawValue)",
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        
         return performRequest(request: request,
                               completion: completion)
     }
@@ -104,12 +98,10 @@ internal extension TraktManager {
             }
         }
 
-        guard var request = mutableRequest(forPath: "\(type)/watched/\(period.rawValue)",
+        guard let request = mutableRequest(forPath: "\(type)/watched/\(period.rawValue)",
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        
         return performRequest(request: request,
                               completion: completion)
     }
@@ -127,12 +119,10 @@ internal extension TraktManager {
             }
         }
 
-        guard var request = mutableRequest(forPath: "\(type)/collected/\(period.rawValue)",
+        guard let request = mutableRequest(forPath: "\(type)/collected/\(period.rawValue)",
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        
         return performRequest(request: request,
                               completion: completion)
     }
@@ -150,11 +140,10 @@ internal extension TraktManager {
             }
         }
 
-        guard var request = mutableRequest(forPath: "\(type)/anticipated",
+        guard let request = mutableRequest(forPath: "\(type)/anticipated",
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData        
         return performRequest(request: request,
                               completion: completion)
     }
@@ -177,12 +166,10 @@ internal extension TraktManager {
             path.append(startDateString)
         }
         
-        guard var request = mutableRequest(forPath: path,
+        guard let request = mutableRequest(forPath: path,
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        
         return performRequest(request: request,
                               completion: completion)
     }

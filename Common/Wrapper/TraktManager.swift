@@ -206,6 +206,7 @@ public class TraktManager {
         guard let url = components.url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")

@@ -110,11 +110,10 @@ extension TraktManager {
             }
         }
 
-        guard var request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
+        guard let request = mutableRequest(forPath: "users/hidden/\(section.rawValue)",
             withQuery: query,
             isAuthorized: true,
             withHTTPMethod: .GET) else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
         return performRequest(request: request, completion: completion)
     }
     

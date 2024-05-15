@@ -111,12 +111,10 @@ extension TraktManager {
             }
         }
         let path = "shows/updates/id/\(startDate.dateString(withFormat: "yyyy-MM-dd'T'HH:mm:ss").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? startDate.dateString(withFormat: "yyyy-MM-dd"))"
-        guard var request = mutableRequest(forPath: path,
+        guard let request = mutableRequest(forPath: path,
                                            withQuery: query,
                                            isAuthorized: false,
-                                           withHTTPMethod: .GET)
-        else { return nil }
-        request.cachePolicy = .reloadIgnoringLocalCacheData
+                                           withHTTPMethod: .GET) else { return nil }
         return performRequest(request: request,
                               completion: completion)
     }
