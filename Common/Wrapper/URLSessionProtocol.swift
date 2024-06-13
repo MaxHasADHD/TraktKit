@@ -23,12 +23,29 @@ public protocol URLSessionDataTaskProtocol {
 // MARK: Conform to protocols
 
 extension URLSession: URLSessionProtocol {
+
+    @available(iOS, deprecated: 15.0, message: "Use the built-in API instead")
+    func data(from url: URLRequest) async throws -> (Data, URLResponse) {
+        try await withCheckedThrowingContinuation { continuation in
+            let task = self.dataTask(with: url) { data, response, error in
+                guard let data = data, let response = response else {
+                    let error = error ?? URLError(.badServerResponse)
+                    return continuation.resume(throwing: error)
+                }
+
+                continuation.resume(returning: (data, response))
+            }
+
+            task.resume()
+        }
+    }
+
     public func _dataTask(with request: URLRequest, completion: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         dataTask(with: request, completionHandler: completion) as URLSessionDataTaskProtocol
     }
 
     public func data(for request: URLRequest) async throws -> (Data, URLResponse) {
-        try await data(for: request, delegate: nil)
+        try await data(from: request)
     }
 }
 
