@@ -15,7 +15,7 @@ extension TraktManager {
      */
     @discardableResult
     public func listLanguages(type: WatchedType, completion: @escaping ObjectsCompletionHandler<Languages>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "languages/\(type)",
+        guard let request = try? mutableRequest(forPath: "languages/\(type)",
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else {

@@ -19,7 +19,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeSummary<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktEpisode>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
@@ -44,7 +44,7 @@ extension TraktManager {
             path += "/\(language)"
         }
 
-        guard let request = mutableRequest(forPath: path,
+        guard let request = try? mutableRequest(forPath: path,
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
@@ -71,7 +71,7 @@ extension TraktManager {
             }
         }
 
-        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/comments",
             withQuery: query,
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
@@ -106,7 +106,7 @@ extension TraktManager {
             }
         }
 
-        guard let request = mutableRequest(forPath: path,
+        guard let request = try? mutableRequest(forPath: path,
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
@@ -121,7 +121,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeRatings<T: CustomStringConvertible>(showID id: T, seasonNumber: NSNumber, episodeNumber: NSNumber, completion: @escaping ObjectCompletionHandler<RatingDistribution>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(seasonNumber)/episodes/\(episodeNumber)/ratings",
             withQuery: [:],
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
@@ -136,7 +136,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getEpisodeStatistics<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping statsCompletionHandler) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/stats",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/stats",
             withQuery: [:],
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
@@ -151,7 +151,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getUsersWatchingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/watching",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/watching",
             withQuery: [:],
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
@@ -174,7 +174,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getPeopleInEpisode<T: CustomStringConvertible>(showID id: T, season: NSNumber, episode: NSNumber, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<TVCastMember, TVCrewMember>>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/people",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/people",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }

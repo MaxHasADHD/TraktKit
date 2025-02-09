@@ -18,7 +18,7 @@ extension TraktManager {
     @discardableResult
     public func getTrendingLists(completion: @escaping ObjectsCompletionHandler<TraktTrendingList>) -> URLSessionDataTaskProtocol? {
         guard
-            let request = mutableRequest(forPath: "lists/trending",
+            let request = try? mutableRequest(forPath: "lists/trending",
                                          withQuery: [:],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else {
@@ -37,7 +37,7 @@ extension TraktManager {
     @discardableResult
     public func getPopularLists(completion: @escaping ObjectsCompletionHandler<TraktTrendingList>) -> URLSessionDataTaskProtocol? {
         guard
-            let request = mutableRequest(forPath: "lists/popular",
+            let request = try? mutableRequest(forPath: "lists/popular",
                                          withQuery: [:],
                                          isAuthorized: false,
                                          withHTTPMethod: .GET) else {

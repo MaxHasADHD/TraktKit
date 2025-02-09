@@ -57,7 +57,7 @@ extension TraktManager {
     
     @discardableResult
     private func getRecommendations<T>(_ type: WatchedType, completion: @escaping ObjectsCompletionHandler<T>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "recommendations/\(type)",
+        guard let request = try? mutableRequest(forPath: "recommendations/\(type)",
             withQuery: [:],
             isAuthorized: true,
             withHTTPMethod: .GET) else {
@@ -71,7 +71,7 @@ extension TraktManager {
     
     @discardableResult
     private func hideRecommendation<T: CustomStringConvertible>(type: WatchedType, id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "recommendations/\(type)/\(id)",
+        guard let request = try? mutableRequest(forPath: "recommendations/\(type)/\(id)",
             withQuery: [:],
             isAuthorized: true,
             withHTTPMethod: .DELETE) else {

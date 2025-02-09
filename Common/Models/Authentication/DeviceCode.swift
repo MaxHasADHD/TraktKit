@@ -13,28 +13,26 @@ public struct DeviceCode: Codable {
     public let deviceCode: String
     public let userCode: String
     public let verificationURL: String
-    public let expiresIn: Int
-    public let interval: Int
-    
-    #if canImport(UIKit)
-    #if canImport(CoreImage)
-    public func getQRCode() -> UIImage? {
-        let data = self.verificationURL.data(using: String.Encoding.ascii)
+    public let expiresIn: TimeInterval
+    public let interval: TimeInterval
 
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
+#if canImport(UIKit) && canImport(CoreImage)
+    public func getQRCode(scale: CGFloat = 3) -> UIImage? {
+        guard
+            let data = "\(verificationURL)/\(userCode)".data(using: .ascii),
+            let filter = CIFilter(name: "CIQRCodeGenerator")
+        else { return nil }
 
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
-            }
+        filter.setValue(data, forKey: "inputMessage")
+
+        guard let output = filter.outputImage?.transformed(by: CGAffineTransform(scaleX: scale, y: scale)) else {
+            return nil
         }
 
-        return nil
+        return UIImage(ciImage: output)
     }
-    #endif
-    #endif
-    
+#endif
+
     enum CodingKeys: String, CodingKey {
         case deviceCode = "device_code"
         case userCode = "user_code"

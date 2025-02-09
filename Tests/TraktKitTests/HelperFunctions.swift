@@ -61,10 +61,10 @@ extension Bundle {
         return Bundle(for: bundleClass)
 #endif
     }
-    
-    private static var testingBundle = packageBundle(for: "TraktKit_TraktKitTests")
-    private static var modulebundle = packageBundle()
-    
+
+    private static let testingBundle = packageBundle(for: "TraktKit_TraktKitTests")
+    private static let modulebundle = packageBundle()
+
     /// Searches all bundles for the correct one since Swift Package bundles don't work.
     /// - Parameter bundleName: "packageName_ProductName"
     private static func packageBundle(for bundleName: String = "TraktKit_TraktKit") -> Bundle {

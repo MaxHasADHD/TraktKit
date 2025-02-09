@@ -15,7 +15,7 @@ extension TraktManager {
      */
     @discardableResult
     public func listGenres(type: WatchedType, completion: @escaping ObjectsCompletionHandler<Genres>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "genres/\(type)",
+        guard let request = try? mutableRequest(forPath: "genres/\(type)",
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else {

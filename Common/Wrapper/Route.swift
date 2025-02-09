@@ -54,7 +54,7 @@ public class Route<T: Codable> {
             }
         }
 
-        return traktManager.mutableRequest(forPath: path,
+        return try! traktManager.mutableRequest(forPath: path,
                                            withQuery: query,
                                            isAuthorized: requiresAuthentication,
                                            withHTTPMethod: method)!

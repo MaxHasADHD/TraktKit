@@ -86,14 +86,14 @@ public struct StatusCodes {
 }
 
 /// What to search for
-public enum SearchType: String {
+public enum SearchType: String, Sendable {
     case movie
     case show
     case episode
     case person
     case list
 
-    public struct Field {
+    public struct Field: Sendable {
         public let title: String
     }
     public struct Fields {

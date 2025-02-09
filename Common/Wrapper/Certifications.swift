@@ -17,7 +17,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getCertifications(completion: @escaping ObjectCompletionHandler<Certifications>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "certifications",
+        guard let request = try? mutableRequest(forPath: "certifications",
             withQuery: [:],
             isAuthorized: true,
             withHTTPMethod: .GET) else { return nil }

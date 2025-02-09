@@ -42,7 +42,7 @@ class MockURLSession: URLSessionProtocol {
     var nextStatusCode: Int = StatusCodes.Success
     var nextError: Error?
 
-    private (set) var lastURL: URL?
+    private(set) var lastURL: URL?
 
     func successHttpURLResponse(request: URLRequest) -> URLResponse {
         return HTTPURLResponse(url: request.url!, statusCode: nextStatusCode, httpVersion: "HTTP/1.1", headerFields: nil)!

@@ -19,7 +19,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<Person>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "people/\(id)",
+        guard let request = try? mutableRequest(forPath: "people/\(id)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
             withHTTPMethod: .GET) else {
@@ -76,7 +76,7 @@ extension TraktManager {
             }
         }
 
-        guard let request = mutableRequest(forPath: path,
+        guard let request = try? mutableRequest(forPath: path,
                                            withQuery: [:],
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
@@ -88,7 +88,7 @@ extension TraktManager {
     
     @discardableResult
     private func getCredits<T: CustomStringConvertible, Cast: Codable & Hashable, Crew: Codable & Hashable>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<Cast, Crew>>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "people/\(id)/\(type)",
+        guard let request = try? mutableRequest(forPath: "people/\(id)/\(type)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
             withHTTPMethod: .GET) else {

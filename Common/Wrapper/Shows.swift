@@ -111,7 +111,7 @@ extension TraktManager {
             }
         }
         let path = "shows/updates/id/\(startDate.dateString(withFormat: "yyyy-MM-dd'T'HH:mm:ss").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? startDate.dateString(withFormat: "yyyy-MM-dd"))"
-        guard let request = mutableRequest(forPath: path,
+        guard let request = try? mutableRequest(forPath: path,
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
@@ -195,7 +195,7 @@ extension TraktManager {
             }
         }
 
-        guard let request = mutableRequest(forPath: path,
+        guard let request = try? mutableRequest(forPath: path,
                                            withQuery: query,
                                            isAuthorized: false,
                                            withHTTPMethod: .GET) else { return nil }
@@ -213,7 +213,7 @@ extension TraktManager {
     @discardableResult
     public func getShowCollectionProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: @escaping ObjectCompletionHandler<ShowCollectionProgress>) -> URLSessionDataTaskProtocol? {
         guard
-            let request = mutableRequest(forPath: "shows/\(id)/progress/collection",
+            let request = try? mutableRequest(forPath: "shows/\(id)/progress/collection",
                                          withQuery: ["hidden": "\(hidden)",
                                                      "specials": "\(specials)"],
                                          isAuthorized: true,
@@ -232,7 +232,7 @@ extension TraktManager {
     @discardableResult
     public func getShowWatchedProgress<T: CustomStringConvertible>(showID id: T, hidden: Bool = false, specials: Bool = false, completion: @escaping ShowWatchedProgressCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard
-            let request = mutableRequest(forPath: "shows/\(id)/progress/watched",
+            let request = try? mutableRequest(forPath: "shows/\(id)/progress/watched",
                                          withQuery: ["hidden": "\(hidden)",
                                                      "specials": "\(specials)"],
                                          isAuthorized: true,
@@ -310,7 +310,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getNextEpisode<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktEpisode>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/next_episode",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/next_episode",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }
@@ -327,7 +327,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getLastEpisode<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktEpisode>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "shows/\(id)/last_episode",
+        guard let request = try? mutableRequest(forPath: "shows/\(id)/last_episode",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
             withHTTPMethod: .GET) else { return nil }

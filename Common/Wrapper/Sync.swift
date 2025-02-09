@@ -23,7 +23,7 @@ extension TraktManager {
      */
     @discardableResult
     public func lastActivities(completion: @escaping LastActivitiesCompletionHandler) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "sync/last_activities",
+        guard let request = try? mutableRequest(forPath: "sync/last_activities",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
@@ -47,7 +47,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getPlaybackProgress(type: WatchedType, completion: @escaping ObjectsCompletionHandler<PlaybackProgress>) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "sync/playback/\(type)",
+        guard let request = try? mutableRequest(forPath: "sync/playback/\(type)",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
@@ -63,7 +63,7 @@ extension TraktManager {
      */
     @discardableResult
     public func removePlaybackItem<T: CustomStringConvertible>(id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "sync/playback/\(id)",
+        guard let request = try? mutableRequest(forPath: "sync/playback/\(id)",
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .DELETE) else { return nil }
@@ -88,7 +88,7 @@ extension TraktManager {
      */
     @discardableResult
     public func getCollection(type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping CollectionCompletionHandler) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "sync/collection/\(type)",
+        guard let request = try? mutableRequest(forPath: "sync/collection/\(type)",
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
@@ -158,7 +158,7 @@ extension TraktManager {
     public func getWatchedShows(extended: [ExtendedType] = [.Min], completion: @escaping WatchedShowsCompletionHandler) -> URLSessionDataTaskProtocol? {
         
         guard
-            let request = mutableRequest(forPath: "sync/watched/shows",
+            let request = try? mutableRequest(forPath: "sync/watched/shows",
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
@@ -183,7 +183,7 @@ extension TraktManager {
     @discardableResult
     public func getWatchedMovies(extended: [ExtendedType] = [.Min], completion: @escaping WatchedMoviesCompletionHandler) -> URLSessionDataTaskProtocol? {
         guard
-            let request = mutableRequest(forPath: "sync/watched/movies",
+            let request = try? mutableRequest(forPath: "sync/watched/movies",
                                          withQuery: ["extended": extended.queryString()],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
@@ -231,7 +231,7 @@ extension TraktManager {
         }
         
         guard
-            let request = mutableRequest(forPath: path,
+            let request = try? mutableRequest(forPath: path,
                                          withQuery: query,
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
@@ -300,7 +300,7 @@ extension TraktManager {
         }
         
         guard
-            let request = mutableRequest(forPath: path,
+            let request = try? mutableRequest(forPath: path,
                                          withQuery: [:],
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }
@@ -369,7 +369,7 @@ extension TraktManager {
             }
         }
 
-        guard let request = mutableRequest(forPath: "sync/watchlist/\(watchType.rawValue)",
+        guard let request = try? mutableRequest(forPath: "sync/watchlist/\(watchType.rawValue)",
                                          withQuery: query,
                                          isAuthorized: true,
                                          withHTTPMethod: .GET) else { return nil }

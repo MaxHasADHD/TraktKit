@@ -25,7 +25,7 @@ extension TraktManager {
      */
     @discardableResult
     public func deleteActiveCheckins(completionHandler: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        guard let request = mutableRequest(forPath: "checkin",
+        guard let request = try? mutableRequest(forPath: "checkin",
                                            withQuery: [:],
                                            isAuthorized: true,
                                            withHTTPMethod: .DELETE) else { return nil }
