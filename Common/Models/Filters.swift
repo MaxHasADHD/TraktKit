@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol FilterType {
+public protocol FilterType: Sendable {
     func value() -> (key: String, value: String)
 }
 

@@ -56,7 +56,7 @@ class TraktCommentBody: TraktSingleObjectBody<SyncId> {
 }
 
 /// ID used to sync with Trakt.
-public struct SyncId: Codable, Hashable {
+public struct SyncId: TraktObject {
     /// Trakt id of the movie / show / season / episode
     public let trakt: Int
     

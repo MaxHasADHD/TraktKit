@@ -12,7 +12,7 @@ public typealias RawJSON = [String: Any] // Dictionary
 
 // MARK: - TV & Movies
 
-public struct ID: Codable, Hashable {
+public struct ID: TraktObject {
 
     public let trakt: Int
     public let slug: String
@@ -40,8 +40,8 @@ public struct ID: Codable, Hashable {
     }
 }
 
-public struct SeasonId: Codable, Hashable {
-    
+public struct SeasonId: TraktObject {
+
     public let trakt: Int
     public let tvdb: Int?
     public let tmdb: Int?
@@ -62,7 +62,7 @@ public struct SeasonId: Codable, Hashable {
     }
 }
 
-public struct EpisodeId: Codable, Hashable {
+public struct EpisodeId: TraktObject {
     public let trakt: Int
     public let tvdb: Int?
     public let imdb: String?
@@ -86,7 +86,7 @@ public struct EpisodeId: Codable, Hashable {
     }
 }
 
-public struct ListId: Codable, Hashable {
+public struct ListId: TraktObject {
     public let trakt: Int
     public let slug: String
     
@@ -103,7 +103,7 @@ public struct ListId: Codable, Hashable {
 
 // MARK: - Stats
 
-public struct TraktStats: Codable, Hashable {
+public struct TraktStats: TraktObject {
     public let watchers: Int
     public let plays: Int
     public let collectors: Int
@@ -125,7 +125,7 @@ public struct TraktStats: Codable, Hashable {
 
 // MARK: - Last Activities
 
-public struct TraktLastActivities: Codable, Hashable {
+public struct TraktLastActivities: TraktObject {
     public let all: Date
     public let movies: TraktLastActivityMovies
     public let episodes: TraktLastActivityEpisodes
@@ -135,7 +135,7 @@ public struct TraktLastActivities: Codable, Hashable {
     public let lists: TraktLastActivityLists
 }
 
-public struct TraktLastActivityMovies: Codable, Hashable {
+public struct TraktLastActivityMovies: TraktObject {
     public let watchedAt: Date
     public let collectedAt: Date
     public let ratedAt: Date
@@ -155,7 +155,7 @@ public struct TraktLastActivityMovies: Codable, Hashable {
     }
 }
 
-public struct TraktLastActivityEpisodes: Codable, Hashable {
+public struct TraktLastActivityEpisodes: TraktObject {
     public let watchedAt: Date
     public let collectedAt: Date
     public let ratedAt: Date
@@ -173,7 +173,7 @@ public struct TraktLastActivityEpisodes: Codable, Hashable {
     }
 }
 
-public struct TraktLastActivityShows: Codable, Hashable {
+public struct TraktLastActivityShows: TraktObject {
     public let ratedAt: Date
     public let watchlistedAt: Date
     public let commentedAt: Date
@@ -187,7 +187,7 @@ public struct TraktLastActivityShows: Codable, Hashable {
     }
 }
 
-public struct TraktLastActivitySeasons: Codable, Hashable {
+public struct TraktLastActivitySeasons: TraktObject {
     public let ratedAt: Date
     public let watchlistedAt: Date
     public let commentedAt: Date
@@ -201,7 +201,7 @@ public struct TraktLastActivitySeasons: Codable, Hashable {
     }
 }
 
-public struct TraktLastActivityComments: Codable, Hashable {
+public struct TraktLastActivityComments: TraktObject {
     public let likedAt: Date
     
     enum CodingKeys: String, CodingKey {
@@ -209,7 +209,7 @@ public struct TraktLastActivityComments: Codable, Hashable {
     }
 }
 
-public struct TraktLastActivityLists: Codable, Hashable {
+public struct TraktLastActivityLists: TraktObject {
     public let likedAt: Date
     public let updatedAt: Date
     public let commentedAt: Date

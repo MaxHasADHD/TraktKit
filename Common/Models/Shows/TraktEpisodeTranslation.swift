@@ -8,8 +8,15 @@
 
 import Foundation
 
-public struct TraktEpisodeTranslation: Codable, Hashable {
+public struct TraktEpisodeTranslation: TraktObject {
     public let title: String
     public let overview: String
     public let language: String
+}
+
+public struct TraktSeasonTranslation: TraktObject {
+    public let title: String
+    public let overview: String
+    public let language: String
+    public let country: String
 }

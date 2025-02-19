@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PlaybackProgress: Codable, Hashable {
+public struct PlaybackProgress: TraktObject {
     public let progress: Float
     public let pausedAt: Date
     public let id: Int

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktWatchedShow: Codable, Hashable {
+public struct TraktWatchedShow: TraktObject {
     
     // Extended: Min
     public let plays: Int // Total number of plays

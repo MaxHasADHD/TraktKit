@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Airs: Codable, Hashable {
+public struct Airs: TraktObject {
     public let day: String?
     public let time: String?
     public let timezone: String?
@@ -20,7 +20,7 @@ public struct Airs: Codable, Hashable {
     }
 }
 
-public struct TraktShow: Codable, Hashable {
+public struct TraktShow: TraktObject {
     
     // Extended: Min
     public let title: String

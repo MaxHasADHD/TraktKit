@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktWatchedItem: Codable, Hashable {
+public struct TraktWatchedItem: TraktObject {
     public let plays: Int
     public let lastWatchedAt: Date
     public var show: TraktShow? = nil

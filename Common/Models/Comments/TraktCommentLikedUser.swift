@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktCommentLikedUser: Codable, Hashable {
+public struct TraktCommentLikedUser: TraktObject {
     public let likedAt: Date
     public let user: User
 

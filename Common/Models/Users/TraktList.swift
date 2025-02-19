@@ -8,13 +8,13 @@
 
 import Foundation
 
-public enum ListPrivacy: String, Codable {
+public enum ListPrivacy: String, TraktObject {
     case `private`
     case friends
     case `public`
 }
 
-public struct TraktList: Codable, Hashable {
+public struct TraktList: TraktObject {
     public let allowComments: Bool
     public let commentCount: Int
     public let createdAt: Date?
@@ -42,7 +42,7 @@ public struct TraktList: Codable, Hashable {
     }
 }
 
-public struct TraktTrendingList: Codable, Hashable {
+public struct TraktTrendingList: TraktObject {
     public let likeCount: Int
     public let commentCount: Int
     public let list: TraktList

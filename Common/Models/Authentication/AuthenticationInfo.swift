@@ -8,7 +8,9 @@
 
 import Foundation
 
-public struct AuthenticationInfo: Codable, Hashable {
+public typealias TraktObject = Codable & Hashable & Sendable
+
+public struct AuthenticationInfo: TraktObject {
     public let accessToken: String
     public let tokenType: String
     public let expiresIn: TimeInterval

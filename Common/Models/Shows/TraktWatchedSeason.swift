@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktWatchedSeason: Codable, Hashable {
+public struct TraktWatchedSeason: TraktObject {
     
     // Extended: Min
     public let number: Int // Season number

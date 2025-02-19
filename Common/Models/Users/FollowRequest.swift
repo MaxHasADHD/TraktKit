@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct FollowRequest: Codable, Hashable {
+public struct FollowRequest: TraktObject {
     public let id: Int
     public let requestedAt: Date
     public let user: User
@@ -20,7 +20,7 @@ public struct FollowRequest: Codable, Hashable {
     }
 }
 
-public struct FollowResult: Codable, Hashable {
+public struct FollowResult: TraktObject {
     public let followedAt: Date
     public let user: User
     

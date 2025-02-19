@@ -8,11 +8,12 @@
 
 import Foundation
 
-public struct TraktMovieRelease: Codable, Hashable {
+public struct TraktMovieRelease: TraktObject {
     public let country: String
     public let certification: String
     public let releaseDate: Date
     public let releaseType: ReleaseType
+    /// The `note` might have optional info such as the film festival name for a premiere release or Blu-ray specs for a `physical` release.
     public let note: String?
     
     enum CodingKeys: String, CodingKey {
@@ -23,7 +24,7 @@ public struct TraktMovieRelease: Codable, Hashable {
         case note
     }
     
-    public enum ReleaseType: String, Codable {
+    public enum ReleaseType: String, TraktObject {
         case unknown
         case premiere
         case limited

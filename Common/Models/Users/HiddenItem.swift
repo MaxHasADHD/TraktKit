@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct HiddenItem: Codable, Hashable {
+public struct HiddenItem: TraktObject {
     public let hiddenAt: Date
     public let type: String
     

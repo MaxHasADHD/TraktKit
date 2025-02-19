@@ -9,19 +9,19 @@
 import Foundation
 
 /// Generic result type
-public enum ObjectResultType<T: Codable> {
+public enum ObjectResultType<T: TraktObject>: Sendable {
     case success(object: T)
     case error(error: Error?)
 }
 
 /// Generic results type
-public enum ObjectsResultType<T: Codable> {
+public enum ObjectsResultType<T: TraktObject>: Sendable {
     case success(objects: [T])
     case error(error: Error?)
 }
 
 /// Generic results type + Pagination
-public enum ObjectsResultTypePagination<T: Codable> {
+public enum ObjectsResultTypePagination<T: TraktObject>: Sendable {
     case success(objects: [T], currentPage: Int, limit: Int)
     case error(error: Error?)
 }
@@ -30,34 +30,37 @@ extension TraktManager {
     
     // MARK: - Result Types
     
-    public enum DataResultType {
+    public enum DataResultType: Sendable {
         case success(data: Data)
         case error(error: Error?)
     }
     
-    public enum SuccessResultType {
+    public enum SuccessResultType: Sendable {
         case success
         case fail
     }
     
-    public enum ProgressResultType {
+    public enum ProgressResultType: Sendable {
         case success
         case fail(Int)
     }
     
-    public enum WatchingResultType {
+    public enum WatchingResultType: Sendable {
         case checkedIn(watching: TraktWatching)
         case notCheckedIn
         case error(error: Error?)
     }
     
-    public enum CheckinResultType {
+    public enum CheckinResultType: Sendable {
         case success(checkin: TraktCheckinResponse)
         case checkedIn(expiration: Date)
         case error(error: Error?)
     }
     
-    public enum TraktError: Error {
+    public enum TraktError: Error, Equatable {
+        /// 204. Some methods will succeed but not return any content. The network manager doesn't handle this well at the moment as it wants to decode the data when it is empty. Instead I'll throw this error so that it can be ignored for now.
+        case noContent
+
         /// Bad Request (400) - request couldn't be parsed
         case badRequest
         /// Oauth must be provided (401)
@@ -97,16 +100,15 @@ extension TraktManager {
     // MARK: - Completion handlers
     
     // MARK: Common
-    public typealias ObjectCompletionHandler<T: Codable> = (_ result: ObjectResultType<T>) -> Void
-    public typealias ObjectsCompletionHandler<T: Codable> = (_ result: ObjectsResultType<T>) -> Void
-    public typealias paginatedCompletionHandler<T: Codable> = (_ result: ObjectsResultTypePagination<T>) -> Void
-    
-    public typealias DataResultCompletionHandler = (_ result: DataResultType) -> Void
-    public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
-    public typealias ProgressCompletionHandler = (_ result: ProgressResultType) -> Void
+    public typealias ObjectCompletionHandler<T: TraktObject> = @Sendable (_ result: ObjectResultType<T>) -> Void
+    public typealias ObjectsCompletionHandler<T: TraktObject> = @Sendable(_ result: ObjectsResultType<T>) -> Void
+    public typealias paginatedCompletionHandler<T: TraktObject> = @Sendable (_ result: ObjectsResultTypePagination<T>) -> Void
+
+    public typealias DataResultCompletionHandler = @Sendable (_ result: DataResultType) -> Void
+    public typealias SuccessCompletionHandler = @Sendable (_ result: SuccessResultType) -> Void
+    public typealias ProgressCompletionHandler = @Sendable (_ result: ProgressResultType) -> Void
     public typealias CommentsCompletionHandler = paginatedCompletionHandler<Comment>
-//    public typealias CastCrewCompletionHandler = ObjectCompletionHandler<CastAndCrew>
-    
+
     public typealias SearchCompletionHandler = ObjectsCompletionHandler<TraktSearchResult>
     public typealias statsCompletionHandler = ObjectCompletionHandler<TraktStats>
     
@@ -119,8 +121,8 @@ extension TraktManager {
     public typealias dvdReleaseCompletionHandler = ObjectsCompletionHandler<TraktDVDReleaseMovie>
     
     // MARK: Checkin
-    public typealias checkinCompletionHandler = (_ result: CheckinResultType) -> Void
-    
+    public typealias checkinCompletionHandler = @Sendable (_ result: CheckinResultType) -> Void
+
     // MARK: Shows
     public typealias TrendingShowsCompletionHandler = paginatedCompletionHandler<TraktTrendingShow>
     public typealias MostShowsCompletionHandler = paginatedCompletionHandler<TraktMostShow>
@@ -163,7 +165,7 @@ extension TraktManager {
     public typealias FollowUserCompletion = ObjectCompletionHandler<FollowUserResult>
     public typealias FollowersCompletion = ObjectsCompletionHandler<FollowResult>
     public typealias FriendsCompletion = ObjectsCompletionHandler<Friend>
-    public typealias WatchingCompletion = (_ result: WatchingResultType) -> Void
+    public typealias WatchingCompletion = @Sendable (_ result: WatchingResultType) -> Void
     public typealias UserStatsCompletion = ObjectCompletionHandler<UserStats>
     public typealias UserWatchedCompletion = ObjectsCompletionHandler<TraktWatchedItem>
     
@@ -225,19 +227,10 @@ extension TraktManager {
     }
 
     // MARK: - Perform Requests
-
-    func perform<T: Codable>(request: URLRequest) async throws -> T {
-        // TODO: Call `handleResponse` for error handling and retries.
-        let (data, response) = try await session.data(for: request)
-        try await handle(response: response)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        return try decoder.decode(T.self, from: data)
-    }
     
     /// Data
-    func performRequest(request: URLRequest, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
+    func performRequest(request: URLRequest, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTask? {
+        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self else { return }
             if let error {
                 completion(.error(error: error))
@@ -271,8 +264,8 @@ extension TraktManager {
     }
     
     /// Success / Failure
-    func performRequest(request: URLRequest, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
+    func performRequest(request: URLRequest, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self else { return }
             guard error == nil else {
                 completion(.fail)
@@ -301,8 +294,8 @@ extension TraktManager {
     }
     
     /// Checkin
-    func performRequest(request: URLRequest, completion: @escaping checkinCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
+    func performRequest(request: URLRequest, completion: @escaping checkinCompletionHandler) -> URLSessionDataTask? {
+        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self else { return }
             if let error {
                 completion(.error(error: error))
@@ -351,10 +344,14 @@ extension TraktManager {
     }
     
     // Generic array of Trakt objects
-    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping ObjectCompletionHandler<T>) -> URLSessionDataTask? {
         let aCompletion: DataResultCompletionHandler = { (result) -> Void in
             switch result {
             case .success(let data):
+                guard !data.isEmpty else {
+                    completion(.error(error: TraktError.noContent))
+                    return
+                }
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
                 do {
@@ -373,8 +370,8 @@ extension TraktManager {
     }
     
     /// Array of TraktProtocol objects
-    func performRequest<T: Decodable>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+    func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping ObjectsCompletionHandler<T>) -> URLSessionDataTask? {
+        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self else { return }
             if let error {
                 completion(.error(error: error))
@@ -417,8 +414,8 @@ extension TraktManager {
     }
     
     /// Array of ObjectsResultTypePagination objects
-    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+    func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
+        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self else { return }
             if let error {
                 completion(.error(error: error))
@@ -475,8 +472,8 @@ extension TraktManager {
     }
     
     // Watching
-    func performRequest(request: URLRequest, completion: @escaping WatchingCompletion) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
+    func performRequest(request: URLRequest, completion: @escaping WatchingCompletion) -> URLSessionDataTask? {
+        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
             guard let self else { return }
             if let error {
                 completion(.error(error: error))
@@ -522,5 +519,33 @@ extension TraktManager {
         }
         dataTask.resume()
         return dataTask
+    }
+
+    // MARK: - Async await
+
+    func fetchData(request: URLRequest) async throws -> (Data, URLResponse) {
+        let (data, response) = try await session.data(for: request)
+        try await handle(response: response)
+        return (data, response)
+    }
+
+    func perform<T: TraktObject>(request: URLRequest) async throws -> T {
+        let (data, response) = try await session.data(for: request)
+        try await handle(response: response)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
+
+        if let pagedType = T.self as? PagedObjectProtocol.Type {
+            let decodedItems = try decoder.decode(pagedType.objectType, from: data)
+            var currentPage = 0
+            var pageCount = 0
+            if let r = response as? HTTPURLResponse {
+                currentPage = Int(r.value(forHTTPHeaderField: "x-pagination-page") ?? "0") ?? 0
+                pageCount = Int(r.value(forHTTPHeaderField: "x-pagination-page-count") ?? "0") ?? 0
+            }
+            return pagedType.createPagedObject(with: decodedItems, currentPage: currentPage, pageCount: pageCount) as! T
+        }
+
+        return try decoder.decode(T.self, from: data)
     }
 }

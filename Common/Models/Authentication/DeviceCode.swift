@@ -9,7 +9,7 @@
 import UIKit
 #endif
 
-public struct DeviceCode: Codable {
+public struct DeviceCode: TraktObject {
     public let deviceCode: String
     public let userCode: String
     public let verificationURL: String

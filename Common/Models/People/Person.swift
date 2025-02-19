@@ -8,7 +8,7 @@
 import Foundation
 
 // Actor/Actress/Crew member
-public struct Person: Codable, Hashable {
+public struct Person: TraktObject {
     // Extended: Min
     public let name: String
     public let ids: ID

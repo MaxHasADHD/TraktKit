@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct NotFoundIds: Codable, Hashable {
+public struct NotFoundIds: TraktObject {
     public let trakt: Int?
     public let slug: String?
     public let tvdb: Int?
@@ -52,16 +52,16 @@ public struct NotFoundIds: Codable, Hashable {
     }
 }
 
-public struct AddToHistoryResult: Codable, Hashable {
+public struct AddToHistoryResult: TraktObject {
     public let added: Added
     public let notFound: NotFound
     
-    public struct Added: Codable, Hashable {
+    public struct Added: TraktObject {
         public let movies: Int
         public let episodes: Int
     }
     
-    public struct NotFound: Codable, Hashable {
+    public struct NotFound: TraktObject {
         public let movies: [NotFoundIds]
         public let shows: [NotFoundIds]
         public let seasons: [NotFoundIds]
@@ -74,16 +74,16 @@ public struct AddToHistoryResult: Codable, Hashable {
     }
 }
 
-public struct RemoveFromHistoryResult: Codable, Hashable {
+public struct RemoveFromHistoryResult: TraktObject {
     public let deleted: Deleted
     public let notFound: NotFound
     
-    public struct Deleted: Codable, Hashable {
+    public struct Deleted: TraktObject {
         public let movies: Int
         public let episodes: Int
     }
     
-    public struct NotFound: Codable, Hashable {
+    public struct NotFound: TraktObject {
         public let movies: [NotFoundIds]
         public let shows: [NotFoundIds]
         public let seasons: [NotFoundIds]

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Alias: Codable, Hashable {
+public struct Alias: TraktObject {
     public let title: String
     public let country: String
 }

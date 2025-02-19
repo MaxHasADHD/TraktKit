@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Update: Codable, Hashable {
+public struct Update: TraktObject {
     public let updatedAt: Date
     public let movie: TraktMovie?
     public let show: TraktShow?
