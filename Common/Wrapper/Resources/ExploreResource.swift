@@ -8,128 +8,87 @@
 
 import Foundation
 
-public struct ExploreResource {
-    
+public struct ExploreResource: Sendable {
+
     // MARK: - Properties
     
-    public let traktManager: TraktManager
-    
-    public lazy var trending = Trending(traktManager: traktManager)
-    public lazy var popular = Popular(traktManager: traktManager)
-    public lazy var recommended = Recommended(traktManager: traktManager)
-    public lazy var played = Played(traktManager: traktManager)
-    public lazy var watched = Watched(traktManager: traktManager)
-    public lazy var collected = Collected(traktManager: traktManager)
-    public lazy var anticipated = Anticipated(traktManager: traktManager)
+    public let trending = Trending()
+    public let popular = Popular()
+    public let recommended = Recommended()
+    public let played = Played()
+    public let watched = Watched()
+    public let collected = Collected()
+    public let anticipated = Anticipated()
 
-    public init(traktManager: TraktManager = .sharedManager) {
-        self.traktManager = traktManager
-    }
-    
     // MARK: - Routes
 
-    public struct Trending {
-        public let traktManager: TraktManager
-        public init(traktManager: TraktManager = .sharedManager) {
-            self.traktManager = traktManager
-        }
-        
-        public func shows() -> Route<[TraktTrendingShow]> {
-            Route(path: "shows/trending", method: .GET, traktManager: traktManager)
+    public struct Trending: Sendable {
+        public func shows() -> Route<PagedObject<[TraktTrendingShow]>> {
+            Route(path: "shows/trending", method: .GET)
         }
 
         public func movies() -> Route<[TraktTrendingMovie]> {
-            Route(path: "movies/trending", method: .GET, traktManager: traktManager)
+            Route(path: "movies/trending", method: .GET)
         }
     }
     
-    public struct Popular {
-        public let traktManager: TraktManager
-        public init(traktManager: TraktManager = .sharedManager) {
-            self.traktManager = traktManager
-        }
-        
+    public struct Popular: Sendable {
         public func shows() -> Route<[TraktShow]> {
-            Route(path: "shows/popular", method: .GET, traktManager: traktManager)
+            Route(path: "shows/popular", method: .GET)
         }
         
         public func movies() -> Route<[TraktMovie]> {
-            Route(path: "movies/popular", method: .GET, traktManager: traktManager)
+            Route(path: "movies/popular", method: .GET)
         }
     }
     
-    public struct Recommended {
-        public let traktManager: TraktManager
-        public init(traktManager: TraktManager = .sharedManager) {
-            self.traktManager = traktManager
-        }
-        
+    public struct Recommended: Sendable {
         public func shows() -> Route<[TraktTrendingShow]> {
-            Route(path: "shows/recommended", method: .GET, traktManager: traktManager)
+            Route(path: "shows/recommended", method: .GET)
         }
         
         public func movies() -> Route<[TraktTrendingMovie]> {
-            Route(path: "movies/recommended", method: .GET, traktManager: traktManager)
+            Route(path: "movies/recommended", method: .GET)
         }
     }
     
-    public struct Played {
-        public let traktManager: TraktManager
-        public init(traktManager: TraktManager = .sharedManager) {
-            self.traktManager = traktManager
-        }
-        
+    public struct Played: Sendable {
         public func shows() -> Route<[TraktMostShow]> {
-            Route(path: "shows/played", method: .GET, traktManager: traktManager)
+            Route(path: "shows/played", method: .GET)
         }
         
         public func movies() -> Route<[TraktMostMovie]> {
-            Route(path: "movies/played", method: .GET, traktManager: traktManager)
+            Route(path: "movies/played", method: .GET)
         }
     }
     
-    public struct Watched {
-        public let traktManager: TraktManager
-        public init(traktManager: TraktManager = .sharedManager) {
-            self.traktManager = traktManager
-        }
-        
+    public struct Watched: Sendable {
         public func shows() -> Route<[TraktMostShow]> {
-            Route(path: "shows/watched", method: .GET, traktManager: traktManager)
+            Route(path: "shows/watched", method: .GET)
         }
         
         public func movies() -> Route<[TraktMostMovie]> {
-            Route(path: "movies/watched", method: .GET, traktManager: traktManager)
+            Route(path: "movies/watched", method: .GET)
         }
     }
     
-    public struct Collected {
-        public let traktManager: TraktManager
-        public init(traktManager: TraktManager = .sharedManager) {
-            self.traktManager = traktManager
-        }
-        
+    public struct Collected: Sendable {
         public func shows() -> Route<[TraktTrendingShow]> {
-            Route(path: "shows/collected", method: .GET, traktManager: traktManager)
+            Route(path: "shows/collected", method: .GET)
         }
         
         public func movies() -> Route<[TraktTrendingMovie]> {
-            Route(path: "movies/collected", method: .GET, traktManager: traktManager)
+            Route(path: "movies/collected", method: .GET)
         }
     }
 
-    public struct Anticipated {
-        public let traktManager: TraktManager
-        public init(traktManager: TraktManager = .sharedManager) {
-            self.traktManager = traktManager
-        }
-        
+    public struct Anticipated: Sendable {
         public func shows() -> Route<[TraktAnticipatedShow]> {
-            Route(path: "shows/anticipated", method: .GET, traktManager: traktManager)
+            Route(path: "shows/anticipated", method: .GET)
         }
         
         public func movies() -> Route<[TraktAnticipatedMovie]> {
-            Route(path: "movies/anticipated", method: .GET, traktManager: traktManager)
+            Route(path: "movies/anticipated", method: .GET)
         }
     }
 }

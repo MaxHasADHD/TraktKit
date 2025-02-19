@@ -11,15 +11,15 @@ import Foundation
 extension TraktManager {
 
     public func show(id: CustomStringConvertible) -> ShowResource {
-        ShowResource(id: id, traktManager: self)
+        ShowResource(id: id)
     }
 
     public func season(showId: CustomStringConvertible, season: Int) -> SeasonResource {
-        SeasonResource(showId: showId, seasonNumber: season, traktManager: self)
+        SeasonResource(showId: showId, seasonNumber: season)
     }
     
     public func episode(showId: CustomStringConvertible, season: Int, episode: Int) -> EpisodeResource {
-        EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
+        EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode)
     }
     
     public func currentUser() -> CurrentUserResource {
@@ -27,10 +27,10 @@ extension TraktManager {
     }
     
     public func user(_ username: String) -> UsersResource {
-        UsersResource(username: username, traktManager: self)
+        UsersResource(username: username)
     }
     
     public func search() -> SearchResource {
-        SearchResource(traktManager: self)
+        SearchResource()
     }
 }

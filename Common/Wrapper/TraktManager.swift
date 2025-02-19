@@ -94,7 +94,7 @@ public final class TraktManager: Sendable {
 
     let session: URLSession
 
-    public lazy var explore: ExploreResource = ExploreResource(traktManager: self)
+    public let explore = ExploreResource()
 
     // MARK: Public
 
