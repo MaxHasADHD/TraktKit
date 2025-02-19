@@ -8,22 +8,86 @@
 
 import Foundation
 
-public class Route<T: Codable> {
-    public let path: String
-    public let method: Method
+public struct Route<T: TraktObject>: Sendable {
+
+    // MARK: - Properties
+
     private let resultType: T.Type
-    public let traktManager: TraktManager
+
+    public var path: String
+    public let method: Method
     public let requiresAuthentication: Bool
 
-    private var extended: [ExtendedType] = []
-    private var _page: Int?
-    private var _limit: Int?
-    
+    private var extended = [ExtendedType]()
+    private var page: Int?
+    private var limit: Int?
+
     private var filters = [FilterType]()
     private var searchType: SearchType?
     private var searchQuery: String?
 
-    private var request: URLRequest {
+    // MARK: - Lifecycle
+
+    public init(path: String, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self) {
+        self.path = path
+        self.method = method
+        self.requiresAuthentication = requiresAuthentication
+        self.resultType = resultType
+    }
+
+    // MARK: - Actions
+
+    public func extend(_ extended: ExtendedType...) -> Self {
+        var copy = self
+        copy.extended = extended
+        return copy
+    }
+
+    // MARK: - Pagination
+
+    public func page(_ page: Int?) -> Self {
+        var copy = self
+        copy.page = page
+        return copy
+    }
+
+    public func limit(_ limit: Int?) -> Self {
+        var copy = self
+        copy.limit = limit
+        return copy
+    }
+
+    // MARK: - Filters
+
+    public func filter(_ filter: TraktManager.Filter) -> Self {
+        var copy = self
+        copy.filters.append(filter)
+        return copy
+    }
+
+    public func type(_ type: SearchType?) -> Self {
+        var copy = self
+        copy.searchType = type
+        return copy
+    }
+
+    // MARK: - Search
+
+    public func query(_ query: String?) -> Self {
+        var copy = self
+        copy.searchQuery = query
+        return copy
+    }
+
+    // MARK: - Perform
+
+    public func perform() async throws -> T {
+        @InjectedClient var traktManager
+        let request = try makeRequest(traktManager: traktManager)
+        return try await traktManager.perform(request: request)
+    }
+
+    private func makeRequest(traktManager: TraktManager) throws -> URLRequest {
         var query: [String: String] = [:]
 
         if !extended.isEmpty {
@@ -31,82 +95,55 @@ public class Route<T: Codable> {
         }
 
         // pagination
-        if let page = _page {
+        if let page {
             query["page"] = page.description
         }
 
-        if let limit = _limit {
+        if let limit {
             query["limit"] = limit.description
         }
-        
+
+        // Search
+
         if let searchType {
             query["type"] = searchType.rawValue
         }
-        
+
         if let searchQuery {
             query["query"] = searchQuery
         }
-        
+
         // Filters
-        if filters.isEmpty == false {
+        if !filters.isEmpty {
             for (key, value) in (filters.map { $0.value() }) {
                 query[key] = value
             }
         }
 
-        return try! traktManager.mutableRequest(forPath: path,
-                                           withQuery: query,
-                                           isAuthorized: requiresAuthentication,
-                                           withHTTPMethod: method)!
+        return try traktManager.mutableRequest(
+            forPath: path,
+            withQuery: query,
+            isAuthorized: requiresAuthentication,
+            withHTTPMethod: method
+        )
+    }
+}
+
+public protocol PagedObjectProtocol {
+    static var objectType: Decodable.Type { get }
+    static func createPagedObject(with object: Decodable, currentPage: Int, pageCount: Int) -> Self
+}
+
+public struct PagedObject<T: TraktObject>: PagedObjectProtocol, TraktObject {
+    let object: T
+    let currentPage: Int
+    let pageCount: Int
+
+    public static var objectType: any Decodable.Type {
+        T.self
     }
 
-    public init(path: String, method: Method, requiresAuthentication: Bool = false, traktManager: TraktManager, resultType: T.Type = T.self) {
-        self.path = path
-        self.method = method
-        self.requiresAuthentication = requiresAuthentication
-        self.resultType = resultType
-        self.traktManager = traktManager
-    }
-
-    public func extend(_ extended: ExtendedType...) -> Self {
-        self.extended = extended
-        return self
-    }
-    
-    // MARK: - Pagination
-
-    public func page(_ page: Int?) -> Self {
-        self._page = page
-        return self
-    }
-
-    public func limit(_ limit: Int?) -> Self {
-        self._limit = limit
-        return self
-    }
-    
-    // MARK: - Filters
-    
-    public func filter(_ filter: TraktManager.Filter) -> Self {
-        filters.append(filter)
-        return self
-    }
-    
-    public func type(_ type: SearchType?) -> Self {
-        searchType = type
-        return self
-    }
-    
-    // MARK: - Search
-    
-    public func query(_ query: String?) -> Self {
-        searchQuery = query
-        return self
-    }
-    
-    // MARK: - Perform
-
-    public func perform() async throws -> T {
-        try await traktManager.perform(request: request)
+    public static func createPagedObject(with object: Decodable, currentPage: Int, pageCount: Int) -> Self {
+        return PagedObject(object: object as! T, currentPage: currentPage, pageCount: pageCount)
     }
 }

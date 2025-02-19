@@ -10,25 +10,14 @@ import XCTest
 import Foundation
 @testable import TraktKit
 
-class CheckinTests: XCTestCase {
-    
-    let session = MockURLSession()
-    lazy var traktManager = TestTraktManager(session: session)
+final class CheckinTests: TraktTestCase {
 
-    override func tearDown() {
-        super.tearDown()
-        session.nextData = nil
-        session.nextStatusCode = StatusCodes.Success
-        session.nextError = nil
-    }
-
-    func test_checkin_movie() {
-        session.nextData = jsonData(named: "test_checkin_movie")
-        session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
+    func test_checkin_movie() throws {
+        try mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_checkin_movie")))
 
         let expectation = XCTestExpectation(description: "Checkin a movie")
         let checkin = TraktCheckinBody(movie: SyncId(trakt: 12345))
-        try! traktManager.checkIn(checkin) { result in
+        traktManager.checkIn(checkin) { result in
             if case .success(let checkin) = result {
                 XCTAssertEqual(checkin.id, 3373536619)
                 XCTAssertNotNil(checkin.movie)
@@ -36,8 +25,7 @@ class CheckinTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/checkin")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -46,13 +34,12 @@ class CheckinTests: XCTestCase {
         }
     }
 
-    func test_checkin_episode() {
-        session.nextData = jsonData(named: "test_checkin_episode")
-        session.nextStatusCode = StatusCodes.SuccessNewResourceCreated
+    func test_checkin_episode() throws {
+        try mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_checkin_episode")))
 
         let expectation = XCTestExpectation(description: "Checkin a episode")
         let checkin = TraktCheckinBody(episode: SyncId(trakt: 12345))
-        try! traktManager.checkIn(checkin) { result in
+        traktManager.checkIn(checkin) { result in
             if case .success(let checkin) = result {
                 XCTAssertEqual(checkin.id, 3373536620)
                 XCTAssertNotNil(checkin.episode)
@@ -61,8 +48,7 @@ class CheckinTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/checkin")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -71,21 +57,19 @@ class CheckinTests: XCTestCase {
         }
     }
 
-    func test_already_checked_in() {
-        session.nextData = jsonData(named: "test_already_checked_in")
-        session.nextStatusCode = StatusCodes.Conflict
+    func test_already_checked_in() throws {
+        try mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_already_checked_in")), httpCode: StatusCodes.Conflict)
 
         let expectation = XCTestExpectation(description: "Checkin an existing item")
         let checkin = TraktCheckinBody(episode: SyncId(trakt: 12345))
-        try! traktManager.checkIn(checkin) { result in
+        traktManager.checkIn(checkin) { result in
             if case .checkedIn(let expiration) = result {
                 XCTAssertEqual(expiration.dateString(withFormat: "YYYY-MM-dd"), "2014-10-15")
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/checkin")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -94,8 +78,8 @@ class CheckinTests: XCTestCase {
         }
     }
 
-    func test_delete_active_checkins() {
-        session.nextStatusCode = StatusCodes.SuccessNoContentToReturn
+    func test_delete_active_checkins() throws {
+        try mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_already_checked_in")), httpCode: StatusCodes.SuccessNoContentToReturn)
 
         let expectation = XCTestExpectation(description: "Delete active checkins")
         traktManager.deleteActiveCheckins { result in
@@ -104,7 +88,6 @@ class CheckinTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/checkin")
 
         switch result {
         case .timedOut:

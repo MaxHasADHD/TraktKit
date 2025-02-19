@@ -20,7 +20,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func scrobbleStart(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTaskProtocol? {
+    public func scrobbleStart(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
         return try perform("start", scrobble: scrobble, completion: completion)
     }
     
@@ -32,7 +32,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func scrobblePause(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTaskProtocol? {
+    public func scrobblePause(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
         return try perform("pause", scrobble: scrobble, completion: completion)
     }
     
@@ -48,14 +48,14 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func scrobbleStop(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTaskProtocol? {
+    public func scrobbleStop(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
         return try perform("stop", scrobble: scrobble, completion: completion)
     }
     
     // MARK: - Private
     
     @discardableResult
-    func perform(_ scrobbleAction: String, scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTaskProtocol? {
+    func perform(_ scrobbleAction: String, scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
         // Request
         guard let request = post("scrobble/\(scrobbleAction)", body: scrobble) else { return nil }
         return performRequest(request: request, completion: completion)

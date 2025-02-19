@@ -10,22 +10,12 @@ import XCTest
 import Foundation
 @testable import TraktKit
 
-class EpisodeTests: XCTestCase {
-
-    let session = MockURLSession()
-    lazy var traktManager = TestTraktManager(session: session)
-
-    override func tearDown() {
-        super.tearDown()
-        session.nextData = nil
-        session.nextStatusCode = StatusCodes.Success
-        session.nextError = nil
-    }
-
+final class EpisodeTests: TraktTestCase {
+    
     // MARK: - Summary
 
-    func test_get_min_episode() {
-        session.nextData = jsonData(named: "Episode_Min")
+    func test_get_min_episode() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=min", result: .success(jsonData(named: "Episode_Min")))
 
         let expectation = XCTestExpectation(description: "EpisodeSummary")
         traktManager.getEpisodeSummary(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
@@ -40,8 +30,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=min")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -50,8 +39,8 @@ class EpisodeTests: XCTestCase {
         }
     }
 
-    func test_get_full_episode() {
-        session.nextData = jsonData(named: "Episode_Full")
+    func test_get_full_episode() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full", result: .success(jsonData(named: "Episode_Full")))
 
         let expectation = XCTestExpectation(description: "EpisodeSummary")
         traktManager.getEpisodeSummary(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1, extended: [.Full]) { result in
@@ -70,8 +59,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -81,7 +69,7 @@ class EpisodeTests: XCTestCase {
     }
     
     func test_get_full_episode_async() async throws {
-        session.nextData = jsonData(named: "Episode_Full")
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full", result: .success(jsonData(named: "Episode_Full")))
         
         let episode = try await traktManager
             .show(id: "game-of-thrones")
@@ -97,15 +85,14 @@ class EpisodeTests: XCTestCase {
         XCTAssertNotNil(episode.overview)
         XCTAssertNotNil(episode.firstAired)
         XCTAssertNotNil(episode.updatedAt)
-        XCTAssertEqual(episode.availableTranslations!, ["en"])
-        
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full")
+        XCTAssertEqual(episode.absoluteNumber, 1)
+        XCTAssertEqual(episode.availableTranslations, ["en"])
     }
 
     // MARK: - Translations
 
-    func test_get_all_episode_translations() {
-        session.nextData = jsonData(named: "test_get_all_episode_translations")
+    func test_get_all_episode_translations() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/translations", result: .success(jsonData(named: "test_get_all_episode_translations")))
 
         let expectation = XCTestExpectation(description: "Get episode translations")
         traktManager.getEpisodeTranslations(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
@@ -117,8 +104,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/translations")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -129,8 +115,8 @@ class EpisodeTests: XCTestCase {
 
     // MARK: - Comments
 
-    func test_get_episode_comments() {
-        session.nextData = jsonData(named: "test_get_episode_comments")
+    func test_get_episode_comments() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/comments", result: .success(jsonData(named: "test_get_episode_comments")))
 
         let expectation = XCTestExpectation(description: "Get episode comments")
         traktManager.getEpisodeComments(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
@@ -142,8 +128,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/comments")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -154,8 +139,8 @@ class EpisodeTests: XCTestCase {
 
     // MARK: - Lists
 
-    func test_get_lists_containing_episode() {
-        session.nextData = jsonData(named: "test_get_lists_containing_episode")
+    func test_get_lists_containing_episode() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added", result: .success(jsonData(named: "test_get_lists_containing_episode")))
 
         let expectation = XCTestExpectation(description: "Get lists containing episode")
         traktManager.getListsContainingEpisode(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1, listType: .official, sortBy: .added) { result in
@@ -165,8 +150,7 @@ class EpisodeTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -175,10 +159,27 @@ class EpisodeTests: XCTestCase {
         }
     }
 
+    func test_get_listsContainingEpisode_async() async throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added?extended=full", result: .success(jsonData(named: "test_get_lists_containing_episode")))
+
+        let route = traktManager
+            .show(id: "game-of-thrones")
+            .season(1).episode(1)
+            .containingLists()
+            .listType(.official)
+            .sort(by: .added)
+            .extend(.Full)
+
+        XCTAssertEqual(route.path, "shows/game-of-thrones/seasons/1/episodes/1/lists/official/added")
+
+        let lists = try await route.perform()
+        XCTAssertEqual(lists.count, 1)
+    }
+
     // MARK: - Ratings
 
-    func test_get_episode_ratings() {
-        session.nextData = jsonData(named: "test_get_episode_ratings")
+    func test_get_episode_ratings() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/ratings", result: .success(jsonData(named: "test_get_episode_ratings")))
 
         let expectation = XCTestExpectation(description: "Get episode ratings")
         traktManager.getEpisodeRatings(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
@@ -191,8 +192,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/ratings")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -203,8 +203,8 @@ class EpisodeTests: XCTestCase {
 
     // MARK: - Stats
 
-    func test_get_episode_stats() {
-        session.nextData = jsonData(named: "test_get_episode_stats")
+    func test_get_episode_stats() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/stats", result: .success(jsonData(named: "test_get_episode_stats")))
 
         let expectation = XCTestExpectation(description: "Get episode stats")
         traktManager.getEpisodeStatistics(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
@@ -222,8 +222,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/stats")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -234,8 +233,8 @@ class EpisodeTests: XCTestCase {
 
     // MARK: - Watching
 
-    func test_get_users_watching_now() {
-        session.nextData = jsonData(named: "test_get_users_watching_now")
+    func test_get_users_watching_now() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/watching", result: .success(jsonData(named: "test_get_users_watching_now")))
 
         let expectation = XCTestExpectation(description: "Get users watching episode")
         traktManager.getUsersWatchingEpisode(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
@@ -247,8 +246,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/watching")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -259,8 +257,8 @@ class EpisodeTests: XCTestCase {
     
     // MARK: - People
     
-    func test_get_show_people_min() {
-        session.nextData = jsonData(named: "test_get_episode_cast")
+    func test_get_show_people_min() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/people?extended=min", result: .success(jsonData(named: "test_get_episode_cast")))
         
         let expectation = XCTestExpectation(description: "ShowCastAndCrew")
         traktManager.getPeopleInEpisode(showID: "game-of-thrones", season: 1, episode: 1) { result in
@@ -279,8 +277,7 @@ class EpisodeTests: XCTestCase {
             expectation.fulfill()
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/people?extended=min")
-        
+                
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")

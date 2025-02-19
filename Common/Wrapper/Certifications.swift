@@ -16,7 +16,7 @@ extension TraktManager {
      Note: Only `us` certifications are currently returned.
      */
     @discardableResult
-    public func getCertifications(completion: @escaping ObjectCompletionHandler<Certifications>) -> URLSessionDataTaskProtocol? {
+    public func getCertifications(completion: @escaping ObjectCompletionHandler<Certifications>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "certifications",
             withQuery: [:],
             isAuthorized: true,

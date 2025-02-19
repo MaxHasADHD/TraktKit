@@ -19,7 +19,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getRecommendedMovies(completion: @escaping ObjectsCompletionHandler<TraktMovie>) -> URLSessionDataTaskProtocol? {
+    public func getRecommendedMovies(completion: @escaping ObjectsCompletionHandler<TraktMovie>) -> URLSessionDataTask? {
         return getRecommendations(.Movies, completion: completion)
     }
     
@@ -29,7 +29,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func hideRecommendedMovie<T: CustomStringConvertible>(movieID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func hideRecommendedMovie<T: CustomStringConvertible>(movieID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         return hideRecommendation(type: .Movies, id: id, completion: completion)
     }
     
@@ -39,7 +39,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getRecommendedShows(completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTaskProtocol? {
+    public func getRecommendedShows(completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTask? {
         return getRecommendations(.Shows, completion: completion)
     }
     
@@ -49,14 +49,14 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func hideRecommendedShow<T: CustomStringConvertible>(showID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
+    public func hideRecommendedShow<T: CustomStringConvertible>(showID id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         return hideRecommendation(type: .Shows, id: id, completion: completion)
     }
     
     // MARK: - Private
     
     @discardableResult
-    private func getRecommendations<T>(_ type: WatchedType, completion: @escaping ObjectsCompletionHandler<T>) -> URLSessionDataTaskProtocol? {
+    private func getRecommendations<T>(_ type: WatchedType, completion: @escaping ObjectsCompletionHandler<T>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "recommendations/\(type)",
             withQuery: [:],
             isAuthorized: true,
@@ -70,7 +70,7 @@ extension TraktManager {
     }
     
     @discardableResult
-    private func hideRecommendation<T: CustomStringConvertible>(type: WatchedType, id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
+    private func hideRecommendation<T: CustomStringConvertible>(type: WatchedType, id: T, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "recommendations/\(type)/\(id)",
             withQuery: [:],
             isAuthorized: true,

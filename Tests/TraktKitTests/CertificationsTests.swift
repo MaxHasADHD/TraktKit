@@ -10,20 +10,9 @@ import XCTest
 import Foundation
 @testable import TraktKit
 
-class CertificationsTests: XCTestCase {
-
-    let session = MockURLSession()
-    lazy var traktManager = TestTraktManager(session: session)
-
-    override func tearDown() {
-        super.tearDown()
-        session.nextData = nil
-        session.nextStatusCode = StatusCodes.Success
-        session.nextError = nil
-    }
-
-    func test_get_certifications() {
-        session.nextData = jsonData(named: "test_get_certifications")
+final class CertificationsTests: TraktTestCase {
+    func test_get_certifications() throws {
+        try mock(.GET, "https://api.trakt.tv/certifications", result: .success(jsonData(named: "test_get_certifications")))
 
         let expectation = XCTestExpectation(description: "Get Certifications")
         traktManager.getCertifications { result in
@@ -33,8 +22,7 @@ class CertificationsTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/certifications")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")

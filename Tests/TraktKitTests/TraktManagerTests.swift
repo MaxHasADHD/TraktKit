@@ -12,19 +12,16 @@ import Testing
 @Suite
 class TraktManagerTests {
 
-    let session = MockURLSession()
-    lazy var traktManager = TestTraktManager(session: session)
+    lazy var traktManager = TraktManager(session: URLSession.mockedResponsesOnly, clientId: "", clientSecret: "", redirectURI: "")
 
     deinit {
-        session.nextData = nil
-        session.nextStatusCode = StatusCodes.Success
-        session.nextError = nil
+        RequestMocking.removeAllMocks()
     }
 
     @Test
     func pollForAccessTokenInvalidDeviceCode() async throws {
-        session.nextStatusCode = 404
-        session.nextData = Data()
+        let mock = try RequestMocking.MockedResponse(urlString: "https://api.trakt.tv/oauth/device/token", result: .success(.init()), httpCode: 404)
+        RequestMocking.add(mock: mock)
 
         let deviceCodeJSON: [String: Any] = [
             "device_code": "d9c126a7706328d808914cfd1e40274b6e009f684b1aca271b9b3f90b3630d64",

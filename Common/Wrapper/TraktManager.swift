@@ -13,8 +13,8 @@ public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }
 
-@preconcurrency
-public class TraktManager {
+public final class TraktManager: Sendable {
+//public final class TraktManager: @unchecked Sendable {
 
     // TODO List:
     // 1. Create a limit object, double check every paginated API call is marked as paginated
@@ -73,51 +73,61 @@ public class TraktManager {
     private enum Constants {
         static let tokenExpirationDefaultsKey = "accessTokenExpirationDate"
         static let oneMonth: TimeInterval = 2629800
+        static let accessTokenKey = "accessToken"
+        static let refreshTokenKey = "refreshToken"
     }
 
     static let logger = Logger(subsystem: "TraktKit", category: "TraktManager")
 
     // MARK: Internal
-    private var staging: Bool?
-    private var clientID: String?
-    private var clientSecret: String?
-    private var redirectURI: String?
-    private var baseURL: String?
-    private var APIBaseURL: String?
-    private var isWaitingToToken: Bool = false
-    let jsonEncoder: JSONEncoder = {
+    private let staging: Bool
+    private let clientId: String
+    private let clientSecret: String
+    private let redirectURI: String
+    private let apiHost: String
+
+    internal let jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         return encoder
     }()
 
-    // Keys
-    let accessTokenKey = "accessToken"
-    let refreshTokenKey = "refreshToken"
-
-    let session: URLSessionProtocol
+    let session: URLSession
 
     public lazy var explore: ExploreResource = ExploreResource(traktManager: self)
 
     // MARK: Public
 
-    @preconcurrency
-    public static let sharedManager = TraktManager()
+    public static let sharedManager = TraktManager(clientId: "", clientSecret: "", redirectURI: "")
 
     public var isSignedIn: Bool {
         get {
             return accessToken != nil
         }
     }
-    public var oauthURL: URL?
 
+    public var oauthURL: URL? {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = staging ? "staging.trakt.tv" : "trakt.tv"
+        urlComponents.path = "/oauth/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "client_id", value: clientId),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
+        ]
+        return urlComponents.url
+    }
+
+    /// Cached access token so that we don't have to fetch from the keychain repeatedly.
+    nonisolated(unsafe)
     private var _accessToken: String?
     public var accessToken: String? {
         get {
             if _accessToken != nil {
                 return _accessToken
             }
-            if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
+            if let accessTokenData = MLKeychain.loadData(forKey: Constants.accessTokenKey) {
                 if let accessTokenString = String(data: accessTokenData, encoding: .utf8) {
                     _accessToken = accessTokenString
                     return accessTokenString
@@ -131,22 +141,24 @@ public class TraktManager {
             _accessToken = newValue
             if newValue == nil {
                 // Remove from keychain
-                MLKeychain.deleteItem(forKey: accessTokenKey)
+                MLKeychain.deleteItem(forKey: Constants.accessTokenKey)
             } else {
                 // Save to keychain
-                let succeeded = MLKeychain.setString(value: newValue!, forKey: accessTokenKey)
+                let succeeded = MLKeychain.setString(value: newValue!, forKey: Constants.accessTokenKey)
                 Self.logger.debug("Saved access token \(succeeded ? "successfully" : "failed")")
             }
         }
     }
 
+    /// Cached refresh token so that we don't have to fetch from the keychain repeatedly.
+    nonisolated(unsafe)
     private var _refreshToken: String?
     public var refreshToken: String? {
         get {
             if _refreshToken != nil {
                 return _refreshToken
             }
-            if let refreshTokenData = MLKeychain.loadData(forKey: refreshTokenKey) {
+            if let refreshTokenData = MLKeychain.loadData(forKey: Constants.refreshTokenKey) {
                 if let refreshTokenString = String.init(data: refreshTokenData, encoding: .utf8) {
                     _refreshToken = refreshTokenString
                     return refreshTokenString
@@ -160,10 +172,10 @@ public class TraktManager {
             _refreshToken = newValue
             if newValue == nil {
                 // Remove from keychain
-                MLKeychain.deleteItem(forKey: refreshTokenKey)
+                MLKeychain.deleteItem(forKey: Constants.refreshTokenKey)
             } else {
                 // Save to keychain
-                let succeeded = MLKeychain.setString(value: newValue!, forKey: refreshTokenKey)
+                let succeeded = MLKeychain.setString(value: newValue!, forKey: Constants.refreshTokenKey)
                 Self.logger.debug("Saved refresh token \(succeeded ? "successfully" : "failed")")
             }
         }
@@ -171,22 +183,22 @@ public class TraktManager {
 
     // MARK: - Lifecycle
 
-    public init(session: URLSessionProtocol = URLSession(configuration: .default)) {
+    public init(
+        session: URLSession = URLSession(configuration: .default),
+        staging: Bool = false,
+        clientId: String,
+        clientSecret: String,
+        redirectURI: String
+    ) {
         self.session = session
+        self.staging = staging
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        self.redirectURI = redirectURI
+        self.apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
     }
 
     // MARK: - Setup
-
-    public func set(clientID: String, clientSecret secret: String, redirectURI: String, staging: Bool = false) {
-        self.clientID = clientID
-        self.clientSecret = secret
-        self.redirectURI = redirectURI
-        self.staging = staging
-
-        self.baseURL = !staging ? "trakt.tv" : "staging.trakt.tv"
-        self.APIBaseURL = !staging ? "api.trakt.tv" : "api-staging.trakt.tv"
-        self.oauthURL = URL(string: "https://\(baseURL!)/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
-    }
 
     internal func createErrorWithStatusCode(_ statusCode: Int) -> NSError {
         let message = if let traktMessage = StatusCodes.message(for: statusCode) {
@@ -218,9 +230,7 @@ public class TraktManager {
 
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        if let clientID {
-            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
-        }
+        request.addValue(clientId, forHTTPHeaderField: "trakt-api-key")
 
         if authorization {
             if let accessToken {
@@ -233,10 +243,9 @@ public class TraktManager {
         return request
     }
 
-    internal func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) throws -> URLRequest? {
-        guard let apiBaseURL = APIBaseURL else { throw TraktKitError.missingClientInfo }
-        let urlString = "https://\(apiBaseURL)/" + path
-        guard var components = URLComponents(string: urlString) else { return nil }
+    internal func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) throws -> URLRequest {
+        let urlString = "https://\(apiHost)/" + path
+        guard var components = URLComponents(string: urlString) else { throw TraktKitError.malformedURL }
 
         if query.isEmpty == false {
             var queryItems: [URLQueryItem] = []
@@ -246,19 +255,17 @@ public class TraktManager {
             components.queryItems = queryItems
         }
 
-        guard let url = components.url else { return nil }
+        guard let url = components.url else { throw TraktKitError.malformedURL }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        if let clientID = clientID {
-            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
-        }
+        request.addValue(clientId, forHTTPHeaderField: "trakt-api-key")
 
         if authorized {
-            if let accessToken = accessToken {
+            if let accessToken {
                 request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             }
         }
@@ -267,8 +274,7 @@ public class TraktManager {
     }
 
     func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) -> URLRequest? {
-        guard let apiBaseURL = APIBaseURL else { preconditionFailure("Call `set(clientID:clientSecret:redirectURI:staging:)` before making any API requests") }
-        let urlString = "https://\(apiBaseURL)/" + path
+        let urlString = "https://\(apiHost)/" + path
         guard var components = URLComponents(string: urlString) else { return nil }
         if query.isEmpty == false {
             var queryItems: [URLQueryItem] = []
@@ -284,11 +290,9 @@ public class TraktManager {
 
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        if let clientID = clientID {
-            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
-        }
+        request.addValue(clientId, forHTTPHeaderField: "trakt-api-key")
 
-        if let accessToken = accessToken {
+        if let accessToken {
             request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
 
@@ -303,16 +307,7 @@ public class TraktManager {
     // MARK: - Authentication
 
     public func getToken(authorizationCode code: String) async throws -> AuthenticationInfo {
-        guard
-            let baseURL,
-            let clientID,
-            let clientSecret,
-            let redirectURI = redirectURI
-        else {
-            throw TraktKitError.missingClientInfo
-        }
-
-        let urlString = "https://\(baseURL)/oauth/token"
+        let urlString = "https://\(apiHost)/oauth/token"
         guard let url = URL(string: urlString) else {
             throw TraktKitError.malformedURL
         }
@@ -320,7 +315,7 @@ public class TraktManager {
 
         let json = [
             "code": code,
-            "client_id": clientID,
+            "client_id": clientId,
             "client_secret": clientSecret,
             "redirect_uri": redirectURI,
             "grant_type": "authorization_code",
@@ -335,18 +330,12 @@ public class TraktManager {
     // MARK: - Authentication - Devices
 
     public func getAppCode() async throws -> DeviceCode {
-        guard
-            let APIBaseURL,
-            let clientID
-        else {
-            throw TraktKitError.missingClientInfo
-        }
-        let urlString = "https://\(APIBaseURL)/oauth/device/code/"
+        let urlString = "https://\(apiHost)/oauth/device/code/"
 
         guard let url = URL(string: urlString) else {
             throw TraktKitError.malformedURL
         }
-        let json = ["client_id": clientID]
+        let json = ["client_id": clientId]
 
         var request = try mutableRequestForURL(url, authorization: false, HTTPMethod: .POST)
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
@@ -394,15 +383,7 @@ public class TraktManager {
 
     private func requestAccessToken(code: String) async throws -> (AuthenticationInfo?, Int) {
         // Build request
-        guard
-            let APIBaseURL,
-            let clientID,
-            let clientSecret
-        else {
-            throw TraktKitError.missingClientInfo
-        }
-
-        let urlString = "https://\(APIBaseURL)/oauth/device/token"
+        let urlString = "https://\(apiHost)/oauth/device/token"
         guard let url = URL(string: urlString) else {
             throw TraktKitError.malformedURL
         }
@@ -410,7 +391,7 @@ public class TraktManager {
 
         let json = [
             "code": code,
-            "client_id": clientID,
+            "client_id": clientId,
             "client_secret": clientSecret,
         ]
         request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
@@ -462,26 +443,17 @@ public class TraktManager {
      Use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. The `access_token` is valid for 24 hours before it needs to be refreshed again.
      */
     public func getAccessTokenFromRefreshToken() async throws {
-        guard
-            let baseURL,
-            let clientID,
-            let clientSecret,
-            let redirectURI
-        else {
-            throw TraktKitError.missingClientInfo
-        }
-
         guard let refreshToken else { throw TraktKitError.invalidRefreshToken }
 
         // Create request
-        guard let url = URL(string: "https://\(baseURL)/oauth/token") else {
+        guard let url = URL(string: "https://\(apiHost)/oauth/token") else {
             throw TraktKitError.malformedURL
         }
         var request = try mutableRequestForURL(url, authorization: false, HTTPMethod: .POST)
 
         let json = [
             "refresh_token": refreshToken,
-            "client_id": clientID,
+            "client_id": clientId,
             "client_secret": clientSecret,
             "redirect_uri": redirectURI,
             "grant_type": "refresh_token",

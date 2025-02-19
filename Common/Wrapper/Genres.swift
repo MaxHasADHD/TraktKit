@@ -14,7 +14,7 @@ extension TraktManager {
      Get a list of all genres, including names and slugs.
      */
     @discardableResult
-    public func listGenres(type: WatchedType, completion: @escaping ObjectsCompletionHandler<Genres>) -> URLSessionDataTaskProtocol? {
+    public func listGenres(type: WatchedType, completion: @escaping ObjectsCompletionHandler<Genres>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "genres/\(type)",
                                            withQuery: [:],
                                            isAuthorized: false,

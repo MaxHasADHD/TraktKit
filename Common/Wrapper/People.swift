@@ -18,7 +18,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<Person>) -> URLSessionDataTaskProtocol? {
+    public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<Person>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "people/\(id)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,
@@ -40,7 +40,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleMovieCastMember, PeopleMovieCrewMember>>) -> URLSessionDataTaskProtocol? {
+    public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleMovieCastMember, PeopleMovieCrewMember>>) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
     }
 
@@ -54,7 +54,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleTVCastMember, PeopleTVCrewMember>>) -> URLSessionDataTaskProtocol? {
+    public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleTVCastMember, PeopleTVCrewMember>>) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
     }
 
@@ -66,7 +66,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getListsContainingPerson<T: CustomStringConvertible>(personId id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTaskProtocol? {
+    public func getListsContainingPerson<T: CustomStringConvertible>(personId id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTask? {
         var path = "people/\(id)/lists"
         if let listType = listType {
             path += "/\(listType)"
@@ -87,7 +87,7 @@ extension TraktManager {
     // MARK: - Private
     
     @discardableResult
-    private func getCredits<T: CustomStringConvertible, Cast: Codable & Hashable, Crew: Codable & Hashable>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<Cast, Crew>>) -> URLSessionDataTaskProtocol? {
+    private func getCredits<T: CustomStringConvertible, Cast: Codable & Hashable, Crew: Codable & Hashable>(type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<Cast, Crew>>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "people/\(id)/\(type)",
             withQuery: ["extended": extended.queryString()],
             isAuthorized: false,

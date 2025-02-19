@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Method: String {
+public enum Method: String, Sendable {
     /// Select one or more items. Success returns 200 status code.
     case GET
     /// Create a new item. Success returns 201 status code.
@@ -17,9 +17,22 @@ public enum Method: String {
     case PUT
     /// Delete an item. Success returns 200 or 204 status code.
     case DELETE
+
+    public var expectedResult: Int {
+        switch self {
+        case .GET:
+            200
+        case .POST:
+            201
+        case .PUT:
+            200
+        case .DELETE:
+            204
+        }
+    }
 }
 
-public struct StatusCodes {
+public struct StatusCodes: Sendable {
     /// Success
     public static let Success = 200
     /// Success - new resource created (POST)
@@ -132,7 +145,7 @@ public enum SearchType: String, Sendable {
 }
 
 /// Type of ID used for look up
-public enum LookupType {
+public enum LookupType: Sendable {
     case Trakt(id: NSNumber)
     case IMDB(id: String)
     case TMDB(id: NSNumber)
@@ -170,7 +183,7 @@ public enum LookupType {
     }
 }
 
-public enum MediaType: String, CustomStringConvertible {
+public enum MediaType: String, CustomStringConvertible, Sendable {
     case movies, shows
 
     public var description: String {
@@ -178,7 +191,7 @@ public enum MediaType: String, CustomStringConvertible {
     }
 }
 
-public enum WatchedType: String, CustomStringConvertible {
+public enum WatchedType: String, CustomStringConvertible, Sendable {
     case Movies = "movies"
     case Shows = "shows"
     case Seasons = "seasons"
@@ -189,7 +202,7 @@ public enum WatchedType: String, CustomStringConvertible {
     }
 }
 
-public enum Type2: String, CustomStringConvertible {
+public enum Type2: String, CustomStringConvertible, Sendable {
     case All = "all"
     case Movies = "movies"
     case Shows = "shows"
@@ -202,7 +215,7 @@ public enum Type2: String, CustomStringConvertible {
     }
 }
 
-public enum ListType: String, CustomStringConvertible {
+public enum ListType: String, CustomStringConvertible, Sendable {
     case all
     case personal
     case official
@@ -213,7 +226,7 @@ public enum ListType: String, CustomStringConvertible {
     }
 }
 
-public enum ListSortType: String, CustomStringConvertible {
+public enum ListSortType: String, CustomStringConvertible, Sendable {
     case popular
     case likes
     case comments
@@ -227,14 +240,14 @@ public enum ListSortType: String, CustomStringConvertible {
 }
 
 /// Type of comments
-public enum CommentType: String {
+public enum CommentType: String, Sendable {
     case all = "all"
     case reviews = "reviews"
     case shouts = "shouts"
 }
 
 /// Extended information
-public enum ExtendedType: String, CustomStringConvertible {
+public enum ExtendedType: String, CustomStringConvertible, Sendable {
     /// Least amount of info
     case Min = "min"
     /// All information, excluding images
@@ -260,7 +273,7 @@ extension Sequence where Iterator.Element: CustomStringConvertible {
 }
 
 /// Possible values for items in Lists
-public enum ListItemType: String {
+public enum ListItemType: String, Sendable {
     case movies = "movie"
     case shows = "show"
     case seasons = "season"
@@ -268,13 +281,13 @@ public enum ListItemType: String {
     case people = "person"
 }
 
-public enum Period: String {
+public enum Period: String, Sendable {
     case Weekly = "weekly"
     case Monthly = "monthly"
     case All = "all"
 }
 
-public enum SectionType: String {
+public enum SectionType: String, Sendable {
     /// Can hide movie, show objects
     case Calendar = "calendar"
     /// Can hide show, season objects
@@ -285,13 +298,13 @@ public enum SectionType: String {
     case Recommendations = "recommendations"
 }
 
-public enum HiddenItemsType: String {
+public enum HiddenItemsType: String, Sendable {
     case Movie = "movie"
     case Show = "show"
     case Season = "Season"
 }
 
-public enum LikeType: String {
+public enum LikeType: String, Sendable {
     case Comments = "comments"
     case Lists = "lists"
 }
