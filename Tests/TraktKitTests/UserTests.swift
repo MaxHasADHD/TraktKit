@@ -90,6 +90,12 @@ final class UserTests: TraktTestCase {
         }
     }
 
+    func test_deny_follow_request_async() async throws {
+        try mock(.DELETE, "https://api.trakt.tv/users/requests/123", result: .success(.init()))
+
+        try await traktManager.currentUser().denyFollowRequest(id: 123).perform()
+    }
+
     // MARK: - Hidden items
 
     func test_get_hidden_items() throws {

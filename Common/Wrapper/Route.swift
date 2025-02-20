@@ -129,15 +129,42 @@ public struct Route<T: TraktObject>: Sendable {
     }
 }
 
+public struct EmptyRoute: Sendable {
+    internal var path: String
+    internal let method: Method
+    internal let requiresAuthentication: Bool
+
+    // MARK: - Lifecycle
+
+    public init(path: String, method: Method, requiresAuthentication: Bool = false) {
+        self.path = path
+        self.method = method
+        self.requiresAuthentication = requiresAuthentication
+    }
+
+    // MARK: - Perform
+
+    public func perform() async throws {
+        @InjectedClient var traktManager
+        let request = try traktManager.mutableRequest(
+            forPath: path,
+            withQuery: [:],
+            isAuthorized: requiresAuthentication,
+            withHTTPMethod: method
+        )
+        let _ = try await traktManager.fetchData(request: request)
+    }
+}
+
 public protocol PagedObjectProtocol {
     static var objectType: Decodable.Type { get }
     static func createPagedObject(with object: Decodable, currentPage: Int, pageCount: Int) -> Self
 }
 
 public struct PagedObject<T: TraktObject>: PagedObjectProtocol, TraktObject {
-    let object: T
-    let currentPage: Int
-    let pageCount: Int
+    public let object: T
+    public let currentPage: Int
+    public let pageCount: Int
 
     public static var objectType: any Decodable.Type {
         T.self

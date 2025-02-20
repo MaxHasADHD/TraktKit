@@ -173,8 +173,7 @@ extension TraktManager {
     
     private func handleResponse(response: URLResponse?) throws(TraktError) {
         guard let response else { return }
-        guard let httpResponse = response as? HTTPURLResponse else { throw .unhandled(response)
-        }
+        guard let httpResponse = response as? HTTPURLResponse else { throw .unhandled(response) }
 
         guard 200...299 ~= httpResponse.statusCode else {
             switch httpResponse.statusCode {
@@ -206,23 +205,6 @@ extension TraktManager {
             default:
                 throw .unhandled(httpResponse)
             }
-        }
-    }
-
-    private func handle(response: URLResponse?) async throws(TraktError) {
-        do {
-            try await withCheckedThrowingContinuation { continuation in
-                do {
-                    try handleResponse(response: response)
-                    continuation.resume()
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
-        } catch let error as TraktError {
-            throw error
-        } catch {
-            fatalError("`handleResponse` threw random error")
         }
     }
 
@@ -525,13 +507,25 @@ extension TraktManager {
 
     func fetchData(request: URLRequest) async throws -> (Data, URLResponse) {
         let (data, response) = try await session.data(for: request)
-        try await handle(response: response)
-        return (data, response)
+        try handleResponse(response: response)
+        do throws(TraktError) {
+            try self.handleResponse(response: response)
+            return (data, response)
+        } catch {
+            switch error {
+            case .retry(let after):
+                try await Task.sleep(for: .seconds(after))
+                try Task.checkCancellation()
+                return try await fetchData(request: request)
+            default:
+                throw error
+            }
+        }
     }
 
     func perform<T: TraktObject>(request: URLRequest) async throws -> T {
         let (data, response) = try await session.data(for: request)
-        try await handle(response: response)
+        try handleResponse(response: response)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
 

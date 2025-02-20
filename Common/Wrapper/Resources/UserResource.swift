@@ -28,13 +28,22 @@ extension TraktManager {
             Route(path: "users/requests", method: .GET, requiresAuthentication: true)
         }
 
+        /**
+         Approve a follower using the id of the request. If the id is not found, was already approved, or was already denied, a 404 error will be returned.
+
+         🔒 OAuth Required
+         */
         public func approveFollowRequest(id: Int) -> Route<FollowResult> {
             Route(path: "users/requests/\(id)", method: .POST, requiresAuthentication: true)
         }
 
+        /**
+         Deny a follower using the id of the request. If the id is not found, was already approved, or was already denied, a 404 error will be returned.
+
+         🔒 OAuth Required
+         */
         public func denyFollowRequest(id: Int) -> EmptyRoute {
-//            Route(path: "users/requests/\(id)", method: .DELETE, requiresAuthentication: true)
-            EmptyRoute(request: URLRequest(url: URL(string: "")!))
+            EmptyRoute(path: "users/requests/\(id)", method: .DELETE, requiresAuthentication: true)
         }
     }
 
