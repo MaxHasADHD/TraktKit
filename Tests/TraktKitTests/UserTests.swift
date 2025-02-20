@@ -96,6 +96,18 @@ final class UserTests: TraktTestCase {
         try await traktManager.currentUser().denyFollowRequest(id: 123).perform()
     }
 
+    // MARK: - Saved filters
+
+    func test_get_saved_filters() async throws {
+        try mock(.GET, "https://api.trakt.tv/users/saved_filters", result: .success(jsonData(named: "test_get_saved_filters")))
+
+        let filters = try await traktManager.currentUser().savedFilters().perform()
+        XCTAssertEqual(filters.count, 4)
+
+        let firstFilter = try XCTUnwrap(filters.first)
+        XCTAssertEqual(firstFilter.id, 101)
+    }
+
     // MARK: - Hidden items
 
     func test_get_hidden_items() throws {

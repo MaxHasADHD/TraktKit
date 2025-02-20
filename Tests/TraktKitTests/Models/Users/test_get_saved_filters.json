@@ -1,0 +1,38 @@
+[
+    {
+        "rank": 1,
+        "id": 101,
+        "section": "movies",
+        "name": "Movies: IMDB + TMDB ratings",
+        "path": "/movies/favorited/weekly",
+        "query": "imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0",
+        "updated_at": "2022-06-15T11:15:06.000Z"
+    },
+    {
+        "rank": 2,
+        "id": 102,
+        "section": "shows",
+        "name": "Shows: US + Disney+",
+        "path": "/shows/popular",
+        "query": "watchnow=disney_plus&countries=us",
+        "updated_at": "2022-06-15T12:15:06.000Z"
+    },
+    {
+        "rank": 3,
+        "id": 103,
+        "section": "calendars",
+        "name": "On Netflix",
+        "path": "/calendars/my/shows",
+        "query": "network_ids=53",
+        "updated_at": "2022-06-15T13:15:06.000Z"
+    },
+    {
+        "rank": 4,
+        "id": 104,
+        "section": "search",
+        "name": "Action & Adventure",
+        "path": "/search/movie,show",
+        "query": "genres=+action,+adventure",
+        "updated_at": "2022-06-15T14:15:06.000Z"
+    }
+]

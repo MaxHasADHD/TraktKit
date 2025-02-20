@@ -45,6 +45,18 @@ extension TraktManager {
         public func denyFollowRequest(id: Int) -> EmptyRoute {
             EmptyRoute(path: "users/requests/\(id)", method: .DELETE, requiresAuthentication: true)
         }
+
+        /**
+         Get all saved filters a user has created. The path and query can be used to construct an API path to retrieve the saved data. Think of this like a dynamically updated list.
+
+         🔥 VIP Only
+         🔒 OAuth Required
+         📄 Pagination
+         */
+        public func savedFilters(for section: String? = nil) -> Route<[SavedFilter]> {
+            let path = ["users/saved_filters", section].compactMap { $0 }.joined(separator: "/")
+            return Route(path: path, method: .POST, requiresAuthentication: true)
+        }
     }
 
     /// Resource for /Users/id
