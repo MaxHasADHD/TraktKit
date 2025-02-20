@@ -42,7 +42,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getPlayedMovies(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getPlayedMovies(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
         return getPlayed(.Movies, period: period, pagination: pagination, completion: completion)
     }
     
@@ -54,7 +54,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getWatchedMovies(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchedMovies(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
         return getWatched(.Movies, period: period, pagination: pagination, completion: completion)
     }
     
@@ -66,7 +66,7 @@ extension TraktManager {
     📄 Pagination
     */
     @discardableResult
-    public func getCollectedMovies(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
+    public func getCollectedMovies(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
         return getCollected(.Movies, period: period, pagination: pagination, completion: completion)
     }
     

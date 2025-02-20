@@ -66,7 +66,7 @@ internal extension TraktManager {
     
     // MARK: - Played
     
-    func getPlayed<T: TraktObject>(_ type: WatchedType, period: Period = .Weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
+    func getPlayed<T: TraktObject>(_ type: WatchedType, period: Period = .weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
 
         var query: [String: String] = ["extended": extended.queryString()]
 
@@ -87,7 +87,7 @@ internal extension TraktManager {
     
     // MARK: - Watched
     
-    func getWatched<T: TraktObject>(_ type: WatchedType, period: Period = .Weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
+    func getWatched<T: TraktObject>(_ type: WatchedType, period: Period = .weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
 
         var query: [String: String] = ["extended": extended.queryString()]
 
@@ -108,7 +108,7 @@ internal extension TraktManager {
     
     // MARK: - Collected
     
-    func getCollected<T: TraktObject>(_ type: WatchedType, period: Period = .Weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
+    func getCollected<T: TraktObject>(_ type: WatchedType, period: Period = .weekly, pagination: Pagination?, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
 
         var query: [String: String] = ["extended": extended.queryString()]
 

@@ -35,6 +35,13 @@ public struct Route<T: TraktObject>: Sendable {
         self.resultType = resultType
     }
 
+    public init(paths: [CustomStringConvertible?], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self) {
+        self.path = paths.compactMap { $0?.description }.joined(separator: "/")
+        self.method = method
+        self.requiresAuthentication = requiresAuthentication
+        self.resultType = resultType
+    }
+
     // MARK: - Actions
 
     public func extend(_ extended: ExtendedType...) -> Self {

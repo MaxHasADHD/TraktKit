@@ -42,7 +42,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getPlayedShows(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
+    public func getPlayedShows(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getPlayed(.Shows, period: period, pagination: pagination, completion: completion)
     }
     
@@ -54,7 +54,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getWatchedShows(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
+    public func getWatchedShows(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getWatched(.Shows, period: period, pagination: pagination, completion: completion)
     }
     
@@ -66,7 +66,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getCollectedShows(period: Period = .Weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
+    public func getCollectedShows(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getCollected(.Shows, pagination: pagination, completion: completion)
     }
     
@@ -78,7 +78,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getAnticipatedShows(period: Period = .Weekly, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedShowCompletionHandler) -> URLSessionDataTask? {
+    public func getAnticipatedShows(period: Period = .weekly, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedShowCompletionHandler) -> URLSessionDataTask? {
         return getAnticipated(.Shows, pagination: pagination, extended: extended, completion: completion)
     }
     

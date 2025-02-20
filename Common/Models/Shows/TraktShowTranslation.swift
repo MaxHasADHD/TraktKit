@@ -10,6 +10,8 @@ import Foundation
 
 public struct TraktShowTranslation: TraktObject {
     public let title: String?
-    public let overview: String
+    public let overview: String?
+    public let tagline: String?
     public let language: String
+    public let country: String
 }

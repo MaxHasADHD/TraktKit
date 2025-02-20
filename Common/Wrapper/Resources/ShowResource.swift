@@ -13,6 +13,55 @@ public struct ShowResource {
     // MARK: - Static (Non-specific show endpoints)
 
     /**
+     Returns all shows being watched right now. Shows with the most users are returned first.
+     */
+    public static func trending() -> Route<PagedObject<[TraktTrendingShow]>> {
+        Route(path: "shows/trending", method: .GET)
+    }
+
+    /**
+     Returns the most popular shows. Popularity is calculated using the rating percentage and the number of ratings.
+     */
+    public static func popular() -> Route<PagedObject<[TraktShow]>> {
+        Route(path: "shows/trending", method: .GET)
+    }
+
+    /**
+     Returns the most favorited shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+     */
+    public static func favorited(period: Period? = nil) -> Route<PagedObject<[TraktFavoritedShow]>> {
+        Route(paths: ["shows/favorited", period], method: .GET)
+    }
+
+    /**
+     Returns the most played (a single user can watch multiple episodes multiple times) shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+     */
+    public static func played(period: Period? = nil) -> Route<PagedObject<[TraktMostShow]>> {
+        Route(paths: ["shows/played", period], method: .GET)
+    }
+
+    /**
+     Returns the most watched (unique users) shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+     */
+    public static func watched(period: Period? = nil) -> Route<PagedObject<[TraktMostShow]>> {
+        Route(paths: ["shows/watched", period], method: .GET)
+    }
+
+    /**
+     Returns the most collected (unique users) shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+     */
+    public static func collected(period: Period? = nil) -> Route<PagedObject<[TraktMostShow]>> {
+        Route(paths: ["shows/collected", period], method: .GET)
+    }
+
+    /**
+     Returns the most anticipated shows based on the number of lists a show appears on.
+     */
+    public static func anticipated() -> Route<PagedObject<[TraktAnticipatedShow]>> {
+        Route(path: "shows/anticipated", method: .GET)
+    }
+
+    /**
      Returns all shows updated since the specified date. We recommended storing the date you can be efficient using this method moving forward.
 
      📄 Pagination
@@ -21,7 +70,7 @@ public struct ShowResource {
 
      > note: .The `startDate` can only be a maximum of 30 days in the past.
      */
-    public static func recentlyUpdated(since startDate: Date) async throws -> Route<[Update]> {
+    public static func recentlyUpdated(since startDate: Date) async throws -> Route<PagedObject<[Update]>> {
         let formattedDate = startDate.dateString(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
         return Route(path: "shows/updates/\(formattedDate)", method: .GET)
     }
@@ -35,13 +84,14 @@ public struct ShowResource {
 
      > note: .The `startDate` can only be a maximum of 30 days in the past.
      */
-    public static func recentlyUpdatedIds(since startDate: Date) async throws -> Route<[Update]> {
+    public static func recentlyUpdatedIds(since startDate: Date) async throws -> Route<PagedObject<[Int]>> {
         let formattedDate = startDate.dateString(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
         return Route(path: "shows/updates/id\(formattedDate)", method: .GET)
     }
 
     // MARK: - Properties
 
+    /// Trakt ID, Trakt slug, or IMDB ID
     public let id: CustomStringConvertible
 
     // MARK: - Lifecycle
@@ -52,14 +102,23 @@ public struct ShowResource {
 
     // MARK: - Methods
 
+    /**
+     Returns a single shows's details. If you request extended info, the `airs` object is relative to the show's country. You can use the `day`, `time`, and `timezone` to construct your own date then convert it to whatever timezone your user is in.
+     */
     public func summary() -> Route<TraktShow> {
         Route(path: "shows/\(id)", method: .GET)
     }
 
+    /**
+     Returns all title aliases for a show. Includes country where name is different.
+     */
     public func aliases() -> Route<[Alias]> {
         Route(path: "shows/\(id)/aliases", method: .GET)
     }
 
+    /**
+     Returns all content certifications for a show, including the country.
+     */
     public func certifications() -> Route<Certifications> {
         Route(path: "shows/\(id)/certifications", method: .GET)
     }

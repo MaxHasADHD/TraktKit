@@ -151,6 +151,24 @@ final class ShowsTests: TraktTestCase {
         }
     }
 
+    func test_get_most_watched_shows_async() async throws {
+        try? mock(.GET, "https://api.trakt.tv/shows/watched/weekly?page=1&limit=10", result: .success(jsonData(named: "test_get_most_watched_shows")), headers: [.page(1), .pageCount(8)])
+
+        let pagedObject = try await traktManager.shows()
+            .watched(period: .weekly)
+            .page(1)
+            .limit(10)
+            .perform()
+        let (watchedShows, page, total) = (pagedObject.object, pagedObject.currentPage, pagedObject.pageCount)
+
+        XCTAssertEqual(watchedShows.count, 10)
+        XCTAssertEqual(page, 1)
+        XCTAssertEqual(total, 8)
+        let firstWatchedShow = try XCTUnwrap(watchedShows.first)
+        XCTAssertEqual(firstWatchedShow.playCount, 8784154)
+        XCTAssertEqual(firstWatchedShow.watcherCount, 203742)
+    }
+
     // MARK: - Collected
 
     func test_get_most_collected_shows() {

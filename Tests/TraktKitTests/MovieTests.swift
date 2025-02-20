@@ -61,7 +61,7 @@ final class MovieTests: TraktTestCase {
         try mock(.GET, "https://api.trakt.tv/movies/played/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_played_movies")))
 
         let expectation = XCTestExpectation(description: "Get Most Played Movies")
-        traktManager.getPlayedMovies(period: .All, pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.getPlayedMovies(period: .all, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let playedMovies, _, _) = result {
                 XCTAssertEqual(playedMovies.count, 10)
                 expectation.fulfill()
@@ -83,7 +83,7 @@ final class MovieTests: TraktTestCase {
         try mock(.GET, "https://api.trakt.tv/movies/watched/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_watched_movies")))
 
         let expectation = XCTestExpectation(description: "Get Most Watched Movies")
-        traktManager.getWatchedMovies(period: .All, pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.getWatchedMovies(period: .all, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let watchedMovies, _, _) = result {
                 XCTAssertEqual(watchedMovies.count, 10)
                 expectation.fulfill()
@@ -105,7 +105,7 @@ final class MovieTests: TraktTestCase {
         try mock(.GET, "https://api.trakt.tv/movies/collected/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_collected_movies")))
 
         let expectation = XCTestExpectation(description: "Get Most Collected Movies")
-        traktManager.getCollectedMovies(period: .All, pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.getCollectedMovies(period: .all, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let collectedMovies, _, _) = result {
                 XCTAssertEqual(collectedMovies.count, 10)
                 expectation.fulfill()

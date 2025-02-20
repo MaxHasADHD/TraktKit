@@ -281,10 +281,16 @@ public enum ListItemType: String, Sendable {
     case people = "person"
 }
 
-public enum Period: String, Sendable {
-    case Weekly = "weekly"
-    case Monthly = "monthly"
-    case All = "all"
+public enum Period: String, Sendable, CustomStringConvertible {
+    case daily = "daily"
+    case weekly = "weekly"
+    case monthly = "monthly"
+    case yearly = "yearly"
+    case all = "all"
+
+    public var description: String {
+        rawValue
+    }
 }
 
 public enum SectionType: String, Sendable {

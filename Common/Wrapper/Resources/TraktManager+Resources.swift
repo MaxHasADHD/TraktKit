@@ -10,6 +10,10 @@ import Foundation
 
 extension TraktManager {
 
+    public func shows() -> ShowResource.Type {
+        ShowResource.self
+    }
+
     public func show(id: CustomStringConvertible) -> ShowResource {
         ShowResource(id: id)
     }
