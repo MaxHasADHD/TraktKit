@@ -43,6 +43,7 @@ final class CommentTests: TraktTestCase {
             if case .success(let comment) = result {
                 XCTAssertEqual(comment.likes, 0)
                 XCTAssertEqual(comment.userRating, 8)
+                XCTAssertEqual(comment.userStats.rating, 8)
                 XCTAssertEqual(comment.spoiler, false)
                 XCTAssertEqual(comment.review, false)
                 expectation.fulfill()

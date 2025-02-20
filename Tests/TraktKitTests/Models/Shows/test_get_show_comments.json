@@ -1,24 +1,382 @@
 [
-  {
-    "review" : false,
-    "user_rating" : 8,
-    "replies" : 1,
-    "id" : 8,
-    "created_at" : "2011-03-25T22:35:17.000Z",
-    "user" : {
-      "username" : "sean",
-      "private" : false,
-      "vip" : true,
-      "vip_ep" : false,
-      "name" : "Sean Rudford",
-      "ids" : {
-        "slug" : "sean"
-      }
+    {
+        "id": 755342,
+        "comment": "I did NOT expect that ending. Wow! What a show!",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2025-01-04T02:57:47.000Z",
+        "updated_at": "2025-01-04T02:57:47.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": null,
+        "user_stats": {
+            "rating": null,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "krissybdavis",
+            "private": false,
+            "deleted": false,
+            "name": "Krissy",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "krissybdavis"
+            },
+            "joined_at": "2024-11-14T17:09:55.000Z",
+            "location": "Atlanta, Georgia",
+            "about": null,
+            "gender": "female",
+            "age": null,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/014/738/689/avatars/large/47431ac676.jpg"
+                }
+            }
+        }
     },
-    "parent_id" : 0,
-    "updated_at" : "2011-03-25T22:35:17.000Z",
-    "comment" : "Great show!",
-    "spoiler" : false,
-    "likes" : 0
-  }
+    {
+        "id": 726677,
+        "comment": "Jake Gyllenhaal was so sketchy for real.  As a mystery, it did it's job of sucking me in.  It was ok.",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-10-24T07:27:49.000Z",
+        "updated_at": "2024-10-24T07:27:49.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": null,
+        "user_stats": {
+            "rating": null,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "caragwapa",
+            "private": false,
+            "deleted": false,
+            "name": "Cara",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "caragwapa"
+            },
+            "joined_at": "2023-05-26T07:38:29.000Z",
+            "location": "Cebu City, Philippines",
+            "about": null,
+            "gender": "female",
+            "age": 42,
+            "images": {
+                "avatar": {
+                    "full": "https://secure.gravatar.com/avatar/499d0e10eca26c2f496a842aa0b93312?d=https%3A%2F%2Fwalter-r2.trakt.tv%2Fhotlink-ok%2Fplaceholders%2Fmedium%2Fleela.png\u0026r=pg\u0026s=256"
+                }
+            }
+        }
+    },
+    {
+        "id": 726002,
+        "comment": "The show was wonderful up until the end, sadly. What a massive disappointment.",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-10-22T14:12:00.000Z",
+        "updated_at": "2024-10-22T14:12:00.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": 7,
+        "user_stats": {
+            "rating": 7,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "LaterGator",
+            "private": false,
+            "deleted": false,
+            "name": "LG",
+            "vip": true,
+            "vip_ep": false,
+            "ids": {
+                "slug": "latergator"
+            },
+            "joined_at": "2022-10-09T20:11:55.000Z",
+            "location": "",
+            "about": "",
+            "gender": "male",
+            "age": null,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/012/259/420/avatars/large/d8fc8b9573.png"
+                }
+            }
+        }
+    },
+    {
+        "id": 725385,
+        "comment": "Don't waste your time. Ultimately it's just so frustrating.\n\nDavid E Kelley seems to revel in this approach to tv shows. Plod along, end the episode with a shock, next episode ignores the shock and plods along until it ends with a shock, repeat for several episodes, pushing the viewer hard toward a reveal, then end with a left-field under-cooked twist.\n\nWaste of time.",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-10-20T19:42:02.000Z",
+        "updated_at": "2024-10-20T19:42:02.000Z",
+        "replies": 0,
+        "likes": 1,
+        "user_rating": 4,
+        "user_stats": {
+            "rating": 4,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "PorterUk",
+            "private": false,
+            "deleted": false,
+            "name": "PorterUk",
+            "vip": true,
+            "vip_ep": false,
+            "ids": {
+                "slug": "porteruk"
+            },
+            "joined_at": "2017-11-16T11:51:48.000Z",
+            "location": "England",
+            "about": "",
+            "gender": "male",
+            "age": 45,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/003/416/325/avatars/large/05aa466845.jpg"
+                }
+            }
+        }
+    },
+    {
+        "id": 714934,
+        "comment": "Classic case of a modern show not knowing how to write the ending of a solid series. Good family drama and mystery with some great acting.",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-09-20T15:07:22.000Z",
+        "updated_at": "2024-09-20T15:07:22.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": 7,
+        "user_stats": {
+            "rating": 7,
+            "play_count": 9,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "kidmodo",
+            "private": false,
+            "deleted": false,
+            "name": "Kidmodo",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "kidmodo"
+            },
+            "joined_at": "2023-09-22T13:01:25.000Z",
+            "location": "Baltimore MD",
+            "about": "",
+            "gender": "male",
+            "age": 29,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/013/052/697/avatars/large/9a6314d1e4.png"
+                }
+            }
+        }
+    },
+    {
+        "id": 707456,
+        "comment": "This is a series I enjoyed very much! I am a big fan of Jake Gyllenhaal. But I also realy liked the performances of Fagbenle and Peter Sarsgaard. It's a good series! I definitely recommend it! There is a lot of suspense and I liked the twists!",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-08-26T12:25:58.000Z",
+        "updated_at": "2024-08-26T12:25:58.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": 7,
+        "user_stats": {
+            "rating": 7,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "pato22",
+            "private": false,
+            "deleted": false,
+            "name": "Wéjih M'zoughi",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "pato22"
+            },
+            "joined_at": "2017-01-26T14:13:25.000Z",
+            "location": "Hogwarts",
+            "about": "",
+            "gender": "male",
+            "age": 28,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/002/650/222/avatars/large/9b32b56669.gif"
+                }
+            }
+        }
+    },
+    {
+        "id": 704369,
+        "comment": "weird they said season 1 is last now they added one",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-08-16T05:43:58.000Z",
+        "updated_at": "2024-08-16T05:43:58.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": 8,
+        "user_stats": {
+            "rating": 8,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "marionaise1990",
+            "private": false,
+            "deleted": false,
+            "name": "Mario Helmes",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "marionaise1990"
+            },
+            "joined_at": "2024-05-25T13:50:33.000Z",
+            "location": "Landgraaf, Limburg",
+            "about": "",
+            "gender": "male",
+            "age": 34,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/013/878/832/avatars/large/a6868f2131.png"
+                }
+            }
+        }
+    },
+    {
+        "id": 703287,
+        "comment": "Overall a good entertaining show!",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-08-12T20:01:54.000Z",
+        "updated_at": "2024-08-12T20:01:54.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": 7,
+        "user_stats": {
+            "rating": 7,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "astrix",
+            "private": false,
+            "deleted": false,
+            "name": "Astrix",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "astrix"
+            },
+            "joined_at": "2014-12-25T19:04:12.000Z",
+            "location": "Uranus",
+            "about": "I was looking out at the vastness of the ocean, and it was overwhelming. I imagined a point way out there and how deep it would go. Then I get the vastness of the ocean and in that moment I can understand my pain and the size of my fear. My actual self is so tied up with it. With shame.  ❖",
+            "gender": "male",
+            "age": null,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/000/782/038/avatars/large/594279c981.gif"
+                }
+            }
+        }
+    },
+    {
+        "id": 702944,
+        "comment": "Started of interesting and the pacing was good, but ruined by that twist at the end. Just not believable or plausible and made the whole thing pointless to watch in the end. That twist was unnecessary and could have been done many ways better. Rest of the show and the acting is quite good but does feel dragged in the middle",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-08-11T18:19:45.000Z",
+        "updated_at": "2024-08-12T16:40:30.000Z",
+        "replies": 0,
+        "likes": 0,
+        "user_rating": 6,
+        "user_stats": {
+            "rating": 6,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "Erik7Aeiou",
+            "private": false,
+            "deleted": false,
+            "name": "Erik7Aeiou",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "erik7aeiou"
+            },
+            "joined_at": "2024-08-09T09:41:55.000Z",
+            "location": "",
+            "about": "",
+            "gender": "",
+            "age": null,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/014/219/490/avatars/large/d36656b71e.jpg"
+                }
+            }
+        }
+    },
+    {
+        "id": 702913,
+        "comment": "This could've been a movie.",
+        "spoiler": false,
+        "review": false,
+        "parent_id": 0,
+        "created_at": "2024-08-11T16:36:32.000Z",
+        "updated_at": "2024-08-11T16:36:32.000Z",
+        "replies": 1,
+        "likes": 0,
+        "user_rating": null,
+        "user_stats": {
+            "rating": null,
+            "play_count": 8,
+            "completed_count": 8
+        },
+        "user": {
+            "username": "sherlockedx",
+            "private": false,
+            "deleted": false,
+            "name": "isaías",
+            "vip": false,
+            "vip_ep": false,
+            "ids": {
+                "slug": "sherlockedx"
+            },
+            "joined_at": "2013-10-05T21:26:21.000Z",
+            "location": "Brazil",
+            "about": "",
+            "gender": "male",
+            "age": 26,
+            "images": {
+                "avatar": {
+                    "full": "https://walter-r2.trakt.tv/images/users/000/320/602/avatars/large/4bdd6af46a.png"
+                }
+            }
+        }
+    }
 ]

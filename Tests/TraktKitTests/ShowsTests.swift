@@ -381,7 +381,7 @@ final class ShowsTests: TraktTestCase {
         let expectation = XCTestExpectation(description: "Get show translations")
         traktManager.getShowTranslations(showID: "game-of-thrones", language: "es") { result in
             if case .success(let translations) = result {
-                XCTAssertEqual(translations.count, 3)
+                XCTAssertEqual(translations.count, 40)
                 expectation.fulfill()
             }
         }
@@ -398,12 +398,12 @@ final class ShowsTests: TraktTestCase {
     // MARK: - Comments
 
     func test_get_show_comments() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/comments", result: .success(jsonData(named: "test_get_show_comments")))
+        try mock(.GET, "https://api.trakt.tv/shows/presumed-innocent/comments", result: .success(jsonData(named: "test_get_show_comments")))
 
         let expectation = XCTestExpectation(description: "Get show comments")
-        traktManager.getShowComments(showID: "game-of-thrones") { result in
+        traktManager.getShowComments(showID: "presumed-innocent") { result in
             if case .success(let comments, _, _) = result {
-                XCTAssertEqual(comments.count, 1)
+                XCTAssertEqual(comments.count, 10)
                 expectation.fulfill()
             }
         }
@@ -414,6 +414,23 @@ final class ShowsTests: TraktTestCase {
         default:
             break
         }
+    }
+
+    func test_get_show_comments_async() async throws {
+        try mock(.GET, "https://api.trakt.tv/shows/presumed-innocent/comments/newest", result: .success(jsonData(named: "test_get_show_comments")), headers: [.page(1), .pageCount(4)])
+
+        let pagedObject = try await traktManager.show(id: "presumed-innocent")
+            .comments(sort: "newest")
+            .perform()
+        let (watchedShows, page, total) = (pagedObject.object, pagedObject.currentPage, pagedObject.pageCount)
+
+        XCTAssertEqual(watchedShows.count, 10)
+        XCTAssertEqual(page, 1)
+        XCTAssertEqual(total, 4)
+
+        let firstComment = try XCTUnwrap(watchedShows.first)
+        XCTAssertEqual(firstComment.comment, "I did NOT expect that ending. Wow! What a show!")
+        XCTAssertEqual(firstComment.parentId, 0)
     }
 
     // MARK: - Lists

@@ -124,6 +124,29 @@ public struct ShowResource {
     }
 
     /**
+     Returns all translations for a show, including language and translated values for title and overview.
+
+     - parameter language: 2 character language code Example: `es`
+     */
+    public func translations(language: String? = nil) -> Route<[TraktShowTranslation]> {
+        Route(paths: ["shows/\(id)/translations", language], method: .GET)
+    }
+
+    /**
+     Returns all top level comments for a show. By default, the `newest` comments are returned first. Other sorting options include `oldest`, most `likes`, most `replies`, `highest` rated, `lowest` rated, most `plays`, and highest `watched` percentage.
+
+     🔓 OAuth Optional 📄 Pagination 😁 Emojis
+
+     > note: If you send OAuth, comments from blocked users will be automatically filtered out.
+
+     - parameter sort: how to sort Example: `newest`.
+     - parameter authenticate: comments from blocked users will be automatically filtered out if `true`.
+     */
+    public func comments(sort: String? = nil, authenticate: Bool = false) -> Route<PagedObject<[Comment]>> {
+        Route(paths: ["shows/\(id)/comments", sort], method: .GET, requiresAuthentication: authenticate)
+    }
+
+    /**
      Returns all seasons for a show including the number of episodes in each season.
 
      **Episodes**
