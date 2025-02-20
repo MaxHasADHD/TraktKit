@@ -13,7 +13,7 @@ extension Notification.Name {
     static let TraktSignedIn = Notification.Name(rawValue: "TraktSignedIn")
 }
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Properties
@@ -25,16 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get keys from https://trakt.tv/oauth/applications
     }
 
-    var window: UIWindow?
+    let traktManager = TraktManager(
+        clientId: Constants.clientId,
+        clientSecret: Constants.clientSecret,
+        redirectURI: Constants.redirectURI
+    )
 
+    var window: UIWindow?
 
     // MARK: - Lifecycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        TraktManager.sharedManager.set(clientID: Constants.clientId,
-                                       clientSecret: Constants.clientSecret,
-                                       redirectURI: Constants.redirectURI)
+        DependencyContainer.shared.traktClient = traktManager
         return true
     }
 
@@ -44,22 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if url.host == "auth",
             let code = queryDict["code"] as? String { // Get authorization code
-            do {
-                try TraktManager.sharedManager.getTokenFromAuthorizationCode(code: code) { result in
-                    switch result {
-                    case .success:
-                        print("Signed in to Trakt")
-                        DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: .TraktSignedIn, object: nil)
-                        }
-                    case .fail:
-                        print("Failed to sign in to Trakt")
-                    }
+
+            Task { @MainActor in
+                do {
+                    let authorization = try await traktManager.getToken(authorizationCode: code)
+                    print("Signed in to Trakt")
+                    NotificationCenter.default.post(name: .TraktSignedIn, object: nil)
+                } catch {
+                    print("Failed to get token: \(error)")
                 }
-            } catch {
-                print(error.localizedDescription)
             }
         }
+
         return true
     }
 }

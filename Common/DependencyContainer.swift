@@ -30,7 +30,7 @@ public final class DependencyContainer: @unchecked Sendable {
     }
 
     // MARK: - Dependency Access
-    var traktClient: TraktManager {
+    public var traktClient: TraktManager {
         get { instanceLock.withLock { _traktClient } }
         set { instanceLock.withLock { _traktClient = newValue } }
     }

@@ -12,6 +12,8 @@ import TraktKit
 final class SearchResultsViewController: UITableViewController {
 
     // MARK: - Properties
+    @InjectedClient var traktManager
+
     private var shows: [TraktShow] = [] {
         didSet {
             tableView.reloadData()
@@ -22,10 +24,12 @@ final class SearchResultsViewController: UITableViewController {
 
     // MARK: - Lifecycle
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
 
+    @available(*, unavailable)
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         fatalError()
     }
@@ -45,7 +49,7 @@ final class SearchResultsViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        TraktManager.sharedManager.search(query: query, types: [.show], extended: [.Full], pagination: nil, filters: nil, fields: nil) { [weak self] result in
+        traktManager.search(query: query, types: [.show], extended: [.Full], pagination: nil, filters: nil, fields: nil) { [weak self] result in
             switch result {
             case .success(let objects):
                 DispatchQueue.main.async {

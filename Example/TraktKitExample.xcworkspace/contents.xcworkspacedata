@@ -4,7 +4,4 @@
    <FileRef
       location = "group:TraktKitExample/TraktKitExample.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:../TraktKit.xcodeproj">
-   </FileRef>
 </Workspace>
