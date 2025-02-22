@@ -28,15 +28,7 @@ public struct TVCastMember: TraktObject {
 /// Cast member for /movies/.../people API
 public struct MovieCastMember: TraktObject {
     public let characters: [String]
-    @available(*, deprecated, renamed: "characters")
-    public let character: String
     public let person: Person
-    
-    enum CodingKeys: String, CodingKey {
-        case characters
-        case character
-        case person
-    }
 }
 
 /// Cast member for /people/.../shows API

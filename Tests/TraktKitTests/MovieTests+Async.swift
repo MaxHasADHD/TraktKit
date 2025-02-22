@@ -64,5 +64,36 @@ extension TraktTestSuite {
             #expect(movies.count == 10)
         }
 
+        @Test func getPeopleInMovie() async throws {
+            try mock(.GET, "https://api.trakt.tv/movies/iron-man-2008/people?extended=min", result: .success(jsonData(named: "test_get_cast_and_crew")))
+
+            let castAndCrew = try await traktManager.movie(id: "iron-man-2008")
+                .people()
+                .extend(.Min)
+                .perform()
+
+            #expect(castAndCrew.cast?.count == 65)
+            #expect(castAndCrew.crew?.count == 118)
+            #expect(castAndCrew.editors?.count == 4)
+            #expect(castAndCrew.producers?.count == 19)
+            #expect(castAndCrew.camera?.count == 3)
+            #expect(castAndCrew.art?.count == 11)
+            #expect(castAndCrew.sound?.count == 12)
+            #expect(castAndCrew.costume?.count == 2)
+            #expect(castAndCrew.writers?.count == 8)
+            #expect(castAndCrew.visualEffects?.count == 7)
+            #expect(castAndCrew.directors?.count == 6)
+            #expect(castAndCrew.lighting?.count == 2)
+        }
+
+        @Test func getMovieStudios() async throws {
+            try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/studios", result: .success(jsonData(named: "test_get_movie_studios")))
+
+            let studios = try await traktManager.movie(id: "tron-legacy-2010")
+                .studios()
+                .perform()
+
+            #expect(studios.count == 5)
+        }
     }
 }

@@ -123,6 +123,16 @@ public struct TraktStats: TraktObject {
     }
 }
 
+public struct TraktMovieStats: TraktObject {
+    public let watchers: Int
+    public let plays: Int
+    public let collectors: Int
+    public let comments: Int
+    public let lists: Int
+    public let votes: Int
+    public let favorited: Int
+}
+
 // MARK: - Last Activities
 
 public struct TraktLastActivities: TraktObject {

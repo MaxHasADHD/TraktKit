@@ -1,0 +1,47 @@
+[
+    {
+        "name": "20th Century Fox",
+        "country": "us",
+        "ids": {
+            "trakt": 20,
+            "slug": "20th-century-fox",
+            "tmdb": 25
+        }
+    },
+    {
+        "name": "Marvel Entertainment",
+        "country": "us",
+        "ids": {
+            "trakt": 19,
+            "slug": "marvel-entertainment",
+            "tmdb": 7505
+        }
+    },
+    {
+        "name": "The Donners' Company",
+        "country": "us",
+        "ids": {
+            "trakt": 25,
+            "slug": "the-donners-company",
+            "tmdb": 431
+        }
+    },
+    {
+        "name": "TSG Entertainment",
+        "country": "us",
+        "ids": {
+            "trakt": 22,
+            "slug": "tsg-entertainment",
+            "tmdb": 22213
+        }
+    },
+    {
+        "name": "Genre Films",
+        "country": "us",
+        "ids": {
+            "trakt": 23,
+            "slug": "genre-films",
+            "tmdb": 28788
+        }
+    }
+]

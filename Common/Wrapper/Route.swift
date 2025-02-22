@@ -153,6 +153,13 @@ public struct EmptyRoute: Sendable {
         self.traktManager = traktManager
     }
 
+    public init(paths: [CustomStringConvertible?], method: Method, requiresAuthentication: Bool = false, traktManager: TraktManager) {
+        self.path = paths.compactMap { $0?.description }.joined(separator: "/")
+        self.method = method
+        self.requiresAuthentication = requiresAuthentication
+        self.traktManager = traktManager
+    }
+
     // MARK: - Perform
 
     public func perform() async throws {

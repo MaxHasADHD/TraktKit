@@ -363,14 +363,23 @@ final class MovieTests: TraktTestCase {
     // MARK: - People
 
     func test_get_cast_and_crew() throws {
-        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/people?extended=min", result: .success(jsonData(named: "test_get_cast_and_crew")))
+        try mock(.GET, "https://api.trakt.tv/movies/iron-man-2008/people?extended=min", result: .success(jsonData(named: "test_get_cast_and_crew")))
 
         let expectation = XCTestExpectation(description: "Get movie cast and crew")
-        traktManager.getPeopleInMovie(movieID: "tron-legacy-2010") { result in
+        traktManager.getPeopleInMovie(movieID: "iron-man-2008") { result in
             if case .success(let castAndCrew) = result {
+                XCTAssertEqual(castAndCrew.cast?.count, 65)
+                XCTAssertEqual(castAndCrew.crew?.count, 118)
+                XCTAssertEqual(castAndCrew.editors?.count, 4)
+                XCTAssertEqual(castAndCrew.producers?.count, 19)
+                XCTAssertEqual(castAndCrew.camera?.count, 3)
+                XCTAssertEqual(castAndCrew.art?.count, 11)
+                XCTAssertEqual(castAndCrew.sound?.count, 12)
+                XCTAssertEqual(castAndCrew.costume?.count, 2)
                 XCTAssertEqual(castAndCrew.writers?.count, 8)
-                XCTAssertEqual(castAndCrew.directors?.count, 2)
-                XCTAssertEqual(castAndCrew.cast?.count, 89)
+                XCTAssertEqual(castAndCrew.visualEffects?.count, 7)
+                XCTAssertEqual(castAndCrew.directors?.count, 6)
+                XCTAssertEqual(castAndCrew.lighting?.count, 2)
                 expectation.fulfill()
             }
         }

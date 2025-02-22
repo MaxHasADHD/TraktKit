@@ -22,6 +22,11 @@ extension TraktManager {
         MoviesResource(traktManager: self)
     }
 
+    /// - parameter id: Trakt ID, Trakt slug, or IMDB ID
+    public func movie(id: CustomStringConvertible) -> MovieResource {
+        MovieResource(id: id, traktManager: self)
+    }
+
     // MARK: - TV
 
     public var shows: ShowsResource {
