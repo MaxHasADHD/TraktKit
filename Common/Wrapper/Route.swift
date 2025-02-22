@@ -18,6 +18,7 @@ public struct Route<T: TraktObject>: Sendable {
     internal var path: String
     internal let method: Method
     internal let requiresAuthentication: Bool
+    internal var queryItems: [String: String]
 
     private var extended = [ExtendedType]()
     private var page: Int?
@@ -29,16 +30,18 @@ public struct Route<T: TraktObject>: Sendable {
 
     // MARK: - Lifecycle
 
-    public init(path: String, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
+    public init(path: String, queryItems: [String: String] = [:], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
         self.path = path
+        self.queryItems = queryItems
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.resultType = resultType
         self.traktManager = traktManager
     }
 
-    public init(paths: [CustomStringConvertible?], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
+    public init(paths: [CustomStringConvertible?], queryItems: [String: String] = [:], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
         self.path = paths.compactMap { $0?.description }.joined(separator: "/")
+        self.queryItems = queryItems
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.resultType = resultType
@@ -97,7 +100,7 @@ public struct Route<T: TraktObject>: Sendable {
     }
 
     private func makeRequest(traktManager: TraktManager) throws -> URLRequest {
-        var query: [String: String] = [:]
+        var query: [String: String] = queryItems
 
         if !extended.isEmpty {
             query["extended"] = extended.queryString()

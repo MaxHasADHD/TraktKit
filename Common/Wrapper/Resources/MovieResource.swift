@@ -173,6 +173,8 @@ extension TraktManager {
         /**
          Returns all lists that contain this movie. By default, `personal` lists are returned sorted by the most `popular`.
 
+         📄 Pagination 😁 Emojis
+
          - parameter type: Filter for a specific list type. Possible values:  `all` , `personal` , `official` , `watchlists` , `favorites` .
          - parameter sort: How to sort . Possible values:  `popular` , `likes` , `comments` , `items` , `added` , `updated` .
          */
@@ -213,7 +215,7 @@ extension TraktManager {
         }
 
         /**
-         Returns lots of movie stats.
+         Returns all studios for a movie.
          */
         public func studios() -> Route<[TraktStudio]> {
             Route(paths: [path, "studios"], method: .GET, traktManager: traktManager)
@@ -245,7 +247,7 @@ extension TraktManager {
          🔥 VIP Only 🔒 OAuth Required
          */
         public func refreshMetadata() -> EmptyRoute {
-            EmptyRoute(paths: [path, "videos"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
+            EmptyRoute(paths: [path, "refresh"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
     }
 }
