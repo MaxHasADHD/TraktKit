@@ -59,8 +59,8 @@ public struct SeasonResource {
     /**
      Returns all translations for an season, including language and translated values for title and overview.
      */
-    public func translations(language: String) -> Route<[TraktSeasonTranslation]> {
-        Route(path: "\(path)/translations/\(language)", method: .GET, traktManager: traktManager)
+    public func translations(language: String? = nil) -> Route<[TraktSeasonTranslation]> {
+        Route(paths: [path, "translations", language], method: .GET, traktManager: traktManager)
     }
 
     /**

@@ -111,7 +111,7 @@ extension TraktManager {
         internal init(id: CustomStringConvertible, traktManager: TraktManager) {
             self.id = id
             self.traktManager = traktManager
-            self.path = "movies/\(id)"
+            self.path = "shows/\(id)"
         }
 
         // MARK: - Methods

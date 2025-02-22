@@ -26,7 +26,9 @@ public struct EpisodeResource {
     /**
      Returns a single episode's details. All date and times are in UTC and were calculated using the episode's `air_date` and show's `country` and `air_time`.
 
-     **Note**: If the `first_aired` is unknown, it will be set to `null`.
+     > note:  If the `first_aired` is unknown, it will be set to `null`.
+
+     > note: When getting `full` extended info, the `episode_type` field can have a value of `standard`, `series_premiere` (season 1, episode 1), `season_premiere` (episode 1), `mid_season_finale`, `mid_season_premiere` (the next episode after the mid season finale), `season_finale`, or `series_finale` (last episode to air for an ended show).
      */
     public func summary() -> Route<TraktEpisode> {
         Route(path: path, method: .GET, traktManager: traktManager)
@@ -38,20 +40,21 @@ public struct EpisodeResource {
      - parameter language: 2 character language code
      */
     public func translations(language: String? = nil) -> Route<[TraktEpisodeTranslation]> {
-        var path = path + "/translations"
-        if let language {
-            path += "/\(language)"
-        }
-        return Route(path: path, method: .GET, traktManager: traktManager)
+        Route(paths: [path, "translations", language], method: .GET, traktManager: traktManager)
     }
 
     /**
-     Returns all top level comments for an episode. Most recent comments returned first.
+     Returns all top level comments for an episode. By default, the `newest` comments are returned first. Other sorting options include `oldest`, most `likes`, most `replies`, `highest` rated, `lowest` rated, and most `plays`.
 
-     📄 Pagination
+     > note: If you send OAuth, comments from blocked users will be automatically filtered out.
+
+     🔓 OAuth Optional 📄 Pagination 😁 Emojis
+
+     - parameter sort: how to sort Example: `newest`.
+     - parameter authenticate: comments from blocked users will be automatically filtered out if `true`.
      */
-    public func comments() -> Route<[Comment]> {
-        Route(path: path + "/comments", method: .GET, traktManager: traktManager)
+    public func comments(sort: String? = nil, authenticate: Bool = false) -> Route<[Comment]> {
+        Route(paths: [path, "comments", sort], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
     }
 
     /**
@@ -64,10 +67,15 @@ public struct EpisodeResource {
     }
 
     /**
-     Returns rating (between 0 and 10) and distribution for an episode.
+     Returns all lists that contain this episode. By default, `personal` lists are returned sorted by the most `popular`.
+
+     📄 Pagination 😁 Emojis
+
+     - parameter type: Filter for a specific list type. Possible values:  `all` , `personal` , `official` , `watchlists` , `favorites` .
+     - parameter sort: How to sort . Possible values:  `popular` , `likes` , `comments` , `items` , `added` , `updated` .
      */
-    public func ratings() -> Route<RatingDistribution> {
-        Route(path: path + "/ratings", method: .GET, traktManager: traktManager)
+    public func containingLists(type: String? = nil, sort: String? = nil) -> Route<PagedObject<[TraktList]>> {
+        Route(paths: [path, "lists", type, sort], method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -84,30 +92,39 @@ public struct EpisodeResource {
      ✨ Extended Info
      */
     public func people() -> Route<CastAndCrew<TVCastMember, TVCrewMember>> {
-        Route(path: path + "/comments", method: .GET, traktManager: traktManager)
+        Route(paths: [path, "people"], method: .GET, traktManager: traktManager)
+    }
+
+    /**
+     Returns rating (between 0 and 10) and distribution for an episode.
+     */
+    public func ratings() -> Route<RatingDistribution> {
+        Route(paths: [path, "ratings"], method: .GET, traktManager: traktManager)
     }
 
     /**
      Returns lots of episode stats.
      */
     public func stats() -> Route<TraktStats> {
-        Route(path: path + "/stats", method: .GET, traktManager: traktManager)
+        Route(paths: [path, "stats"], method: .GET, traktManager: traktManager)
     }
 
     /**
      Returns all users watching this episode right now.
+
      ✨ Extended Info
      */
     public func usersWatching() -> Route<[User]> {
-        Route(path: path + "/watching", method: .GET, traktManager: traktManager)
+        Route(paths: [path, "watching"], method: .GET, traktManager: traktManager)
     }
 
     /**
      Returns all videos including trailers, teasers, clips, and featurettes.
+
      ✨ Extended Info
      */
     public func videos() -> Route<[TraktVideo]> {
-        Route(path: path + "/videos", method: .GET, traktManager: traktManager)
+        Route(paths: [path, "videos"], method: .GET, traktManager: traktManager)
     }
 }
 
