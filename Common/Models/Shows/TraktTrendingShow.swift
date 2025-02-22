@@ -12,13 +12,3 @@ public struct TraktTrendingShow: TraktObject {
     public let watchers: Int
     public let show: TraktShow
 }
-
-public struct TraktFavoritedShow: TraktObject {
-    public let userCount: Int
-    public let show: TraktShow
-
-    enum CodingKeys: String, CodingKey {
-        case userCount = "user_count"
-        case show
-    }
-}

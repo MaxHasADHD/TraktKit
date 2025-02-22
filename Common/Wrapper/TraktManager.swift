@@ -14,11 +14,6 @@ public extension Notification.Name {
 }
 
 public final class TraktManager: Sendable {
-//public final class TraktManager: @unchecked Sendable {
-
-    // TODO List:
-    // 1. Create a limit object, double check every paginated API call is marked as paginated
-    // 2. Call completion with custom error when creating request fails
 
     // MARK: - Types
 
@@ -86,7 +81,7 @@ public final class TraktManager: Sendable {
     private let redirectURI: String
     private let apiHost: String
 
-    internal let jsonEncoder: JSONEncoder = {
+    internal static let jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         return encoder
@@ -94,11 +89,7 @@ public final class TraktManager: Sendable {
 
     let session: URLSession
 
-    public let explore = ExploreResource()
-
     // MARK: Public
-
-    public static let sharedManager = TraktManager(clientId: "", clientSecret: "", redirectURI: "")
 
     public var isSignedIn: Bool {
         get {
@@ -297,7 +288,7 @@ public final class TraktManager: Sendable {
         }
 
         do {
-            request.httpBody = try jsonEncoder.encode(body)
+            request.httpBody = try Self.jsonEncoder.encode(body)
         } catch {
             return nil
         }

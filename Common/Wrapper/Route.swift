@@ -13,10 +13,11 @@ public struct Route<T: TraktObject>: Sendable {
     // MARK: - Properties
 
     private let resultType: T.Type
+    private let traktManager: TraktManager
 
-    public var path: String
-    public let method: Method
-    public let requiresAuthentication: Bool
+    internal var path: String
+    internal let method: Method
+    internal let requiresAuthentication: Bool
 
     private var extended = [ExtendedType]()
     private var page: Int?
@@ -28,18 +29,20 @@ public struct Route<T: TraktObject>: Sendable {
 
     // MARK: - Lifecycle
 
-    public init(path: String, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self) {
+    public init(path: String, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
         self.path = path
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.resultType = resultType
+        self.traktManager = traktManager
     }
 
-    public init(paths: [CustomStringConvertible?], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self) {
+    public init(paths: [CustomStringConvertible?], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
         self.path = paths.compactMap { $0?.description }.joined(separator: "/")
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.resultType = resultType
+        self.traktManager = traktManager
     }
 
     // MARK: - Actions
@@ -89,7 +92,6 @@ public struct Route<T: TraktObject>: Sendable {
     // MARK: - Perform
 
     public func perform() async throws -> T {
-        @InjectedClient var traktManager
         let request = try makeRequest(traktManager: traktManager)
         return try await traktManager.perform(request: request)
     }
@@ -140,19 +142,20 @@ public struct EmptyRoute: Sendable {
     internal var path: String
     internal let method: Method
     internal let requiresAuthentication: Bool
+    private let traktManager: TraktManager
 
     // MARK: - Lifecycle
 
-    public init(path: String, method: Method, requiresAuthentication: Bool = false) {
+    public init(path: String, method: Method, requiresAuthentication: Bool = false, traktManager: TraktManager) {
         self.path = path
         self.method = method
         self.requiresAuthentication = requiresAuthentication
+        self.traktManager = traktManager
     }
 
     // MARK: - Perform
 
     public func perform() async throws {
-        @InjectedClient var traktManager
         let request = try traktManager.mutableRequest(
             forPath: path,
             withQuery: [:],

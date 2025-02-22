@@ -18,10 +18,39 @@ extension URLSession {
     }
 }
 
+extension RequestMocking {
+    private final class MocksContainer: @unchecked Sendable {
+        var mocks: [MockedResponse] = []
+    }
+
+    static private let container = MocksContainer()
+    static private let lock = NSLock()
+
+    static func add(mock: MockedResponse) {
+        lock.withLock {
+            container.mocks.append(mock)
+        }
+    }
+
+    static func removeAllMocks() {
+        lock.withLock {
+            container.mocks.removeAll()
+        }
+    }
+
+    static private func mock(for request: URLRequest) -> MockedResponse? {
+        return lock.withLock {
+            container.mocks.first { mock in
+                guard let url = request.url else { return false }
+                return mock.url.compareComponents(url)
+            }
+        }
+    }
+}
+
+// MARK: - RequestMocking
 
 final class RequestMocking: URLProtocol, @unchecked Sendable {
-    static nonisolated(unsafe) private var mocks: [MockedResponse] = []
-
     override class func canInit(with request: URLRequest) -> Bool {
         return mock(for: request) != nil
     }
@@ -59,39 +88,6 @@ final class RequestMocking: URLProtocol, @unchecked Sendable {
 
 
     override func stopLoading() { }
-}
-
-// MARK: - Helpers
-
-extension RequestMocking {
-    static func add(mock: MockedResponse) {
-        mocks.append(mock)
-    }
-
-    static func removeAllMocks() {
-        mocks.removeAll()
-    }
-
-    static private func mock(for request: URLRequest) -> MockedResponse? {
-        mocks.first { mock in
-            guard let url = request.url else { return false }
-            return mock.url.compareComponents(url)
-        }
-    }
-}
-
-extension URL {
-    /// Compares components, which doesn't require query parameters to be in any particular order
-    public func compareComponents(_ url: URL) -> Bool {
-        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false),
-              let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return false }
-
-        return components.scheme == urlComponents.scheme &&
-        components.host == urlComponents.host &&
-        components.path == urlComponents.path &&
-        components.queryItems?.enumerated().compactMap { $0.element.name }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.name }.sorted() &&
-        components.queryItems?.enumerated().compactMap { $0.element.value }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.value }.sorted()
-    }
 }
 
 // MARK: - RequestBlocking

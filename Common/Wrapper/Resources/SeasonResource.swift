@@ -12,11 +12,13 @@ public struct SeasonResource {
     public let showId: CustomStringConvertible
     public let seasonNumber: Int
     private let path: String
+    private let traktManager: TraktManager
 
-    init(showId: CustomStringConvertible, seasonNumber: Int) {
+    internal init(showId: CustomStringConvertible, seasonNumber: Int, traktManager: TraktManager) {
         self.showId = showId
         self.seasonNumber = seasonNumber
         self.path = "shows/\(showId)/seasons/\(seasonNumber)"
+        self.traktManager = traktManager
     }
     
     // MARK: - Methods
@@ -27,7 +29,7 @@ public struct SeasonResource {
      ✨ Extended Info
      */
     public func info() -> Route<TraktSeason> {
-        Route(path: "\(path)/info", method: .GET)
+        Route(path: "\(path)/info", method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -42,14 +44,14 @@ public struct SeasonResource {
      ✨ Extended Info
      */
     public func episodes() -> Route<[TraktEpisode]> {
-        Route(path: "\(path)", method: .GET)
+        Route(path: "\(path)", method: .GET, traktManager: traktManager)
     }
 
     /**
      Returns all translations for an season, including language and translated values for title and overview.
      */
     public func translations(language: String) -> Route<[TraktSeasonTranslation]> {
-        Route(path: "\(path)/translations/\(language)", method: .GET)
+        Route(path: "\(path)/translations/\(language)", method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -60,7 +62,7 @@ public struct SeasonResource {
      🔓 OAuth Optional 📄 Pagination 😁 Emojis
      */
     public func comments() -> Route<[Comment]> {
-        Route(path: "\(path)/comments", method: .GET)
+        Route(path: "\(path)/comments", method: .GET, traktManager: traktManager)
     }
     
     // MARK: - Resources
@@ -69,7 +71,8 @@ public struct SeasonResource {
         EpisodeResource(
             showId: showId,
             seasonNumber: seasonNumber,
-            episodeNumber: number
+            episodeNumber: number,
+            traktManager: traktManager
         )
     }
 }

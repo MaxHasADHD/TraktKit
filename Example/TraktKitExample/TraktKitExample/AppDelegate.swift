@@ -13,6 +13,12 @@ extension Notification.Name {
     static let TraktSignedIn = Notification.Name(rawValue: "TraktSignedIn")
 }
 
+let traktManager = TraktManager(
+    clientId: Constants.clientId,
+    clientSecret: Constants.clientSecret,
+    redirectURI: Constants.redirectURI
+)
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,19 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get keys from https://trakt.tv/oauth/applications
     }
 
-    let traktManager = TraktManager(
-        clientId: Constants.clientId,
-        clientSecret: Constants.clientSecret,
-        redirectURI: Constants.redirectURI
-    )
-
     var window: UIWindow?
 
     // MARK: - Lifecycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        DependencyContainer.shared.traktClient = traktManager
         return true
     }
 
@@ -62,23 +61,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-
-extension URL {
-    func queryDict() -> [String: Any] {
-        var info: [String: Any] = [String: Any]()
-        if let queryString = self.query{
-            for parameter in queryString.components(separatedBy: "&"){
-                let parts = parameter.components(separatedBy: "=")
-                if parts.count > 1 {
-                    let key = parts[0].removingPercentEncoding
-                    let value = parts[1].removingPercentEncoding
-                    if key != nil && value != nil{
-                        info[key!] = value
-                    }
-                }
-            }
-        }
-        return info
-    }
-}
-

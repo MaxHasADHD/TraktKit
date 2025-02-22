@@ -15,8 +15,6 @@ final class ViewController: UIViewController {
 
     // MARK: - Properties
 
-    @InjectedClient var traktManager
-
     private let stackView = UIStackView()
 
     private var cancellables: Set<AnyCancellable> = []

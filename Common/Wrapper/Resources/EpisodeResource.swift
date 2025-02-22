@@ -13,12 +13,14 @@ public struct EpisodeResource {
     public let seasonNumber: Int
     public let episodeNumber: Int
     private let path: String
-    
-    init(showId: CustomStringConvertible, seasonNumber: Int, episodeNumber: Int) {
+    private let traktManager: TraktManager
+
+    internal init(showId: CustomStringConvertible, seasonNumber: Int, episodeNumber: Int, traktManager: TraktManager) {
         self.showId = showId
         self.seasonNumber = seasonNumber
         self.episodeNumber = episodeNumber
         self.path = "shows/\(showId)/seasons/\(seasonNumber)/episodes/\(episodeNumber)"
+        self.traktManager = traktManager
     }
 
     /**
@@ -27,7 +29,7 @@ public struct EpisodeResource {
      **Note**: If the `first_aired` is unknown, it will be set to `null`.
      */
     public func summary() -> Route<TraktEpisode> {
-        Route(path: path, method: .GET)
+        Route(path: path, method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -40,7 +42,7 @@ public struct EpisodeResource {
         if let language {
             path += "/\(language)"
         }
-        return Route(path: path, method: .GET)
+        return Route(path: path, method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -49,7 +51,7 @@ public struct EpisodeResource {
      📄 Pagination
      */
     public func comments() -> Route<[Comment]> {
-        Route(path: path + "/comments", method: .GET)
+        Route(path: path + "/comments", method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -58,14 +60,14 @@ public struct EpisodeResource {
      📄 Pagination
      */
     public func containingLists() -> Route<[TraktList]> {
-        Route(path: path + "/lists", method: .GET)
+        Route(path: path + "/lists", method: .GET, traktManager: traktManager)
     }
 
     /**
      Returns rating (between 0 and 10) and distribution for an episode.
      */
     public func ratings() -> Route<RatingDistribution> {
-        Route(path: path + "/ratings", method: .GET)
+        Route(path: path + "/ratings", method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -82,14 +84,14 @@ public struct EpisodeResource {
      ✨ Extended Info
      */
     public func people() -> Route<CastAndCrew<TVCastMember, TVCrewMember>> {
-        Route(path: path + "/comments", method: .GET)
+        Route(path: path + "/comments", method: .GET, traktManager: traktManager)
     }
 
     /**
      Returns lots of episode stats.
      */
     public func stats() -> Route<TraktStats> {
-        Route(path: path + "/stats", method: .GET)
+        Route(path: path + "/stats", method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -97,7 +99,7 @@ public struct EpisodeResource {
      ✨ Extended Info
      */
     public func usersWatching() -> Route<[User]> {
-        Route(path: path + "/watching", method: .GET)
+        Route(path: path + "/watching", method: .GET, traktManager: traktManager)
     }
 
     /**
@@ -105,7 +107,7 @@ public struct EpisodeResource {
      ✨ Extended Info
      */
     public func videos() -> Route<[TraktVideo]> {
-        Route(path: path + "/videos", method: .GET)
+        Route(path: path + "/videos", method: .GET, traktManager: traktManager)
     }
 }
 

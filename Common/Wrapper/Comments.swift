@@ -48,7 +48,7 @@ extension TraktManager {
                                           withQuery: [:],
                                           isAuthorized: true,
                                           withHTTPMethod: .PUT)
-        request.httpBody = try jsonEncoder.encode(body)
+        request.httpBody = try Self.jsonEncoder.encode(body)
         return performRequest(request: request, completion: completion)
     }
     

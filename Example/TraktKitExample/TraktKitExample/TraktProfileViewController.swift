@@ -13,8 +13,6 @@ final class TraktProfileViewController: UIViewController {
 
     // MARK: - Properties
 
-    @InjectedClient var traktManager
-
     private let stackView = UIStackView()
 
     // MARK: - Lifecycle

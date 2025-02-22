@@ -17,7 +17,7 @@ final class ShowsTests: TraktTestCase {
     func test_get_min_trending_shows_await() async throws {
         try mock(.GET, "https://api.trakt.tv/shows/trending?extended=min&page=1&limit=10", result: .success(jsonData(named: "TrendingShows_Min")), headers: [.page(1), .pageCount(100)])
 
-        let response = try await traktManager.explore.trending.shows()
+        let response = try await traktManager.shows.trending()
             .extend(.Min)
             .page(1)
             .limit(10)
@@ -154,7 +154,7 @@ final class ShowsTests: TraktTestCase {
     func test_get_most_watched_shows_async() async throws {
         try? mock(.GET, "https://api.trakt.tv/shows/watched/weekly?page=1&limit=10", result: .success(jsonData(named: "test_get_most_watched_shows")), headers: [.page(1), .pageCount(8)])
 
-        let pagedObject = try await traktManager.shows()
+        let pagedObject = try await traktManager.shows
             .watched(period: .weekly)
             .page(1)
             .limit(10)
@@ -213,11 +213,11 @@ final class ShowsTests: TraktTestCase {
 
     // MARK: - Updates
 
-    func test_get_updated_shows() {
-        try? mock(.GET, "https://api.trakt.tv/shows/updates/2014-09-22?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_updated_shows")))
+    func test_get_updated_shows() throws {
+        try mock(.GET, "https://api.trakt.tv/shows/updates/2014-09-22?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_updated_shows")))
 
         let expectation = XCTestExpectation(description: "Get updated shows")
-        traktManager.getUpdatedShows(startDate: try! Date.dateFromString("2014-09-22"), pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.getUpdatedShows(startDate: try Date.dateFromString("2014-09-22"), pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let shows, _, _) = result {
                 XCTAssertEqual(shows.count, 2)
                 expectation.fulfill()
@@ -230,6 +230,16 @@ final class ShowsTests: TraktTestCase {
         default:
             break
         }
+    }
+
+    func test_get_updated_show_ids() async throws {
+        try mock(.GET, "https://api.trakt.tv/shows/updates/id/2025-01-01T00:00:00", result: .success(jsonData(named: "test_get_updated_shows_ids")))
+
+        let updatedIds = try await traktManager.shows
+            .recentlyUpdatedIds(since: try Date.dateFromString("2025-01-01"))
+            .perform()
+        XCTAssertEqual(updatedIds.object.count, 100)
+        XCTAssertEqual(updatedIds.object.first, 163302)
     }
 
     // MARK: - Summary

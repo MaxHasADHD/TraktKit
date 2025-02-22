@@ -12,7 +12,6 @@ class TraktTestCase: XCTestCase {
     lazy var traktManager = TraktManager(session: URLSession.mockedResponsesOnly, clientId: "", clientSecret: "", redirectURI: "")
 
     override func setUp() {
-        DependencyContainer.shared.traktClient = traktManager
     }
 
     override func tearDown() {

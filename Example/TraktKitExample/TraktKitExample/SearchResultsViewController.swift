@@ -12,7 +12,6 @@ import TraktKit
 final class SearchResultsViewController: UITableViewController {
 
     // MARK: - Properties
-    @InjectedClient var traktManager
 
     private var shows: [TraktShow] = [] {
         didSet {
