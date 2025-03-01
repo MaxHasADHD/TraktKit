@@ -295,19 +295,19 @@ public enum Period: String, Sendable, CustomStringConvertible {
 
 public struct HiddenItemSection: Sendable {
     /// Can hide movie, show objects
-    static let calendar = "calendar"
+    public static let calendar = "calendar"
     /// Can hide show, season objects
-    static let progressWatched = "progress_watched"
+    public static let progressWatched = "progress_watched"
     /// Can hide show, season objects
-    static let progressWatchedReset = "progress_watched_reset"
+    public static let progressWatchedReset = "progress_watched_reset"
     /// Can hide show, season objects
-    static let progressCollected = "progress_collected"
+    public static let progressCollected = "progress_collected"
     /// Can hide movie, show objects
-    static let recommendations = "recommendations"
+    public static let recommendations = "recommendations"
     // Can hide users
-    static let comments = "comments"
+    public static let comments = "comments"
     // Can hide shows
-    static let dropped = "dropped"
+    public static let dropped = "dropped"
 }
 
 public enum HiddenItemsType: String, Sendable {
