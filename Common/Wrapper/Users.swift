@@ -97,7 +97,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func hiddenItems(section: SectionType, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
+    public func hiddenItems(section: String, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
         var query: [String: String] = ["extended": extended.queryString()]
         if let type = type {
             query["type"] = type.rawValue
@@ -110,7 +110,7 @@ extension TraktManager {
             }
         }
 
-        guard let request = try? mutableRequest(forPath: "users/hidden/\(section.rawValue)",
+        guard let request = try? mutableRequest(forPath: "users/hidden/\(section)",
             withQuery: query,
             isAuthorized: true,
             withHTTPMethod: .GET) else { return nil }
@@ -123,9 +123,9 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func hide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTask? {
+    public func hide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: String, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
-        guard let request = post("users/hidden/\(section.rawValue)", body: body) else { return nil }
+        guard let request = post("users/hidden/\(section)", body: body) else { return nil }
         return performRequest(request: request, completion: completion)
     }
     
@@ -135,9 +135,9 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func unhide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: SectionType, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTask? {
+    public func unhide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: String, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
-        guard let request = post("users/hidden/\(section.rawValue)/remove", body: body) else { return nil }
+        guard let request = post("users/hidden/\(section)/remove", body: body) else { return nil }
         return performRequest(request: request, completion: completion)
     }
     

@@ -234,7 +234,8 @@ public final class TraktManager: Sendable {
         return request
     }
 
-    internal func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) throws -> URLRequest {
+    internal func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method, body: Encodable? = nil) throws -> URLRequest {
+        // Build URL
         let urlString = "https://\(apiHost)/" + path
         guard var components = URLComponents(string: urlString) else { throw TraktKitError.malformedURL }
 
@@ -247,10 +248,13 @@ public final class TraktManager: Sendable {
         }
 
         guard let url = components.url else { throw TraktKitError.malformedURL }
+
+        // Request
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
+        // Headers
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("2", forHTTPHeaderField: "trakt-api-version")
         request.addValue(clientId, forHTTPHeaderField: "trakt-api-key")
@@ -259,6 +263,11 @@ public final class TraktManager: Sendable {
             if let accessToken {
                 request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             }
+        }
+
+        // Body
+        if let body {
+            request.httpBody = try Self.jsonEncoder.encode(body)
         }
 
         return request

@@ -293,15 +293,21 @@ public enum Period: String, Sendable, CustomStringConvertible {
     }
 }
 
-public enum SectionType: String, Sendable {
+public struct HiddenItemSection: Sendable {
     /// Can hide movie, show objects
-    case Calendar = "calendar"
+    static let calendar = "calendar"
     /// Can hide show, season objects
-    case ProgressWatched = "progress_watched"
+    static let progressWatched = "progress_watched"
     /// Can hide show, season objects
-    case ProgressCollected = "progress_collected"
+    static let progressWatchedReset = "progress_watched_reset"
+    /// Can hide show, season objects
+    static let progressCollected = "progress_collected"
     /// Can hide movie, show objects
-    case Recommendations = "recommendations"
+    static let recommendations = "recommendations"
+    // Can hide users
+    static let comments = "comments"
+    // Can hide shows
+    static let dropped = "dropped"
 }
 
 public enum HiddenItemsType: String, Sendable {

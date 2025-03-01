@@ -28,20 +28,24 @@ public struct Route<T: TraktObject>: Sendable {
     private var searchType: SearchType?
     private var searchQuery: String?
 
+    private var body: (any EncodableTraktObject)?
+
     // MARK: - Lifecycle
 
-    public init(path: String, queryItems: [String: String] = [:], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
+    public init(path: String, queryItems: [String: String] = [:], body: (any TraktObject)? = nil, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
         self.path = path
         self.queryItems = queryItems
+        self.body = body
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.resultType = resultType
         self.traktManager = traktManager
     }
 
-    public init(paths: [CustomStringConvertible?], queryItems: [String: String] = [:], method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
+    public init(paths: [CustomStringConvertible?], queryItems: [String: String] = [:], body: (any EncodableTraktObject)? = nil, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
         self.path = paths.compactMap { $0?.description }.joined(separator: "/")
         self.queryItems = queryItems
+        self.body = body
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.resultType = resultType
@@ -136,7 +140,8 @@ public struct Route<T: TraktObject>: Sendable {
             forPath: path,
             withQuery: query,
             isAuthorized: requiresAuthentication,
-            withHTTPMethod: method
+            withHTTPMethod: method,
+            body: body
         )
     }
 }

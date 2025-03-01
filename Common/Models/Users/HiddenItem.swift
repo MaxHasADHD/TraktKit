@@ -15,12 +15,15 @@ public struct HiddenItem: TraktObject {
     public let movie: TraktMovie?
     public let show: TraktShow?
     public let season: TraktSeason?
-    
+    public let user: User?
+
     enum CodingKeys: String, CodingKey {
         case hiddenAt = "hidden_at"
         case type
+
         case movie
         case show
         case season
+        case user
     }
 }

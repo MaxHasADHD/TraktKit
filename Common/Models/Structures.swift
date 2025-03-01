@@ -137,96 +137,151 @@ public struct TraktMovieStats: TraktObject {
 
 public struct TraktLastActivities: TraktObject {
     public let all: Date
-    public let movies: TraktLastActivityMovies
-    public let episodes: TraktLastActivityEpisodes
-    public let shows: TraktLastActivityShows
-    public let seasons: TraktLastActivitySeasons
-    public let comments: TraktLastActivityComments
-    public let lists: TraktLastActivityLists
-}
+    public let movies: Movies
+    public let episodes: Episodes
+    public let shows: Shows
+    public let seasons: Seasons
+    public let comments: Comments
+    public let lists: Lists
+    public let watchlist: LastUpdated
+    public let favorites: LastUpdated
+    public let account: Account
+    public let savedFilters: LastUpdated
+    public let notes: LastUpdated
 
-public struct TraktLastActivityMovies: TraktObject {
-    public let watchedAt: Date
-    public let collectedAt: Date
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let pausedAt: Date
-    public let hiddenAt: Date
-    
     enum CodingKeys: String, CodingKey {
-        case watchedAt = "watched_at"
-        case collectedAt = "collected_at"
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case pausedAt = "paused_at"
-        case hiddenAt = "hidden_at"
+        case all
+        case movies
+        case episodes
+        case shows
+        case seasons
+        case comments
+        case lists
+        case watchlist
+        case favorites
+        case account
+        case savedFilters = "saved_filters"
+        case notes
     }
-}
 
-public struct TraktLastActivityEpisodes: TraktObject {
-    public let watchedAt: Date
-    public let collectedAt: Date
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let pausedAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case watchedAt = "watched_at"
-        case collectedAt = "collected_at"
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case pausedAt = "paused_at"
+    public struct Movies: TraktObject {
+        public let watchedAt: Date
+        public let collectedAt: Date
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let favoritesAt: Date
+        public let commentedAt: Date
+        public let pausedAt: Date
+        public let hiddenAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case watchedAt = "watched_at"
+            case collectedAt = "collected_at"
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case favoritesAt = "favorited_at"
+            case commentedAt = "commented_at"
+            case pausedAt = "paused_at"
+            case hiddenAt = "hidden_at"
+        }
     }
-}
 
-public struct TraktLastActivityShows: TraktObject {
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let hiddenAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case hiddenAt = "hidden_at"
+    public struct Episodes: TraktObject {
+        public let watchedAt: Date
+        public let collectedAt: Date
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let commentedAt: Date
+        public let pausedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case watchedAt = "watched_at"
+            case collectedAt = "collected_at"
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case commentedAt = "commented_at"
+            case pausedAt = "paused_at"
+        }
     }
-}
 
-public struct TraktLastActivitySeasons: TraktObject {
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let hiddenAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case hiddenAt = "hidden_at"
+    public struct Shows: TraktObject {
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let favoritesAt: Date
+        public let commentedAt: Date
+        public let hiddenAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case favoritesAt = "favorited_at"
+            case commentedAt = "commented_at"
+            case hiddenAt = "hidden_at"
+        }
     }
-}
 
-public struct TraktLastActivityComments: TraktObject {
-    public let likedAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case likedAt = "liked_at"
+    public struct Seasons: TraktObject {
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let commentedAt: Date
+        public let hiddenAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case commentedAt = "commented_at"
+            case hiddenAt = "hidden_at"
+        }
     }
-}
 
-public struct TraktLastActivityLists: TraktObject {
-    public let likedAt: Date
-    public let updatedAt: Date
-    public let commentedAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case likedAt = "liked_at"
-        case updatedAt = "updated_at"
-        case commentedAt = "commented_at"
+    public struct Comments: TraktObject {
+        public let likedAt: Date
+        public let blockedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case likedAt = "liked_at"
+            case blockedAt = "blocked_at"
+        }
+    }
+
+    public struct Lists: TraktObject {
+        public let likedAt: Date
+        public let updatedAt: Date
+        public let commentedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case likedAt = "liked_at"
+            case updatedAt = "updated_at"
+            case commentedAt = "commented_at"
+        }
+    }
+
+    public struct Account: TraktObject {
+        /// When the OAuth user updates any of their Trakt settings on the website
+        public let settingsChanged: Date
+        /// When another Trakt user follows or unfollows the OAuth user.
+        public let followedChanged: Date
+        /// When the OAuth user follows or unfollows another Trakt user.
+        public let followingChanged: Date
+        /// When the OAuth user follows a private account, which requires their approval.
+        public let pendingFollowingChanged: Date
+        /// When the OAuth user has a private account and someone requests to follow them.
+        public let requestedFollowingChanged: Date
+
+        enum CodingKeys: String, CodingKey {
+            case settingsChanged = "settings_at"
+            case followedChanged = "followed_at"
+            case followingChanged = "following_at"
+            case pendingFollowingChanged = "pending_at"
+            case requestedFollowingChanged = "requested_at"
+        }
+    }
+
+    public struct LastUpdated: TraktObject {
+        public let updatedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case updatedAt = "updated_at"
+        }
     }
 }

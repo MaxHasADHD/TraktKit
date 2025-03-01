@@ -101,7 +101,7 @@ final class UserTests: TraktTestCase {
     func test_get_saved_filters() async throws {
         try mock(.GET, "https://api.trakt.tv/users/saved_filters", result: .success(jsonData(named: "test_get_saved_filters")))
 
-        let filters = try await traktManager.currentUser().savedFilters().perform()
+        let filters = try await traktManager.currentUser().savedFilters().perform().object
         XCTAssertEqual(filters.count, 4)
 
         let firstFilter = try XCTUnwrap(filters.first)
@@ -114,7 +114,7 @@ final class UserTests: TraktTestCase {
         try mock(.GET, "https://api.trakt.tv/users/hidden/progress_watched?page=1&limit=10&type=show&extended=min", result: .success(jsonData(named: "test_get_hidden_items")))
 
         let expectation = XCTestExpectation(description: "HiddenItems")
-        traktManager.hiddenItems(section: .ProgressWatched, type: .Show, pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.hiddenItems(section: HiddenItemSection.progressWatched, type: .Show, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let hiddenShows, _, _) = result {
                 XCTAssertEqual(hiddenShows.count, 2)
                 expectation.fulfill()
@@ -135,7 +135,7 @@ final class UserTests: TraktTestCase {
         try mock(.POST, "https://api.trakt.tv/users/hidden/calendar", result: .success(jsonData(named: "test_add_hidden_item")))
 
         let expectation = XCTestExpectation(description: "Add hidden item")
-        try! traktManager.hide(from: .Calendar) { result in
+        try! traktManager.hide(from: HiddenItemSection.calendar) { result in
             if case .success(let result) = result {
                 XCTAssertEqual(result.added.movies, 1)
                 XCTAssertEqual(result.added.shows, 2)
@@ -159,7 +159,7 @@ final class UserTests: TraktTestCase {
         try mock(.GET, "https://api.trakt.tv/users/hidden/calendar/remove", result: .success(jsonData(named: "test_post_remove_hidden_items")))
 
         let expectation = XCTestExpectation(description: "Remove hidden items")
-        try! traktManager.unhide(from: .Calendar) { result in
+        try! traktManager.unhide(from: HiddenItemSection.calendar) { result in
             if case .success(let result) = result {
                 XCTAssertEqual(result.deleted.movies, 1)
                 XCTAssertEqual(result.deleted.shows, 2)

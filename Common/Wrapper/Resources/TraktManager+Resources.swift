@@ -46,13 +46,17 @@ extension TraktManager {
         EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
 
+    public func sync() -> SyncResource {
+        SyncResource(traktManager: self)
+    }
+
     // MARK: - User
 
     public func currentUser() -> CurrentUserResource {
         CurrentUserResource(traktManager: self)
     }
     
-    public func user(_ username: String) -> UsersResource {
-        UsersResource(username: username, traktManager: self)
+    public func user(_ slug: String) -> UsersResource {
+        UsersResource(slug: slug, traktManager: self)
     }
 }

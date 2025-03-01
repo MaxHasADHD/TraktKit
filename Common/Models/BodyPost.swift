@@ -9,21 +9,32 @@
 import Foundation
 
 /// Body data for endpoints like `/sync/history` that contains Trakt Ids.
-struct TraktMediaBody<ID: Encodable>: Encodable {
+struct TraktMediaBody<ID: EncodableTraktObject>: EncodableTraktObject {
     let movies: [ID]?
     let shows: [ID]?
     let seasons: [ID]?
     let episodes: [ID]?
     let ids: [Int]?
+    /// Cast and crew, not users
     let people: [ID]?
-    
-    init(movies: [ID]? = nil, shows: [ID]? = nil, seasons: [ID]? = nil, episodes: [ID]? = nil, ids: [Int]? = nil, people: [ID]? = nil) {
+    let users: [ID]?
+
+    init(
+        movies: [ID]? = nil,
+        shows: [ID]? = nil,
+        seasons: [ID]? = nil,
+        episodes: [ID]? = nil,
+        ids: [Int]? = nil,
+        people: [ID]? = nil,
+        users: [ID]? = nil
+    ) {
         self.movies = movies
         self.shows = shows
         self.seasons = seasons
         self.episodes = episodes
         self.ids = ids
         self.people = people
+        self.users = users
     }
 }
 
@@ -55,37 +66,46 @@ class TraktCommentBody: TraktSingleObjectBody<SyncId> {
     }
 }
 
-/// ID used to sync with Trakt.
+/**
+ Trakt or Slug ID to send to Trakt in POST requests related to media objects and users.
+ */
 public struct SyncId: TraktObject {
     /// Trakt id of the movie / show / season / episode
-    public let trakt: Int
-    
+    public let trakt: Int?
+    /// Slug id for movie / show / season / episode / user
+    public let slug: String?
+
     enum CodingKeys: String, CodingKey {
         case ids
     }
     
     enum IDCodingKeys: String, CodingKey {
         case trakt
+        case slug
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         var nested = container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .ids)
-        try nested.encode(trakt, forKey: .trakt)
+        try nested.encodeIfPresent(trakt, forKey: .trakt)
+        try nested.encodeIfPresent(slug, forKey: .slug)
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let nested = try container.nestedContainer(keyedBy: IDCodingKeys.self, forKey: .ids)
-        self.trakt = try nested.decode(Int.self, forKey: .trakt)
+        self.trakt = try nested.decodeIfPresent(Int.self, forKey: .trakt)
+        self.slug = try nested.decodeIfPresent(String.self, forKey: .slug)
     }
     
-    public init(trakt: Int) {
+    public init(trakt: Int? = nil, slug: String? = nil) {
+        assert(!(trakt == nil && slug == nil), "One of the ids must be set.")
         self.trakt = trakt
+        self.slug = slug
     }
 }
 
-public struct AddToHistoryId: Encodable, Hashable {
+public struct AddToHistoryId: EncodableTraktObject {
     /// Trakt id of the movie / show / season / episode
     public let trakt: Int
     /// UTC datetime when the item was watched.
@@ -112,7 +132,7 @@ public struct AddToHistoryId: Encodable, Hashable {
     }
 }
 
-public struct RatingId: Encodable, Hashable {
+public struct RatingId: EncodableTraktObject {
     /// Trakt id of the movie / show / season / episode
     public let trakt: Int
     /// Between 1 and 10.
@@ -143,7 +163,7 @@ public struct RatingId: Encodable, Hashable {
     }
 }
 
-public struct CollectionId: Encodable, Hashable {
+public struct CollectionId: EncodableTraktObject {
     /// Trakt id of the movie / show / season / episode
     public let trakt: Int
     /// UTC datetime when the item was collected. Set to `released` to automatically use the inital release date.
