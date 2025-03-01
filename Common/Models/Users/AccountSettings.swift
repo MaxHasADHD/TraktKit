@@ -35,9 +35,9 @@ public struct AccountSettings: TraktObject {
     }
 
     public struct SharingText: TraktObject {
-        public let watching: String
-        public let watched: String
-        public let rated: String
+        public let watching: String?
+        public let watched: String?
+        public let rated: String?
     }
 
     public struct Limits: TraktObject {
