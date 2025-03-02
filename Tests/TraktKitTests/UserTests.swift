@@ -524,9 +524,12 @@ final class UserTests: TraktTestCase {
 
         let expectation = XCTestExpectation(description: "Get custom list items")
         traktManager.getItemsForCustomList(username: "sean", listID: "star-wars-in-machete-order") { result in
-            if case .success(let listItems) = result {
+            switch result {
+            case .success(let listItems):
                 XCTAssertEqual(listItems.count, 5)
                 expectation.fulfill()
+            case .error(let error):
+                XCTFail("Failed to get items on custom list: \(error)")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
@@ -800,9 +803,12 @@ final class UserTests: TraktTestCase {
 
         let expectation = XCTestExpectation(description: "Get user watchlist")
         traktManager.getUserWatchlist(username: "sean", type: .Movies, extended: [.Min]) { result in
-            if case .success(let watchlist) = result {
-                XCTAssertEqual(watchlist.count, 2)
+            switch result {
+            case .success(let watchlist):
+                XCTAssertEqual(watchlist.count, 5)
                 expectation.fulfill()
+            case .error(let error):
+                XCTFail("Failed to get user watchlist: \(error)")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)

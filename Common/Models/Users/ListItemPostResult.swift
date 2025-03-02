@@ -40,7 +40,8 @@ public struct WatchlistItemPostResult: TraktObject {
     public let added: ObjectCount
     public let existing: ObjectCount
     public let notFound: NotFound
-    
+    public let list: List
+
     public struct ObjectCount: TraktObject {
         public let movies: Int
         public let shows: Int
@@ -54,11 +55,22 @@ public struct WatchlistItemPostResult: TraktObject {
         public let seasons: [NotFoundIds]
         public let episodes: [NotFoundIds]
     }
-    
+
+    public struct List: TraktObject {
+        public let updatedAt: Date
+        public let itemCount: Int
+
+        enum CodingKeys: String, CodingKey {
+            case updatedAt = "updated_at"
+            case itemCount = "item_count"
+        }
+    }
+
     enum CodingKeys: String, CodingKey {
         case added
         case existing
         case notFound = "not_found"
+        case list
     }
 }
 

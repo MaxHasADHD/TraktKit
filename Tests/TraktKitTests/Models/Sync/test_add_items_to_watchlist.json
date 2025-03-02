@@ -1,32 +1,30 @@
 {
-  "added" : {
-    "seasons" : 1,
-    "movies" : 1,
-    "shows" : 1,
-    "episodes" : 2
-  },
-  "existing" : {
-    "seasons" : 0,
-    "movies" : 0,
-    "shows" : 0,
-    "episodes" : 0
-  },
-  "not_found" : {
-    "seasons" : [
-
-    ],
-    "movies" : [
-      {
-        "ids" : {
-          "imdb" : "tt0000111"
-        }
-      }
-    ],
-    "shows" : [
-
-    ],
-    "episodes" : [
-
-    ]
-  }
+    "added": {
+        "movies": 1,
+        "shows": 1,
+        "seasons": 1,
+        "episodes": 2
+    },
+    "existing": {
+        "movies": 0,
+        "shows": 0,
+        "seasons": 0,
+        "episodes": 0
+    },
+    "not_found": {
+        "movies": [
+            {
+                "ids": {
+                    "imdb": "tt0000111"
+                }
+            }
+        ],
+        "shows": [],
+        "seasons": [],
+        "episodes": []
+    },
+    "list": {
+        "updated_at": "2022-04-27T21:40:41.000Z",
+        "item_count": 5
+    }
 }

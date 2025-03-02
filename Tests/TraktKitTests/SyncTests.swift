@@ -420,8 +420,11 @@ final class SyncTests: TraktTestCase {
 
         let expectation = XCTestExpectation(description: "Add items to watchlist")
         try traktManager.addToWatchlist(movies: [], shows: [], episodes: []) { result in
-            if case .success = result {
+            switch result {
+            case .success:
                 expectation.fulfill()
+            case .error(let error):
+                XCTFail("Failed to add to watchlist: \(error)")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)

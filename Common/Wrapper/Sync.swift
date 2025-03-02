@@ -97,15 +97,15 @@ extension TraktManager {
     
     /**
      Add items to a user's collection. Accepts shows, seasons, episodes and movies. If only a show is passed, all episodes for the show will be collected. If seasons are specified, all episodes in those seasons will be collected.
-     
+
      Send a `collected_at` UTC datetime to mark items as collected in the past. You can also send additional metadata about the media itself to have a very accurate collection. Showcase what is available to watch from your epic HD DVD collection down to your downloaded iTunes movies.
-     
-     **Note**: You can resend items already in your collection and they will be updated with any new values. This includes the `collected_at` and any other metadata.
-     
+
+     > Note: You can resend items already in your collection and they will be updated with any new values. This includes the `collected_at` and any other metadata.
+
      Status Code: 201
-     
+
      🔒 OAuth: Required
-     
+
      - parameter movies: Array of movie Trakt ids
      - parameter shows: Array of show Trakt ids
      - parameter seasons: Array of season Trakt ids
@@ -248,10 +248,11 @@ extension TraktManager {
      
      🔒 OAuth: Required
      
-     - parameter movies: array of movie objects
-     - parameter shows: array of show objects
-     - parameter episodes: array of episode objects
-     - parameter completion: completion handler
+     - parameters:
+        - movies: array of `movie` objects
+        -  shows: array of `show` objects
+        -  seasons: array of `season` objects
+        - episodes: array of `episode` objects
      */
     @discardableResult
     public func addToHistory(movies: [AddToHistoryId]? = nil, shows: [AddToHistoryId]? = nil, seasons: [AddToHistoryId]? = nil, episodes: [AddToHistoryId]? = nil, completion: @escaping ObjectCompletionHandler<AddToHistoryResult>) throws -> URLSessionDataTask? {
