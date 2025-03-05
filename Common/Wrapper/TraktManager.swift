@@ -13,6 +13,9 @@ public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }
 
+public typealias TraktObject = Codable & Hashable & Sendable
+public typealias EncodableTraktObject = Encodable & Hashable & Sendable
+
 public final class TraktManager: Sendable {
 
     // MARK: - Types
@@ -215,26 +218,13 @@ public final class TraktManager: Sendable {
         UserDefaults.standard.removeObject(forKey: Constants.tokenExpirationDefaultsKey)
     }
 
-    internal func mutableRequestForURL(_ url: URL, authorization: Bool, HTTPMethod: Method) throws -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = HTTPMethod.rawValue
-
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        request.addValue(clientId, forHTTPHeaderField: "trakt-api-key")
-
-        if authorization {
-            if let accessToken {
-                request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            } else {
-                throw TraktKitError.userNotAuthorized
-            }
-        }
-
-        return request
-    }
-
-    internal func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method, body: Encodable? = nil) throws -> URLRequest {
+    internal func mutableRequest(
+        forPath path: String,
+        withQuery query: [String: String] = [:],
+        isAuthorized authorized: Bool,
+        withHTTPMethod httpMethod: Method,
+        body: Encodable? = nil
+    ) throws -> URLRequest {
         // Build URL
         let urlString = "https://\(apiHost)/" + path
         guard var components = URLComponents(string: urlString) else { throw TraktKitError.malformedURL }
@@ -262,6 +252,8 @@ public final class TraktManager: Sendable {
         if authorized {
             if let accessToken {
                 request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            } else {
+                throw TraktKitError.userNotAuthorized
             }
         }
 
@@ -307,21 +299,15 @@ public final class TraktManager: Sendable {
     // MARK: - Authentication
 
     public func getToken(authorizationCode code: String) async throws -> AuthenticationInfo {
-        let urlString = "https://\(apiHost)/oauth/token"
-        guard let url = URL(string: urlString) else {
-            throw TraktKitError.malformedURL
-        }
-        var request = try mutableRequestForURL(url, authorization: false, HTTPMethod: .POST)
+        let body = OAuthBody(
+            code: code,
+            clientId: clientId,
+            clientSecret: clientSecret,
+            redirectURI: redirectURI,
+            grantType: "authorization_code"
+        )
 
-        let json = [
-            "code": code,
-            "client_id": clientId,
-            "client_secret": clientSecret,
-            "redirect_uri": redirectURI,
-            "grant_type": "authorization_code",
-        ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-
+        let request = try mutableRequest(forPath: "/oauth/token", isAuthorized: false, withHTTPMethod: .POST, body: body)
         let authenticationInfo: AuthenticationInfo = try await perform(request: request)
         await saveCredentials(for: authenticationInfo, postAccountStatusChange: true)
         return authenticationInfo
@@ -329,17 +315,16 @@ public final class TraktManager: Sendable {
 
     // MARK: - Authentication - Devices
 
+    /**
+     Generate new codes to start the device authentication process. The `device_code` and interval will be used later to poll for the `access_token`. The `user_code` and `verification_url` should be presented to the user as mentioned in the flow steps above.
+
+     **QR Code**
+
+     You might consider generating a QR code for the user to easily scan on their mobile device. The QR code should be a URL that redirects to the `verification_url` and appends the `user_code`. For example, `https://trakt.tv/activate/5055CC52` would load the Trakt hosted `verification_url` and pre-fill in the `user_code`.
+     */
     public func getAppCode() async throws -> DeviceCode {
-        let urlString = "https://\(apiHost)/oauth/device/code/"
-
-        guard let url = URL(string: urlString) else {
-            throw TraktKitError.malformedURL
-        }
-        let json = ["client_id": clientId]
-
-        var request = try mutableRequestForURL(url, authorization: false, HTTPMethod: .POST)
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-
+        let body = OAuthBody(clientId: clientId)
+        let request = try mutableRequest(forPath: "/oauth/device/code", isAuthorized: false, withHTTPMethod: .POST, body: body)
         return try await perform(request: request)
     }
 
@@ -382,19 +367,8 @@ public final class TraktManager: Sendable {
     }
 
     private func requestAccessToken(code: String) async throws -> (AuthenticationInfo?, Int) {
-        // Build request
-        let urlString = "https://\(apiHost)/oauth/device/token"
-        guard let url = URL(string: urlString) else {
-            throw TraktKitError.malformedURL
-        }
-        var request = try mutableRequestForURL(url, authorization: false, HTTPMethod: .POST)
-
-        let json = [
-            "code": code,
-            "client_id": clientId,
-            "client_secret": clientSecret,
-        ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+        let body = OAuthBody(code: code, clientId: clientId, clientSecret: clientSecret)
+        let request = try mutableRequest(forPath: "/oauth/device/token", isAuthorized: false, withHTTPMethod: .POST, body: body)
 
         // Make response
         let (data, response) = try await session.data(for: request)
@@ -415,7 +389,7 @@ public final class TraktManager: Sendable {
 
         // Save expiration date
         let expiresDate = Date(timeIntervalSinceNow: authInfo.expiresIn)
-        UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
+        UserDefaults.standard.set(expiresDate, forKey: Constants.tokenExpirationDefaultsKey)
         UserDefaults.standard.synchronize()
 
         // Post notification
@@ -446,19 +420,8 @@ public final class TraktManager: Sendable {
         guard let refreshToken else { throw TraktKitError.invalidRefreshToken }
 
         // Create request
-        guard let url = URL(string: "https://\(apiHost)/oauth/token") else {
-            throw TraktKitError.malformedURL
-        }
-        var request = try mutableRequestForURL(url, authorization: false, HTTPMethod: .POST)
-
-        let json = [
-            "refresh_token": refreshToken,
-            "client_id": clientId,
-            "client_secret": clientSecret,
-            "redirect_uri": redirectURI,
-            "grant_type": "refresh_token",
-        ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+        let body = OAuthBody(refreshToken: refreshToken, clientId: clientId, clientSecret: clientSecret, redirectURI: redirectURI, grantType: "refresh_token")
+        let request = try mutableRequest(forPath: "/oauth/token", isAuthorized: false, withHTTPMethod: .POST, body: body)
 
         // Make request and handle response
         do {

@@ -32,6 +32,13 @@ extension RequestMocking {
         }
     }
 
+    static func replace(mock: MockedResponse) {
+        lock.withLock {
+            container.mocks.removeAll(where: { $0.url == mock.url })
+            container.mocks.append(mock)
+        }
+    }
+
     static func removeAllMocks() {
         lock.withLock {
             container.mocks.removeAll()

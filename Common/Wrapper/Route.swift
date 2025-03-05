@@ -98,12 +98,12 @@ public struct Route<T: TraktObject>: Sendable {
 
     // MARK: - Perform
 
-    public func perform() async throws -> T {
-        let request = try makeRequest(traktManager: traktManager)
-        return try await traktManager.perform(request: request)
+    public func perform(retryLimit: Int = 3) async throws -> T {
+        let request = try createRequest()
+        return try await traktManager.perform(request: request, retryLimit: retryLimit)
     }
 
-    private func makeRequest(traktManager: TraktManager) throws -> URLRequest {
+    private func createRequest() throws -> URLRequest {
         var query: [String: String] = queryItems
 
         if !extended.isEmpty {
@@ -146,6 +146,8 @@ public struct Route<T: TraktObject>: Sendable {
     }
 }
 
+// MARK: - No data response
+
 public struct EmptyRoute: Sendable {
     internal var path: String
     internal let method: Method
@@ -170,32 +172,185 @@ public struct EmptyRoute: Sendable {
 
     // MARK: - Perform
 
-    public func perform() async throws {
+    public func perform(retryLimit: Int = 3) async throws {
         let request = try traktManager.mutableRequest(
             forPath: path,
             withQuery: [:],
             isAuthorized: requiresAuthentication,
             withHTTPMethod: method
         )
-        let _ = try await traktManager.fetchData(request: request)
+        let _ = try await traktManager.fetchData(request: request, retryLimit: retryLimit)
     }
 }
+
+// MARK: - Pagination
 
 public protocol PagedObjectProtocol {
     static var objectType: Decodable.Type { get }
     static func createPagedObject(with object: Decodable, currentPage: Int, pageCount: Int) -> Self
 }
 
-public struct PagedObject<T: TraktObject>: PagedObjectProtocol, TraktObject {
-    public let object: T
+public struct PagedObject<TraktModel: TraktObject>: PagedObjectProtocol, TraktObject {
+    public let object: TraktModel
     public let currentPage: Int
     public let pageCount: Int
 
     public static var objectType: any Decodable.Type {
-        T.self
+        TraktModel.self
     }
 
     public static func createPagedObject(with object: Decodable, currentPage: Int, pageCount: Int) -> Self {
-        return PagedObject(object: object as! T, currentPage: currentPage, pageCount: pageCount)
+        return PagedObject(object: object as! TraktModel, currentPage: currentPage, pageCount: pageCount)
+    }
+}
+
+extension Route where T: PagedObjectProtocol {
+
+    /// Fetches all pages for a paginated endpoint, and returns the data in a Set.
+    func fetchAllPages<Element>() async throws -> Set<Element> where T.Type == PagedObject<[Element]>.Type {
+        // Fetch first page
+        let firstPage = try await self.page(1).perform()
+        var resultSet = Set<Element>(firstPage.object)
+
+        // Return early if there's only one page
+        guard firstPage.pageCount > 1 else { return resultSet }
+        resultSet = await withTaskGroup(of: [Element].self, returning: Set<Element>.self) { group in
+            let maxConcurrentRequests = min(firstPage.pageCount - 1, 10)
+            let pages = 2...firstPage.pageCount
+
+            let indexStream = AsyncStream<Int> { continuation in
+                for i in pages {
+                    continuation.yield(i)
+                }
+                continuation.finish()
+            }
+            var indexIterator = indexStream.makeAsyncIterator()
+            var results = resultSet
+
+            // Start with the initial batch of tasks
+            for _ in 0..<maxConcurrentRequests {
+                if let index = await indexIterator.next() {
+                    group.addTask {
+                        (try? await self.page(index).perform())?.object ?? []
+                    }
+                }
+            }
+
+            // Continue adding new tasks as others finish
+            while let result = await group.next() {
+                results.formUnion(result)  // Merge the `[Int]` result into `Set<Int>
+                if let index = await indexIterator.next() {
+                    group.addTask {
+                        (try? await self.page(index).perform())?.object ?? []
+                    }
+                }
+            }
+
+            return results
+        }
+
+        return resultSet
+    }
+
+    /// Stream paged results one at a time
+    func pagedResults<Element>() -> AsyncThrowingStream<[Element], Error> where T.Type == PagedObject<[Element]>.Type {
+        AsyncThrowingStream { continuation in
+            let task = Task {
+                do {
+                    // Fetch first page
+                    let firstPage = try await self.page(1).perform()
+                    continuation.yield(firstPage.object)
+
+                    guard firstPage.pageCount > 1 else {
+                        continuation.finish()
+                        return
+                    }
+
+                    // Use a semaphore to limit concurrency
+                    let semaphore = AsyncSemaphore(value: 10)
+                    let pages = 2...firstPage.pageCount
+
+                    try await withThrowingTaskGroup(of: (Int, [Element]).self) { group in
+                        for pageIndex in pages {
+                            // Acquire permit before starting new task
+                            try await semaphore.acquire()
+
+                            group.addTask {
+                                do {
+                                    let pageResult = try await self.page(pageIndex).perform().object
+                                    await semaphore.release()
+                                    return (pageIndex, pageResult)
+                                } catch {
+                                    await semaphore.release()
+                                    throw error
+                                }
+                            }
+                        }
+
+                        // Process results in order
+                        var nextPage = 2
+                        var buffer = [Int: [Element]]()
+
+                        while let result = try await group.next() {
+                            let (pageIndex, items) = result
+
+                            if pageIndex == nextPage {
+                                // We got the next page we need
+                                continuation.yield(items)
+                                nextPage += 1
+
+                                // Check if we have any buffered pages that can be yielded now
+                                while let bufferedItems = buffer[nextPage] {
+                                    continuation.yield(bufferedItems)
+                                    buffer[nextPage] = nil
+                                    nextPage += 1
+                                }
+                            } else {
+                                // Buffer out-of-order results
+                                buffer[pageIndex] = items
+                            }
+                        }
+                    }
+
+                    continuation.finish()
+                } catch {
+                    continuation.finish(throwing: error)
+                }
+            }
+
+            continuation.onTermination = { _ in
+                task.cancel()
+            }
+        }
+    }
+}
+
+// A simple AsyncSemaphore implementation
+actor AsyncSemaphore {
+    private var value: Int
+    private var waiters: [CheckedContinuation<Void, Error>] = []
+
+    init(value: Int) {
+        self.value = value
+    }
+
+    func acquire() async throws {
+        if value > 0 {
+            value -= 1
+            return
+        }
+
+        try await withCheckedThrowingContinuation { continuation in
+            waiters.append(continuation)
+        }
+    }
+
+    func release() {
+        if let waiter = waiters.first {
+            waiters.removeFirst()
+            waiter.resume()
+        } else {
+            value += 1
+        }
     }
 }

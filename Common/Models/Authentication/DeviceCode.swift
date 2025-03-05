@@ -5,10 +5,6 @@
 //  Copyright © 2020 Maximilian Litteral. All rights reserved.
 //
 
-#if canImport(UIKit)
-import UIKit
-#endif
-
 public struct DeviceCode: TraktObject {
     public let deviceCode: String
     public let userCode: String
@@ -16,7 +12,20 @@ public struct DeviceCode: TraktObject {
     public let expiresIn: TimeInterval
     public let interval: TimeInterval
 
+    enum CodingKeys: String, CodingKey {
+        case deviceCode = "device_code"
+        case userCode = "user_code"
+        case verificationURL = "verification_url"
+        case expiresIn = "expires_in"
+        case interval
+    }
+}
+
 #if canImport(UIKit) && canImport(CoreImage)
+import UIKit
+import CoreImage
+
+extension DeviceCode {
     public func getQRCode(scale: CGFloat = 3) -> UIImage? {
         guard
             let data = "\(verificationURL)/\(userCode)".data(using: .ascii),
@@ -31,13 +40,6 @@ public struct DeviceCode: TraktObject {
 
         return UIImage(ciImage: output)
     }
-#endif
-
-    enum CodingKeys: String, CodingKey {
-        case deviceCode = "device_code"
-        case userCode = "user_code"
-        case verificationURL = "verification_url"
-        case expiresIn = "expires_in"
-        case interval
-    }
 }
+
+#endif

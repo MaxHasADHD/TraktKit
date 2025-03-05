@@ -4,6 +4,7 @@
 //
 //  Created by Maximilian Litteral on 2/16/25.
 //
+import Foundation
 
 public enum HTTPHeader {
     case contentType
@@ -11,6 +12,7 @@ public enum HTTPHeader {
     case apiKey(String)
     case page(Int)
     case pageCount(Int)
+    case retry(TimeInterval)
 
     public var key: String {
         switch self {
@@ -24,6 +26,8 @@ public enum HTTPHeader {
             "X-Pagination-Page"
         case .pageCount:
             "X-Pagination-Page-Count"
+        case .retry:
+            "retry-after"
         }
     }
 
@@ -39,6 +43,8 @@ public enum HTTPHeader {
             page.description
         case .pageCount(let pageCount):
             pageCount.description
+        case .retry(let delay):
+            delay.description
         }
     }
 }

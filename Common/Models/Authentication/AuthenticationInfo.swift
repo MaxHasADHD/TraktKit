@@ -8,9 +8,6 @@
 
 import Foundation
 
-public typealias TraktObject = Codable & Hashable & Sendable
-public typealias EncodableTraktObject = Encodable & Hashable & Sendable
-
 public struct AuthenticationInfo: TraktObject {
     public let accessToken: String
     public let tokenType: String

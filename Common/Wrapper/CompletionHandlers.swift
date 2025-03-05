@@ -505,27 +505,46 @@ extension TraktManager {
 
     // MARK: - Async await
 
-    func fetchData(request: URLRequest) async throws -> (Data, URLResponse) {
-        let (data, response) = try await session.data(for: request)
-        try handleResponse(response: response)
-        do throws(TraktError) {
-            try self.handleResponse(response: response)
-            return (data, response)
-        } catch {
-            switch error {
-            case .retry(let after):
-                try await Task.sleep(for: .seconds(after))
-                try Task.checkCancellation()
-                return try await fetchData(request: request)
-            default:
+    /**
+     Downloads the contents of a URL based on the specified URL request. Handles ``TraktError/retry(after:)`` up to the specified `retryLimit`
+     */
+    func fetchData(request: URLRequest, retryLimit: Int = 3) async throws -> (Data, URLResponse) {
+        var retryCount = 0
+
+        while true {
+            do {
+                let (data, response) = try await session.data(for: request)
+                try handleResponse(response: response)
+                return (data, response)
+            } catch let error as TraktError {
+                switch error {
+                case .retry(let retryDelay):
+                    retryCount += 1
+                    if retryCount >= retryLimit {
+                        throw error
+                    }
+                    print("Retrying after delay: \(retryDelay)")
+                    try await Task.sleep(for: .seconds(retryDelay))
+                    try Task.checkCancellation()
+                default:
+                    throw error
+                }
+            } catch {
                 throw error
             }
         }
     }
 
-    func perform<T: TraktObject>(request: URLRequest) async throws -> T {
-        let (data, response) = try await session.data(for: request)
-        try handleResponse(response: response)
+    /**
+     Downloads the contents of a URL based on the specified URL request, and decodes the data into a `TraktObject`
+     */
+    func perform<T: TraktObject>(request: URLRequest, retryLimit: Int = 3) async throws -> T {
+        let (data, response) = try await fetchData(request: request, retryLimit: retryLimit)
+        return try decodeTraktObject(from: data, response: response)
+    }
+
+    /// Decodes data into a TraktObject. If the `TraktObject` type is `PagedObject` the headers will be extracted from the response.
+    private func decodeTraktObject<T: TraktObject>(from data: Data, response: URLResponse) throws -> T {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
 

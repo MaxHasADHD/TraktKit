@@ -17,8 +17,12 @@ final class TraktTestSuite {
         RequestMocking.removeAllMocks()
     }
 
-    static func mock(_ method: TraktKit.Method, _ urlString: String, result: Result<Data, Swift.Error>, httpCode: Int? = nil, headers: [HTTPHeader] = [.contentType, .apiVersion, .apiKey("")]) throws {
+    static func mock(_ method: TraktKit.Method, _ urlString: String, result: Result<Data, Swift.Error>, httpCode: Int? = nil, headers: [HTTPHeader] = [.contentType, .apiVersion, .apiKey("")], replace: Bool = false) throws {
         let mock = try RequestMocking.MockedResponse(urlString: urlString, result: result, httpCode: httpCode ?? method.expectedResult, headers: headers)
-        RequestMocking.add(mock: mock)
+        if replace {
+            RequestMocking.replace(mock: mock)
+        } else {
+            RequestMocking.add(mock: mock)
+        }
     }
 }
