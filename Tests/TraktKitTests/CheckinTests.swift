@@ -18,10 +18,13 @@ final class CheckinTests: TraktTestCase {
         let expectation = XCTestExpectation(description: "Checkin a movie")
         let checkin = TraktCheckinBody(movie: SyncId(trakt: 12345))
         traktManager.checkIn(checkin) { result in
-            if case .success(let checkin) = result {
+            defer { expectation.fulfill() }
+            switch result {
+            case .success(let checkin):
                 XCTAssertEqual(checkin.id, 3373536619)
                 XCTAssertNotNil(checkin.movie)
-                expectation.fulfill()
+            case .error:
+                XCTFail("Expected movie checkin")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
@@ -40,11 +43,14 @@ final class CheckinTests: TraktTestCase {
         let expectation = XCTestExpectation(description: "Checkin a episode")
         let checkin = TraktCheckinBody(episode: SyncId(trakt: 12345))
         traktManager.checkIn(checkin) { result in
-            if case .success(let checkin) = result {
+            defer { expectation.fulfill() }
+            switch result {
+            case .success(let checkin):
                 XCTAssertEqual(checkin.id, 3373536620)
                 XCTAssertNotNil(checkin.episode)
                 XCTAssertNotNil(checkin.show)
-                expectation.fulfill()
+            case .error:
+                XCTFail("Expected episode checkin")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
@@ -63,9 +69,12 @@ final class CheckinTests: TraktTestCase {
         let expectation = XCTestExpectation(description: "Checkin an existing item")
         let checkin = TraktCheckinBody(episode: SyncId(trakt: 12345))
         traktManager.checkIn(checkin) { result in
-            if case .checkedIn(let expiration) = result {
-                XCTAssertEqual(expiration.dateString(withFormat: "YYYY-MM-dd"), "2014-10-15")
-                expectation.fulfill()
+            defer { expectation.fulfill() }
+            switch result {
+            case .success:
+                XCTFail("Expecting a 409 response error")
+            case .error(let error):
+                XCTAssertEqual(error as? TraktManager.TraktError, TraktManager.TraktError.resourceAlreadyCreated)
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)

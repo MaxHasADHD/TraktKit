@@ -33,13 +33,7 @@ extension TraktManager {
         case success
         case fail
     }
-    
-    public enum CheckinResultType: Sendable {
-        case success(checkin: TraktCheckinResponse)
-        case checkedIn(expiration: Date)
-        case error(error: Error?)
-    }
-    
+
     public enum TraktError: LocalizedError, Equatable {
         /// 204. Some methods will succeed but not return any content. The network manager doesn't handle this well at the moment as it wants to decode the data when it is empty. Instead I'll throw this error so that it can be ignored for now.
         case noContent
@@ -143,7 +137,7 @@ extension TraktManager {
     public typealias dvdReleaseCompletionHandler = ObjectCompletionHandler<[TraktDVDReleaseMovie]>
     
     // MARK: Checkin
-    public typealias checkinCompletionHandler = @Sendable (_ result: CheckinResultType) -> Void
+    public typealias checkinCompletionHandler = ObjectCompletionHandler<TraktCheckinResponse>
 
     // MARK: Shows
     public typealias TrendingShowsCompletionHandler = paginatedCompletionHandler<TraktTrendingShow>
@@ -296,57 +290,7 @@ extension TraktManager {
         datatask.resume()
         return datatask
     }
-    
-    /// Checkin
-    func performRequest(request: URLRequest, completion: @escaping checkinCompletionHandler) -> URLSessionDataTask? {
-        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
-            guard let self else { return }
-            if let error {
-                completion(.error(error: error))
-                return
-            }
 
-            // Check data
-            guard let data = data else {
-                completion(.error(error: TraktKitError.couldNotParseData))
-                return
-            }
-
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-
-            if let checkin = try? decoder.decode(TraktCheckinResponse.self, from: data) {
-                completion(.success(checkin: checkin))
-                return
-            } else if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                let jsonDictionary = jsonObject as? RawJSON,
-                let expirationDateString = jsonDictionary["expires_at"] as? String,
-                let expirationDate = try? Date.dateFromString(expirationDateString) {
-                completion(.checkedIn(expiration: expirationDate))
-                return
-            }
-            
-            // Check response
-            do throws(TraktError) {
-                try self.handleResponse(response: response)
-            } catch {
-                switch error {
-                case .retry(let after):
-                    DispatchQueue.global().asyncAfter(deadline: .now() + after) { [weak self, completion] in
-                        _ = self?.performRequest(request: request, completion: completion)
-                    }
-                default:
-                    completion(.error(error: error))
-                }
-                return
-            }
-
-            completion(.error(error: nil))
-        }
-        datatask.resume()
-        return datatask
-    }
-    
     // Generic array of Trakt objects
     func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping ObjectCompletionHandler<T>) -> URLSessionDataTask? {
         let aCompletion: DataResultCompletionHandler = { (result) -> Void in
