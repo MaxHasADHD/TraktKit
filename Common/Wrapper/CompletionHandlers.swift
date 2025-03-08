@@ -34,17 +34,6 @@ extension TraktManager {
         case fail
     }
     
-    public enum ProgressResultType: Sendable {
-        case success
-        case fail(Int)
-    }
-    
-    public enum WatchingResultType: Sendable {
-        case checkedIn(watching: TraktWatching)
-        case notCheckedIn
-        case error(error: Error?)
-    }
-    
     public enum CheckinResultType: Sendable {
         case success(checkin: TraktCheckinResponse)
         case checkedIn(expiration: Date)
@@ -140,7 +129,6 @@ extension TraktManager {
 
     public typealias DataResultCompletionHandler = @Sendable (_ result: DataResultType) -> Void
     public typealias SuccessCompletionHandler = @Sendable (_ result: SuccessResultType) -> Void
-    public typealias ProgressCompletionHandler = @Sendable (_ result: ProgressResultType) -> Void
     public typealias CommentsCompletionHandler = paginatedCompletionHandler<Comment>
 
     public typealias SearchCompletionHandler = ObjectCompletionHandler<[TraktSearchResult]>
@@ -199,7 +187,7 @@ extension TraktManager {
     public typealias FollowUserCompletion = ObjectCompletionHandler<FollowUserResult>
     public typealias FollowersCompletion = ObjectCompletionHandler<[FollowResult]>
     public typealias FriendsCompletion = ObjectCompletionHandler<[Friend]>
-    public typealias WatchingCompletion = @Sendable (_ result: WatchingResultType) -> Void
+    public typealias WatchingCompletion = ObjectCompletionHandler<TraktWatching>
     public typealias UserStatsCompletion = ObjectCompletionHandler<UserStats>
     public typealias UserWatchedCompletion = ObjectCompletionHandler<[TraktWatchedItem]>
     
@@ -439,56 +427,6 @@ extension TraktManager {
             }
         }
         
-        dataTask.resume()
-        return dataTask
-    }
-    
-    // Watching
-    func performRequest(request: URLRequest, completion: @escaping WatchingCompletion) -> URLSessionDataTask? {
-        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
-            guard let self else { return }
-            if let error {
-                completion(.error(error: error))
-                return
-            }
-
-            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
-            
-            // Check response
-            do throws(TraktError) {
-                try self.handleResponse(response: response)
-            } catch {
-                switch error {
-                case .retry(let after):
-                    DispatchQueue.global().asyncAfter(deadline: .now() + after) { [weak self, completion] in
-                        _ = self?.performRequest(request: request, completion: completion)
-                    }
-                default:
-                    completion(.error(error: error))
-                }
-                return
-            }
-            
-            if httpResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
-                completion(.notCheckedIn)
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(.error(error: TraktKitError.couldNotParseData))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-            do {
-                let watching = try decoder.decode(TraktWatching.self, from: data)
-                completion(.checkedIn(watching: watching))
-            } catch {
-                completion(.error(error: error))
-            }
-        }
         dataTask.resume()
         return dataTask
     }

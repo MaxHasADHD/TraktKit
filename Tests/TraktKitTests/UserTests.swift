@@ -828,9 +828,26 @@ final class UserTests: TraktTestCase {
 
         let expectation = XCTestExpectation(description: "Get watching")
         traktManager.getUserWatching(username: "sean") { result in
-            if case .checkedIn(let watching) = result {
-                XCTAssertEqual(watching.action, "scrobble")
-                expectation.fulfill()
+            defer { expectation.fulfill() }
+            switch result {
+            case .success(let response):
+                XCTAssertTrue(response.isWatching)
+                switch response {
+                case .watching(let item):
+                    XCTAssertEqual(item.action, "scrobble")
+                    XCTAssertEqual(item.mediaType, .episode)
+                    switch item.mediaItem {
+                    case let .episode(episode, show):
+                        XCTAssertEqual(episode.number, 2)
+                        XCTAssertEqual(show.title, "Breaking Bad")
+                    case .movie:
+                        XCTFail("Media item should be episode")
+                    }
+                case .notWatchingAnything:
+                    XCTFail("User should be watching an episode")
+                }
+            case .error:
+                XCTFail("Mocked request should not fail")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
