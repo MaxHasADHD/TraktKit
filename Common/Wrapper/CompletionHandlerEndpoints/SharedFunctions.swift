@@ -197,7 +197,7 @@ internal extension TraktManager {
     
     // MARK: - Translations
     
-    func getTranslations<T: CustomStringConvertible, U: TraktObject>(_ type: WatchedType, id: T, language: String?, completion: @escaping ObjectsCompletionHandler<U>) -> URLSessionDataTask? {
+    func getTranslations<T: CustomStringConvertible, U: TraktObject>(_ type: WatchedType, id: T, language: String?, completion: @escaping ObjectCompletionHandler<[U]>) -> URLSessionDataTask? {
 
         var path = "\(type)/\(id)/translations"
         if let language = language {
@@ -256,7 +256,7 @@ internal extension TraktManager {
     
     // MARK: - Related
     
-    func getRelated<T: CustomStringConvertible, U>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectsCompletionHandler<U>) -> URLSessionDataTask? {
+    func getRelated<T: CustomStringConvertible, U>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<[U]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/related",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
@@ -278,7 +278,7 @@ internal extension TraktManager {
     
     // MARK: - Watching
     
-    func getUsersWatching<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
+    func getUsersWatching<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/watching",
                                            withQuery: [:],
                                            isAuthorized: false,

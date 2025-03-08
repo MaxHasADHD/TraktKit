@@ -16,7 +16,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getTrendingLists(completion: @escaping ObjectsCompletionHandler<TraktTrendingList>) -> URLSessionDataTask? {
+    public func getTrendingLists(completion: @escaping ObjectCompletionHandler<[TraktTrendingList]>) -> URLSessionDataTask? {
         guard
             let request = try? mutableRequest(forPath: "lists/trending",
                                          withQuery: [:],
@@ -35,7 +35,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getPopularLists(completion: @escaping ObjectsCompletionHandler<TraktTrendingList>) -> URLSessionDataTask? {
+    public func getPopularLists(completion: @escaping ObjectCompletionHandler<[TraktTrendingList]>) -> URLSessionDataTask? {
         guard
             let request = try? mutableRequest(forPath: "lists/popular",
                                          withQuery: [:],

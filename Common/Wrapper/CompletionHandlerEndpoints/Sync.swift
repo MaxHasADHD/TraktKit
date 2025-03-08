@@ -46,7 +46,7 @@ extension TraktManager {
      - parameter type: Possible Values: .Movies, .Episodes
      */
     @discardableResult
-    public func getPlaybackProgress(type: WatchedType, completion: @escaping ObjectsCompletionHandler<PlaybackProgress>) -> URLSessionDataTask? {
+    public func getPlaybackProgress(type: WatchedType, completion: @escaping ObjectCompletionHandler<[PlaybackProgress]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "sync/playback/\(type)",
                                          withQuery: [:],
                                          isAuthorized: true,

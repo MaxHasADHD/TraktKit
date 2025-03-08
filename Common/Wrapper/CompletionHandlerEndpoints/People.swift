@@ -66,7 +66,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getListsContainingPerson<T: CustomStringConvertible>(personId id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTask? {
+    public func getListsContainingPerson<T: CustomStringConvertible>(personId id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectCompletionHandler<[TraktList]>) -> URLSessionDataTask? {
         var path = "people/\(id)/lists"
         if let listType = listType {
             path += "/\(listType)"

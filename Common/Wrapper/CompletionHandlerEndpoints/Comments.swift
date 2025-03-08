@@ -74,7 +74,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectsCompletionHandler<Comment>) throws -> URLSessionDataTask? {
+    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<[Comment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/replies",
                                          withQuery: [:],
                                          isAuthorized: false,
@@ -118,7 +118,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getUsersWhoLikedComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectsCompletionHandler<TraktCommentLikedUser>) throws -> URLSessionDataTask? {
+    public func getUsersWhoLikedComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<[TraktCommentLikedUser]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/likes",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -165,7 +165,7 @@ extension TraktManager {
      ✨ Extended
      */
     @discardableResult
-    public func getTrendingComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectsCompletionHandler<TraktTrendingComment>) throws -> URLSessionDataTask? {
+    public func getTrendingComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectCompletionHandler<[TraktTrendingComment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/trending/\(commentType.rawValue)/\(mediaType.rawValue)",
                                           withQuery: ["include_replies": "\(includeReplies)"],
                                           isAuthorized: false,
@@ -182,7 +182,7 @@ extension TraktManager {
      ✨ Extended
      */
     @discardableResult
-    public func getRecentComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectsCompletionHandler<TraktTrendingComment>) throws -> URLSessionDataTask? {
+    public func getRecentComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectCompletionHandler<[TraktTrendingComment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/recent/\(commentType.rawValue)/\(mediaType.rawValue)",
                                           withQuery: ["include_replies": "\(includeReplies)"],
                                           isAuthorized: false,
@@ -199,7 +199,7 @@ extension TraktManager {
      ✨ Extended
      */
     @discardableResult
-    public func getRecentlyUpdatedComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectsCompletionHandler<TraktTrendingComment>) throws -> URLSessionDataTask? {
+    public func getRecentlyUpdatedComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectCompletionHandler<[TraktTrendingComment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/updates/\(commentType.rawValue)/\(mediaType.rawValue)",
                                           withQuery: ["include_replies": "\(includeReplies)"],
                                           isAuthorized: false,

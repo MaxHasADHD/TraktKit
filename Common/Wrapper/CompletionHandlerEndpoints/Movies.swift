@@ -125,7 +125,7 @@ extension TraktManager {
     Returns all title aliases for a movie. Includes country where name is different.
     */
     @discardableResult
-    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectsCompletionHandler<Alias>) -> URLSessionDataTask? {
+    public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectCompletionHandler<[Alias]>) -> URLSessionDataTask? {
         return getAliases(.Movies, id: id, completion: completion)
     }
     
@@ -138,7 +138,7 @@ extension TraktManager {
     - parameter country: 2 character country code. Example: `us`.
     */
     @discardableResult
-    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: @escaping ObjectsCompletionHandler<TraktMovieRelease>) -> URLSessionDataTask? {
+    public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: @escaping ObjectCompletionHandler<[TraktMovieRelease]>) -> URLSessionDataTask? {
         
         var path = "movies/\(id)/releases"
         
@@ -265,7 +265,7 @@ extension TraktManager {
     Returns all users watching this movie right now.
     */
     @discardableResult
-    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
+    public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         return getUsersWatching(.Movies, id: id, completion: completion)
     }
 }

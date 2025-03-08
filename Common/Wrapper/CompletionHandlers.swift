@@ -14,12 +14,6 @@ public enum ObjectResultType<T: TraktObject>: Sendable {
     case error(error: Error?)
 }
 
-/// Generic results type
-public enum ObjectsResultType<T: TraktObject>: Sendable {
-    case success(objects: [T])
-    case error(error: Error?)
-}
-
 /// Generic results type + Pagination
 public enum ObjectsResultTypePagination<T: TraktObject>: Sendable {
     case success(objects: [T], currentPage: Int, limit: Int)
@@ -142,7 +136,6 @@ extension TraktManager {
     
     // MARK: Common
     public typealias ObjectCompletionHandler<T: TraktObject> = @Sendable (_ result: ObjectResultType<T>) -> Void
-    public typealias ObjectsCompletionHandler<T: TraktObject> = @Sendable(_ result: ObjectsResultType<T>) -> Void
     public typealias paginatedCompletionHandler<T: TraktObject> = @Sendable (_ result: ObjectsResultTypePagination<T>) -> Void
 
     public typealias DataResultCompletionHandler = @Sendable (_ result: DataResultType) -> Void
@@ -150,16 +143,16 @@ extension TraktManager {
     public typealias ProgressCompletionHandler = @Sendable (_ result: ProgressResultType) -> Void
     public typealias CommentsCompletionHandler = paginatedCompletionHandler<Comment>
 
-    public typealias SearchCompletionHandler = ObjectsCompletionHandler<TraktSearchResult>
+    public typealias SearchCompletionHandler = ObjectCompletionHandler<[TraktSearchResult]>
     public typealias statsCompletionHandler = ObjectCompletionHandler<TraktStats>
     
     // MARK: Shared
     public typealias UpdateCompletionHandler = paginatedCompletionHandler<Update>
-    public typealias AliasCompletionHandler = ObjectsCompletionHandler<Alias>
+    public typealias AliasCompletionHandler = ObjectCompletionHandler<[Alias]>
     public typealias RatingDistributionCompletionHandler = ObjectCompletionHandler<RatingDistribution>
     
     // MARK: Calendar
-    public typealias dvdReleaseCompletionHandler = ObjectsCompletionHandler<TraktDVDReleaseMovie>
+    public typealias dvdReleaseCompletionHandler = ObjectCompletionHandler<[TraktDVDReleaseMovie]>
     
     // MARK: Checkin
     public typealias checkinCompletionHandler = @Sendable (_ result: CheckinResultType) -> Void
@@ -168,47 +161,47 @@ extension TraktManager {
     public typealias TrendingShowsCompletionHandler = paginatedCompletionHandler<TraktTrendingShow>
     public typealias MostShowsCompletionHandler = paginatedCompletionHandler<TraktMostShow>
     public typealias AnticipatedShowCompletionHandler = paginatedCompletionHandler<TraktAnticipatedShow>
-    public typealias ShowTranslationsCompletionHandler = ObjectsCompletionHandler<TraktShowTranslation>
-    public typealias SeasonsCompletionHandler = ObjectsCompletionHandler<TraktSeason>
+    public typealias ShowTranslationsCompletionHandler = ObjectCompletionHandler<[TraktShowTranslation]>
+    public typealias SeasonsCompletionHandler = ObjectCompletionHandler<[TraktSeason]>
     
-    public typealias WatchedShowsCompletionHandler = ObjectsCompletionHandler<TraktWatchedShow>
+    public typealias WatchedShowsCompletionHandler = ObjectCompletionHandler<[TraktWatchedShow]>
     public typealias ShowWatchedProgressCompletionHandler = ObjectCompletionHandler<TraktShowWatchedProgress>
     
     // MARK: Episodes
     public typealias EpisodeCompletionHandler = ObjectCompletionHandler<TraktEpisode>
-    public typealias EpisodesCompletionHandler = ObjectsCompletionHandler<TraktEpisode>
+    public typealias EpisodesCompletionHandler = ObjectCompletionHandler<[TraktEpisode]>
     
     // MARK: Movies
     public typealias MovieCompletionHandler = ObjectCompletionHandler<TraktMovie>
-    public typealias MoviesCompletionHandler = ObjectsCompletionHandler<TraktMovie>
+    public typealias MoviesCompletionHandler = ObjectCompletionHandler<[TraktMovie]>
     public typealias TrendingMoviesCompletionHandler = paginatedCompletionHandler<TraktTrendingMovie>
     public typealias MostMoviesCompletionHandler = paginatedCompletionHandler<TraktMostMovie>
     public typealias AnticipatedMovieCompletionHandler = paginatedCompletionHandler<TraktAnticipatedMovie>
-    public typealias MovieTranslationsCompletionHandler = ObjectsCompletionHandler<TraktMovieTranslation>
+    public typealias MovieTranslationsCompletionHandler = ObjectCompletionHandler<[TraktMovieTranslation]>
     public typealias WatchedMoviesCompletionHandler = paginatedCompletionHandler<TraktWatchedMovie>
-    public typealias BoxOfficeMoviesCompletionHandler = ObjectsCompletionHandler<TraktBoxOfficeMovie>
+    public typealias BoxOfficeMoviesCompletionHandler = ObjectCompletionHandler<[TraktBoxOfficeMovie]>
     
     // MARK: Sync
     public typealias LastActivitiesCompletionHandler = ObjectCompletionHandler<TraktLastActivities>
-    public typealias RatingsCompletionHandler = ObjectsCompletionHandler<TraktRating>
+    public typealias RatingsCompletionHandler = ObjectCompletionHandler<[TraktRating]>
     public typealias HistoryCompletionHandler = paginatedCompletionHandler<TraktHistoryItem>
-    public typealias CollectionCompletionHandler = ObjectsCompletionHandler<TraktCollectedItem>
+    public typealias CollectionCompletionHandler = ObjectCompletionHandler<[TraktCollectedItem]>
     
     // MARK: Users
     public typealias ListCompletionHandler = ObjectCompletionHandler<TraktList>
-    public typealias ListsCompletionHandler = ObjectsCompletionHandler<TraktList>
-    public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktListItem>
+    public typealias ListsCompletionHandler = ObjectCompletionHandler<[TraktList]>
+    public typealias ListItemCompletionHandler = ObjectCompletionHandler<[TraktListItem]>
     public typealias WatchlistCompletionHandler = paginatedCompletionHandler<TraktListItem>
     public typealias HiddenItemsCompletionHandler = paginatedCompletionHandler<HiddenItem>
-    public typealias UserCommentsCompletionHandler = ObjectsCompletionHandler<UsersComments>
+    public typealias UserCommentsCompletionHandler = ObjectCompletionHandler<[UsersComments]>
     public typealias AddListItemCompletion = ObjectCompletionHandler<ListItemPostResult>
     public typealias RemoveListItemCompletion = ObjectCompletionHandler<RemoveListItemResult>
     public typealias FollowUserCompletion = ObjectCompletionHandler<FollowUserResult>
-    public typealias FollowersCompletion = ObjectsCompletionHandler<FollowResult>
-    public typealias FriendsCompletion = ObjectsCompletionHandler<Friend>
+    public typealias FollowersCompletion = ObjectCompletionHandler<[FollowResult]>
+    public typealias FriendsCompletion = ObjectCompletionHandler<[Friend]>
     public typealias WatchingCompletion = @Sendable (_ result: WatchingResultType) -> Void
     public typealias UserStatsCompletion = ObjectCompletionHandler<UserStats>
-    public typealias UserWatchedCompletion = ObjectsCompletionHandler<TraktWatchedItem>
+    public typealias UserWatchedCompletion = ObjectCompletionHandler<[TraktWatchedItem]>
     
     // MARK: - Error handling
     
@@ -391,51 +384,7 @@ extension TraktManager {
         let dataTask = performRequest(request: request, completion: aCompletion)
         return dataTask
     }
-    
-    /// Array of TraktProtocol objects
-    func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping ObjectsCompletionHandler<T>) -> URLSessionDataTask? {
-        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
-            guard let self else { return }
-            if let error {
-                completion(.error(error: error))
-                return
-            }
 
-            // Check response
-            do throws(TraktError) {
-                try self.handleResponse(response: response)
-            } catch {
-                switch error {
-                case .retry(let after):
-                    DispatchQueue.global().asyncAfter(deadline: .now() + after) { [weak self, completion] in
-                        _ = self?.performRequest(request: request, completion: completion)
-                    }
-                default:
-                    completion(.error(error: error))
-                }
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(.error(error: TraktKitError.couldNotParseData))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-            do {
-                let array = try decoder.decode([T].self, from: data)
-                completion(.success(objects: array))
-            } catch {
-                completion(.error(error: error))
-            }
-        }
-        
-        dataTask.resume()
-        return dataTask
-    }
-    
     /// Array of ObjectsResultTypePagination objects
     func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
         let dataTask = session.dataTask(with: request) { [weak self] data, response, error in

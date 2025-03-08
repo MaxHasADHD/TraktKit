@@ -45,7 +45,7 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func getFollowRequests(completion: @escaping ObjectsCompletionHandler<FollowRequest>) -> URLSessionDataTask? {
+    public func getFollowRequests(completion: @escaping ObjectCompletionHandler<[FollowRequest]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/requests",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -152,7 +152,7 @@ extension TraktManager {
     - Parameter type: Possible values:  comments, lists.
      */
     @discardableResult
-    public func getLikes(type: LikeType, completion: @escaping ObjectsCompletionHandler<Like>) -> URLSessionDataTask? {
+    public func getLikes(type: LikeType, completion: @escaping ObjectCompletionHandler<[Like]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/likes/\(type.rawValue)",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -187,7 +187,7 @@ extension TraktManager {
     🔓 OAuth Optional
      */
     @discardableResult
-    public func getUserCollection(username: String = "me", type: MediaType, completion: @escaping ObjectsCompletionHandler<TraktCollectedItem>) -> URLSessionDataTask? {
+    public func getUserCollection(username: String = "me", type: MediaType, completion: @escaping ObjectCompletionHandler<[TraktCollectedItem]>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard let request = try? mutableRequest(forPath: "users/\(username)/collection/\(type.rawValue)",
                                          withQuery: [:],

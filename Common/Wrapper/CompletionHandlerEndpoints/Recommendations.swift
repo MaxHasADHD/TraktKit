@@ -19,7 +19,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getRecommendedMovies(completion: @escaping ObjectsCompletionHandler<TraktMovie>) -> URLSessionDataTask? {
+    public func getRecommendedMovies(completion: @escaping ObjectCompletionHandler<[TraktMovie]>) -> URLSessionDataTask? {
         return getRecommendations(.Movies, completion: completion)
     }
     
@@ -39,7 +39,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func getRecommendedShows(completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTask? {
+    public func getRecommendedShows(completion: @escaping ObjectCompletionHandler<[TraktShow]>) -> URLSessionDataTask? {
         return getRecommendations(.Shows, completion: completion)
     }
     
@@ -56,7 +56,7 @@ extension TraktManager {
     // MARK: - Private
     
     @discardableResult
-    private func getRecommendations<T>(_ type: WatchedType, completion: @escaping ObjectsCompletionHandler<T>) -> URLSessionDataTask? {
+    private func getRecommendations<T>(_ type: WatchedType, completion: @escaping ObjectCompletionHandler<[T]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "recommendations/\(type)",
             withQuery: [:],
             isAuthorized: true,

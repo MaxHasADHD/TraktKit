@@ -139,7 +139,7 @@ extension TraktManager {
      - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
      */
     @discardableResult
-    public func getShowAliases<T: CustomStringConvertible>(showID id: T, completion: @escaping ObjectsCompletionHandler<Alias>) -> URLSessionDataTask? {
+    public func getShowAliases<T: CustomStringConvertible>(showID id: T, completion: @escaping ObjectCompletionHandler<[Alias]>) -> URLSessionDataTask? {
         return getAliases(.Shows, id: id, completion: completion)
     }
     
@@ -176,7 +176,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getListsContainingShow<T: CustomStringConvertible>(showID id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, pagination: Pagination? = nil, completion: @escaping ObjectsCompletionHandler<TraktList>) -> URLSessionDataTask? {
+    public func getListsContainingShow<T: CustomStringConvertible>(showID id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, pagination: Pagination? = nil, completion: @escaping ObjectCompletionHandler<[TraktList]>) -> URLSessionDataTask? {
         var path = "shows/\(id)/lists"
         if let listType = listType {
             path += "/\(listType)"
@@ -277,7 +277,7 @@ extension TraktManager {
      **Note**: We are continuing to improve this algorithm.
      */
     @discardableResult
-    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectsCompletionHandler<TraktShow>) -> URLSessionDataTask? {
+    public func getRelatedShows<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<[TraktShow]>) -> URLSessionDataTask? {
         return getRelated(.Shows, id: id, extended: extended, completion: completion)
     }
     
@@ -297,7 +297,7 @@ extension TraktManager {
      Returns all users watching this show right now.
      */
     @discardableResult
-    public func getUsersWatchingShow<T: CustomStringConvertible>(showID id: T, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
+    public func getUsersWatchingShow<T: CustomStringConvertible>(showID id: T, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         return getUsersWatching(.Shows, id: id, completion: completion)
     }
     

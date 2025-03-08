@@ -150,7 +150,7 @@ extension TraktManager {
      Returns all users watching this season right now.
      */
     @discardableResult
-    public func getUsersWatchingSeasons<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
+    public func getUsersWatchingSeasons<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/watching",
                                            withQuery: [:],
                                            isAuthorized: false,

@@ -38,7 +38,7 @@ extension TraktManager {
      - parameter language: 2 character language code
      */
     @discardableResult
-    public func getEpisodeTranslations<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, language: String? = nil, completion: @escaping ObjectsCompletionHandler<TraktEpisodeTranslation>) -> URLSessionDataTask? {
+    public func getEpisodeTranslations<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, language: String? = nil, completion: @escaping ObjectCompletionHandler<[TraktEpisodeTranslation]>) -> URLSessionDataTask? {
         var path = "shows/\(id)/seasons/\(season)/episodes/\(episode)/translations"
         if let language = language {
             path += "/\(language)"
@@ -150,7 +150,7 @@ extension TraktManager {
      Returns all users watching this episode right now.
      */
     @discardableResult
-    public func getUsersWatchingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping ObjectsCompletionHandler<User>) -> URLSessionDataTask? {
+    public func getUsersWatchingEpisode<T: CustomStringConvertible>(showID id: T, seasonNumber season: NSNumber, episodeNumber episode: NSNumber, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/episodes/\(episode)/watching",
             withQuery: [:],
             isAuthorized: false,
