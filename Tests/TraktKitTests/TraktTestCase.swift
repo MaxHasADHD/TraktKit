@@ -9,13 +9,19 @@ import XCTest
 @testable import TraktKit
 
 class TraktTestCase: XCTestCase {
-    lazy var traktManager = TraktManager(session: URLSession.mockedResponsesOnly, clientId: "", clientSecret: "", redirectURI: "")
+    lazy var traktManager = TraktManager(
+        session: URLSession.mockedResponsesOnly,
+        clientId: "",
+        clientSecret: "",
+        redirectURI: "",
+        authStorage: TraktMockAuthStorage(accessToken: "", refreshToken: "", expirationDate: .distantFuture)
+    )
 
-    override func setUp() {
+    override func setUp() async throws {
+        try await traktManager.refreshCurrentAuthState()
     }
 
     override func tearDown() {
-        super.tearDown()
         RequestMocking.removeAllMocks()
     }
 

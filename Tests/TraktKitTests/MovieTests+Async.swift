@@ -11,6 +11,7 @@ extension TraktTestSuite {
     @Suite(.serialized)
     struct MovieTestSuite {
         @Test func getTrendingMovies() async throws {
+            let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/movies/trending?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_trending_movies")), headers: [.page(1), .pageCount(10)])
 
             let result = try await traktManager.movies
@@ -26,6 +27,7 @@ extension TraktTestSuite {
         }
 
         @Test func getPopularMovies() async throws {
+            let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/movies/popular?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_popular_movies")))
 
             let result = try await traktManager.movies
@@ -39,6 +41,7 @@ extension TraktTestSuite {
         }
 
         @Test func getMostPlayedMovies() async throws {
+            let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/movies/played/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_played_movies")))
 
             let result = try await traktManager.movies
@@ -52,6 +55,7 @@ extension TraktTestSuite {
         }
 
         @Test func getMostWatchedMovies() async throws {
+            let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/movies/watched/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_watched_movies")))
 
             let result = try await traktManager.movies
@@ -65,6 +69,7 @@ extension TraktTestSuite {
         }
 
         @Test func getPeopleInMovie() async throws {
+            let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/movies/iron-man-2008/people?extended=min", result: .success(jsonData(named: "test_get_cast_and_crew")))
 
             let castAndCrew = try await traktManager.movie(id: "iron-man-2008")
@@ -87,6 +92,7 @@ extension TraktTestSuite {
         }
 
         @Test func getMovieStudios() async throws {
+            let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/studios", result: .success(jsonData(named: "test_get_movie_studios")))
 
             let studios = try await traktManager.movie(id: "tron-legacy-2010")

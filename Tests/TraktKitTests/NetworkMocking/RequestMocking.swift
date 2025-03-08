@@ -12,8 +12,8 @@ extension URLSession {
     static var mockedResponsesOnly: URLSession {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [RequestMocking.self, RequestBlocking.self]
-        configuration.timeoutIntervalForRequest = 1
-        configuration.timeoutIntervalForResource = 1
+        configuration.timeoutIntervalForRequest = 2
+        configuration.timeoutIntervalForResource = 2
         return URLSession(configuration: configuration)
     }
 }

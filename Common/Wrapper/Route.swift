@@ -32,7 +32,15 @@ public struct Route<T: TraktObject>: Sendable {
 
     // MARK: - Lifecycle
 
-    public init(path: String, queryItems: [String: String] = [:], body: (any TraktObject)? = nil, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
+    public init(
+        path: String,
+        queryItems: [String: String] = [:],
+        body: (any TraktObject)? = nil,
+        method: Method,
+        requiresAuthentication: Bool = false,
+        resultType: T.Type = T.self,
+        traktManager: TraktManager
+    ) {
         self.path = path
         self.queryItems = queryItems
         self.body = body
@@ -42,7 +50,15 @@ public struct Route<T: TraktObject>: Sendable {
         self.traktManager = traktManager
     }
 
-    public init(paths: [CustomStringConvertible?], queryItems: [String: String] = [:], body: (any EncodableTraktObject)? = nil, method: Method, requiresAuthentication: Bool = false, resultType: T.Type = T.self, traktManager: TraktManager) {
+    public init(
+        paths: [CustomStringConvertible?],
+        queryItems: [String: String] = [:],
+        body: (any EncodableTraktObject)? = nil,
+        method: Method,
+        requiresAuthentication: Bool = false,
+        resultType: T.Type = T.self,
+        traktManager: TraktManager
+    ) {
         self.path = paths.compactMap { $0?.description }.joined(separator: "/")
         self.queryItems = queryItems
         self.body = body
@@ -149,22 +165,39 @@ public struct Route<T: TraktObject>: Sendable {
 // MARK: - No data response
 
 public struct EmptyRoute: Sendable {
+    private let traktManager: TraktManager
+
     internal var path: String
     internal let method: Method
     internal let requiresAuthentication: Bool
-    private let traktManager: TraktManager
+
+    private var body: (any EncodableTraktObject)?
 
     // MARK: - Lifecycle
 
-    public init(path: String, method: Method, requiresAuthentication: Bool = false, traktManager: TraktManager) {
+    public init(
+        path: String,
+        body: (any TraktObject)? = nil,
+        method: Method,
+        requiresAuthentication: Bool = false,
+        traktManager: TraktManager
+    ) {
         self.path = path
+        self.body = body
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.traktManager = traktManager
     }
 
-    public init(paths: [CustomStringConvertible?], method: Method, requiresAuthentication: Bool = false, traktManager: TraktManager) {
+    public init(
+        paths: [CustomStringConvertible?],
+        body: (any TraktObject)? = nil,
+        method: Method,
+        requiresAuthentication: Bool = false,
+        traktManager: TraktManager
+    ) {
         self.path = paths.compactMap { $0?.description }.joined(separator: "/")
+        self.body = body
         self.method = method
         self.requiresAuthentication = requiresAuthentication
         self.traktManager = traktManager
@@ -177,7 +210,8 @@ public struct EmptyRoute: Sendable {
             forPath: path,
             withQuery: [:],
             isAuthorized: requiresAuthentication,
-            withHTTPMethod: method
+            withHTTPMethod: method,
+            body: body
         )
         let _ = try await traktManager.fetchData(request: request, retryLimit: retryLimit)
     }

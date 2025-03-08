@@ -7,6 +7,7 @@
 
 struct OAuthBody: TraktObject {
     let code: String?
+    let accessToken: String?
     let refreshToken: String?
 
     let clientId: String?
@@ -17,6 +18,7 @@ struct OAuthBody: TraktObject {
 
     enum CodingKeys: String, CodingKey {
         case code
+        case accessToken = "token"
         case refreshToken = "refresh_token"
         case clientId = "client_id"
         case clientSecret = "client_secret"
@@ -26,6 +28,7 @@ struct OAuthBody: TraktObject {
 
     init(
         code: String? = nil,
+        accessToken: String? = nil,
         refreshToken: String? = nil,
         clientId: String? = nil,
         clientSecret: String? = nil,
@@ -33,6 +36,7 @@ struct OAuthBody: TraktObject {
         grantType: String? = nil
     ) {
         self.code = code
+        self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.clientId = clientId
         self.clientSecret = clientSecret

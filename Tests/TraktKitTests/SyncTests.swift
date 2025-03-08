@@ -42,10 +42,14 @@ final class SyncTests: TraktTestCase {
         traktManager.getPlaybackProgress(type: .Movies) { result in
             if case .success(let progress) = result {
                 XCTAssertEqual(progress.count, 2)
-                let first = progress.first
-                XCTAssertEqual(first?.progress, 10)
-                XCTAssertNotNil(first?.movie)
-                XCTAssertEqual(first?.id, 13)
+                do {
+                    let first = try XCTUnwrap(progress.first)
+                    XCTAssertEqual(first.progress, 10)
+                    XCTAssertNotNil(first.movie)
+                    XCTAssertEqual(first.id, 13)
+                } catch {
+                    XCTFail("Failed to unwrap")
+                }
                 expectation.fulfill()
             }
         }
@@ -424,7 +428,7 @@ final class SyncTests: TraktTestCase {
             case .success:
                 expectation.fulfill()
             case .error(let error):
-                XCTFail("Failed to add to watchlist: \(error)")
+                XCTFail("Failed to add to watchlist: \(String(describing: error))")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)

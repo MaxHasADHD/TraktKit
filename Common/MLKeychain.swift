@@ -22,7 +22,8 @@ let kSecAttrAccessibleValue = kSecAttrAccessible as String
 let kSecAttrAccessibleAfterFirstUnlockValue = kSecAttrAccessibleAfterFirstUnlock as String
 
 public class MLKeychain {
-    
+
+    @discardableResult
     class func setString(value: String, forKey key: String) -> Bool {
         let data = value.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         

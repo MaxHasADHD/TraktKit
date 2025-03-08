@@ -10,6 +10,12 @@ import Foundation
 
 extension TraktManager {
 
+    // MARK: - Authentication
+
+    public func auth() -> AuthenticationResource {
+        AuthenticationResource(traktManager: self)
+    }
+
     // MARK: - Search
 
     public func search() -> SearchResource {
