@@ -11,6 +11,7 @@ import Foundation
 public struct TraktWatchedItem: TraktObject {
     public let plays: Int
     public let lastWatchedAt: Date
+    public let lastUpdatedAt: Date
     public var show: TraktShow? = nil
     public var seasons: [TraktWatchedSeason]? = nil
     public var movie: TraktMovie? = nil
@@ -18,6 +19,7 @@ public struct TraktWatchedItem: TraktObject {
     enum CodingKeys: String, CodingKey {
         case plays
         case lastWatchedAt = "last_watched_at"
+        case lastUpdatedAt = "last_updated_at"
         case show
         case seasons
         case movie

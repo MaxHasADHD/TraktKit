@@ -155,7 +155,7 @@ extension TraktManager {
 
          Each `show` object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched episodes, it is possible for `last_watched_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the movies and shows if you see a newer timestamp.
 
-         Each show object contains a `reset_at` timestamp. If not `null`, this is when the user started re-watching the show. Your app can adjust the progress by ignoring episodes with a `last_watched_at` prior to the `reset_at`.
+         Each `show` object contains a `reset_at` timestamp. If not `null`, this is when the user started re-watching the show. Your app can adjust the progress by ignoring episodes with a `last_watched_at` prior to the `reset_at`.
 
          🔒 OAuth Required ✨ Extended Info
          */

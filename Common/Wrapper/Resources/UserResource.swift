@@ -8,7 +8,7 @@
 import Foundation
 
 extension TraktManager {
-    /// Resource for authenticated user
+    /// Resource containing all of the `/user` endpoints that **require** authentication. These requests will always be for the current authenticated user, and cannot be performed for another user.
     public struct CurrentUserResource {
 
         static let currentUserSlug = "me"
@@ -75,10 +75,7 @@ extension TraktManager {
          */
         public func hiddenItems(for section: String, type: String? = nil) -> Route<PagedObject<[HiddenItem]>> {
             Route(
-                paths: [
-                    "users/hidden",
-                    section
-                ],
+                paths: ["users/hidden", section],
                 queryItems: ["type": type].compactMapValues { $0 },
                 method: .GET,
                 requiresAuthentication: true,
@@ -91,12 +88,9 @@ extension TraktManager {
 
          🔒 OAuth Required
          */
-        public func hide(movies: [SyncId], shows: [SyncId], seasons: [SyncId], users: [SyncId], in section: String) -> Route<HideItemResult> {
+        public func hide(movies: [SyncId] = [], shows: [SyncId] = [], seasons: [SyncId] = [], users: [SyncId] = [], in section: String) -> Route<HideItemResult> {
             Route(
-                paths: [
-                    "users/hidden",
-                    section
-                ],
+                paths: ["users/hidden", section],
                 body: TraktMediaBody(movies: movies, shows: shows, seasons: seasons, users: users),
                 method: .POST,
                 requiresAuthentication: true,
@@ -109,12 +103,9 @@ extension TraktManager {
 
          🔒 OAuth Required
          */
-        public func unhide(movies: [SyncId], shows: [SyncId], seasons: [SyncId], users: [SyncId], in section: String) -> Route<UnhideItemResult> {
+        public func unhide(movies: [SyncId] = [], shows: [SyncId] = [], seasons: [SyncId] = [], users: [SyncId] = [], in section: String) -> Route<UnhideItemResult> {
             Route(
-                paths: [
-                    "users/hidden/remove",
-                    section
-                ],
+                paths: ["users/hidden", section, "remove"],
                 body: TraktMediaBody(movies: movies, shows: shows, seasons: seasons, users: users),
                 method: .POST,
                 requiresAuthentication: true,
@@ -128,19 +119,21 @@ extension TraktManager {
          🔓 OAuth Required ✨ Extended Info
          */
         public func profile() -> Route<User> {
-            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).profile(authenticate: true)
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).profile()
         }
     }
 
-    /// Resource for /Users/id
+    /// Resource containing all of the `/user/*` endpoints where authentication is **optional** or **not** required.
     public struct UsersResource {
         public let slug: String
         private let path: String
+        private let authenticate: Bool
         private let traktManager: TraktManager
 
-        internal init(slug: String, traktManager: TraktManager) {
+        internal init(slug: String, authenticate: Bool = false, traktManager: TraktManager) {
             self.slug = slug
             self.path = "users/\(slug)"
+            self.authenticate = slug == "me" ? true : authenticate
             self.traktManager = traktManager
         }
         
@@ -151,7 +144,7 @@ extension TraktManager {
 
          🔓 OAuth Optional ✨ Extended Info
          */
-        public func profile(authenticate: Bool = false) -> Route<User> {
+        public func profile() -> Route<User> {
             Route(paths: [path], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
         }
 
@@ -168,7 +161,7 @@ extension TraktManager {
 
          🔒 OAuth Optional 📄 Pagination
          */
-        public func likes(type: String? = nil, authenticate: Bool = false) -> Route<PagedObject<[Like]>> {
+        public func likes(type: String? = nil) -> Route<PagedObject<[Like]>> {
             Route(paths: [path, "likes", type], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
         }
 
@@ -187,7 +180,7 @@ extension TraktManager {
 
          - parameter type: `movies` or `shows`
          */
-        public func collection(type: String, authenticate: Bool = false) -> Route<[TraktCollectedItem]> {
+        public func collection(type: String) -> Route<[TraktCollectedItem]> {
             Route(paths: [path, "collection", type], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
         }
 
@@ -200,14 +193,9 @@ extension TraktManager {
 
          🔓 OAuth Optional 📄 Pagination ✨ Extended Info
          */
-        public func comments(commentType: String? = nil, mediaType: String? = nil, includeReplies: String? = nil, authenticate: Bool = false) -> Route<PagedObject<[UsersComments]>> {
+        public func comments(commentType: String? = nil, mediaType: String? = nil, includeReplies: String? = nil) -> Route<PagedObject<[UsersComments]>> {
             Route(
-                paths: [
-                    path,
-                    "comments",
-                    commentType,
-                    mediaType
-                ],
+                paths: [path, "comments", commentType, mediaType],
                 queryItems: ["include_replies": includeReplies].compactMapValues { $0 },
                 method: .GET,
                 requiresAuthentication: authenticate,
@@ -215,14 +203,175 @@ extension TraktManager {
             )
         }
 
-        // MARK: Settings
+        // MARK: - Notes
+
+        // MARK: - Lists
+
+        // MARK: - Collaborations
+
+        // MARK: - List
 
         public func lists() -> Route<[TraktList]> {
             Route(paths: [path, "lists"], method: .GET, traktManager: traktManager)
         }
-        
+
         public func itemsOnList(_ listId: String, type: ListItemType? = nil) -> Route<[TraktListItem]> {
             Route(paths: ["users/\(slug)/lists/\(listId)/items", type?.rawValue], method: .GET, traktManager: traktManager)
+        }
+
+        // MARK: - Follow
+
+        // MARK: - Followers
+
+        // MARK: - Following
+
+        // MARK: - Friends
+
+        // MARK: - History
+
+        /**
+         Returns movies and episodes that a user has watched, sorted by most recent. You can optionally limit the `type` to `movies` or `episodes`. The `id` (64-bit integer) in each history item uniquely identifies the event and can be used to remove individual events by using the `/sync/history/remove` method. The `action` will be set to `scrobble`, `checkin`, or `watch`.
+
+         Specify a `type` and trakt `item_id` to limit the history for just that item. If the `item_id` is valid, but there is no history, an empty array will be returned.
+
+         - parameters:
+            - type: Possible values:  `movies` , `shows` , `seasons` , `episodes`.
+            - mediaId: Trakt ID for a specific item.
+            - startingAt: Starting date.
+            - endingAt: Ending date.
+         */
+        public func watchedHistory(
+            type: String? = nil,
+            mediaId: CustomStringConvertible? = nil,
+            startingAt: Date? = nil,
+            endingAt: Date? = nil
+        ) -> Route<PagedObject<[TraktHistoryItem]>> {
+            Route(
+                paths: [path, "history", type, mediaId],
+                queryItems: [
+                    "start_at": startingAt?.UTCDateString(),
+                    "end_at": endingAt?.UTCDateString()
+                ].compactMapValues { $0 },
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
+
+        // MARK: - Ratings
+
+        /**
+         Get a user's ratings filtered by `type`. You can optionally filter for a specific `rating` between 1 and 10. Send a comma separated string for `rating` if you need multiple ratings.
+
+         🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info
+
+         - parameters:
+            - type: Possible values:  `movies` , `shows` , `seasons` , `episodes` , `all` .
+            - rating: Filter for a specific rating. Possible values:  1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 .
+         */
+        public func ratings(type: String? = nil, rating: CustomStringConvertible? = nil) -> Route<PagedObject<[TraktRating]>> {
+            Route(
+                paths: [path, "ratings", type, rating],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
+
+        // MARK: - Watchlist
+
+        /**
+         Returns all items in a user's watchlist filtered by type.
+
+         ---
+         **Notes**
+
+         Each watchlist item contains a `notes` field with text entered by the user.
+
+         ---
+         **Sorting Headers**
+
+         By default, all list items are sorted by `rank` `asc`. We send `X-Applied-Sort-By` and `X-Applied-Sort-How` headers to indicate how the results are actually being sorted.
+
+         We also send `X-Sort-By` and `X-Sort-How` headers which indicate the user's sort preference. Use these to to custom sort the watchlist in your app for more advanced sort abilities we can't do in the API. Values for `X-Sort-By` include `rank`, `added`, `title`, `released`, `runtime`, `popularity`, `percentage`, and `votes`. Values for `X-Sort-How` include `asc` and `desc`.
+
+         ---
+         **Auto Removal**
+
+         When an item is watched, it will be automatically removed from the watchlist. For shows and seasons, watching 1 episode will remove the entire show or season.
+
+         ---
+         **The watchlist should not be used as a list of what the user is actively watching.**
+
+         Use a combination of the ``TraktManager/SyncResource/watchedShows()``, ``TraktManager/SyncResource/watchedMovies()`` and ``TraktManager/ShowResource/watchedProgress(includeHiddenSeasons:includeSpecials:progressCountsSpecials:)`` methods to get what the user is actively watching.
+
+         🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+
+         - parameters:
+            - type: Filter for a specific item type. Possible values:  `movies` , `shows` , `seasons` , `episodes` .
+            - sort: How to sort (only if type is also sent). Possible values:  `rank` , `added` , `released` , `title` .
+         */
+        public func watchlist(type: String? = nil, sort: String? = nil) -> Route<PagedObject<[TraktListItem]>> {
+            Route(paths: [path, "watchlist", type, sort], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
+        }
+
+        /**
+         Returns all top level comments for the watchlist. By default, the `newest` comments are returned first. Other sorting options include `oldest`, most `likes`, and most `replies`.
+
+         > note: If you send OAuth, comments from blocked users will be automatically filtered out.
+
+         🔓 OAuth Optional 📄 Pagination 😁 Emojis
+
+         - parameter sort: How to sort. Possible values:  `newest` , `oldest` , `likes` , `replies` .
+         */
+        public func watchlistComments(sort: String? = nil) -> Route<PagedObject<[Comment]>> {
+            Route(paths: [path, "watchlist", "comments", sort], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
+        }
+
+        // MARK: - Favorites
+
+        // MARK: - Watching
+
+        /**
+         Returns a movie or episode if the user is currently watching something. If they are not, it returns no data and a `204` HTTP status code.
+
+         🔓 OAuth Optional ✨ Extended Info
+         */
+        public func watching() -> Route<TraktWatching> {
+            Route(paths: [path, "watching"], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
+        }
+
+        // MARK: - Watched
+
+        /**
+         Returns all movies or shows a user has watched sorted by most plays.
+
+         If type is set to `shows` and you add `?extended=noseasons` to the URL, it won't return season or episode info.
+
+         Each `movie` and `show` object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched movies and episodes, it is possible for `last_watched_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the movies and shows if you see a newer timestamp.
+
+         Each `show` object contains a `reset_at` timestamp. If not null, this is when the user started re-watching the show. Your app can adjust the progress by ignoring episodes with a `last_watched_at` prior to the `reset_at`.
+
+         🔓 OAuth Optional ✨ Extended Info
+         */
+        public func watched(type: String) -> Route<[TraktWatchedItem]> {
+            Route(
+                paths: [path, "watched", type],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
+
+        // MARK: - Stats
+
+        /**
+         Returns stats about the movies, shows, and episodes a user has watched, collected, and rated.
+
+         🔓 OAuth Optional
+         */
+        public func stats() -> Route<UserStats> {
+            Route(paths: [path, "stats"], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
         }
     }
 }
