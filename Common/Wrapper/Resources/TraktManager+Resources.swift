@@ -16,6 +16,12 @@ extension TraktManager {
         AuthenticationResource(traktManager: self)
     }
 
+    // MARK: - Checkin
+
+    public func checkin() -> CheckinResource {
+        CheckinResource(traktManager: self)
+    }
+
     // MARK: - Search
 
     public func search() -> SearchResource {
