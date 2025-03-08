@@ -114,7 +114,7 @@ extension TraktManager {
     @discardableResult
     public func addToCollection(movies: [CollectionId]? = nil, shows: [CollectionId]? = nil, seasons: [CollectionId]? = nil, episodes: [CollectionId]? = nil, completion: @escaping ObjectCompletionHandler<AddToCollectionResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
-        guard let request = post("sync/collection", body: body) else { return nil }
+        let request = try post("sync/collection", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -133,7 +133,7 @@ extension TraktManager {
     @discardableResult
     public func removeFromCollection(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromCollectionResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
-        guard let request = post("sync/collection/remove", body: body) else { return nil }
+        let request = try post("sync/collection/remove", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -257,7 +257,7 @@ extension TraktManager {
     @discardableResult
     public func addToHistory(movies: [AddToHistoryId]? = nil, shows: [AddToHistoryId]? = nil, seasons: [AddToHistoryId]? = nil, episodes: [AddToHistoryId]? = nil, completion: @escaping ObjectCompletionHandler<AddToHistoryResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
-        guard let request = post("sync/history", body: body) else { return nil }
+        let request = try post("sync/history", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -279,7 +279,7 @@ extension TraktManager {
     @discardableResult
     public func removeFromHistory(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, historyIDs: [Int]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromHistoryResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, ids: historyIDs)
-        guard let request = post("sync/history/remove", body: body) else { return nil }
+        let request = try post("sync/history/remove", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -323,7 +323,7 @@ extension TraktManager {
     @discardableResult
     public func addRatings(movies: [RatingId]? = nil, shows: [RatingId]? = nil, seasons: [RatingId]? = nil, episodes: [RatingId]? = nil, completion: @escaping ObjectCompletionHandler<AddRatingsResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
-        guard let request = post("sync/ratings", body: body) else { return nil }
+        let request = try post("sync/ratings", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -340,7 +340,7 @@ extension TraktManager {
     @discardableResult
     public func removeRatings(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveRatingsResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
-        guard let request = post("sync/ratings/remove", body: body) else { return nil }
+        let request = try post("sync/ratings/remove", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -392,7 +392,7 @@ extension TraktManager {
     @discardableResult
     public func addToWatchlist(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<WatchlistItemPostResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
-        guard let request = post("sync/watchlist", body: body) else { completion(.error(error: nil)); return nil }
+        let request = try post("sync/watchlist", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -411,7 +411,7 @@ extension TraktManager {
     @discardableResult
     public func removeFromWatchlist(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromWatchlistResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
-        guard let request = post("sync/watchlist/remove", body: body) else { completion(.error(error: nil)); return nil }
+        let request = try post("sync/watchlist/remove", body: body)
         return performRequest(request: request, completion: completion)
     }
 }

@@ -89,7 +89,7 @@ public struct TraktCollectedItem: TraktObject {
             hdr = try? container.decodeIfPresent(HDR.self, forKey: .hdr)
             audio = try? container.decodeIfPresent(Audio.self, forKey: .audio)
             audioChannels = try? container.decodeIfPresent(AudioChannels.self, forKey: .audioChannels)
-            is3D = try container.decodeIfPresent(Bool.self, forKey: .is3D) ?? false
+            is3D = (try? container.decodeIfPresent(Bool.self, forKey: .is3D)) ?? false
         }
     }
     

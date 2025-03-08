@@ -20,7 +20,7 @@ extension TraktManager {
     @discardableResult
     public func postComment(movie: SyncId? = nil, show: SyncId? = nil, season: SyncId? = nil, episode: SyncId? = nil, list: SyncId? = nil, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let body = TraktCommentBody(movie: movie, show: show, season: season, episode: episode, list: list, comment: comment, spoiler: spoiler)
-        guard let request = post("comments", body: body) else { return nil }
+        let request = try post("comments", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -88,9 +88,9 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postReply<T: CustomStringConvertible>(commentID id: T, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) -> URLSessionDataTask? {
+    public func postReply<T: CustomStringConvertible>(commentID id: T, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
         let body = TraktCommentBody(comment: comment, spoiler: spoiler)
-        guard let request = post("comments/\(id)/replies", body: body) else { return nil }
+        let request = try post("comments/\(id)/replies", body: body)
         return performRequest(request: request, completion: completion)
     }
 

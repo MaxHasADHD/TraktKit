@@ -71,31 +71,6 @@ public struct StatusCodes: Sendable {
     public static let CloudflareError2 = 521
     /// Service Unavailable - Cloudflare error
     public static let CloudflareError3 = 522
-
-    static func message(for status: Int) -> String? {
-        switch status {
-        case Unauthorized:
-            return "App not authorized. Please sign in again."
-        case Forbidden:
-            return "Invalid API Key"
-        case NotFound:
-            return "API not found"
-        case AccountLimitExceeded:
-            return "The number of Trakt lists or list items has been exceeded. Please see Trakt.tv for account limits and support."
-        case acountLocked:
-            return "Trakt.tv has indicated that this account is locked. Please contact Trakt support to unlock your account."
-        case vipOnly:
-            return "This feature is VIP only with Trakt. Please see Trakt.tv for more information."
-        case RateLimitExceeded:
-            return "Rate Limit Exceeded. Please try again in a minute."
-        case ServerError..<CloudflareError:
-            return "Trakt.tv is down. Please try again later."
-        case CloudflareError..<600:
-            return "CloudFlare error. Please try again later."
-        default:
-            return nil
-        }
-    }
 }
 
 /// What to search for

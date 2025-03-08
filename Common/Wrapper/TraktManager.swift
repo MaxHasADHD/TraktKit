@@ -206,35 +206,8 @@ public final class TraktManager: Sendable {
         return request
     }
 
-    func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) -> URLRequest? {
-        let urlString = "https://\(apiHost)/" + path
-        guard var components = URLComponents(string: urlString) else { return nil }
-        if query.isEmpty == false {
-            var queryItems: [URLQueryItem] = []
-            for (key, value) in query {
-                queryItems.append(URLQueryItem(name: key, value: value))
-            }
-            components.queryItems = queryItems
-        }
-
-        guard let url = components.url else { return nil }
-        var request = URLRequest(url: url)
-        request.httpMethod = Method.POST.rawValue
-
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        request.addValue(clientId, forHTTPHeaderField: "trakt-api-key")
-
-        if let accessToken {
-            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        }
-
-        do {
-            request.httpBody = try Self.jsonEncoder.encode(body)
-        } catch {
-            return nil
-        }
-        return request
+    func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) throws -> URLRequest {
+        try mutableRequest(forPath: path, withQuery: query, isAuthorized: true, withHTTPMethod: .POST, body: body)
     }
 
     // MARK: - Authentication

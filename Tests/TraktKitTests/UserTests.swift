@@ -135,7 +135,7 @@ final class UserTests: TraktTestCase {
         try mock(.POST, "https://api.trakt.tv/users/hidden/calendar", result: .success(jsonData(named: "test_add_hidden_item")))
 
         let expectation = XCTestExpectation(description: "Add hidden item")
-        try! traktManager.hide(from: HiddenItemSection.calendar) { result in
+        try traktManager.hide(from: HiddenItemSection.calendar) { result in
             if case .success(let result) = result {
                 XCTAssertEqual(result.added.movies, 1)
                 XCTAssertEqual(result.added.shows, 2)
@@ -159,7 +159,7 @@ final class UserTests: TraktTestCase {
         try mock(.GET, "https://api.trakt.tv/users/hidden/calendar/remove", result: .success(jsonData(named: "test_post_remove_hidden_items")))
 
         let expectation = XCTestExpectation(description: "Remove hidden items")
-        try! traktManager.unhide(from: HiddenItemSection.calendar) { result in
+        try traktManager.unhide(from: HiddenItemSection.calendar) { result in
             if case .success(let result) = result {
                 XCTAssertEqual(result.deleted.movies, 1)
                 XCTAssertEqual(result.deleted.shows, 2)
@@ -396,7 +396,7 @@ final class UserTests: TraktTestCase {
 
         let listName = "Star Wars in machete order"
         let listDescription = "Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI."
-        try! traktManager.createCustomList(listName: "listName", listDescription: listDescription) { result in
+        try traktManager.createCustomList(listName: "listName", listDescription: listDescription) { result in
             if case .success(let newList) = result {
                 XCTAssertEqual(newList.name, listName)
                 XCTAssertEqual(newList.description, listDescription)
@@ -440,7 +440,7 @@ final class UserTests: TraktTestCase {
         try mock(.GET, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order", result: .success(jsonData(named: "test_update_custom_list")))
 
         let expectation = XCTestExpectation(description: "User update custom list")
-        try! traktManager.updateCustomList(listID: "star-wars-in-machete-order", listName: "Star Wars in NEW machete order", privacy: "private", displayNumbers: false) { result in
+        try traktManager.updateCustomList(listID: "star-wars-in-machete-order", listName: "Star Wars in NEW machete order", privacy: "private", displayNumbers: false) { result in
             if case .success(let list) = result {
                 XCTAssertEqual(list.name, "Star Wars in NEW machete order")
                 XCTAssertEqual(list.privacy, .private)
@@ -529,7 +529,7 @@ final class UserTests: TraktTestCase {
                 XCTAssertEqual(listItems.count, 5)
                 expectation.fulfill()
             case .error(let error):
-                XCTFail("Failed to get items on custom list: \(error)")
+                XCTFail("Failed to get items on custom list: \(String(describing: error))")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
@@ -549,7 +549,7 @@ final class UserTests: TraktTestCase {
         try mock(.POST, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items", result: .success(jsonData(named: "test_add_item_to_custom_list")))
         
         let expectation = XCTestExpectation(description: "Add item to custom list")
-        try! traktManager.addItemToCustomList(username: "sean", listID: "star-wars-in-machete-order", movies: [], shows: [], episodes: []) { result in
+        try traktManager.addItemToCustomList(username: "sean", listID: "star-wars-in-machete-order", movies: [], shows: [], episodes: []) { result in
             if case .success(let response) = result {
                 XCTAssertEqual(response.added.seasons, 1)
                 XCTAssertEqual(response.added.people, 1)
@@ -583,7 +583,7 @@ final class UserTests: TraktTestCase {
         try mock(.DELETE, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items/remove", result: .success(jsonData(named: "test_remove_item_from_custom_list")))
 
         let expectation = XCTestExpectation(description: "Remove item to custom list")
-        try! traktManager.removeItemFromCustomList(username: "sean", listID: "star-wars-in-machete-order", movies: [], shows: [], episodes: []) { result in
+        try traktManager.removeItemFromCustomList(username: "sean", listID: "star-wars-in-machete-order", movies: [], shows: [], episodes: []) { result in
             if case .success(let response) = result {
                 XCTAssertEqual(response.deleted.seasons, 1)
                 XCTAssertEqual(response.deleted.people, 1)
@@ -808,7 +808,7 @@ final class UserTests: TraktTestCase {
                 XCTAssertEqual(watchlist.count, 5)
                 expectation.fulfill()
             case .error(let error):
-                XCTFail("Failed to get user watchlist: \(error)")
+                XCTFail("Failed to get user watchlist: \(String(describing: error))")
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
@@ -975,5 +975,4 @@ final class UserTests: TraktTestCase {
             break
         }
     }
-
 }

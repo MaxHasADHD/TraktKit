@@ -21,7 +21,7 @@ extension TraktManager {
      */
     @discardableResult
     public func scrobbleStart(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
-        return try perform("start", scrobble: scrobble, completion: completion)
+        try perform("start", scrobble: scrobble, completion: completion)
     }
     
     // MARK: - Pause
@@ -33,7 +33,7 @@ extension TraktManager {
      */
     @discardableResult
     public func scrobblePause(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
-        return try perform("pause", scrobble: scrobble, completion: completion)
+        try perform("pause", scrobble: scrobble, completion: completion)
     }
     
     // MARK: - Stop
@@ -49,15 +49,14 @@ extension TraktManager {
      */
     @discardableResult
     public func scrobbleStop(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
-        return try perform("stop", scrobble: scrobble, completion: completion)
+        try perform("stop", scrobble: scrobble, completion: completion)
     }
     
     // MARK: - Private
     
     @discardableResult
     func perform(_ scrobbleAction: String, scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
-        // Request
-        guard let request = post("scrobble/\(scrobbleAction)", body: scrobble) else { return nil }
+        let request = try post("scrobble/\(scrobbleAction)", body: scrobble)
         return performRequest(request: request, completion: completion)
     }
 }

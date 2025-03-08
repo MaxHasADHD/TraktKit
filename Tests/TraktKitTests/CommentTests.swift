@@ -65,7 +65,7 @@ final class CommentTests: TraktTestCase {
         let newComment = "Agreed, this show is awesome. AMC in general has awesome shows and I can't wait to see what they come up with next."
 
         let expectation = XCTestExpectation(description: "Update a comment")
-        try! traktManager.updateComment(commentID: "417", newComment: newComment) { result in
+        try traktManager.updateComment(commentID: "417", newComment: newComment) { result in
             if case .success(let comment) = result {
                 XCTAssertEqual(comment.comment, newComment)
                 expectation.fulfill()
@@ -128,7 +128,7 @@ final class CommentTests: TraktTestCase {
         let reply = "Couldn't agree more with your review!"
 
         let expectation = XCTestExpectation(description: "Get replies for comment")
-        traktManager.postReply(commentID: "417", comment: reply) { result in
+        try traktManager.postReply(commentID: "417", comment: reply) { result in
             if case .success(let postedReply) = result {
                 XCTAssertEqual(postedReply.comment, reply)
                 expectation.fulfill()

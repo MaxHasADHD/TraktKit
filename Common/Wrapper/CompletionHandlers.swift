@@ -57,7 +57,7 @@ extension TraktManager {
         case error(error: Error?)
     }
     
-    public enum TraktError: Error, Equatable {
+    public enum TraktError: LocalizedError, Equatable {
         /// 204. Some methods will succeed but not return any content. The network manager doesn't handle this well at the moment as it wants to decode the data when it is empty. Instead I'll throw this error so that it can be ignored for now.
         case noContent
 
@@ -95,6 +95,47 @@ extension TraktManager {
         case cloudflareError
         /// Full url response
         case unhandled(URLResponse)
+
+        public var errorDescription: String? {
+            switch self {
+            case .noContent:
+                nil
+            case .badRequest:
+                "Request could not be parsed."
+            case .unauthorized:
+                "Unauthorized. Please sign in with Trakt."
+            case .forbidden:
+                "Forbidden. Invalid API key or unapproved app."
+            case .noRecordFound:
+                "No record found."
+            case .noMethodFound:
+                "Method not found."
+            case .resourceAlreadyCreated:
+                "Resource has already been created."
+            case .preconditionFailed:
+                "Invalid content type."
+            case .accountLimitExceeded:
+                "The number of Trakt lists or list items has been exceeded. Please see Trakt.tv for account limits and support."
+            case .unprocessableEntity:
+                "Invalid entity."
+            case .accountLocked:
+                "Trakt.tv has indicated that this account is locked. Please contact Trakt support to unlock your account."
+            case .vipOnly:
+                "This feature is VIP only with Trakt. Please see Trakt.tv for more information."
+            case .retry:
+                nil
+            case .rateLimitExceeded:
+                "Rate Limit Exceeded. Please try again in a minute."
+            case .serverError, .serverOverloaded, .cloudflareError:
+                "Trakt.tv is down. Please try again later."
+            case .unhandled(let urlResponse):
+                if let httpResponse = urlResponse as? HTTPURLResponse {
+                    "Unhandled response. Status code \(httpResponse.statusCode)"
+                } else {
+                    "Unhandled response. \(urlResponse.description)"
+                }
+            }
+        }
     }
     
     // MARK: - Completion handlers

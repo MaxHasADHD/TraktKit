@@ -16,7 +16,7 @@ extension TraktManager {
      */
     @discardableResult
     public func checkIn(_ body: TraktCheckinBody, completionHandler: @escaping checkinCompletionHandler) -> URLSessionDataTask? {
-        guard let request = post("checkin", body: body) else { return nil }
+        guard let request = try? post("checkin", body: body) else { return nil }
         return performRequest(request: request, completion: completionHandler)
     }
     

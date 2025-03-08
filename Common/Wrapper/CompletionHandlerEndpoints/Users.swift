@@ -125,7 +125,7 @@ extension TraktManager {
     @discardableResult
     public func hide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: String, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
-        guard let request = post("users/hidden/\(section)", body: body) else { return nil }
+        let request = try post("users/hidden/\(section)", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -137,7 +137,7 @@ extension TraktManager {
     @discardableResult
     public func unhide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: String, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
-        guard let request = post("users/hidden/\(section)/remove", body: body) else { return nil }
+        let request = try post("users/hidden/\(section)/remove", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -407,7 +407,7 @@ extension TraktManager {
     @discardableResult
     public func addItemToCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil, completion: @escaping AddListItemCompletion) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
-        guard let request = post("users/\(username)/lists/\(listID)/items", body: body) else { return nil }
+        let request = try post("users/\(username)/lists/\(listID)/items", body: body)
         return performRequest(request: request, completion: completion)
     }
     
@@ -427,7 +427,7 @@ extension TraktManager {
     @discardableResult
     public func removeItemFromCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil, completion: @escaping RemoveListItemCompletion) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
-        guard let request = post("users/\(username)/lists/\(listID)/items/remove", body: body) else { return nil }
+        let request = try post("users/\(username)/lists/\(listID)/items/remove", body: body)
         return performRequest(request: request, completion: completion)
     }
     
