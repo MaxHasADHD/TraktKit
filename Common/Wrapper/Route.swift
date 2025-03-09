@@ -241,7 +241,7 @@ public struct PagedObject<TraktModel: TraktObject>: PagedObjectProtocol, TraktOb
 extension Route where T: PagedObjectProtocol {
 
     /// Fetches all pages for a paginated endpoint, and returns the data in a Set.
-    func fetchAllPages<Element>() async throws -> Set<Element> where T.Type == PagedObject<[Element]>.Type {
+    public func fetchAllPages<Element>() async throws -> Set<Element> where T.Type == PagedObject<[Element]>.Type {
         // Fetch first page
         let firstPage = try await self.page(1).perform()
         var resultSet = Set<Element>(firstPage.object)
@@ -287,7 +287,7 @@ extension Route where T: PagedObjectProtocol {
     }
 
     /// Stream paged results one at a time
-    func pagedResults<Element>() -> AsyncThrowingStream<[Element], Error> where T.Type == PagedObject<[Element]>.Type {
+    public func pagedResults<Element>() -> AsyncThrowingStream<[Element], Error> where T.Type == PagedObject<[Element]>.Type {
         AsyncThrowingStream { continuation in
             let task = Task {
                 do {
