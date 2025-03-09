@@ -176,7 +176,7 @@ internal extension TraktManager {
     
     // MARK: - Summary
     
-    func getSummary<T: CustomStringConvertible, U: Decodable>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<U>) -> URLSessionDataTask? {
+    func getSummary<U: Decodable>(_ type: WatchedType, id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<U>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
@@ -187,7 +187,7 @@ internal extension TraktManager {
     
     // MARK: - Aliases
     
-    func getAliases<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping AliasCompletionHandler) -> URLSessionDataTask? {
+    func getAliases(_ type: WatchedType, id: CustomStringConvertible, completion: @escaping AliasCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/aliases",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -197,7 +197,7 @@ internal extension TraktManager {
     
     // MARK: - Translations
     
-    func getTranslations<T: CustomStringConvertible, U: TraktObject>(_ type: WatchedType, id: T, language: String?, completion: @escaping ObjectCompletionHandler<[U]>) -> URLSessionDataTask? {
+    func getTranslations<U: TraktObject>(_ type: WatchedType, id: CustomStringConvertible, language: String?, completion: @escaping ObjectCompletionHandler<[U]>) -> URLSessionDataTask? {
 
         var path = "\(type)/\(id)/translations"
         if let language = language {
@@ -213,7 +213,7 @@ internal extension TraktManager {
     
     // MARK: - Comments
     
-    func getComments<T: CustomStringConvertible>(_ type: WatchedType, id: T, pagination: Pagination?, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
+    func getComments(_ type: WatchedType, id: CustomStringConvertible, pagination: Pagination?, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
 
         var query: [String: String] = [:]
 
@@ -234,7 +234,7 @@ internal extension TraktManager {
     
     // MARK: - People
     
-    func getPeople<T: CustomStringConvertible, Cast: Codable & Hashable, Crew: Codable & Hashable>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<Cast, Crew>>) -> URLSessionDataTask? {
+    func getPeople<Cast: Codable & Hashable, Crew: Codable & Hashable>(_ type: WatchedType, id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<Cast, Crew>>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/people",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
@@ -245,7 +245,7 @@ internal extension TraktManager {
     
     // MARK: - Ratings
     
-    func getRatings<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
+    func getRatings(_ type: WatchedType, id: CustomStringConvertible, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/ratings",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -256,7 +256,7 @@ internal extension TraktManager {
     
     // MARK: - Related
     
-    func getRelated<T: CustomStringConvertible, U>(_ type: WatchedType, id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<[U]>) -> URLSessionDataTask? {
+    func getRelated<U>(_ type: WatchedType, id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<[U]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/related",
                                            withQuery: ["extended": extended.queryString()],
                                            isAuthorized: false,
@@ -267,7 +267,7 @@ internal extension TraktManager {
     
     // MARK: - Stats
     
-    func getStatistics<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping statsCompletionHandler) -> URLSessionDataTask? {
+    func getStatistics(_ type: WatchedType, id: CustomStringConvertible, completion: @escaping statsCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/stats",
                                            withQuery: [:],
                                            isAuthorized: false,
@@ -278,7 +278,7 @@ internal extension TraktManager {
     
     // MARK: - Watching
     
-    func getUsersWatching<T: CustomStringConvertible>(_ type: WatchedType, id: T, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
+    func getUsersWatching(_ type: WatchedType, id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "\(type)/\(id)/watching",
                                            withQuery: [:],
                                            isAuthorized: false,

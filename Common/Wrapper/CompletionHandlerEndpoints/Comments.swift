@@ -28,7 +28,7 @@ extension TraktManager {
      Returns a single comment and indicates how many replies it has. Use **GET** `/comments/:id/replies` to get the actual replies.
      */
     @discardableResult
-    public func getComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
+    public func getComment(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)",
                                           withQuery: [:],
                                           isAuthorized: false,
@@ -42,7 +42,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func updateComment<T: CustomStringConvertible>(commentID id: T, newComment comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
+    public func updateComment(commentID id: CustomStringConvertible, newComment comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
         let body = TraktCommentBody(comment: comment, spoiler: spoiler)
         var request = try mutableRequest(forPath: "comments/\(id)",
                                           withQuery: [:],
@@ -58,7 +58,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func deleteComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func deleteComment(commentID id: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)",
                                           withQuery: [:],
                                           isAuthorized: true,
@@ -74,7 +74,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getReplies<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<[Comment]>) throws -> URLSessionDataTask? {
+    public func getReplies(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<[Comment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/replies",
                                          withQuery: [:],
                                          isAuthorized: false,
@@ -88,7 +88,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func postReply<T: CustomStringConvertible>(commentID id: T, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
+    public func postReply(commentID id: CustomStringConvertible, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
         let body = TraktCommentBody(comment: comment, spoiler: spoiler)
         let request = try post("comments/\(id)/replies", body: body)
         return performRequest(request: request, completion: completion)
@@ -102,7 +102,7 @@ extension TraktManager {
      📄 Pagination
      */
     @discardableResult
-    public func getAttachedMediaItem<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<TraktAttachedMediaItem>) throws -> URLSessionDataTask? {
+    public func getAttachedMediaItem(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<TraktAttachedMediaItem>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/item",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -118,7 +118,7 @@ extension TraktManager {
      ✨ Extended Info
      */
     @discardableResult
-    public func getUsersWhoLikedComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping ObjectCompletionHandler<[TraktCommentLikedUser]>) throws -> URLSessionDataTask? {
+    public func getUsersWhoLikedComment(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<[TraktCommentLikedUser]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/likes",
                                          withQuery: [:],
                                          isAuthorized: true,
@@ -134,7 +134,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func likeComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func likeComment(commentID id: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/like",
                                           withQuery: [:],
                                           isAuthorized: false,
@@ -148,7 +148,7 @@ extension TraktManager {
      🔒 OAuth: Required
      */
     @discardableResult
-    public func removeLikeOnComment<T: CustomStringConvertible>(commentID id: T, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
+    public func removeLikeOnComment(commentID id: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/like",
                                          withQuery: [:],
                                          isAuthorized: false,

@@ -28,7 +28,7 @@ public struct TraktNewList: TraktObject {
     public let sortBy: String?
     public let sortHow: String?
 
-    init(
+    public init(
         name: String,
         description: String? = nil,
         privacy: ListPrivacy? = nil,
@@ -66,7 +66,7 @@ public struct TraktUpdateList: TraktObject {
     public let sortBy: String?
     public let sortHow: String?
 
-    init(
+    public init(
         name: String? = nil,
         description: String? = nil,
         privacy: ListPrivacy? = nil,
