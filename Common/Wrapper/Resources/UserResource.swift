@@ -14,6 +14,7 @@ extension TraktManager {
         static let currentUserSlug = "me"
 
         private let traktManager: TraktManager
+        private let path: String = "users"
 
         internal init(traktManager: TraktManager) {
             self.traktManager = traktManager
@@ -22,19 +23,19 @@ extension TraktManager {
         // MARK: - Methods
         
         public func settings() -> Route<AccountSettings> {
-            Route(path: "users/settings", method: .GET, requiresAuthentication: true, traktManager: traktManager)
+            Route(paths: [path, "settings"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         // MARK: Following Requests
 
         /// List a user's pending following requests that they're waiting for the other user's to approve.
         public func getPendingFollowingRequests() -> Route<[FollowRequest]> {
-            Route(path: "users/requests/following", method: .GET, requiresAuthentication: true, traktManager: traktManager)
+            Route(paths: [path, "requests", "following"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         /// List a user's pending follow requests so they can either approve or deny them.
         public func getFollowerRequests() -> Route<[FollowRequest]> {
-            Route(path: "users/requests", method: .GET, requiresAuthentication: true, traktManager: traktManager)
+            Route(paths: [path, "requests"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         /**
@@ -43,7 +44,7 @@ extension TraktManager {
          🔒 OAuth Required
          */
         public func approveFollowRequest(id: Int) -> Route<FollowResult> {
-            Route(path: "users/requests/\(id)", method: .POST, requiresAuthentication: true, traktManager: traktManager)
+            Route(paths: [path, "requests", id], method: .POST, requiresAuthentication: true, traktManager: traktManager)
         }
 
         /**
@@ -52,7 +53,7 @@ extension TraktManager {
          🔒 OAuth Required
          */
         public func denyFollowRequest(id: Int) -> EmptyRoute {
-            EmptyRoute(path: "users/requests/\(id)", method: .DELETE, requiresAuthentication: true, traktManager: traktManager)
+            EmptyRoute(paths: [path, "requests", id], method: .DELETE, requiresAuthentication: true, traktManager: traktManager)
         }
 
         /**
@@ -63,7 +64,7 @@ extension TraktManager {
          📄 Pagination
          */
         public func savedFilters(for section: String? = nil) -> Route<PagedObject<[SavedFilter]>> {
-            Route(paths: ["users/saved_filters", section], method: .GET, requiresAuthentication: true, traktManager: traktManager)
+            Route(paths: [path, "saved_filters", section], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         // MARK: - Hidden
@@ -75,7 +76,7 @@ extension TraktManager {
          */
         public func hiddenItems(for section: String, type: String? = nil) -> Route<PagedObject<[HiddenItem]>> {
             Route(
-                paths: ["users/hidden", section],
+                paths: [path, "hidden", section],
                 queryItems: ["type": type].compactMapValues { $0 },
                 method: .GET,
                 requiresAuthentication: true,
@@ -90,7 +91,7 @@ extension TraktManager {
          */
         public func hide(movies: [SyncId] = [], shows: [SyncId] = [], seasons: [SyncId] = [], users: [SyncId] = [], in section: String) -> Route<HideItemResult> {
             Route(
-                paths: ["users/hidden", section],
+                paths: [path, "hidden", section],
                 body: TraktMediaBody(movies: movies, shows: shows, seasons: seasons, users: users),
                 method: .POST,
                 requiresAuthentication: true,
@@ -105,13 +106,15 @@ extension TraktManager {
          */
         public func unhide(movies: [SyncId] = [], shows: [SyncId] = [], seasons: [SyncId] = [], users: [SyncId] = [], in section: String) -> Route<UnhideItemResult> {
             Route(
-                paths: ["users/hidden", section, "remove"],
+                paths: [path, "hidden", section, "remove"],
                 body: TraktMediaBody(movies: movies, shows: shows, seasons: seasons, users: users),
                 method: .POST,
                 requiresAuthentication: true,
                 traktManager: traktManager
             )
         }
+
+        // MARK: - Profile
 
         /**
          Get a user's profile information. If the user is private, info will only be returned if you send OAuth and are either that user or an approved follower. Adding `?extended=vip` will return some additional VIP related fields so you can display the user's Trakt VIP status and year count.
@@ -121,6 +124,73 @@ extension TraktManager {
         public func profile() -> Route<User> {
             UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).profile()
         }
+
+        // MARK: - Lists
+
+        /**
+         Create a new personal list. The `name` is the only required field, but the other info is recommended to ask for.
+
+         ---
+         **Limits**
+
+         If the user's list limit is exceeded, a ``TraktManager/TraktError/accountLimitExceeded``  error  is thrown. Use the ``TraktManager/CurrentUserResource/settings()`` method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
+
+         🔥 VIP Enhanced 🔒 OAuth Required
+         */
+        public func createPersonalList(_ body: TraktNewList) -> Route<TraktList> {
+            Route(paths: [path, Self.currentUserSlug, "lists"], method: .POST, requiresAuthentication: true, traktManager: traktManager)
+        }
+
+        /**
+         Reorder all lists by sending the updated rank of list ids. Use the /users/:id/lists method to get all list ids.
+
+         🔒 OAuth Required
+         */
+        public func reorderLists(_ rank: [Int]) -> Route<TraktReorderListsResponse> {
+            struct ReorderBody: TraktObject {
+                let rank: [Int]
+            }
+
+            return Route(
+                paths: [path, Self.currentUserSlug, "lists", "reorder"],
+                body: ReorderBody(rank: rank),
+                method: .POST,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
+        // MARK: - List
+
+        /**
+         Update a personal list by sending 1 or more parameters. If you update the list name, the original slug will still be retained so existing references to this list won't break.
+
+         🔒 OAuth Required
+         */
+        public func updatePersonalList(_ listId: CustomStringConvertible, changes: TraktUpdateList) -> Route<TraktList> {
+            Route(
+                paths: [path, Self.currentUserSlug, "lists", listId],
+                body: changes,
+                method: .POST,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
+        /**
+         Remove a personal list and all items it contains.
+
+         🔒 OAuth Required
+         */
+        public func deletePersonalList(_ listId: CustomStringConvertible) -> EmptyRoute {
+            EmptyRoute(
+                paths: [path, Self.currentUserSlug, "lists", listId],
+                method: .DELETE,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
     }
 
     /// Resource containing all of the `/user/*` endpoints where authentication is **optional** or **not** required.
@@ -207,16 +277,53 @@ extension TraktManager {
 
         // MARK: - Lists
 
+        /**
+         Returns all personal lists for a user. Use the /users/:id/lists/:list_id/items method to get the actual items a specific list contains.
+
+         🔓 OAuth Optional 😁 Emojis
+         */
+        public func lists() -> Route<[TraktList]> {
+            Route(paths: [path, "lists"], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
+        }
+
         // MARK: - Collaborations
 
         // MARK: - List
 
-        public func lists() -> Route<[TraktList]> {
-            Route(paths: [path, "lists"], method: .GET, traktManager: traktManager)
+        /**
+         Returns a single personal list. Use the /users/:id/lists/:list_id/items method to get the actual items this list contains.
+
+         🔓 OAuth Optional 😁 Emojis
+
+         - parameter listId: Trakt ID or Trakt slug
+         */
+        public func personalList(_ listId: CustomStringConvertible) -> Route<TraktList> {
+            Route(
+                paths: [path, "lists", listId],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
         }
 
-        public func itemsOnList(_ listId: String, type: ListItemType? = nil) -> Route<[TraktListItem]> {
-            Route(paths: ["users/\(slug)/lists/\(listId)/items", type?.rawValue], method: .GET, traktManager: traktManager)
+        /**
+         Get all items on a personal list. Items can be a `movie`, `show`, `season`, `episode`, or `person`. You can optionally specify the `type` parameter with a single value or comma delimited string for multiple item types.
+
+         **Type**
+
+         Each list item contains a notes field with text entered by the user.
+
+         **Sorting Headers**
+
+         All list items are sorted by ascending `rank`. We also send `X-Sort-By` and `X-Sort-How` headers which can be used to custom sort the list in your app based on the user's preference. Values for `X-Sort-By` include `rank`, `added`, `title`, `released`, `runtime`, `popularity`, `percentage`, `votes`, `my_rating`, `random`, `watched`, and `collected`. Values for `X-Sort-How` include `asc` and `desc`.
+         */
+        public func itemsOnList(_ listId: CustomStringConvertible, type: ListItemType? = nil) -> Route<[TraktListItem]> {
+            Route(
+                paths: [path, "lists", listId, "items", type?.rawValue],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
         }
 
         // MARK: - Follow

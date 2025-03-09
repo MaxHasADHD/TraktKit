@@ -289,7 +289,7 @@ extension TraktManager {
     🔓 OAuth Optional
     */
     @discardableResult
-    public func getCustomList<T: CustomStringConvertible>(username: String = "me", listID: T, completion: @escaping ObjectCompletionHandler<TraktList>) -> URLSessionDataTask? {
+    public func getCustomList(username: String = "me", listID: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<TraktList>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
         guard
             let request = try? mutableRequest(forPath: "users/\(username)/lists/\(listID)",
@@ -305,8 +305,8 @@ extension TraktManager {
      🔒 OAuth Required
      */
     @discardableResult
-    public func updateCustomList<T: CustomStringConvertible>(listID: T, listName: String? = nil, listDescription: String? = nil, privacy: String? = nil, displayNumbers: Bool? = nil, allowComments: Bool? = nil, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTask? {
-        
+    public func updateCustomList(listID: CustomStringConvertible, listName: String? = nil, listDescription: String? = nil, privacy: String? = nil, displayNumbers: Bool? = nil, allowComments: Bool? = nil, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTask? {
+
         // JSON
         var json = [String: Any]()
         json["name"] = listName

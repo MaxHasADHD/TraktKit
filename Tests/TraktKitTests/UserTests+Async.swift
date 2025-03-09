@@ -130,7 +130,7 @@ extension TraktTestSuite {
 
         @Test func getFullProfile() async throws {
             let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_full_profile")))
+            try mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_full_profile")), replace: true)
 
             let profile = try await traktManager.currentUser()
                 .profile()
@@ -151,7 +151,7 @@ extension TraktTestSuite {
 
         @Test func getVIPProfile() async throws {
             let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_VIP_profile")))
+            try mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_VIP_profile")), replace: true)
 
             let profile = try await traktManager.currentUser()
                 .profile()
