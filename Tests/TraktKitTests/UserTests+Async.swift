@@ -206,6 +206,61 @@ extension TraktTestSuite {
             #expect(comments.count == 5)
         }
 
+        // MARK: - List
+
+        @Test func getCustomList() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order", result: .success(jsonData(named: "test_get_custom_list")))
+
+            let customList = try await traktManager.currentUser().personalList("star-wars-in-machete-order").perform()
+            #expect(customList.name == "Star Wars in machete order")
+            #expect(customList.description != nil)
+        }
+
+        @Test func getListItems() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items", result: .success(jsonData(named: "test_get_items_on_custom_list")))
+
+            let listItems = try await traktManager.user("sean").itemsOnList("star-wars-in-machete-order").perform().object
+            #expect(listItems.count == 5)
+        }
+
+        @Test func addItemsToList() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items", result: .success(jsonData(named: "test_add_item_to_custom_list")))
+
+            // For the test we don't need to add any specific Ids.
+            let response = try await traktManager.currentUser().addItemsToList("star-wars-in-machete-order", movies: []).perform()
+            #expect(response.added.seasons == 1)
+            #expect(response.added.people == 1)
+            #expect(response.added.movies == 1)
+            #expect(response.added.shows == 1)
+            #expect(response.added.episodes == 2)
+
+            #expect(response.existing.seasons == 0)
+            #expect(response.existing.episodes == 0)
+            #expect(response.existing.movies == 0)
+            #expect(response.existing.shows == 0)
+            #expect(response.existing.episodes == 0)
+
+            #expect(response.notFound.movies.count == 1)
+        }
+
+        @Test func removeItemsFromList() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.DELETE, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/remove", result: .success(jsonData(named: "test_remove_item_from_custom_list")))
+
+            // For the test we don't need to add any specific Ids.
+            let response = try await traktManager.currentUser().removeItemsFromList("star-wars-in-machete-order", movies: []).perform()
+            #expect(response.deleted.seasons == 1)
+            #expect(response.deleted.people == 1)
+            #expect(response.deleted.movies == 1)
+            #expect(response.deleted.shows == 1)
+            #expect(response.deleted.episodes == 2)
+
+            #expect(response.notFound.movies.count == 1)
+        }
+
         // MARK: - History
 
         @Test func getWatchedHistory() async throws {

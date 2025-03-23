@@ -169,6 +169,17 @@ extension TraktManager {
         // MARK: - List
 
         /**
+         Returns a single personal list. Use the ``TraktManager/UsersResource/itemsOnList(_:type:)`` method to get the actual items this list contains.
+
+         🔓 OAuth Optional 😁 Emojis
+
+         - parameter listId: Trakt ID or Trakt slug
+         */
+        public func personalList(_ listId: CustomStringConvertible) -> Route<TraktList> {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).personalList(listId)
+        }
+
+        /**
          Update a personal list by sending 1 or more parameters. If you update the list name, the original slug will still be retained so existing references to this list won't break.
 
          🔒 OAuth Required
@@ -195,6 +206,59 @@ extension TraktManager {
                 requiresAuthentication: true,
                 traktManager: traktManager
             )
+        }
+
+        // MARK: - List Items
+
+        /**
+         Get all items on a personal list. Items can be a `movie`, `show`, `season`, `episode`, or `person`. You can optionally specify the type parameter with a single value or comma delimited string for multiple item types.
+
+         **Notes**
+
+         Each list item contains a `notes` field with text entered by the user.
+
+         **Sorting**
+
+         Default sorting is based on the list defaults and sent in the `X-Sort-By` and `X-Sort-How` headers. If you specify the `sort_by` and `sort_how` parameters, the response will be sorted based on those values and sent in the `X-Applied-Sort-By` and` X-Applied-Sort-How` headers.
+
+         Some sort_by options are 🔥 **VIP Only** including `imdb_rating`, `tmdb_rating`, `rt_tomatometer`, `rt_audience`, `metascore`, `votes`, `imdb_votes`, and `tmdb_votes`. If sent for a non VIP, the items will fall back to `rank`.
+
+         🔥 VIP Enhanced 🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+
+         - parameters:
+         - listId: Trakt ID or Trakt slug
+         - type: Filter for a specific item type. Possible values:  `movie` , `show` , `season` , `episode` , `person` .
+         - sortBy: Sort by a specific property. Possible values:  `rank` , `added` , `title` , `released` , `runtime` , `popularity` , `random` , `percentage` , `imdb_rating` , `tmdb_rating` , `rt_tomatometer` , `rt_audience` , `metascore` , `votes` , `imdb_votes` , `tmdb_votes` , `my_rating` , `watched` , `collected` .
+         - sortHow: Sort direction. Possible values:  `asc` , `desc` .
+         */
+        public func itemsOnList(_ listId: CustomStringConvertible, type: ListItemType? = nil, sortBy: String? = nil, sortHow: String? = nil) -> Route<PagedObject<[TraktListItem]>> {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).itemsOnList(listId, type: type, sortBy: sortBy, sortHow: sortHow)
+        }
+
+        /**
+         Add one or more items to a personal list. Items can be movies, shows, seasons, episodes, or people.
+
+         **Notes**
+
+         Each list item can optionally accept a `notes` (500 maximum characters) field with custom text. The user must be a Trakt VIP to send notes.
+
+         **Limits**
+
+         If the user's list item limit is exceeded, a `420` HTTP error code is returned. Use the /users/settings method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
+
+         🔥 VIP Enhanced 🔒 OAuth Required 😁 Emojis
+         */
+        public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<ListItemPostResult> {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).addItemsToList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+        }
+
+        /**
+         Remove one or more items from a personal list.
+
+         🔒 OAuth Required
+         */
+        public func removeItemsFromList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<RemoveListItemResult> {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).removeItemsFromList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
         }
 
     }
@@ -297,7 +361,7 @@ extension TraktManager {
         // MARK: - List
 
         /**
-         Returns a single personal list. Use the /users/:id/lists/:list_id/items method to get the actual items this list contains.
+         Returns a single personal list. Use the ``TraktManager/UsersResource/itemsOnList(_:type:)`` method to get the actual items this list contains.
 
          🔓 OAuth Optional 😁 Emojis
 
@@ -313,21 +377,71 @@ extension TraktManager {
         }
 
         /**
-         Get all items on a personal list. Items can be a `movie`, `show`, `season`, `episode`, or `person`. You can optionally specify the `type` parameter with a single value or comma delimited string for multiple item types.
+         Get all items on a personal list. Items can be a `movie`, `show`, `season`, `episode`, or `person`. You can optionally specify the type parameter with a single value or comma delimited string for multiple item types.
 
-         **Type**
+         **Notes**
 
-         Each list item contains a notes field with text entered by the user.
+         Each list item contains a `notes` field with text entered by the user.
 
-         **Sorting Headers**
+         **Sorting**
 
-         All list items are sorted by ascending `rank`. We also send `X-Sort-By` and `X-Sort-How` headers which can be used to custom sort the list in your app based on the user's preference. Values for `X-Sort-By` include `rank`, `added`, `title`, `released`, `runtime`, `popularity`, `percentage`, `votes`, `my_rating`, `random`, `watched`, and `collected`. Values for `X-Sort-How` include `asc` and `desc`.
+         Default sorting is based on the list defaults and sent in the `X-Sort-By` and `X-Sort-How` headers. If you specify the `sort_by` and `sort_how` parameters, the response will be sorted based on those values and sent in the `X-Applied-Sort-By` and` X-Applied-Sort-How` headers.
+
+         Some sort_by options are 🔥 **VIP Only** including `imdb_rating`, `tmdb_rating`, `rt_tomatometer`, `rt_audience`, `metascore`, `votes`, `imdb_votes`, and `tmdb_votes`. If sent for a non VIP, the items will fall back to `rank`.
+
+         🔥 VIP Enhanced 🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+
+         - parameters:
+            - listId: Trakt ID or Trakt slug
+            - type: Filter for a specific item type. Possible values:  `movie` , `show` , `season` , `episode` , `person` .
+            - sortBy: Sort by a specific property. Possible values:  `rank` , `added` , `title` , `released` , `runtime` , `popularity` , `random` , `percentage` , `imdb_rating` , `tmdb_rating` , `rt_tomatometer` , `rt_audience` , `metascore` , `votes` , `imdb_votes` , `tmdb_votes` , `my_rating` , `watched` , `collected` .
+            - sortHow: Sort direction. Possible values:  `asc` , `desc` .
          */
-        public func itemsOnList(_ listId: CustomStringConvertible, type: ListItemType? = nil) -> Route<[TraktListItem]> {
+        public func itemsOnList(_ listId: CustomStringConvertible, type: ListItemType? = nil, sortBy: String? = nil, sortHow: String? = nil) -> Route<PagedObject<[TraktListItem]>> {
             Route(
-                paths: [path, "lists", listId, "items", type?.rawValue],
+                paths: [path, "lists", listId, "items", type?.rawValue, sortBy, sortHow],
                 method: .GET,
                 requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
+
+        /**
+         Add one or more items to a personal list. Items can be movies, shows, seasons, episodes, or people.
+
+         **Notes**
+
+         Each list item can optionally accept a `notes` (500 maximum characters) field with custom text. The user must be a Trakt VIP to send notes.
+
+         **Limits**
+
+         If the user's list item limit is exceeded, a `420` HTTP error code is returned. Use the /users/settings method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
+
+         🔥 VIP Enhanced 🔒 OAuth Required 😁 Emojis
+         */
+        public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<ListItemPostResult> {
+            let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+            return Route(
+                paths: [path, "lists", listId, "items"],
+                body: body,
+                method: .POST,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
+        /**
+         Remove one or more items from a personal list.
+
+         🔒 OAuth Required
+         */
+        public func removeItemsFromList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<RemoveListItemResult> {
+            let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+            return Route(
+                paths: [path, "lists", listId, "items", "remove"],
+                body: body,
+                method: .POST,
+                requiresAuthentication: true,
                 traktManager: traktManager
             )
         }
