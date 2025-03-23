@@ -241,7 +241,7 @@ public struct PagedObject<TraktModel: TraktObject>: PagedObjectProtocol, TraktOb
 extension Route where T: PagedObjectProtocol {
 
     /// Fetches all pages for a paginated endpoint, and returns the data in a Set.
-    public func fetchAllPages<Element>() async throws -> Set<Element> where T.Type == PagedObject<[Element]>.Type {
+    public func fetchAllPages<Element>(maxConcurrentRequests preferredMaxConcurrentRequests: Int = 10) async throws -> Set<Element> where T.Type == PagedObject<[Element]>.Type {
         // Fetch first page
         let firstPage = try await self.page(1).perform()
         var resultSet = Set<Element>(firstPage.object)
@@ -249,7 +249,7 @@ extension Route where T: PagedObjectProtocol {
         // Return early if there's only one page
         guard firstPage.pageCount > 1 else { return resultSet }
         resultSet = await withTaskGroup(of: [Element].self, returning: Set<Element>.self) { group in
-            let maxConcurrentRequests = min(firstPage.pageCount - 1, 10)
+            let maxConcurrentRequests = min(firstPage.pageCount - 1, preferredMaxConcurrentRequests)
             let pages = 2...firstPage.pageCount
 
             let indexStream = AsyncStream<Int> { continuation in
@@ -287,7 +287,7 @@ extension Route where T: PagedObjectProtocol {
     }
 
     /// Stream paged results one at a time
-    public func pagedResults<Element>() -> AsyncThrowingStream<[Element], Error> where T.Type == PagedObject<[Element]>.Type {
+    public func pagedResults<Element>(maxConcurrentRequests preferredMaxConcurrentRequests: Int = 10) -> AsyncThrowingStream<[Element], Error> where T.Type == PagedObject<[Element]>.Type {
         AsyncThrowingStream { continuation in
             let task = Task {
                 do {
@@ -301,7 +301,7 @@ extension Route where T: PagedObjectProtocol {
                     }
 
                     // Use a semaphore to limit concurrency
-                    let semaphore = AsyncSemaphore(value: 10)
+                    let semaphore = AsyncSemaphore(value: preferredMaxConcurrentRequests)
                     let pages = 2...firstPage.pageCount
 
                     try await withThrowingTaskGroup(of: (Int, [Element]).self) { group in

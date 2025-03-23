@@ -138,7 +138,13 @@ extension TraktManager {
          🔥 VIP Enhanced 🔒 OAuth Required
          */
         public func createPersonalList(_ body: TraktNewList) -> Route<TraktList> {
-            Route(paths: [path, Self.currentUserSlug, "lists"], method: .POST, requiresAuthentication: true, traktManager: traktManager)
+            Route(
+                paths: [path, Self.currentUserSlug, "lists"],
+                body: body,
+                method: .POST,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
         }
 
         /**
