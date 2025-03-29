@@ -310,10 +310,10 @@ extension TraktManager {
          🔒 OAuth Required
          */
         public func removeRatings(
-            movies: [RatingId]? = nil,
-            shows: [RatingId]? = nil,
-            seasons: [RatingId]? = nil,
-            episodes: [RatingId]? = nil
+            movies: [SyncId]? = nil,
+            shows: [SyncId]? = nil,
+            seasons: [SyncId]? = nil,
+            episodes: [SyncId]? = nil
         ) -> Route<RemoveRatingsResult> {
             Route(
                 paths: [path, "ratings", "remove"],
