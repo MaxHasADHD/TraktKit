@@ -210,6 +210,7 @@ public struct TraktLastActivities: TraktObject {
         public let favoritesAt: Date
         public let commentedAt: Date
         public let hiddenAt: Date
+        public let droppedAt: Date
 
         enum CodingKeys: String, CodingKey {
             case ratedAt = "rated_at"
@@ -217,6 +218,7 @@ public struct TraktLastActivities: TraktObject {
             case favoritesAt = "favorited_at"
             case commentedAt = "commented_at"
             case hiddenAt = "hidden_at"
+            case droppedAt = "dropped_at"
         }
     }
 
@@ -277,6 +279,7 @@ public struct TraktLastActivities: TraktObject {
         }
     }
 
+    /// Used for watchlist, favorites, saved filters, and notes.
     public struct LastUpdated: TraktObject {
         public let updatedAt: Date
 
