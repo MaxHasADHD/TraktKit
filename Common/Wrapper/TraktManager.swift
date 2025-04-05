@@ -183,7 +183,6 @@ public final class TraktManager: Sendable {
         // Request
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
-        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
         // Headers
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
