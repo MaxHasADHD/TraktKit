@@ -27,7 +27,10 @@ public struct TraktSeason: TraktObject {
     
     // Extended: Episodes
     public let episodes: [TraktEpisode]?
-    
+
+    // Extended: Images
+    public let images: TraktImages?
+
     enum CodingKeys: String, CodingKey {
         case number
         case ids
@@ -43,9 +46,25 @@ public struct TraktSeason: TraktObject {
         case network
         
         case episodes
+
+        case images
     }
     
-    public init(number: Int, ids: SeasonId, rating: Double? = nil, votes: Int? = nil, episodeCount: Int? = nil, airedEpisodes: Int? = nil, title: String? = nil, overview: String? = nil, firstAired: Date? = nil, updatedAt: Date? = nil, network: String? = nil, episodes: [TraktEpisode]? = nil) {
+    public init(
+        number: Int,
+        ids: SeasonId,
+        rating: Double? = nil,
+        votes: Int? = nil,
+        episodeCount: Int? = nil,
+        airedEpisodes: Int? = nil,
+        title: String? = nil,
+        overview: String? = nil,
+        firstAired: Date? = nil,
+        updatedAt: Date? = nil,
+        network: String? = nil,
+        episodes: [TraktEpisode]? = nil,
+        images: TraktImages? = nil
+    ) {
         self.number = number
         self.ids = ids
         self.rating = rating
@@ -58,5 +77,6 @@ public struct TraktSeason: TraktObject {
         self.updatedAt = updatedAt
         self.network = network
         self.episodes = episodes
+        self.images = images
     }
 }

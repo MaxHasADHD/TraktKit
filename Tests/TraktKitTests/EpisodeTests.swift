@@ -89,6 +89,27 @@ final class EpisodeTests: TraktTestCase {
         XCTAssertEqual(episode.availableTranslations, ["en"])
     }
 
+    func test_get_episode_images() async throws {
+        try mock(.GET, "https://api.trakt.tv/shows/severance/seasons/2/episodes/5?extended=images", result: .success(jsonData(named: "Episode_Images")))
+
+        let episode = try await traktManager
+            .show(id: "severance")
+            .season(2).episode(5)
+            .summary()
+            .extend(.images)
+            .perform()
+
+        XCTAssertEqual(episode.title, "Trojan's Horse")
+        XCTAssertEqual(episode.season, 2)
+        XCTAssertEqual(episode.number, 5)
+        XCTAssertEqual(episode.ids.trakt, 12103031)
+        XCTAssertNil(episode.overview)
+        XCTAssertNil(episode.firstAired)
+        XCTAssertNil(episode.updatedAt)
+        XCTAssertNil(episode.absoluteNumber)
+        XCTAssertNil(episode.availableTranslations)
+    }
+
     // MARK: - Translations
 
     func test_get_all_episode_translations() throws {

@@ -29,7 +29,10 @@ public struct TraktMovie: TraktObject {
     public let availableTranslations: [String]?
     public let genres: [String]?
     public let certification: String?
-    
+
+    // Extended: Images
+    public let images: TraktImages?
+
     enum CodingKeys: String, CodingKey {
         case title
         case year
@@ -48,6 +51,8 @@ public struct TraktMovie: TraktObject {
         case availableTranslations = "available_translations"
         case genres
         case certification
+
+        case images
     }
 
     public init(from decoder: Decoder) throws {
@@ -69,9 +74,28 @@ public struct TraktMovie: TraktObject {
         language = try container.decodeIfPresent(String.self, forKey: .language)
         availableTranslations = try container.decodeIfPresent([String].self, forKey: .availableTranslations)
         genres = try container.decodeIfPresent([String].self, forKey: .genres)
+        images = try container.decodeIfPresent(TraktImages.self, forKey: .images)
     }
     
-    public init(title: String, year: Int? = nil, ids: ID, tagline: String? = nil, overview: String? = nil, released: Date? = nil, runtime: Int? = nil, trailer: URL? = nil, homepage: URL? = nil, rating: Double? = nil, votes: Int? = nil, updatedAt: Date? = nil, language: String? = nil, availableTranslations: [String]? = nil, genres: [String]? = nil, certification: String? = nil) {
+    public init(
+        title: String,
+        year: Int? = nil,
+        ids: ID,
+        tagline: String? = nil,
+        overview: String? = nil,
+        released: Date? = nil,
+        runtime: Int? = nil,
+        trailer: URL? = nil,
+        homepage: URL? = nil,
+        rating: Double? = nil,
+        votes: Int? = nil,
+        updatedAt: Date? = nil,
+        language: String? = nil,
+        availableTranslations: [String]? = nil,
+        genres: [String]? = nil,
+        certification: String? = nil,
+        images: TraktImages? = nil
+    ) {
         self.title = title
         self.year = year
         self.ids = ids
@@ -88,5 +112,6 @@ public struct TraktMovie: TraktObject {
         self.availableTranslations = availableTranslations
         self.genres = genres
         self.certification = certification
+        self.images = images
     }
 }

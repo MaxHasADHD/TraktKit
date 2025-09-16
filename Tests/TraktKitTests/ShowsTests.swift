@@ -354,6 +354,35 @@ final class ShowsTests: TraktTestCase {
         XCTAssertEqual(show.airedEpisodes, 50)
     }
 
+    func test_get_show_images() async throws {
+        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones?extended=images", result: .success(jsonData(named: "Show_Images")))
+
+        let show = try await traktManager.show(id: "game-of-thrones").summary().extend(.images).perform()
+        XCTAssertEqual(show.title, "Severance")
+        XCTAssertEqual(show.year, 2022)
+        XCTAssertEqual(show.ids.trakt, 154997)
+        XCTAssertEqual(show.ids.slug, "severance")
+        XCTAssertNotNil(show.images)
+        XCTAssertEqual(show.images?.poster.count, 1)
+        XCTAssertNil(show.overview)
+        XCTAssertNil(show.firstAired)
+        XCTAssertNil(show.airs)
+        XCTAssertNil(show.runtime)
+        XCTAssertNil(show.certification)
+        XCTAssertNil(show.network)
+        XCTAssertNil(show.country)
+        XCTAssertNil(show.trailer)
+        XCTAssertNil(show.homepage)
+        XCTAssertNil(show.status)
+        XCTAssertNil(show.rating)
+        XCTAssertNil(show.votes)
+        XCTAssertNil(show.updatedAt)
+        XCTAssertNil(show.language)
+        XCTAssertNil(show.availableTranslations)
+        XCTAssertNil(show.genres)
+        XCTAssertNil(show.airedEpisodes)
+    }
+
     // MARK: - Aliases
 
     func test_get_show_aliases() {

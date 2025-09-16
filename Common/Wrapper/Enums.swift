@@ -235,6 +235,8 @@ public enum ExtendedType: String, CustomStringConvertible, Sendable {
     case noSeasons = "noseasons"
     /// For the show and season `/people` methods.
     case guestStars = "guest_stars"
+    /// Get images for media objects. https://trakt.docs.apiary.io/introduction/images
+    case images
 
     public var description: String {
         return self.rawValue

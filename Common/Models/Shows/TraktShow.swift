@@ -45,7 +45,10 @@ public struct TraktShow: TraktObject {
     public let availableTranslations: [String]?
     public let genres: [String]?
     public let airedEpisodes: Int?
-    
+
+    // Extended: Images
+    public let images: TraktImages?
+
     enum CodingKeys: String, CodingKey {
         case title
         case year
@@ -68,6 +71,8 @@ public struct TraktShow: TraktObject {
         case availableTranslations = "available_translations"
         case genres
         case airedEpisodes = "aired_episodes"
+
+        case images
     }
     
     public init(from decoder: Decoder) throws {
@@ -93,9 +98,33 @@ public struct TraktShow: TraktObject {
         availableTranslations = try container.decodeIfPresent([String].self, forKey: .availableTranslations)
         genres = try container.decodeIfPresent([String].self, forKey: .genres)
         airedEpisodes = try container.decodeIfPresent(Int.self, forKey: .airedEpisodes)
+
+        images = try container.decodeIfPresent(TraktImages.self, forKey: .images)
     }
     
-    public init(title: String, year: Int? = nil, ids: ID, overview: String? = nil, firstAired: Date? = nil, airs: Airs? = nil, runtime: Int? = nil, certification: String? = nil, network: String? = nil, country: String? = nil, trailer: URL? = nil, homepage: URL? = nil, status: String? = nil, rating: Double? = nil, votes: Int? = nil, updatedAt: Date? = nil, language: String? = nil, availableTranslations: [String]? = nil, genres: [String]? = nil, airedEpisodes: Int? = nil) {
+    public init(
+        title: String,
+        year: Int? = nil,
+        ids: ID,
+        overview: String? = nil,
+        firstAired: Date? = nil,
+        airs: Airs? = nil,
+        runtime: Int? = nil,
+        certification: String? = nil,
+        network: String? = nil,
+        country: String? = nil,
+        trailer: URL? = nil,
+        homepage: URL? = nil,
+        status: String? = nil,
+        rating: Double? = nil,
+        votes: Int? = nil,
+        updatedAt: Date? = nil,
+        language: String? = nil,
+        availableTranslations: [String]? = nil,
+        genres: [String]? = nil,
+        airedEpisodes: Int? = nil,
+        images: TraktImages? = nil
+    ) {
         self.title = title
         self.year = year
         self.ids = ids
@@ -116,5 +145,6 @@ public struct TraktShow: TraktObject {
         self.availableTranslations = availableTranslations
         self.genres = genres
         self.airedEpisodes = airedEpisodes
+        self.images = images
     }
 }

@@ -78,18 +78,14 @@ final class RequestMocking: URLProtocol, @unchecked Sendable {
                 HTTPURLResponse(url: url, statusCode: mock.httpCode, httpVersion: "HTTP/1.1", headerFields: mock.headers)
         else { return }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + mock.loadingTime) { [weak self] in
-            guard let self else { return }
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
 
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-
-            switch mock.result {
-            case let .success(data):
-                client?.urlProtocol(self, didLoad: data)
-                client?.urlProtocolDidFinishLoading(self)
-            case let .failure(error):
-                client?.urlProtocol(self, didFailWithError: error)
-            }
+        switch mock.result {
+        case let .success(data):
+            client?.urlProtocol(self, didLoad: data)
+            client?.urlProtocolDidFinishLoading(self)
+        case let .failure(error):
+            client?.urlProtocol(self, didFailWithError: error)
         }
     }
 
