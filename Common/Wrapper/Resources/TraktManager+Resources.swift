@@ -82,6 +82,12 @@ extension TraktManager {
         GenresResource(traktManager: self)
     }
 
+    // MARK: - Languages
+
+    public var languages: LanguagesResource {
+        LanguagesResource(traktManager: self)
+    }
+
     // MARK: - Lists
 
     public var lists: ListsResource {
