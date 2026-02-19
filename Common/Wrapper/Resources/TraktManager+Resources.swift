@@ -58,6 +58,18 @@ extension TraktManager {
         EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
 
+    // MARK: - Calendars
+
+    /// Endpoints for the authenticated user's personal calendar.
+    public var myCalendar: MyCalendarResource {
+        MyCalendarResource(traktManager: self)
+    }
+
+    /// Endpoints for the global calendar (no authentication required).
+    public var allCalendar: AllCalendarResource {
+        AllCalendarResource(traktManager: self)
+    }
+
     // MARK: - Lists
 
     public var lists: ListsResource {

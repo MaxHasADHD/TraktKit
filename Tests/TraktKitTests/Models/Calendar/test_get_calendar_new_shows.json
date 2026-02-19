@@ -1,0 +1,29 @@
+[
+    {
+        "first_aired": "2014-09-01T01:00:00.000Z",
+        "episode": {
+            "season": 1,
+            "number": 1,
+            "title": "Pilot",
+            "ids": {
+                "trakt": 111,
+                "tvdb": 4001010,
+                "imdb": null,
+                "tmdb": 55550,
+                "tvrage": 0
+            }
+        },
+        "show": {
+            "title": "Utopia",
+            "year": 2014,
+            "ids": {
+                "trakt": 46567,
+                "slug": "utopia-2014",
+                "tvdb": 281588,
+                "imdb": "tt4263482",
+                "tmdb": 62217,
+                "tvrage": 0
+            }
+        }
+    }
+]
