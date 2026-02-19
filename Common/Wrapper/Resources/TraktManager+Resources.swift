@@ -22,6 +22,12 @@ extension TraktManager {
         CheckinResource(traktManager: self)
     }
 
+    // MARK: - Countries
+
+    public var countries: CountriesResource {
+        CountriesResource(traktManager: self)
+    }
+
     // MARK: - Search
 
     public func search() -> SearchResource {
