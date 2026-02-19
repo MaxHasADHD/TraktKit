@@ -58,6 +58,17 @@ extension TraktManager {
         EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
 
+    // MARK: - Lists
+
+    public var lists: ListsResource {
+        ListsResource(traktManager: self)
+    }
+
+    /// - parameter id: Trakt ID or Trakt slug
+    public func list(id: CustomStringConvertible) -> ListResource {
+        ListResource(id: id, traktManager: self)
+    }
+
     // MARK: - People
 
     public var people: PeopleResource {

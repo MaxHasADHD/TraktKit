@@ -1,66 +1,46 @@
 [
-  {
-    "list" : {
-      "description" : "So cute.",
-      "comment_count" : 20,
-      "ids" : {
-        "trakt" : 1338,
-        "slug" : "top-chihuahua-movies"
-      },
-      "sort_by" : "rank",
-      "created_at" : "2015-10-11T17:00:54.000Z",
-      "likes" : 109,
-      "item_count" : 50,
-      "updated_at" : "2015-10-11T17:00:54.000Z",
-      "sort_how" : "asc",
-      "privacy" : "public",
-      "display_numbers" : true,
-      "user" : {
-        "username" : "justin",
-        "private" : false,
-        "vip" : true,
-        "vip_ep" : false,
-        "name" : "Justin Nemeth",
-        "ids" : {
-          "slug" : "justin"
+    {
+        "like_count": 120,
+        "comment_count": 15,
+        "list": {
+            "name": "Top 100 Movies",
+            "description": "The greatest movies of all time.",
+            "privacy": "public",
+            "display_numbers": true,
+            "allow_comments": true,
+            "sort_by": "rank",
+            "sort_how": "asc",
+            "created_at": "2013-01-11T17:00:54.000Z",
+            "updated_at": "2013-01-11T17:00:54.000Z",
+            "item_count": 100,
+            "comment_count": 15,
+            "likes": 120,
+            "ids": {
+                "trakt": 55,
+                "slug": "top-100-movies"
+            }
         }
-      },
-      "name" : "Top Chihuahua Movies",
-      "allow_comments" : true
     },
-    "like_count" : 109,
-    "comment_count" : 20
-  },
-  {
-    "list" : {
-      "description" : "How could my brain conceive them?",
-      "comment_count" : 10,
-      "ids" : {
-        "trakt" : 1337,
-        "slug" : "incredible-thoughts"
-      },
-      "sort_by" : "rank",
-      "created_at" : "2014-10-11T17:00:54.000Z",
-      "likes" : 99,
-      "item_count" : 50,
-      "updated_at" : "2014-10-11T17:00:54.000Z",
-      "sort_how" : "asc",
-      "privacy" : "public",
-      "display_numbers" : true,
-      "user" : {
-        "username" : "justin",
-        "private" : false,
-        "vip" : true,
-        "vip_ep" : false,
-        "name" : "Justin Nemeth",
-        "ids" : {
-          "slug" : "justin"
+    {
+        "like_count": 88,
+        "comment_count": 7,
+        "list": {
+            "name": "Must-See TV",
+            "description": "Essential television viewing.",
+            "privacy": "public",
+            "display_numbers": false,
+            "allow_comments": true,
+            "sort_by": "rank",
+            "sort_how": "asc",
+            "created_at": "2014-03-20T12:00:00.000Z",
+            "updated_at": "2014-03-20T12:00:00.000Z",
+            "item_count": 30,
+            "comment_count": 7,
+            "likes": 88,
+            "ids": {
+                "trakt": 77,
+                "slug": "must-see-tv"
+            }
         }
-      },
-      "name" : "Incredible Thoughts",
-      "allow_comments" : true
-    },
-    "like_count" : 99,
-    "comment_count" : 10
-  }
+    }
 ]

@@ -1,0 +1,46 @@
+[
+    {
+        "liked_at": "2014-09-01T09:10:11.000Z",
+        "type": "list",
+        "list": {
+            "name": "Star Wars in Machete Order",
+            "description": "Watch the saga in the optimal order.",
+            "privacy": "public",
+            "display_numbers": true,
+            "allow_comments": true,
+            "sort_by": "rank",
+            "sort_how": "asc",
+            "created_at": "2014-10-11T17:00:54.000Z",
+            "updated_at": "2014-10-11T17:00:54.000Z",
+            "item_count": 4,
+            "comment_count": 1,
+            "likes": 10,
+            "ids": {
+                "trakt": 1337,
+                "slug": "star-wars-in-machete-order"
+            }
+        }
+    },
+    {
+        "liked_at": "2014-09-02T11:00:00.000Z",
+        "type": "list",
+        "list": {
+            "name": "Incredible Thoughts",
+            "description": "How could my brain conceive them?",
+            "privacy": "public",
+            "display_numbers": true,
+            "allow_comments": true,
+            "sort_by": "rank",
+            "sort_how": "asc",
+            "created_at": "2014-10-11T17:00:54.000Z",
+            "updated_at": "2014-10-11T17:00:54.000Z",
+            "item_count": 50,
+            "comment_count": 10,
+            "likes": 99,
+            "ids": {
+                "trakt": 55,
+                "slug": "incredible-thoughts"
+            }
+        }
+    }
+]

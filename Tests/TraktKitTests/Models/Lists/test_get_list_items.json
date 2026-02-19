@@ -1,0 +1,53 @@
+[
+    {
+        "rank": 1,
+        "id": 101,
+        "listed_at": "2014-09-01T09:10:11.000Z",
+        "notes": "The one that started it all.",
+        "type": "movie",
+        "movie": {
+            "title": "Star Wars: Episode IV - A New Hope",
+            "year": 1977,
+            "ids": {
+                "trakt": 12,
+                "slug": "star-wars-episode-iv-a-new-hope-1977",
+                "imdb": "tt0076759",
+                "tmdb": 11
+            }
+        }
+    },
+    {
+        "rank": 2,
+        "id": 102,
+        "listed_at": "2014-09-01T09:10:11.000Z",
+        "notes": null,
+        "type": "movie",
+        "movie": {
+            "title": "Star Wars: Episode I - The Phantom Menace",
+            "year": 1999,
+            "ids": {
+                "trakt": 9,
+                "slug": "star-wars-episode-i-the-phantom-menace-1999",
+                "imdb": "tt0120915",
+                "tmdb": 1893
+            }
+        }
+    },
+    {
+        "rank": 3,
+        "id": 103,
+        "listed_at": "2014-09-01T09:10:11.000Z",
+        "notes": null,
+        "type": "movie",
+        "movie": {
+            "title": "Star Wars: Episode II - Attack of the Clones",
+            "year": 2002,
+            "ids": {
+                "trakt": 10,
+                "slug": "star-wars-episode-ii-attack-of-the-clones-2002",
+                "imdb": "tt0121765",
+                "tmdb": 1894
+            }
+        }
+    }
+]
