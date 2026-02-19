@@ -58,6 +58,17 @@ extension TraktManager {
         EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
 
+    // MARK: - People
+
+    public var people: PeopleResource {
+        PeopleResource(traktManager: self)
+    }
+
+    /// - parameter id: Trakt ID, Trakt slug, or IMDB ID
+    public func person(id: CustomStringConvertible) -> PersonResource {
+        PersonResource(id: id, traktManager: self)
+    }
+
     public func sync() -> SyncResource {
         SyncResource(traktManager: self)
     }

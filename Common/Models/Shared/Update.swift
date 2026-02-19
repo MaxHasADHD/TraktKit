@@ -19,3 +19,13 @@ public struct Update: TraktObject {
         case show
     }
 }
+public struct PersonUpdate: TraktObject {
+    public let updatedAt: Date
+    public let person: Person
+
+    enum CodingKeys: String, CodingKey {
+        case updatedAt = "updated_at"
+        case person
+    }
+}
+
