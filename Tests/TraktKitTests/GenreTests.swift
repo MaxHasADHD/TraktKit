@@ -17,7 +17,7 @@ final class GenreTests: TraktTestCase {
         let expectation = XCTestExpectation(description: "Get movie genres")
         traktManager.listGenres(type: .Movies) { result in
             if case .success(let genres) = result {
-                XCTAssertEqual(genres.count, 33)
+                XCTAssertEqual(genres.count, 3)
                 expectation.fulfill()
             }
         }

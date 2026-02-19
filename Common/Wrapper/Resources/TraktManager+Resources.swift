@@ -76,6 +76,12 @@ extension TraktManager {
         AllCalendarResource(traktManager: self)
     }
 
+    // MARK: - Genres
+
+    public var genres: GenresResource {
+        GenresResource(traktManager: self)
+    }
+
     // MARK: - Lists
 
     public var lists: ListsResource {
