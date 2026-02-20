@@ -88,6 +88,12 @@ extension TraktManager {
         LanguagesResource(traktManager: self)
     }
 
+    // MARK: - Networks
+
+    public var networks: NetworksResource {
+        NetworksResource(traktManager: self)
+    }
+
     // MARK: - Lists
 
     public var lists: ListsResource {
