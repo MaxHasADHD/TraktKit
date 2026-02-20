@@ -50,6 +50,44 @@ public struct Comment: TraktObject {
     }
 }
 
+public struct TraktCommentPostBody: EncodableTraktObject {
+    public let movie: SyncId?
+    public let show: SyncId?
+    public let season: SyncId?
+    public let episode: SyncId?
+    public let list: SyncId?
+    public let comment: String
+    public let spoiler: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case movie
+        case show
+        case season
+        case episode
+        case list
+        case comment
+        case spoiler
+    }
+
+    public init(
+        movie: SyncId? = nil,
+        show: SyncId? = nil,
+        season: SyncId? = nil,
+        episode: SyncId? = nil,
+        list: SyncId? = nil,
+        comment: String,
+        spoiler: Bool? = nil
+    ) {
+        self.movie = movie
+        self.show = show
+        self.season = season
+        self.episode = episode
+        self.list = list
+        self.comment = comment
+        self.spoiler = spoiler
+    }
+}
+
 public extension Sequence where Iterator.Element == Comment {
     func hideSpoilers() -> [Comment] {
         var copy: [Comment] = self as! [Comment]

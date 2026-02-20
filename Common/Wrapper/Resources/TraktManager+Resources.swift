@@ -22,6 +22,17 @@ extension TraktManager {
         CheckinResource(traktManager: self)
     }
 
+    // MARK: - Comments
+
+    public var comments: CommentsResource {
+        CommentsResource(traktManager: self)
+    }
+
+    /// - parameter id: Trakt comment ID
+    public func comment(id: CustomStringConvertible) -> CommentResource {
+        CommentResource(id: id, traktManager: self)
+    }
+
     // MARK: - Countries
 
     public var countries: CountriesResource {
