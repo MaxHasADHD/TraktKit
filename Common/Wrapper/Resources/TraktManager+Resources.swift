@@ -16,6 +16,12 @@ extension TraktManager {
         AuthenticationResource(traktManager: self)
     }
 
+    // MARK: - Certifications
+
+    public var certifications: CertificationsResource {
+        CertificationsResource(traktManager: self)
+    }
+
     // MARK: - Checkin
 
     public func checkin() -> CheckinResource {
