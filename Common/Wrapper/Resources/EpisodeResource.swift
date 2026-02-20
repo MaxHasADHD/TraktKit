@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 public struct EpisodeResource {
     public let showId: CustomStringConvertible

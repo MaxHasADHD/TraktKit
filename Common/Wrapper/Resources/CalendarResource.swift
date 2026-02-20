@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 extension TraktManager {
     /// Endpoints for the user's personal calendar. All endpoints require OAuth.

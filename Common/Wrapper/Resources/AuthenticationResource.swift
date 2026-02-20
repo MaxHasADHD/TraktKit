@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 extension TraktManager {
     /// Endpoints for authentication

@@ -5,34 +5,9 @@
 //  Created by Maximilian Litteral on 3/6/25.
 //
 import Foundation
+import SwiftAPIClient
 
-public struct AuthenticationState: Sendable {
-    public let accessToken: String
-    public let refreshToken: String
-    public let expirationDate: Date
-
-    public init(accessToken: String, refreshToken: String, expirationDate: Date) {
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
-        self.expirationDate = expirationDate
-    }
-}
-
-public enum AuthenticationError: Error, Equatable {
-    /// Token was found, but is past the expiration date.
-    case tokenExpired(refreshToken: String)
-    /// Thrown if credentials could not be retreived.
-    case noStoredCredentials
-}
-
-public protocol TraktAuthentication: Sendable {
-    /// Returns the current access token, refresh token, and expiration date.
-    func getCurrentState() async throws(AuthenticationError) -> AuthenticationState
-    /// Store the latest state
-    func updateState(_ state: AuthenticationState) async
-    /// Delete the data
-    func clear() async
-}
+public protocol TraktAuthentication: APIAuthentication {}
 
 public actor KeychainTraktAuthentication: TraktAuthentication {
     private enum Constants {

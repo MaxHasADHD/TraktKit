@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 public struct SearchResource {
 

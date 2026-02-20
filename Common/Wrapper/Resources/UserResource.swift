@@ -1,11 +1,12 @@
 //
 //  UserResource.swift
-//  
+//
 //
 //  Created by Maximilian Litteral on 9/9/22.
 //
 
 import Foundation
+import SwiftAPIClient
 
 extension TraktManager {
     /// Resource containing all of the `/user` endpoints that **require** authentication. These requests will always be for the current authenticated user, and cannot be performed for another user.

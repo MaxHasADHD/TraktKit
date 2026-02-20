@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 extension TraktManager {
     /// Endpoints for the Certifications group.

@@ -7,16 +7,14 @@
 //
 
 import Foundation
+import SwiftAPIClient
 import os
 
 public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }
 
-public typealias TraktObject = Codable & Hashable & Sendable
-public typealias EncodableTraktObject = Encodable & Hashable & Sendable
-
-public final class TraktManager: Sendable {
+public final class TraktManager: APIManager, @unchecked Sendable {
 
     // MARK: - Types
 
@@ -56,13 +54,8 @@ public final class TraktManager: Sendable {
     internal let clientId: String
     internal let clientSecret: String
     internal let redirectURI: String
-    private let apiHost: String
 
-    private let authStorage: any TraktAuthentication
-
-    private let authStateLock = NSLock()
-    nonisolated(unsafe)
-    private var cachedAuthState: AuthenticationState?
+    private let traktAuthStorage: any TraktAuthentication
 
     internal static let jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
@@ -70,17 +63,7 @@ public final class TraktManager: Sendable {
         return encoder
     }()
 
-    let session: URLSession
-
     // MARK: Public
-
-    public var isSignedIn: Bool {
-        get {
-            authStateLock.lock()
-            defer { authStateLock.unlock() }
-            return cachedAuthState != nil
-        }
-    }
 
     public var oauthURL: URL? {
         var urlComponents = URLComponents()
@@ -110,13 +93,25 @@ public final class TraktManager: Sendable {
         redirectURI: String,
         authStorage: any TraktAuthentication = KeychainTraktAuthentication()
     ) {
-        self.session = session
         self.staging = staging
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
-        self.apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
-        self.authStorage = authStorage
+        self.traktAuthStorage = authStorage
+
+        let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
+        let baseURL = URL(string: "https://\(apiHost)")!
+        let config = APIManager.Configuration(
+            baseURL: baseURL,
+            additionalHeaders: [
+                "trakt-api-version": "2",
+                "trakt-api-key": clientId
+            ],
+            paginationPageHeader: "x-pagination-page",
+            paginationPageCountHeader: "x-pagination-page-count"
+        )
+
+        super.init(configuration: config, session: session, authStorage: authStorage)
     }
 
     /// Initialize TraktManager and refreshes the auth state
@@ -128,85 +123,25 @@ public final class TraktManager: Sendable {
         redirectURI: String,
         authStorage: any TraktAuthentication = KeychainTraktAuthentication()
     ) async {
-        self.session = session
         self.staging = staging
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
-        self.apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
-        self.authStorage = authStorage
+        self.traktAuthStorage = authStorage
 
-        try? await refreshCurrentAuthState()
-    }
+        let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
+        let baseURL = URL(string: "https://\(apiHost)")!
+        let config = APIManager.Configuration(
+            baseURL: baseURL,
+            additionalHeaders: [
+                "trakt-api-version": "2",
+                "trakt-api-key": clientId
+            ],
+            paginationPageHeader: "x-pagination-page",
+            paginationPageCountHeader: "x-pagination-page-count"
+        )
 
-    // MARK: - Actions
-
-    /**
-     Gets the current authentication state from the authentication storage, and caches the result to make requests.
-     You should only have to call this once shortly after initializing the `TraktManager`, unless you use the async initializer, which calls this function automatically.
-     */
-    public func refreshCurrentAuthState() async throws(AuthenticationError) {
-        let currentState = try await authStorage.getCurrentState()
-        authStateLock.withLock {
-            cachedAuthState = currentState
-        }
-    }
-
-    public func signOut() async {
-        await authStorage.clear()
-        authStateLock.withLock {
-            cachedAuthState = nil
-        }
-    }
-
-    internal func mutableRequest(
-        forPath path: String,
-        withQuery query: [String: String] = [:],
-        isAuthorized authorized: Bool,
-        withHTTPMethod httpMethod: Method,
-        body: Encodable? = nil
-    ) throws -> URLRequest {
-        // Build URL
-        let urlString = "https://\(apiHost)/" + path
-        guard var components = URLComponents(string: urlString) else { throw TraktKitError.malformedURL }
-
-        if query.isEmpty == false {
-            var queryItems: [URLQueryItem] = []
-            for (key, value) in query {
-                queryItems.append(URLQueryItem(name: key, value: value))
-            }
-            components.queryItems = queryItems
-        }
-
-        guard let url = components.url else { throw TraktKitError.malformedURL }
-
-        // Request
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod.rawValue
-
-        // Headers
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        request.addValue(clientId, forHTTPHeaderField: "trakt-api-key")
-
-        if authorized {
-            if let accessToken = cachedAuthState?.accessToken {
-                request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            } else {
-                throw TraktKitError.userNotAuthorized
-            }
-        }
-
-        // Body
-        if let body {
-            request.httpBody = try Self.jsonEncoder.encode(body)
-        }
-
-        return request
-    }
-
-    func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) throws -> URLRequest {
-        try mutableRequest(forPath: path, withQuery: query, isAuthorized: true, withHTTPMethod: .POST, body: body)
+        await super.init(configuration: config, session: session, authStorage: authStorage)
     }
 
     // MARK: - Authentication
@@ -277,10 +212,8 @@ public final class TraktManager: Sendable {
             refreshToken: authInfo.refreshToken,
             expirationDate: expiresDate
         )
-        await authStorage.updateState(authenticationState)
-        authStateLock.withLock {
-            cachedAuthState = authenticationState
-        }
+        await traktAuthStorage.updateState(authenticationState)
+        updateCachedAuthState(authenticationState)
 
         // Post notification
         if postAccountStatusChange {
@@ -294,10 +227,7 @@ public final class TraktManager: Sendable {
 
     public func checkToRefresh() async throws {
         do throws(AuthenticationError) {
-            let currentState = try await authStorage.getCurrentState()
-            authStateLock.withLock {
-                cachedAuthState = currentState
-            }
+            try await refreshCurrentAuthState()
         } catch .tokenExpired(let refreshToken) {
             try await refreshAccessToken(with: refreshToken)
         } catch .noStoredCredentials {
@@ -319,5 +249,10 @@ public final class TraktManager: Sendable {
         } catch {
             throw error
         }
+    }
+
+    // Legacy method for compatibility
+    internal func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) throws -> URLRequest {
+        try mutableRequest(forPath: path, withQuery: query, isAuthorized: true, withHTTPMethod: .POST, body: body)
     }
 }

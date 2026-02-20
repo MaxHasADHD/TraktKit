@@ -7,6 +7,7 @@
 
 import Foundation
 import Testing
+import SwiftAPIClient
 @testable import TraktKit
 
 extension TraktTestSuite {
@@ -64,7 +65,7 @@ extension TraktTestSuite {
 
             let request = URLRequest(url: url)
 
-            await #expect(throws: TraktManager.TraktError.noMethodFound, performing: {
+            await #expect(throws: SwiftAPIClient.APIError.noMethodFound, performing: {
                 try await traktManager.fetchData(request: request, retryLimit: 2)
             })
         }

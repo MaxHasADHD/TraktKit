@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 extension TraktManager {
     /**

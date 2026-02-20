@@ -16,10 +16,13 @@ let package = Package(
             name: "TraktKit",
             targets: ["TraktKit"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/MaxHasADHD/SwiftAPIClient.git", from: "1.0.1")
+    ],
     targets: [
         .target(
             name: "TraktKit",
-            dependencies: [],
+            dependencies: ["SwiftAPIClient"],
             path: "Common"
             ),
         .testTarget(

@@ -8,8 +8,6 @@
 
 import Foundation
 
-let serviceIdentifier = "com.litteral.TVShows"
-
 let kSecClassValue = kSecClass as String
 let kSecAttrAccountValue = kSecAttrAccount as String
 let kSecValueDataValue = kSecValueData as String

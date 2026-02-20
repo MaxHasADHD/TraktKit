@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 /// Generic result type
 public enum ObjectResultType<T: TraktObject>: Sendable {
@@ -376,61 +377,5 @@ extension TraktManager {
     }
 
     // MARK: - Async await
-
-    /**
-     Downloads the contents of a URL based on the specified URL request. Handles ``TraktError/retry(after:)`` up to the specified `retryLimit`
-     */
-    func fetchData(request: URLRequest, retryLimit: Int = 3) async throws -> (Data, URLResponse) {
-        var retryCount = 0
-
-        while true {
-            do {
-                let (data, response) = try await session.data(for: request)
-                try handleResponse(response: response)
-                return (data, response)
-            } catch let error as TraktError {
-                switch error {
-                case .retry(let retryDelay):
-                    retryCount += 1
-                    if retryCount >= retryLimit {
-                        throw error
-                    }
-                    print("Retrying after delay: \(retryDelay)")
-                    try await Task.sleep(for: .seconds(retryDelay))
-                    try Task.checkCancellation()
-                default:
-                    throw error
-                }
-            } catch {
-                throw error
-            }
-        }
-    }
-
-    /**
-     Downloads the contents of a URL based on the specified URL request, and decodes the data into a `TraktObject`
-     */
-    func perform<T: TraktObject>(request: URLRequest, retryLimit: Int = 3) async throws -> T {
-        let (data, response) = try await fetchData(request: request, retryLimit: retryLimit)
-        return try decodeTraktObject(from: data, response: response)
-    }
-
-    /// Decodes data into a TraktObject. If the `TraktObject` type is `PagedObject` the headers will be extracted from the response.
-    private func decodeTraktObject<T: TraktObject>(from data: Data, response: URLResponse) throws -> T {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-
-        if let pagedType = T.self as? PagedObjectProtocol.Type {
-            let decodedItems = try decoder.decode(pagedType.objectType, from: data)
-            var currentPage = 0
-            var pageCount = 0
-            if let r = response as? HTTPURLResponse {
-                currentPage = Int(r.value(forHTTPHeaderField: "x-pagination-page") ?? "0") ?? 0
-                pageCount = Int(r.value(forHTTPHeaderField: "x-pagination-page-count") ?? "0") ?? 0
-            }
-            return pagedType.createPagedObject(with: decodedItems, currentPage: currentPage, pageCount: pageCount) as! T
-        }
-
-        return try decoder.decode(T.self, from: data)
-    }
+    // Note: fetchData, perform, and decode methods are now provided by APIManager base class
 }

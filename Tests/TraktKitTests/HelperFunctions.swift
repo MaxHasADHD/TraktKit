@@ -8,6 +8,7 @@
 
 import XCTest
 import Foundation
+import SwiftAPIClient
 @testable import TraktKit
 
 func debugPrintError(_ error: Error) {

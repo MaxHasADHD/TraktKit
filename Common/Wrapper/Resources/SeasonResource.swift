@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 public struct SeasonResource {
     public let showId: CustomStringConvertible
