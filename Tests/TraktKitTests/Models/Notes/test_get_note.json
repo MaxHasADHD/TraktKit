@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "notes": "This is a great movie!",
+  "privacy": "public",
+  "spoiler": false,
+  "created_at": "2014-08-04T06:46:01.000Z",
+  "updated_at": "2014-08-04T06:46:01.000Z",
+  "user": {
+    "username": "sean",
+    "private": false,
+    "vip": true,
+    "vip_ep": false,
+    "name": "Sean Rudford",
+    "ids": {
+      "slug": "sean"
+    }
+  }
+}

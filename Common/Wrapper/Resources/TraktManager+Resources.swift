@@ -105,6 +105,17 @@ extension TraktManager {
         NetworksResource(traktManager: self)
     }
 
+    // MARK: - Notes
+
+    public var notes: NotesResource {
+        NotesResource(traktManager: self)
+    }
+
+    /// - parameter id: Trakt note ID
+    public func note(id: CustomStringConvertible) -> NoteResource {
+        NoteResource(id: id, traktManager: self)
+    }
+
     // MARK: - Lists
 
     public var lists: ListsResource {
