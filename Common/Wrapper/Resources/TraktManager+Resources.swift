@@ -138,6 +138,12 @@ extension TraktManager {
         PersonResource(id: id, traktManager: self)
     }
 
+    // MARK: - Recommendations
+
+    public var recommendations: RecommendationsResource {
+        RecommendationsResource(traktManager: self)
+    }
+
     // MARK: - Scrobble
 
     public func scrobble() -> ScrobbleResource {
