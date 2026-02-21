@@ -1,42 +1,69 @@
 {
-  "connections" : {
-    "twitter" : true,
-    "facebook" : true,
-    "google" : true,
-    "tumblr" : false,
-    "medium" : false,
-    "slack" : false
-  },
-  "account" : {
-    "timezone" : "America\/Los_Angeles",
-    "cover_image" : "https:\/\/walter.trakt.tv\/images\/movies\/000\/001\/545\/fanarts\/original\/0abb604492.jpg",
-    "time_24hr" : false
-  },
-  "sharing_text" : {
-    "watched" : "I just watched [item]",
-    "watching" : "I'm watching [item]"
-  },
-  "user" : {
-    "private" : false,
-    "ids" : {
-      "slug" : "justin"
+    "user": {
+        "username": "justin",
+        "private": false,
+        "name": "Justin Nemeth",
+        "vip": true,
+        "vip_ep": false,
+        "ids": {
+            "slug": "justin",
+            "uuid": "b6589fc6ab0dc82cf12099d1c2d40ab994e8410c"
+        },
+        "joined_at": "2010-09-25T17:49:25.000Z",
+        "location": "San Diego, CA",
+        "about": "Co-founder of trakt.",
+        "gender": "male",
+        "age": 32,
+        "images": {
+            "avatar": {
+                "full": "https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256"
+            }
+        },
+        "vip_og": true,
+        "vip_years": 5
     },
-    "vip" : true,
-    "joined_at" : "2010-09-25T17:49:25.000Z",
-    "age" : 32,
-    "vip_og" : true,
-    "vip_years" : 5,
-    "about" : "Co-founder of trakt.",
-    "vip_ep" : false,
-    "location" : "San Diego, CA",
-    "username" : "justin",
-    "images" : {
-      "avatar" : {
-        "full" : "https:\/\/secure.gravatar.com\/avatar\/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256"
-      }
+    "account": {
+        "timezone": "America/Los_Angeles",
+        "date_format": "mdy",
+        "time_24hr": false,
+        "cover_image": "https://walter-r2.trakt.tv/images/movies/000/001/545/fanarts/original/0abb604492.jpg"
     },
-    "name" : "Justin Nemeth",
-    "gender" : "male"
-  }
+    "connections": {
+        "facebook": false,
+        "twitter": true,
+        "mastodon": true,
+        "google": true,
+        "tumblr": false,
+        "medium": false,
+        "slack": false,
+        "apple": false,
+        "dropbox": false,
+        "microsoft": false
+    },
+    "sharing_text": {
+        "watching": "I'm watching [item]",
+        "watched": "I just watched [item]",
+        "rated": "[item] [stars]"
+    },
+    "limits": {
+        "list": {
+            "count": 2,
+            "item_count": 100
+        },
+        "watchlist": {
+            "item_count": 100
+        },
+        "favorites": {
+            "item_count": 100
+        },
+        "search": {
+            "recent_count": 5
+        },
+        "collection": {
+            "item_count": 100
+        },
+        "notes": {
+            "item_count": 100
+        }
+    }
 }
-

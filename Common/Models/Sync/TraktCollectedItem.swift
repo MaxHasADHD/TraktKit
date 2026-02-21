@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktCollectedItem: Codable, Hashable {
+public struct TraktCollectedItem: TraktObject {
     
     public var lastCollectedAt: Date
     public let lastUpdatedAt: Date
@@ -64,7 +64,7 @@ public struct TraktCollectedItem: Codable, Hashable {
         }
     }
     
-    public struct Metadata: Codable, Hashable {
+    public struct Metadata: TraktObject {
         public let mediaType: MediaType?
         public let resolution: Resolution?
         public let hdr: HDR?
@@ -89,11 +89,11 @@ public struct TraktCollectedItem: Codable, Hashable {
             hdr = try? container.decodeIfPresent(HDR.self, forKey: .hdr)
             audio = try? container.decodeIfPresent(Audio.self, forKey: .audio)
             audioChannels = try? container.decodeIfPresent(AudioChannels.self, forKey: .audioChannels)
-            is3D = try container.decodeIfPresent(Bool.self, forKey: .is3D) ?? false
+            is3D = (try? container.decodeIfPresent(Bool.self, forKey: .is3D)) ?? false
         }
     }
     
-    public enum MediaType: String, Codable {
+    public enum MediaType: String, TraktObject {
         case digital
         case bluray
         case hdDVD = "hddvd"
@@ -104,7 +104,7 @@ public struct TraktCollectedItem: Codable, Hashable {
         case videoCD = "vcd"
     }
     
-    public enum Resolution: String, Codable {
+    public enum Resolution: String, TraktObject {
         case udh4k = "uhd_4k"
         case hd1080p = "hd_1080p"
         case hd1080i = "hd_1080i"
@@ -115,14 +115,14 @@ public struct TraktCollectedItem: Codable, Hashable {
         case sd576i = "sd_576i"
     }
     
-    public enum HDR: String, Codable {
+    public enum HDR: String, TraktObject {
         case dolbyVision = "dolby_vision"
         case hdr10 = "hdr10"
         case hdr10Plus = "hdr10_plus"
         case hlg
     }
     
-    public enum Audio: String, Codable {
+    public enum Audio: String, TraktObject {
         case dolbyDigital = "dolby_digital"
         case dolbyDigitalPlus = "dolby_digital_plus"
         case dolbyDigitalPlusAtmos = "dolby_digital_plus_atmos"
@@ -144,7 +144,7 @@ public struct TraktCollectedItem: Codable, Hashable {
         case flac
     }
     
-    public enum AudioChannels: String, Codable {
+    public enum AudioChannels: String, TraktObject {
         case tenOne = "10.1"
         case nineOne = "9.1"
         case sevenOneFour = "7.1.4"
@@ -165,14 +165,14 @@ public struct TraktCollectedItem: Codable, Hashable {
     }
 }
 
-public struct TraktCollectedSeason: Codable, Hashable {
+public struct TraktCollectedSeason: TraktObject {
     
     /// Season number
     public var number: Int
     public var episodes: [TraktCollectedEpisode]
 }
 
-public struct TraktCollectedEpisode: Codable, Hashable {
+public struct TraktCollectedEpisode: TraktObject {
     
     public var number: Int
     public var collectedAt: Date

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktRating: Codable, Hashable {
+public struct TraktRating: TraktObject {
     public var ratedAt: Date
     public var rating: Int
     

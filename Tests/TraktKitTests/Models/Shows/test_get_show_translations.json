@@ -1,17 +1,282 @@
 [
-  {
-    "title" : "Breaking Bad",
-    "language" : "en",
-    "overview" : "Breaking Bad is an American crime drama television series created and produced by Vince Gilligan. Set and produced in Albuquerque, New Mexico, Breaking Bad is the story of Walter White, a struggling high school chemistry teacher who is diagnosed with inoperable lung cancer at the beginning of the series. He turns to a life of crime, producing and selling methamphetamine, in order to secure his family's financial future before he dies, teaming with his former student, Jesse Pinkman. Heavily serialized, the series is known for positioning its characters in seemingly inextricable corners and has been labeled a contemporary western by its creator."
-  },
-  {
-    "title" : "Breaking Bad",
-    "language" : "tr",
-    "overview" : "..."
-  },
-  {
-    "title" : "Perníkový tatko",
-    "language" : "sk",
-    "overview" : ""
-  }
+    {
+        "title": null,
+        "overview": "جريمة قتل مريعة تقلب مكتب النائب العام رأساً على عقب عندما يُتهم أحد أعضاءه بارتكاب الجريمة، ويبدأ المتهم بالمعاناة ليحافظ على شمل عائلته.",
+        "tagline": "لا تفترض شيئًا.",
+        "language": "ar",
+        "country": "ae"
+    },
+    {
+        "title": null,
+        "overview": "جريمة قتل مريعة تقلب مكتب النائب العام رأساً على عقب عندما يُتهم أحد أعضاءه بارتكاب الجريمة، ويبدأ المتهم بالمعاناة ليحافظ على شمل عائلته.",
+        "tagline": "لا تفترض شيئًا.",
+        "language": "ar",
+        "country": "sa"
+    },
+    {
+        "title": "Nedostatek důkazů",
+        "overview": "Příšerná vražda otřese základy chicagské prokuratury. Ze zločinu je totiž podezřelý někdo z jejích řad, kdo nyní musí bojovat za udržení vlastní rodiny pohromadě.",
+        "tagline": "Čekejte nečekané.",
+        "language": "cs",
+        "country": "cz"
+    },
+    {
+        "title": null,
+        "overview": "Et grusomt drab vender op og ned på den offentlige anklagers kontor i Chicago, da en af kollegerne mistænkes for forbrydelsen – så den anklagede må kæmpe for at holde sammen på sin familie.",
+        "tagline": "Intet kan tages for givet.",
+        "language": "da",
+        "country": "dk"
+    },
+    {
+        "title": "Aus Mangel an Beweisen",
+        "overview": "Ein brutaler Mord erschüttert die Staatsanwaltschaft von Chicago, als einer ihrer Mitarbeiter des Verbrechens beschuldigt wird und der Beschuldigte um den Zusammenhalt seiner Familie kämpfen muss.",
+        "tagline": "Nichts ist, wie es scheint.",
+        "language": "de",
+        "country": "de"
+    },
+    {
+        "title": "Αθώος Μέχρι Αποδείξεως του Εναντίου",
+        "overview": "Ένας φρικτός φόνος αναστατώνει την Εισαγγελία του Σικάγο όταν ένας δικός της γίνεται ύποπτος για το έγκλημα, την ώρα που ο ίδιος παλεύει να κρατήσει την οικογένειά του ενωμένη.",
+        "tagline": "Μην υποθέτεις τίποτα.",
+        "language": "el",
+        "country": "gr"
+    },
+    {
+        "title": "Presumed Innocent",
+        "overview": "A horrific murder upends the Chicago Prosecuting Attorney's Office when one of its own is suspected of the crime—leaving the accused fighting to keep his family together.",
+        "tagline": "Presume nothing.",
+        "language": "en",
+        "country": "us"
+    },
+    {
+        "title": "Presunto inocente",
+        "overview": "Un asesinato horrible trastoca a la Fiscalía de Chicago cuando uno de los suyos es sospechoso del crimen. El acusado deberá luchar por mantener unida a su familia.",
+        "tagline": "Nada es lo que parece.",
+        "language": "es",
+        "country": "es"
+    },
+    {
+        "title": "Se presume inocente",
+        "overview": "Un asesinato espantoso pone de cabeza la oficina de la fiscalía de Chicago cuando uno de los suyos resulta sospechoso del crimen, por lo que el acusado tendrá que luchar por mantener unida a su familia.",
+        "tagline": "Olvida lo que creías saber.",
+        "language": "es",
+        "country": "mx"
+    },
+    {
+        "title": null,
+        "overview": "پس از اینکه یکی از اعضای دفتر دادستانی شیکاگو به طرز وحشتناکی به قتل می رسد، یک نفر از همین اعضا به مظنون اصلی این جنایت تبدیل می شود و...",
+        "tagline": null,
+        "language": "fa",
+        "country": "ir"
+    },
+    {
+        "title": null,
+        "overview": "Kamala murha murtaa Chicagon syyttäjänviraston, kun yhtä sen omista epäillään rikoksesta. Syytetty joutuu taistelemaan pitääkseen perheensä koossa.",
+        "tagline": "Älä oleta mitään.",
+        "language": "fi",
+        "country": "fi"
+    },
+    {
+        "title": "Présumé innocent",
+        "overview": "Un horrible meurtre bouleverse le bureau du procureur de Chicago quand un de ses membres est suspecté dans cette affaire, obligeant l’accusé à se battre pour garder sa famille unie.",
+        "tagline": "Ne présumez de rien.",
+        "language": "fr",
+        "country": "fr"
+    },
+    {
+        "title": "Présumé innocent",
+        "overview": "Un horrible meurtre bouleverse le bureau du procureur de Chicago quand un de ses membres est suspecté dans cette affaire, obligeant l’accusé à se battre pour garder sa famille unie.",
+        "tagline": "Ne présumez de rien.",
+        "language": "fr",
+        "country": "ca"
+    },
+    {
+        "title": null,
+        "overview": "רצח נורא מזעזע את משרד התובע המחוזי של שיקגו. כשאחד מעובדיו נחשד בביצוע הפשע, הוא נאלץ להילחם כדי שמשפחתו לא תתפרק.",
+        "tagline": "אסור להניח מראש שום דבר.",
+        "language": "he",
+        "country": "il"
+    },
+    {
+        "title": "प्रिज़्यूम्ड इनोसेंट",
+        "overview": "एक भयावह हत्या से शिकागो अभियोजन वकील के कार्यालय में तब उथल-पुथल मच जाती है, जब उसका अपना ही एक व्यक्ति शक के घेरे में आ जाता है—और अभियुक्त को अपने परिवार को साथ बनाए रखने के लिए संघर्ष करना पड़ता है।",
+        "tagline": "पहले से कुछ मानकर न चलें।",
+        "language": "hi",
+        "country": "in"
+    },
+    {
+        "title": "Ártatlanságra ítélve",
+        "overview": "Szörnyű gyilkosság forgatja fel a Chicagói Ügyészség hivatalát, amikor az egyik emberüket vádolják meg az elkövetéssel. A gyanúsítottnak azzal is meg kell küzdenie, hogy összetartsa a családját.",
+        "tagline": "Várd ki a végét.",
+        "language": "hu",
+        "country": "hu"
+    },
+    {
+        "title": null,
+        "overview": "Pembunuhan yang mengerikan menggaduhkan Kantor Kejaksaan Chicago ketika salah satu dari mereka dicurigai melakukan kejahatan tersebut dan menyebabkan si tertuduh harus berjuang untuk menjaga keutuhan keluarganya.",
+        "tagline": "Jangan menduga apa pun.",
+        "language": "id",
+        "country": "id"
+    },
+    {
+        "title": "Presunto innocente",
+        "overview": "Un terribile omicidio getta nel caos l’ufficio del procuratore di Chicago quando un dipendente è sospettato del crimine. L’accusato dovrà lottare per tenere insieme la propria famiglia.",
+        "tagline": "Niente è come te lo aspetti.",
+        "language": "it",
+        "country": "it"
+    },
+    {
+        "title": "推定無罪",
+        "overview": "恐ろしい殺人事件が発生し、シカゴの検察官に容疑がかけられる。当局が大混乱に陥る一方で、容疑者の男は家族を守るために闘っていた。",
+        "tagline": "推測は、推測に過ぎない。",
+        "language": "ja",
+        "country": "jp"
+    },
+    {
+        "title": "'무죄추정' - Presumed Innocent",
+        "overview": "끔찍한 살인 사건의 용의자로 동료 중 한 명이 지목되자 시카고 검찰청이 뒤집히고, 용의자는 가족을 지키기 위해 싸울 수밖에 없다.",
+        "tagline": "아무 것도 확신하지 마라.",
+        "language": "ko",
+        "country": "kr"
+    },
+    {
+        "title": null,
+        "overview": "Serialas apie Čikagos prokurorą, apkaltintą savo kolegos nužudymu. Kai Rozat „Rusty“ Sabich nėra namuose su žmona Barbara ir vaikais Jadenu ir Kyle'u, jis dirba D.A. pagrindiniu kaltinimo advokatu. Taigi, kai jų kolegė Carolyn Polhemus randama negyva, Horganas paskiria jį į bylą. Pakankamai sunku susidoroti su kolegos netektimi, bet viskas pablogėja, kai varžovai Nico Della Guardia ir Tommy Molto, kurie artėjančiuose rinkimuose kovoja dėl Horgano ir Sabicho darbo vietų, naudojasi jos mirtimi. kaip politinė galimybė. Tuo tarpu bylą apsunkina tai, kad Polhemus kūnas buvo paliktas taip pat, kaip kalinamas žudikas Liamas Reinoldsas, vyras, kurį ji ir Sabichas nuteisė prieš kelerius metus, tariamai paliko savo auką. Tačiau kai įkalčiai pradeda krypti netikėtomis kryptimis, Sabichas atskleidžia tiesą apie savo santykių su mirusiuoju pobūdį, todėl jis tampa pagrindiniu įtariamuoju ir dėl to jo gyvenimas išsklaido.",
+        "tagline": null,
+        "language": "lt",
+        "country": "lt"
+    },
+    {
+        "title": null,
+        "overview": "Na een gruwelijke moord is een advocatenkantoor in Chicago in rep en roer als een van hen verdacht wordt van de misdaad. De aangeklaagde vecht om zijn gezin bijeen te houden.",
+        "tagline": "Ga nergens vanuit.",
+        "language": "nl",
+        "country": "nl"
+    },
+    {
+        "title": null,
+        "overview": "Et grusomt drap ryster statsadvokatens kontor i Chicagos når en av deres egne blir mistenkt i saken –og den mistenkte kjemper for å holde familien sammen.",
+        "tagline": "Antagelser er nytteløse.",
+        "language": "no",
+        "country": "no"
+    },
+    {
+        "title": "Uznany za niewinnego",
+        "overview": "Szokujące zabójstwo stawia na nogi prokuraturę w Chicago, gdy podejrzana staje się jedna z pracujących tam osób, którą następnie czeka walka o rodzinę.",
+        "tagline": "Nie zakładaj niczego z góry.",
+        "language": "pl",
+        "country": "pl"
+    },
+    {
+        "title": "Presumível Inocente",
+        "overview": "Um homicídio horrível deixa o Ministério Público de Chicago de pernas para o ar, quando um dos seus membros é suspeito do crime, fazendo com que o acusado tenha de lutar para manter a sua família unida.",
+        "tagline": "Presumir é um erro.",
+        "language": "pt",
+        "country": "pt"
+    },
+    {
+        "title": "Acima de Qualquer Suspeita",
+        "overview": "Um assassinato hediondo deixa o escritório da Promotoria de Justiça de Chicago de cabeça para baixo quando um dos funcionários é suspeito do crime, o que deixa o acusado lutando para manter sua família unida.",
+        "tagline": "Presumir é um erro.",
+        "language": "pt",
+        "country": "br"
+    },
+    {
+        "title": "Presupus nevinovat",
+        "overview": null,
+        "tagline": null,
+        "language": "ro",
+        "country": "ro"
+    },
+    {
+        "title": "Презумпция невиновности",
+        "overview": "Ужасное убийство переворачивает с ног на голову прокуратуру Чикаго, когда становится известно, что в преступлении подозревается один из сотрудников. В результате обвиняемый борется за то, чтобы сохранить семью.",
+        "tagline": "Всегда требуйте доказательств.",
+        "language": "ru",
+        "country": "ru"
+    },
+    {
+        "title": "Prezumpcia neviny",
+        "overview": "Príšerná vražda otrasie prokuratúrou v Chicagu, keď sa z jedného zo zamestnancov vykľuje podozrivý, ktorý zrazu musí bojovať, aby udržal vlastnú rodinu pokope.",
+        "tagline": "Nemyslite si, že niečo viete.",
+        "language": "sk",
+        "country": "sk"
+    },
+    {
+        "title": null,
+        "overview": "Rusty Sabich je namestnik generalnega državnega tožilca v Chicagu čigar življenje se obrne na glavo, ko je obtožen umora sodelavke, ki je bila njegova ljubica. Med preiskavo se začnejo razkrivati skrivnosti iz njegovega osebnega in poklicnega življenja, ki razkrivajo zapleteno mrežo izdajstva, skritih želja in politične manipulacije. Nazorno so prikazane moralne dileme, s katerimi se sooča Sabich, ko se trudi ne le dokazati svojo nedolžnost, temveč tudi ohraniti svoj zakon in povezanost družine.",
+        "tagline": "Ničesar ne domnevajte.",
+        "language": "sl",
+        "country": "si"
+    },
+    {
+        "title": "Претпоставља се да је невин",
+        "overview": "Ужасно убиство поремети Тужилаштво у Чикагу када је неко од њих осумњичен за злочин – остављајући оптуженог да се бори да одржи породицу на окупу.",
+        "tagline": null,
+        "language": "sr",
+        "country": "rs"
+    },
+    {
+        "title": null,
+        "overview": "Ett hemskt mord vänder upp och ner på Chicagos åklagarmyndighet när en av deras egna misstänks för brottet, vilket tvingar den anklagade att kämpa för att hålla ihop sin familj.",
+        "tagline": "Inget är som det verkar.",
+        "language": "sv",
+        "country": "se"
+    },
+    {
+        "title": null,
+        "overview": "การฆาตกรรมสุดสยองทำให้สำนักงานอัยการชิคาโกต้องตกตะลึง เมื่อหนึ่งในเจ้าหน้าที่เป็นผู้ต้องสงสัยในอาชญากรรมครั้งนี้ ทำให้ผู้ที่ถูกกล่าวหาต้องต่อสู้เพื่อทำให้ครอบครัวของเขาได้อยู่พร้อมหน้ากัน",
+        "tagline": "อย่าเชื่อทุกสิ่งเพราะความจริงอาจพลิกผัน",
+        "language": "th",
+        "country": "th"
+    },
+    {
+        "title": null,
+        "overview": "Korkunç bir cinayet, kendi aralarından biri şüpheli hâline gelmesi ile Şikago Savcılığı’nı altüst eder. Sanığın ise ailesini bir arada tutmak için mücadele etmesi gerekir.",
+        "tagline": null,
+        "language": "tr",
+        "country": "tr"
+    },
+    {
+        "title": "Презумпція невинуватості",
+        "overview": "Жахливе вбивство сколихує прокуратуру Чикаго, коли її співробітника підозрюють у скоєнні злочину, а сам обвинувачений змушений боротися за збереження своєї сім’ї.",
+        "tagline": "Жодних припущень.",
+        "language": "uk",
+        "country": "ua"
+    },
+    {
+        "title": "Suy Đoán Vô Tội - Presumed Innocent",
+        "overview": "Một vụ án mạng kinh hoàng làm rúng động Phòng Công tố Chicago khi một nhân viên bị tình nghi là thủ phạm, khiến cho bị cáo phải đấu tranh để níu giữ gia đình mình.",
+        "tagline": "Kết quả khó lường.",
+        "language": "vi",
+        "country": "vn"
+    },
+    {
+        "title": null,
+        "overview": "一桩骇人听闻的谋杀案闹得芝加哥检察官办公室天翻地覆，因为该办公室的一名成员成了这起犯罪的嫌疑人，使其不得不为维系家庭而战。\n\n该剧改编自斯考特·杜罗所著同名小说，讲述芝加哥检察官办公室发生了一起可怕的谋杀案后，检察官之一拉斯蒂·萨比奇(吉伦哈尔)成了犯罪嫌疑人。在被告为维持家庭和婚姻而奋斗的过程中，探索痴迷、性、政治以及爱情的力量和局限性。\n\n内伽饰演拉斯蒂妻子芭芭拉，是名艺术家、画廊老板和母亲，她的生活在丈夫被指控谋杀他的情妇后被颠覆了，她在处理受伤的心和破碎的婚姻时也为家人而战，并与丈夫广为人知的审判作斗争。",
+        "tagline": null,
+        "language": "zh",
+        "country": "cn"
+    },
+    {
+        "title": "無罪的罪人",
+        "overview": "一宗可怕的謀殺案使芝加哥檢察官辦公室陷入混亂，因為疑犯是其中一員，被告也不得不為保護家人而奮戰。",
+        "tagline": "斷不能武斷。",
+        "language": "zh",
+        "country": "hk"
+    },
+    {
+        "title": null,
+        "overview": "一桩骇人听闻的谋杀案闹得芝加哥检察官办公室天翻地覆，因为该办公室的一名成员成了这起犯罪的嫌疑人，使其不得不为维系家庭而战。",
+        "tagline": null,
+        "language": "zh",
+        "country": "sg"
+    },
+    {
+        "title": "無罪的罪人",
+        "overview": "一場可怕的謀殺案顛覆了芝加哥檢察官辦公室，因為其中一名檢察官涉嫌犯罪，而被告只好奮力將家人維繫在一起。",
+        "tagline": "勿妄下定論。",
+        "language": "zh",
+        "country": "tw"
+    }
 ]

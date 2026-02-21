@@ -9,7 +9,7 @@
 import Foundation
 
 /// Cast member for (show/season/episode)/people API
-public struct TVCrewMember: Codable, Hashable {
+public struct TVCrewMember: TraktObject {
     public let jobs: [String]
     @available(*, deprecated, renamed: "jobs")
     public let job: String
@@ -26,21 +26,13 @@ public struct TVCrewMember: Codable, Hashable {
 }
 
 /// Cast member for /movies/.../people API
-public struct MovieCrewMember: Codable, Hashable {
+public struct MovieCrewMember: TraktObject {
     public let jobs: [String]
-    @available(*, deprecated, renamed: "jobs")
-    public let job: String
     public let person: Person
-    
-    enum CodingKeys: String, CodingKey {
-        case jobs
-        case job
-        case person
-    }
 }
 
 /// Cast member for /people/.../shows API
-public struct PeopleTVCrewMember: Codable, Hashable {
+public struct PeopleTVCrewMember: TraktObject {
     public let jobs: [String]
     @available(*, deprecated, renamed: "jobs")
     public let job: String
@@ -57,7 +49,7 @@ public struct PeopleTVCrewMember: Codable, Hashable {
 
 
 /// Cast member for /people/.../movies API
-public struct PeopleMovieCrewMember: Codable, Hashable {
+public struct PeopleMovieCrewMember: TraktObject {
     public let jobs: [String]
     @available(*, deprecated, renamed: "jobs")
     public let job: String

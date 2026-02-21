@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct RatingDistribution: Codable, Hashable {
+public struct RatingDistribution: TraktObject {
     public let rating: Double
     public let votes: Int
     public let distribution: Distribution
     
-    public struct Distribution: Codable, Hashable {
+    public struct Distribution: TraktObject {
         public let one: Int
         public let two: Int
         public let three: Int

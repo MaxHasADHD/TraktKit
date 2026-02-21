@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Languages: Codable, Hashable {
+public struct Languages: TraktObject {
     public let name: String
     public let code: String
 }

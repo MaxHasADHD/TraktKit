@@ -12,7 +12,7 @@ import Foundation
 
 class JSONEncodingTests: XCTestCase {
     
-    let jsonEncoder = TraktManager.sharedManager.jsonEncoder
+    let jsonEncoder = TraktManager.jsonEncoder
     
     func testEncodeShowIds() {
         let expectation: RawJSON = [

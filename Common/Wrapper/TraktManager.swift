@@ -7,612 +7,252 @@
 //
 
 import Foundation
+import SwiftAPIClient
+import os
 
 public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }
 
-public class TraktManager {
-    
-    // TODO List:
-    // 1. Create a limit object, double check every paginated API call is marked as paginated
-    // 2. Call completion with custom error when creating request fails
-    
-    // MARK: - Properties
-    
-    private enum Constants {
-        static let tokenExpirationDefaultsKey = "accessTokenExpirationDate"
-        static let oneMonth: TimeInterval = 2629800
+public final class TraktManager: APIManager, @unchecked Sendable {
+
+    // MARK: - Types
+
+    /// Errors related to the operation of TraktKit.
+    public enum TraktKitError: Error {
+        case missingClientInfo
+        case malformedURL
+        case userNotAuthorized
+        case couldNotParseData
+
+        // TODO: Move this enum
+        case invalidRefreshToken
     }
-    
+
+    /// Possible errors thrown when polling for an access code.
+    public enum TraktTokenError: Error {
+        // 404
+        case invalidDeviceCode
+        // 409
+        case alreadyUsed
+        // 410
+        case expired
+        // 418
+        case denied
+        // 429
+        case tooManyRequests
+        case unexpectedStatusCode
+        case missingAccessCode
+    }
+
+    // MARK: - Properties
+
+    static let logger = Logger(subsystem: "TraktKit", category: "TraktManager")
+
     // MARK: Internal
-    private var staging: Bool?
-    private var clientID: String?
-    private var clientSecret: String?
-    private var redirectURI: String?
-    private var baseURL: String?
-    private var APIBaseURL: String?
-    private var isWaitingToToken: Bool = false
-    let jsonEncoder: JSONEncoder = {
+    private let staging: Bool
+    internal let clientId: String
+    internal let clientSecret: String
+    internal let redirectURI: String
+
+    private let traktAuthStorage: any TraktAuthentication
+
+    internal static let jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         return encoder
     }()
-    
-    // Keys
-    let accessTokenKey = "accessToken"
-    let refreshTokenKey = "refreshToken"
-    
-    let session: URLSessionProtocol
- 
-    public lazy var explore: ExploreResource = ExploreResource(traktManager: self)
-    
-    // MARK: Public
-    public static let sharedManager = TraktManager()
-    
-    public var isSignedIn: Bool {
-        get {
-            return accessToken != nil
-        }
-    }
-    public var oauthURL: URL?
-    
-    private var _accessToken: String?
-    public var accessToken: String? {
-        get {
-            if _accessToken != nil {
-                return _accessToken
-            }
-            if let accessTokenData = MLKeychain.loadData(forKey: accessTokenKey) {
-                if let accessTokenString = String(data: accessTokenData, encoding: .utf8) {
-                    _accessToken = accessTokenString
-                    return accessTokenString
-                }
-            }
-            
-            return nil
-        }
-        set {
-            // Save somewhere secure
-            _accessToken = newValue
-            if newValue == nil {
-                // Remove from keychain
-                MLKeychain.deleteItem(forKey: accessTokenKey)
-            } else {
-                // Save to keychain
-                let succeeded = MLKeychain.setString(value: newValue!, forKey: accessTokenKey)
-                #if DEBUG
-                    print("Saved access token: \(succeeded)")
-                #endif
-            }
-        }
-    }
-    
-    private var _refreshToken: String?
-    public var refreshToken: String? {
-        get {
-            if _refreshToken != nil {
-                return _refreshToken
-            }
-            if let refreshTokenData = MLKeychain.loadData(forKey: refreshTokenKey) {
-                if let refreshTokenString = String.init(data: refreshTokenData, encoding: .utf8) {
-                    _refreshToken = refreshTokenString
-                    return refreshTokenString
-                }
-            }
-            
-            return nil
-        }
-        set {
-            // Save somewhere secure
-            _refreshToken = newValue
-            if newValue == nil {
-                // Remove from keychain
-                MLKeychain.deleteItem(forKey: refreshTokenKey)
-            } else {
-                // Save to keychain
-                let succeeded = MLKeychain.setString(value: newValue!, forKey: refreshTokenKey)
-                #if DEBUG
-                    print("Saved refresh token: \(succeeded)")
-                #endif
-            }
-        }
-    }
-    
-    // MARK: - Lifecycle
-    
-    public init(session: URLSessionProtocol = URLSession(configuration: .default)) {
-        self.session = session
-    }
-    
-    // MARK: - Setup
-    
-    public func set(clientID: String, clientSecret secret: String, redirectURI: String, staging: Bool = false) {
-        self.clientID = clientID
-        self.clientSecret = secret
-        self.redirectURI = redirectURI
-        self.staging = staging
-        
-        self.baseURL = !staging ? "trakt.tv" : "staging.trakt.tv"
-        self.APIBaseURL = !staging ? "api.trakt.tv" : "api-staging.trakt.tv"
-        self.oauthURL = URL(string: "https://\(baseURL!)/oauth/authorize?response_type=code&client_id=\(clientID)&redirect_uri=\(redirectURI)")
-    }
-    
-    internal func createErrorWithStatusCode(_ statusCode: Int) -> NSError {
-        let message: String
-        
-        if let traktMessage = StatusCodes.message(for: statusCode) {
-            message = traktMessage
-        } else {
-            message = "Request Failed: Gateway timed out (\(statusCode))"
-        }
-        
-        let userInfo = [
-            "title": "Error",
-            NSLocalizedDescriptionKey: message,
-            NSLocalizedFailureReasonErrorKey: "",
-            NSLocalizedRecoverySuggestionErrorKey: ""
-        ]
-        let TraktKitIncorrectStatusError = NSError(domain: "com.litteral.TraktKit", code: statusCode, userInfo: userInfo)
-        
-        return TraktKitIncorrectStatusError
-    }
-    
-    // MARK: - Actions
-    
-    public func signOut() {
-        accessToken = nil
-        refreshToken = nil
-        UserDefaults.standard.removeObject(forKey: Constants.tokenExpirationDefaultsKey)
-    }
-    
-    internal func mutableRequestForURL(_ url: URL?, authorization: Bool, HTTPMethod: Method) -> URLRequest? {
-        guard
-            let url = url else { return nil }
-        var request = URLRequest(url: url)
-        request.httpMethod = HTTPMethod.rawValue
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        if let clientID = clientID {
-            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
-        }
-        
-        if authorization {
-            if let accessToken = accessToken {
-                request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            }
-            else {
-                return nil
-            }
-        }
-        
-        return request
-    }
-    
-    internal func mutableRequest(forPath path: String, withQuery query: [String: String], isAuthorized authorized: Bool, withHTTPMethod httpMethod: Method) -> URLRequest? {
-        guard let apiBaseURL = APIBaseURL else { preconditionFailure("Call `set(clientID:clientSecret:redirectURI:staging:)` before making any API requests") }
-        let urlString = "https://\(apiBaseURL)/" + path
-        guard var components = URLComponents(string: urlString) else { return nil }
-        
-        if query.isEmpty == false {
-            var queryItems: [URLQueryItem] = []
-            for (key, value) in query {
-                queryItems.append(URLQueryItem(name: key, value: value))
-            }
-            components.queryItems = queryItems
-        }
-        
-        guard let url = components.url else { return nil }
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod.rawValue
-        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        if let clientID = clientID {
-            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
-        }
 
-        if authorized {
-            if let accessToken = accessToken {
-                request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            }
-        }
-        
-        return request
+    // MARK: Public
+
+    public var oauthURL: URL? {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = staging ? "staging.trakt.tv" : "trakt.tv"
+        urlComponents.path = "/oauth/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "client_id", value: clientId),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
+        ]
+        return urlComponents.url
     }
-    
-    func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) -> URLRequest? {
-        guard let apiBaseURL = APIBaseURL else { preconditionFailure("Call `set(clientID:clientSecret:redirectURI:staging:)` before making any API requests") }
-        let urlString = "https://\(apiBaseURL)/" + path
-        guard var components = URLComponents(string: urlString) else { return nil }
-        if query.isEmpty == false {
-            var queryItems: [URLQueryItem] = []
-            for (key, value) in query {
-                queryItems.append(URLQueryItem(name: key, value: value))
-            }
-            components.queryItems = queryItems
-        }
-        
-        guard let url = components.url else { return nil }
-        var request = URLRequest(url: url)
-        request.httpMethod = Method.POST.rawValue
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("2", forHTTPHeaderField: "trakt-api-version")
-        if let clientID = clientID {
-            request.addValue(clientID, forHTTPHeaderField: "trakt-api-key")
-        }
-        
-        if let accessToken = accessToken {
-            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        }
-        
-        do {
-            request.httpBody = try jsonEncoder.encode(body)
-        } catch {
-            return nil
-        }
-        return request
+
+    // MARK: - Lifecycle
+
+    /**
+     Initializes the TraktManager.
+
+     > important: Call `refreshCurrentAuthState` shortly after initializing `TraktManager`, otherwise authenticated calls will fail.
+     */
+    public init(
+        session: URLSession = URLSession(configuration: .default),
+        staging: Bool = false,
+        clientId: String,
+        clientSecret: String,
+        redirectURI: String,
+        authStorage: any TraktAuthentication = KeychainTraktAuthentication()
+    ) {
+        self.staging = staging
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        self.redirectURI = redirectURI
+        self.traktAuthStorage = authStorage
+
+        let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
+        let baseURL = URL(string: "https://\(apiHost)")!
+        let config = APIManager.Configuration(
+            baseURL: baseURL,
+            additionalHeaders: [
+                "trakt-api-version": "2",
+                "trakt-api-key": clientId
+            ],
+            paginationPageHeader: "x-pagination-page",
+            paginationPageCountHeader: "x-pagination-page-count"
+        )
+
+        super.init(configuration: config, session: session, authStorage: authStorage)
+    }
+
+    /// Initialize TraktManager and refreshes the auth state
+    public init(
+        session: URLSession = URLSession(configuration: .default),
+        staging: Bool = false,
+        clientId: String,
+        clientSecret: String,
+        redirectURI: String,
+        authStorage: any TraktAuthentication = KeychainTraktAuthentication()
+    ) async {
+        self.staging = staging
+        self.clientId = clientId
+        self.clientSecret = clientSecret
+        self.redirectURI = redirectURI
+        self.traktAuthStorage = authStorage
+
+        let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
+        let baseURL = URL(string: "https://\(apiHost)")!
+        let config = APIManager.Configuration(
+            baseURL: baseURL,
+            additionalHeaders: [
+                "trakt-api-version": "2",
+                "trakt-api-key": clientId
+            ],
+            paginationPageHeader: "x-pagination-page",
+            paginationPageCountHeader: "x-pagination-page-count"
+        )
+
+        await super.init(configuration: config, session: session, authStorage: authStorage)
     }
 
     // MARK: - Authentication
-    
-    public func getTokenFromAuthorizationCode(code: String, completionHandler: SuccessCompletionHandler?) throws {
-        guard
-            let clientID = clientID,
-            let clientSecret = clientSecret,
-            let redirectURI = redirectURI
-        else {
-            completionHandler?(.fail)
-            return
-        }
-        
-        let urlString = "https://\(baseURL!)/oauth/token"
-        let url = URL(string: urlString)
-        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
-            completionHandler?(.fail)
-            return
-        }
-        
-        let json = [
-            "code": code,
-            "client_id": clientID,
-            "client_secret": clientSecret,
-            "redirect_uri": redirectURI,
-            "grant_type": "authorization_code",
-            ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        session._dataTask(with: request) { [weak self] data, response, error in
-            guard
-                let welf = self else { return }
-            guard error == nil else {
-                completionHandler?(.fail)
-                return
-            }
-            
-            // Check response
-            guard
-                let HTTPResponse = response as? HTTPURLResponse,
-                HTTPResponse.statusCode == StatusCodes.Success else {
-                completionHandler?(.fail)
-                return
-            }
-            
-            // Check data
-            guard
-                let data = data else {
-                completionHandler?(.fail)
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let authenticationInfo = try decoder.decode(AuthenticationInfo.self, from: data)
-                #if DEBUG
-                print(authenticationInfo)
-                print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
-                print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
-                #endif
-                
-                welf.accessToken = authenticationInfo.accessToken
-                welf.refreshToken = authenticationInfo.refreshToken
-                // Save expiration date
-                let expiresDate = Date(timeIntervalSinceNow: authenticationInfo.expiresIn)
-                UserDefaults.standard.set(expiresDate, forKey: Constants.tokenExpirationDefaultsKey)
-                
-                // Post notification
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
-                }
-                
-                completionHandler?(.success)
-            } catch {
-                completionHandler?(.fail)
-            }
-        }.resume()
+
+    public func getToken(authorizationCode code: String) async throws -> AuthenticationInfo {
+        let authenticationInfo = try await auth().getAccessToken(for: code).perform()
+        await saveCredentials(for: authenticationInfo, postAccountStatusChange: true)
+        return authenticationInfo
     }
-    
-    public func getAppCode(completionHandler: @escaping (_ result: DeviceCode?) -> Void) {
-        guard let clientID = clientID else {
-            completionHandler(nil)
-            return
-        }
-        let urlString = "https://\(APIBaseURL!)/oauth/device/code/"
-        
-        let url = URL(string: urlString)
-        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
-            completionHandler(nil)
-            return
-        }
-        
-        let json = ["client_id": clientID]
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-            
-            session._dataTask(with: request) { data, response, error in
-                guard error == nil else {
-                    completionHandler(nil)
+
+    // MARK: - Authentication - Devices
+
+    /**
+     Generate new codes to start the device authentication process. The `device_code` and interval will be used later to poll for the `access_token`. The `user_code` and `verification_url` should be presented to the user as mentioned in the flow steps above.
+
+     **QR Code**
+
+     You might consider generating a QR code for the user to easily scan on their mobile device. The QR code should be a URL that redirects to the `verification_url` and appends the `user_code`. For example, `https://trakt.tv/activate/5055CC52` would load the Trakt hosted `verification_url` and pre-fill in the `user_code`.
+     */
+    public func getAppCode() async throws -> DeviceCode {
+        try await auth().generateDeviceCode().perform()
+    }
+
+    public func pollForAccessToken(deviceCode: DeviceCode) async throws {
+        let startTime = Date()
+
+        while true {
+            let (tokenResponse, statusCode) = try await auth().requestAccessToken(code: deviceCode.deviceCode)
+
+            switch statusCode {
+            case 200:
+                if let tokenResponse {
+                    await saveCredentials(for: tokenResponse, postAccountStatusChange: true)
                     return
                 }
-                
-                // Check response
-                guard
-                    let HTTPResponse = response as? HTTPURLResponse,
-                    HTTPResponse.statusCode == StatusCodes.Success
-                else {
-                    completionHandler(nil)
-                    return
-                }
-                
-                // Check data
-                guard let data = data else {
-                    completionHandler(nil)
-                    return
-                }
-                do {
-                    let deviceCode = try JSONDecoder().decode(DeviceCode.self, from: data)
-                    completionHandler(deviceCode)
-                } catch {
-                    completionHandler(nil)
-                }
-            }.resume()
-        } catch {
-            completionHandler(nil)
-        }
-    }
-    
-    public func getTokenFromDevice(code: DeviceCode?, completionHandler: ProgressCompletionHandler?) {
-        guard
-            let clientID = self.clientID,
-            let clientSecret = self.clientSecret,
-            let deviceCode = code
-        else {
-            completionHandler?(.fail(0))
-            return
-        }
-        
-        let urlString = "https://\(APIBaseURL!)/oauth/device/token"
-        let url = URL(string: urlString)
-        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
-            completionHandler?(.fail(0))
-            return
-        }
-        
-        let json = [
-            "code": deviceCode.deviceCode,
-            "client_id": clientID,
-            "client_secret": clientSecret,
-        ]
-        guard let body = try? JSONSerialization.data(withJSONObject: json, options: []) else {
-            completionHandler?(.fail(0))
-            return
-        }
-        request.httpBody = body
-        self.isWaitingToToken = true
-        
-        DispatchQueue.global().async {
-            var i = 1
-            while self.isWaitingToToken {
-                if i >= deviceCode.expiresIn {
-                    self.isWaitingToToken = false
-                    continue
-                }
-                self.send(request: request, count: i) { result in
-                    completionHandler?(result)
-                    switch result {
-                    case .success:
-                        self.isWaitingToToken = false
-                    case .fail(let progress):
-                        if progress == 0 {
-                            self.isWaitingToToken = false
-                        }
-                    }
-                }
-                i += 1
-                sleep(1)
-            }
-        }
-    }
-    
-    private func send(request: URLRequest, count: Int, completionHandler: ProgressCompletionHandler?) {
-        session._dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else { return }
-            guard error == nil else {
-                completionHandler?(.fail(0))
-                return
-            }
-            
-            // Check response
-            if let HTTPResponse = response as? HTTPURLResponse,
-               HTTPResponse.statusCode == StatusCodes.BadRequest {
-                completionHandler?(.fail(count))
-                return
-            }
-            
-            guard let HTTPResponse = response as? HTTPURLResponse,
-                  HTTPResponse.statusCode == StatusCodes.Success else {
-                completionHandler?(.fail(0))
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completionHandler?(.fail(0))
-                return
-            }
-            
-            do {
-                if let accessTokenDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
-                    self.saveCredentials(accessTokenDict)
-                    completionHandler?(.success)
-                }
-            } catch {
-                completionHandler?(.fail(0))
-            }
-        }.resume()
-    }
-    
-    private func saveCredentials(_ credentials: [String: AnyObject]) {
-        self.accessToken = credentials["access_token"] as? String
-        self.refreshToken = credentials["refresh_token"] as? String
-        
-        #if DEBUG
-        print("[\(#function)] Access token is \(String(describing: self.accessToken))")
-        print("[\(#function)] Refresh token is \(String(describing: self.refreshToken))")
-        #endif
-        
-        // Save expiration date
-        let timeInterval = credentials["expires_in"] as! NSNumber
-        let expiresDate = Date(timeIntervalSinceNow: timeInterval.doubleValue)
-        
-        UserDefaults.standard.set(expiresDate, forKey: "accessTokenExpirationDate")
-        UserDefaults.standard.synchronize()
-        
-        // Post notification
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
-        }
-    }
-    
-    // MARK: Refresh access token
-    
-    public enum RefreshState {
-        case noTokens, validTokens, refreshTokens, expiredTokens
-    }
-    
-    public enum RefreshTokenError: Error {
-        case missingRefreshToken, invalidRequest, invalidRefreshToken, unsuccessfulNetworkResponse(Int), missingData, expiredTokens
-    }
-    
-    /// Returns the local token state. This could be wrong if a user revokes application access from Trakt.tv
-    public var refreshState: RefreshState {
-        guard let expiredDate = UserDefaults.standard.object(forKey: Constants.tokenExpirationDefaultsKey) as? Date else {
-            return .noTokens
-        }
-        let refreshDate = expiredDate.addingTimeInterval(-Constants.oneMonth)
-        let now = Date()
-        
-        if now >= expiredDate {
-            return .expiredTokens
-        }
-        
-        if now >= refreshDate {
-            return .refreshTokens
-        }
-        
-        return .validTokens
-    }
-    
-    public func checkToRefresh(completion: @escaping (_ result: Swift.Result<Void, Error>) -> Void) {
-        switch refreshState {
-        case .refreshTokens:
-            do {
-                try getAccessTokenFromRefreshToken(completionHandler: completion)
-            } catch {
-                completion(.failure(error))
-            }
-        case .expiredTokens:
-            completion(.failure(RefreshTokenError.expiredTokens))
-        default:
-            completion(.success(()))
-        }
-    }
-    
-    public func getAccessTokenFromRefreshToken(completionHandler: @escaping (_ result: Swift.Result<Void, Error>) -> Void) throws {
-        guard
-            let clientID = clientID,
-            let clientSecret = clientSecret,
-            let redirectURI = redirectURI,
-            let rToken = refreshToken
-            else {
-                completionHandler(.failure(RefreshTokenError.missingRefreshToken))
-                return
-        }
-        
-        let urlString = "https://\(baseURL!)/oauth/token"
-        let url = URL(string: urlString)
-        guard var request = mutableRequestForURL(url, authorization: false, HTTPMethod: .POST) else {
-            completionHandler(.failure(RefreshTokenError.invalidRequest))
-            return
-        }
-        
-        let json = [
-            "refresh_token": rToken,
-            "client_id": clientID,
-            "client_secret": clientSecret,
-            "redirect_uri": redirectURI,
-            "grant_type": "refresh_token",
-            ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        session._dataTask(with: request) { [weak self] (data, response, error) -> Void in
-            guard let welf = self else { return }
-            if let error = error {
-                completionHandler(.failure(error))
-                return
-            }
-            
-            // Check response
-            guard let HTTPResponse = response as? HTTPURLResponse else { return }
-            
-            switch HTTPResponse.statusCode {
-            case 401:
-                completionHandler(.failure(RefreshTokenError.invalidRefreshToken))
-            case 200...299: // Success
+                throw TraktTokenError.missingAccessCode
+
+            case 400:
+                // Pending - continue polling
                 break
+            case 404: throw TraktTokenError.invalidDeviceCode
+            case 409: throw TraktTokenError.alreadyUsed
+            case 410: throw TraktTokenError.expired
+            case 418: throw TraktTokenError.denied
+            case 429:
+                // Too many requests - wait before polling again
+                try await Task.sleep(for: .seconds(10))
+                continue
             default:
-                completionHandler(.failure(RefreshTokenError.unsuccessfulNetworkResponse(HTTPResponse.statusCode)))
+                throw TraktTokenError.unexpectedStatusCode
             }
-            
-            // Check data
-            guard let data = data else {
-                completionHandler(.failure(RefreshTokenError.missingData))
-                return
+
+            // Stop polling if `expires_in` time has elapsed
+            if Date().timeIntervalSince(startTime) >= deviceCode.expiresIn {
+                throw TraktTokenError.expired
             }
-            
-            do {
-                let decoder = JSONDecoder()
-                let authenticationInfo = try decoder.decode(AuthenticationInfo.self, from: data)
-                #if DEBUG
-                print(authenticationInfo)
-                print("[\(#function)] Access token is \(String(describing: welf.accessToken))")
-                print("[\(#function)] Refresh token is \(String(describing: welf.refreshToken))")
-                #endif
-                
-                welf.accessToken = authenticationInfo.accessToken
-                welf.refreshToken = authenticationInfo.refreshToken
-                // Save expiration date
-                let expiresDate = Date(timeIntervalSinceNow: authenticationInfo.expiresIn)
-                UserDefaults.standard.set(expiresDate, forKey: Constants.tokenExpirationDefaultsKey)
-                UserDefaults.standard.synchronize()
-                
-                completionHandler(.success(()))
-            } catch {
-                completionHandler(.failure(error))
+
+            try await Task.sleep(for: .seconds(deviceCode.interval))
+        }
+    }
+
+    // TODO: Find replacement for posting `TraktAccountStatusDidChange` to alert apps of account change.
+    private func saveCredentials(for authInfo: AuthenticationInfo, postAccountStatusChange: Bool = false) async {
+        let expiresDate = Date(timeIntervalSince1970: authInfo.createdAt).addingTimeInterval(authInfo.expiresIn)
+
+        let authenticationState = AuthenticationState(
+            accessToken: authInfo.accessToken,
+            refreshToken: authInfo.refreshToken,
+            expirationDate: expiresDate
+        )
+        await traktAuthStorage.updateState(authenticationState)
+        updateCachedAuthState(authenticationState)
+
+        // Post notification
+        if postAccountStatusChange {
+            await MainActor.run {
+                NotificationCenter.default.post(name: .TraktAccountStatusDidChange, object: nil)
             }
-        }.resume()
+        }
+    }
+
+    // MARK: Refresh access token
+
+    public func checkToRefresh() async throws {
+        do throws(AuthenticationError) {
+            try await refreshCurrentAuthState()
+        } catch .tokenExpired(let refreshToken) {
+            try await refreshAccessToken(with: refreshToken)
+        } catch .noStoredCredentials {
+            throw TraktKitError.userNotAuthorized
+        }
+    }
+
+    /**
+     Use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. The `access_token` is valid for 24 hours before it needs to be refreshed again.
+     */
+    @discardableResult
+    private func refreshAccessToken(with refreshToken: String) async throws -> AuthenticationInfo {
+        do {
+            let authenticationInfo = try await auth().getAccessToken(from: refreshToken).perform()
+            await saveCredentials(for: authenticationInfo)
+            return authenticationInfo
+        } catch TraktError.unauthorized { // 401 - Invalid refresh token
+            throw TraktKitError.invalidRefreshToken
+        } catch {
+            throw error
+        }
+    }
+
+    // Legacy method for compatibility
+    internal func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) throws -> URLRequest {
+        try mutableRequest(forPath: path, withQuery: query, isAuthorized: true, withHTTPMethod: .POST, body: body)
     }
 }

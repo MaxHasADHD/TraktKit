@@ -1,0 +1,32 @@
+{
+    "title": "Severance",
+    "year": 2022,
+    "ids": {
+        "trakt": 154997,
+        "slug": "severance",
+        "tvdb": 371980,
+        "imdb": "tt11280740",
+        "tmdb": 95396,
+        "tvrage": null
+    },
+    "images": {
+        "fanart": [
+            "walter-r2.trakt.tv/images/shows/000/154/997/fanarts/medium/9400ecb8e2.jpg.webp"
+        ],
+        "poster": [
+            "walter-r2.trakt.tv/images/shows/000/154/997/posters/thumb/f60ddb06de.jpg.webp"
+        ],
+        "logo": [
+            "walter-r2.trakt.tv/images/shows/000/154/997/logos/medium/29510e9cd0.png.webp"
+        ],
+        "clearart": [
+            "walter-r2.trakt.tv/images/shows/000/154/997/cleararts/medium/d3639066f2.png.webp"
+        ],
+        "banner": [
+            "walter-r2.trakt.tv/images/shows/000/154/997/banners/medium/883c234c02.jpg.webp"
+        ],
+        "thumb": [
+            "walter-r2.trakt.tv/images/shows/000/154/997/thumbs/medium/1dcf1005c7.jpg.webp"
+        ]
+    }
+}

@@ -12,7 +12,7 @@ public typealias RawJSON = [String: Any] // Dictionary
 
 // MARK: - TV & Movies
 
-public struct ID: Codable, Hashable {
+public struct ID: TraktObject {
 
     public let trakt: Int
     public let slug: String
@@ -40,8 +40,8 @@ public struct ID: Codable, Hashable {
     }
 }
 
-public struct SeasonId: Codable, Hashable {
-    
+public struct SeasonId: TraktObject {
+
     public let trakt: Int
     public let tvdb: Int?
     public let tmdb: Int?
@@ -62,7 +62,7 @@ public struct SeasonId: Codable, Hashable {
     }
 }
 
-public struct EpisodeId: Codable, Hashable {
+public struct EpisodeId: TraktObject {
     public let trakt: Int
     public let tvdb: Int?
     public let imdb: String?
@@ -86,7 +86,7 @@ public struct EpisodeId: Codable, Hashable {
     }
 }
 
-public struct ListId: Codable, Hashable {
+public struct ListId: TraktObject {
     public let trakt: Int
     public let slug: String
     
@@ -103,7 +103,7 @@ public struct ListId: Codable, Hashable {
 
 // MARK: - Stats
 
-public struct TraktStats: Codable, Hashable {
+public struct TraktStats: TraktObject {
     public let watchers: Int
     public let plays: Int
     public let collectors: Int
@@ -123,100 +123,168 @@ public struct TraktStats: Codable, Hashable {
     }
 }
 
+public struct TraktMovieStats: TraktObject {
+    public let watchers: Int
+    public let plays: Int
+    public let collectors: Int
+    public let comments: Int
+    public let lists: Int
+    public let votes: Int
+    public let favorited: Int
+}
+
 // MARK: - Last Activities
 
-public struct TraktLastActivities: Codable, Hashable {
+public struct TraktLastActivities: TraktObject {
     public let all: Date
-    public let movies: TraktLastActivityMovies
-    public let episodes: TraktLastActivityEpisodes
-    public let shows: TraktLastActivityShows
-    public let seasons: TraktLastActivitySeasons
-    public let comments: TraktLastActivityComments
-    public let lists: TraktLastActivityLists
-}
+    public let movies: Movies
+    public let episodes: Episodes
+    public let shows: Shows
+    public let seasons: Seasons
+    public let comments: Comments
+    public let lists: Lists
+    public let watchlist: LastUpdated
+    public let favorites: LastUpdated
+    public let account: Account
+    public let savedFilters: LastUpdated
+    public let notes: LastUpdated
 
-public struct TraktLastActivityMovies: Codable, Hashable {
-    public let watchedAt: Date
-    public let collectedAt: Date
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let pausedAt: Date
-    public let hiddenAt: Date
-    
     enum CodingKeys: String, CodingKey {
-        case watchedAt = "watched_at"
-        case collectedAt = "collected_at"
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case pausedAt = "paused_at"
-        case hiddenAt = "hidden_at"
+        case all
+        case movies
+        case episodes
+        case shows
+        case seasons
+        case comments
+        case lists
+        case watchlist
+        case favorites
+        case account
+        case savedFilters = "saved_filters"
+        case notes
     }
-}
 
-public struct TraktLastActivityEpisodes: Codable, Hashable {
-    public let watchedAt: Date
-    public let collectedAt: Date
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let pausedAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case watchedAt = "watched_at"
-        case collectedAt = "collected_at"
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case pausedAt = "paused_at"
+    public struct Movies: TraktObject {
+        public let watchedAt: Date
+        public let collectedAt: Date
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let favoritesAt: Date
+        public let commentedAt: Date
+        public let pausedAt: Date
+        public let hiddenAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case watchedAt = "watched_at"
+            case collectedAt = "collected_at"
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case favoritesAt = "favorited_at"
+            case commentedAt = "commented_at"
+            case pausedAt = "paused_at"
+            case hiddenAt = "hidden_at"
+        }
     }
-}
 
-public struct TraktLastActivityShows: Codable, Hashable {
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let hiddenAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case hiddenAt = "hidden_at"
+    public struct Episodes: TraktObject {
+        public let watchedAt: Date
+        public let collectedAt: Date
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let commentedAt: Date
+        public let pausedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case watchedAt = "watched_at"
+            case collectedAt = "collected_at"
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case commentedAt = "commented_at"
+            case pausedAt = "paused_at"
+        }
     }
-}
 
-public struct TraktLastActivitySeasons: Codable, Hashable {
-    public let ratedAt: Date
-    public let watchlistedAt: Date
-    public let commentedAt: Date
-    public let hiddenAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case ratedAt = "rated_at"
-        case watchlistedAt = "watchlisted_at"
-        case commentedAt = "commented_at"
-        case hiddenAt = "hidden_at"
+    public struct Shows: TraktObject {
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let favoritesAt: Date
+        public let commentedAt: Date
+        public let hiddenAt: Date
+        public let droppedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case favoritesAt = "favorited_at"
+            case commentedAt = "commented_at"
+            case hiddenAt = "hidden_at"
+            case droppedAt = "dropped_at"
+        }
     }
-}
 
-public struct TraktLastActivityComments: Codable, Hashable {
-    public let likedAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case likedAt = "liked_at"
+    public struct Seasons: TraktObject {
+        public let ratedAt: Date
+        public let watchlistedAt: Date
+        public let commentedAt: Date
+        public let hiddenAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case ratedAt = "rated_at"
+            case watchlistedAt = "watchlisted_at"
+            case commentedAt = "commented_at"
+            case hiddenAt = "hidden_at"
+        }
     }
-}
 
-public struct TraktLastActivityLists: Codable, Hashable {
-    public let likedAt: Date
-    public let updatedAt: Date
-    public let commentedAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case likedAt = "liked_at"
-        case updatedAt = "updated_at"
-        case commentedAt = "commented_at"
+    public struct Comments: TraktObject {
+        public let likedAt: Date
+        public let blockedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case likedAt = "liked_at"
+            case blockedAt = "blocked_at"
+        }
+    }
+
+    public struct Lists: TraktObject {
+        public let likedAt: Date
+        public let updatedAt: Date
+        public let commentedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case likedAt = "liked_at"
+            case updatedAt = "updated_at"
+            case commentedAt = "commented_at"
+        }
+    }
+
+    public struct Account: TraktObject {
+        /// When the OAuth user updates any of their Trakt settings on the website
+        public let settingsChanged: Date
+        /// When another Trakt user follows or unfollows the OAuth user.
+        public let followedChanged: Date
+        /// When the OAuth user follows or unfollows another Trakt user.
+        public let followingChanged: Date
+        /// When the OAuth user follows a private account, which requires their approval.
+        public let pendingFollowingChanged: Date
+        /// When the OAuth user has a private account and someone requests to follow them.
+        public let requestedFollowingChanged: Date
+
+        enum CodingKeys: String, CodingKey {
+            case settingsChanged = "settings_at"
+            case followedChanged = "followed_at"
+            case followingChanged = "following_at"
+            case pendingFollowingChanged = "pending_at"
+            case requestedFollowingChanged = "requested_at"
+        }
+    }
+
+    /// Used for watchlist, favorites, saved filters, and notes.
+    public struct LastUpdated: TraktObject {
+        public let updatedAt: Date
+
+        enum CodingKeys: String, CodingKey {
+            case updatedAt = "updated_at"
+        }
     }
 }

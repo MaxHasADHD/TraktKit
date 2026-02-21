@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct Like: Codable, Hashable {
+public struct Like: TraktObject {
     public let likedAt: Date
     public let type: LikeType
     public let list: TraktList?
     public let comment: Comment?
     
-    public enum LikeType: String, Codable {
+    public enum LikeType: String, TraktObject {
         case comment
         case list
     }

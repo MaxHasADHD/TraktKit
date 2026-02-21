@@ -7,21 +7,16 @@
 //
 
 import Foundation
+import SwiftAPIClient
 
 /// Generic result type
-public enum ObjectResultType<T: Codable> {
+public enum ObjectResultType<T: TraktObject>: Sendable {
     case success(object: T)
     case error(error: Error?)
 }
 
-/// Generic results type
-public enum ObjectsResultType<T: Codable> {
-    case success(objects: [T])
-    case error(error: Error?)
-}
-
 /// Generic results type + Pagination
-public enum ObjectsResultTypePagination<T: Codable> {
+public enum ObjectsResultTypePagination<T: TraktObject>: Sendable {
     case success(objects: [T], currentPage: Int, limit: Int)
     case error(error: Error?)
 }
@@ -30,215 +25,226 @@ extension TraktManager {
     
     // MARK: - Result Types
     
-    public enum DataResultType {
+    public enum DataResultType: Sendable {
         case success(data: Data)
         case error(error: Error?)
     }
     
-    public enum SuccessResultType {
+    public enum SuccessResultType: Sendable {
         case success
         case fail
     }
-    
-    public enum ProgressResultType {
-        case success
-        case fail(Int)
-    }
-    
-    public enum WatchingResultType {
-        case checkedIn(watching: TraktWatching)
-        case notCheckedIn
-        case error(error: Error?)
-    }
-    
-    public enum CheckinResultType {
-        case success(checkin: TraktCheckinResponse)
-        case checkedIn(expiration: Date)
-        case error(error: Error?)
-    }
-    
-    public enum TraktKitError: Error {
-        case couldNotParseData
-        case handlingRetry
-    }
-    
-    public enum TraktError: Error {
-        /// Bad Request - request couldn't be parsed
+
+    public enum TraktError: LocalizedError, Equatable {
+        /// 204. Some methods will succeed but not return any content. The network manager doesn't handle this well at the moment as it wants to decode the data when it is empty. Instead I'll throw this error so that it can be ignored for now.
+        case noContent
+
+        /// Bad Request (400) - request couldn't be parsed
         case badRequest
-        /// Oauth must be provided
+        /// Oauth must be provided (401)
         case unauthorized
-        /// Forbidden - invalid API key or unapproved app
+        /// Forbidden - invalid API key or unapproved app (403)
         case forbidden
-        /// Not Found - method exists, but no record found
+        /// Not Found - method exists, but no record found (404)
         case noRecordFound
-        /// Method Not Found - method doesn't exist
+        /// Method Not Found - method doesn't exist (405)
         case noMethodFound
-        /// Conflict - resource already created
+        /// Conflict - resource already created (409)
         case resourceAlreadyCreated
-        /// Account Limit Exceeded - list count, item count, etc
+        /// Precondition Failed - use application/json content type (412)
+        case preconditionFailed
+        /// Account Limit Exceeded - list count, item count, etc (420)
         case accountLimitExceeded
-        /// Locked User Account - have the user contact support
+        /// Unprocessable Entity - validation errors (422)
+        case unprocessableEntity
+        /// Locked User Account - have the user contact support (423)
         case accountLocked
-        /// VIP Only - user must upgrade to VIP
+        /// VIP Only - user must upgrade to VIP (426)
         case vipOnly
-        /// Rate Limit Exceeded
+        /// Rate Limit Exceede (429)
+        case retry(after: TimeInterval)
+        /// Rate Limit Exceeded, retry interval not available (429)
         case rateLimitExceeded(HTTPURLResponse)
-        /// Service Unavailable - server overloaded (try again in 30s)
+        /// Server Error - please open a support ticket (500)
+        case serverError
+        /// Service Unavailable - server overloaded (try again in 30s) (502 / 503 / 504)
         case serverOverloaded
-        /// Service Unavailable - Cloudflare error
+        /// Service Unavailable - Cloudflare error (520 / 521 / 522)
         case cloudflareError
         /// Full url response
-        case unhandled(HTTPURLResponse)
+        case unhandled(URLResponse)
+
+        public var errorDescription: String? {
+            switch self {
+            case .noContent:
+                nil
+            case .badRequest:
+                "Request could not be parsed."
+            case .unauthorized:
+                "Unauthorized. Please sign in with Trakt."
+            case .forbidden:
+                "Forbidden. Invalid API key or unapproved app."
+            case .noRecordFound:
+                "No record found."
+            case .noMethodFound:
+                "Method not found."
+            case .resourceAlreadyCreated:
+                "Resource has already been created."
+            case .preconditionFailed:
+                "Invalid content type."
+            case .accountLimitExceeded:
+                "The number of Trakt lists or list items has been exceeded. Please see Trakt.tv for account limits and support."
+            case .unprocessableEntity:
+                "Invalid entity."
+            case .accountLocked:
+                "Trakt.tv has indicated that this account is locked. Please contact Trakt support to unlock your account."
+            case .vipOnly:
+                "This feature is VIP only with Trakt. Please see Trakt.tv for more information."
+            case .retry:
+                nil
+            case .rateLimitExceeded:
+                "Rate Limit Exceeded. Please try again in a minute."
+            case .serverError, .serverOverloaded, .cloudflareError:
+                "Trakt.tv is down. Please try again later."
+            case .unhandled(let urlResponse):
+                if let httpResponse = urlResponse as? HTTPURLResponse {
+                    "Unhandled response. Status code \(httpResponse.statusCode)"
+                } else {
+                    "Unhandled response. \(urlResponse.description)"
+                }
+            }
+        }
     }
     
     // MARK: - Completion handlers
     
     // MARK: Common
-    public typealias ObjectCompletionHandler<T: Codable> = (_ result: ObjectResultType<T>) -> Void
-    public typealias ObjectsCompletionHandler<T: Codable> = (_ result: ObjectsResultType<T>) -> Void
-    public typealias paginatedCompletionHandler<T: Codable> = (_ result: ObjectsResultTypePagination<T>) -> Void
-    
-    public typealias DataResultCompletionHandler = (_ result: DataResultType) -> Void
-    public typealias SuccessCompletionHandler = (_ result: SuccessResultType) -> Void
-    public typealias ProgressCompletionHandler = (_ result: ProgressResultType) -> Void
+    public typealias ObjectCompletionHandler<T: TraktObject> = @Sendable (_ result: ObjectResultType<T>) -> Void
+    public typealias paginatedCompletionHandler<T: TraktObject> = @Sendable (_ result: ObjectsResultTypePagination<T>) -> Void
+
+    public typealias DataResultCompletionHandler = @Sendable (_ result: DataResultType) -> Void
+    public typealias SuccessCompletionHandler = @Sendable (_ result: SuccessResultType) -> Void
     public typealias CommentsCompletionHandler = paginatedCompletionHandler<Comment>
-//    public typealias CastCrewCompletionHandler = ObjectCompletionHandler<CastAndCrew>
-    
-    public typealias SearchCompletionHandler = ObjectsCompletionHandler<TraktSearchResult>
+
+    public typealias SearchCompletionHandler = ObjectCompletionHandler<[TraktSearchResult]>
     public typealias statsCompletionHandler = ObjectCompletionHandler<TraktStats>
     
     // MARK: Shared
     public typealias UpdateCompletionHandler = paginatedCompletionHandler<Update>
-    public typealias AliasCompletionHandler = ObjectsCompletionHandler<Alias>
+    public typealias AliasCompletionHandler = ObjectCompletionHandler<[Alias]>
     public typealias RatingDistributionCompletionHandler = ObjectCompletionHandler<RatingDistribution>
     
     // MARK: Calendar
-    public typealias dvdReleaseCompletionHandler = ObjectsCompletionHandler<TraktDVDReleaseMovie>
+    public typealias dvdReleaseCompletionHandler = ObjectCompletionHandler<[TraktDVDReleaseMovie]>
     
     // MARK: Checkin
-    public typealias checkinCompletionHandler = (_ result: CheckinResultType) -> Void
-    
+    public typealias checkinCompletionHandler = ObjectCompletionHandler<TraktCheckinResponse>
+
     // MARK: Shows
     public typealias TrendingShowsCompletionHandler = paginatedCompletionHandler<TraktTrendingShow>
     public typealias MostShowsCompletionHandler = paginatedCompletionHandler<TraktMostShow>
     public typealias AnticipatedShowCompletionHandler = paginatedCompletionHandler<TraktAnticipatedShow>
-    public typealias ShowTranslationsCompletionHandler = ObjectsCompletionHandler<TraktShowTranslation>
-    public typealias SeasonsCompletionHandler = ObjectsCompletionHandler<TraktSeason>
+    public typealias ShowTranslationsCompletionHandler = ObjectCompletionHandler<[TraktShowTranslation]>
+    public typealias SeasonsCompletionHandler = ObjectCompletionHandler<[TraktSeason]>
     
-    public typealias WatchedShowsCompletionHandler = ObjectsCompletionHandler<TraktWatchedShow>
+    public typealias WatchedShowsCompletionHandler = ObjectCompletionHandler<[TraktWatchedShow]>
     public typealias ShowWatchedProgressCompletionHandler = ObjectCompletionHandler<TraktShowWatchedProgress>
     
     // MARK: Episodes
     public typealias EpisodeCompletionHandler = ObjectCompletionHandler<TraktEpisode>
-    public typealias EpisodesCompletionHandler = ObjectsCompletionHandler<TraktEpisode>
+    public typealias EpisodesCompletionHandler = ObjectCompletionHandler<[TraktEpisode]>
     
     // MARK: Movies
     public typealias MovieCompletionHandler = ObjectCompletionHandler<TraktMovie>
-    public typealias MoviesCompletionHandler = ObjectsCompletionHandler<TraktMovie>
+    public typealias MoviesCompletionHandler = ObjectCompletionHandler<[TraktMovie]>
     public typealias TrendingMoviesCompletionHandler = paginatedCompletionHandler<TraktTrendingMovie>
     public typealias MostMoviesCompletionHandler = paginatedCompletionHandler<TraktMostMovie>
     public typealias AnticipatedMovieCompletionHandler = paginatedCompletionHandler<TraktAnticipatedMovie>
-    public typealias MovieTranslationsCompletionHandler = ObjectsCompletionHandler<TraktMovieTranslation>
+    public typealias MovieTranslationsCompletionHandler = ObjectCompletionHandler<[TraktMovieTranslation]>
     public typealias WatchedMoviesCompletionHandler = paginatedCompletionHandler<TraktWatchedMovie>
-    public typealias BoxOfficeMoviesCompletionHandler = ObjectsCompletionHandler<TraktBoxOfficeMovie>
+    public typealias BoxOfficeMoviesCompletionHandler = ObjectCompletionHandler<[TraktBoxOfficeMovie]>
     
     // MARK: Sync
     public typealias LastActivitiesCompletionHandler = ObjectCompletionHandler<TraktLastActivities>
-    public typealias RatingsCompletionHandler = ObjectsCompletionHandler<TraktRating>
+    public typealias RatingsCompletionHandler = ObjectCompletionHandler<[TraktRating]>
     public typealias HistoryCompletionHandler = paginatedCompletionHandler<TraktHistoryItem>
-    public typealias CollectionCompletionHandler = ObjectsCompletionHandler<TraktCollectedItem>
+    public typealias CollectionCompletionHandler = ObjectCompletionHandler<[TraktCollectedItem]>
     
     // MARK: Users
     public typealias ListCompletionHandler = ObjectCompletionHandler<TraktList>
-    public typealias ListsCompletionHandler = ObjectsCompletionHandler<TraktList>
-    public typealias ListItemCompletionHandler = ObjectsCompletionHandler<TraktListItem>
+    public typealias ListsCompletionHandler = ObjectCompletionHandler<[TraktList]>
+    public typealias ListItemCompletionHandler = ObjectCompletionHandler<[TraktListItem]>
     public typealias WatchlistCompletionHandler = paginatedCompletionHandler<TraktListItem>
     public typealias HiddenItemsCompletionHandler = paginatedCompletionHandler<HiddenItem>
-    public typealias UserCommentsCompletionHandler = ObjectsCompletionHandler<UsersComments>
+    public typealias UserCommentsCompletionHandler = ObjectCompletionHandler<[UsersComments]>
     public typealias AddListItemCompletion = ObjectCompletionHandler<ListItemPostResult>
     public typealias RemoveListItemCompletion = ObjectCompletionHandler<RemoveListItemResult>
     public typealias FollowUserCompletion = ObjectCompletionHandler<FollowUserResult>
-    public typealias FollowersCompletion = ObjectsCompletionHandler<FollowResult>
-    public typealias FriendsCompletion = ObjectsCompletionHandler<Friend>
-    public typealias WatchingCompletion = (_ result: WatchingResultType) -> Void
+    public typealias FollowersCompletion = ObjectCompletionHandler<[FollowResult]>
+    public typealias FriendsCompletion = ObjectCompletionHandler<[Friend]>
+    public typealias WatchingCompletion = ObjectCompletionHandler<TraktWatching>
     public typealias UserStatsCompletion = ObjectCompletionHandler<UserStats>
-    public typealias UserWatchedCompletion = ObjectsCompletionHandler<TraktWatchedItem>
+    public typealias UserWatchedCompletion = ObjectCompletionHandler<[TraktWatchedItem]>
     
     // MARK: - Error handling
     
-    private func handleResponse(response: URLResponse?, retry: @escaping (() -> Void)) throws {
-        guard let httpResponse = response as? HTTPURLResponse else { throw TraktKitError.couldNotParseData }
-        
+    private func handleResponse(response: URLResponse?) throws(TraktError) {
+        guard let response else { return }
+        guard let httpResponse = response as? HTTPURLResponse else { throw .unhandled(response) }
+
         guard 200...299 ~= httpResponse.statusCode else {
             switch httpResponse.statusCode {
-            case StatusCodes.BadRequest:
-                throw TraktError.badRequest
-            case StatusCodes.Unauthorized:
-                throw TraktError.unauthorized
-            case StatusCodes.Forbidden:
-                throw TraktError.forbidden
-            case StatusCodes.NotFound:
-                throw TraktError.noRecordFound
-            case StatusCodes.MethodNotFound:
-                throw TraktError.noMethodFound
-            case StatusCodes.Conflict:
-                throw TraktError.resourceAlreadyCreated
-            case StatusCodes.AccountLimitExceeded:
-                throw TraktError.accountLimitExceeded
-            case StatusCodes.acountLocked:
-                throw TraktError.accountLocked
-            case StatusCodes.vipOnly:
-                throw TraktError.vipOnly
-            case StatusCodes.RateLimitExceeded:
-                if let retryAfter = httpResponse.allHeaderFields["retry-after"] as? String,
-                   let retryInterval = TimeInterval(retryAfter) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + retryInterval) {
-                        retry()
-                    }
-                    /// To ensure completionHandler isn't called when retrying.
-                    throw TraktKitError.handlingRetry
+            case 400: throw .badRequest
+            case 401: throw .unauthorized
+            case 403: throw .forbidden
+            case 404: throw .noRecordFound
+            case 405: throw .noMethodFound
+            case 409: throw .resourceAlreadyCreated
+            case 412: throw .preconditionFailed
+            case 420: throw .accountLimitExceeded
+            case 422: throw .unprocessableEntity
+            case 423: throw .accountLocked
+            case 426: throw .vipOnly
+            case 429:
+                let rawRetryAfter = httpResponse.allHeaderFields["retry-after"]
+                if let retryAfterString = rawRetryAfter as? String,
+                   let retryAfter = TimeInterval(retryAfterString) {
+                    throw .retry(after: retryAfter)
+                } else if let retryAfter = rawRetryAfter as? TimeInterval {
+                    throw .retry(after: retryAfter)
                 } else {
-                    throw TraktError.rateLimitExceeded(httpResponse)
+                    throw .rateLimitExceeded(httpResponse)
                 }
-                
-            case 503, 504:
-                throw TraktError.serverOverloaded
-            case 500...600:
-                throw TraktError.cloudflareError
+            case 500: throw .serverError
+            // Try again in 30 seconds throw
+            case 502, 503, 504: throw .serverOverloaded
+            case 500...600: throw .cloudflareError
             default:
-                throw TraktError.unhandled(httpResponse)
+                throw .unhandled(httpResponse)
             }
         }
     }
-    
-    // MARK: - Perform Requests
 
-    func perform<T: Codable>(request: URLRequest) async throws -> T {
-        let (data, _) = try await session.data(for: request)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-        let object = try decoder.decode(T.self, from: data)
-        return object
-    }
+    // MARK: - Perform Requests
     
     /// Data
-    func performRequest(request: URLRequest, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else { return }
-            guard error == nil else {
+    func performRequest(request: URLRequest, completion: @escaping DataResultCompletionHandler) -> URLSessionDataTask? {
+        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
+            guard let self else { return }
+            if let error {
                 completion(.error(error: error))
                 return
             }
             
             // Check response
-            do {
-                try self.handleResponse(response: response, retry: {
-                    _ = self.performRequest(request: request, completion: completion)
-                })
+            do throws(TraktError) {
+                try self.handleResponse(response: response)
             } catch {
                 switch error {
-                case TraktKitError.handlingRetry:
-                    break
+                case .retry(let after):
+                    DispatchQueue.global().asyncAfter(deadline: .now() + after) { [weak self, completion] in
+                        _ = self?.performRequest(request: request, completion: completion)
+                    }
                 default:
                     completion(.error(error: error))
                 }
@@ -257,23 +263,23 @@ extension TraktManager {
     }
     
     /// Success / Failure
-    func performRequest(request: URLRequest, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else { return }
+    func performRequest(request: URLRequest, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
+        let datatask = session.dataTask(with: request) { [weak self] data, response, error in
+            guard let self else { return }
             guard error == nil else {
                 completion(.fail)
                 return
             }
             
             // Check response
-            do {
-                try self.handleResponse(response: response, retry: {
-                    _ = self.performRequest(request: request, completion: completion)
-                })
+            do throws(TraktError) {
+                try self.handleResponse(response: response)
             } catch {
                 switch error {
-                case TraktKitError.handlingRetry:
-                    break
+                case .retry(let after):
+                    DispatchQueue.global().asyncAfter(deadline: .now() + after) { [weak self, completion] in
+                        _ = self?.performRequest(request: request, completion: completion)
+                    }
                 default:
                     completion(.fail)
                 }
@@ -285,62 +291,16 @@ extension TraktManager {
         datatask.resume()
         return datatask
     }
-    
-    /// Checkin
-    func performRequest(request: URLRequest, completion: @escaping checkinCompletionHandler) -> URLSessionDataTaskProtocol? {
-        let datatask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else { return }
-            guard error == nil else {
-                completion(.error(error: error))
-                return
-            }
 
-            // Check data
-            guard let data = data else {
-                completion(.error(error: TraktKitError.couldNotParseData))
-                return
-            }
-
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-
-            if let checkin = try? decoder.decode(TraktCheckinResponse.self, from: data) {
-                completion(.success(checkin: checkin))
-                return
-            } else if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                let jsonDictionary = jsonObject as? RawJSON,
-                let expirationDateString = jsonDictionary["expires_at"] as? String,
-                let expirationDate = try? Date.dateFromString(expirationDateString) {
-                completion(.checkedIn(expiration: expirationDate))
-                return
-            }
-            
-            // Check response
-            do {
-                try self.handleResponse(response: response, retry: {
-                    _ = self.performRequest(request: request, completion: completion)
-                })
-            } catch {
-                switch error {
-                case TraktKitError.handlingRetry:
-                    break
-                default:
-                    completion(.error(error: error))
-                }
-                return
-            }
-
-            completion(.error(error: nil))
-        }
-        datatask.resume()
-        return datatask
-    }
-    
     // Generic array of Trakt objects
-    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
+    func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping ObjectCompletionHandler<T>) -> URLSessionDataTask? {
         let aCompletion: DataResultCompletionHandler = { (result) -> Void in
             switch result {
             case .success(let data):
+                guard !data.isEmpty else {
+                    completion(.error(error: TraktError.noContent))
+                    return
+                }
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
                 do {
@@ -357,71 +317,27 @@ extension TraktManager {
         let dataTask = performRequest(request: request, completion: aCompletion)
         return dataTask
     }
-    
-    /// Array of TraktProtocol objects
-    func performRequest<T: Decodable>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultType<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else { return }
-            guard error == nil else {
-                completion(.error(error: error))
-                return
-            }
-            
-            // Check response
-            do {
-                try self.handleResponse(response: response, retry: {
-                    _ = self.performRequest(request: request, completion: completion)
-                })
-            } catch {
-                switch error {
-                case TraktKitError.handlingRetry:
-                    break
-                default:
-                    completion(.error(error: error))
-                }
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(.error(error: TraktKitError.couldNotParseData))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-            do {
-                let array = try decoder.decode([T].self, from: data)
-                completion(.success(objects: array))
-            } catch {
-                completion(.error(error: error))
-            }
-        }
-        
-        dataTask.resume()
-        return dataTask
-    }
-    
+
     /// Array of ObjectsResultTypePagination objects
-    func performRequest<T>(request: URLRequest, completion: @escaping ((_ result: ObjectsResultTypePagination<T>) -> Void)) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else { return }
-            guard error == nil else {
+    func performRequest<T: TraktObject>(request: URLRequest, completion: @escaping paginatedCompletionHandler<T>) -> URLSessionDataTask? {
+        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
+            guard let self else { return }
+            if let error {
                 completion(.error(error: error))
                 return
             }
-            
+
             guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
             
             // Check response
-            do {
-                try self.handleResponse(response: response, retry: {
-                    _ = self.performRequest(request: request, completion: completion)
-                })
+            do throws(TraktError) {
+                try self.handleResponse(response: response)
             } catch {
                 switch error {
-                case TraktKitError.handlingRetry:
-                    break
+                case .retry(let after):
+                    DispatchQueue.global().asyncAfter(deadline: .now() + after) { [weak self, completion] in
+                        _ = self?.performRequest(request: request, completion: completion)
+                    }
                 default:
                     completion(.error(error: error))
                 }
@@ -459,54 +375,7 @@ extension TraktManager {
         dataTask.resume()
         return dataTask
     }
-    
-    // Watching
-    func performRequest(request: URLRequest, completion: @escaping WatchingCompletion) -> URLSessionDataTaskProtocol? {
-        let dataTask = session._dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else { return }
-            guard error == nil else {
-                completion(.error(error: error))
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse else { return completion(.error(error: nil)) }
-            
-            // Check response
-            do {
-                try self.handleResponse(response: response, retry: {
-                    _ = self.performRequest(request: request, completion: completion)
-                })
-            } catch {
-                switch error {
-                case TraktKitError.handlingRetry:
-                    break
-                default:
-                    completion(.error(error: error))
-                }
-                return
-            }
-            
-            if httpResponse.statusCode == StatusCodes.SuccessNoContentToReturn {
-                completion(.notCheckedIn)
-                return
-            }
-            
-            // Check data
-            guard let data = data else {
-                completion(.error(error: TraktKitError.couldNotParseData))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .custom(customDateDecodingStrategy)
-            do {
-                let watching = try decoder.decode(TraktWatching.self, from: data)
-                completion(.checkedIn(watching: watching))
-            } catch {
-                completion(.error(error: error))
-            }
-        }
-        dataTask.resume()
-        return dataTask
-    }
+
+    // MARK: - Async await
+    // Note: fetchData, perform, and decode methods are now provided by APIManager base class
 }

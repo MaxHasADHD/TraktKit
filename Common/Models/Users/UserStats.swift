@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct UserStats: Codable, Hashable {
+public struct UserStats: TraktObject {
     public let movies: Movies
     public let shows: Shows
     public let seasons: Seasons
@@ -16,7 +16,7 @@ public struct UserStats: Codable, Hashable {
     public let network: Network
     public let ratings: UserStatsRatingsDistribution
     
-    public struct Movies: Codable, Hashable {
+    public struct Movies: TraktObject {
         public let plays: Int
         public let watched: Int
         public let minutes: Int
@@ -25,19 +25,19 @@ public struct UserStats: Codable, Hashable {
         public let comments: Int
     }
     
-    public struct Shows: Codable, Hashable {
+    public struct Shows: TraktObject {
         public let watched: Int
         public let collected: Int
         public let ratings: Int
         public let comments: Int
     }
     
-    public struct Seasons: Codable, Hashable {
+    public struct Seasons: TraktObject {
         public let ratings: Int
         public let comments: Int
     }
     
-    public struct Episodes: Codable, Hashable {
+    public struct Episodes: TraktObject {
         public let plays: Int
         public let watched: Int
         public let minutes: Int
@@ -46,17 +46,17 @@ public struct UserStats: Codable, Hashable {
         public let comments: Int
     }
     
-    public struct Network: Codable, Hashable {
+    public struct Network: TraktObject {
         public let friends: Int
         public let followers: Int
         public let following: Int
     }
     
-    public struct UserStatsRatingsDistribution: Codable, Hashable {
+    public struct UserStatsRatingsDistribution: TraktObject {
         public let total: Int
         public let distribution: Distribution
         
-        public struct Distribution: Codable, Hashable {
+        public struct Distribution: TraktObject {
             public let one: Int
             public let two: Int
             public let three: Int

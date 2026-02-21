@@ -8,13 +8,94 @@
 
 import Foundation
 
-public enum ListPrivacy: String, Codable {
+public enum ListPrivacy: String, TraktObject {
+    /// Only you can see the list.
     case `private`
+    /// Anyone with the `share_link` can see the list.
+    case link
+    /// Only your friends can see the list.
     case friends
+    /// Anyone can see the list.
     case `public`
 }
 
-public struct TraktList: Codable, Hashable {
+public struct TraktNewList: TraktObject {
+    public let name: String
+    public let description: String?
+    public let privacy: ListPrivacy?
+    public let displayNumbers: Bool?
+    public let allowComments: Bool?
+    public let sortBy: String?
+    public let sortHow: String?
+
+    public init(
+        name: String,
+        description: String? = nil,
+        privacy: ListPrivacy? = nil,
+        displayNumbers: Bool? = nil,
+        allowComments: Bool? = nil,
+        sortBy: String? = nil,
+        sortHow: String? = nil
+    ) {
+        self.name = name
+        self.description = description
+        self.privacy = privacy
+        self.displayNumbers = displayNumbers
+        self.allowComments = allowComments
+        self.sortBy = sortBy
+        self.sortHow = sortHow
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case description
+        case privacy
+        case displayNumbers = "display_numbers"
+        case allowComments = "allow_comments"
+        case sortBy = "sort_by"
+        case sortHow = "sort_how"
+    }
+}
+
+public struct TraktUpdateList: TraktObject {
+    public let name: String?
+    public let description: String?
+    public let privacy: ListPrivacy?
+    public let displayNumbers: Bool?
+    public let allowComments: Bool?
+    public let sortBy: String?
+    public let sortHow: String?
+
+    public init(
+        name: String? = nil,
+        description: String? = nil,
+        privacy: ListPrivacy? = nil,
+        displayNumbers: Bool? = nil,
+        allowComments: Bool? = nil,
+        sortBy: String? = nil,
+        sortHow: String? = nil
+    ) {
+        self.name = name
+        self.description = description
+        self.privacy = privacy
+        self.displayNumbers = displayNumbers
+        self.allowComments = allowComments
+        self.sortBy = sortBy
+        self.sortHow = sortHow
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case description
+        case privacy
+        case displayNumbers = "display_numbers"
+        case allowComments = "allow_comments"
+        case sortBy = "sort_by"
+        case sortHow = "sort_how"
+    }
+}
+
+public struct TraktList: TraktObject {
     public let allowComments: Bool
     public let commentCount: Int
     public let createdAt: Date?
@@ -42,7 +123,7 @@ public struct TraktList: Codable, Hashable {
     }
 }
 
-public struct TraktTrendingList: Codable, Hashable {
+public struct TraktTrendingList: TraktObject {
     public let likeCount: Int
     public let commentCount: Int
     public let list: TraktList
@@ -51,5 +132,15 @@ public struct TraktTrendingList: Codable, Hashable {
         case likeCount = "like_count"
         case commentCount = "comment_count"
         case list
+    }
+}
+
+public struct TraktReorderListsResponse: TraktObject {
+    public let updated: Int
+    public let skipped: [Int]
+
+    enum CodingKeys: String, CodingKey {
+        case updated
+        case skipped = "skipped_ids"
     }
 }

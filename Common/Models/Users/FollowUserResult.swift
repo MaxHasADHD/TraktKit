@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct FollowUserResult: Codable, Hashable {
+public struct FollowUserResult: TraktObject {
     public let approvedAt: Date
     public let user: User
     

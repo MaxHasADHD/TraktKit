@@ -8,18 +8,7 @@
 
 import Foundation
 
-public enum Method: String {
-    /// Select one or more items. Success returns 200 status code.
-    case GET
-    /// Create a new item. Success returns 201 status code.
-    case POST
-    /// Update an item. Success returns 200 status code.
-    case PUT
-    /// Delete an item. Success returns 200 or 204 status code.
-    case DELETE
-}
-
-public struct StatusCodes {
+public struct StatusCodes: Sendable {
     /// Success
     public static let Success = 200
     /// Success - new resource created (POST)
@@ -58,42 +47,17 @@ public struct StatusCodes {
     public static let CloudflareError2 = 521
     /// Service Unavailable - Cloudflare error
     public static let CloudflareError3 = 522
-
-    static func message(for status: Int) -> String? {
-        switch status {
-        case Unauthorized:
-            return "App not authorized. Please sign in again."
-        case Forbidden:
-            return "Invalid API Key"
-        case NotFound:
-            return "API not found"
-        case AccountLimitExceeded:
-            return "The number of Trakt lists or list items has been exceeded. Please see Trakt.tv for account limits and support."
-        case acountLocked:
-            return "Trakt.tv has indicated that this account is locked. Please contact Trakt support to unlock your account."
-        case vipOnly:
-            return "This feature is VIP only with Trakt. Please see Trakt.tv for more information."
-        case RateLimitExceeded:
-            return "Rate Limit Exceeded. Please try again in a minute."
-        case ServerError..<CloudflareError:
-            return "Trakt.tv is down. Please try again later."
-        case CloudflareError..<600:
-            return "CloudFlare error. Please try again later."
-        default:
-            return nil
-        }
-    }
 }
 
 /// What to search for
-public enum SearchType: String {
+public enum SearchType: String, Sendable {
     case movie
     case show
     case episode
     case person
     case list
 
-    public struct Field {
+    public struct Field: Sendable {
         public let title: String
     }
     public struct Fields {
@@ -132,7 +96,7 @@ public enum SearchType: String {
 }
 
 /// Type of ID used for look up
-public enum LookupType {
+public enum LookupType: Sendable {
     case Trakt(id: NSNumber)
     case IMDB(id: String)
     case TMDB(id: NSNumber)
@@ -170,7 +134,7 @@ public enum LookupType {
     }
 }
 
-public enum MediaType: String, CustomStringConvertible {
+public enum MediaType: String, CustomStringConvertible, Sendable {
     case movies, shows
 
     public var description: String {
@@ -178,7 +142,7 @@ public enum MediaType: String, CustomStringConvertible {
     }
 }
 
-public enum WatchedType: String, CustomStringConvertible {
+public enum WatchedType: String, CustomStringConvertible, Sendable {
     case Movies = "movies"
     case Shows = "shows"
     case Seasons = "seasons"
@@ -189,7 +153,7 @@ public enum WatchedType: String, CustomStringConvertible {
     }
 }
 
-public enum Type2: String, CustomStringConvertible {
+public enum Type2: String, CustomStringConvertible, Sendable {
     case All = "all"
     case Movies = "movies"
     case Shows = "shows"
@@ -202,7 +166,7 @@ public enum Type2: String, CustomStringConvertible {
     }
 }
 
-public enum ListType: String, CustomStringConvertible {
+public enum ListType: String, CustomStringConvertible, Sendable {
     case all
     case personal
     case official
@@ -213,7 +177,7 @@ public enum ListType: String, CustomStringConvertible {
     }
 }
 
-public enum ListSortType: String, CustomStringConvertible {
+public enum ListSortType: String, CustomStringConvertible, Sendable {
     case popular
     case likes
     case comments
@@ -227,14 +191,14 @@ public enum ListSortType: String, CustomStringConvertible {
 }
 
 /// Type of comments
-public enum CommentType: String {
+public enum CommentType: String, Sendable {
     case all = "all"
     case reviews = "reviews"
     case shouts = "shouts"
 }
 
 /// Extended information
-public enum ExtendedType: String, CustomStringConvertible {
+public enum ExtendedType: String, CustomStringConvertible, Sendable {
     /// Least amount of info
     case Min = "min"
     /// All information, excluding images
@@ -247,6 +211,8 @@ public enum ExtendedType: String, CustomStringConvertible {
     case noSeasons = "noseasons"
     /// For the show and season `/people` methods.
     case guestStars = "guest_stars"
+    /// Get images for media objects. https://trakt.docs.apiary.io/introduction/images
+    case images
 
     public var description: String {
         return self.rawValue
@@ -260,7 +226,7 @@ extension Sequence where Iterator.Element: CustomStringConvertible {
 }
 
 /// Possible values for items in Lists
-public enum ListItemType: String {
+public enum ListItemType: String, Sendable {
     case movies = "movie"
     case shows = "show"
     case seasons = "season"
@@ -268,30 +234,42 @@ public enum ListItemType: String {
     case people = "person"
 }
 
-public enum Period: String {
-    case Weekly = "weekly"
-    case Monthly = "monthly"
-    case All = "all"
+public enum Period: String, Sendable, CustomStringConvertible {
+    case daily = "daily"
+    case weekly = "weekly"
+    case monthly = "monthly"
+    case yearly = "yearly"
+    case all = "all"
+
+    public var description: String {
+        rawValue
+    }
 }
 
-public enum SectionType: String {
+public struct HiddenItemSection: Sendable {
     /// Can hide movie, show objects
-    case Calendar = "calendar"
+    public static let calendar = "calendar"
     /// Can hide show, season objects
-    case ProgressWatched = "progress_watched"
+    public static let progressWatched = "progress_watched"
     /// Can hide show, season objects
-    case ProgressCollected = "progress_collected"
+    public static let progressWatchedReset = "progress_watched_reset"
+    /// Can hide show, season objects
+    public static let progressCollected = "progress_collected"
     /// Can hide movie, show objects
-    case Recommendations = "recommendations"
+    public static let recommendations = "recommendations"
+    // Can hide users
+    public static let comments = "comments"
+    // Can hide shows
+    public static let dropped = "dropped"
 }
 
-public enum HiddenItemsType: String {
+public enum HiddenItemsType: String, Sendable {
     case Movie = "movie"
     case Show = "show"
     case Season = "Season"
 }
 
-public enum LikeType: String {
+public enum LikeType: String, Sendable {
     case Comments = "comments"
     case Lists = "lists"
 }

@@ -1,204 +1,225 @@
 [
-  {
-    "type" : "movie",
-    "movie" : {
-      "title" : "Batman Begins",
-      "year" : 2005,
-      "ids" : {
-        "tmdb" : 272,
-        "slug" : "batman-begins-2005",
-        "trakt" : 1,
-        "imdb" : "tt0372784"
-      }
-    },
-    "comment" : {
-      "review" : false,
-      "user_rating" : 10,
-      "replies" : 0,
-      "id" : 267,
-      "created_at" : "2015-04-25T00:14:57.000Z",
-      "user" : {
-        "username" : "justin",
-        "private" : false,
-        "vip" : true,
-        "vip_ep" : false,
-        "name" : "Justin N.",
-        "ids" : {
-          "slug" : "justin"
+    {
+        "type": "movie",
+        "movie": {
+            "title": "Batman Begins",
+            "year": 2005,
+            "ids": {
+                "trakt": 1,
+                "slug": "batman-begins-2005",
+                "imdb": "tt0372784",
+                "tmdb": 272
+            }
+        },
+        "comment": {
+            "id": 267,
+            "comment": "Great kickoff to a new Batman trilogy!",
+            "spoiler": false,
+            "review": false,
+            "parent_id": 0,
+            "created_at": "2015-04-25T00:14:57.000Z",
+            "updated_at": "2015-04-25T00:14:57.000Z",
+            "replies": 0,
+            "likes": 0,
+            "user_stats": {
+                "rating": 10,
+                "play_count": 1,
+                "completed_count": 1
+            },
+            "user": {
+                "username": "justin",
+                "private": false,
+                "name": "Justin N.",
+                "vip": true,
+                "vip_ep": false,
+                "ids": {
+                    "slug": "justin"
+                }
+            }
         }
-      },
-      "parent_id" : 0,
-      "spoiler" : false,
-      "comment" : "Great kickoff to a new Batman trilogy!",
-      "updated_at" : "2015-04-25T00:14:57.000Z",
-      "likes" : 0
-    }
-  },
-  {
-    "type" : "show",
-    "show" : {
-      "title" : "Breaking Bad",
-      "year" : 2008,
-      "ids" : {
-        "tmdb" : 1396,
-        "slug" : "breaking-bad",
-        "tvdb" : 81189,
-        "trakt" : 1,
-        "imdb" : "tt0903747"
-      }
     },
-    "comment" : {
-      "review" : false,
-      "user_rating" : 10,
-      "replies" : 0,
-      "id" : 199,
-      "created_at" : "2015-02-18T06:02:30.000Z",
-      "user" : {
-        "username" : "justin",
-        "private" : false,
-        "vip" : true,
-        "vip_ep" : false,
-        "name" : "Justin N.",
-        "ids" : {
-          "slug" : "justin"
+    {
+        "type": "show",
+        "show": {
+            "title": "Breaking Bad",
+            "year": 2008,
+            "ids": {
+                "trakt": 1,
+                "slug": "breaking-bad",
+                "tvdb": 81189,
+                "imdb": "tt0903747",
+                "tmdb": 1396
+            }
+        },
+        "comment": {
+            "id": 199,
+            "comment": "Skyler, I AM THE DANGER.",
+            "spoiler": false,
+            "review": false,
+            "parent_id": 0,
+            "created_at": "2015-02-18T06:02:30.000Z",
+            "updated_at": "2015-02-18T06:02:30.000Z",
+            "replies": 0,
+            "likes": 0,
+            "user_stats": {
+                "rating": 10,
+                "play_count": 1,
+                "completed_count": 1
+            },
+            "user": {
+                "username": "justin",
+                "private": false,
+                "name": "Justin N.",
+                "vip": true,
+                "vip_ep": false,
+                "ids": {
+                    "slug": "justin"
+                }
+            }
         }
-      },
-      "parent_id" : 0,
-      "spoiler" : false,
-      "comment" : "Skyler, I AM THE DANGER.",
-      "updated_at" : "2015-02-18T06:02:30.000Z",
-      "likes" : 0
-    }
-  },
-  {
-    "season" : {
-      "number" : 1,
-      "ids" : {
-        "trakt" : 3958,
-        "tvdb" : 274431,
-        "tmdb" : 60394
-      }
     },
-    "show" : {
-      "title" : "Gotham",
-      "year" : 2014,
-      "ids" : {
-        "tmdb" : 60708,
-        "slug" : "gotham",
-        "tvdb" : 274431,
-        "trakt" : 869,
-        "imdb" : "tt3749900"
-      }
-    },
-    "type" : "season",
-    "comment" : {
-      "review" : false,
-      "user_rating" : 8,
-      "replies" : 0,
-      "id" : 220,
-      "created_at" : "2015-04-21T06:53:25.000Z",
-      "user" : {
-        "username" : "justin",
-        "private" : false,
-        "vip" : true,
-        "vip_ep" : false,
-        "name" : "Justin N.",
-        "ids" : {
-          "slug" : "justin"
+    {
+        "type": "season",
+        "season": {
+            "number": 1,
+            "ids": {
+                "trakt": 3958,
+                "tvdb": 274431,
+                "tmdb": 60394
+            }
+        },
+        "show": {
+            "title": "Gotham",
+            "year": 2014,
+            "ids": {
+                "trakt": 869,
+                "slug": "gotham",
+                "tvdb": 274431,
+                "imdb": "tt3749900",
+                "tmdb": 60708
+            }
+        },
+        "comment": {
+            "id": 220,
+            "comment": "Kicking off season 1 for a new Batman show.",
+            "spoiler": false,
+            "review": false,
+            "parent_id": 0,
+            "created_at": "2015-04-21T06:53:25.000Z",
+            "updated_at": "2015-04-21T06:53:25.000Z",
+            "replies": 0,
+            "likes": 0,
+            "user_stats": {
+                "rating": 8,
+                "play_count": 1,
+                "completed_count": 1
+            },
+            "user": {
+                "username": "justin",
+                "private": false,
+                "name": "Justin N.",
+                "vip": true,
+                "vip_ep": false,
+                "ids": {
+                    "slug": "justin"
+                }
+            }
         }
-      },
-      "parent_id" : 0,
-      "spoiler" : false,
-      "comment" : "Kicking off season 1 for a new Batman show.",
-      "updated_at" : "2015-04-21T06:53:25.000Z",
-      "likes" : 0
-    }
-  },
-  {
-    "show" : {
-      "title" : "Gotham",
-      "year" : 2014,
-      "ids" : {
-        "tmdb" : 60708,
-        "slug" : "gotham",
-        "tvdb" : 274431,
-        "trakt" : 869,
-        "imdb" : "tt3749900"
-      }
     },
-    "type" : "episode",
-    "comment" : {
-      "review" : false,
-      "user_rating" : 7,
-      "replies" : 1,
-      "id" : 229,
-      "created_at" : "2015-04-21T15:42:31.000Z",
-      "user" : {
-        "username" : "justin",
-        "private" : false,
-        "vip" : true,
-        "vip_ep" : false,
-        "name" : "Justin N.",
-        "ids" : {
-          "slug" : "justin"
+    {
+        "type": "episode",
+        "episode": {
+            "season": 1,
+            "number": 1,
+            "title": "Jim Gordon",
+            "ids": {
+                "trakt": 63958,
+                "tvdb": 4768720,
+                "imdb": "tt3216414",
+                "tmdb": 975968
+            }
+        },
+        "show": {
+            "title": "Gotham",
+            "year": 2014,
+            "ids": {
+                "trakt": 869,
+                "slug": "gotham",
+                "tvdb": 274431,
+                "imdb": "tt3749900",
+                "tmdb": 60708
+            }
+        },
+        "comment": {
+            "id": 229,
+            "comment": "Is this the OC?",
+            "spoiler": false,
+            "review": false,
+            "parent_id": 0,
+            "created_at": "2015-04-21T15:42:31.000Z",
+            "updated_at": "2015-04-21T15:42:31.000Z",
+            "replies": 1,
+            "likes": 0,
+            "user_stats": {
+                "rating": 7,
+                "play_count": 1,
+                "completed_count": 1
+            },
+            "user": {
+                "username": "justin",
+                "private": false,
+                "name": "Justin N.",
+                "vip": true,
+                "vip_ep": false,
+                "ids": {
+                    "slug": "justin"
+                }
+            }
         }
-      },
-      "parent_id" : 0,
-      "spoiler" : false,
-      "comment" : "Is this the OC?",
-      "updated_at" : "2015-04-21T15:42:31.000Z",
-      "likes" : 0
     },
-    "episode" : {
-      "number" : 1,
-      "season" : 1,
-      "title" : "Jim Gordon",
-      "ids" : {
-        "tmdb" : 975968,
-        "tvdb" : 4768720,
-        "trakt" : 63958,
-        "imdb" : "tt3216414"
-      }
-    }
-  },
-  {
-    "type" : "list",
-    "comment" : {
-      "review" : false,
-      "user_rating" : null,
-      "replies" : 0,
-      "id" : 268,
-      "created_at" : "2014-12-08T17:34:51.000Z",
-      "user" : {
-        "username" : "justin",
-        "private" : false,
-        "vip" : true,
-        "vip_ep" : false,
-        "name" : "Justin N.",
-        "ids" : {
-          "slug" : "justin"
+    {
+        "type": "list",
+        "list": {
+            "name": "Star Wars",
+            "description": "The complete Star Wars saga!",
+            "privacy": "public",
+            "share_link": "https://trakt.tv/lists/51",
+            "display_numbers": false,
+            "allow_comments": true,
+            "updated_at": "2015-04-22T22:01:39.000Z",
+            "item_count": 8,
+            "comment_count": 0,
+            "likes": 0,
+            "ids": {
+                "trakt": 51,
+                "slug": "star-wars"
+            }
+        },
+        "comment": {
+            "id": 268,
+            "comment": "May the 4th be with you!",
+            "spoiler": false,
+            "review": false,
+            "parent_id": 0,
+            "created_at": "2014-12-08T17:34:51.000Z",
+            "updated_at": "2014-12-08T17:34:51.000Z",
+            "replies": 0,
+            "likes": 0,
+            "user_stats": {
+                "rating": null,
+                "play_count": 1,
+                "completed_count": 1
+            },
+            "user": {
+                "username": "justin",
+                "private": false,
+                "name": "Justin N.",
+                "vip": true,
+                "vip_ep": false,
+                "ids": {
+                    "slug": "justin"
+                }
+            }
         }
-      },
-      "parent_id" : 0,
-      "spoiler" : false,
-      "comment" : "May the 4th be with you!",
-      "updated_at" : "2014-12-08T17:34:51.000Z",
-      "likes" : 0
-    },
-    "list" : {
-      "ids" : {
-        "trakt" : 51,
-        "slug" : "star-wars"
-      },
-      "display_numbers" : false,
-      "privacy" : "public",
-      "allow_comments" : true,
-      "comment_count" : 0,
-      "item_count" : 8,
-      "description" : "The complete Star Wars saga!",
-      "updated_at" : "2015-04-22T22:01:39.000Z",
-      "name" : "Star Wars",
-      "likes" : 0
     }
-  }
 ]

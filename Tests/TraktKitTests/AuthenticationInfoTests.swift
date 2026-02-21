@@ -9,8 +9,7 @@
 import XCTest
 @testable import TraktKit
 
-class AuthenticationInfoTests: XCTestCase {
-
+final class AuthenticationInfoTests: XCTestCase {
     func testParsingAuthenticationInfo() {
         let authenticationInfo = decode("AuthenticationInfo", to: AuthenticationInfo.self)!
         XCTAssertEqual(authenticationInfo.accessToken, "dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781")

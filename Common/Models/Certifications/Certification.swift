@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct Certifications: Codable, Hashable {
+public struct Certifications: TraktObject {
     public let us: [Certification]
     
     enum CodingKeys: String, CodingKey {
         case us
     }
     
-    public struct Certification: Codable, Hashable {
+    public struct Certification: TraktObject {
         public let name: String
         public let slug: String
         public let description: String

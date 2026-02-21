@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Friend: Codable, Hashable {
+public struct Friend: TraktObject {
     public let friendsAt: Date
     public let user: User
     

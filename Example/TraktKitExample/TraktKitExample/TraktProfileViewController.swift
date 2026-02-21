@@ -26,7 +26,7 @@ final class TraktProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        TraktManager.sharedManager.getUserProfile { [weak self] result in
+        traktManager.getUserProfile { [weak self] result in
             switch result {
             case .success(let user):
                 DispatchQueue.main.async { [weak self] in

@@ -8,28 +8,24 @@
 
 import Foundation
 
-public struct TraktWatchedShow: Codable, Hashable {
+public struct TraktWatchedShow: TraktObject {
     
     // Extended: Min
-    public let plays: Int // Total number of plays
-    public let lastWatchedAt: Date?
-    public let lastUpdatedAt: Date?
+
+    public let plays: Int
+    public let lastWatchedAt: Date
+    public let lastUpdatedAt: Date
+    public let resetAt: Date?
     public let show: TraktShow
+    /// nil if you use `?extended=noseasons`
     public let seasons: [TraktWatchedSeason]?
     
     enum CodingKeys: String, CodingKey {
         case plays
         case lastWatchedAt = "last_watched_at"
         case lastUpdatedAt = "last_updated_at"
+        case resetAt = "reset_at"
         case show
         case seasons
-    }
-    
-    public init(plays: Int, lastWatchedAt: Date?, lastUpdatedAt: Date?, show: TraktShow, seasons: [TraktWatchedSeason]?) {
-        self.plays = plays
-        self.lastWatchedAt = lastWatchedAt
-        self.lastUpdatedAt = lastUpdatedAt
-        self.show = show
-        self.seasons = seasons
     }
 }

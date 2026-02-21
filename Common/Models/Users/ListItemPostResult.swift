@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct ListItemPostResult: Codable, Hashable {
+public struct ListItemPostResult: TraktObject {
     public let added: ObjectCount
     public let existing: ObjectCount
     public let notFound: NotFound
 
-    public struct ObjectCount: Codable, Hashable {
+    public struct ObjectCount: TraktObject {
         public let movies: Int
         public let shows: Int
         public let seasons: Int
@@ -21,7 +21,7 @@ public struct ListItemPostResult: Codable, Hashable {
         public let people: Int
     }
     
-    public struct NotFound: Codable, Hashable {
+    public struct NotFound: TraktObject {
         public let movies: [NotFoundIds]
         public let shows: [NotFoundIds]
         public let seasons: [NotFoundIds]
@@ -36,29 +36,41 @@ public struct ListItemPostResult: Codable, Hashable {
     }
 }
 
-public struct WatchlistItemPostResult: Codable, Hashable {
+public struct WatchlistItemPostResult: TraktObject {
     public let added: ObjectCount
     public let existing: ObjectCount
     public let notFound: NotFound
-    
-    public struct ObjectCount: Codable, Hashable {
+    public let list: List
+
+    public struct ObjectCount: TraktObject {
         public let movies: Int
         public let shows: Int
         public let seasons: Int
         public let episodes: Int
     }
     
-    public struct NotFound: Codable, Hashable {
+    public struct NotFound: TraktObject {
         public let movies: [NotFoundIds]
         public let shows: [NotFoundIds]
         public let seasons: [NotFoundIds]
         public let episodes: [NotFoundIds]
     }
-    
+
+    public struct List: TraktObject {
+        public let updatedAt: Date
+        public let itemCount: Int
+
+        enum CodingKeys: String, CodingKey {
+            case updatedAt = "updated_at"
+            case itemCount = "item_count"
+        }
+    }
+
     enum CodingKeys: String, CodingKey {
         case added
         case existing
         case notFound = "not_found"
+        case list
     }
 }
 

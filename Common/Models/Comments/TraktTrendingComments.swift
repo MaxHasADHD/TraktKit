@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktTrendingComment: Codable, Hashable {
+public struct TraktTrendingComment: TraktObject {
     public let type: String
     public let comment: Comment
     public let movie: TraktMovie?

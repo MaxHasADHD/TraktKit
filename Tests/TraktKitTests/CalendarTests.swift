@@ -10,22 +10,12 @@ import XCTest
 import Foundation
 @testable import TraktKit
 
-class CalendarTests: XCTestCase {
-
-    let session = MockURLSession()
-    lazy var traktManager = TestTraktManager(session: session)
-
-    override func tearDown() {
-        super.tearDown()
-        session.nextData = nil
-        session.nextStatusCode = StatusCodes.Success
-        session.nextError = nil
-    }
+final class CalendarTests: TraktTestCase {
 
     // MARK: - My Shows
 
-    func test_get_my_shows() {
-        session.nextData = jsonData(named: "test_get_my_shows")
+    func test_get_my_shows() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/my/shows/2014-09-01/7", result: .success(jsonData(named: "test_get_my_shows")))
 
         let expectation = XCTestExpectation(description: "My Shows")
         traktManager.myShows(startDateString: "2014-09-01", days: 7) { result in
@@ -37,8 +27,7 @@ class CalendarTests: XCTestCase {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/my/shows/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -49,8 +38,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - My New Shows
 
-    func test_get_my_new_shows() {
-        session.nextData = jsonData(named: "test_get_my_new_shows")
+    func test_get_my_new_shows() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/my/shows/new/2014-09-01/7", result: .success(jsonData(named: "test_get_my_new_shows")))
 
         let expectation = XCTestExpectation(description: "My New Shows")
         traktManager.myNewShows(startDateString: "2014-09-01", days: 7) { result in
@@ -62,8 +51,7 @@ class CalendarTests: XCTestCase {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/my/shows/new/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -74,8 +62,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - My Season Premiers
 
-    func test_get_my_season_premieres() {
-        session.nextData = jsonData(named: "test_get_my_season_premieres")
+    func test_get_my_season_premieres() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/my/shows/premieres/2014-09-01/7", result: .success(jsonData(named: "test_get_my_season_premieres")))
 
         let expectation = XCTestExpectation(description: "My New Seasons")
         traktManager.mySeasonPremieres(startDateString: "2014-09-01", days: 7) { result in
@@ -87,8 +75,7 @@ class CalendarTests: XCTestCase {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/my/shows/premieres/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -99,8 +86,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - My Movies
 
-    func test_get_my_movies() {
-        session.nextData = jsonData(named: "test_get_my_movies")
+    func test_get_my_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/my/movies/2014-09-01/7", result: .success(jsonData(named: "test_get_my_movies")))
 
         let expectation = XCTestExpectation(description: "My movies")
         traktManager.myMovies(startDateString: "2014-09-01", days: 7) { result in
@@ -110,8 +97,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/my/movies/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -122,8 +108,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - My DVD
 
-    func test_get_my_dvd() {
-        session.nextData = jsonData(named: "test_get_my_dvd")
+    func test_get_my_dvd() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/my/dvd/2014-09-01/7", result: .success(jsonData(named: "test_get_my_dvd")))
 
         let expectation = XCTestExpectation(description: "My dvds")
         traktManager.myDVDReleases(startDateString: "2014-09-01", days: 7) { result in
@@ -133,8 +119,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/my/dvd/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -145,8 +130,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - All Shows
 
-    func test_get_all_shows() {
-        session.nextData = jsonData(named: "test_get_all_shows")
+    func test_get_all_shows() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/all/shows/2014-09-01/7", result: .success(jsonData(named: "test_get_all_shows")))
 
         let expectation = XCTestExpectation(description: "All Shows")
         traktManager.allShows(startDateString: "2014-09-01", days: 7) { result in
@@ -156,8 +141,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/all/shows/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -168,8 +152,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - All New Shows
 
-    func test_get_all_new_shows() {
-        session.nextData = jsonData(named: "test_get_all_new_shows")
+    func test_get_all_new_shows() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/all/shows/new/2014-09-01/7", result: .success(jsonData(named: "test_get_all_new_shows")))
 
         let expectation = XCTestExpectation(description: "All New Shows")
         traktManager.allNewShows(startDateString: "2014-09-01", days: 7) { result in
@@ -179,8 +163,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/all/shows/new/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -191,8 +174,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - All Season Premiers
 
-    func test_get_season_premieres() {
-        session.nextData = jsonData(named: "test_get_season_premieres")
+    func test_get_season_premieres() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/all/shows/premieres/2014-09-01/7", result: .success(jsonData(named: "test_get_season_premieres")))
 
         let expectation = XCTestExpectation(description: "All Season Premieres")
         traktManager.allSeasonPremieres(startDateString: "2014-09-01", days: 7) { result in
@@ -202,8 +185,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/all/shows/premieres/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -214,8 +196,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - All Movies
 
-    func test_get_all_movies() {
-        session.nextData = jsonData(named: "test_get_all_movies")
+    func test_get_all_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/all/movies/2014-09-01/7?extended=min", result: .success(jsonData(named: "test_get_all_movies")))
 
         let expectation = XCTestExpectation(description: "All Movies")
         traktManager.allMovies(startDateString: "2014-09-01", days: 7) { result in
@@ -225,8 +207,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/all/movies/2014-09-01/7?extended=min")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -237,8 +218,8 @@ class CalendarTests: XCTestCase {
 
     // MARK: - All DVD
 
-    func test_get_all_dvd() {
-        session.nextData = jsonData(named: "test_get_all_dvd")
+    func test_get_all_dvd() throws {
+        try mock(.GET, "https://api.trakt.tv/calendars/all/dvd/2014-09-01/7", result: .success(jsonData(named: "test_get_all_dvd")))
 
         let expectation = XCTestExpectation(description: "All DVDs")
         traktManager.allDVD(startDateString: "2014-09-01", days: 7) { result in
@@ -248,8 +229,7 @@ class CalendarTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/calendars/all/dvd/2014-09-01/7")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")

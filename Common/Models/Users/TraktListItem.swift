@@ -8,9 +8,11 @@
 
 import Foundation
 
-public struct TraktListItem: Codable, Hashable {
+public struct TraktListItem: TraktObject {
     public let rank: Int
+    public let id: Int
     public let listedAt: Date
+    public let notes: String?
     public let type: String
     public var show: TraktShow? = nil
     public var season: TraktSeason? = nil
@@ -20,7 +22,9 @@ public struct TraktListItem: Codable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case rank
+        case id
         case listedAt = "listed_at"
+        case notes
         case type
         case show
         case season

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Genres: Codable, Hashable {
+public struct Genres: TraktObject {
     public let name: String
     public let slug: String
 }

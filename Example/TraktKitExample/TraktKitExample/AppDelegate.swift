@@ -13,7 +13,13 @@ extension Notification.Name {
     static let TraktSignedIn = Notification.Name(rawValue: "TraktSignedIn")
 }
 
-@UIApplicationMain
+let traktManager = TraktManager(
+    clientId: Constants.clientId,
+    clientSecret: Constants.clientSecret,
+    redirectURI: Constants.redirectURI
+)
+
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Properties
@@ -27,14 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     // MARK: - Lifecycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        TraktManager.sharedManager.set(clientID: Constants.clientId,
-                                       clientSecret: Constants.clientSecret,
-                                       redirectURI: Constants.redirectURI)
         return true
     }
 
@@ -44,42 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if url.host == "auth",
             let code = queryDict["code"] as? String { // Get authorization code
-            do {
-                try TraktManager.sharedManager.getTokenFromAuthorizationCode(code: code) { result in
-                    switch result {
-                    case .success:
-                        print("Signed in to Trakt")
-                        DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: .TraktSignedIn, object: nil)
-                        }
-                    case .fail:
-                        print("Failed to sign in to Trakt")
-                    }
+
+            Task { @MainActor in
+                do {
+                    let authorization = try await traktManager.getToken(authorizationCode: code)
+                    print("Signed in to Trakt")
+                    NotificationCenter.default.post(name: .TraktSignedIn, object: nil)
+                } catch {
+                    print("Failed to get token: \(error)")
                 }
-            } catch {
-                print(error.localizedDescription)
             }
         }
+
         return true
     }
 }
-
-extension URL {
-    func queryDict() -> [String: Any] {
-        var info: [String: Any] = [String: Any]()
-        if let queryString = self.query{
-            for parameter in queryString.components(separatedBy: "&"){
-                let parts = parameter.components(separatedBy: "=")
-                if parts.count > 1 {
-                    let key = parts[0].removingPercentEncoding
-                    let value = parts[1].removingPercentEncoding
-                    if key != nil && value != nil{
-                        info[key!] = value
-                    }
-                }
-            }
-        }
-        return info
-    }
-}
-

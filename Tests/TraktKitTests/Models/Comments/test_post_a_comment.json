@@ -15,6 +15,11 @@
     "medium" : true
   },
   "user_rating" : null,
+  "user_stats" : {
+    "rating" : null,
+    "play_count" : 0,
+    "completed_count" : 0
+  },
   "user" : {
     "username" : "sean",
     "private" : false,

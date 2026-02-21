@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktHistoryItem: Codable, Hashable {
+public struct TraktHistoryItem: TraktObject {
     
     public var id: Int
     public var watchedAt: Date

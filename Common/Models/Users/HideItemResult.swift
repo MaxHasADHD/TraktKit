@@ -8,20 +8,22 @@
 
 import Foundation
 
-public struct HideItemResult: Codable, Hashable {
+public struct HideItemResult: TraktObject {
     public let added: Added
     public let notFound: NotFound
 
-    public struct Added: Codable, Hashable {
+    public struct Added: TraktObject {
         public let movies: Int
         public let shows: Int
         public let seasons: Int
+        public let users: Int
     }
     
-    public struct NotFound: Codable, Hashable {
+    public struct NotFound: TraktObject {
         public let movies: [NotFoundIds]
         public let shows: [NotFoundIds]
         public let seasons: [NotFoundIds]
+        public let users: [NotFoundIds]
     }
     
     enum CodingKeys: String, CodingKey {

@@ -1,0 +1,17 @@
+{
+    "season": 2,
+    "number": 5,
+    "title": "Trojan's Horse",
+    "ids": {
+        "trakt": 12103031,
+        "tvdb": 10592762,
+        "imdb": "tt15242966",
+        "tmdb": 5469120,
+        "tvrage": null
+    },
+    "images": {
+        "screenshot": [
+            "walter-r2.trakt.tv/images/episodes/012/103/031/screenshots/medium/d610df59c0.jpg.webp"
+        ]
+    }
+}

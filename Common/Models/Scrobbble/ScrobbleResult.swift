@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ScrobbleResult: Codable, Hashable {
+public struct ScrobbleResult: TraktObject {
     public let id: Int
     public let action: String
     public let progress: Float

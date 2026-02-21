@@ -6,6 +6,7 @@
 //  Copyright © 2019 Maximilian Litteral. All rights reserved.
 //
 
+import Combine
 import UIKit
 import SafariServices
 import TraktKit
@@ -15,6 +16,8 @@ final class ViewController: UIViewController {
     // MARK: - Properties
 
     private let stackView = UIStackView()
+
+    private var cancellables: Set<AnyCancellable> = []
 
     // MARK: - Lifecycle
 
@@ -27,14 +30,14 @@ final class ViewController: UIViewController {
     // MARK: - Actions
 
     private func presentLogIn() {
-        guard let oauthURL = TraktManager.sharedManager.oauthURL else { return }
+        guard let oauthURL = traktManager.oauthURL else { return }
 
         let traktAuth = SFSafariViewController(url: oauthURL)
         present(traktAuth, animated: true, completion: nil)
     }
 
     private func signOut() {
-        TraktManager.sharedManager.signOut()
+        traktManager.signOut()
         refreshUI()
     }
 
@@ -86,10 +89,15 @@ final class ViewController: UIViewController {
     }
 
     private func setupObservers() {
-        NotificationCenter.default.addObserver(forName: .TraktSignedIn, object: nil, queue: nil) { [weak self] _ in
-            self?.dismiss(animated: true, completion: nil) // Dismiss the SFSafariViewController
-            self?.refreshUI()
-        }
+        NotificationCenter.default
+            .publisher(for: .TraktSignedIn)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                dismiss(animated: true, completion: nil) // Dismiss the SFSafariViewController
+                refreshUI()
+            }
+            .store(in: &cancellables)
     }
 
     private func refreshUI() {
@@ -104,7 +112,7 @@ final class ViewController: UIViewController {
 
         var views = [UIView]()
 
-        if TraktManager.sharedManager.isSignedIn {
+        if traktManager.isSignedIn {
             let signInButton = createButton(title: "Sign Out", action: { [weak self] _ in self?.signOut() })
             views.append(signInButton)
 

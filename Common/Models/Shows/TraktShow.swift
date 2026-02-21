@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Airs: Codable, Hashable {
+public struct Airs: TraktObject {
     public let day: String?
     public let time: String?
     public let timezone: String?
@@ -20,7 +20,7 @@ public struct Airs: Codable, Hashable {
     }
 }
 
-public struct TraktShow: Codable, Hashable {
+public struct TraktShow: TraktObject {
     
     // Extended: Min
     public let title: String
@@ -45,7 +45,10 @@ public struct TraktShow: Codable, Hashable {
     public let availableTranslations: [String]?
     public let genres: [String]?
     public let airedEpisodes: Int?
-    
+
+    // Extended: Images
+    public let images: TraktImages?
+
     enum CodingKeys: String, CodingKey {
         case title
         case year
@@ -68,6 +71,8 @@ public struct TraktShow: Codable, Hashable {
         case availableTranslations = "available_translations"
         case genres
         case airedEpisodes = "aired_episodes"
+
+        case images
     }
     
     public init(from decoder: Decoder) throws {
@@ -83,8 +88,8 @@ public struct TraktShow: Codable, Hashable {
         certification = try container.decodeIfPresent(String.self, forKey: .certification)
         network = try container.decodeIfPresent(String.self, forKey: .network)
         country = try container.decodeIfPresent(String.self, forKey: .country)
-        trailer = try? container.decode(URL.self, forKey: .trailer)
-        homepage = try? container.decode(URL.self, forKey: .homepage)
+        trailer = try container.decodeIfPresent(URL.self, forKey: .trailer)
+        homepage = try container.decodeIfPresent(URL.self, forKey: .homepage)
         status = try container.decodeIfPresent(String.self, forKey: .status)
         rating = try container.decodeIfPresent(Double.self, forKey: .rating)
         votes = try container.decodeIfPresent(Int.self, forKey: .votes)
@@ -93,9 +98,33 @@ public struct TraktShow: Codable, Hashable {
         availableTranslations = try container.decodeIfPresent([String].self, forKey: .availableTranslations)
         genres = try container.decodeIfPresent([String].self, forKey: .genres)
         airedEpisodes = try container.decodeIfPresent(Int.self, forKey: .airedEpisodes)
+
+        images = try container.decodeIfPresent(TraktImages.self, forKey: .images)
     }
     
-    public init(title: String, year: Int? = nil, ids: ID, overview: String? = nil, firstAired: Date? = nil, airs: Airs? = nil, runtime: Int? = nil, certification: String? = nil, network: String? = nil, country: String? = nil, trailer: URL? = nil, homepage: URL? = nil, status: String? = nil, rating: Double? = nil, votes: Int? = nil, updatedAt: Date? = nil, language: String? = nil, availableTranslations: [String]? = nil, genres: [String]? = nil, airedEpisodes: Int? = nil) {
+    public init(
+        title: String,
+        year: Int? = nil,
+        ids: ID,
+        overview: String? = nil,
+        firstAired: Date? = nil,
+        airs: Airs? = nil,
+        runtime: Int? = nil,
+        certification: String? = nil,
+        network: String? = nil,
+        country: String? = nil,
+        trailer: URL? = nil,
+        homepage: URL? = nil,
+        status: String? = nil,
+        rating: Double? = nil,
+        votes: Int? = nil,
+        updatedAt: Date? = nil,
+        language: String? = nil,
+        availableTranslations: [String]? = nil,
+        genres: [String]? = nil,
+        airedEpisodes: Int? = nil,
+        images: TraktImages? = nil
+    ) {
         self.title = title
         self.year = year
         self.ids = ids
@@ -116,5 +145,6 @@ public struct TraktShow: Codable, Hashable {
         self.availableTranslations = availableTranslations
         self.genres = genres
         self.airedEpisodes = airedEpisodes
+        self.images = images
     }
 }

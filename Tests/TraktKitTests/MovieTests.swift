@@ -10,22 +10,11 @@ import XCTest
 import Foundation
 @testable import TraktKit
 
-class MovieTests: XCTestCase {
-
-    let session = MockURLSession()
-    lazy var traktManager = TestTraktManager(session: session)
-
-    override func tearDown() {
-        super.tearDown()
-        session.nextData = nil
-        session.nextStatusCode = StatusCodes.Success
-        session.nextError = nil
-    }
-    
+final class MovieTests: TraktTestCase {
     // MARK: - Trending
 
-    func test_get_trending_movies() {
-        session.nextData = jsonData(named: "test_get_trending_movies")
+    func test_get_trending_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/trending?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_trending_movies")))
 
         let expectation = XCTestExpectation(description: "Get Trending Movies")
         traktManager.getTrendingMovies(pagination: Pagination(page: 1, limit: 10)) { result in
@@ -35,10 +24,6 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.path, "/movies/trending")
-        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
 
         switch result {
         case .timedOut:
@@ -50,8 +35,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Popular
 
-    func test_get_popular_movies() {
-        session.nextData = jsonData(named: "test_get_popular_movies")
+    func test_get_popular_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/popular?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_popular_movies")))
 
         let expectation = XCTestExpectation(description: "Get Popular Movies")
         traktManager.getPopularMovies(pagination: Pagination(page: 1, limit: 10)) { result in
@@ -61,10 +46,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.path, "/movies/popular")
-        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -75,21 +57,18 @@ class MovieTests: XCTestCase {
 
     // MARK: - Played
 
-    func test_get_most_played_movies() {
-        session.nextData = jsonData(named: "test_get_most_played_movies")
+    func test_get_most_played_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/played/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_played_movies")))
 
         let expectation = XCTestExpectation(description: "Get Most Played Movies")
-        traktManager.getPlayedMovies(period: .All, pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.getPlayedMovies(period: .all, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let playedMovies, _, _) = result {
                 XCTAssertEqual(playedMovies.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.path, "/movies/played/all")
-        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -100,21 +79,18 @@ class MovieTests: XCTestCase {
 
     // MARK: - Watched
 
-    func test_get_most_watched_movies() {
-        session.nextData = jsonData(named: "test_get_most_watched_movies")
+    func test_get_most_watched_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/watched/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_watched_movies")))
 
         let expectation = XCTestExpectation(description: "Get Most Watched Movies")
-        traktManager.getWatchedMovies(period: .All, pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.getWatchedMovies(period: .all, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let watchedMovies, _, _) = result {
                 XCTAssertEqual(watchedMovies.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.path, "/movies/watched/all")
-        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -125,21 +101,18 @@ class MovieTests: XCTestCase {
 
     // MARK: - Collected
 
-    func test_get_most_collected_movies() {
-        session.nextData = jsonData(named: "test_get_most_collected_movies")
+    func test_get_most_collected_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/collected/all?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_collected_movies")))
 
         let expectation = XCTestExpectation(description: "Get Most Collected Movies")
-        traktManager.getCollectedMovies(period: .All, pagination: Pagination(page: 1, limit: 10)) { result in
+        traktManager.getCollectedMovies(period: .all, pagination: Pagination(page: 1, limit: 10)) { result in
             if case .success(let collectedMovies, _, _) = result {
                 XCTAssertEqual(collectedMovies.count, 10)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.path, "/movies/collected/all")
-        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -150,8 +123,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Anticipated
 
-    func test_get_most_anticipated_movies() {
-        session.nextData = jsonData(named: "test_get_most_anticipated_movies")
+    func test_get_most_anticipated_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/anticipated?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_anticipated_movies")))
 
         let expectation = XCTestExpectation(description: "Get Most Anticipated Movies")
         traktManager.getAnticipatedMovies(pagination: Pagination(page: 1, limit: 10)) { result in
@@ -161,10 +134,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.path, "/movies/anticipated")
-        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -175,8 +145,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Box Office
 
-    func test_get_weekend_box_office() {
-        session.nextData = jsonData(named: "test_get_weekend_box_office")
+    func test_get_weekend_box_office() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/boxoffice?extended=min", result: .success(jsonData(named: "test_get_weekend_box_office")))
 
         let expectation = XCTestExpectation(description: "Get Weekend Box Office")
         traktManager.getWeekendBoxOffice { result in
@@ -186,8 +156,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/boxoffice?extended=min")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -198,8 +167,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Updates
 
-    func test_get_recently_updated_movies() {
-        session.nextData = jsonData(named: "test_get_recently_updated_movies")
+    func test_get_recently_updated_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/updates/2014-01-10?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_recently_updated_movies")))
 
         let expectation = XCTestExpectation(description: "Get recently updated movies")
         traktManager.getUpdatedMovies(startDate: try? Date.dateFromString("2014-01-10"), pagination: Pagination(page: 1, limit: 10)) { result in
@@ -209,10 +178,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.path, "/movies/updates/2014-01-10")
-        XCTAssertTrue(session.lastURL?.query?.contains("extended=min") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("page=1") ?? false)
-        XCTAssertTrue(session.lastURL?.query?.contains("limit=10") ?? false)
+
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -223,8 +189,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Summary
 
-    func test_get_min_movie() {
-        session.nextData = jsonData(named: "Movie_Min")
+    func test_get_min_movie() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010?extended=min", result: .success(jsonData(named: "Movie_Min")))
 
         let expectation = XCTestExpectation(description: "MovieSummary")
         traktManager.getMovieSummary(movieID: "tron-legacy-2010") { result in
@@ -239,8 +205,7 @@ class MovieTests: XCTestCase {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010?extended=min")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -249,8 +214,8 @@ class MovieTests: XCTestCase {
         }
     }
 
-    func test_get_full_movie() {
-        session.nextData = jsonData(named: "Movie_Full")
+    func test_get_full_movie() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010?extended=full", result: .success(jsonData(named: "Movie_Full")))
 
         let expectation = XCTestExpectation(description: "MovieSummary")
         traktManager.getMovieSummary(movieID: "tron-legacy-2010", extended: [.Full]) { result in
@@ -276,8 +241,7 @@ class MovieTests: XCTestCase {
 
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010?extended=full")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -288,8 +252,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Aliases
 
-    func test_get_movie_aliases() {
-        session.nextData = jsonData(named: "test_get_movie_aliases")
+    func test_get_movie_aliases() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/aliases", result: .success(jsonData(named: "test_get_movie_aliases")))
 
         let expectation = XCTestExpectation(description: "Get movie aliases")
         traktManager.getMovieAliases(movieID: "tron-legacy-2010") { result in
@@ -299,8 +263,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/aliases")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -311,8 +274,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Releases
 
-    func test_get_movie_releases() {
-        session.nextData = jsonData(named: "test_get_movie_releases")
+    func test_get_movie_releases() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/releases/us", result: .success(jsonData(named: "test_get_movie_releases")))
 
         let expectation = XCTestExpectation(description: "Get movie releases")
         traktManager.getMovieReleases(movieID: "tron-legacy-2010", country: "us") { result in
@@ -322,8 +285,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/releases/us")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -334,8 +296,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Translations
 
-    func test_get_movie_translations() {
-        session.nextData = jsonData(named: "test_get_movie_translations")
+    func test_get_movie_translations() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/translations/us", result: .success(jsonData(named: "test_get_movie_translations")))
 
         let expectation = XCTestExpectation(description: "Get movie translations")
         traktManager.getMovieTranslations(movieID: "tron-legacy-2010", language: "us") { result in
@@ -345,8 +307,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/translations/us")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -357,8 +318,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Comments
 
-    func test_get_movie_comments() {
-        session.nextData = jsonData(named: "test_get_movie_comments")
+    func test_get_movie_comments() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/comments", result: .success(jsonData(named: "test_get_movie_comments")))
 
         let expectation = XCTestExpectation(description: "Get movie comments")
         traktManager.getMovieComments(movieID: "tron-legacy-2010") { result in
@@ -368,8 +329,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/comments")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -380,8 +340,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Lists
 
-    func test_get_lists_containing_movie() {
-        session.nextData = jsonData(named: "test_get_lists_containing_movie")
+    func test_get_lists_containing_movie() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/lists", result: .success(jsonData(named: "test_get_lists_containing_movie")))
 
         let expectation = XCTestExpectation(description: "Get lists containing movie")
         traktManager.getListsContainingMovie(movieID: "tron-legacy-2010") { result in
@@ -391,8 +351,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/lists")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -403,21 +362,29 @@ class MovieTests: XCTestCase {
 
     // MARK: - People
 
-    func test_get_cast_and_crew() {
-        session.nextData = jsonData(named: "test_get_cast_and_crew")
+    func test_get_cast_and_crew() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/iron-man-2008/people?extended=min", result: .success(jsonData(named: "test_get_cast_and_crew")))
 
         let expectation = XCTestExpectation(description: "Get movie cast and crew")
-        traktManager.getPeopleInMovie(movieID: "tron-legacy-2010") { result in
+        traktManager.getPeopleInMovie(movieID: "iron-man-2008") { result in
             if case .success(let castAndCrew) = result {
+                XCTAssertEqual(castAndCrew.cast?.count, 65)
+                XCTAssertEqual(castAndCrew.crew?.count, 118)
+                XCTAssertEqual(castAndCrew.editors?.count, 4)
+                XCTAssertEqual(castAndCrew.producers?.count, 19)
+                XCTAssertEqual(castAndCrew.camera?.count, 3)
+                XCTAssertEqual(castAndCrew.art?.count, 11)
+                XCTAssertEqual(castAndCrew.sound?.count, 12)
+                XCTAssertEqual(castAndCrew.costume?.count, 2)
                 XCTAssertEqual(castAndCrew.writers?.count, 8)
-                XCTAssertEqual(castAndCrew.directors?.count, 2)
-                XCTAssertEqual(castAndCrew.cast?.count, 89)
+                XCTAssertEqual(castAndCrew.visualEffects?.count, 7)
+                XCTAssertEqual(castAndCrew.directors?.count, 6)
+                XCTAssertEqual(castAndCrew.lighting?.count, 2)
                 expectation.fulfill()
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/people?extended=min")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -428,8 +395,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Ratings
 
-    func test_get_movie_ratings() {
-        session.nextData = jsonData(named: "test_get_movie_ratings")
+    func test_get_movie_ratings() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/ratings", result: .success(jsonData(named: "test_get_movie_ratings")))
 
         let expectation = XCTestExpectation(description: "Get movie ratings")
         traktManager.getMovieRatings(movieID: "tron-legacy-2010") { result in
@@ -439,8 +406,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/ratings")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -451,8 +417,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Related
 
-    func test_get_related_movies() {
-        session.nextData = jsonData(named: "test_get_related_movies")
+    func test_get_related_movies() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/related?extended=min", result: .success(jsonData(named: "test_get_related_movies")))
 
         let expectation = XCTestExpectation(description: "Get related movies")
         traktManager.getRelatedMovies(movieID: "tron-legacy-2010") { result in
@@ -462,8 +428,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/related?extended=min")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -474,8 +439,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - stats
 
-    func test_get_movie_stats() {
-        session.nextData = jsonData(named: "test_get_movie_stats")
+    func test_get_movie_stats() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/stats", result: .success(jsonData(named: "test_get_movie_stats")))
 
         let expectation = XCTestExpectation(description: "Get movies stats")
         traktManager.getMovieStatistics(movieID: "tron-legacy-2010") { result in
@@ -490,8 +455,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/stats")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -502,8 +466,8 @@ class MovieTests: XCTestCase {
 
     // MARK: - Watching
 
-    func test_get_users_watching_movie_now() {
-        session.nextData = jsonData(named: "test_get_users_watching_movie_now")
+    func test_get_users_watching_movie_now() throws {
+        try mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/watching", result: .success(jsonData(named: "test_get_users_watching_movie_now")))
 
         let expectation = XCTestExpectation(description: "Get users watching a movie")
         traktManager.getUsersWatchingMovie(movieID: "tron-legacy-2010") { result in
@@ -513,8 +477,7 @@ class MovieTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/movies/tron-legacy-2010/watching")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")

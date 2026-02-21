@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TraktAnticipatedShow: Codable, Hashable {
+public struct TraktAnticipatedShow: TraktObject {
     
     // Extended: Min
     public let listCount: Int

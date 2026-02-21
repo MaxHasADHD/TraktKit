@@ -9,7 +9,7 @@
 import Foundation
 
 /// Watched progress. Shows/Progress/Watched
-public struct TraktShowWatchedProgress: Codable, Hashable {
+public struct TraktShowWatchedProgress: TraktObject {
     
     // Extended: Min
     /// Number of episodes that have aired
@@ -30,7 +30,7 @@ public struct TraktShowWatchedProgress: Codable, Hashable {
     }
 }
 
-public struct TraktSeasonWatchedProgress: Codable, Hashable {
+public struct TraktSeasonWatchedProgress: TraktObject {
     
     // Extended: Min
     /// Season number
@@ -42,7 +42,7 @@ public struct TraktSeasonWatchedProgress: Codable, Hashable {
     public let episodes: [TraktEpisodeWatchedProgress]
 }
 
-public struct TraktEpisodeWatchedProgress: Codable, Hashable {
+public struct TraktEpisodeWatchedProgress: TraktObject {
     
     // Extended: Min
     /// Season number

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct User: Codable, Hashable {
+public struct User: TraktObject {
 
     // Min
     public let username: String?
@@ -47,15 +47,15 @@ public struct User: Codable, Hashable {
         case vipYears = "vip_years"
     }
 
-    public struct IDs: Codable, Hashable {
+    public struct IDs: TraktObject {
         public let slug: String
     }
 
-    public struct Images: Codable, Hashable {
+    public struct Images: TraktObject {
         public let avatar: Image
     }
 
-    public struct Image: Codable, Hashable {
+    public struct Image: TraktObject {
         public let full: String
     }
 }

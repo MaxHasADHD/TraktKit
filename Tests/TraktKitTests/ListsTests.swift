@@ -9,20 +9,9 @@
 import XCTest
 @testable import TraktKit
 
-class ListsTests: XCTestCase {
-
-    let session = MockURLSession()
-    lazy var traktManager = TestTraktManager(session: session)
-
-    override func tearDown() {
-        super.tearDown()
-        session.nextData = nil
-        session.nextStatusCode = StatusCodes.Success
-        session.nextError = nil
-    }
-
-    func test_get_trending_lists() {
-        session.nextData = jsonData(named: "test_get_trending_lists")
+final class ListsTests: TraktTestCase {
+    func test_get_trending_lists() throws {
+        try mock(.GET, "https://api.trakt.tv/lists/trending", result: .success(jsonData(named: "test_get_trending_lists")))
 
         let expectation = XCTestExpectation(description: "Get trending lists")
         traktManager.getTrendingLists { result in
@@ -32,8 +21,7 @@ class ListsTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/lists/trending")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -42,8 +30,8 @@ class ListsTests: XCTestCase {
         }
     }
 
-    func test_get_popular_lists() {
-        session.nextData = jsonData(named: "test_get_popular_lists")
+    func test_get_popular_lists() throws {
+        try mock(.GET, "https://api.trakt.tv/lists/popular", result: .success(jsonData(named: "test_get_popular_lists")))
 
         let expectation = XCTestExpectation(description: "Get popular lists")
         traktManager.getPopularLists { result in
@@ -53,8 +41,7 @@ class ListsTests: XCTestCase {
             }
         }
         let result = XCTWaiter().wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(session.lastURL?.absoluteString, "https://api.trakt.tv/lists/popular")
-
+        
         switch result {
         case .timedOut:
             XCTFail("Something isn't working")
@@ -62,5 +49,4 @@ class ListsTests: XCTestCase {
             break
         }
     }
-    
 }

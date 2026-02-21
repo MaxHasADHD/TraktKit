@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,20 +6,23 @@ import PackageDescription
 let package = Package(
     name: "TraktKit",
     platforms: [
-        .macOS(.v12),
-        .iOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v8)
+        .macOS(.v14),
+        .iOS(.v16),
+        .tvOS(.v16),
+        .watchOS(.v9)
     ],
     products: [
         .library(
             name: "TraktKit",
             targets: ["TraktKit"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/MaxHasADHD/SwiftAPIClient.git", from: "1.0.1")
+    ],
     targets: [
         .target(
             name: "TraktKit",
-            dependencies: [],
+            dependencies: ["SwiftAPIClient"],
             path: "Common"
             ),
         .testTarget(
@@ -30,5 +33,5 @@ let package = Package(
             ]
         ),
     ],
-    swiftLanguageVersions: [.version("5.7")]
+    swiftLanguageModes: [.version("6.0")]
 )

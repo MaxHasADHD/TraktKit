@@ -1,29 +1,28 @@
 {
-  "expires_at" : "2014-10-23T07:09:12.000Z",
-  "started_at" : "2014-10-23T06:24:12.000Z",
-  "episode" : {
-    "number" : 2,
-    "season" : 0,
-    "title" : "Wedding Day",
-    "ids" : {
-      "tmdb" : 62133,
-      "tvdb" : 3859791,
-      "trakt" : 2,
-      "imdb" : ""
+  "expires_at": "2014-10-23T09:00:35.000Z",
+  "started_at": "2014-10-23T06:44:02.000Z",
+  "action": "watching",
+  "type": "episode",
+  "episode": {
+    "season": 2,
+    "number": 1,
+    "title": "Pawnee Zoo",
+    "ids": {
+      "trakt": 251,
+      "tvdb": 398671,
+      "imdb": "tt1640459",
+      "tmdb": 397629
     }
   },
-  "show" : {
-    "title" : "Breaking Bad",
-    "year" : 2008,
-    "ids" : {
-      "tmdb" : 1396,
-      "slug" : "breaking-bad",
-      "tvdb" : 81189,
-      "trakt" : 1,
-      "imdb" : "tt0903747"
+  "show": {
+    "title": "Parks and Recreation",
+    "year": 2009,
+    "ids": {
+      "trakt": 4,
+      "slug": "parks-and-recreation",
+      "tvdb": 84912,
+      "imdb": "tt1266020",
+      "tmdb": 8592
     }
-  },
-  "type" : "episode",
-  "action" : "scrobble"
+  }
 }
-

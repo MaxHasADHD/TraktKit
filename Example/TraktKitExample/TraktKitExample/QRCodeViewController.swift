@@ -30,7 +30,7 @@ final class QRCodeViewController: UIViewController {
     
     
     private func start() {
-        TraktManager.sharedManager.getTokenFromDevice(code: self.data) { result  in
+        traktManager.getTokenFromDevice(code: self.data) { result  in
             switch result {
             case .fail(let progress):
                 print(progress)

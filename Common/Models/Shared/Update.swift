@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Update: Codable, Hashable {
+public struct Update: TraktObject {
     public let updatedAt: Date
     public let movie: TraktMovie?
     public let show: TraktShow?
@@ -19,3 +19,13 @@ public struct Update: Codable, Hashable {
         case show
     }
 }
+public struct PersonUpdate: TraktObject {
+    public let updatedAt: Date
+    public let person: Person
+
+    enum CodingKeys: String, CodingKey {
+        case updatedAt = "updated_at"
+        case person
+    }
+}
+

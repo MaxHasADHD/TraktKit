@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CastAndCrew<Cast: Codable & Hashable, Crew: Codable & Hashable>: Hashable {    
+public struct CastAndCrew<Cast: TraktObject, Crew: TraktObject>: TraktObject {
     public let cast: [Cast]?
     public let guestStars: [Cast]?
     public let directors: [Crew]?
@@ -45,7 +45,7 @@ public struct CastAndCrew<Cast: Codable & Hashable, Crew: Codable & Hashable>: H
     }
 }
 
-extension CastAndCrew: Decodable {
+extension CastAndCrew {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         cast = try values.decodeIfPresent([Cast].self, forKey: .cast)
@@ -64,9 +64,7 @@ extension CastAndCrew: Decodable {
         crew = try crewContainer?.decodeIfPresent([Crew].self, forKey: .crew)
         lighting = try crewContainer?.decodeIfPresent([Crew].self, forKey: .lighting)
     }
-}
 
-extension CastAndCrew: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(cast, forKey: .cast)
