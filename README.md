@@ -1,6 +1,4 @@
-<p align="center">
-    <img src="http://maximilianlitteral.com/TraktKit.png" alt="Logo" />
-</p>
+![TraktKit Logo](docs/assets/TraktKit.png)
 
 # TraktKit
 Swift wrapper for Trakt.tv  API.
@@ -29,7 +27,7 @@ https://github.com/MaxHasADHD/TraktKit
 
 TraktKit 2.0.0 introduces a modern async/await API while maintaining backwards compatibility through deprecated completion handler methods. All completion handler-based methods are now deprecated and will be removed in version 3.0.0.
 
-For detailed migration instructions and examples, see the [Migration Guide](MIGRATION_GUIDE.md).
+For detailed migration instructions and examples, see the [Migration Guide](docs/MIGRATION_GUIDE.md).
 
 ### Key Changes in 2.0.0
 
