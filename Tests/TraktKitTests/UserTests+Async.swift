@@ -206,6 +206,33 @@ extension TraktTestSuite {
             #expect(comments.count == 5)
         }
 
+        // MARK: - Notes
+
+        @Test func getNotes() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/notes", result: .success(jsonData(named: "test_get_user_notes")))
+
+            let notes = try await traktManager.user("sean")
+                .notes()
+                .perform()
+                .object
+
+            #expect(notes.count > 0)
+        }
+
+        // MARK: - Collaborations
+
+        @Test func getCollaborations() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/lists/collaborations", result: .success(jsonData(named: "test_get_user_collaborations")))
+
+            let collaborations = try await traktManager.user("sean")
+                .collaborations()
+                .perform()
+
+            #expect(collaborations.count > 0)
+        }
+
         // MARK: - List
 
         @Test func getCustomList() async throws {
@@ -248,7 +275,7 @@ extension TraktTestSuite {
 
         @Test func removeItemsFromList() async throws {
             let traktManager = await authenticatedTraktManager()
-            try mock(.DELETE, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/remove", result: .success(jsonData(named: "test_remove_item_from_custom_list")))
+            try mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/remove", result: .success(jsonData(named: "test_remove_item_from_custom_list")))
 
             // For the test we don't need to add any specific Ids.
             let response = try await traktManager.currentUser().removeItemsFromList("star-wars-in-machete-order", movies: []).perform()
@@ -259,6 +286,83 @@ extension TraktTestSuite {
             #expect(response.deleted.episodes == 2)
 
             #expect(response.notFound.movies.count == 1)
+        }
+
+        @Test func updateListItem() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.PUT, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/1337", result: .success(.init()))
+
+            try await traktManager.currentUser()
+                .updateListItem("star-wars-in-machete-order", listItemId: 1337, notes: "This is a great movie!")
+                .perform()
+        }
+
+        @Test func reorderListItems() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/reorder", result: .success(jsonData(named: "test_reorder_list_items")))
+
+            let response = try await traktManager.currentUser()
+                .reorderListItems("star-wars-in-machete-order", rank: [923, 324, 98768, 456456, 345, 12, 990])
+                .perform()
+
+            #expect(response.updated == 6)
+            #expect(response.skippedIds.count == 1)
+            #expect(response.skippedIds.first == 12)
+        }
+
+        // MARK: - Follow
+
+        @Test func followUser() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.POST, "https://api.trakt.tv/users/sean/follow", result: .success(jsonData(named: "test_follow_user")))
+
+            let result = try await traktManager.user("sean")
+                .follow()
+                .perform()
+
+            #expect(result.user.username == "sean")
+        }
+
+        @Test func unfollowUser() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.DELETE, "https://api.trakt.tv/users/sean/follow", result: .success(.init()))
+
+            try await traktManager.user("sean")
+                .unfollow()
+                .perform()
+        }
+
+        @Test func getFollowers() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/followers", result: .success(jsonData(named: "test_get_followers")))
+
+            let followers = try await traktManager.user("sean")
+                .followers()
+                .perform()
+
+            #expect(followers.count > 0)
+        }
+
+        @Test func getFollowing() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/following", result: .success(jsonData(named: "test_get_following")))
+
+            let following = try await traktManager.user("sean")
+                .following()
+                .perform()
+
+            #expect(following.count > 0)
+        }
+
+        @Test func getFriends() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/friends", result: .success(jsonData(named: "test_get_friends")))
+
+            let friends = try await traktManager.user("sean")
+                .friends()
+                .perform()
+
+            #expect(friends.count > 0)
         }
 
         // MARK: - History
@@ -303,6 +407,71 @@ extension TraktTestSuite {
                 .object
 
             #expect(watchlist.count == 5)
+        }
+
+        // MARK: - Favorites
+
+        @Test func getFavorites() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/favorites/movies/rank/asc", result: .success(jsonData(named: "test_get_user_favorites")))
+
+            let favorites = try await traktManager.user("sean")
+                .favorites(type: "movies", sortBy: "rank", sortHow: "asc")
+                .perform()
+                .object
+
+            #expect(favorites.count > 0)
+        }
+
+        @Test func getFavoritesComments() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/favorites/comments/newest", result: .success(jsonData(named: "test_get_favorites_comments")))
+
+            let comments = try await traktManager.user("sean")
+                .favoritesComments(sort: "newest")
+                .perform()
+                .object
+
+            #expect(comments.count > 0)
+        }
+
+        // MARK: - Watching
+
+        @Test func getWatching() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/watching", result: .success(jsonData(named: "test_get_user_watching")))
+
+            let watching = try await traktManager.user("sean")
+                .watching()
+                .perform()
+
+            #expect(watching.movie != nil || watching.episode != nil)
+        }
+
+        // MARK: - Watched
+
+        @Test func getWatchedShows() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/watched/shows", result: .success(jsonData(named: "test_get_watched_shows_users")))
+
+            let watched = try await traktManager.user("sean")
+                .watched(type: "shows")
+                .perform()
+
+            #expect(watched.count > 0)
+        }
+
+        // MARK: - Stats
+
+        @Test func getStats() async throws {
+            let traktManager = await authenticatedTraktManager()
+            try mock(.GET, "https://api.trakt.tv/users/sean/stats", result: .success(jsonData(named: "test_get_user_stats")))
+
+            let stats = try await traktManager.user("sean")
+                .stats()
+                .perform()
+
+            #expect(stats.movies.watched > 0)
         }
     }
 }

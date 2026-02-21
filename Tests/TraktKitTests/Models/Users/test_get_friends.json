@@ -1,29 +1,15 @@
 [
   {
-    "friends_at" : "2014-09-01T09:10:11.000Z",
-    "user" : {
-      "username" : "sean",
-      "private" : false,
-      "vip" : true,
-      "vip_ep" : false,
-      "name" : "Sean Rudford",
-      "ids" : {
-        "slug" : "sean"
-      }
-    }
-  },
-  {
-    "friends_at" : "2014-09-01T09:10:11.000Z",
-    "user" : {
-      "username" : "justin",
-      "private" : false,
-      "vip" : true,
-      "vip_ep" : false,
-      "name" : "Justin Nemeth",
-      "ids" : {
-        "slug" : "justin"
+    "friends_at": "2014-11-15T09:41:34.704Z",
+    "user": {
+      "username": "justin",
+      "private": false,
+      "name": "Justin Nemeth",
+      "vip": false,
+      "vip_ep": false,
+      "ids": {
+        "slug": "justin"
       }
     }
   }
 ]
-

@@ -262,6 +262,34 @@ extension TraktManager {
             UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).removeItemsFromList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
         }
 
+        /**
+         Update the notes on a single list item.
+
+         🔥 VIP Only 🔒 OAuth Required 😁 Emojis
+
+         - parameters:
+            - listId: Trakt ID or Trakt slug of the list
+            - listItemId: List Item ID
+            - notes: New notes text for the list item
+         */
+        public func updateListItem(_ listId: CustomStringConvertible, listItemId: Int, notes: String) -> EmptyRoute {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).updateListItem(listId, listItemId: listItemId, notes: notes)
+        }
+
+        /**
+         Reorder all items on a list by sending the updated rank of list item ids.
+         Use the `itemsOnList(_:type:sortBy:sortHow:)` method to get all list item ids.
+
+         🔒 OAuth Required
+
+         - parameters:
+            - listId: Trakt ID or Trakt slug of the list
+            - rank: Array of list item IDs in the new order
+         */
+        public func reorderListItems(_ listId: CustomStringConvertible, rank: [Int]) -> Route<ListItemsReorderResult> {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).reorderListItems(listId, rank: rank)
+        }
+
     }
 
     /// Resource containing all of the `/user/*` endpoints where authentication is **optional** or **not** required.
@@ -346,6 +374,22 @@ extension TraktManager {
 
         // MARK: - Notes
 
+        /**
+         Get notes a user has added to movies, shows, seasons, episodes, or people.
+         
+         🔥 VIP Enhanced 🔓 OAuth Optional 📄 Pagination ✨ Extended Info
+         
+         - parameter type: Filter by a specific item type. Possible values: `all`, `movie`, `show`, `season`, `episode`, `person`.
+         */
+        public func notes(type: String? = nil) -> Route<PagedObject<[TraktNote]>> {
+            Route(
+                paths: [path, "notes", type],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
+
         // MARK: - Lists
 
         /**
@@ -358,6 +402,20 @@ extension TraktManager {
         }
 
         // MARK: - Collaborations
+
+        /**
+         Returns all lists a user can collaborate on. This gives full access to add, remove, and re-order list items.
+         
+         🔓 OAuth Optional
+         */
+        public func collaborations() -> Route<[TraktList]> {
+            Route(
+                paths: [path, "lists", "collaborations"],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
 
         // MARK: - List
 
@@ -447,13 +505,127 @@ extension TraktManager {
             )
         }
 
+        /**
+         Update the notes on a single list item.
+
+         🔥 VIP Only 🔒 OAuth Required 😁 Emojis
+
+         - parameters:
+            - listId: Trakt ID or Trakt slug of the list
+            - listItemId: List Item ID
+            - notes: New notes text for the list item
+         */
+        public func updateListItem(_ listId: CustomStringConvertible, listItemId: Int, notes: String) -> EmptyRoute {
+            let body = ["notes": notes]
+            return EmptyRoute(
+                paths: [path, "lists", listId, "items", listItemId],
+                body: body,
+                method: .PUT,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
+        /**
+         Reorder all items on a list by sending the updated rank of list item ids.
+         Use the `itemsOnList(_:type:sortBy:sortHow:)` method to get all list item ids.
+
+         🔒 OAuth Required
+
+         - parameters:
+            - listId: Trakt ID or Trakt slug of the list
+            - rank: Array of list item IDs in the new order
+         */
+        public func reorderListItems(_ listId: CustomStringConvertible, rank: [Int]) -> Route<ListItemsReorderResult> {
+            let body = ["rank": rank]
+            return Route(
+                paths: [path, "lists", listId, "items", "reorder"],
+                body: body,
+                method: .POST,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
         // MARK: - Follow
+
+        /**
+         Follow this user. If the user has a private profile, the follow request will require approval (`approved_at` will be null).
+         If a user is public, they will be followed immediately (`approved_at` will have a date).
+         
+         🔒 OAuth Required
+         */
+        public func follow() -> Route<FollowResult> {
+            Route(
+                paths: [path, "follow"],
+                method: .POST,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
+        /**
+         Unfollow someone you already follow.
+         
+         🔒 OAuth Required
+         */
+        public func unfollow() -> EmptyRoute {
+            EmptyRoute(
+                paths: [path, "follow"],
+                method: .DELETE,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
 
         // MARK: - Followers
 
+        /**
+         Returns all followers including when the relationship began.
+         
+         🔓 OAuth Optional ✨ Extended Info
+         */
+        public func followers() -> Route<[Friend]> {
+            Route(
+                paths: [path, "followers"],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
+
         // MARK: - Following
 
+        /**
+         Returns all user's they follow including when the relationship began.
+         
+         🔓 OAuth Optional ✨ Extended Info
+         */
+        public func following() -> Route<[Friend]> {
+            Route(
+                paths: [path, "following"],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
+
         // MARK: - Friends
+
+        /**
+         Returns all friends for a user including when the relationship began.
+         Friendship is a 2 way relationship where each user follows the other.
+         
+         🔓 OAuth Optional ✨ Extended Info
+         */
+        public func friends() -> Route<[Friend]> {
+            Route(
+                paths: [path, "friends"],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
 
         // MARK: - History
 
@@ -557,6 +729,55 @@ extension TraktManager {
         }
 
         // MARK: - Favorites
+
+        /**
+         Returns the top 100 shows and movies a user has favorited. Apps should encourage user's to add favorites so the algorithm keeps getting better.
+         
+         ---
+         **Notes**
+         
+         Each favorite contains a `notes` field explaining why the user favorited the item.
+         
+         ---
+         **Sorting**
+         
+         Default sorting is based on the list defaults and sent in the `X-Sort-By` and `X-Sort-How` headers. If you specify the `sort_by` and `sort_how` parameters, the response will be sorted based on those values and sent in the `X-Applied-Sort-By` and `X-Applied-Sort-How` headers.
+         
+         Some `sort_by` options are 🔥 **VIP Only** including `imdb_rating`, `tmdb_rating`, `rt_tomatometer`, `rt_audience`, `metascore`, `votes`, `imdb_votes`, and `tmdb_votes`. If sent for a non VIP, the items will fall back to `rank`.
+         
+         🔥 VIP Enhanced 🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+         
+         - parameters:
+            - type: Filter for a specific item type. Possible values: `all`, `movies`, `shows`, `seasons`, `episodes`.
+            - sortBy: Sort by a specific property. Possible values: `rank`, `added`, `title`, `released`, `runtime`, `popularity`, `random`, `percentage`, `imdb_rating` (VIP), `tmdb_rating` (VIP), `rt_tomatometer` (VIP), `rt_audience` (VIP), `metascore` (VIP), `votes` (VIP), `imdb_votes` (VIP), `tmdb_votes` (VIP), `my_rating`, `watched`, `collected`.
+            - sortHow: Sort direction. Possible values: `asc`, `desc`.
+         */
+        public func favorites(type: String? = nil, sortBy: String? = nil, sortHow: String? = nil) -> Route<PagedObject<[TraktListItem]>> {
+            Route(
+                paths: [path, "favorites", type, sortBy, sortHow],
+                method: .GET,
+                requiresAuthentication: true,
+                traktManager: traktManager
+            )
+        }
+
+        /**
+         Returns all top level comments for the favorites. By default, the `newest` comments are returned first. Other sorting options include `oldest`, most `likes`, and most `replies`.
+         
+         > note: If you send OAuth, comments from blocked users will be automatically filtered out.
+         
+         🔓 OAuth Optional 📄 Pagination 😁 Emojis
+         
+         - parameter sort: How to sort. Possible values: `newest`, `oldest`, `likes`, `replies`.
+         */
+        public func favoritesComments(sort: String? = nil) -> Route<PagedObject<[Comment]>> {
+            Route(
+                paths: [path, "favorites", "comments", sort],
+                method: .GET,
+                requiresAuthentication: authenticate,
+                traktManager: traktManager
+            )
+        }
 
         // MARK: - Watching
 

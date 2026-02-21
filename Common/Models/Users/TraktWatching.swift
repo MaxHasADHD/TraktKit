@@ -29,6 +29,42 @@ public enum TraktWatching: TraktObject {
             case movie(TraktMovie)
         }
     }
+
+    var movie: TraktMovie? {
+        switch self {
+        case .watching(let watchingItem):
+            switch watchingItem.mediaItem {
+            case .movie(let movie): return movie
+            case .episode: break
+            }
+        case .notWatchingAnything: break
+        }
+        return nil
+    }
+
+    var episode: TraktEpisode? {
+        switch self {
+        case .watching(let watchingItem):
+            switch watchingItem.mediaItem {
+            case .movie: break
+            case .episode(let episode, _): return episode
+            }
+        case .notWatchingAnything: break
+        }
+        return nil
+    }
+
+    var series: TraktShow? {
+        switch self {
+        case .watching(let watchingItem):
+            switch watchingItem.mediaItem {
+            case .movie: break
+            case .episode(_, let series): return series
+            }
+        case .notWatchingAnything: break
+        }
+        return nil
+    }
 }
 
 extension TraktWatching {
