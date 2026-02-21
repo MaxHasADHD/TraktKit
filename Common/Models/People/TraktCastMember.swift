@@ -11,15 +11,12 @@ import Foundation
 /// Cast member for (show/season/episode)/.../people API
 public struct TVCastMember: TraktObject {
     public let characters: [String]
-    @available(*, deprecated, renamed: "characters")
-    public let character: String
     /// Not available for /episodes/{number}/people
     public let episodeCount: Int?
     public let person: Person
     
     enum CodingKeys: String, CodingKey {
         case characters
-        case character
         case episodeCount = "episode_count"
         case person
     }
@@ -34,15 +31,12 @@ public struct MovieCastMember: TraktObject {
 /// Cast member for /people/.../shows API
 public struct PeopleTVCastMember: TraktObject {
     public let characters: [String]
-    @available(*, deprecated, renamed: "characters")
-    public let character: String
     public let episodeCount: Int
     public let seriesRegular: Bool
     public let show: TraktShow
     
     enum CodingKeys: String, CodingKey {
         case characters
-        case character
         case episodeCount = "episode_count"
         case seriesRegular = "series_regular"
         case show
@@ -52,13 +46,10 @@ public struct PeopleTVCastMember: TraktObject {
 /// Cast member for /people/.../movies API
 public struct PeopleMovieCastMember: TraktObject {
     public let characters: [String]
-    @available(*, deprecated, renamed: "characters")
-    public let character: String
     public let movie: TraktMovie
     
     enum CodingKeys: String, CodingKey {
         case characters
-        case character
         case movie
     }
 }

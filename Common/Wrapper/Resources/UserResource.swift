@@ -381,7 +381,7 @@ extension TraktManager {
          
          - parameter type: Filter by a specific item type. Possible values: `all`, `movie`, `show`, `season`, `episode`, `person`.
          */
-        public func notes(type: String? = nil) -> Route<PagedObject<[TraktNote]>> {
+        public func notes(type: String? = nil) -> Route<PagedObject<[TraktNoteItem]>> {
             Route(
                 paths: [path, "notes", type],
                 method: .GET,
@@ -552,10 +552,10 @@ extension TraktManager {
         /**
          Follow this user. If the user has a private profile, the follow request will require approval (`approved_at` will be null).
          If a user is public, they will be followed immediately (`approved_at` will have a date).
-         
+
          🔒 OAuth Required
          */
-        public func follow() -> Route<FollowResult> {
+        public func follow() -> Route<FollowUserResult> {
             Route(
                 paths: [path, "follow"],
                 method: .POST,
@@ -582,10 +582,10 @@ extension TraktManager {
 
         /**
          Returns all followers including when the relationship began.
-         
+
          🔓 OAuth Optional ✨ Extended Info
          */
-        public func followers() -> Route<[Friend]> {
+        public func followers() -> Route<[Follower]> {
             Route(
                 paths: [path, "followers"],
                 method: .GET,
@@ -598,10 +598,10 @@ extension TraktManager {
 
         /**
          Returns all user's they follow including when the relationship began.
-         
+
          🔓 OAuth Optional ✨ Extended Info
          */
-        public func following() -> Route<[Friend]> {
+        public func following() -> Route<[Follower]> {
             Route(
                 paths: [path, "following"],
                 method: .GET,

@@ -25,7 +25,7 @@ public struct TraktNote: TraktObject {
     }
 }
 
-public struct TraktNoteBody: EncodableTraktObject {
+public struct TraktNoteBody: TraktObject {
     public let movie: SyncId?
     public let show: SyncId?
     public let season: SyncId?
@@ -48,7 +48,7 @@ public struct TraktNoteBody: EncodableTraktObject {
         case attachedTo = "attached_to"
     }
 
-    public struct AttachedTo: Encodable, Hashable, Sendable {
+    public struct AttachedTo: TraktObject {
         public let type: String
         public let id: Int?
 
