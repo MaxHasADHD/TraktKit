@@ -1,5 +1,5 @@
 //
-//  UserTests+Async.swift
+//  UsersTests.swift
 //  TraktKit
 //
 //  Created by Maximilian Litteral on 3/8/25.
@@ -10,7 +10,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct UserTestSuite {
+    struct UsersTests {
         @Test func getSettings() async throws {
             let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/users/settings", result: .success(jsonData(named: "test_get_settings")))

@@ -1,5 +1,5 @@
 //
-//  CountriesTests+Async.swift
+//  CountriesTests.swift
 //  TraktKit
 //
 
@@ -9,7 +9,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct CountriesTestSuite {
+    struct CountriesTests {
 
         @Test func getCountriesForMovies() async throws {
             let traktManager = await authenticatedTraktManager()

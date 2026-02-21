@@ -250,9 +250,4 @@ public final class TraktManager: APIManager, @unchecked Sendable {
             throw error
         }
     }
-
-    // Legacy method for compatibility
-    internal func post<Body: Encodable>(_ path: String, query: [String: String] = [:], body: Body) throws -> URLRequest {
-        try mutableRequest(forPath: path, withQuery: query, isAuthorized: true, withHTTPMethod: .POST, body: body)
-    }
 }

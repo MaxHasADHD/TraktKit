@@ -1,5 +1,5 @@
 //
-//  LanguagesTests+Async.swift
+//  LanguagesTests.swift
 //  TraktKit
 //
 
@@ -9,7 +9,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct LanguagesTestSuite {
+    struct LanguagesTests {
 
         @Test func getLanguagesForMovies() async throws {
             let traktManager = await authenticatedTraktManager()

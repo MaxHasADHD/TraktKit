@@ -28,12 +28,10 @@ Read the following files **in full** before writing a single line of code. Do no
 
 | File | Why |
 |---|---|
-| `Common/Wrapper/Resources/TraktManager+Resources.swift` | Understand the accessor pattern and what already exists |
-| `Common/Wrapper/Resources/PeopleResource.swift` | Canonical example of Resource structure |
-| `Common/Wrapper/Resources/MovieResource.swift` | Shows both a collection resource (`MoviesResource`) and a single-item resource (`MovieResource`) in the same file |
-| `Common/Wrapper/Resources/CalendarResource.swift` | Shows the split `my/` vs `all/` pattern where applicable |
-| `Common/Wrapper/Resources/Route.swift` | Understand `Route<T>`, `EmptyRoute`, `PagedObject`, `TraktObject`, and `EncodableTraktObject` |
-| The legacy completion-handler file for this group if one exists (e.g. `Common/Wrapper/CompletionHandlerEndpoints/Lists.swift`) | Context on what endpoints exist — do **not** copy the completion-handler style |
+| `Sources/TraktKit/Resources/TraktManager+Resources.swift` | Understand the accessor pattern and what already exists |
+| `Sources/TraktKit/Resources/PeopleResource.swift` | Canonical example of Resource structure |
+| `Sources/TraktKit/Resources/MoviesResource.swift` | Shows both a collection resource (`MoviesResource`) and a single-item resource (`MovieResource`) in the same file |
+| `Sources/TraktKit/Resources/CalendarsResource.swift` | Shows the split `my/` vs `all/` pattern where applicable |
 
 Then read the **Trakt API documentation** for the requested group in full before forming any plan.
 
@@ -43,9 +41,9 @@ Then read the **Trakt API documentation** for the requested group in full before
 
 Search the project for:
 
-- A Resource file for this group (e.g. `ListResource.swift`, `CalendarResource.swift`)
+- A Resource file for this group (e.g. `ListsResource.swift`, `CalendarsResource.swift`)
 - An accessor on `TraktManager` for this group (in `TraktManager+Resources.swift`)
-- A test file with the `+Async` suffix (e.g. `ListsTests+Async.swift`, `CalendarTests+Async.swift`)
+- A test file in `Tests/TraktKitTests/ResourceTests/` (e.g. `ListsTests.swift`, `CalendarsTests.swift`)
 - Existing Codable model types that match the response shapes in the API doc
 
 Report what you find to the user before making any changes.
@@ -56,11 +54,11 @@ Report what you find to the user before making any changes.
 
 ### If no Resource file exists, create one
 
-- **File location:** `Common/Wrapper/Resources/<Name>Resource.swift`
+- **File location:** `Sources/TraktKit/Resources/<Name>Resource.swift`
 - Follow the structure of `PeopleResource.swift` exactly
 - Create a **collection resource** (e.g. `ListsResource`) for endpoints with no `id` parameter — accessed as a computed `var` on `TraktManager`
 - Create a **single-item resource** (e.g. `ListResource`) for endpoints that take an `id` — accessed via a factory `func` on `TraktManager`
-- If the API group has a `my/` (OAuth) vs `all/` (public) split, create two separate structs (e.g. `MyCalendarResource` and `AllCalendarResource`)
+- If the API group has a `my/` (OAuth) vs `all/` (public) split, create two separate structs (e.g. `MyCalendarsResource` and `AllCalendarsResource`)
 - Both structs go in the **same file**
 
 ### If a Resource file already exists
@@ -125,7 +123,7 @@ Copy the description from the Trakt API docs and include the standard emoji capa
 
 | What | Where |
 |---|---|
-| Test file | `Tests/TraktKitTests/<Name>Tests+Async.swift` |
+| Test file | `Tests/TraktKitTests/ResourceTests/<Name>Tests.swift` |
 | JSON fixtures | `Tests/TraktKitTests/Models/<GroupName>/<fixture_name>.json` |
 
 > **Critical:** Create files at their actual path. Do **not** encode the folder path into the filename.
@@ -144,7 +142,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct <Name>TestSuite {
+    struct <Name>Tests {
         // tests...
     }
 }
@@ -260,4 +258,4 @@ public func list(id: CustomStringConvertible) -> ListResource {
 | Pattern | Example |
 |---|---|
 | Collection vs single item | `MoviesResource` + `MovieResource` |
-| Public vs authenticated | `AllCalendarResource` + `MyCalendarResource` |
+| Public vs authenticated | `AllCalendarsResource` + `MyCalendarsResource` |

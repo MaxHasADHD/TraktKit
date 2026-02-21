@@ -1,5 +1,5 @@
 //
-//  GenresTests+Async.swift
+//  GenresTests.swift
 //  TraktKit
 //
 
@@ -9,7 +9,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct GenresTestSuite {
+    struct GenresTests {
 
         @Test func getGenresForMovies() async throws {
             let traktManager = await authenticatedTraktManager()

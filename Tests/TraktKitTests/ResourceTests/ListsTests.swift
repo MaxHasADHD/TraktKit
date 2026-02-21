@@ -1,5 +1,5 @@
 //
-//  ListsTests+Async.swift
+//  ListsTests.swift
 //  TraktKit
 //
 //  Created by Maximilian Litteral on 2/19/26.
@@ -11,7 +11,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct ListsTestSuite {
+    struct ListsTests {
 
         // MARK: - Trending
 

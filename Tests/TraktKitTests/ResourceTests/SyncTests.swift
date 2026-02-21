@@ -1,5 +1,5 @@
 //
-//  SyncTests+Async.swift
+//  SyncTests.swift
 //  TraktKit
 //
 //  Created by Maximilian Litteral on 3/1/25.
@@ -11,7 +11,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct SyncTestSuite {
+    struct SyncTests {
         @Test func getLastActivities() async throws {
             let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/sync/last_activities", result: .success(jsonData(named: "test_get_last_activity")))

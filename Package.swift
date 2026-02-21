@@ -23,7 +23,7 @@ let package = Package(
         .target(
             name: "TraktKit",
             dependencies: ["SwiftAPIClient"],
-            path: "Common"
+            path: "Sources/TraktKit"
             ),
         .testTarget(
             name: "TraktKitTests",

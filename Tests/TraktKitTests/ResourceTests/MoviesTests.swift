@@ -1,5 +1,5 @@
 //
-//  MovieTests+Async.swift
+//  MoviesTests.swift
 //  TraktKit
 //
 //  Created by Maximilian Litteral on 2/22/25.
@@ -11,7 +11,7 @@ import Foundation
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct MovieTestSuite {
+    struct MoviesTests {
         @Test func getTrendingMovies() async throws {
             let traktManager = await authenticatedTraktManager()
             try mock(.GET, "https://api.trakt.tv/movies/trending?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_trending_movies")), headers: [.page(1), .pageCount(10)])

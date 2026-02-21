@@ -1,5 +1,5 @@
 //
-//  PeopleTests+Async.swift
+//  PeopleTests.swift
 //  TraktKit
 //
 //  Created by Maximilian Litteral on 2/18/26.
@@ -11,7 +11,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct PeopleTestSuite {
+    struct PeopleTests {
 
         // MARK: - Updates
 

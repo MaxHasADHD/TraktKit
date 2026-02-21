@@ -1,5 +1,5 @@
 //
-//  CalendarTests+Async.swift
+//  CalendarTests.swift
 //  TraktKit
 //
 //  Created by Maximilian Litteral on 2/19/26.
@@ -11,7 +11,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct CalendarTestSuite {
+    struct CalendarTests {
 
         /// A fixed test date of 2014-09-01 in UTC.
         private static var testDate: Date {

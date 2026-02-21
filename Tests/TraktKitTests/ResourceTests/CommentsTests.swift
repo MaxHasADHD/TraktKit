@@ -1,5 +1,5 @@
 //
-//  CommentsTests+Async.swift
+//  CommentsTests.swift
 //  TraktKit
 //
 
@@ -9,7 +9,7 @@ import Testing
 
 extension TraktTestSuite {
     @Suite(.serialized)
-    struct CommentsTestSuite {
+    struct CommentsTests {
 
         // MARK: - Post
 
