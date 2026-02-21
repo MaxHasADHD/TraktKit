@@ -6,6 +6,8 @@
 //
 
 import Testing
+import Foundation
+@testable import TraktKit
 
 extension TraktTestSuite {
     @Suite(.serialized)

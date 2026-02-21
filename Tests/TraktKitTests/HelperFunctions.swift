@@ -27,7 +27,7 @@ func debugPrintError(_ error: Error) {
 }
 
 func jsonData(named: String) -> Data {
-    let bundle = Bundle.forClass(MovieTests.self, forTests: true)
+    let bundle = Bundle.forClass(AuthenticationInfoTests.self, forTests: true)
     let path = bundle.path(forResource: named, ofType: "json")!
     let data = try! Data(contentsOf: URL(fileURLWithPath: path))
     return data

@@ -6,304 +6,197 @@
 //  Copyright © 2017 Maximilian Litteral. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Foundation
 @testable import TraktKit
 
-final class EpisodeTests: TraktTestCase {
-    
-    // MARK: - Summary
+extension TraktTestSuite {
+    @Suite("Episode Tests")
+    struct EpisodeTests {
+        let traktManager: TraktManager
 
-    func test_get_min_episode() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=min", result: .success(jsonData(named: "Episode_Min")))
+        init() async throws {
+            self.traktManager = await authenticatedTraktManager()
+        }
 
-        let expectation = XCTestExpectation(description: "EpisodeSummary")
-        traktManager.getEpisodeSummary(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
-            if case .success(let episode) = result {
-                XCTAssertEqual(episode.title, "Winter Is Coming")
-                XCTAssertEqual(episode.season, 1)
-                XCTAssertEqual(episode.number, 1)
-                XCTAssertEqual(episode.ids.trakt, 36440)
-            } else {
-                XCTFail("Invalid result")
+        // MARK: - Summary
+
+        @Test func getMinEpisode() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=min", result: .success(jsonData(named: "Episode_Min")))
+
+            let episode = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .summary()
+                .extend(.Min)
+                .perform()
+
+            #expect(episode.title == "Winter Is Coming")
+            #expect(episode.season == 1)
+            #expect(episode.number == 1)
+            #expect(episode.ids.trakt == 36440)
+        }
+
+        @Test func getFullEpisode() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full", result: .success(jsonData(named: "Episode_Full")))
+
+            let episode = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .summary()
+                .extend(.Full)
+                .perform()
+
+            #expect(episode.title == "Winter Is Coming")
+            #expect(episode.season == 1)
+            #expect(episode.number == 1)
+            #expect(episode.ids.trakt == 36440)
+            #expect(episode.overview != nil)
+            #expect(episode.firstAired != nil)
+            #expect(episode.updatedAt != nil)
+            #expect(episode.availableTranslations == ["en"])
+        }
+
+        @Test func getEpisodeImages() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/severance/seasons/2/episodes/5?extended=images", result: .success(jsonData(named: "Episode_Images")))
+
+            let episode = try await traktManager
+                .show(id: "severance")
+                .season(2).episode(5)
+                .summary()
+                .extend(.images)
+                .perform()
+
+            #expect(episode.title == "Trojan's Horse")
+            #expect(episode.season == 2)
+            #expect(episode.number == 5)
+            #expect(episode.ids.trakt == 12103031)
+            #expect(episode.overview == nil)
+            #expect(episode.firstAired == nil)
+            #expect(episode.updatedAt == nil)
+            #expect(episode.absoluteNumber == nil)
+            #expect(episode.availableTranslations == nil)
+        }
+
+        // MARK: - Translations
+
+        @Test func getAllEpisodeTranslations() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/translations", result: .success(jsonData(named: "test_get_all_episode_translations")))
+
+            let translations = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .translations()
+                .perform()
+
+            #expect(translations.count == 3)
+        }
+
+        // MARK: - Comments
+
+        @Test func getEpisodeComments() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/comments", result: .success(jsonData(named: "test_get_episode_comments")))
+
+            let comments = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .comments()
+                .perform()
+
+            #expect(comments.count == 1)
+        }
+
+        // MARK: - Lists
+
+        @Test func getListsContainingEpisode() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added?extended=full", result: .success(jsonData(named: "test_get_lists_containing_episode")))
+
+            let route = traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .containingLists()
+                .listType(.official)
+                .sort(by: .added)
+                .extend(.Full)
+
+            #expect(route.path == "shows/game-of-thrones/seasons/1/episodes/1/lists/official/added")
+
+            let lists = try await route.perform()
+            #expect(lists.count == 1)
+        }
+
+        // MARK: - Ratings
+
+        @Test func getEpisodeRatings() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/ratings", result: .success(jsonData(named: "test_get_episode_ratings")))
+
+            let rating = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .ratings()
+                .perform()
+
+            #expect(rating.rating == 9)
+            #expect(rating.votes == 3)
+        }
+
+        // MARK: - Stats
+
+        @Test func getEpisodeStats() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/stats", result: .success(jsonData(named: "test_get_episode_stats")))
+
+            let stats = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .stats()
+                .perform()
+
+            #expect(stats.watchers == 30521)
+            #expect(stats.plays == 37986)
+            #expect(stats.collectors == 12899)
+            #expect(stats.collectedEpisodes == 87991)
+            #expect(stats.comments == 115)
+            #expect(stats.lists == 309)
+            #expect(stats.votes == 25655)
+        }
+
+        // MARK: - Watching
+
+        @Test func getUsersWatchingNow() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/watching", result: .success(jsonData(named: "test_get_users_watching_now")))
+
+            let watchers = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .usersWatching()
+                .perform()
+
+            #expect(watchers.count == 2)
+        }
+
+        // MARK: - People
+
+        @Test func getShowPeopleMin() async throws {
+            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/people?extended=min", result: .success(jsonData(named: "test_get_episode_cast")))
+
+            let castAndCrew = try await traktManager
+                .show(id: "game-of-thrones")
+                .season(1).episode(1)
+                .people()
+                .extend(.Min)
+                .perform()
+
+            #expect(castAndCrew.cast != nil)
+            #expect(castAndCrew.writers != nil)
+            #expect(castAndCrew.cast!.count == 20)
+            #expect(castAndCrew.writers!.count == 2)
+
+            guard let actor = castAndCrew.cast?.first else {
+                Issue.record("Cast is empty")
+                return
             }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-
-    func test_get_full_episode() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full", result: .success(jsonData(named: "Episode_Full")))
-
-        let expectation = XCTestExpectation(description: "EpisodeSummary")
-        traktManager.getEpisodeSummary(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1, extended: [.Full]) { result in
-            if case .success(let episode) = result {
-                XCTAssertEqual(episode.title, "Winter Is Coming")
-                XCTAssertEqual(episode.season, 1)
-                XCTAssertEqual(episode.number, 1)
-                XCTAssertEqual(episode.ids.trakt, 36440)
-                XCTAssertNotNil(episode.overview)
-                XCTAssertNotNil(episode.firstAired)
-                XCTAssertNotNil(episode.updatedAt)
-                XCTAssertEqual(episode.availableTranslations!, ["en"])
-            } else {
-                XCTFail("Invalid result")
-            }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-    
-    func test_get_full_episode_async() async throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full", result: .success(jsonData(named: "Episode_Full")))
-        
-        let episode = try await traktManager
-            .show(id: "game-of-thrones")
-            .season(1).episode(1)
-            .summary()
-            .extend(.Full)
-            .perform()
-        
-        XCTAssertEqual(episode.title, "Winter Is Coming")
-        XCTAssertEqual(episode.season, 1)
-        XCTAssertEqual(episode.number, 1)
-        XCTAssertEqual(episode.ids.trakt, 36440)
-        XCTAssertNotNil(episode.overview)
-        XCTAssertNotNil(episode.firstAired)
-        XCTAssertNotNil(episode.updatedAt)
-        XCTAssertEqual(episode.absoluteNumber, 1)
-        XCTAssertEqual(episode.availableTranslations, ["en"])
-    }
-
-    func test_get_episode_images() async throws {
-        try mock(.GET, "https://api.trakt.tv/shows/severance/seasons/2/episodes/5?extended=images", result: .success(jsonData(named: "Episode_Images")))
-
-        let episode = try await traktManager
-            .show(id: "severance")
-            .season(2).episode(5)
-            .summary()
-            .extend(.images)
-            .perform()
-
-        XCTAssertEqual(episode.title, "Trojan's Horse")
-        XCTAssertEqual(episode.season, 2)
-        XCTAssertEqual(episode.number, 5)
-        XCTAssertEqual(episode.ids.trakt, 12103031)
-        XCTAssertNil(episode.overview)
-        XCTAssertNil(episode.firstAired)
-        XCTAssertNil(episode.updatedAt)
-        XCTAssertNil(episode.absoluteNumber)
-        XCTAssertNil(episode.availableTranslations)
-    }
-
-    // MARK: - Translations
-
-    func test_get_all_episode_translations() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/translations", result: .success(jsonData(named: "test_get_all_episode_translations")))
-
-        let expectation = XCTestExpectation(description: "Get episode translations")
-        traktManager.getEpisodeTranslations(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
-            if case .success(let translations) = result {
-                XCTAssertEqual(translations.count, 3)
-            } else {
-                XCTFail("Invalid result")
-            }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-
-    // MARK: - Comments
-
-    func test_get_episode_comments() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/comments", result: .success(jsonData(named: "test_get_episode_comments")))
-
-        let expectation = XCTestExpectation(description: "Get episode comments")
-        traktManager.getEpisodeComments(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
-            if case .success(let comments, _, _) = result {
-                XCTAssertEqual(comments.count, 1)
-            } else {
-                XCTFail("Invalid result")
-            }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-
-    // MARK: - Lists
-
-    func test_get_lists_containing_episode() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added", result: .success(jsonData(named: "test_get_lists_containing_episode")))
-
-        let expectation = XCTestExpectation(description: "Get lists containing episode")
-        traktManager.getListsContainingEpisode(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1, listType: .official, sortBy: .added) { result in
-            if case .success(let lists, _, _) = result {
-                XCTAssertEqual(lists.count, 1)
-                expectation.fulfill()
-            }
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-
-    func test_get_listsContainingEpisode_async() async throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added?extended=full", result: .success(jsonData(named: "test_get_lists_containing_episode")))
-
-        let route = traktManager
-            .show(id: "game-of-thrones")
-            .season(1).episode(1)
-            .containingLists()
-            .listType(.official)
-            .sort(by: .added)
-            .extend(.Full)
-
-        XCTAssertEqual(route.path, "shows/game-of-thrones/seasons/1/episodes/1/lists/official/added")
-
-        let lists = try await route.perform()
-        XCTAssertEqual(lists.count, 1)
-    }
-
-    // MARK: - Ratings
-
-    func test_get_episode_ratings() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/ratings", result: .success(jsonData(named: "test_get_episode_ratings")))
-
-        let expectation = XCTestExpectation(description: "Get episode ratings")
-        traktManager.getEpisodeRatings(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
-            if case .success(let rating) = result {
-                XCTAssertEqual(rating.rating, 9)
-                XCTAssertEqual(rating.votes, 3)
-            } else {
-                XCTFail("Invalid result")
-            }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-
-    // MARK: - Stats
-
-    func test_get_episode_stats() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/stats", result: .success(jsonData(named: "test_get_episode_stats")))
-
-        let expectation = XCTestExpectation(description: "Get episode stats")
-        traktManager.getEpisodeStatistics(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
-            if case .success(let stats) = result {
-                XCTAssertEqual(stats.watchers, 30521)
-                XCTAssertEqual(stats.plays, 37986)
-                XCTAssertEqual(stats.collectors, 12899)
-                XCTAssertEqual(stats.collectedEpisodes, 87991)
-                XCTAssertEqual(stats.comments, 115)
-                XCTAssertEqual(stats.lists, 309)
-                XCTAssertEqual(stats.votes, 25655)
-            } else {
-                XCTFail("Invalid result")
-            }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-
-    // MARK: - Watching
-
-    func test_get_users_watching_now() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/watching", result: .success(jsonData(named: "test_get_users_watching_now")))
-
-        let expectation = XCTestExpectation(description: "Get users watching episode")
-        traktManager.getUsersWatchingEpisode(showID: "game-of-thrones", seasonNumber: 1, episodeNumber: 1) { result in
-            if case .success(let watchers) = result {
-                XCTAssertEqual(watchers.count, 2)
-            } else {
-                XCTFail("Invalid result")
-            }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
-        }
-    }
-    
-    // MARK: - People
-    
-    func test_get_show_people_min() throws {
-        try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/people?extended=min", result: .success(jsonData(named: "test_get_episode_cast")))
-        
-        let expectation = XCTestExpectation(description: "ShowCastAndCrew")
-        traktManager.getPeopleInEpisode(showID: "game-of-thrones", season: 1, episode: 1) { result in
-            if case .success(let castAndCrew) = result {
-                XCTAssertNotNil(castAndCrew.cast)
-                XCTAssertNotNil(castAndCrew.writers)
-                XCTAssertEqual(castAndCrew.cast!.count, 20)
-                XCTAssertEqual(castAndCrew.writers!.count, 2)
-                
-                guard let actor = castAndCrew.cast?.first else { return XCTFail("Cast is empty") }
-                XCTAssertEqual(actor.person.name, "Emilia Clarke")
-                XCTAssertEqual(actor.characters, ["Daenerys Targaryen"])
-            } else {
-                XCTFail("Invalid result")
-            }
-            expectation.fulfill()
-        }
-        let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-                
-        switch result {
-        case .timedOut:
-            XCTFail("Something isn't working")
-        default:
-            break
+            #expect(actor.person.name == "Emilia Clarke")
+            #expect(actor.characters == ["Daenerys Targaryen"])
         }
     }
 }
