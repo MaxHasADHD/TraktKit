@@ -13,6 +13,7 @@ extension TraktManager {
     /**
      Get a list of all genres, including names and slugs.
      */
+    @available(*, deprecated, message: "Use languages.list(type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func listLanguages(type: WatchedType, completion: @escaping ObjectCompletionHandler<[Languages]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "languages/\(type)",

@@ -15,6 +15,7 @@ extension TraktManager {
 
      Note: Only `us` certifications are currently returned.
      */
+    @available(*, deprecated, message: "Use certifications.list().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getCertifications(completion: @escaping ObjectCompletionHandler<Certifications>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "certifications",

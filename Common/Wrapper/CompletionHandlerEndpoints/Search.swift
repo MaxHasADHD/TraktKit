@@ -18,6 +18,7 @@ extension TraktManager {
      ✨ Extended Info
      🎚 Filters
      */
+    @available(*, deprecated, message: "Use search.query(query:).type(...).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func search(query: String,
                        types: [SearchType],
@@ -67,6 +68,7 @@ extension TraktManager {
      📄 Pagination
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use search.lookup(id:type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func lookup(id: LookupType,
                        extended: [ExtendedType] = [.Min],

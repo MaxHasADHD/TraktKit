@@ -17,6 +17,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use comments.post(body:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func postComment(movie: SyncId? = nil, show: SyncId? = nil, season: SyncId? = nil, episode: SyncId? = nil, list: SyncId? = nil, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let body = TraktCommentBody(movie: movie, show: show, season: season, episode: episode, list: list, comment: comment, spoiler: spoiler)
@@ -27,6 +28,7 @@ extension TraktManager {
     /**
      Returns a single comment and indicates how many replies it has. Use **GET** `/comments/:id/replies` to get the actual replies.
      */
+    @available(*, deprecated, message: "Use comments.comment(commentId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getComment(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)",
@@ -41,6 +43,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use comments.update(commentId:comment:spoiler:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func updateComment(commentID id: CustomStringConvertible, newComment comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
         let body = TraktCommentBody(comment: comment, spoiler: spoiler)
@@ -57,6 +60,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use comments.delete(commentId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func deleteComment(commentID id: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)",
@@ -73,6 +77,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use comments.replies(commentId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getReplies(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<[Comment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/replies",
@@ -87,6 +92,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use comments.postReply(commentId:comment:spoiler:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func postReply(commentID id: CustomStringConvertible, comment: String, isSpoiler spoiler: Bool? = nil, completion: @escaping ObjectCompletionHandler<Comment>) throws -> URLSessionDataTask? {
         let body = TraktCommentBody(comment: comment, spoiler: spoiler)
@@ -101,6 +107,7 @@ extension TraktManager {
 
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use comments.item(commentId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getAttachedMediaItem(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<TraktAttachedMediaItem>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/item",
@@ -117,6 +124,7 @@ extension TraktManager {
 
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use comments.likes(commentId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUsersWhoLikedComment(commentID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<[TraktCommentLikedUser]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/likes",
@@ -133,6 +141,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use comments.like(commentId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func likeComment(commentID id: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/like",
@@ -147,6 +156,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use comments.removeLike(commentId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func removeLikeOnComment(commentID id: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/\(id)/like",
@@ -164,6 +174,7 @@ extension TraktManager {
      📄 Pagination
      ✨ Extended
      */
+    @available(*, deprecated, message: "Use comments.trending(commentType:type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getTrendingComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectCompletionHandler<[TraktTrendingComment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/trending/\(commentType.rawValue)/\(mediaType.rawValue)",
@@ -181,6 +192,7 @@ extension TraktManager {
      📄 Pagination
      ✨ Extended
      */
+    @available(*, deprecated, message: "Use comments.recent(commentType:type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getRecentComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectCompletionHandler<[TraktTrendingComment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/recent/\(commentType.rawValue)/\(mediaType.rawValue)",
@@ -198,6 +210,7 @@ extension TraktManager {
      📄 Pagination
      ✨ Extended
      */
+    @available(*, deprecated, message: "Use comments.updates(commentType:type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getRecentlyUpdatedComments(commentType: CommentType, mediaType: Type2, includeReplies: Bool, completion: @escaping ObjectCompletionHandler<[TraktTrendingComment]>) throws -> URLSessionDataTask? {
         let request = try mutableRequest(forPath: "comments/updates/\(commentType.rawValue)/\(mediaType.rawValue)",

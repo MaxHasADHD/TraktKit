@@ -17,6 +17,7 @@ extension TraktManager {
     
     📄 Pagination
      */
+    @available(*, deprecated, message: "Use movies.trending().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getTrendingMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping TrendingMoviesCompletionHandler) -> URLSessionDataTask? {
         return getTrending(.Movies, pagination: pagination, extended: extended, filters: filters, completion: completion)
@@ -29,6 +30,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use movies.popular().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPopularMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping paginatedCompletionHandler<TraktMovie>) -> URLSessionDataTask? {
         return getPopular(.Movies, pagination: pagination, extended: extended, filters: filters, completion: completion)
@@ -41,6 +43,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use movies.mostPlayed(period:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPlayedMovies(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
         return getPlayed(.Movies, period: period, pagination: pagination, completion: completion)
@@ -53,6 +56,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use movies.mostWatched(period:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getWatchedMovies(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
         return getWatched(.Movies, period: period, pagination: pagination, completion: completion)
@@ -65,6 +69,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use movies.mostCollected(period:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getCollectedMovies(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostMoviesCompletionHandler) -> URLSessionDataTask? {
         return getCollected(.Movies, period: period, pagination: pagination, completion: completion)
@@ -77,6 +82,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use movies.anticipated().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getAnticipatedMovies(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedMovieCompletionHandler) -> URLSessionDataTask? {
         return getAnticipated(.Movies, pagination: pagination, extended: extended, completion: completion)
@@ -87,6 +93,7 @@ extension TraktManager {
     /**
     Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
     */
+    @available(*, deprecated, message: "Use movies.boxOffice().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getWeekendBoxOffice(extended: [ExtendedType] = [.Min], completion: @escaping BoxOfficeMoviesCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "movies/boxoffice",
@@ -104,6 +111,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use movies.updates(startDate:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUpdatedMovies(startDate: Date?, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<Update>) -> URLSessionDataTask? {
         return getUpdated(.Movies, startDate: startDate, pagination: pagination, extended: extended, completion: completion)
@@ -114,6 +122,7 @@ extension TraktManager {
     /**
     Returns a single movie's details.
     */
+    @available(*, deprecated, message: "Use movies.summary(movieId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieSummary<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: @escaping MovieCompletionHandler) -> URLSessionDataTask? {
         return getSummary(.Movies, id: id, extended: extended, completion: completion)
@@ -124,6 +133,7 @@ extension TraktManager {
     /**
     Returns all title aliases for a movie. Includes country where name is different.
     */
+    @available(*, deprecated, message: "Use movies.aliases(movieId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieAliases<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectCompletionHandler<[Alias]>) -> URLSessionDataTask? {
         return getAliases(.Movies, id: id, completion: completion)
@@ -137,6 +147,7 @@ extension TraktManager {
     - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
     - parameter country: 2 character country code. Example: `us`.
     */
+    @available(*, deprecated, message: "Use movies.releases(movieId:country:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieReleases<T: CustomStringConvertible>(movieID id: T, country: String?, completion: @escaping ObjectCompletionHandler<[TraktMovieRelease]>) -> URLSessionDataTask? {
         
@@ -159,6 +170,7 @@ extension TraktManager {
     /**
     Returns all translations for a movie, including language and translated values for title, tagline and overview.
     */
+    @available(*, deprecated, message: "Use movies.translations(movieId:language:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieTranslations<T: CustomStringConvertible>(movieID id: T, language: String?, completion: @escaping MovieTranslationsCompletionHandler) -> URLSessionDataTask? {
         return getTranslations(.Movies, id: id, language: language, completion: completion)
@@ -171,6 +183,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use comments.item(type:id:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieComments<T: CustomStringConvertible>(movieID id: T, pagination: Pagination? = nil, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         return getComments(.Movies, id: id, pagination: pagination, completion: completion)
@@ -183,6 +196,7 @@ extension TraktManager {
 
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use movies.lists(movieId:listType:sortBy:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getListsContainingMovie<T: CustomStringConvertible>(movieID id: T,
                                                                     listType: ListType? = nil,
@@ -222,6 +236,7 @@ extension TraktManager {
     
     The `crew` object will be broken up into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, and `camera` (if there are people for those crew positions). Each of those members will have a `job` and a standard `person` object.
     */
+    @available(*, deprecated, message: "Use movies.people(movieId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPeopleInMovie<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<MovieCastMember, MovieCrewMember>>) -> URLSessionDataTask? {
         return getPeople(.Movies, id: id, extended: extended, completion: completion)
@@ -232,6 +247,7 @@ extension TraktManager {
     /**
     Returns rating (between 0 and 10) and distribution for a movie.
     */
+    @available(*, deprecated, message: "Use movies.ratings(movieId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieRatings<T: CustomStringConvertible>(movieID id: T, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
         return getRatings(.Movies, id: id, completion: completion)
@@ -244,6 +260,7 @@ extension TraktManager {
     
     **Note**: We are continuing to improve this algorithm.
     */
+    @available(*, deprecated, message: "Use movies.related(movieId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getRelatedMovies<T: CustomStringConvertible>(movieID id: T, extended: [ExtendedType] = [.Min], completion: @escaping MoviesCompletionHandler) -> URLSessionDataTask? {
         return getRelated(.Movies, id: id, extended: extended, completion: completion)
@@ -254,6 +271,7 @@ extension TraktManager {
     /**
     Returns lots of movie stats.
     */
+    @available(*, deprecated, message: "Use movies.stats(movieId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieStatistics<T: CustomStringConvertible>(movieID id: T, completion: @escaping statsCompletionHandler) -> URLSessionDataTask? {
         return getStatistics(.Movies, id: id, completion: completion)
@@ -264,6 +282,7 @@ extension TraktManager {
     /**
     Returns all users watching this movie right now.
     */
+    @available(*, deprecated, message: "Use movies.watching(movieId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUsersWatchingMovie<T: CustomStringConvertible>(movieID id: T, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         return getUsersWatching(.Movies, id: id, completion: completion)

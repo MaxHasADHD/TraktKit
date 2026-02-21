@@ -21,6 +21,7 @@ extension TraktManager {
      
      - returns: URLSessionDataTask?
      */
+    @available(*, deprecated, message: "Use sync.lastActivities().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func lastActivities(completion: @escaping LastActivitiesCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "sync/last_activities",
@@ -86,6 +87,7 @@ extension TraktManager {
      🔒 OAuth: Required
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use sync.collection(type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getCollection(type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping CollectionCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "sync/collection/\(type)",
@@ -111,6 +113,7 @@ extension TraktManager {
      - parameter seasons: Array of season Trakt ids
      - parameter episodes: Array of episode Trakt ids
      */
+    @available(*, deprecated, message: "Use sync.addToCollection(movies:shows:episodes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func addToCollection(movies: [CollectionId]? = nil, shows: [CollectionId]? = nil, seasons: [CollectionId]? = nil, episodes: [CollectionId]? = nil, completion: @escaping ObjectCompletionHandler<AddToCollectionResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
@@ -130,6 +133,7 @@ extension TraktManager {
      - parameter seasons: Array of season Trakt ids
      - parameter episodes: Array of episode Trakt ids
      */
+    @available(*, deprecated, message: "Use sync.removeFromCollection(movies:shows:episodes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func removeFromCollection(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromCollectionResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
@@ -201,6 +205,7 @@ extension TraktManager {
      📄 Pagination
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use sync.history(type:id:startDate:endDate:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getHistory(type: WatchedType? = nil, traktID: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
         
@@ -254,6 +259,7 @@ extension TraktManager {
         -  seasons: array of `season` objects
         - episodes: array of `episode` objects
      */
+    @available(*, deprecated, message: "Use sync.addToHistory(movies:shows:episodes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func addToHistory(movies: [AddToHistoryId]? = nil, shows: [AddToHistoryId]? = nil, seasons: [AddToHistoryId]? = nil, episodes: [AddToHistoryId]? = nil, completion: @escaping ObjectCompletionHandler<AddToHistoryResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
@@ -276,6 +282,7 @@ extension TraktManager {
      - parameter historyIDs: Array of history ids.
      - parameter completion: completion handler
      */
+    @available(*, deprecated, message: "Use sync.removeFromHistory(movies:shows:episodes:historyIds:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func removeFromHistory(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, historyIDs: [Int]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromHistoryResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, ids: historyIDs)
@@ -293,6 +300,7 @@ extension TraktManager {
      - parameter type: Possible values:  `movies`, `shows`, `seasons`, `episodes`.
      - parameter rating: Filter for a specific rating
      */
+    @available(*, deprecated, message: "Use sync.ratings(type:rating:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getRatings(type: WatchedType, rating: NSInteger?, completion: @escaping RatingsCompletionHandler) -> URLSessionDataTask? {
         var path = "sync/ratings/\(type)"
@@ -320,6 +328,7 @@ extension TraktManager {
      - parameter seasons: Array of season Trakt ids
      - parameter episodes: Array of episode Trakt ids
      */
+    @available(*, deprecated, message: "Use sync.addRatings(movies:shows:episodes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func addRatings(movies: [RatingId]? = nil, shows: [RatingId]? = nil, seasons: [RatingId]? = nil, episodes: [RatingId]? = nil, completion: @escaping ObjectCompletionHandler<AddRatingsResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
@@ -337,6 +346,7 @@ extension TraktManager {
      - parameter seasons: Array of season Trakt ids
      - parameter episodes: Array of episode Trakt ids
      */
+    @available(*, deprecated, message: "Use sync.removeRatings(movies:shows:episodes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func removeRatings(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveRatingsResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
@@ -358,6 +368,7 @@ extension TraktManager {
      📄 Pagination Optional
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use sync.watchlist(type:sort:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getWatchlist(watchType: WatchedType, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping WatchlistCompletionHandler) -> URLSessionDataTask? {
 
@@ -389,6 +400,7 @@ extension TraktManager {
      - parameter seasons: Array of season Trakt ids
      - parameter episodes: Array of episode Trakt ids
      */
+    @available(*, deprecated, message: "Use sync.addToWatchlist(movies:shows:episodes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func addToWatchlist(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<WatchlistItemPostResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
@@ -408,6 +420,7 @@ extension TraktManager {
      - parameter seasons: Array of season Trakt ids
      - parameter episodes: Array of episode Trakt ids
      */
+    @available(*, deprecated, message: "Use sync.removeFromWatchlist(movies:shows:episodes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func removeFromWatchlist(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, completion: @escaping ObjectCompletionHandler<RemoveFromWatchlistResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)

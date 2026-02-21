@@ -28,6 +28,7 @@ extension TraktManager {
      
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use currentUser().settings().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getSettings(completion: @escaping ObjectCompletionHandler<AccountSettings>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/settings",
@@ -41,9 +42,10 @@ extension TraktManager {
     
     /**
      List a user's pending follow requests so they can either approve or deny them.
-     
+
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use currentUser().getFollowerRequests().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getFollowRequests(completion: @escaping ObjectCompletionHandler<[FollowRequest]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/requests",
@@ -62,6 +64,7 @@ extension TraktManager {
     
     - parameter id: ID of the follower request. Example: `123`.
      */
+    @available(*, deprecated, message: "Use currentUser().approveFollowRequest(userId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func approveFollowRequest(requestID id: NSNumber, completion: @escaping ObjectCompletionHandler<FollowResult>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/requests/\(id)",
@@ -78,6 +81,7 @@ extension TraktManager {
      
      - parameter id: ID of the follower request. Example: `123`.
      */
+    @available(*, deprecated, message: "Use currentUser().denyFollowRequest(userId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func denyFollowRequest(requestID id: NSNumber, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/requests/\(id)",
@@ -96,6 +100,7 @@ extension TraktManager {
      📄 Pagination
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use currentUser().hiddenItems(for:type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func hiddenItems(section: String, type: HiddenItemsType? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HiddenItemsCompletionHandler) -> URLSessionDataTask? {
         var query: [String: String] = ["extended": extended.queryString()]
@@ -122,6 +127,7 @@ extension TraktManager {
      
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use currentUser().hide(movies:shows:seasons:in:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func hide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: String, completion: @escaping ObjectCompletionHandler<HideItemResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
@@ -134,6 +140,7 @@ extension TraktManager {
      
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use currentUser().unhide(movies:shows:seasons:in:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func unhide(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, from section: String, completion: @escaping ObjectCompletionHandler<UnhideItemResult>) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons)
@@ -151,6 +158,7 @@ extension TraktManager {
     
     - Parameter type: Possible values:  comments, lists.
      */
+    @available(*, deprecated, message: "Use user(slug).likes(type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getLikes(type: LikeType, completion: @escaping ObjectCompletionHandler<[Like]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/likes/\(type.rawValue)",
@@ -167,6 +175,7 @@ extension TraktManager {
      
      🔓 OAuth Optional
      */
+    @available(*, deprecated, message: "Use user(slug).profile(userId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserProfile(username: String = "me", extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<User>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -186,6 +195,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
      */
+    @available(*, deprecated, message: "Use user(slug).collection(type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserCollection(username: String = "me", type: MediaType, completion: @escaping ObjectCompletionHandler<[TraktCollectedItem]>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -204,6 +214,7 @@ extension TraktManager {
     🔓 OAuth Optional
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use user(slug).comments(commentType:mediaType:includeReplies:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserComments(username: String = "me", commentType: CommentType? = nil, type: Type2? = nil, pagination: Pagination? = nil, completion: @escaping UserCommentsCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -240,6 +251,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).lists().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getCustomLists(username: String = "me", completion: @escaping ListsCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -262,6 +274,7 @@ extension TraktManager {
      - parameter displayNumbers: Should each item be numbered?
      - parameter allowComments: Are comments allowed?
      */
+    @available(*, deprecated, message: "Use currentUser().createPersonalList(userId:body:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func createCustomList(listName: String, listDescription: String, privacy: String = "private", displayNumbers: Bool = false, allowComments: Bool = true, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTask? {
         
@@ -288,6 +301,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).personalList(_:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getCustomList(username: String = "me", listID: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<TraktList>) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -304,6 +318,7 @@ extension TraktManager {
      
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use currentUser().updatePersonalList(_:changes:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func updateCustomList(listID: CustomStringConvertible, listName: String? = nil, listDescription: String? = nil, privacy: String? = nil, displayNumbers: Bool? = nil, allowComments: Bool? = nil, completion: @escaping ListCompletionHandler) throws -> URLSessionDataTask? {
 
@@ -327,6 +342,7 @@ extension TraktManager {
      
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use currentUser().deletePersonalList(_:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func deleteCustomList(username: String = "me", listID: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard
@@ -344,6 +360,7 @@ extension TraktManager {
     
     🔒 OAuth Required
     */
+    @available(*, deprecated, message: "Use user(slug).likeList(userId:listId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func likeList(username: String = "me", listID: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard
@@ -359,6 +376,7 @@ extension TraktManager {
      
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use list(_:).removeLike().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func removeListLike(username: String = "me", listID: CustomStringConvertible, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard
@@ -376,6 +394,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).itemsOnList(_:type:sortBy:sortHow:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getItemsForCustomList(username: String = "me", listID: CustomStringConvertible, type: [ListItemType]? = nil, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -404,6 +423,7 @@ extension TraktManager {
      - parameter episodes: Array of episode Trakt ids
      - parameter people: Array of people Trakt ids
      */
+    @available(*, deprecated, message: "Use currentUser().addItemsToList(userId:listId:movies:shows:people:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func addItemToCustomList(username: String = "me", listID: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil, completion: @escaping AddListItemCompletion) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
@@ -424,6 +444,7 @@ extension TraktManager {
      - parameter episodes: Array of episode Trakt ids
      - parameter people: Array of people Trakt ids
     */
+    @available(*, deprecated, message: "Use currentUser().removeItemsFromList(userId:listId:movies:shows:people:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func removeItemFromCustomList(username: String = "me", listID: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil, completion: @escaping RemoveListItemCompletion) throws -> URLSessionDataTask? {
         let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
@@ -438,6 +459,7 @@ extension TraktManager {
     
     📄 Pagination
     */
+    @available(*, deprecated, message: "Use list(_:).comments(sort:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserAllListComments(username: String = "me", listID: String, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         guard
@@ -457,6 +479,7 @@ extension TraktManager {
     
     🔒 OAuth Required
     */
+    @available(*, deprecated, message: "Use user(slug).follow(userId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func followUser(username: String, completion: @escaping FollowUserCompletion) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/\(username)/follow",
@@ -471,6 +494,7 @@ extension TraktManager {
      
      🔒 OAuth Required
      */
+    @available(*, deprecated, message: "Use user(slug).unfollow(userId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func unfollowUser(username: String, completion: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "users/\(username)/follow",
@@ -487,6 +511,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).followers().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserFollowers(username: String = "me", completion: @escaping FollowersCompletion) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -504,6 +529,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).following().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserFollowing(username: String = "me", completion: @escaping FollowersCompletion) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -522,6 +548,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).friends().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserFriends(username: String = "me", completion: @escaping FriendsCompletion) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -543,6 +570,7 @@ extension TraktManager {
     📄 Pagination
     ✨ Extended Info
     */
+    @available(*, deprecated, message: "Use user(slug).watchedHistory().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserWatchedHistory(username: String = "me", type: WatchedType? = nil, traktId: Int? = nil, startAt: Date? = nil, endAt: Date? = nil, extended: [ExtendedType] = [.Min], pagination: Pagination? = nil, completion: @escaping HistoryCompletionHandler) -> URLSessionDataTask? {
         var path = "users/\(username)/history"
@@ -587,6 +615,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).ratings(type:rating:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserRatings(username: String = "me", type: MediaType? = nil, rating: NSNumber? = nil, completion: @escaping RatingsCompletionHandler) -> URLSessionDataTask? {
         
@@ -616,6 +645,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).watchlist(type:sort:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserWatchlist(username: String = "me", type: WatchedType, extended: [ExtendedType] = [.Min], completion: @escaping ListItemCompletionHandler) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -633,6 +663,7 @@ extension TraktManager {
      
      🔓 OAuth Optional
      */
+    @available(*, deprecated, message: "Use user(slug).watching().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserWatching(username: String = "me", completion: @escaping WatchingCompletion) -> URLSessionDataTask? {
         // Should this function have a special completion handler? If it returns no data it is obvious that the user
@@ -652,6 +683,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).watched(type:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserWatched(username: String = "me", type: MediaType, extended: [ExtendedType] = [.Min], completion: @escaping UserWatchedCompletion) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false
@@ -670,6 +702,7 @@ extension TraktManager {
     
     🔓 OAuth Optional
     */
+    @available(*, deprecated, message: "Use user(slug).stats().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUserStats(username: String = "me", completion: @escaping UserStatsCompletion) -> URLSessionDataTask? {
         let authorization = username == "me" ? true : false

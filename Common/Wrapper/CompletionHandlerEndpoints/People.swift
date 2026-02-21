@@ -17,6 +17,7 @@ extension TraktManager {
      
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use people.summary(personId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPersonDetails<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<Person>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "people/\(id)",
@@ -39,6 +40,7 @@ extension TraktManager {
      
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use people.movieCredits(personId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getMovieCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleMovieCastMember, PeopleMovieCrewMember>>) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Movies, id: id, extended: extended, completion: completion)
@@ -53,6 +55,7 @@ extension TraktManager {
      
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use people.showCredits(personId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowCredits<T: CustomStringConvertible>(personID id: T, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<PeopleTVCastMember, PeopleTVCrewMember>>) -> URLSessionDataTask? {
         return getCredits(type: WatchedType.Shows, id: id, extended: extended, completion: completion)
@@ -65,6 +68,7 @@ extension TraktManager {
 
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use people.lists(personId:listType:sortBy:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getListsContainingPerson<T: CustomStringConvertible>(personId id: T, listType: ListType? = nil, sortBy: ListSortType? = nil, completion: @escaping ObjectCompletionHandler<[TraktList]>) -> URLSessionDataTask? {
         var path = "people/\(id)/lists"

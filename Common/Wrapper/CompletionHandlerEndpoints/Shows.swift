@@ -17,6 +17,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.trending().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getTrendingShows(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping TrendingShowsCompletionHandler) -> URLSessionDataTask? {
         return getTrending(.Shows, pagination: pagination, extended: extended, filters: filters, completion: completion)
@@ -29,6 +30,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.popular().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPopularShows(pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping paginatedCompletionHandler<TraktShow>) -> URLSessionDataTask? {
         return getPopular(.Shows, pagination: pagination, extended: extended, filters: filters, completion: completion)
@@ -41,6 +43,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.mostPlayed(period:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPlayedShows(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getPlayed(.Shows, period: period, pagination: pagination, completion: completion)
@@ -53,6 +56,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.mostWatched(period:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getWatchedShows(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getWatched(.Shows, period: period, pagination: pagination, completion: completion)
@@ -65,6 +69,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.mostCollected(period:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getCollectedShows(period: Period = .weekly, pagination: Pagination? = nil, completion: @escaping MostShowsCompletionHandler) -> URLSessionDataTask? {
         return getCollected(.Shows, pagination: pagination, completion: completion)
@@ -77,6 +82,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.anticipated().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getAnticipatedShows(period: Period = .weekly, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping AnticipatedShowCompletionHandler) -> URLSessionDataTask? {
         return getAnticipated(.Shows, pagination: pagination, extended: extended, completion: completion)
@@ -89,6 +95,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.updates(startDate:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUpdatedShows(startDate: Date?, pagination: Pagination? = nil, extended: [ExtendedType] = [.Min], completion: @escaping paginatedCompletionHandler<Update>) -> URLSessionDataTask? {
         return getUpdated(.Shows, startDate: startDate, pagination: pagination, extended: extended, completion: completion)
@@ -100,6 +107,7 @@ extension TraktManager {
      Returns all show Trakt IDs updated since the specified UTC date and time. We recommended storing the X-Start-Date header you can be efficient using this method moving forward. By default, 10 results are returned. You can send a limit to get up to 100 results per page.
      
      */
+    @available(*, deprecated, message: "Use shows.updatedIds(startDate:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUpdatedShowTraktIds(from startDate: Date, pagination: Pagination? = nil, completion: @escaping paginatedCompletionHandler<Int>)  -> URLSessionDataTask? {
         var query = [String: String]()
@@ -126,6 +134,7 @@ extension TraktManager {
      
      **Note**: When getting `full` extended info, the `status` field can have a value of `returning series` (airing right now), `in production` (airing soon), `planned` (in development), `canceled`, or `ended`.
     */
+    @available(*, deprecated, message: "Use shows.summary(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowSummary(showID id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktShow>) -> URLSessionDataTask? {
         return getSummary(.Shows, id: id, extended: extended, completion: completion)
@@ -138,6 +147,7 @@ extension TraktManager {
      
      - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
      */
+    @available(*, deprecated, message: "Use shows.aliases(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowAliases(showID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<[Alias]>) -> URLSessionDataTask? {
         return getAliases(.Shows, id: id, completion: completion)
@@ -151,6 +161,7 @@ extension TraktManager {
     - parameter id: Trakt.tv ID, Trakt.tv slug, or IMDB ID
     - parameter language: 2 character language code. Example: `es`
      */
+    @available(*, deprecated, message: "Use shows.translations(showId:language:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowTranslations(showID id: CustomStringConvertible, language: String?, completion: @escaping ShowTranslationsCompletionHandler) -> URLSessionDataTask? {
         return getTranslations(.Shows, id: id, language: language, completion: completion)
@@ -163,6 +174,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use comments.item(type:id:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowComments(showID id: CustomStringConvertible, pagination: Pagination? = nil, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         return getComments(.Shows, id: id, pagination: pagination, completion: completion)
@@ -175,6 +187,7 @@ extension TraktManager {
 
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use shows.lists(showId:listType:sortBy:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getListsContainingShow(showID id: CustomStringConvertible, listType: ListType? = nil, sortBy: ListSortType? = nil, pagination: Pagination? = nil, completion: @escaping ObjectCompletionHandler<[TraktList]>) -> URLSessionDataTask? {
         var path = "shows/\(id)/lists"
@@ -210,6 +223,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use shows.collectionProgress(showId:hidden:specials:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowCollectionProgress(showID id: CustomStringConvertible, hidden: Bool = false, specials: Bool = false, completion: @escaping ObjectCompletionHandler<ShowCollectionProgress>) -> URLSessionDataTask? {
         guard
@@ -229,6 +243,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use shows.watchedProgress(showId:hidden:specials:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowWatchedProgress(showID id: CustomStringConvertible, hidden: Bool = false, specials: Bool = false, completion: @escaping ShowWatchedProgressCompletionHandler) -> URLSessionDataTask? {
         guard
@@ -254,6 +269,7 @@ extension TraktManager {
      
      **Note**: This returns a lot of data, so please only use this extended parameter if you actually need it!
      */
+    @available(*, deprecated, message: "Use shows.people(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPeopleInShow(showID id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<TVCastMember, TVCrewMember>>) -> URLSessionDataTask? {
         return getPeople(.Shows, id: id, extended: extended, completion: completion)
@@ -264,6 +280,7 @@ extension TraktManager {
     /**
      Returns rating (between 0 and 10) and distribution for a show.
      */
+    @available(*, deprecated, message: "Use shows.ratings(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowRatings(showID id: CustomStringConvertible, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
         return getRatings(.Shows, id: id, completion: completion)
@@ -276,6 +293,7 @@ extension TraktManager {
      
      **Note**: We are continuing to improve this algorithm.
      */
+    @available(*, deprecated, message: "Use shows.related(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getRelatedShows(showID id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<[TraktShow]>) -> URLSessionDataTask? {
         return getRelated(.Shows, id: id, extended: extended, completion: completion)
@@ -286,6 +304,7 @@ extension TraktManager {
     /**
      Returns lots of show stats.
      */
+    @available(*, deprecated, message: "Use shows.stats(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getShowStatistics(showID id: CustomStringConvertible, completion: @escaping statsCompletionHandler) -> URLSessionDataTask? {
         return getStatistics(.Shows, id: id, completion: completion)
@@ -296,6 +315,7 @@ extension TraktManager {
     /**
      Returns all users watching this show right now.
      */
+    @available(*, deprecated, message: "Use shows.watching(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUsersWatchingShow(showID id: CustomStringConvertible, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         return getUsersWatching(.Shows, id: id, completion: completion)
@@ -308,6 +328,7 @@ extension TraktManager {
      
      **Note**: If no episode is found, a 204 HTTP status code will be returned.
      */
+    @available(*, deprecated, message: "Use shows.nextEpisode(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getNextEpisode(showID id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktEpisode>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/next_episode",
@@ -325,6 +346,7 @@ extension TraktManager {
      
      **Note**: If no episode is found, a 204 HTTP status code will be returned.
      */
+    @available(*, deprecated, message: "Use shows.lastEpisode(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getLastEpisode(showID id: CustomStringConvertible, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<TraktEpisode>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/last_episode",

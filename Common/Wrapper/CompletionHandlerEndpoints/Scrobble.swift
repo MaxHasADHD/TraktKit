@@ -19,6 +19,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use scrobble.start(body:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func scrobbleStart(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
         try perform("start", scrobble: scrobble, completion: completion)
@@ -31,6 +32,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use scrobble.pause(body:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func scrobblePause(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
         try perform("pause", scrobble: scrobble, completion: completion)
@@ -47,6 +49,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use scrobble.stop(body:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func scrobbleStop(_ scrobble: TraktScrobble, completion: @escaping ObjectCompletionHandler<ScrobbleResult>) throws -> URLSessionDataTask? {
         try perform("stop", scrobble: scrobble, completion: completion)

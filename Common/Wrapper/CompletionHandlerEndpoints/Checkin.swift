@@ -14,6 +14,7 @@ extension TraktManager {
      
      **Note**: If a checkin is already in progress, a `409` HTTP status code will returned. The response will contain an `expires_at` timestamp which is when the user can check in again.
      */
+    @available(*, deprecated, message: "Use checkin.checkIn(body:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func checkIn(_ body: TraktCheckinBody, completionHandler: @escaping checkinCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? post("checkin", body: body) else { return nil }
@@ -23,6 +24,7 @@ extension TraktManager {
     /**
      Removes any active checkins, no need to provide a specific item.
      */
+    @available(*, deprecated, message: "Use checkin.deleteActiveCheckin().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func deleteActiveCheckins(completionHandler: @escaping SuccessCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "checkin",

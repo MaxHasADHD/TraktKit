@@ -18,6 +18,7 @@ extension TraktManager {
      🔒 OAuth: Required
      ✨ Extended Info
      */
+    @available(*, deprecated, message: "Use recommendations.movies().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getRecommendedMovies(completion: @escaping ObjectCompletionHandler<[TraktMovie]>) -> URLSessionDataTask? {
         return getRecommendations(.Movies, completion: completion)
@@ -38,6 +39,7 @@ extension TraktManager {
      
      🔒 OAuth: Required
      */
+    @available(*, deprecated, message: "Use recommendations.shows().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getRecommendedShows(completion: @escaping ObjectCompletionHandler<[TraktShow]>) -> URLSessionDataTask? {
         return getRecommendations(.Shows, completion: completion)

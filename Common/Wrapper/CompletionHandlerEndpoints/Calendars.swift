@@ -18,6 +18,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use myCalendar.shows(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func myShows(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarShow]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/my/shows/\(dateString)/\(days)",
@@ -36,6 +37,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use myCalendar.newShows(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func myNewShows(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarShow]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/my/shows/new/\(dateString)/\(days)",
@@ -54,6 +56,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use myCalendar.seasonPremieres(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func mySeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarShow]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/my/shows/premieres/\(dateString)/\(days)",
@@ -72,6 +75,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use myCalendar.movies(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func myMovies(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarMovie]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/my/movies/\(dateString)/\(days)",
@@ -89,6 +93,7 @@ extension TraktManager {
      ✨ Extended Info
      🎚 Filters
      */
+    @available(*, deprecated, message: "Use myCalendar.dvd(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func myDVDReleases(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarMovie]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/my/dvd/\(dateString)/\(days)",
@@ -105,6 +110,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use allCalendar.shows(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func allShows(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarShow]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/all/shows/\(dateString)/\(days)",
@@ -121,6 +127,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use allCalendar.newShows(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func allNewShows(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarShow]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/all/shows/new/\(dateString)/\(days)",
@@ -137,6 +144,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use allCalendar.seasonPremieres(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func allSeasonPremieres(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarShow]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/all/shows/premieres/\(dateString)/\(days)",
@@ -153,6 +161,7 @@ extension TraktManager {
      - parameter startDateString: Start the calendar on this date. E.X. `2014-09-01`
      - parameter days: Number of days to display. Example: `7`.
      */
+    @available(*, deprecated, message: "Use allCalendar.movies(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func allMovies(startDateString dateString: String, days: Int, extended: [ExtendedType] = [.Min], filters: [Filter]? = nil, completion: @escaping ObjectCompletionHandler<[CalendarMovie]>) -> URLSessionDataTask? {
 
@@ -175,6 +184,7 @@ extension TraktManager {
     
     /**
  */
+    @available(*, deprecated, message: "Use allCalendar.dvd(startDate:days:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func allDVD(startDateString dateString: String, days: Int, completion: @escaping ObjectCompletionHandler<[CalendarMovie]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "calendars/all/dvd/\(dateString)/\(days)",

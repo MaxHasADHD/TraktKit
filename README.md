@@ -23,7 +23,47 @@ When prompted, simply search for TraktKit or specify the project's GitHub reposi
 
 ```
 https://github.com/MaxHasADHD/TraktKit
-```  
+```
+
+## Migrating to Version 2.0.0
+
+TraktKit 2.0.0 introduces a modern async/await API while maintaining backwards compatibility through deprecated completion handler methods. All completion handler-based methods are now deprecated and will be removed in version 3.0.0.
+
+For detailed migration instructions and examples, see the [Migration Guide](MIGRATION_GUIDE.md).
+
+### Key Changes in 2.0.0
+
+- **Swift 6.0 with strict concurrency** - Full support for Swift 6 concurrency features
+- **Async/await API** - All endpoints now support modern async/await syntax
+- **Deprecated completion handlers** - Legacy completion handler methods are marked as deprecated with migration guidance
+- **Resource-based organization** - Cleaner, more intuitive API structure
+- **Type-safe requests** - Improved type safety with chainable route builders
+
+### Quick Migration Example
+
+**Before (Completion Handlers):**
+```swift
+traktManager.getTrendingMovies { result in
+    switch result {
+    case .success(let movies):
+        print("Found \(movies.count) trending movies")
+    case .error(let error):
+        print("Error: \(error)")
+    }
+}
+```
+
+**After (Async/Await):**
+```swift
+let movies = try await traktManager.movies
+    .trending()
+    .perform()
+    .object
+
+print("Found \(movies.count) trending movies")
+```
+
+For more examples and detailed migration steps, see [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md).
 
 ### Usage
 See the [example project](https://github.com/MaxHasADHD/TraktKit/tree/master/Example) for usage

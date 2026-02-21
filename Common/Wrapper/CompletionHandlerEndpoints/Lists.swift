@@ -15,6 +15,7 @@ extension TraktManager {
 
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use lists.trending().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getTrendingLists(completion: @escaping ObjectCompletionHandler<[TraktTrendingList]>) -> URLSessionDataTask? {
         guard
@@ -34,6 +35,7 @@ extension TraktManager {
 
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use lists.popular().perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPopularLists(completion: @escaping ObjectCompletionHandler<[TraktTrendingList]>) -> URLSessionDataTask? {
         guard

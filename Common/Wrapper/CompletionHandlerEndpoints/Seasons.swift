@@ -20,6 +20,7 @@ extension TraktManager {
      **Note**: This returns a lot of data, so please only use this method if you need it all!
      
      */
+    @available(*, deprecated, message: "Use seasons.summary(showId:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getSeasons<T: CustomStringConvertible>(showID id: T, extended: [ExtendedType] = [.Min], completion: @escaping SeasonsCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons",
@@ -39,6 +40,7 @@ extension TraktManager {
 
      ✨ Extended
      */
+    @available(*, deprecated, message: "Use seasons.season(showId:season:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getEpisodesForSeason<T: CustomStringConvertible>(showID id: T, season: NSNumber, translatedInto language: String? = nil, extended: [ExtendedType] = [.Min], completion: @escaping EpisodesCompletionHandler) -> URLSessionDataTask? {
 
@@ -60,6 +62,7 @@ extension TraktManager {
      
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use comments.item(type:id:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getAllSeasonComments<T: CustomStringConvertible>(showID id: T, season: NSNumber, pagination: Pagination? = nil, completion: @escaping CommentsCompletionHandler) -> URLSessionDataTask? {
         var query: [String: String] = [:]
@@ -86,6 +89,7 @@ extension TraktManager {
 
      📄 Pagination
      */
+    @available(*, deprecated, message: "Use seasons.lists(showId:season:listType:sortBy:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getListsContainingSeason<T: CustomStringConvertible>(showID id: T, season: NSNumber, listType: ListType? = nil, sortBy: ListSortType? = nil, pagination: Pagination? = nil, completion: @escaping paginatedCompletionHandler<TraktList>) -> URLSessionDataTask? {
         var path = "shows/\(id)/seasons/\(season)/lists"
@@ -119,6 +123,7 @@ extension TraktManager {
     /**
      Returns rating (between 0 and 10) and distribution for a season.
      */
+    @available(*, deprecated, message: "Use seasons.ratings(showId:season:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getSeasonRatings<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: @escaping RatingDistributionCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/ratings",
@@ -134,6 +139,7 @@ extension TraktManager {
     /**
      Returns lots of season stats.
      */
+    @available(*, deprecated, message: "Use seasons.stats(showId:season:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getSeasonStatistics<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: @escaping statsCompletionHandler) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/stats",
@@ -149,6 +155,7 @@ extension TraktManager {
     /**
      Returns all users watching this season right now.
      */
+    @available(*, deprecated, message: "Use seasons.watching(showId:season:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getUsersWatchingSeasons<T: CustomStringConvertible>(showID id: T, season: NSNumber, completion: @escaping ObjectCompletionHandler<[User]>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/watching",
@@ -171,6 +178,7 @@ extension TraktManager {
      
      **Note**: This returns a lot of data, so please only use this extended parameter if you actually need it!
      */
+    @available(*, deprecated, message: "Use seasons.people(showId:season:).perform() with async/await instead. See MIGRATION_GUIDE.md for examples.")
     @discardableResult
     public func getPeopleInSeason<T: CustomStringConvertible>(showID id: T, season: NSNumber, extended: [ExtendedType] = [.Min], completion: @escaping ObjectCompletionHandler<CastAndCrew<TVCastMember, TVCrewMember>>) -> URLSessionDataTask? {
         guard let request = try? mutableRequest(forPath: "shows/\(id)/seasons/\(season)/people",
