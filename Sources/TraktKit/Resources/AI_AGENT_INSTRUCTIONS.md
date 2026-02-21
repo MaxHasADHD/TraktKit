@@ -85,7 +85,26 @@ Report what you find to the user before making any changes.
 
 ### Documentation comments
 
-Copy the description from the Trakt API docs and include the standard emoji capability indicators exactly as they appear:
+Every function must include documentation with the following elements:
+
+1. **Description** - Copy from the Trakt API docs
+2. **Endpoint line** - HTTP method and path matching the API Blueprint format from `docs/api/trakt.apib`
+3. **Capability indicators** - Standard emoji indicators from the API docs
+
+**Format:**
+
+```swift
+/// Get all movie releases for a country
+///
+/// **Endpoint:** `GET /movies/{id}/releases/{country}`
+/// ✨ Extended Info
+public func releases(country: String) -> Route<[TraktMovieRelease]> { ... }
+```
+
+**Key rules:**
+- Use `{param}` notation (not `:param`) to match the API Blueprint format
+- Place the endpoint line immediately after the description, before capability indicators
+- Include all applicable capability indicators from the table below
 
 | Indicator | Meaning |
 |---|---|

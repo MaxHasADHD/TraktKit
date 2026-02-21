@@ -30,6 +30,8 @@ public struct EpisodeResource {
      > note:  If the `first_aired` is unknown, it will be set to `null`.
 
      > note: When getting `full` extended info, the `episode_type` field can have a value of `standard`, `series_premiere` (season 1, episode 1), `season_premiere` (episode 1), `mid_season_finale`, `mid_season_premiere` (the next episode after the mid season finale), `season_finale`, or `series_finale` (last episode to air for an ended show).
+
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}`
      */
     public func summary() -> Route<TraktEpisode> {
         Route(path: path, method: .GET, traktManager: traktManager)
@@ -37,6 +39,8 @@ public struct EpisodeResource {
 
     /**
      Returns all translations for an episode, including language and translated values for title and overview.
+
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/translations/{language}`
 
      - parameter language: 2 character language code
      */
@@ -49,7 +53,9 @@ public struct EpisodeResource {
 
      > note: If you send OAuth, comments from blocked users will be automatically filtered out.
 
-     🔓 OAuth Optional 📄 Pagination 😁 Emojis
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/comments/{sort}`
+
+     🔓 OAuth Optional • 📄 Pagination • 😁 Emojis
 
      - parameter sort: how to sort Example: `newest`.
      - parameter authenticate: comments from blocked users will be automatically filtered out if `true`.
@@ -61,6 +67,8 @@ public struct EpisodeResource {
     /**
      Returns all lists that contain this episode. By default, `personal` lists are returned sorted by the most `popular`.
 
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/lists`
+
      📄 Pagination
      */
     public func containingLists() -> Route<[TraktList]> {
@@ -70,7 +78,9 @@ public struct EpisodeResource {
     /**
      Returns all lists that contain this episode. By default, `personal` lists are returned sorted by the most `popular`.
 
-     📄 Pagination 😁 Emojis
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/lists/{type}/{sort}`
+
+     📄 Pagination • 😁 Emojis
 
      - parameter type: Filter for a specific list type. Possible values:  `all` , `personal` , `official` , `watchlists` , `favorites` .
      - parameter sort: How to sort . Possible values:  `popular` , `likes` , `comments` , `items` , `added` , `updated` .
@@ -90,6 +100,8 @@ public struct EpisodeResource {
 
      > note: This returns a lot of data, so please only use this extended parameter if you actually need it!
 
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/people`
+
      ✨ Extended Info
      */
     public func people() -> Route<CastAndCrew<TVCastMember, TVCrewMember>> {
@@ -98,6 +110,8 @@ public struct EpisodeResource {
 
     /**
      Returns rating (between 0 and 10) and distribution for an episode.
+
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/ratings`
      */
     public func ratings() -> Route<RatingDistribution> {
         Route(paths: [path, "ratings"], method: .GET, traktManager: traktManager)
@@ -105,6 +119,8 @@ public struct EpisodeResource {
 
     /**
      Returns lots of episode stats.
+
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/stats`
      */
     public func stats() -> Route<TraktStats> {
         Route(paths: [path, "stats"], method: .GET, traktManager: traktManager)
@@ -112,6 +128,8 @@ public struct EpisodeResource {
 
     /**
      Returns all users watching this episode right now.
+
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/watching`
 
      ✨ Extended Info
      */
@@ -121,6 +139,8 @@ public struct EpisodeResource {
 
     /**
      Returns all videos including trailers, teasers, clips, and featurettes.
+
+     **Endpoint:** `GET /shows/{id}/seasons/{season}/episodes/{episode}/videos`
 
      ✨ Extended Info
      */

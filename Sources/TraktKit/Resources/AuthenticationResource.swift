@@ -25,6 +25,8 @@ extension TraktManager {
          Use the authorization `code` GET parameter sent back to your `redirect_uri` to get an `access_token`. Save the `access_token` so your app can authenticate the user by sending the `Authorization` header.
 
          The `access_token` is valid for **24 hours**. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate.
+
+         **Endpoint:** `POST /oauth/token`
          */
         public func getAccessToken(for code: String) -> Route<AuthenticationInfo> {
             let body = OAuthBody(
@@ -45,6 +47,8 @@ extension TraktManager {
 
         /**
          Use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. The `access_token` is valid for **24 hours** before it needs to be refreshed again.
+
+         **Endpoint:** `POST /oauth/token`
          */
         public func getAccessToken(from refreshToken: String) -> Route<AuthenticationInfo> {
             let body = OAuthBody(
@@ -65,6 +69,8 @@ extension TraktManager {
 
         /**
          An `access_token` can be revoked when a user signs out of their Trakt account in your app. This is not required, but might improve the user experience so the user doesn't have an unused app connection hanging around.
+
+         **Endpoint:** `POST /oauth/revoke`
          */
         public func revokeToken(_ accessToken: String) -> EmptyRoute {
             let body = OAuthBody(
@@ -89,6 +95,8 @@ extension TraktManager {
          **QR Code**
 
          You might consider generating a QR code for the user to easily scan on their mobile device. The QR code should be a URL that redirects to the `verification_url` and appends the `user_code`. For example, `https://trakt.tv/activate/5055CC52` would load the Trakt hosted `verification_url` and pre-fill in the `user_code`.
+
+         **Endpoint:** `POST /oauth/device/code`
          */
         public func generateDeviceCode() -> Route<DeviceCode> {
             let body = OAuthBody(clientId: traktManager.clientId)
@@ -107,6 +115,8 @@ extension TraktManager {
          When you receive a `200` success response, save the `access_token` so your app can authenticate the user in methods that require it. The `access_token` is valid for 24 hours. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. Check below for all the error codes that you should handle.
 
          > important: This function does **NOT** poll for the access token. This makes a single request to the endpoint and returns authentication info if available, and the status code used for polling. Use ``../TraktManager/pollForAccessToken(deviceCode:)`` to poll for the access token.
+
+         **Endpoint:** `POST /oauth/device/token`
          */
         public func requestAccessToken(code: String) async throws -> (AuthenticationInfo?, Int) {
             let body = OAuthBody(

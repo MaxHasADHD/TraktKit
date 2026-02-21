@@ -22,7 +22,9 @@ extension TraktManager {
         /**
          Add a new comment to a movie, show, season, episode, or list.
 
-         🔒 OAuth Required 😁 Emojis
+         **Endpoint:** `POST /comments`
+
+         🔒 OAuth Required • 😁 Emojis
 
          - parameter body: The comment body containing the media item, comment text, and optional spoiler flag.
          */
@@ -35,7 +37,9 @@ extension TraktManager {
         /**
          Returns all comments with the most likes and replies over the last 7 days. You can optionally filter by the `commentType` and media `type`.
 
-         📄 Pagination ✨ Extended Info
+         **Endpoint:** `GET /comments/trending/{comment_type}/{type}`
+
+         📄 Pagination • ✨ Extended Info
 
          - parameter commentType: Filter by comment type.
          - parameter type: Filter by media type.
@@ -56,7 +60,9 @@ extension TraktManager {
         /**
          Returns the most recently written comments across all of Trakt. You can optionally filter by the `commentType` and media `type`.
 
-         📄 Pagination ✨ Extended Info
+         **Endpoint:** `GET /comments/recent/{comment_type}/{type}`
+
+         📄 Pagination • ✨ Extended Info
 
          - parameter commentType: Filter by comment type.
          - parameter type: Filter by media type.
@@ -77,7 +83,9 @@ extension TraktManager {
         /**
          Returns the most recently updated comments across all of Trakt. You can optionally filter by the `commentType` and media `type`.
 
-         📄 Pagination ✨ Extended Info
+         **Endpoint:** `GET /comments/updates/{comment_type}/{type}`
+
+         📄 Pagination • ✨ Extended Info
 
          - parameter commentType: Filter by comment type.
          - parameter type: Filter by media type.
@@ -110,6 +118,8 @@ extension TraktManager {
 
         /**
          Returns a single comment and indicates how many replies it has.
+
+         **Endpoint:** `GET /comments/{id}`
          */
         public func get() -> Route<Comment> {
             Route(paths: ["comments", id], method: .GET, requiresAuthentication: false, traktManager: traktManager)
@@ -118,7 +128,9 @@ extension TraktManager {
         /**
          Update a single comment created within the last hour. The OAuth user must match the author of the comment.
 
-         🔒 OAuth Required 😁 Emojis
+         **Endpoint:** `PUT /comments/{id}`
+
+         🔒 OAuth Required • 😁 Emojis
 
          - parameter body: The updated comment body.
          */
@@ -128,6 +140,8 @@ extension TraktManager {
 
         /**
          Delete a single comment created within the last hour. The OAuth user must match the author of the comment.
+
+         **Endpoint:** `DELETE /comments/{id}`
 
          🔒 OAuth Required
          */
@@ -140,6 +154,8 @@ extension TraktManager {
         /**
          Returns all replies for a comment.
 
+         **Endpoint:** `GET /comments/{id}/replies`
+
          📄 Pagination
          */
         public func replies() -> Route<PagedObject<[Comment]>> {
@@ -149,7 +165,9 @@ extension TraktManager {
         /**
          Add a new reply to an existing comment.
 
-         🔒 OAuth Required 😁 Emojis
+         **Endpoint:** `POST /comments/{id}/replies`
+
+         🔒 OAuth Required • 😁 Emojis
 
          - parameter body: The reply body.
          */
@@ -162,6 +180,8 @@ extension TraktManager {
         /**
          Returns the media item this comment is attached to. The media type can be `movie`, `show`, `season`, `episode`, or `list`.
 
+         **Endpoint:** `GET /comments/{id}/item`
+
          ✨ Extended Info
          */
         public func item() -> Route<TraktAttachedMediaItem> {
@@ -172,6 +192,8 @@ extension TraktManager {
 
         /**
          Returns all users who liked a comment.
+
+         **Endpoint:** `GET /comments/{id}/likes`
 
          📄 Pagination
          */
@@ -184,6 +206,8 @@ extension TraktManager {
         /**
          Votes help determine popular comments. Only one like is allowed per comment per user.
 
+         **Endpoint:** `POST /comments/{id}/like`
+
          🔒 OAuth Required
          */
         public func like() -> EmptyRoute {
@@ -192,6 +216,8 @@ extension TraktManager {
 
         /**
          Remove a like on a comment.
+
+         **Endpoint:** `DELETE /comments/{id}/like`
 
          🔒 OAuth Required
          */

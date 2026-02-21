@@ -20,6 +20,8 @@ extension TraktManager {
 
         /**
          Returns all shows being watched right now. Shows with the most users are returned first.
+
+         **Endpoint:** `GET /shows/trending`
          */
         public func trending() -> Route<PagedObject<[TraktTrendingShow]>> {
             Route(path: "shows/trending", method: .GET, traktManager: traktManager)
@@ -27,6 +29,8 @@ extension TraktManager {
 
         /**
          Returns the most popular shows. Popularity is calculated using the rating percentage and the number of ratings.
+
+         **Endpoint:** `GET /shows/popular`
          */
         public func popular() -> Route<PagedObject<[TraktShow]>> {
             Route(path: "shows/popular", method: .GET, traktManager: traktManager)
@@ -34,6 +38,8 @@ extension TraktManager {
 
         /**
          Returns the most favorited shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+
+         **Endpoint:** `GET /shows/favorited/{period}`
          */
         public func favorited(period: Period? = nil) -> Route<PagedObject<[TraktFavoritedShow]>> {
             Route(paths: ["shows/favorited", period], method: .GET, traktManager: traktManager)
@@ -41,6 +47,8 @@ extension TraktManager {
 
         /**
          Returns the most played (a single user can watch multiple episodes multiple times) shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+
+         **Endpoint:** `GET /shows/played/{period}`
          */
         public func played(period: Period? = nil) -> Route<PagedObject<[TraktMostShow]>> {
             Route(paths: ["shows/played", period], method: .GET, traktManager: traktManager)
@@ -48,6 +56,8 @@ extension TraktManager {
 
         /**
          Returns the most watched (unique users) shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+
+         **Endpoint:** `GET /shows/watched/{period}`
          */
         public func watched(period: Period? = nil) -> Route<PagedObject<[TraktMostShow]>> {
             Route(paths: ["shows/watched", period], method: .GET, traktManager: traktManager)
@@ -55,6 +65,8 @@ extension TraktManager {
 
         /**
          Returns the most collected (unique users) shows in the specified time `period`, defaulting to `weekly`. All stats are relative to the specific time `period`.
+
+         **Endpoint:** `GET /shows/collected/{period}`
          */
         public func collected(period: Period? = nil) -> Route<PagedObject<[TraktMostShow]>> {
             Route(paths: ["shows/collected", period], method: .GET, traktManager: traktManager)
@@ -62,6 +74,8 @@ extension TraktManager {
 
         /**
          Returns the most anticipated shows based on the number of lists a show appears on.
+
+         **Endpoint:** `GET /shows/anticipated`
          */
         public func anticipated() -> Route<PagedObject<[TraktAnticipatedShow]>> {
             Route(path: "shows/anticipated", method: .GET, traktManager: traktManager)
@@ -69,6 +83,8 @@ extension TraktManager {
 
         /**
          Returns all shows updated since the specified date. We recommended storing the date you can be efficient using this method moving forward.
+
+         **Endpoint:** `GET /shows/updates/{start_date}`
 
          📄 Pagination
 
@@ -83,6 +99,8 @@ extension TraktManager {
 
         /**
          Returns all show Trakt IDs updated since the specified UTC date and time. We recommended storing the X-Start-Date header you can be efficient using this method moving forward. By default, 10 results are returned. You can send a limit to get up to 100 results per page.
+
+         **Endpoint:** `GET /shows/updates/id/{start_date}`
 
          📄 Pagination
 
@@ -119,6 +137,8 @@ extension TraktManager {
 
         /**
          Returns a single shows's details. If you request extended info, the `airs` object is relative to the show's country. You can use the `day`, `time`, and `timezone` to construct your own date then convert it to whatever timezone your user is in.
+
+         **Endpoint:** `GET /shows/{id}`
          */
         public func summary() -> Route<TraktShow> {
             Route(path: path, method: .GET, traktManager: traktManager)
@@ -126,6 +146,8 @@ extension TraktManager {
 
         /**
          Returns all title aliases for a show. Includes country where name is different.
+
+         **Endpoint:** `GET /shows/{id}/aliases`
          */
         public func aliases() -> Route<[Alias]> {
             Route(paths: [path, "aliases"], method: .GET, traktManager: traktManager)
@@ -133,6 +155,8 @@ extension TraktManager {
 
         /**
          Returns all content certifications for a show, including the country.
+
+         **Endpoint:** `GET /shows/{id}/certifications`
          */
         public func certifications() -> Route<Certifications> {
             Route(paths: [path, "certifications"], method: .GET, traktManager: traktManager)
@@ -140,6 +164,8 @@ extension TraktManager {
 
         /**
          Returns all translations for a show, including language and translated values for title and overview.
+
+         **Endpoint:** `GET /shows/{id}/translations/{language}`
 
          - parameter language: 2 character language code Example: `es`
          */
@@ -150,7 +176,9 @@ extension TraktManager {
         /**
          Returns all top level comments for a show. By default, the `newest` comments are returned first. Other sorting options include `oldest`, most `likes`, most `replies`, `highest` rated, `lowest` rated, most `plays`, and highest `watched` percentage.
 
-         🔓 OAuth Optional 📄 Pagination 😁 Emojis
+         **Endpoint:** `GET /shows/{id}/comments/{sort}`
+
+         🔓 OAuth Optional • 📄 Pagination • 😁 Emojis
 
          > note: If you send OAuth, comments from blocked users will be automatically filtered out.
 
@@ -164,7 +192,9 @@ extension TraktManager {
         /**
          Returns all lists that contain this show. By default, `personal` lists are returned sorted by the most `popular`.
 
-         📄 Pagination 😁 Emojis
+         **Endpoint:** `GET /shows/{id}/lists/{type}/{sort}`
+
+         📄 Pagination • 😁 Emojis
 
          - parameter type: Filter for a specific list type. Possible values:  `all` , `personal` , `official` , `watchlists` , `favorites` .
          - parameter sort: How to sort . Possible values:  `popular` , `likes` , `comments` , `items` , `added` , `updated` .
@@ -185,6 +215,8 @@ extension TraktManager {
          By default, the `last_episode` and `next_episode` are calculated using the last `aired` episode the user has collected, even if they've collected older episodes more recently. To use their last collected episode for these calculations, set the `last_activity` flag to `collected`.
 
          > note: Only aired episodes are used to calculate progress. Episodes in the future or without an air date are ignored.
+
+         **Endpoint:** `GET /shows/{id}/progress/collection`
 
          🔒 OAuth Required
 
@@ -216,6 +248,8 @@ extension TraktManager {
          By default, the `last_episode` and `next_episode` are calculated using the last `aired` episode the user has watched, even if they've watched older episodes more recently. To use their last watched episode for these calculations, set the `last_activity` flag to watched.
 
          > note: Only aired episodes are used to calculate progress. Episodes in the future or without an air date are ignored.
+
+         **Endpoint:** `GET /shows/{id}/progress/watched`
 
          🔒 OAuth Required
 
@@ -250,6 +284,8 @@ extension TraktManager {
 
          > note: This returns a lot of data, so please only use this extended parameter if you actually need it!
 
+         **Endpoint:** `GET /shows/{id}/people`
+
          ✨ Extended Info
          */
         public func people() -> Route<CastAndCrew<TVCastMember, TVCrewMember>> {
@@ -258,6 +294,8 @@ extension TraktManager {
 
         /**
          Returns rating (between 0 and 10) and distribution for a show.
+
+         **Endpoint:** `GET /shows/{id}/ratings`
          */
         public func ratings() -> Route<RatingDistribution> {
             Route(paths: [path, "ratings"], method: .GET, traktManager: traktManager)
@@ -266,7 +304,9 @@ extension TraktManager {
         /**
          Returns related and similar shows.
 
-         📄 Pagination ✨ Extended Info
+         **Endpoint:** `GET /shows/{id}/related`
+
+         📄 Pagination • ✨ Extended Info
          */
         public func relatedShows() -> Route<PagedObject<[TraktShow]>> {
             Route(paths: [path, "related"], method: .GET, traktManager: traktManager)
@@ -274,6 +314,8 @@ extension TraktManager {
 
         /**
          Returns lots of show stats.
+
+         **Endpoint:** `GET /shows/{id}/stats`
          */
         public func stats() -> Route<TraktStats> {
             Route(paths: [path, "stats"], method: .GET, traktManager: traktManager)
@@ -281,6 +323,8 @@ extension TraktManager {
 
         /**
          Returns all studios for a show.
+
+         **Endpoint:** `GET /shows/{id}/studios`
          */
         public func studios() -> Route<[TraktStudio]> {
             Route(paths: [path, "studios"], method: .GET, traktManager: traktManager)
@@ -288,6 +332,8 @@ extension TraktManager {
 
         /**
          Returns all users watching this show right now.
+
+         **Endpoint:** `GET /shows/{id}/watching`
 
          ✨ Extended Info
          */
@@ -298,6 +344,8 @@ extension TraktManager {
         /**
          Returns the next scheduled to air episode. If no episode is found, a `204` HTTP status code will be returned.
 
+         **Endpoint:** `GET /shows/{id}/next_episode`
+
          ✨ Extended Info
          */
         public func nextEpisode() -> Route<TraktEpisode> {
@@ -307,6 +355,8 @@ extension TraktManager {
         /**
          Returns the most recently aired episode. If no episode is found, a `204` HTTP status code will be returned.
 
+         **Endpoint:** `GET /shows/{id}/last_episode`
+
          ✨ Extended Info
          */
         public func lastEpisode() -> Route<TraktEpisode> {
@@ -315,6 +365,8 @@ extension TraktManager {
 
         /**
          Returns all videos including trailers, teasers, clips, and featurettes.
+
+         **Endpoint:** `GET /shows/{id}/videos`
 
          ✨ Extended Info
          */
@@ -327,7 +379,9 @@ extension TraktManager {
 
          > note: If this show is already queued, a `409` HTTP status code will returned.
 
-         🔥 VIP Only 🔒 OAuth Required
+         **Endpoint:** `GET /shows/{id}/refresh`
+
+         🔥 VIP Only • 🔒 OAuth Required
          */
         public func refreshMetadata() -> EmptyRoute {
             EmptyRoute(paths: [path, "refresh"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
@@ -341,6 +395,8 @@ extension TraktManager {
          If you add `?extended=episodes` to the URL, it will return all episodes for all seasons.
 
          > note: This returns a lot of data, so please only use this extended parameter if you actually need it!
+
+         **Endpoint:** `GET /shows/{id}/seasons`
 
          ✨ Extended Info
          */

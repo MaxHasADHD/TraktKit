@@ -24,6 +24,8 @@ extension TraktManager {
 
          > note: Only `us` certifications are currently returned.
 
+         **Endpoint:** `GET /certifications/{type}`
+
          - parameter type: The media type to retrieve certifications for (`movies` or `shows`).
          */
         public func list(type: WatchedType) -> Route<Certifications> {

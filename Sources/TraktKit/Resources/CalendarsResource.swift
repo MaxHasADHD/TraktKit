@@ -23,7 +23,9 @@ extension TraktManager {
         /**
          Returns all shows airing during the time period specified.
 
-         🔒 OAuth Required ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/my/shows/{start_date}/{days}`
+
+         🔒 OAuth Required • ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -40,7 +42,9 @@ extension TraktManager {
         /**
          Returns all new show premieres (season 1, episode 1) airing during the time period specified.
 
-         🔒 OAuth Required ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/my/shows/new/{start_date}/{days}`
+
+         🔒 OAuth Required • ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -57,7 +61,9 @@ extension TraktManager {
         /**
          Returns all show premieres (any season, episode 1) airing during the time period specified.
 
-         🔒 OAuth Required ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/my/shows/premieres/{start_date}/{days}`
+
+         🔒 OAuth Required • ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -74,7 +80,9 @@ extension TraktManager {
         /**
          Returns all movies with a release date during the time period specified.
 
-         🔒 OAuth Required ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/my/movies/{start_date}/{days}`
+
+         🔒 OAuth Required • ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -91,7 +99,9 @@ extension TraktManager {
         /**
          Returns all movies with a DVD release date during the time period specified.
 
-         🔒 OAuth Required ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/my/dvd/{start_date}/{days}`
+
+         🔒 OAuth Required • ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -120,7 +130,9 @@ extension TraktManager {
         /**
          Returns all shows airing during the time period specified.
 
-         ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/all/shows/{start_date}/{days}`
+
+         ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -136,7 +148,9 @@ extension TraktManager {
         /**
          Returns all new show premieres (season 1, episode 1) airing during the time period specified.
 
-         ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/all/shows/new/{start_date}/{days}`
+
+         ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -152,7 +166,9 @@ extension TraktManager {
         /**
          Returns all show premieres (any season, episode 1) airing during the time period specified.
 
-         ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/all/shows/premieres/{start_date}/{days}`
+
+         ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -168,7 +184,9 @@ extension TraktManager {
         /**
          Returns all movies with a release date during the time period specified.
 
-         ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/all/movies/{start_date}/{days}`
+
+         ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.
@@ -184,7 +202,9 @@ extension TraktManager {
         /**
          Returns all movies with a DVD release date during the time period specified.
 
-         ✨ Extended Info 🎚 Filters
+         **Endpoint:** `GET /calendars/all/dvd/{start_date}/{days}`
+
+         ✨ Extended Info • 🎚 Filters
 
          - parameter startDate: Start the calendar on this date. Defaults to today.
          - parameter days: Number of days to display. Defaults to `7`.

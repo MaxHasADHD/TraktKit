@@ -23,7 +23,9 @@ extension TraktManager {
         /**
          Add a note for a movie, show, season, episode, or person.
 
-         🔥 VIP Enhanced 🔒 OAuth Required 😁 Emojis
+         **Endpoint:** `POST /notes`
+
+         🔥 VIP Enhanced • 🔒 OAuth Required • 😁 Emojis
 
          - parameter body: The note body containing the media item, note text, and optional metadata.
          */
@@ -49,7 +51,9 @@ extension TraktManager {
         /**
          Get a single note.
 
-         🔒 OAuth Required 😁 Emojis
+         **Endpoint:** `GET /notes/{id}`
+
+         🔒 OAuth Required • 😁 Emojis
 
          - returns: The note.
          */
@@ -60,7 +64,9 @@ extension TraktManager {
         /**
          Update a single note.
 
-         🔒 OAuth Required 😁 Emojis
+         **Endpoint:** `PUT /notes/{id}`
+
+         🔒 OAuth Required • 😁 Emojis
 
          - parameter body: The updated note body.
          - returns: The updated note.
@@ -72,6 +78,8 @@ extension TraktManager {
         /**
          Delete a single note.
 
+         **Endpoint:** `DELETE /notes/{id}`
+
          🔒 OAuth Required
          */
         public func delete() -> EmptyRoute {
@@ -80,6 +88,8 @@ extension TraktManager {
 
         /**
          Get the media item attached to a note.
+
+         **Endpoint:** `GET /notes/{id}/item`
 
          ✨ Extended Info
 

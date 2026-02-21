@@ -32,6 +32,8 @@ extension TraktManager {
 
          > note: If a checkin is already in progress, a  ``TraktManager/TraktError/resourceAlreadyCreated`` error will thrown. Use ``TraktManager/UsersResource/watching()`` to get the timestamp of when the check-in is completed.
 
+         **Endpoint:** `POST /checkin`
+
          🔒 OAuth Required
          */
         public func checkInto(
@@ -56,6 +58,8 @@ extension TraktManager {
 
         /**
          Removes any active checkins, no need to provide a specific item.
+
+         **Endpoint:** `DELETE /checkin`
 
          🔒 OAuth Required
          */

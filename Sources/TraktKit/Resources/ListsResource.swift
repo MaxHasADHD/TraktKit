@@ -22,7 +22,9 @@ extension TraktManager {
         /**
          Returns all lists with the most likes and comments over the last 7 days.
 
-         📄 Pagination 😁 Emojis
+         **Endpoint:** `GET /lists/trending`
+
+         📄 Pagination • 😁 Emojis
          */
         public func trending() -> Route<PagedObject<[TraktTrendingList]>> {
             Route(path: "lists/trending", method: .GET, traktManager: traktManager)
@@ -33,7 +35,9 @@ extension TraktManager {
         /**
          Returns the most popular lists. Popularity is calculated using the total number of likes and comments.
 
-         📄 Pagination 😁 Emojis
+         **Endpoint:** `GET /lists/popular`
+
+         📄 Pagination • 😁 Emojis
          */
         public func popular() -> Route<PagedObject<[TraktTrendingList]>> {
             Route(path: "lists/popular", method: .GET, traktManager: traktManager)
@@ -63,6 +67,8 @@ extension TraktManager {
         /**
          Returns a single list. Use the ``TraktManager/ListResource/items(type:)`` method to get the actual items this list contains.
 
+         **Endpoint:** `GET /lists/{id}`
+
          😁 Emojis
          */
         public func summary() -> Route<TraktList> {
@@ -76,7 +82,9 @@ extension TraktManager {
 
          Each list item contains a `notes` field with text entered by the user.
 
-         📄 Pagination ✨ Extended Info 😁 Emojis
+         **Endpoint:** `GET /lists/{id}/items/{type}`
+
+         📄 Pagination • ✨ Extended Info • 😁 Emojis
 
          - parameter type: Filter for a specific item type. Possible values: `movie`, `show`, `season`, `episode`, `person`.
          */
@@ -91,7 +99,9 @@ extension TraktManager {
 
          > note: If you send OAuth, comments from blocked users will be automatically filtered out.
 
-         🔓 OAuth Optional 📄 Pagination 😁 Emojis
+         **Endpoint:** `GET /lists/{id}/comments/{sort}`
+
+         🔓 OAuth Optional • 📄 Pagination • 😁 Emojis
 
          - parameter sort: How to sort. Possible values: `newest`, `oldest`, `likes`, `replies`.
          */
@@ -104,6 +114,8 @@ extension TraktManager {
         /**
          Returns all users who liked a list.
 
+         **Endpoint:** `GET /lists/{id}/likes`
+
          📄 Pagination
          */
         public func likes() -> Route<PagedObject<[Like]>> {
@@ -113,6 +125,8 @@ extension TraktManager {
         /**
          Like a list. This sends a notification to the list owner.
 
+         **Endpoint:** `POST /lists/{id}/like`
+
          🔒 OAuth Required
          */
         public func like() -> EmptyRoute {
@@ -121,6 +135,8 @@ extension TraktManager {
 
         /**
          Remove a like on a list.
+
+         **Endpoint:** `DELETE /lists/{id}/like`
 
          🔒 OAuth Required
          */

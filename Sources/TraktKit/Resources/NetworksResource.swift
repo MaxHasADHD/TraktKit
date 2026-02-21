@@ -22,6 +22,8 @@ extension TraktManager {
 
          Most TV shows have a TV network where it originally aired. Some API methods allow filtering by network, so it's good to cache this list in your app.
 
+         **Endpoint:** `GET /networks`
+
          📄 Pagination Optional
          */
         public func list() -> Route<[TraktStudio]> {

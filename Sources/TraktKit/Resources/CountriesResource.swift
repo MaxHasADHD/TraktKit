@@ -20,6 +20,8 @@ extension TraktManager {
         /**
          Get a list of all countries, including names and codes.
 
+         **Endpoint:** `GET /countries/{type}`
+
          - parameter type: The media type to retrieve countries for (`movies` or `shows`).
          */
         public func list(type: WatchedType) -> Route<[Languages]> {

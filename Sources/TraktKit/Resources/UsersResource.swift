@@ -23,24 +23,45 @@ extension TraktManager {
 
         // MARK: - Methods
         
+        /**
+         Get the user's account settings.
+         
+         **Endpoint:** `GET /users/settings`
+         
+         🔒 OAuth Required
+         */
         public func settings() -> Route<AccountSettings> {
             Route(paths: [path, "settings"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         // MARK: Following Requests
 
-        /// List a user's pending following requests that they're waiting for the other user's to approve.
+        /**
+         List a user's pending following requests that they're waiting for the other user's to approve.
+         
+         **Endpoint:** `GET /users/requests/following`
+         
+         🔒 OAuth Required
+         */
         public func getPendingFollowingRequests() -> Route<[FollowRequest]> {
             Route(paths: [path, "requests", "following"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
-        /// List a user's pending follow requests so they can either approve or deny them.
+        /**
+         List a user's pending follow requests so they can either approve or deny them.
+         
+         **Endpoint:** `GET /users/requests`
+         
+         🔒 OAuth Required
+         */
         public func getFollowerRequests() -> Route<[FollowRequest]> {
             Route(paths: [path, "requests"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         /**
          Approve a follower using the id of the request. If the id is not found, was already approved, or was already denied, a 404 error will be returned.
+         
+         **Endpoint:** `POST /users/requests/{id}`
 
          🔒 OAuth Required
          */
@@ -50,6 +71,8 @@ extension TraktManager {
 
         /**
          Deny a follower using the id of the request. If the id is not found, was already approved, or was already denied, a 404 error will be returned.
+         
+         **Endpoint:** `DELETE /users/requests/{id}`
 
          🔒 OAuth Required
          */
@@ -59,10 +82,10 @@ extension TraktManager {
 
         /**
          Get all saved filters a user has created. The path and query can be used to construct an API path to retrieve the saved data. Think of this like a dynamically updated list.
+         
+         **Endpoint:** `GET /users/saved_filters/{section}`
 
-         🔥 VIP Only
-         🔒 OAuth Required
-         📄 Pagination
+         🔥 VIP Only • 🔒 OAuth Required • 📄 Pagination
          */
         public func savedFilters(for section: String? = nil) -> Route<PagedObject<[SavedFilter]>> {
             Route(paths: [path, "saved_filters", section], method: .GET, requiresAuthentication: true, traktManager: traktManager)
@@ -72,8 +95,10 @@ extension TraktManager {
 
         /**
          Get hidden items for a section. This will return an array of standard media objects. You can optionally limit the type of results to return.
+         
+         **Endpoint:** `GET /users/hidden/{section}`
 
-         🔒 OAuth Required 📄 Pagination ✨ Extended Info
+         🔒 OAuth Required • 📄 Pagination • ✨ Extended Info
          */
         public func hiddenItems(for section: String, type: String? = nil) -> Route<PagedObject<[HiddenItem]>> {
             Route(
@@ -87,6 +112,8 @@ extension TraktManager {
 
         /**
          Hide items for a specific section. Here's what type of items can hidden for each section.
+         
+         **Endpoint:** `POST /users/hidden/{section}`
 
          🔒 OAuth Required
          */
@@ -102,6 +129,8 @@ extension TraktManager {
 
         /**
          Unhide items for a specific section. Here's what type of items can unhidden for each section.
+         
+         **Endpoint:** `POST /users/hidden/{section}/remove`
 
          🔒 OAuth Required
          */
@@ -119,8 +148,10 @@ extension TraktManager {
 
         /**
          Get a user's profile information. If the user is private, info will only be returned if you send OAuth and are either that user or an approved follower. Adding `?extended=vip` will return some additional VIP related fields so you can display the user's Trakt VIP status and year count.
+         
+         **Endpoint:** `GET /users/me`
 
-         🔓 OAuth Required ✨ Extended Info
+         🔓 OAuth Required • ✨ Extended Info
          */
         public func profile() -> Route<User> {
             UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).profile()
@@ -135,8 +166,10 @@ extension TraktManager {
          **Limits**
 
          If the user's list limit is exceeded, a ``TraktManager/TraktError/accountLimitExceeded``  error  is thrown. Use the ``TraktManager/CurrentUserResource/settings()`` method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
+         
+         **Endpoint:** `POST /users/me/lists`
 
-         🔥 VIP Enhanced 🔒 OAuth Required
+         🔥 VIP Enhanced • 🔒 OAuth Required
          */
         public func createPersonalList(_ body: TraktNewList) -> Route<TraktList> {
             Route(
@@ -150,6 +183,8 @@ extension TraktManager {
 
         /**
          Reorder all lists by sending the updated rank of list ids. Use the /users/:id/lists method to get all list ids.
+         
+         **Endpoint:** `POST /users/me/lists/reorder`
 
          🔒 OAuth Required
          */
@@ -171,8 +206,10 @@ extension TraktManager {
 
         /**
          Returns a single personal list. Use the ``TraktManager/UsersResource/itemsOnList(_:type:)`` method to get the actual items this list contains.
+         
+         **Endpoint:** `GET /users/me/lists/{id}`
 
-         🔓 OAuth Optional 😁 Emojis
+         🔓 OAuth Optional • 😁 Emojis
 
          - parameter listId: Trakt ID or Trakt slug
          */
@@ -182,6 +219,8 @@ extension TraktManager {
 
         /**
          Update a personal list by sending 1 or more parameters. If you update the list name, the original slug will still be retained so existing references to this list won't break.
+         
+         **Endpoint:** `POST /users/me/lists/{id}`
 
          🔒 OAuth Required
          */
@@ -197,6 +236,8 @@ extension TraktManager {
 
         /**
          Remove a personal list and all items it contains.
+         
+         **Endpoint:** `DELETE /users/me/lists/{id}`
 
          🔒 OAuth Required
          */
@@ -223,8 +264,10 @@ extension TraktManager {
          Default sorting is based on the list defaults and sent in the `X-Sort-By` and `X-Sort-How` headers. If you specify the `sort_by` and `sort_how` parameters, the response will be sorted based on those values and sent in the `X-Applied-Sort-By` and` X-Applied-Sort-How` headers.
 
          Some sort_by options are 🔥 **VIP Only** including `imdb_rating`, `tmdb_rating`, `rt_tomatometer`, `rt_audience`, `metascore`, `votes`, `imdb_votes`, and `tmdb_votes`. If sent for a non VIP, the items will fall back to `rank`.
+         
+         **Endpoint:** `GET /users/me/lists/{id}/items/{type}/{sort_by}/{sort_how}`
 
-         🔥 VIP Enhanced 🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+         🔥 VIP Enhanced • 🔓 OAuth Optional • 📄 Pagination Optional • ✨ Extended Info • 😁 Emojis
 
          - parameters:
          - listId: Trakt ID or Trakt slug
@@ -246,8 +289,10 @@ extension TraktManager {
          **Limits**
 
          If the user's list item limit is exceeded, a `420` HTTP error code is returned. Use the /users/settings method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
+         
+         **Endpoint:** `POST /users/me/lists/{id}/items`
 
-         🔥 VIP Enhanced 🔒 OAuth Required 😁 Emojis
+         🔥 VIP Enhanced • 🔒 OAuth Required • 😁 Emojis
          */
         public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<ListItemPostResult> {
             UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).addItemsToList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
@@ -255,6 +300,8 @@ extension TraktManager {
 
         /**
          Remove one or more items from a personal list.
+         
+         **Endpoint:** `POST /users/me/lists/{id}/items/remove`
 
          🔒 OAuth Required
          */
@@ -264,8 +311,10 @@ extension TraktManager {
 
         /**
          Update the notes on a single list item.
+         
+         **Endpoint:** `PUT /users/me/lists/{id}/items/{item_id}`
 
-         🔥 VIP Only 🔒 OAuth Required 😁 Emojis
+         🔥 VIP Only • 🔒 OAuth Required • 😁 Emojis
 
          - parameters:
             - listId: Trakt ID or Trakt slug of the list
@@ -279,6 +328,8 @@ extension TraktManager {
         /**
          Reorder all items on a list by sending the updated rank of list item ids.
          Use the `itemsOnList(_:type:sortBy:sortHow:)` method to get all list item ids.
+         
+         **Endpoint:** `POST /users/me/lists/{id}/items/reorder`
 
          🔒 OAuth Required
 
@@ -310,8 +361,10 @@ extension TraktManager {
 
         /**
          Get a user's profile information. If the user is private, info will only be returned if you send OAuth and are either that user or an approved follower. Adding `?extended=vip` will return some additional VIP related fields so you can display the user's Trakt VIP status and year count.
+         
+         **Endpoint:** `GET /users/{id}`
 
-         🔓 OAuth Optional ✨ Extended Info
+         🔓 OAuth Optional • ✨ Extended Info
          */
         public func profile() -> Route<User> {
             Route(paths: [path], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
@@ -327,8 +380,10 @@ extension TraktManager {
          If you add `?extended=comments` to the URL, it will return media objects for each comment like.
 
          > note: This returns a lot of data, so please only use this extended parameter if you actually need it!
+         
+         **Endpoint:** `GET /users/{id}/likes/{type}`
 
-         🔒 OAuth Optional 📄 Pagination
+         🔒 OAuth Optional • 📄 Pagination
          */
         public func likes(type: String? = nil) -> Route<PagedObject<[Like]>> {
             Route(paths: [path, "likes", type], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
@@ -344,8 +399,10 @@ extension TraktManager {
          Each show object contains `last_collected_at` and `last_updated_at` timestamps. Since users can set custom dates when they collected episodes, it is possible for `last_collected_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the show if you see a newer timestamp.
 
          If you add `?extended=metadata` to the URL, it will return the additional `media_type`, `resolution`, `hdr`, `audio`, `audio_channels` and `3d` metadata. It will use `null` if the metadata isn't set for an item.
+         
+         **Endpoint:** `GET /users/{id}/collection/{type}`
 
-         🔓 OAuth Optional ✨ Extended Info
+         🔓 OAuth Optional • ✨ Extended Info
 
          - parameter type: `movies` or `shows`
          */
@@ -359,8 +416,10 @@ extension TraktManager {
          Returns the most recently written comments for the user. You can optionally filter by the `comment_type` and media `type` to limit what gets returned.
 
          By default, only top level comments are returned. Set `?include_replies=true` to return replies in addition to top level comments. Set `?include_replies=only` to return only replies and no top level comments.
+         
+         **Endpoint:** `GET /users/{id}/comments/{comment_type}/{type}`
 
-         🔓 OAuth Optional 📄 Pagination ✨ Extended Info
+         🔓 OAuth Optional • 📄 Pagination • ✨ Extended Info
          */
         public func comments(commentType: String? = nil, mediaType: String? = nil, includeReplies: String? = nil) -> Route<PagedObject<[UsersComments]>> {
             Route(
@@ -377,7 +436,9 @@ extension TraktManager {
         /**
          Get notes a user has added to movies, shows, seasons, episodes, or people.
          
-         🔥 VIP Enhanced 🔓 OAuth Optional 📄 Pagination ✨ Extended Info
+         **Endpoint:** `GET /users/{id}/notes/{type}`
+         
+         🔥 VIP Enhanced • 🔓 OAuth Optional • 📄 Pagination • ✨ Extended Info
          
          - parameter type: Filter by a specific item type. Possible values: `all`, `movie`, `show`, `season`, `episode`, `person`.
          */
@@ -394,8 +455,10 @@ extension TraktManager {
 
         /**
          Returns all personal lists for a user. Use the /users/:id/lists/:list_id/items method to get the actual items a specific list contains.
+         
+         **Endpoint:** `GET /users/{id}/lists`
 
-         🔓 OAuth Optional 😁 Emojis
+         🔓 OAuth Optional • 😁 Emojis
          */
         public func lists() -> Route<[TraktList]> {
             Route(paths: [path, "lists"], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
@@ -405,6 +468,8 @@ extension TraktManager {
 
         /**
          Returns all lists a user can collaborate on. This gives full access to add, remove, and re-order list items.
+         
+         **Endpoint:** `GET /users/{id}/lists/collaborations`
          
          🔓 OAuth Optional
          */
@@ -421,8 +486,10 @@ extension TraktManager {
 
         /**
          Returns a single personal list. Use the ``TraktManager/UsersResource/itemsOnList(_:type:)`` method to get the actual items this list contains.
+         
+         **Endpoint:** `GET /users/{id}/lists/{list_id}`
 
-         🔓 OAuth Optional 😁 Emojis
+         🔓 OAuth Optional • 😁 Emojis
 
          - parameter listId: Trakt ID or Trakt slug
          */
@@ -447,8 +514,10 @@ extension TraktManager {
          Default sorting is based on the list defaults and sent in the `X-Sort-By` and `X-Sort-How` headers. If you specify the `sort_by` and `sort_how` parameters, the response will be sorted based on those values and sent in the `X-Applied-Sort-By` and` X-Applied-Sort-How` headers.
 
          Some sort_by options are 🔥 **VIP Only** including `imdb_rating`, `tmdb_rating`, `rt_tomatometer`, `rt_audience`, `metascore`, `votes`, `imdb_votes`, and `tmdb_votes`. If sent for a non VIP, the items will fall back to `rank`.
+         
+         **Endpoint:** `GET /users/{id}/lists/{list_id}/items/{type}/{sort_by}/{sort_how}`
 
-         🔥 VIP Enhanced 🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+         🔥 VIP Enhanced • 🔓 OAuth Optional • 📄 Pagination Optional • ✨ Extended Info • 😁 Emojis
 
          - parameters:
             - listId: Trakt ID or Trakt slug
@@ -475,8 +544,10 @@ extension TraktManager {
          **Limits**
 
          If the user's list item limit is exceeded, a `420` HTTP error code is returned. Use the /users/settings method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
+         
+         **Endpoint:** `POST /users/{id}/lists/{list_id}/items`
 
-         🔥 VIP Enhanced 🔒 OAuth Required 😁 Emojis
+         🔥 VIP Enhanced • 🔒 OAuth Required • 😁 Emojis
          */
         public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<ListItemPostResult> {
             let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
@@ -491,6 +562,8 @@ extension TraktManager {
 
         /**
          Remove one or more items from a personal list.
+         
+         **Endpoint:** `POST /users/{id}/lists/{list_id}/items/remove`
 
          🔒 OAuth Required
          */
@@ -507,8 +580,10 @@ extension TraktManager {
 
         /**
          Update the notes on a single list item.
+         
+         **Endpoint:** `PUT /users/{id}/lists/{list_id}/items/{item_id}`
 
-         🔥 VIP Only 🔒 OAuth Required 😁 Emojis
+         🔥 VIP Only • 🔒 OAuth Required • 😁 Emojis
 
          - parameters:
             - listId: Trakt ID or Trakt slug of the list
@@ -529,6 +604,8 @@ extension TraktManager {
         /**
          Reorder all items on a list by sending the updated rank of list item ids.
          Use the `itemsOnList(_:type:sortBy:sortHow:)` method to get all list item ids.
+         
+         **Endpoint:** `POST /users/{id}/lists/{list_id}/items/reorder`
 
          🔒 OAuth Required
 
@@ -552,6 +629,8 @@ extension TraktManager {
         /**
          Follow this user. If the user has a private profile, the follow request will require approval (`approved_at` will be null).
          If a user is public, they will be followed immediately (`approved_at` will have a date).
+         
+         **Endpoint:** `POST /users/{id}/follow`
 
          🔒 OAuth Required
          */
@@ -566,6 +645,8 @@ extension TraktManager {
 
         /**
          Unfollow someone you already follow.
+         
+         **Endpoint:** `DELETE /users/{id}/follow`
          
          🔒 OAuth Required
          */
@@ -582,8 +663,10 @@ extension TraktManager {
 
         /**
          Returns all followers including when the relationship began.
+         
+         **Endpoint:** `GET /users/{id}/followers`
 
-         🔓 OAuth Optional ✨ Extended Info
+         🔓 OAuth Optional • ✨ Extended Info
          */
         public func followers() -> Route<[Follower]> {
             Route(
@@ -598,8 +681,10 @@ extension TraktManager {
 
         /**
          Returns all user's they follow including when the relationship began.
+         
+         **Endpoint:** `GET /users/{id}/following`
 
-         🔓 OAuth Optional ✨ Extended Info
+         🔓 OAuth Optional • ✨ Extended Info
          */
         public func following() -> Route<[Follower]> {
             Route(
@@ -616,7 +701,9 @@ extension TraktManager {
          Returns all friends for a user including when the relationship began.
          Friendship is a 2 way relationship where each user follows the other.
          
-         🔓 OAuth Optional ✨ Extended Info
+         **Endpoint:** `GET /users/{id}/friends`
+         
+         🔓 OAuth Optional • ✨ Extended Info
          */
         public func friends() -> Route<[Friend]> {
             Route(
@@ -633,6 +720,10 @@ extension TraktManager {
          Returns movies and episodes that a user has watched, sorted by most recent. You can optionally limit the `type` to `movies` or `episodes`. The `id` (64-bit integer) in each history item uniquely identifies the event and can be used to remove individual events by using the `/sync/history/remove` method. The `action` will be set to `scrobble`, `checkin`, or `watch`.
 
          Specify a `type` and trakt `item_id` to limit the history for just that item. If the `item_id` is valid, but there is no history, an empty array will be returned.
+         
+         **Endpoint:** `GET /users/{id}/history/{type}/{id}`
+         
+         🔓 OAuth Optional • 📄 Pagination • ✨ Extended Info
 
          - parameters:
             - type: Possible values:  `movies` , `shows` , `seasons` , `episodes`.
@@ -662,8 +753,10 @@ extension TraktManager {
 
         /**
          Get a user's ratings filtered by `type`. You can optionally filter for a specific `rating` between 1 and 10. Send a comma separated string for `rating` if you need multiple ratings.
+         
+         **Endpoint:** `GET /users/{id}/ratings/{type}/{rating}`
 
-         🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info
+         🔓 OAuth Optional • 📄 Pagination Optional • ✨ Extended Info
 
          - parameters:
             - type: Possible values:  `movies` , `shows` , `seasons` , `episodes` , `all` .
@@ -704,8 +797,10 @@ extension TraktManager {
          **The watchlist should not be used as a list of what the user is actively watching.**
 
          Use a combination of the ``TraktManager/SyncResource/watchedShows()``, ``TraktManager/SyncResource/watchedMovies()`` and ``TraktManager/ShowResource/watchedProgress(includeHiddenSeasons:includeSpecials:progressCountsSpecials:)`` methods to get what the user is actively watching.
+         
+         **Endpoint:** `GET /users/{id}/watchlist/{type}/{sort}`
 
-         🔓 OAuth Optional 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+         🔓 OAuth Optional • 📄 Pagination Optional • ✨ Extended Info • 😁 Emojis
 
          - parameters:
             - type: Filter for a specific item type. Possible values:  `movies` , `shows` , `seasons` , `episodes` .
@@ -719,8 +814,10 @@ extension TraktManager {
          Returns all top level comments for the watchlist. By default, the `newest` comments are returned first. Other sorting options include `oldest`, most `likes`, and most `replies`.
 
          > note: If you send OAuth, comments from blocked users will be automatically filtered out.
+         
+         **Endpoint:** `GET /users/{id}/watchlist/comments/{sort}`
 
-         🔓 OAuth Optional 📄 Pagination 😁 Emojis
+         🔓 OAuth Optional • 📄 Pagination • 😁 Emojis
 
          - parameter sort: How to sort. Possible values:  `newest` , `oldest` , `likes` , `replies` .
          */
@@ -745,7 +842,9 @@ extension TraktManager {
          
          Some `sort_by` options are 🔥 **VIP Only** including `imdb_rating`, `tmdb_rating`, `rt_tomatometer`, `rt_audience`, `metascore`, `votes`, `imdb_votes`, and `tmdb_votes`. If sent for a non VIP, the items will fall back to `rank`.
          
-         🔥 VIP Enhanced 🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+         **Endpoint:** `GET /users/{id}/favorites/{type}/{sort_by}/{sort_how}`
+         
+         🔥 VIP Enhanced • 🔒 OAuth Required • 📄 Pagination Optional • ✨ Extended Info • 😁 Emojis
          
          - parameters:
             - type: Filter for a specific item type. Possible values: `all`, `movies`, `shows`, `seasons`, `episodes`.
@@ -766,7 +865,9 @@ extension TraktManager {
          
          > note: If you send OAuth, comments from blocked users will be automatically filtered out.
          
-         🔓 OAuth Optional 📄 Pagination 😁 Emojis
+         **Endpoint:** `GET /users/{id}/favorites/comments/{sort}`
+         
+         🔓 OAuth Optional • 📄 Pagination • 😁 Emojis
          
          - parameter sort: How to sort. Possible values: `newest`, `oldest`, `likes`, `replies`.
          */
@@ -783,8 +884,10 @@ extension TraktManager {
 
         /**
          Returns a movie or episode if the user is currently watching something. If they are not, it returns no data and a `204` HTTP status code.
+         
+         **Endpoint:** `GET /users/{id}/watching`
 
-         🔓 OAuth Optional ✨ Extended Info
+         🔓 OAuth Optional • ✨ Extended Info
          */
         public func watching() -> Route<TraktWatching> {
             Route(paths: [path, "watching"], method: .GET, requiresAuthentication: authenticate, traktManager: traktManager)
@@ -800,8 +903,10 @@ extension TraktManager {
          Each `movie` and `show` object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched movies and episodes, it is possible for `last_watched_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the movies and shows if you see a newer timestamp.
 
          Each `show` object contains a `reset_at` timestamp. If not null, this is when the user started re-watching the show. Your app can adjust the progress by ignoring episodes with a `last_watched_at` prior to the `reset_at`.
+         
+         **Endpoint:** `GET /users/{id}/watched/{type}`
 
-         🔓 OAuth Optional ✨ Extended Info
+         🔓 OAuth Optional • ✨ Extended Info
          */
         public func watched(type: String) -> Route<[TraktWatchedItem]> {
             Route(
@@ -816,6 +921,8 @@ extension TraktManager {
 
         /**
          Returns stats about the movies, shows, and episodes a user has watched, collected, and rated.
+         
+         **Endpoint:** `GET /users/{id}/stats`
 
          🔓 OAuth Optional
          */

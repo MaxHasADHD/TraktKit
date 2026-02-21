@@ -20,6 +20,8 @@ extension TraktManager {
         /**
          Get a list of all genres, including names and slugs.
 
+         **Endpoint:** `GET /genres/{type}`
+
          - parameter type: The media type to retrieve genres for (`movies` or `shows`).
          */
         public func list(type: WatchedType) -> Route<[Genres]> {

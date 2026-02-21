@@ -51,6 +51,8 @@ extension TraktManager {
 
          `settings_at` is set when the OAuth user updates any of their Trakt settings on the website. `followed_at` is set when another Trakt user follows or unfollows the OAuth user. `following_at` is set when the OAuth user follows or unfollows another Trakt user. `pending_at` is set when the OAuth user follows a private account, which requires their approval. `requested_at` is set when the OAuth user has a private account and someone requests to follow them.
 
+         **Endpoint:** `GET /sync/last_activities`
+
          🔒 OAuth Required
          */
         public func lastActivities() -> Route<TraktLastActivities> {
@@ -59,12 +61,25 @@ extension TraktManager {
 
         // MARK: - Playback
 
+        /**
+         Get a user's playback progress for the specified type. Use this to sync playback progress with your app or other Trakt apps.
+         
+         **Endpoint:** `GET /sync/playback/{type}`
+         
+         🔒 OAuth Required
+         
+         - parameter type: Possible values: `movies`, `shows`, `episodes`.
+         */
         public func playback(type: String) -> Route<[PlaybackProgress]> {
             Route(paths: [path, "playback", type], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         /**
          Remove a playback item from a user's playback progress list. A `404` will be returned if the `id` is invalid.
+         
+         **Endpoint:** `DELETE /sync/playback/{id}`
+         
+         🔒 OAuth Required
          */
         public func removePlayback(id: CustomStringConvertible) -> EmptyRoute {
             EmptyRoute(paths: [path, "playback", id], method: .DELETE, requiresAuthentication: true, traktManager: traktManager)
@@ -80,8 +95,10 @@ extension TraktManager {
          Each `show` object contains `last_collected_at` and `last_updated_at` timestamps. Since users can set custom dates when they collected episodes, it is possible for `last_collected_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the show if you see a newer timestamp.
 
          If you add `?extended=metadata` to the URL, it will return the additional `media_type`, `resolution`, `hdr`, `audio`, `audio_channels` and `3d` metadata. It will use `null` if the metadata isn't set for an item.
+         
+         **Endpoint:** `GET /sync/collection/{type}`
 
-         🔒 OAuth Required ✨ Extended Info
+         🔒 OAuth Required • ✨ Extended Info
 
          - parameter type: Possible values:  `movies` , `shows` .
          */
@@ -99,6 +116,10 @@ extension TraktManager {
          If the user's collection limit is exceeded, a `420` HTTP error code is returned. Use the `/users/settings` method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
 
          > note: You can resend items already in your collection and they will be updated with any new values. This includes the `collected_at` and any other metadata.
+         
+         **Endpoint:** `POST /sync/collection`
+         
+         🔒 OAuth Required
          */
         public func addToCollection(movies: [CollectionId]? = nil, shows: [CollectionId]? = nil, seasons: [CollectionId]? = nil, episodes: [CollectionId]? = nil) -> Route<AddToCollectionResult> {
             Route(
@@ -112,13 +133,15 @@ extension TraktManager {
 
         /**
          Remove one or more items from a user's collection.
+         
+         **Endpoint:** `POST /sync/collection/remove`
+
+         🔒 OAuth Required
 
          - parameter movies: Array of movie Trakt ids
          - parameter shows: Array of show Trakt ids
          - parameter seasons: Array of season Trakt ids
          - parameter episodes: Array of episode Trakt ids
-
-         🔒 OAuth Required
          */
         public func removeFromCollection(movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil) -> Route<RemoveFromCollectionResult> {
             Route(
@@ -140,8 +163,10 @@ extension TraktManager {
          Each `movie` and `show` object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched movies and episodes, it is possible for `last_watched_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the movies and shows if you see a newer timestamp.
 
          Each show object contains a `reset_at` timestamp. If not `null`, this is when the user started re-watching the show. Your app can adjust the progress by ignoring episodes with a `last_watched_at` prior to the `reset_at`.
+         
+         **Endpoint:** `GET /sync/watched/{type}`
 
-         🔒 OAuth Required ✨ Extended Info
+         🔒 OAuth Required • ✨ Extended Info
 
          - parameter type: Possible values:  `movies` , `shows` .
          */
@@ -181,8 +206,10 @@ extension TraktManager {
          Returns movies and episodes that a user has watched, sorted by most recent. You can optionally limit the `type` to `movies` or `episodes`. The `id` (64-bit integer) in each history item uniquely identifies the event and can be used to remove individual events by using the `/sync/history/remove` method. The `action` will be set to `scrobble`, `checkin`, or `watch`.
 
          Specify a `type` and trakt `id` to limit the history for just that item. If the `id` is valid, but there is no history, an empty array will be returned.
+         
+         **Endpoint:** `GET /sync/history/{type}/{id}`
 
-         🔒 OAuth Required 📄 Pagination ✨ Extended Info
+         🔒 OAuth Required • 📄 Pagination • ✨ Extended Info
 
          - Parameters:
             - type: Possible values:  `movies` , `shows` , `seasons` , `episodes`.
@@ -214,6 +241,8 @@ extension TraktManager {
          Send a `watched_at` UTC datetime to mark items as watched in the past. This is useful for syncing past watches from a media center.
 
          > important: Please be careful with sending duplicate data. We don't verify the `item` + `watched_at` to ensure it's unique, it is up to your app to veify this and not send duplicate plays.
+         
+         **Endpoint:** `POST /sync/history`
 
          🔒 OAuth Required
 
@@ -242,6 +271,8 @@ extension TraktManager {
          Remove items from a user's watch history including all watches, scrobbles, and checkins. Accepts shows, seasons, episodes and movies. If only a show is passed, all episodes for the show will be removed. If seasons are specified, only episodes in those seasons will be removed.
 
          You can also send a list of raw history `ids` (64-bit integers) to delete single plays from the watched history. The ``TraktManager/SyncResource/history(type:mediaId:startingAt:endingAt:)`` method will return an individual `id` (64-bit integer) for each history item.
+         
+         **Endpoint:** `POST /sync/history/remove`
 
          🔒 OAuth Required
          */
@@ -265,8 +296,10 @@ extension TraktManager {
 
         /**
          Get a user's ratings filtered by `type`. You can optionally filter for a specific `rating` between 1 and 10. Send a comma separated string for `rating` if you need multiple ratings.
+         
+         **Endpoint:** `GET /sync/ratings/{type}`
 
-         🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info
+         🔒 OAuth Required • 📄 Pagination Optional • ✨ Extended Info
          */
         public func ratings(type: String? = nil, rating: CustomStringConvertible? = nil) -> Route<PagedObject<[TraktRating]>> {
             Route(
@@ -281,6 +314,8 @@ extension TraktManager {
          Rate one or more items. Accepts shows, seasons, episodes and movies. If only a show is passed, only the show itself will be rated. If seasons are specified, all of those seasons will be rated.
 
          Send a ``RatingId/ratedAt``  datetime to mark items as rated in the past. This is useful for syncing ratings from a media center.
+         
+         **Endpoint:** `POST /sync/ratings`
 
          🔒 OAuth Required
 
@@ -307,6 +342,8 @@ extension TraktManager {
 
         /**
          Remove ratings for one or more items.
+         
+         **Endpoint:** `POST /sync/ratings/remove`
 
          🔒 OAuth Required
          */
@@ -348,8 +385,10 @@ extension TraktManager {
          **Auto Removal**
 
          When an item is watched, it will be automatically removed from the watchlist. For shows and seasons, watching 1 episode will remove the entire show or season.
+         
+         **Endpoint:** `GET /sync/watchlist/{type}/{sort}`
 
-         🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info 😁 Emojis
+         🔒 OAuth Required • 📄 Pagination Optional • ✨ Extended Info • 😁 Emojis
 
          - parameters:
             - type: Filter for a specific item type. Possible values:  `movies` , `shows` , `seasons` , `episodes` .
@@ -391,8 +430,10 @@ extension TraktManager {
          **Limits**
 
          If the user's watchlist limit is exceeded, a `420` HTTP error code is returned. Use the ``TraktManager/CurrentUserResource/settings()`` method to get all limits for a user account. In most cases, upgrading to Trakt VIP will increase the limits.
+         
+         **Endpoint:** `POST /sync/watchlist`
 
-         🔥 VIP Enhanced 🔒 OAuth Required 😁 Emojis
+         🔥 VIP Enhanced • 🔒 OAuth Required • 😁 Emojis
 
          - parameters:
             - movies: Array of movie Trakt ids
@@ -412,6 +453,8 @@ extension TraktManager {
 
         /**
          Remove one or more items from a user's watchlist.
+         
+         **Endpoint:** `POST /sync/watchlist/remove`
 
          🔒 OAuth Required
 

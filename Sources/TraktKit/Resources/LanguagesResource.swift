@@ -20,6 +20,8 @@ extension TraktManager {
         /**
          Get a list of all languages, including names and codes.
 
+         **Endpoint:** `GET /languages/{type}`
+
          - parameter type: The media type to retrieve languages for (`movies` or `shows`).
          */
         public func list(type: WatchedType) -> Route<[Languages]> {

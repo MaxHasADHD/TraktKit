@@ -24,6 +24,8 @@ extension TraktManager {
 
          > note: A watching status will auto expire after the remaining runtime has elapsed. There is no need to call this method again while continuing to watch the same item.
 
+         **Endpoint:** `POST /scrobble/start`
+
          🔒 OAuth Required
 
          - parameter scrobble: The scrobble body containing the movie or episode and progress percentage.
@@ -34,6 +36,8 @@ extension TraktManager {
 
         /**
          Use this method when the video is paused. The playback progress will be saved and `GET /sync/playback` can be used to resume the video from this exact position. Unpause a video by calling `start` again.
+
+         **Endpoint:** `POST /scrobble/pause`
 
          🔒 OAuth Required
 
@@ -49,6 +53,8 @@ extension TraktManager {
          If the progress is between 1% and 79%, it will be treated as a pause and the `action` will be set to `pause`. The playback progress will be saved and `GET /sync/playback` can be used to resume the video from this exact position.
 
          > note: If the same item was just scrobbled, a `409` HTTP status code will be returned to avoid scrobbling a duplicate.
+
+         **Endpoint:** `POST /scrobble/stop`
 
          🔒 OAuth Required
 

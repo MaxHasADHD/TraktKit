@@ -22,7 +22,9 @@ extension TraktManager {
         /**
          Returns all people updated since the specified UTC date and time. We recommended storing the `X-Start-Date` header so you can be efficient using this method moving forward. By default, `10` results are returned. You can send a `limit` to get up to `100` results per page.
 
-         📄 Pagination ✨ Extended Info
+         **Endpoint:** `GET /people/updates/{start_date}`
+
+         📄 Pagination • ✨ Extended Info
 
          > important: The `startDate` is only accurate to the hour, for caching purposes. Please drop the minutes and seconds from your timestamp to help optimize our cached data. For example, use `2021-07-17T12:00:00Z` and not `2021-07-17T12:23:34Z`.
 
@@ -37,6 +39,8 @@ extension TraktManager {
 
         /**
          Returns all people Trakt IDs updated since the specified UTC date and time. We recommended storing the `X-Start-Date` header so you can be efficient using this method moving forward. By default, `10` results are returned. You can send a `limit` to get up to `100` results per page.
+
+         **Endpoint:** `GET /people/updates/id/{start_date}`
 
          📄 Pagination
 
@@ -81,6 +85,8 @@ extension TraktManager {
          #### Known For Department
          If available, the `known_for_department` property will be set to `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, `camera`, `visual effects`, `lighting`, or `editing`. Many people have credits across departments, `known_for` allows you to select their default credits more accurately.
 
+         **Endpoint:** `GET /people/{id}`
+
          ✨ Extended Info
          */
         public func details() -> Route<Person> {
@@ -93,6 +99,8 @@ extension TraktManager {
          Returns all movies where this person is in the `cast` or `crew`. Each `cast` object will have a `characters` array and a standard `movie` object.
 
          The `crew` object will be broken up by department into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, `camera`, `visual effects`, `lighting`, and `editing` (if there are people for those crew positions). Each of those members will have a `jobs` array and a standard `movie` object.
+
+         **Endpoint:** `GET /people/{id}/movies`
 
          ✨ Extended Info
          */
@@ -107,6 +115,8 @@ extension TraktManager {
 
          The `crew` object will be broken up by department into `production`, `art`, `crew`, `costume & make-up`, `directing`, `writing`, `sound`, `camera`, `visual effects`, `lighting`, `editing`, and `created by` (if there are people for those crew positions). Each of those members will have a `jobs` array and a standard `show` object.
 
+         **Endpoint:** `GET /people/{id}/shows`
+
          ✨ Extended Info
          */
         public func showCredits() -> Route<CastAndCrew<PeopleTVCastMember, PeopleTVCrewMember>> {
@@ -118,7 +128,9 @@ extension TraktManager {
         /**
          Returns all lists that contain this person. By default, `personal` lists are returned sorted by the most `popular`.
 
-         📄 Pagination 😁 Emojis
+         **Endpoint:** `GET /people/{id}/lists/{type}/{sort}`
+
+         📄 Pagination • 😁 Emojis
 
          - parameter type: Filter for a specific list type. Possible values: `all`, `personal`, `official`.
          - parameter sort: How to sort. Possible values: `popular`, `likes`, `comments`, `items`, `added`, `updated`.
@@ -134,7 +146,9 @@ extension TraktManager {
 
          > note: If this person is already queued, a `409` HTTP status code will be returned.
 
-         🔥 VIP Only 🔒 OAuth Required
+         **Endpoint:** `POST /people/{id}/refresh`
+
+         🔥 VIP Only • 🔒 OAuth Required
          */
         public func refresh() -> EmptyRoute {
             EmptyRoute(paths: [path, "refresh"], method: .POST, requiresAuthentication: true, traktManager: traktManager)

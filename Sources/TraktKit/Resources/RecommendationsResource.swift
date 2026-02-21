@@ -26,7 +26,9 @@ extension TraktManager {
 
          The `favorited_by` array contains all users who favorited the item along with any notes they added.
 
-         🔒 OAuth Required ✨ Extended Info
+         **Endpoint:** `GET /recommendations/movies`
+
+         🔒 OAuth Required • ✨ Extended Info
 
          - parameter ignoreCollected: Filter out movies the user has already collected.
          - parameter ignoreWatchlisted: Filter out movies the user has already watchlisted.
@@ -40,6 +42,8 @@ extension TraktManager {
 
         /**
          Hide a movie from getting recommended anymore.
+
+         **Endpoint:** `DELETE /recommendations/movies/{id}`
 
          🔒 OAuth Required
 
@@ -58,7 +62,9 @@ extension TraktManager {
 
          The `favorited_by` array contains all users who favorited the item along with any notes they added.
 
-         🔒 OAuth Required ✨ Extended Info
+         **Endpoint:** `GET /recommendations/shows`
+
+         🔒 OAuth Required • ✨ Extended Info
 
          - parameter ignoreCollected: Filter out shows the user has already collected.
          - parameter ignoreWatchlisted: Filter out shows the user has already watchlisted.
@@ -72,6 +78,8 @@ extension TraktManager {
 
         /**
          Hide a show from getting recommended anymore.
+
+         **Endpoint:** `DELETE /recommendations/shows/{id}`
 
          🔒 OAuth Required
 
