@@ -88,6 +88,7 @@ public struct TraktNoteBody: TraktObject {
 
 public struct TraktNoteItem: TraktObject {
     public let attachedTo: AttachedTo?
+    public let note: TraktNote
     public let type: String
     public let movie: TraktMovie?
     public let show: TraktShow?
@@ -97,6 +98,7 @@ public struct TraktNoteItem: TraktObject {
 
     enum CodingKeys: String, CodingKey {
         case attachedTo = "attached_to"
+        case note
         case type
         case movie
         case show
