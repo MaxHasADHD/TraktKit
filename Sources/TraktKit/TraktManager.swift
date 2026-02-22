@@ -77,6 +77,24 @@ public final class TraktManager: APIManager, @unchecked Sendable {
         ]
         return urlComponents.url
     }
+    
+    /// Generates an OAuth URL with PKCE (Proof Key for Code Exchange) support
+    /// - Parameter codeChallenge: The code challenge generated from the code verifier
+    /// - Returns: The authorization URL to present to the user
+    public func oauthURL(codeChallenge: String) -> URL? {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = staging ? "staging.trakt.tv" : "trakt.tv"
+        urlComponents.path = "/oauth/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "client_id", value: clientId),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
+            URLQueryItem(name: "code_challenge", value: codeChallenge),
+            URLQueryItem(name: "code_challenge_method", value: "S256"),
+        ]
+        return urlComponents.url
+    }
 
     // MARK: - Lifecycle
 
@@ -84,12 +102,20 @@ public final class TraktManager: APIManager, @unchecked Sendable {
      Initializes the TraktManager.
 
      > important: Call `refreshCurrentAuthState` shortly after initializing `TraktManager`, otherwise authenticated calls will fail.
+     
+     - Parameters:
+       - session: URLSession to use for network requests
+       - staging: Whether to use the staging API
+       - clientId: Your Trakt API client ID
+       - clientSecret: Your Trakt API client secret (optional when using PKCE)
+       - redirectURI: Your OAuth redirect URI
+       - authStorage: Storage for authentication credentials
      */
     public init(
         session: URLSession = URLSession(configuration: .default),
         staging: Bool = false,
         clientId: String,
-        clientSecret: String,
+        clientSecret: String = "",
         redirectURI: String,
         authStorage: any TraktAuthentication = KeychainTraktAuthentication()
     ) {
@@ -115,11 +141,18 @@ public final class TraktManager: APIManager, @unchecked Sendable {
     }
 
     /// Initialize TraktManager and refreshes the auth state
+    /// - Parameters:
+    ///   - session: URLSession to use for network requests
+    ///   - staging: Whether to use the staging API
+    ///   - clientId: Your Trakt API client ID
+    ///   - clientSecret: Your Trakt API client secret (optional when using PKCE)
+    ///   - redirectURI: Your OAuth redirect URI
+    ///   - authStorage: Storage for authentication credentials
     public init(
         session: URLSession = URLSession(configuration: .default),
         staging: Bool = false,
         clientId: String,
-        clientSecret: String,
+        clientSecret: String = "",
         redirectURI: String,
         authStorage: any TraktAuthentication = KeychainTraktAuthentication()
     ) async {
@@ -148,6 +181,17 @@ public final class TraktManager: APIManager, @unchecked Sendable {
 
     public func getToken(authorizationCode code: String) async throws -> AuthenticationInfo {
         let authenticationInfo = try await auth().getAccessToken(for: code).perform()
+        await saveCredentials(for: authenticationInfo, postAccountStatusChange: true)
+        return authenticationInfo
+    }
+    
+    /// Exchange authorization code for access token using PKCE (Proof Key for Code Exchange)
+    /// - Parameters:
+    ///   - code: The authorization code received from the redirect URI
+    ///   - codeVerifier: The code verifier that was used to generate the code challenge
+    /// - Returns: Authentication information including access and refresh tokens
+    public func getToken(authorizationCode code: String, codeVerifier: String) async throws -> AuthenticationInfo {
+        let authenticationInfo = try await auth().getAccessToken(for: code, codeVerifier: codeVerifier).perform()
         await saveCredentials(for: authenticationInfo, postAccountStatusChange: true)
         return authenticationInfo
     }

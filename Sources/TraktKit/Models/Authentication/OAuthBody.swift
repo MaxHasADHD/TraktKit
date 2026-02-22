@@ -15,6 +15,11 @@ struct OAuthBody: TraktObject {
 
     let redirectURI: String?
     let grantType: String?
+    
+    // PKCE parameters
+    let codeVerifier: String?
+    let codeChallenge: String?
+    let codeChallengeMethod: String?
 
     enum CodingKeys: String, CodingKey {
         case code
@@ -24,6 +29,9 @@ struct OAuthBody: TraktObject {
         case clientSecret = "client_secret"
         case redirectURI = "redirect_uri"
         case grantType = "grant_type"
+        case codeVerifier = "code_verifier"
+        case codeChallenge = "code_challenge"
+        case codeChallengeMethod = "code_challenge_method"
     }
 
     init(
@@ -33,7 +41,10 @@ struct OAuthBody: TraktObject {
         clientId: String? = nil,
         clientSecret: String? = nil,
         redirectURI: String? = nil,
-        grantType: String? = nil
+        grantType: String? = nil,
+        codeVerifier: String? = nil,
+        codeChallenge: String? = nil,
+        codeChallengeMethod: String? = nil
     ) {
         self.code = code
         self.accessToken = accessToken
@@ -42,5 +53,8 @@ struct OAuthBody: TraktObject {
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
         self.grantType = grantType
+        self.codeVerifier = codeVerifier
+        self.codeChallenge = codeChallenge
+        self.codeChallengeMethod = codeChallengeMethod
     }
 }

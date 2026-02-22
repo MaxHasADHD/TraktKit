@@ -44,9 +44,42 @@ extension TraktManager {
                 traktManager: traktManager
             )
         }
+        
+        /**
+         Use the authorization `code` GET parameter sent back to your `redirect_uri` to get an `access_token` using PKCE (Proof Key for Code Exchange).
+         
+         This method uses PKCE instead of client secret, making it more secure for mobile and desktop applications where the client secret cannot be securely stored.
+
+         The `access_token` is valid for **24 hours**. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate.
+
+         **Endpoint:** `POST /oauth/token`
+         
+         - Parameters:
+           - code: The authorization code received from the redirect URI
+           - codeVerifier: The code verifier generated before starting the OAuth flow
+         */
+        public func getAccessToken(for code: String, codeVerifier: String) -> Route<AuthenticationInfo> {
+            let body = OAuthBody(
+                code: code,
+                clientId: traktManager.clientId,
+                clientSecret: nil,
+                redirectURI: traktManager.redirectURI,
+                grantType: "authorization_code",
+                codeVerifier: codeVerifier
+            )
+            return Route(
+                paths: [path, "token"],
+                body: body,
+                method: .POST,
+                requiresAuthentication: false,
+                traktManager: traktManager
+            )
+        }
 
         /**
          Use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. The `access_token` is valid for **24 hours** before it needs to be refreshed again.
+         
+         This method uses client_secret authentication. For tokens originally obtained via PKCE, the client_secret can be omitted.
 
          **Endpoint:** `POST /oauth/token`
          */
@@ -54,7 +87,7 @@ extension TraktManager {
             let body = OAuthBody(
                 refreshToken: refreshToken,
                 clientId: traktManager.clientId,
-                clientSecret: traktManager.clientSecret,
+                clientSecret: traktManager.clientSecret.isEmpty ? nil : traktManager.clientSecret,
                 redirectURI: traktManager.redirectURI,
                 grantType: "refresh_token"
             )
@@ -69,6 +102,8 @@ extension TraktManager {
 
         /**
          An `access_token` can be revoked when a user signs out of their Trakt account in your app. This is not required, but might improve the user experience so the user doesn't have an unused app connection hanging around.
+         
+         This method works with both traditional OAuth (with client_secret) and PKCE (without client_secret) tokens.
 
          **Endpoint:** `POST /oauth/revoke`
          */
@@ -76,7 +111,7 @@ extension TraktManager {
             let body = OAuthBody(
                 accessToken: accessToken,
                 clientId: traktManager.clientId,
-                clientSecret: traktManager.clientSecret
+                clientSecret: traktManager.clientSecret.isEmpty ? nil : traktManager.clientSecret
             )
             return EmptyRoute(
                 paths: [path, "revoke"],
