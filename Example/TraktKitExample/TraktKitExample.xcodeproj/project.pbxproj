@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21124BFF21F0C7E700C19EA0 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21124BFE21F0C7E700C19EA0 /* SearchResultsViewController.swift */; };
 		217335B521E9355D0080BC5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217335B421E9355D0080BC5B /* AppDelegate.swift */; };
-		217335B721E9355D0080BC5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217335B621E9355D0080BC5B /* ViewController.swift */; };
 		217335BA21E9355D0080BC5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 217335B821E9355D0080BC5B /* Main.storyboard */; };
 		217335BC21E9355F0080BC5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 217335BB21E9355F0080BC5B /* Assets.xcassets */; };
 		217335BF21E9355F0080BC5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 217335BD21E9355F0080BC5B /* LaunchScreen.storyboard */; };
-		217335DA21E949C60080BC5B /* TraktProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217335D921E949C60080BC5B /* TraktProfileViewController.swift */; };
 		F58A0FC52D67396100DF9BF4 /* TraktKit in Frameworks */ = {isa = PBXBuildFile; productRef = F58A0FC42D67396100DF9BF4 /* TraktKit */; };
+		F5C184A82F4B561900E82825 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C184A72F4B561900E82825 /* LoginViewController.swift */; };
+		F5C184AA2F4B562800E82825 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C184A92F4B562800E82825 /* MainViewController.swift */; };
+		F5C184AC2F4B563800E82825 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C184AB2F4B563800E82825 /* Models.swift */; };
+		F5C184AE2F4B565300E82825 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C184AD2F4B565300E82825 /* WatchlistViewController.swift */; };
+		F5C184B02F4B566D00E82825 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C184AF2F4B566D00E82825 /* NotesViewController.swift */; };
+		F5C184B22F4B568200E82825 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C184B12F4B568200E82825 /* SearchViewController.swift */; };
+		F5C184B42F4B581400E82825 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C184B32F4B581400E82825 /* LoadingViewController.swift */; };
+		F5C184B82F4B5C6900E82825 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F5C184B72F4B5C6900E82825 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,16 +36,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		21124BFE21F0C7E700C19EA0 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		217335B121E9355D0080BC5B /* TraktKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraktKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		217335B421E9355D0080BC5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		217335B621E9355D0080BC5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		217335B921E9355D0080BC5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		217335BB21E9355F0080BC5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		217335BE21E9355F0080BC5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		217335C021E9355F0080BC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		217335D521E940030080BC5B /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		217335D921E949C60080BC5B /* TraktProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktProfileViewController.swift; sourceTree = "<group>"; };
+		F5C184A72F4B561900E82825 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F5C184A92F4B562800E82825 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F5C184AB2F4B563800E82825 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F5C184AD2F4B565300E82825 /* WatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
+		F5C184AF2F4B566D00E82825 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		F5C184B12F4B568200E82825 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		F5C184B32F4B581400E82825 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5C184B82F4B5C6900E82825 /* Kingfisher in Frameworks */,
 				F58A0FC52D67396100DF9BF4 /* TraktKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,13 +86,17 @@
 			isa = PBXGroup;
 			children = (
 				217335B421E9355D0080BC5B /* AppDelegate.swift */,
-				217335B621E9355D0080BC5B /* ViewController.swift */,
-				217335D921E949C60080BC5B /* TraktProfileViewController.swift */,
-				21124BFE21F0C7E700C19EA0 /* SearchResultsViewController.swift */,
 				217335B821E9355D0080BC5B /* Main.storyboard */,
 				217335BB21E9355F0080BC5B /* Assets.xcassets */,
 				217335BD21E9355F0080BC5B /* LaunchScreen.storyboard */,
 				217335C021E9355F0080BC5B /* Info.plist */,
+				F5C184A72F4B561900E82825 /* LoginViewController.swift */,
+				F5C184A92F4B562800E82825 /* MainViewController.swift */,
+				F5C184AB2F4B563800E82825 /* Models.swift */,
+				F5C184AD2F4B565300E82825 /* WatchlistViewController.swift */,
+				F5C184AF2F4B566D00E82825 /* NotesViewController.swift */,
+				F5C184B12F4B568200E82825 /* SearchViewController.swift */,
+				F5C184B32F4B581400E82825 /* LoadingViewController.swift */,
 			);
 			path = TraktKitExample;
 			sourceTree = "<group>";
@@ -144,6 +158,7 @@
 			mainGroup = 217335A821E9355D0080BC5B;
 			packageReferences = (
 				F58A0FC32D67396100DF9BF4 /* XCLocalSwiftPackageReference "../../../TraktKit" */,
+				F5C184B62F4B5C6900E82825 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 217335B221E9355D0080BC5B /* Products */;
 			projectDirPath = "";
@@ -172,10 +187,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217335B721E9355D0080BC5B /* ViewController.swift in Sources */,
-				21124BFF21F0C7E700C19EA0 /* SearchResultsViewController.swift in Sources */,
-				217335DA21E949C60080BC5B /* TraktProfileViewController.swift in Sources */,
+				F5C184B22F4B568200E82825 /* SearchViewController.swift in Sources */,
+				F5C184AE2F4B565300E82825 /* WatchlistViewController.swift in Sources */,
+				F5C184AA2F4B562800E82825 /* MainViewController.swift in Sources */,
+				F5C184B02F4B566D00E82825 /* NotesViewController.swift in Sources */,
+				F5C184A82F4B561900E82825 /* LoginViewController.swift in Sources */,
+				F5C184B42F4B581400E82825 /* LoadingViewController.swift in Sources */,
 				217335B521E9355D0080BC5B /* AppDelegate.swift in Sources */,
+				F5C184AC2F4B563800E82825 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +417,17 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		F5C184B62F4B5C6900E82825 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		F58A0FC42D67396100DF9BF4 /* TraktKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -407,6 +437,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F58A0FC32D67396100DF9BF4 /* XCLocalSwiftPackageReference "../../../TraktKit" */;
 			productName = TraktKit;
+		};
+		F5C184B72F4B5C6900E82825 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5C184B62F4B5C6900E82825 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,0 +1,24 @@
+{
+  "originHash" : "75f54dfe1d5cbbc00de91b4b73c1994bf6ceb9c3a2266be040f936899dd86b2f",
+  "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "e227df15448d2ad1a5d4e4c49722a71c68f9058a",
+        "version" : "8.7.0"
+      }
+    },
+    {
+      "identity" : "swiftapiclient",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MaxHasADHD/SwiftAPIClient.git",
+      "state" : {
+        "revision" : "cffc2f6680b81eb4f8e7ddb1a7af6c043bfe1f98",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
