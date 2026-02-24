@@ -117,3 +117,23 @@ public struct TraktNoteItem: TraktObject {
         }
     }
 }
+/// Represents the media item attached to a note (without the note itself)
+/// Used by the `GET /notes/{id}/item` endpoint
+public struct TraktNoteAttachedItem: TraktObject {
+    public let type: String
+    public let movie: TraktMovie?
+    public let show: TraktShow?
+    public let season: TraktSeason?
+    public let episode: TraktEpisode?
+    public let person: Person?
+
+    enum CodingKeys: String, CodingKey {
+        case type
+        case movie
+        case show
+        case season
+        case episode
+        case person
+    }
+}
+

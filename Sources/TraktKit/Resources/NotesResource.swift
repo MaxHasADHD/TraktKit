@@ -93,9 +93,9 @@ extension TraktManager {
 
          ✨ Extended Info
 
-         - returns: The item attached to the note.
+         - returns: The item attached to the note (without the note itself).
          */
-        public func item() -> Route<TraktNoteItem> {
+        public func item() -> Route<TraktNoteAttachedItem> {
             Route(paths: ["notes", id, "item"], method: .GET, requiresAuthentication: false, traktManager: traktManager)
         }
     }

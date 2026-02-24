@@ -90,5 +90,31 @@ extension TraktTestSuite {
             #expect(movie.title == "Guardians of the Galaxy")
             #expect(movie.year == 2014)
         }
+        
+        @Test func decodeNoteAttachedItemWithoutNote() throws {
+            // Verify that TraktNoteAttachedItem decodes correctly without a 'note' property
+            let json: [String: Any] = [
+                "type": "movie",
+                "movie": [
+                    "title": "Guardians of the Galaxy",
+                    "year": 2014,
+                    "ids": [
+                        "trakt": 28,
+                        "slug": "guardians-of-the-galaxy-2014",
+                        "imdb": "tt2015381",
+                        "tmdb": 118340
+                    ]
+                ]
+            ]
+            let data = try JSONSerialization.data(withJSONObject: json)
+            
+            let item = try JSONDecoder().decode(TraktNoteAttachedItem.self, from: data)
+            #expect(item.type == "movie")
+            let movie = try #require(item.movie)
+            #expect(movie.title == "Guardians of the Galaxy")
+            #expect(movie.year == 2014)
+            #expect(item.show == nil)
+            #expect(item.episode == nil)
+        }
     }
 }
