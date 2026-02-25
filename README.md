@@ -61,7 +61,13 @@ let movies = try await traktManager.movies
 print("Found \(movies.count) trending movies")
 ```
 
-For more examples and detailed migration steps, see [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md).
+For more examples and detailed migration steps, see the [Migration Guide](docs/MIGRATION_GUIDE.md).
+
+## Documentation
+
+- [**CHANGELOG**](CHANGELOG.md) - See what's changed in each version
+- [**Migration Guides**](docs/MIGRATION_GUIDE.md) - Version upgrade instructions
+- [**Example Project**](https://github.com/MaxHasADHD/TraktKit/tree/master/Example) - Complete usage examples
 
 ### Usage
 See the [example project](https://github.com/MaxHasADHD/TraktKit/tree/master/Example) for usage
