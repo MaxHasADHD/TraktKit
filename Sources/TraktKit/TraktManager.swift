@@ -14,12 +14,12 @@ public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }
 
-public final class TraktManager: APIManager, @unchecked Sendable {
+public final class TraktManager: APIClient, @unchecked Sendable {
 
     // MARK: - Types
 
-    /// Errors related to the operation of TraktKit.
-    public enum TraktKitError: Error {
+    /// Errors related to the operation of TraktKit client.
+    public enum TraktClientError: Error {
         case missingClientInfo
         case malformedURL
         case userNotAuthorized
@@ -127,14 +127,15 @@ public final class TraktManager: APIManager, @unchecked Sendable {
 
         let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
         let baseURL = URL(string: "https://\(apiHost)")!
-        let config = APIManager.Configuration(
+        let config = APIClient.Configuration(
             baseURL: baseURL,
             additionalHeaders: [
                 "trakt-api-version": "2",
                 "trakt-api-key": clientId
             ],
             paginationPageHeader: "x-pagination-page",
-            paginationPageCountHeader: "x-pagination-page-count"
+            paginationPageCountHeader: "x-pagination-page-count",
+            responseHandler: TraktResponseHandler()
         )
 
         super.init(configuration: config, session: session, authStorage: authStorage)
@@ -164,17 +165,20 @@ public final class TraktManager: APIManager, @unchecked Sendable {
 
         let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
         let baseURL = URL(string: "https://\(apiHost)")!
-        let config = APIManager.Configuration(
+        let config = APIClient.Configuration(
             baseURL: baseURL,
             additionalHeaders: [
                 "trakt-api-version": "2",
                 "trakt-api-key": clientId
             ],
             paginationPageHeader: "x-pagination-page",
-            paginationPageCountHeader: "x-pagination-page-count"
+            paginationPageCountHeader: "x-pagination-page-count",
+            responseHandler: TraktResponseHandler()
         )
 
-        await super.init(configuration: config, session: session, authStorage: authStorage)
+        super.init(configuration: config, session: session, authStorage: authStorage)
+
+        try? await refreshCurrentAuthState()
     }
 
     // MARK: - Authentication
@@ -275,7 +279,7 @@ public final class TraktManager: APIManager, @unchecked Sendable {
         } catch .tokenExpired(let refreshToken) {
             try await refreshAccessToken(with: refreshToken)
         } catch .noStoredCredentials {
-            throw TraktKitError.userNotAuthorized
+            throw TraktClientError.userNotAuthorized
         }
     }
 
@@ -289,7 +293,7 @@ public final class TraktManager: APIManager, @unchecked Sendable {
             await saveCredentials(for: authenticationInfo)
             return authenticationInfo
         } catch TraktError.unauthorized { // 401 - Invalid refresh token
-            throw TraktKitError.invalidRefreshToken
+            throw TraktClientError.invalidRefreshToken
         } catch {
             throw error
         }

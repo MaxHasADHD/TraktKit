@@ -28,7 +28,7 @@ extension Route {
             method: method,
             requiresAuthentication: requiresAuthentication,
             resultType: resultType,
-            apiManager: traktManager
+            apiClient: traktManager
         )
     }
 
@@ -49,7 +49,7 @@ extension Route {
             method: method,
             requiresAuthentication: requiresAuthentication,
             resultType: resultType,
-            apiManager: traktManager
+            apiClient: traktManager
         )
     }
 }
@@ -71,7 +71,7 @@ extension EmptyRoute {
             body: body,
             method: method,
             requiresAuthentication: requiresAuthentication,
-            apiManager: traktManager
+            apiClient: traktManager
         )
     }
 
@@ -90,7 +90,7 @@ extension EmptyRoute {
             body: body,
             method: method,
             requiresAuthentication: requiresAuthentication,
-            apiManager: traktManager
+            apiClient: traktManager
         )
     }
 }
