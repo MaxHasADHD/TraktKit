@@ -13,14 +13,16 @@ import Foundation
 extension TraktTestSuite {
     @Suite("Checkin Tests")
     struct CheckinTests {
+        let suite: TraktTestSuite
         let traktManager: TraktManager
 
         init() async throws {
-            self.traktManager = await authenticatedTraktManager()
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
         }
 
         @Test func checkinMovie() async throws {
-            try mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_checkin_movie")))
+            try await suite.mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_checkin_movie")))
 
             let checkin = try await traktManager.checkin()
                 .checkInto(movie: SyncId(trakt: 12345))
@@ -31,7 +33,7 @@ extension TraktTestSuite {
         }
 
         @Test func checkinEpisode() async throws {
-            try mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_checkin_episode")), replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_checkin_episode")), replace: true)
 
             let checkin = try await traktManager.checkin()
                 .checkInto(episode: SyncId(trakt: 12345))
@@ -43,9 +45,9 @@ extension TraktTestSuite {
         }
 
         @Test func alreadyCheckedIn() async throws {
-            try mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_already_checked_in")), httpCode: StatusCodes.Conflict, replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/checkin", result: .success(jsonData(named: "test_already_checked_in")), httpCode: StatusCodes.Conflict, replace: true)
 
-            await #expect(throws: TraktError.resourceAlreadyCreated) {
+            await #expect(throws: TraktError.conflict) {
                 try await traktManager.checkin()
                     .checkInto(episode: SyncId(trakt: 12345))
                     .perform()
@@ -53,7 +55,7 @@ extension TraktTestSuite {
         }
 
         @Test func deleteActiveCheckins() async throws {
-            try mock(.DELETE, "https://api.trakt.tv/checkin", result: .success(.init()), httpCode: StatusCodes.SuccessNoContentToReturn, replace: true)
+            try await suite.mock(.DELETE, "https://api.trakt.tv/checkin", result: .success(.init()), httpCode: StatusCodes.SuccessNoContentToReturn, replace: true)
 
             try await traktManager.checkin()
                 .deleteActiveCheckin()

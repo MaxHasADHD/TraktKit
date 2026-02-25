@@ -10,8 +10,15 @@ import Testing
 @testable import TraktKit
 
 extension TraktTestSuite {
-    @Suite(.serialized)
+    @Suite
     struct CalendarTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
 
         /// A fixed test date of 2014-09-01 in UTC.
         private static var testDate: Date {
@@ -26,8 +33,7 @@ extension TraktTestSuite {
         // MARK: - My Calendar
 
         @Test func getMyShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/my/shows/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/my/shows/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_shows")))
 
             let shows = try await traktManager.myCalendar
                 .shows(startDate: Self.testDate, days: 7)
@@ -41,8 +47,7 @@ extension TraktTestSuite {
         }
 
         @Test func getMyNewShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/my/shows/new/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_new_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/my/shows/new/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_new_shows")))
 
             let shows = try await traktManager.myCalendar
                 .newShows(startDate: Self.testDate, days: 7)
@@ -55,8 +60,7 @@ extension TraktTestSuite {
         }
 
         @Test func getMySeasonPremieres() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/my/shows/premieres/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_season_premieres")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/my/shows/premieres/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_season_premieres")))
 
             let shows = try await traktManager.myCalendar
                 .seasonPremieres(startDate: Self.testDate, days: 7)
@@ -67,8 +71,7 @@ extension TraktTestSuite {
         }
 
         @Test func getMyMovies() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/my/movies/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_movies")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/my/movies/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_movies")))
 
             let movies = try await traktManager.myCalendar
                 .movies(startDate: Self.testDate, days: 7)
@@ -81,8 +84,7 @@ extension TraktTestSuite {
         }
 
         @Test func getMyDVD() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/my/dvd/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_dvd")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/my/dvd/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_dvd")))
 
             let movies = try await traktManager.myCalendar
                 .dvd(startDate: Self.testDate, days: 7)
@@ -96,8 +98,7 @@ extension TraktTestSuite {
         // MARK: - All Calendar
 
         @Test func getAllShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/all/shows/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/all/shows/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_shows")))
 
             let shows = try await traktManager.allCalendar
                 .shows(startDate: Self.testDate, days: 7)
@@ -109,8 +110,7 @@ extension TraktTestSuite {
         }
 
         @Test func getAllNewShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/all/shows/new/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_new_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/all/shows/new/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_new_shows")))
 
             let shows = try await traktManager.allCalendar
                 .newShows(startDate: Self.testDate, days: 7)
@@ -122,8 +122,7 @@ extension TraktTestSuite {
         }
 
         @Test func getAllSeasonPremieres() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/all/shows/premieres/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_season_premieres")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/all/shows/premieres/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_season_premieres")))
 
             let shows = try await traktManager.allCalendar
                 .seasonPremieres(startDate: Self.testDate, days: 7)
@@ -134,8 +133,7 @@ extension TraktTestSuite {
         }
 
         @Test func getAllMovies() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/all/movies/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_movies")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/all/movies/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_movies")))
 
             let movies = try await traktManager.allCalendar
                 .movies(startDate: Self.testDate, days: 7)
@@ -147,8 +145,7 @@ extension TraktTestSuite {
         }
 
         @Test func getAllDVD() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/calendars/all/dvd/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_dvd")))
+            try await suite.mock(.GET, "https://api.trakt.tv/calendars/all/dvd/2014-09-01/7", result: .success(jsonData(named: "test_get_calendar_dvd")))
 
             let movies = try await traktManager.allCalendar
                 .dvd(startDate: Self.testDate, days: 7)

@@ -12,12 +12,18 @@ import Testing
 extension TraktTestSuite {
     @Suite(.serialized)
     struct ListsTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
 
         // MARK: - Trending
 
         @Test func getTrendingLists() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/lists/trending?page=1&limit=10",
                 result: .success(jsonData(named: "test_get_trending_lists")),
@@ -43,8 +49,7 @@ extension TraktTestSuite {
         // MARK: - Popular
 
         @Test func getPopularLists() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/lists/popular?page=1&limit=10",
                 result: .success(jsonData(named: "test_get_popular_lists")),
@@ -69,8 +74,7 @@ extension TraktTestSuite {
         // MARK: - Summary
 
         @Test func getListSummary() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/lists/star-wars-in-machete-order",
                 result: .success(jsonData(named: "test_get_list_summary"))
@@ -90,8 +94,7 @@ extension TraktTestSuite {
         // MARK: - Items
 
         @Test func getListItems() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/lists/star-wars-in-machete-order/items?page=1&limit=10",
                 result: .success(jsonData(named: "test_get_list_items")),
@@ -113,8 +116,7 @@ extension TraktTestSuite {
         }
 
         @Test func getListItemsFilteredByType() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/lists/star-wars-in-machete-order/items/movie",
                 result: .success(jsonData(named: "test_get_list_items"))
@@ -131,8 +133,7 @@ extension TraktTestSuite {
         // MARK: - Comments
 
         @Test func getListComments() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/lists/star-wars-in-machete-order/comments?page=1&limit=10",
                 result: .success(jsonData(named: "test_get_list_comments")),
@@ -155,8 +156,7 @@ extension TraktTestSuite {
         // MARK: - Likes
 
         @Test func getListLikes() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/lists/star-wars-in-machete-order/likes?page=1&limit=10",
                 result: .success(jsonData(named: "test_get_list_likes")),
@@ -178,8 +178,7 @@ extension TraktTestSuite {
         // MARK: - Like / Unlike
 
         @Test func likeList() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/lists/star-wars-in-machete-order/like", result: .success(.init()))
+            try await suite.mock(.POST, "https://api.trakt.tv/lists/star-wars-in-machete-order/like", result: .success(.init()))
 
             try await traktManager.list(id: "star-wars-in-machete-order")
                 .like()
@@ -187,8 +186,7 @@ extension TraktTestSuite {
         }
 
         @Test func removeLikeFromList() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.DELETE, "https://api.trakt.tv/lists/star-wars-in-machete-order/like", result: .success(.init()))
+            try await suite.mock(.DELETE, "https://api.trakt.tv/lists/star-wars-in-machete-order/like", result: .success(.init()))
 
             try await traktManager.list(id: "star-wars-in-machete-order")
                 .removeLike()

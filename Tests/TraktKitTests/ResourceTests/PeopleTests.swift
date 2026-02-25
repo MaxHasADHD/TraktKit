@@ -10,15 +10,21 @@ import Testing
 @testable import TraktKit
 
 extension TraktTestSuite {
-    @Suite(.serialized)
+    @Suite
     struct PeopleTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
 
         // MARK: - Updates
 
         @Test func getRecentlyUpdatedPeople() async throws {
-            let traktManager = await authenticatedTraktManager()
             let startDate = try Date.dateFromString("2022-11-03")
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/people/updates/2022-11-03T00:00:00?page=1&limit=10",
                 result: .success(jsonData(named: "test_get_recently_updated_people")),
@@ -40,9 +46,8 @@ extension TraktTestSuite {
         }
 
         @Test func getRecentlyUpdatedPeopleIds() async throws {
-            let traktManager = await authenticatedTraktManager()
             let startDate = try Date.dateFromString("2022-11-03")
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/people/updates/id/2022-11-03T00:00:00?page=1&limit=10",
                 result: .success(jsonData(named: "test_get_recently_updated_people_ids")),
@@ -65,8 +70,7 @@ extension TraktTestSuite {
         // MARK: - Summary
 
         @Test func getPersonMin() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/people/bryan-cranston?extended=min", result: .success(jsonData(named: "Person_Min")))
+            try await suite.mock(.GET, "https://api.trakt.tv/people/bryan-cranston?extended=min", result: .success(jsonData(named: "Person_Min")))
 
             let person = try await traktManager.person(id: "bryan-cranston")
                 .details()
@@ -77,8 +81,7 @@ extension TraktTestSuite {
         }
 
         @Test func getPersonFull() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/people/bryan-cranston?extended=full", result: .success(jsonData(named: "Person_Full")))
+            try await suite.mock(.GET, "https://api.trakt.tv/people/bryan-cranston?extended=full", result: .success(jsonData(named: "Person_Full")))
 
             let person = try await traktManager.person(id: "bryan-cranston")
                 .details()
@@ -91,8 +94,7 @@ extension TraktTestSuite {
         // MARK: - Movies
 
         @Test func getMovieCredits() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/people/bryan-cranston/movies?extended=min",
                 result: .success(jsonData(named: "test_get_movie_credits"))
@@ -111,8 +113,7 @@ extension TraktTestSuite {
         // MARK: - Shows
 
         @Test func getShowCredits() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/people/bryan-cranston/shows?extended=min",
                 result: .success(jsonData(named: "test_get_show_credits"))
@@ -130,8 +131,7 @@ extension TraktTestSuite {
         // MARK: - Lists
 
         @Test func getListsContainingPerson() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/people/bryan-cranston/lists", result: .success(jsonData(named: "test_get_lists_containing_this_person")))
+            try await suite.mock(.GET, "https://api.trakt.tv/people/bryan-cranston/lists", result: .success(jsonData(named: "test_get_lists_containing_this_person")))
 
             let lists = try await traktManager.person(id: "bryan-cranston")
                 .containingLists()
@@ -144,8 +144,7 @@ extension TraktTestSuite {
         // MARK: - Refresh
 
         @Test func refreshPersonMetadata() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), replace: true)
 
             // A successful refresh returns 201 with no body — just confirm it doesn't throw.
             try await traktManager.person(id: "bryan-cranston")
@@ -154,8 +153,7 @@ extension TraktTestSuite {
         }
 
         @Test func refreshPersonMetadataAlreadyQueued() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), httpCode: 409, replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), httpCode: 409, replace: true)
 
             // A 409 means the person is already queued — the manager should surface this as an error.
             await #expect(throws: (any Error).self) {

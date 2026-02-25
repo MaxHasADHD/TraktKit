@@ -13,10 +13,17 @@ import SwiftAPIClient
 extension TraktTestSuite {
     @Suite
     struct TraktManagerTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
+        
         @Test
         func pollForAccessTokenInvalidDeviceCode() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/oauth/device/token", result: .success(.init()), httpCode: 404)
+            try await suite.mock(.GET, "https://api.trakt.tv/oauth/device/token", result: .success(.init()), httpCode: 404)
 
             let deviceCodeJSON: [String: Any] = [
                 "device_code": "d9c126a7706328d808914cfd1e40274b6e009f684b1aca271b9b3f90b3630d64",
@@ -34,16 +41,10 @@ extension TraktTestSuite {
 
         @Test
         func retryRequestSuccess() async throws {
-            let traktManager = await authenticatedTraktManager()
             let urlString = "https://api.trakt.tv/retry_test"
             let url = try #require(URL(string: urlString))
-            try mock(.GET, urlString, result: .success(Data()), httpCode: 429, headers: [.retry(5)])
-
-            // Update mock in 2 seconds
-            Task {
-                try await Task.sleep(for: .seconds(2))
-                try mock(.GET, urlString, result: .success(Data()), httpCode: 201, replace: true)
-            }
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: 429, headers: [.retry(5)])
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: 201)
 
             let request = URLRequest(url: url)
             let (_, response) = try await traktManager.fetchData(request: request, retryLimit: 2)
@@ -52,27 +53,19 @@ extension TraktTestSuite {
         }
 
         @Test func retryRequestFailed() async throws {
-            let traktManager = await authenticatedTraktManager()
             let urlString = "https://api.trakt.tv/retry_test_failed"
             let url = try #require(URL(string: urlString))
-            try mock(.GET, urlString, result: .success(Data()), httpCode: 429, headers: [.retry(3)])
-
-            // Update mock in 2 seconds
-            Task {
-                try await Task.sleep(for: .seconds(1))
-                try mock(.GET, urlString, result: .success(Data()), httpCode: 405, replace: true)
-            }
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: 429, headers: [.retry(3)])
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: 405)
 
             let request = URLRequest(url: url)
 
-            await #expect(throws: SwiftAPIClient.APIError.noMethodFound, performing: {
+            await #expect(throws: SwiftAPIClient.APIError.methodNotAllowed, performing: {
                 try await traktManager.fetchData(request: request, retryLimit: 2)
             })
         }
 
         @Test func fetchPaginatedResults() async throws {
-            let traktManager = await authenticatedTraktManager()
-
             let path = "shows/paginated-results/trending"
             for p in 1...2 {
                 let urlString = "https://api.trakt.tv/\(path)?page=\(p)&limit=10"
@@ -90,7 +83,7 @@ extension TraktTestSuite {
                     ]
                 }
                 let data = try JSONSerialization.data(withJSONObject: json)
-                try mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)], replace: true)
+                try await suite.mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)], replace: true)
             }
 
             // Note: Creating a mock route to test pagination logic due to running into conflicts with other tests setting up mock data for the same endpoint.
@@ -101,7 +94,7 @@ extension TraktTestSuite {
         }
 
         @Test func streamPaginatedResults() async throws {
-            let traktManager = await authenticatedTraktManager()
+            
 
             var watchersByPage = [[Int]]()
             let path = "shows/paged-results/trending"
@@ -122,7 +115,7 @@ extension TraktTestSuite {
                 }
                 watchersByPage.append(json.map { $0["watchers"] as? Int ?? 0 })
                 let data = try JSONSerialization.data(withJSONObject: json)
-                try mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)], replace: true)
+                try await suite.mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)], replace: true)
             }
 
             // Note: Creating a mock route to test pagination logic due to running into conflicts with other tests setting up mock data for the same endpoint.
@@ -132,6 +125,99 @@ extension TraktTestSuite {
                 let watchersForPage = watchersByPage.removeFirst()
                 #expect(page.map { $0.watchers } == watchersForPage)
                 #expect(page.count == 10)
+            }
+        }
+
+        // MARK: - Trakt-Specific Error Integration Tests
+
+        @Test("Mock request with 420 status throws TraktAPIError.accountLimitExceeded")
+        func accountLimitExceeded() async throws {
+            
+            let urlString = "https://api.trakt.tv/users/me/lists"
+            try await suite.mock(.POST, urlString, result: .success(Data()), httpCode: StatusCodes.AccountLimitExceeded)
+
+            let route: Route<TraktList> = Route(path: "users/me/lists", method: .POST, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.accountLimitExceeded) {
+                try await route.perform()
+            }
+        }
+
+        @Test("Mock request with 423 status throws TraktAPIError.accountLocked")
+        func accountLocked() async throws {
+            
+            let urlString = "https://api.trakt.tv/sync/collection"
+            try await suite.mock(.POST, urlString, result: .success(Data()), httpCode: StatusCodes.acountLocked)
+
+            let route: EmptyRoute = EmptyRoute(path: "sync/collection", method: .POST, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.accountLocked) {
+                try await route.perform()
+            }
+        }
+
+        @Test("Mock request with 426 status throws TraktAPIError.vipOnly")
+        func vipOnly() async throws {
+            
+            let urlString = "https://api.trakt.tv/users/saved_filters"
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: StatusCodes.vipOnly)
+
+            let route: Route<[SavedFilter]> = Route(path: "users/saved_filters", method: .GET, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.vipOnly) {
+                try await route.perform()
+            }
+        }
+
+        @Test("Mock request with 520 status throws TraktAPIError.cloudflareError")
+        func cloudflareError520() async throws {
+            
+            let urlString = "https://api.trakt.tv/movies/trending"
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: StatusCodes.CloudflareError)
+
+            let route: Route<[TraktTrendingMovie]> = Route(path: "movies/trending", method: .GET, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.cloudflareError(statusCode: 520)) {
+                try await route.perform()
+            }
+        }
+
+        @Test("Mock request with 521 status throws TraktAPIError.cloudflareError")
+        func cloudflareError521() async throws {
+            
+            let urlString = "https://api.trakt.tv/shows/trending"
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: StatusCodes.CloudflareError2)
+
+            let route: Route<[TraktTrendingShow]> = Route(path: "shows/trending", method: .GET, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.cloudflareError(statusCode: 521)) {
+                try await route.perform()
+            }
+        }
+
+        @Test("Mock request with 522 status throws TraktAPIError.cloudflareError")
+        func cloudflareError522() async throws {
+            
+            let urlString = "https://api.trakt.tv/search"
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: StatusCodes.CloudflareError3)
+
+            let route: Route<[TraktMovie]> = Route(path: "search", method: .GET, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.cloudflareError(statusCode: 522)) {
+                try await route.perform()
+            }
+        }
+
+        @Test("Mock request with standard 404 still throws TraktError.notFound")
+        func standardErrorStillWorks() async throws {
+            
+            let urlString = "https://api.trakt.tv/movies/invalid-id"
+            try await suite.mock(.GET, urlString, result: .success(Data()), httpCode: 404)
+
+            let route: Route<TraktMovie> = Route(path: "movies/invalid-id", method: .GET, traktManager: traktManager)
+
+            await #expect(throws: TraktError.notFound) {
+                try await route.perform()
             }
         }
     }

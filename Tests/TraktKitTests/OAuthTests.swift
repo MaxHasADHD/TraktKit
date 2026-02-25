@@ -9,10 +9,16 @@ import Foundation
 import Testing
 @testable import TraktKit
 
-@Suite(.serialized)
-struct OAuthTests {
-    
-    // MARK: - PKCE Tests
+extension TraktTestSuite {
+    @Suite(.serialized)
+    struct OAuthTests {
+        let suite: TraktTestSuite
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+        }
+        
+        // MARK: - PKCE Tests
     
     @Test func generateCodeVerifier() throws {
         let verifier = PKCEUtilities.generateCodeVerifier()
@@ -170,12 +176,12 @@ struct OAuthTests {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try OAuthTests.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data), replace: true)
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
 
         let authStorage = TraktMockAuthStorage()
 
         let traktManager = await TraktManager(
-            session: URLSession.mockedResponsesOnly,
+            session: suite.mockSession.urlSession,
             clientId: "",
             clientSecret: "",
             redirectURI: "",
@@ -203,7 +209,7 @@ struct OAuthTests {
         let authStorage = TraktMockAuthStorage(accessToken: "123456789", refreshToken: refreshToken, expirationDate: .distantPast)
 
         let traktManager = await TraktManager(
-            session: URLSession.mockedResponsesOnly,
+            session: suite.mockSession.urlSession,
             clientId: "",
             clientSecret: "",
             redirectURI: "",
@@ -223,7 +229,7 @@ struct OAuthTests {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try OAuthTests.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data), replace: true)
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
 
         // Refresh token
         try await traktManager.checkToRefresh()
@@ -237,7 +243,7 @@ struct OAuthTests {
         let authStorage = TraktMockAuthStorage(accessToken: "123456789", refreshToken: "abcdefgh", expirationDate: .distantFuture)
 
         let traktManager = await TraktManager(
-            session: URLSession.mockedResponsesOnly,
+            session: suite.mockSession.urlSession,
             clientId: "",
             clientSecret: "",
             redirectURI: "",
@@ -258,12 +264,12 @@ struct OAuthTests {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try OAuthTests.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data), replace: true)
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
 
         let authStorage = TraktMockAuthStorage()
 
         let traktManager = await TraktManager(
-            session: URLSession.mockedResponsesOnly,
+            session: suite.mockSession.urlSession,
             clientId: "",
             redirectURI: "",
             authStorage: authStorage
@@ -315,7 +321,7 @@ struct OAuthTests {
         let authStorage = TraktMockAuthStorage(accessToken: "123456789", refreshToken: refreshToken, expirationDate: .distantPast)
 
         let traktManager = await TraktManager(
-            session: URLSession.mockedResponsesOnly,
+            session: suite.mockSession.urlSession,
             clientId: "",
             redirectURI: "",
             authStorage: authStorage
@@ -334,7 +340,7 @@ struct OAuthTests {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try OAuthTests.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data), replace: true)
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
 
         // Refresh token
         try await traktManager.checkToRefresh()
@@ -362,15 +368,5 @@ struct OAuthTests {
         let backToJSON = try #require(JSONSerialization.jsonObject(with: backToData) as? [String: String])
         #expect(backToJSON == json)
     }
-
-    // MARK: - Helper
-
-    static func mock(_ method: TraktKit.Method, _ urlString: String, result: Result<Data, Swift.Error>, httpCode: Int? = nil, headers: [HTTPHeader] = [.contentType, .apiVersion, .apiKey("")], replace: Bool = false) throws {
-        let mock = try RequestMocking.MockedResponse(urlString: urlString, result: result, httpCode: httpCode ?? method.expectedResult, headers: headers)
-        if replace {
-            RequestMocking.replace(mock: mock)
-        } else {
-            RequestMocking.add(mock: mock)
-        }
     }
 }

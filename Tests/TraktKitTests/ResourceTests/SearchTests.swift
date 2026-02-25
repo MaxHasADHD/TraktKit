@@ -12,16 +12,19 @@ import Testing
 extension TraktTestSuite {
     @Suite("Search Tests")
     struct SearchTests {
+        let suite: TraktTestSuite
         let traktManager: TraktManager
 
         init() async throws {
-            self.traktManager = await authenticatedTraktManager()
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
         }
+
 
         // MARK: - Text query
 
         @Test func searchQuery() async throws {
-            try mock(.GET, "https://api.trakt.tv/search/movie,show,episode,person,list?query=tron&extended=min", result: .success(jsonData(named: "test_search_query")))
+            try await suite.mock(.GET, "https://api.trakt.tv/search/movie,show,episode,person,list?query=tron&extended=min", result: .success(jsonData(named: "test_search_query")))
 
             let searchResults = try await traktManager.search()
                 .search("tron", types: [.movie, .show, .episode, .person, .list])
@@ -34,7 +37,7 @@ extension TraktTestSuite {
         // MARK: - ID Lookup
 
         @Test func idLookup() async throws {
-            try mock(.GET, "https://api.trakt.tv/search/imdb/tt0848228?type=movie&extended=min", result: .success(jsonData(named: "test_id_lookup")))
+            try await suite.mock(.GET, "https://api.trakt.tv/search/imdb/tt0848228?type=movie&extended=min", result: .success(jsonData(named: "test_id_lookup")))
 
             let lookupResults = try await traktManager.search()
                 .lookup(.IMDB(id: "tt0848228"))

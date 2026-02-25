@@ -13,16 +13,20 @@ import Foundation
 extension TraktTestSuite {
     @Suite("Shows Tests")
     struct ShowsTests {
+        let suite: TraktTestSuite
         let traktManager: TraktManager
 
         init() async throws {
-            self.traktManager = await authenticatedTraktManager()
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
         }
+
+
 
         // MARK: - Trending
 
         @Test func getMinTrendingShowsAwait() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/trending?extended=min&page=1&limit=10", result: .success(jsonData(named: "TrendingShows_Min")), headers: [.page(1), .pageCount(100)])
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/trending?extended=min&page=1&limit=10", result: .success(jsonData(named: "TrendingShows_Min")), headers: [.page(1), .pageCount(100)])
 
             let response = try await traktManager.shows.trending()
                 .extend(.Min)
@@ -43,7 +47,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFullTrendingShows() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/trending?extended=full&page=1&limit=10", result: .success(jsonData(named: "TrendingShows_Full")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/trending?extended=full&page=1&limit=10", result: .success(jsonData(named: "TrendingShows_Full")))
 
             let response = try await traktManager.shows.trending()
                 .extend(.Full)
@@ -64,7 +68,7 @@ extension TraktTestSuite {
         // MARK: - Popular
 
         @Test func getPopularShows() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/popular?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_popular_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/popular?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_popular_shows")))
 
             let response = try await traktManager.shows
                 .popular()
@@ -79,7 +83,7 @@ extension TraktTestSuite {
         // MARK: - Played
 
         @Test func getMostPlayedShows() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/played/weekly?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_played_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/played/weekly?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_played_shows")))
 
             let response = try await traktManager.shows
                 .played(period: .weekly)
@@ -94,7 +98,7 @@ extension TraktTestSuite {
         // MARK: - Watched
 
         @Test func getMostWatchedShowsAsync() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/watched/weekly?page=1&limit=10", result: .success(jsonData(named: "test_get_most_watched_shows")), headers: [.page(1), .pageCount(8)])
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/watched/weekly?page=1&limit=10", result: .success(jsonData(named: "test_get_most_watched_shows")), headers: [.page(1), .pageCount(8)])
 
             let pagedObject = try await traktManager.shows
                 .watched(period: .weekly)
@@ -117,7 +121,7 @@ extension TraktTestSuite {
         // MARK: - Collected
 
         @Test func getMostCollectedShows() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/collected/weekly?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_collected_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/collected/weekly?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_collected_shows")))
 
             let response = try await traktManager.shows
                 .collected(period: .weekly)
@@ -132,7 +136,7 @@ extension TraktTestSuite {
         // MARK: - Anticipated
 
         @Test func getMostAnticipatedShows() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/anticipated?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_anticipated_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/anticipated?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_most_anticipated_shows")))
 
             let response = try await traktManager.shows
                 .anticipated()
@@ -147,7 +151,7 @@ extension TraktTestSuite {
         // MARK: - Updates
 
         @Test func getUpdatedShows() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/updates/2014-09-22T00:00:00?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_updated_shows")), replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/updates/2014-09-22T00:00:00?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_updated_shows")), replace: true)
 
             let response = try await traktManager.shows
                 .recentlyUpdated(since: try Date.dateFromString("2014-09-22"))
@@ -160,7 +164,7 @@ extension TraktTestSuite {
         }
 
         @Test func getUpdatedShowIds() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/updates/id/2025-01-01T00:00:00", result: .success(jsonData(named: "test_get_updated_shows_ids")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/updates/id/2025-01-01T00:00:00", result: .success(jsonData(named: "test_get_updated_shows_ids")))
 
             let updatedIds = try await traktManager.shows
                 .recentlyUpdatedIds(since: try Date.dateFromString("2025-01-01"))
@@ -172,7 +176,7 @@ extension TraktTestSuite {
         // MARK: - Summary
 
         @Test func getMinShow() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones?extended=min", result: .success(jsonData(named: "Show_Min")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones?extended=min", result: .success(jsonData(named: "Show_Min")))
 
             let show = try await traktManager.show(id: "game-of-thrones").summary()
                 .extend(.Min)
@@ -202,7 +206,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFullShowAwait() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones?extended=full", result: .success(jsonData(named: "Show_Full")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones?extended=full", result: .success(jsonData(named: "Show_Full")))
 
             let show = try await traktManager.show(id: "game-of-thrones").summary()
                 .extend(.Full)
@@ -232,7 +236,7 @@ extension TraktTestSuite {
         }
 
         @Test func getShowImages() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones?extended=images", result: .success(jsonData(named: "Show_Images")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones?extended=images", result: .success(jsonData(named: "Show_Images")))
 
             let show = try await traktManager.show(id: "game-of-thrones").summary().extend(.images).perform()
             #expect(show.title == "Severance")
@@ -263,7 +267,7 @@ extension TraktTestSuite {
         // MARK: - Aliases
 
         @Test func getShowAliasesAwait() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/aliases", result: .success(jsonData(named: "ShowAliases")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/aliases", result: .success(jsonData(named: "ShowAliases")))
 
             let aliases = try await traktManager.show(id: "game-of-thrones").aliases().perform()
             #expect(aliases.count == 32)
@@ -272,7 +276,7 @@ extension TraktTestSuite {
         // MARK: - Translations
 
         @Test func getShowTranslations() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/translations/es", result: .success(jsonData(named: "test_get_show_translations")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/translations/es", result: .success(jsonData(named: "test_get_show_translations")))
 
             let translations = try await traktManager.show(id: "game-of-thrones")
                 .translations(language: "es")
@@ -284,7 +288,7 @@ extension TraktTestSuite {
         // MARK: - Comments
 
         @Test func getShowCommentsAsync() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/presumed-innocent/comments/newest", result: .success(jsonData(named: "test_get_show_comments")), headers: [.page(1), .pageCount(4)])
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/presumed-innocent/comments/newest", result: .success(jsonData(named: "test_get_show_comments")), headers: [.page(1), .pageCount(4)])
 
             let pagedObject = try await traktManager.show(id: "presumed-innocent")
                 .comments(sort: "newest")
@@ -306,7 +310,7 @@ extension TraktTestSuite {
         // MARK: - Lists
 
         @Test func getListsContainingShow() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/lists", result: .success(jsonData(named: "test_get_lists_containing_show")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/lists", result: .success(jsonData(named: "test_get_lists_containing_show")))
 
             let lists = try await traktManager.show(id: "game-of-thrones")
                 .containingLists()
@@ -318,7 +322,7 @@ extension TraktTestSuite {
         // MARK: - Collection Progress
 
         @Test func parseShowCollectionProgress() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/progress/collection?hidden=false&specials=false", result: .success(jsonData(named: "ShowCollectionProgress")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/progress/collection?hidden=false&specials=false", result: .success(jsonData(named: "ShowCollectionProgress")))
 
             let collectionProgress = try await traktManager.show(id: "game-of-thrones")
                 .collectedProgress(includeHiddenSeasons: false, includeSpecials: false)
@@ -337,7 +341,7 @@ extension TraktTestSuite {
         // MARK: - Watched Progress
 
         @Test func getWatchedProgress() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/progress/watched?hidden=false&specials=false", result: .success(jsonData(named: "test_get_wathced_progress")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/progress/watched?hidden=false&specials=false", result: .success(jsonData(named: "test_get_wathced_progress")))
 
             let progress = try await traktManager.show(id: "game-of-thrones")
                 .watchedProgress(includeHiddenSeasons: false, includeSpecials: false)
@@ -350,7 +354,7 @@ extension TraktTestSuite {
         // MARK: - People
 
         @Test func getShowPeopleMin() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=min", result: .success(jsonData(named: "ShowCastAndCrew_Min")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=min", result: .success(jsonData(named: "ShowCastAndCrew_Min")))
 
             let castAndCrew = try await traktManager.show(id: "game-of-thrones")
                 .people()
@@ -371,7 +375,7 @@ extension TraktTestSuite {
         }
 
         @Test func getShowPeopleFull() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=full", result: .success(jsonData(named: "ShowCastAndCrew_Full")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=full", result: .success(jsonData(named: "ShowCastAndCrew_Full")))
 
             let castAndCrew = try await traktManager.show(id: "game-of-thrones")
                 .people()
@@ -385,7 +389,7 @@ extension TraktTestSuite {
         }
 
         @Test func getShowPeopleGuestStars() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=guest_stars", result: .success(jsonData(named: "ShowCastAndCrew_GuestStars")), replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=guest_stars", result: .success(jsonData(named: "ShowCastAndCrew_GuestStars")), replace: true)
 
             let castAndCrew = try await traktManager.show(id: "game-of-thrones")
                 .people()
@@ -403,7 +407,7 @@ extension TraktTestSuite {
         // MARK: - Ratings
 
         @Test func getShowRatings() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/ratings", result: .success(jsonData(named: "test_get_show_ratings")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/ratings", result: .success(jsonData(named: "test_get_show_ratings")))
 
             let ratings = try await traktManager.show(id: "game-of-thrones")
                 .ratings()
@@ -416,7 +420,7 @@ extension TraktTestSuite {
         // MARK: - Related
 
         @Test func getRelatedShows() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/related?extended=min", result: .success(jsonData(named: "test_get_related_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/related?extended=min", result: .success(jsonData(named: "test_get_related_shows")))
 
             let relatedShows = try await traktManager.show(id: "game-of-thrones")
                 .relatedShows()
@@ -430,7 +434,7 @@ extension TraktTestSuite {
         // MARK: - Stats
 
         @Test func getStats() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/stats", result: .success(jsonData(named: "ShowStats")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/stats", result: .success(jsonData(named: "ShowStats")))
 
             let stats = try await traktManager.show(id: "game-of-thrones")
                 .stats()
@@ -447,7 +451,7 @@ extension TraktTestSuite {
         // MARK: - Watching
 
         @Test func getUsersWatchingShow() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/watching", result: .success(jsonData(named: "test_get_users_watching_show")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/watching", result: .success(jsonData(named: "test_get_users_watching_show")))
 
             let users = try await traktManager.show(id: "game-of-thrones")
                 .usersWatching()
@@ -459,7 +463,7 @@ extension TraktTestSuite {
         // MARK: - Next episode
 
         @Test func getNextEpisode() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/next_episode?extended=min", result: .success(Data()), httpCode: 204)
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/next_episode?extended=min", result: .success(Data()), httpCode: 204)
 
             await #expect(throws: (any Error).self) {
                 try await traktManager.show(id: "game-of-thrones")
@@ -472,7 +476,7 @@ extension TraktTestSuite {
         // MARK: - Last episode
 
         @Test func getLastEpisode() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/last_episode?extended=min", result: .success(jsonData(named: "LastEpisodeAired_min")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/last_episode?extended=min", result: .success(jsonData(named: "LastEpisodeAired_min")))
 
             let episode = try await traktManager.show(id: "game-of-thrones")
                 .lastEpisode()

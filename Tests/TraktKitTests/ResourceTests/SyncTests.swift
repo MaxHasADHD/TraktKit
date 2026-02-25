@@ -10,11 +10,18 @@ import Testing
 @testable import TraktKit
 
 extension TraktTestSuite {
-    @Suite(.serialized)
+    @Suite
     struct SyncTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
+
         @Test func getLastActivities() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/last_activities", result: .success(jsonData(named: "test_get_last_activity")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/last_activities", result: .success(jsonData(named: "test_get_last_activity")))
 
             let lastActivities = try await traktManager.sync()
                 .lastActivities()
@@ -47,8 +54,7 @@ extension TraktTestSuite {
         // MARK: - Playback
 
         @Test func getMoviePlaybackProgress() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/playback/movies", result: .success(jsonData(named: "test_get_playback_progress")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/playback/movies", result: .success(jsonData(named: "test_get_playback_progress")))
 
             let progress = try await traktManager.sync()
                 .playback(type: "movies")
@@ -60,8 +66,7 @@ extension TraktTestSuite {
         }
 
         @Test func removePlaybackProgress() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.DELETE, "https://api.trakt.tv/sync/playback/13", result: .success(.init()), httpCode: StatusCodes.SuccessNoContentToReturn)
+            try await suite.mock(.DELETE, "https://api.trakt.tv/sync/playback/13", result: .success(.init()), httpCode: StatusCodes.SuccessNoContentToReturn)
 
             try await traktManager.sync().removePlayback(id: 13).perform()
         }
@@ -69,8 +74,7 @@ extension TraktTestSuite {
         // MARK: - Collection
 
         @Test func getCollectedMovies() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/collection/movies?extended=min", result: .success(jsonData(named: "test_get_collection")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/collection/movies?extended=min", result: .success(jsonData(named: "test_get_collection")))
 
             let movies = try await traktManager.sync()
                 .collection(type: "movies")
@@ -80,8 +84,7 @@ extension TraktTestSuite {
         }
 
         @Test func getCollectedShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/collection/shows?extended=min", result: .success(jsonData(named: "test_get_collection_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/collection/shows?extended=min", result: .success(jsonData(named: "test_get_collection_shows")))
 
             let movies = try await traktManager.sync()
                 .collection(type: "shows")
@@ -91,8 +94,7 @@ extension TraktTestSuite {
         }
 
         @Test func addItemsToCollection() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/sync/collection", result: .success(jsonData(named: "test_add_items_to_collection")))
+            try await suite.mock(.POST, "https://api.trakt.tv/sync/collection", result: .success(jsonData(named: "test_add_items_to_collection")))
 
             let result = try await traktManager.sync()
                 .addToCollection(movies: []) // For mock we don't have to pass anything in.
@@ -102,8 +104,7 @@ extension TraktTestSuite {
         }
 
         @Test func removeItemsFromCollection() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/collection/remove", result: .success(jsonData(named: "test_remove_items_from_collection")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/collection/remove", result: .success(jsonData(named: "test_remove_items_from_collection")))
 
             let result = try await traktManager.sync()
                 .removeFromCollection(movies: []) // For mock we don't have to pass anything in.
@@ -118,8 +119,7 @@ extension TraktTestSuite {
         // MARK: - Watched
 
         @Test func getWatchedMovies() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/watched/movies?extended=min", result: .success(jsonData(named: "test_get_watched")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/watched/movies?extended=min", result: .success(jsonData(named: "test_get_watched")))
 
             let watchedMovies = try await traktManager.sync()
                 .watchedMovies()
@@ -129,8 +129,7 @@ extension TraktTestSuite {
         }
 
         @Test func getWatchedShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/watched/shows?extended=min", result: .success(jsonData(named: "test_get_watched_shows")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/watched/shows?extended=min", result: .success(jsonData(named: "test_get_watched_shows")))
 
             let watchedShows = try await traktManager.sync()
                 .watchedShows()
@@ -141,8 +140,7 @@ extension TraktTestSuite {
         }
 
         @Test func getWatchedShowsWithoutSeasons() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/watched/shows?extended=noseasons", result: .success(jsonData(named: "test_get_watched_shows_noseasons")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/watched/shows?extended=noseasons", result: .success(jsonData(named: "test_get_watched_shows_noseasons")))
 
             let watchedShows = try await traktManager.sync()
                 .watchedShows()
@@ -155,8 +153,7 @@ extension TraktTestSuite {
         // MARK: - History
 
         @Test func getHistory() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/history/movies?extended=min", result: .success(jsonData(named: "test_get_watched_history")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/history/movies?extended=min", result: .success(jsonData(named: "test_get_watched_history")))
 
             let history = try await traktManager.sync()
                 .history(type: "movies")
@@ -168,8 +165,7 @@ extension TraktTestSuite {
         }
 
         @Test func addItemsToHistory() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/sync/history", result: .success(jsonData(named: "test_add_items_to_watched_history")))
+            try await suite.mock(.POST, "https://api.trakt.tv/sync/history", result: .success(jsonData(named: "test_add_items_to_watched_history")))
 
             let result = try await traktManager.sync()
                 .addToHistory()
@@ -180,8 +176,7 @@ extension TraktTestSuite {
         }
 
         @Test func removeItemsFromHistory() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/history/remove", result: .success(jsonData(named: "test_remove_items_from_history")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/history/remove", result: .success(jsonData(named: "test_remove_items_from_history")))
 
             let result = try await traktManager.sync()
                 .removeFromHistory()
@@ -194,8 +189,7 @@ extension TraktTestSuite {
         // MARK: - Ratings
 
         @Test func getRatings() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/ratings/movies/9", result: .success(jsonData(named: "test_get_ratings")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/ratings/movies/9", result: .success(jsonData(named: "test_get_ratings")))
 
             let ratings = try await traktManager.sync()
                 .ratings(type: "movies", rating: 9)
@@ -206,8 +200,7 @@ extension TraktTestSuite {
         }
 
         @Test func addRating() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/sync/ratings", result: .success(jsonData(named: "test_add_new_ratings")))
+            try await suite.mock(.POST, "https://api.trakt.tv/sync/ratings", result: .success(jsonData(named: "test_add_new_ratings")))
 
             let result = try await traktManager.sync()
                 .addRatings()
@@ -221,8 +214,7 @@ extension TraktTestSuite {
         }
 
         @Test func removeRating() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/ratings/remove", result: .success(jsonData(named: "test_remove_ratings")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/ratings/remove", result: .success(jsonData(named: "test_remove_ratings")))
 
             let result = try await traktManager.sync()
                 .removeRatings()
@@ -237,8 +229,7 @@ extension TraktTestSuite {
         // MARK: - Watchlist
 
         @Test func getWatchlist() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/sync/watchlist/movies?extended=min", result: .success(jsonData(named: "test_get_watchlist")))
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/watchlist/movies?extended=min", result: .success(jsonData(named: "test_get_watchlist")))
 
             let watchlist = try await traktManager.sync()
                 .watchlist(type: "movies")
@@ -257,8 +248,7 @@ extension TraktTestSuite {
         }
 
         @Test func addToWatchlist() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/sync/watchlist", result: .success(jsonData(named: "test_add_items_to_watchlist")))
+            try await suite.mock(.POST, "https://api.trakt.tv/sync/watchlist", result: .success(jsonData(named: "test_add_items_to_watchlist")))
 
             let result = try await traktManager.sync()
                 .addToWatchlist()

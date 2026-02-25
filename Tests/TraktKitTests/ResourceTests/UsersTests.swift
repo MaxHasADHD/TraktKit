@@ -9,11 +9,18 @@ import Testing
 @testable import TraktKit
 
 extension TraktTestSuite {
-    @Suite(.serialized)
+    @Suite
     struct UsersTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
+
         @Test func getSettings() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/settings", result: .success(jsonData(named: "test_get_settings")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/settings", result: .success(jsonData(named: "test_get_settings")))
 
             let settings = try await traktManager.currentUser().settings().perform()
             #expect(settings.user.name == "Justin Nemeth")
@@ -27,8 +34,7 @@ extension TraktTestSuite {
         // MARK: - Follow requests
 
         @Test func getFollowingRequests() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/requests", result: .success(jsonData(named: "test_get_follow_request")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/requests", result: .success(jsonData(named: "test_get_follow_request")))
 
             let followRequests = try await traktManager.currentUser()
                 .getFollowerRequests()
@@ -38,8 +44,7 @@ extension TraktTestSuite {
         }
 
         @Test func approveFollowRequest() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/requests/123", result: .success(jsonData(named: "test_approve_follow_request")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/requests/123", result: .success(jsonData(named: "test_approve_follow_request")))
 
             let result = try await traktManager.currentUser()
                 .approveFollowRequest(id: 123)
@@ -49,8 +54,7 @@ extension TraktTestSuite {
         }
 
         @Test func denyFollowRequest() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.DELETE, "https://api.trakt.tv/users/requests/123", result: .success(.init()))
+            try await suite.mock(.DELETE, "https://api.trakt.tv/users/requests/123", result: .success(.init()))
 
             try await traktManager.currentUser()
                 .denyFollowRequest(id: 123)
@@ -58,8 +62,7 @@ extension TraktTestSuite {
         }
 
         @Test func getSavedFilters() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/saved_filters", result: .success(jsonData(named: "test_get_saved_filters")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/saved_filters", result: .success(jsonData(named: "test_get_saved_filters")))
 
             let filters = try await traktManager.currentUser().savedFilters().perform().object
             #expect(filters.count == 4)
@@ -71,8 +74,7 @@ extension TraktTestSuite {
         // MARK: - Hidden items
 
         @Test func getHiddenItems() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/hidden/progress_watched?page=1&limit=10&type=show&extended=min", result: .success(jsonData(named: "test_get_hidden_items")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/hidden/progress_watched?page=1&limit=10&type=show&extended=min", result: .success(jsonData(named: "test_get_hidden_items")))
 
             let result = try await traktManager.currentUser()
                 .hiddenItems(for: HiddenItemSection.progressWatched, type: "show")
@@ -86,8 +88,7 @@ extension TraktTestSuite {
         }
 
         @Test func hideItem() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/users/hidden/calendar", result: .success(jsonData(named: "test_add_hidden_item")))
+            try await suite.mock(.POST, "https://api.trakt.tv/users/hidden/calendar", result: .success(jsonData(named: "test_add_hidden_item")))
 
             let result = try await traktManager.currentUser()
                 .hide(movies: [.init(trakt: 1234)], in: HiddenItemSection.calendar)
@@ -99,8 +100,7 @@ extension TraktTestSuite {
         }
 
         @Test func unhideItem() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/hidden/calendar/remove", result: .success(jsonData(named: "test_post_remove_hidden_items")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/hidden/calendar/remove", result: .success(jsonData(named: "test_post_remove_hidden_items")))
 
             let result = try await traktManager.currentUser()
                 .unhide(movies: [.init(trakt: 1234)], in: HiddenItemSection.calendar)
@@ -113,8 +113,7 @@ extension TraktTestSuite {
         // MARK: - Profile
 
         @Test func getMinProfile() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/me?extended=min", result: .success(jsonData(named: "test_get_min_profile")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/me?extended=min", result: .success(jsonData(named: "test_get_min_profile")))
 
             let profile = try await traktManager.currentUser()
                 .profile()
@@ -129,8 +128,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFullProfile() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_full_profile")), replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_full_profile")), replace: true)
 
             let profile = try await traktManager.currentUser()
                 .profile()
@@ -150,8 +148,7 @@ extension TraktTestSuite {
         }
 
         @Test func getVIPProfile() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_VIP_profile")), replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/users/me?extended=full", result: .success(jsonData(named: "test_get_VIP_profile")), replace: true)
 
             let profile = try await traktManager.currentUser()
                 .profile()
@@ -170,8 +167,7 @@ extension TraktTestSuite {
         // MARK: - Collection
 
         @Test func getCollection() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/me/collection/shows", result: .success(jsonData(named: "test_get_user_collection")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/me/collection/shows", result: .success(jsonData(named: "test_get_user_collection")))
 
             let collection = try await traktManager.user("me")
                 .collection(type: "shows")
@@ -195,8 +191,7 @@ extension TraktTestSuite {
         // MARK: - Comments
 
         @Test func getComments() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/comments", result: .success(jsonData(named: "test_get_user_comments")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/comments", result: .success(jsonData(named: "test_get_user_comments")))
 
             let comments = try await traktManager.user("sean")
                 .comments()
@@ -209,8 +204,7 @@ extension TraktTestSuite {
         // MARK: - Notes
 
         @Test func getNotes() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/notes", result: .success(jsonData(named: "test_get_user_notes")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/notes", result: .success(jsonData(named: "test_get_user_notes")))
 
             let notes = try await traktManager.user("sean")
                 .notes()
@@ -223,8 +217,7 @@ extension TraktTestSuite {
         // MARK: - Collaborations
 
         @Test func getCollaborations() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/lists/collaborations", result: .success(jsonData(named: "test_get_user_collaborations")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/lists/collaborations", result: .success(jsonData(named: "test_get_user_collaborations")))
 
             let collaborations = try await traktManager.user("sean")
                 .collaborations()
@@ -236,8 +229,7 @@ extension TraktTestSuite {
         // MARK: - List
 
         @Test func getCustomList() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order", result: .success(jsonData(named: "test_get_custom_list")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order", result: .success(jsonData(named: "test_get_custom_list")))
 
             let customList = try await traktManager.currentUser().personalList("star-wars-in-machete-order").perform()
             #expect(customList.name == "Star Wars in machete order")
@@ -245,16 +237,14 @@ extension TraktTestSuite {
         }
 
         @Test func getListItems() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items", result: .success(jsonData(named: "test_get_items_on_custom_list")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/lists/star-wars-in-machete-order/items", result: .success(jsonData(named: "test_get_items_on_custom_list")))
 
             let listItems = try await traktManager.user("sean").itemsOnList("star-wars-in-machete-order").perform().object
             #expect(listItems.count == 5)
         }
 
         @Test func addItemsToList() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items", result: .success(jsonData(named: "test_add_item_to_custom_list")))
+            try await suite.mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items", result: .success(jsonData(named: "test_add_item_to_custom_list")))
 
             // For the test we don't need to add any specific Ids.
             let response = try await traktManager.currentUser().addItemsToList("star-wars-in-machete-order", movies: []).perform()
@@ -274,8 +264,7 @@ extension TraktTestSuite {
         }
 
         @Test func removeItemsFromList() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/remove", result: .success(jsonData(named: "test_remove_item_from_custom_list")))
+            try await suite.mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/remove", result: .success(jsonData(named: "test_remove_item_from_custom_list")))
 
             // For the test we don't need to add any specific Ids.
             let response = try await traktManager.currentUser().removeItemsFromList("star-wars-in-machete-order", movies: []).perform()
@@ -289,8 +278,7 @@ extension TraktTestSuite {
         }
 
         @Test func updateListItem() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.PUT, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/1337", result: .success(.init()))
+            try await suite.mock(.PUT, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/1337", result: .success(.init()))
 
             try await traktManager.currentUser()
                 .updateListItem("star-wars-in-machete-order", listItemId: 1337, notes: "This is a great movie!")
@@ -298,8 +286,7 @@ extension TraktTestSuite {
         }
 
         @Test func reorderListItems() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/reorder", result: .success(jsonData(named: "test_reorder_list_items")))
+            try await suite.mock(.POST, "https://api.trakt.tv/users/me/lists/star-wars-in-machete-order/items/reorder", result: .success(jsonData(named: "test_reorder_list_items")))
 
             let response = try await traktManager.currentUser()
                 .reorderListItems("star-wars-in-machete-order", rank: [923, 324, 98768, 456456, 345, 12, 990])
@@ -313,8 +300,7 @@ extension TraktTestSuite {
         // MARK: - Follow
 
         @Test func followUser() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/users/sean/follow", result: .success(jsonData(named: "test_follow_user")))
+            try await suite.mock(.POST, "https://api.trakt.tv/users/sean/follow", result: .success(jsonData(named: "test_follow_user")))
 
             let result = try await traktManager.user("sean")
                 .follow()
@@ -324,8 +310,7 @@ extension TraktTestSuite {
         }
 
         @Test func unfollowUser() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.DELETE, "https://api.trakt.tv/users/sean/follow", result: .success(.init()))
+            try await suite.mock(.DELETE, "https://api.trakt.tv/users/sean/follow", result: .success(.init()))
 
             try await traktManager.user("sean")
                 .unfollow()
@@ -333,8 +318,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFollowers() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/followers", result: .success(jsonData(named: "test_get_followers")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/followers", result: .success(jsonData(named: "test_get_followers")))
 
             let followers = try await traktManager.user("sean")
                 .followers()
@@ -344,8 +328,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFollowing() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/following", result: .success(jsonData(named: "test_get_following")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/following", result: .success(jsonData(named: "test_get_following")))
 
             let following = try await traktManager.user("sean")
                 .following()
@@ -355,8 +338,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFriends() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/friends", result: .success(jsonData(named: "test_get_friends")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/friends", result: .success(jsonData(named: "test_get_friends")))
 
             let friends = try await traktManager.user("sean")
                 .friends()
@@ -368,8 +350,7 @@ extension TraktTestSuite {
         // MARK: - History
 
         @Test func getWatchedHistory() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/history?extended=min", result: .success(jsonData(named: "test_get_user_watched_history")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/history?extended=min", result: .success(jsonData(named: "test_get_user_watched_history")))
 
             let history = try await traktManager.user("sean")
                 .watchedHistory()
@@ -383,8 +364,7 @@ extension TraktTestSuite {
         // MARK: - Ratings
 
         @Test func getRatings() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/ratings", result: .success(jsonData(named: "test_get_user_ratings")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/ratings", result: .success(jsonData(named: "test_get_user_ratings")))
 
             let ratings = try await traktManager.user("sean")
                 .ratings()
@@ -397,8 +377,7 @@ extension TraktTestSuite {
         // MARK: - Watchlist
 
         @Test func getWatchlist() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/watchlist/movies?extended=min", result: .success(jsonData(named: "test_get_user_watchlist")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/watchlist/movies?extended=min", result: .success(jsonData(named: "test_get_user_watchlist")))
 
             let watchlist = try await traktManager.user("sean")
                 .watchlist(type: "movies")
@@ -412,8 +391,7 @@ extension TraktTestSuite {
         // MARK: - Favorites
 
         @Test func getFavorites() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/favorites/movies/rank/asc", result: .success(jsonData(named: "test_get_user_favorites")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/favorites/movies/rank/asc", result: .success(jsonData(named: "test_get_user_favorites")))
 
             let favorites = try await traktManager.user("sean")
                 .favorites(type: "movies", sortBy: "rank", sortHow: "asc")
@@ -424,8 +402,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFavoritesComments() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/favorites/comments/newest", result: .success(jsonData(named: "test_get_favorites_comments")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/favorites/comments/newest", result: .success(jsonData(named: "test_get_favorites_comments")))
 
             let comments = try await traktManager.user("sean")
                 .favoritesComments(sort: "newest")
@@ -438,8 +415,7 @@ extension TraktTestSuite {
         // MARK: - Watching
 
         @Test func getWatching() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/watching", result: .success(jsonData(named: "test_get_user_watching")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/watching", result: .success(jsonData(named: "test_get_user_watching")))
 
             let watching = try await traktManager.user("sean")
                 .watching()
@@ -451,8 +427,7 @@ extension TraktTestSuite {
         // MARK: - Watched
 
         @Test func getWatchedShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/watched/shows", result: .success(jsonData(named: "test_get_watched_shows_users")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/watched/shows", result: .success(jsonData(named: "test_get_watched_shows_users")))
 
             let watched = try await traktManager.user("sean")
                 .watched(type: "shows")
@@ -464,8 +439,7 @@ extension TraktTestSuite {
         // MARK: - Stats
 
         @Test func getStats() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/users/sean/stats", result: .success(jsonData(named: "test_get_user_stats")))
+            try await suite.mock(.GET, "https://api.trakt.tv/users/sean/stats", result: .success(jsonData(named: "test_get_user_stats")))
 
             let stats = try await traktManager.user("sean")
                 .stats()

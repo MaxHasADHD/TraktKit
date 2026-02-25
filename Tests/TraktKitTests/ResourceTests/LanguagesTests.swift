@@ -8,12 +8,18 @@ import Testing
 @testable import TraktKit
 
 extension TraktTestSuite {
-    @Suite(.serialized)
+    @Suite
     struct LanguagesTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
 
         @Test func getLanguagesForMovies() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/languages/movies", result: .success(jsonData(named: "test_get_languages")))
+            try await suite.mock(.GET, "https://api.trakt.tv/languages/movies", result: .success(jsonData(named: "test_get_languages")))
 
             let languages = try await traktManager.languages
                 .list(type: .Movies)
@@ -26,8 +32,7 @@ extension TraktTestSuite {
         }
 
         @Test func getLanguagesForShows() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/languages/shows", result: .success(jsonData(named: "test_get_languages")))
+            try await suite.mock(.GET, "https://api.trakt.tv/languages/shows", result: .success(jsonData(named: "test_get_languages")))
 
             let languages = try await traktManager.languages
                 .list(type: .Shows)

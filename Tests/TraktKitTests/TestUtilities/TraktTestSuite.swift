@@ -9,15 +9,17 @@ import Testing
 import Foundation
 @testable import TraktKit
 
-@Suite(.serialized)
+@Suite("Endpoint Tests")
 final class TraktTestSuite {
-    deinit {
-        RequestMocking.removeAllMocks()
+    let mockSession: MockSession
+    
+    init() async {
+        mockSession = MockSession()
     }
 
-    static func authenticatedTraktManager() async -> TraktManager {
+    func traktManager() async -> TraktManager {
         await TraktManager(
-            session: URLSession.mockedResponsesOnly,
+            session: mockSession.urlSession,
             clientId: "",
             clientSecret: "",
             redirectURI: "",
@@ -25,12 +27,12 @@ final class TraktTestSuite {
         )
     }
 
-    static func mock(_ method: TraktKit.Method, _ urlString: String, result: Result<Data, Swift.Error>, httpCode: Int? = nil, headers: [HTTPHeader] = [.contentType, .apiVersion, .apiKey("")], replace: Bool = false) throws {
-        let mock = try RequestMocking.MockedResponse(urlString: urlString, result: result, httpCode: httpCode ?? method.expectedResult, headers: headers)
+    func mock(_ method: TraktKit.Method, _ urlString: String, result: Result<Data, Swift.Error>, httpCode: Int? = nil, headers: [HTTPHeader] = [.contentType, .apiVersion, .apiKey("")], replace: Bool = false, reusable: Bool = false) async throws {
+        let mock = try RequestMocking.MockedResponse(urlString: urlString, result: result, httpCode: httpCode ?? method.expectedResult, headers: headers, reusable: reusable)
         if replace {
-            RequestMocking.replace(mock: mock)
+            await mockSession.replace(mock: mock)
         } else {
-            RequestMocking.add(mock: mock)
+            await mockSession.add(mock: mock)
         }
     }
 }

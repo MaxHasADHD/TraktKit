@@ -12,16 +12,18 @@ import Testing
 extension TraktTestSuite {
     @Suite("Scrobble Tests")
     struct ScrobbleTests {
+        let suite: TraktTestSuite
         let traktManager: TraktManager
 
         init() async throws {
-            self.traktManager = await authenticatedTraktManager()
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
         }
 
         // MARK: - Start
 
         @Test func startWatchingInMediaCenter() async throws {
-            try mock(.POST, "https://api.trakt.tv/scrobble/start", result: .success(jsonData(named: "test_start_watching_in_media_center")))
+            try await suite.mock(.POST, "https://api.trakt.tv/scrobble/start", result: .success(jsonData(named: "test_start_watching_in_media_center")))
 
             let scrobble = TraktScrobble(movie: SyncId(trakt: 12345), progress: 1.25)
             let response = try await traktManager.scrobble()
@@ -36,7 +38,7 @@ extension TraktTestSuite {
         // MARK: - Pause
 
         @Test func pauseWatchingInMediaCenter() async throws {
-            try mock(.POST, "https://api.trakt.tv/scrobble/pause", result: .success(jsonData(named: "test_pause_watching_in_media_center")))
+            try await suite.mock(.POST, "https://api.trakt.tv/scrobble/pause", result: .success(jsonData(named: "test_pause_watching_in_media_center")))
 
             let scrobble = TraktScrobble(movie: SyncId(trakt: 12345), progress: 75)
             let response = try await traktManager.scrobble()
@@ -51,7 +53,7 @@ extension TraktTestSuite {
         // MARK: - Stop
 
         @Test func stopWatchingInMediaCenter() async throws {
-            try mock(.POST, "https://api.trakt.tv/scrobble/stop", result: .success(jsonData(named: "test_stop_watching_in_media_center")))
+            try await suite.mock(.POST, "https://api.trakt.tv/scrobble/stop", result: .success(jsonData(named: "test_stop_watching_in_media_center")))
 
             let scrobble = TraktScrobble(movie: SyncId(trakt: 12345), progress: 99.9)
             let response = try await traktManager.scrobble()

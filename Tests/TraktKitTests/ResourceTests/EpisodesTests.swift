@@ -13,16 +13,18 @@ import Foundation
 extension TraktTestSuite {
     @Suite("Episode Tests")
     struct EpisodeTests {
+        let suite: TraktTestSuite
         let traktManager: TraktManager
 
         init() async throws {
-            self.traktManager = await authenticatedTraktManager()
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
         }
 
         // MARK: - Summary
 
         @Test func getMinEpisode() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=min", result: .success(jsonData(named: "Episode_Min")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=min", result: .success(jsonData(named: "Episode_Min")))
 
             let episode = try await traktManager
                 .show(id: "game-of-thrones")
@@ -38,7 +40,7 @@ extension TraktTestSuite {
         }
 
         @Test func getFullEpisode() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full", result: .success(jsonData(named: "Episode_Full")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1?extended=full", result: .success(jsonData(named: "Episode_Full")))
 
             let episode = try await traktManager
                 .show(id: "game-of-thrones")
@@ -58,7 +60,7 @@ extension TraktTestSuite {
         }
 
         @Test func getEpisodeImages() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/severance/seasons/2/episodes/5?extended=images", result: .success(jsonData(named: "Episode_Images")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/severance/seasons/2/episodes/5?extended=images", result: .success(jsonData(named: "Episode_Images")))
 
             let episode = try await traktManager
                 .show(id: "severance")
@@ -81,7 +83,7 @@ extension TraktTestSuite {
         // MARK: - Translations
 
         @Test func getAllEpisodeTranslations() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/translations", result: .success(jsonData(named: "test_get_all_episode_translations")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/translations", result: .success(jsonData(named: "test_get_all_episode_translations")))
 
             let translations = try await traktManager
                 .show(id: "game-of-thrones")
@@ -95,7 +97,7 @@ extension TraktTestSuite {
         // MARK: - Comments
 
         @Test func getEpisodeComments() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/comments", result: .success(jsonData(named: "test_get_episode_comments")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/comments", result: .success(jsonData(named: "test_get_episode_comments")))
 
             let comments = try await traktManager
                 .show(id: "game-of-thrones")
@@ -109,7 +111,7 @@ extension TraktTestSuite {
         // MARK: - Lists
 
         @Test func getListsContainingEpisode() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added?extended=full", result: .success(jsonData(named: "test_get_lists_containing_episode")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/lists/official/added?extended=full", result: .success(jsonData(named: "test_get_lists_containing_episode")))
 
             let route = traktManager
                 .show(id: "game-of-thrones")
@@ -128,7 +130,7 @@ extension TraktTestSuite {
         // MARK: - Ratings
 
         @Test func getEpisodeRatings() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/ratings", result: .success(jsonData(named: "test_get_episode_ratings")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/ratings", result: .success(jsonData(named: "test_get_episode_ratings")))
 
             let rating = try await traktManager
                 .show(id: "game-of-thrones")
@@ -143,7 +145,7 @@ extension TraktTestSuite {
         // MARK: - Stats
 
         @Test func getEpisodeStats() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/stats", result: .success(jsonData(named: "test_get_episode_stats")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/stats", result: .success(jsonData(named: "test_get_episode_stats")))
 
             let stats = try await traktManager
                 .show(id: "game-of-thrones")
@@ -163,7 +165,7 @@ extension TraktTestSuite {
         // MARK: - Watching
 
         @Test func getUsersWatchingNow() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/watching", result: .success(jsonData(named: "test_get_users_watching_now")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/watching", result: .success(jsonData(named: "test_get_users_watching_now")))
 
             let watchers = try await traktManager
                 .show(id: "game-of-thrones")
@@ -177,7 +179,7 @@ extension TraktTestSuite {
         // MARK: - People
 
         @Test func getShowPeopleMin() async throws {
-            try mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/people?extended=min", result: .success(jsonData(named: "test_get_episode_cast")))
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/seasons/1/episodes/1/people?extended=min", result: .success(jsonData(named: "test_get_episode_cast")))
 
             let castAndCrew = try await traktManager
                 .show(id: "game-of-thrones")

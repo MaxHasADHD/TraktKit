@@ -8,14 +8,20 @@ import Testing
 @testable import TraktKit
 
 extension TraktTestSuite {
-    @Suite(.serialized)
+    @Suite
     struct CommentsTests {
+        let suite: TraktTestSuite
+        let traktManager: TraktManager
+
+        init() async throws {
+            self.suite = await TraktTestSuite()
+            self.traktManager = await suite.traktManager()
+        }
 
         // MARK: - Post
 
         @Test func postComment() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/comments", result: .success(jsonData(named: "test_post_a_comment")))
+            try await suite.mock(.POST, "https://api.trakt.tv/comments", result: .success(jsonData(named: "test_post_a_comment")))
 
             let body = TraktCommentPostBody(
                 movie: SyncId(trakt: 12345),
@@ -35,8 +41,7 @@ extension TraktTestSuite {
         // MARK: - Trending
 
         @Test func getTrendingComments() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/comments/trending/all/movies?include_replies=false&page=1&limit=5",
                 result: .success(jsonData(named: "test_get_trending_comments")),
@@ -60,8 +65,7 @@ extension TraktTestSuite {
         // MARK: - Recent
 
         @Test func getRecentComments() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/comments/recent/all/movies?include_replies=false&page=1&limit=5",
                 result: .success(jsonData(named: "test_get_recently_created_comments")),
@@ -82,8 +86,7 @@ extension TraktTestSuite {
         // MARK: - Updates
 
         @Test func getUpdatedComments() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(
+            try await suite.mock(
                 .GET,
                 "https://api.trakt.tv/comments/updates/all/movies?include_replies=false&page=1&limit=5",
                 result: .success(jsonData(named: "test_get_recently_updated_comments")),
@@ -104,8 +107,7 @@ extension TraktTestSuite {
         // MARK: - Get
 
         @Test func getComment() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/comments/1", result: .success(jsonData(named: "test_get_a_comment")))
+            try await suite.mock(.GET, "https://api.trakt.tv/comments/1", result: .success(jsonData(named: "test_get_a_comment")))
 
             let comment = try await traktManager.comment(id: 1)
                 .get()
@@ -119,8 +121,7 @@ extension TraktTestSuite {
         // MARK: - Update
 
         @Test func updateComment() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.PUT, "https://api.trakt.tv/comments/190", result: .success(jsonData(named: "test_update_a_comment")))
+            try await suite.mock(.PUT, "https://api.trakt.tv/comments/190", result: .success(jsonData(named: "test_update_a_comment")))
 
             let body = TraktCommentPostBody(comment: "Oh, I wasn't really listening.", spoiler: false)
             let comment = try await traktManager.comment(id: 190)
@@ -133,8 +134,7 @@ extension TraktTestSuite {
         // MARK: - Delete
 
         @Test func deleteComment() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.DELETE, "https://api.trakt.tv/comments/190", result: .success(.init()))
+            try await suite.mock(.DELETE, "https://api.trakt.tv/comments/190", result: .success(.init()))
 
             try await traktManager.comment(id: 190)
                 .delete()
@@ -144,8 +144,7 @@ extension TraktTestSuite {
         // MARK: - Replies
 
         @Test func getReplies() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_get_replies_for_comment")), headers: [.page(1), .pageCount(1)], replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_get_replies_for_comment")), headers: [.page(1), .pageCount(1)], replace: true)
 
             let replies = try await traktManager.comment(id: 417)
                 .replies()
@@ -158,8 +157,7 @@ extension TraktTestSuite {
         }
 
         @Test func postReply() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_post_reply_for_comment")), replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_post_reply_for_comment")), replace: true)
 
             let body = TraktCommentPostBody(comment: "Couldn't agree more with your review!")
             let reply = try await traktManager.comment(id: 417)
@@ -172,8 +170,7 @@ extension TraktTestSuite {
         // MARK: - Item
 
         @Test func getAttachedItem() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/comments/417/item", result: .success(jsonData(named: "test_get_attached_media_item")))
+            try await suite.mock(.GET, "https://api.trakt.tv/comments/417/item", result: .success(jsonData(named: "test_get_attached_media_item")))
 
             let item = try await traktManager.comment(id: 417)
                 .item()
@@ -187,8 +184,7 @@ extension TraktTestSuite {
         // MARK: - Likes
 
         @Test func getLikes() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.GET, "https://api.trakt.tv/comments/190/likes", result: .success(jsonData(named: "test_users_who_liked_comment")), headers: [.page(1), .pageCount(1)])
+            try await suite.mock(.GET, "https://api.trakt.tv/comments/190/likes", result: .success(jsonData(named: "test_users_who_liked_comment")), headers: [.page(1), .pageCount(1)])
 
             let likedUsers = try await traktManager.comment(id: 190)
                 .likes()
@@ -203,8 +199,7 @@ extension TraktTestSuite {
         // MARK: - Like / Remove Like
 
         @Test func likeComment() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.POST, "https://api.trakt.tv/comments/190/like", result: .success(.init()))
+            try await suite.mock(.POST, "https://api.trakt.tv/comments/190/like", result: .success(.init()))
 
             try await traktManager.comment(id: 190)
                 .like()
@@ -212,8 +207,7 @@ extension TraktTestSuite {
         }
 
         @Test func removeLikeOnComment() async throws {
-            let traktManager = await authenticatedTraktManager()
-            try mock(.DELETE, "https://api.trakt.tv/comments/190/like", result: .success(.init()))
+            try await suite.mock(.DELETE, "https://api.trakt.tv/comments/190/like", result: .success(.init()))
 
             try await traktManager.comment(id: 190)
                 .removeLike()
