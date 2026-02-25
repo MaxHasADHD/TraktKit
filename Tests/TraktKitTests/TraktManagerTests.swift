@@ -83,7 +83,7 @@ extension TraktTestSuite {
                     ]
                 }
                 let data = try JSONSerialization.data(withJSONObject: json)
-                try await suite.mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)], replace: true)
+                try await suite.mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)])
             }
 
             // Note: Creating a mock route to test pagination logic due to running into conflicts with other tests setting up mock data for the same endpoint.
@@ -115,7 +115,7 @@ extension TraktTestSuite {
                 }
                 watchersByPage.append(json.map { $0["watchers"] as? Int ?? 0 })
                 let data = try JSONSerialization.data(withJSONObject: json)
-                try await suite.mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)], replace: true)
+                try await suite.mock(.GET, urlString, result: .success(data), headers: [.page(p), .pageCount(2)])
             }
 
             // Note: Creating a mock route to test pagination logic due to running into conflicts with other tests setting up mock data for the same endpoint.

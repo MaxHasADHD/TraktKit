@@ -144,7 +144,7 @@ extension TraktTestSuite {
         // MARK: - Refresh
 
         @Test func refreshPersonMetadata() async throws {
-            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()))
 
             // A successful refresh returns 201 with no body — just confirm it doesn't throw.
             try await traktManager.person(id: "bryan-cranston")
@@ -153,7 +153,7 @@ extension TraktTestSuite {
         }
 
         @Test func refreshPersonMetadataAlreadyQueued() async throws {
-            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), httpCode: 409, replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), httpCode: 409)
 
             // A 409 means the person is already queued — the manager should surface this as an error.
             await #expect(throws: (any Error).self) {

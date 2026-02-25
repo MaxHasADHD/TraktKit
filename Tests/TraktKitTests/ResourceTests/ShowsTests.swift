@@ -151,7 +151,7 @@ extension TraktTestSuite {
         // MARK: - Updates
 
         @Test func getUpdatedShows() async throws {
-            try await suite.mock(.GET, "https://api.trakt.tv/shows/updates/2014-09-22T00:00:00?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_updated_shows")), replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/updates/2014-09-22T00:00:00?extended=min&page=1&limit=10", result: .success(jsonData(named: "test_get_updated_shows")))
 
             let response = try await traktManager.shows
                 .recentlyUpdated(since: try Date.dateFromString("2014-09-22"))
@@ -389,7 +389,7 @@ extension TraktTestSuite {
         }
 
         @Test func getShowPeopleGuestStars() async throws {
-            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=guest_stars", result: .success(jsonData(named: "ShowCastAndCrew_GuestStars")), replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/shows/game-of-thrones/people?extended=guest_stars", result: .success(jsonData(named: "ShowCastAndCrew_GuestStars")))
 
             let castAndCrew = try await traktManager.show(id: "game-of-thrones")
                 .people()

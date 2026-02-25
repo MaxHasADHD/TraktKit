@@ -26,12 +26,6 @@ actor MockSession {
         mocks.append(mock)
     }
 
-    /// Replace all mocks for a given URL
-    func replace(mock: RequestMocking.MockedResponse) {
-        mocks.removeAll(where: { $0.url == mock.url })
-        mocks.append(mock)
-    }
-
     /// Remove all mocks from this session
     func removeAllMocks() {
         mocks.removeAll()

@@ -144,7 +144,7 @@ extension TraktTestSuite {
         // MARK: - Replies
 
         @Test func getReplies() async throws {
-            try await suite.mock(.GET, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_get_replies_for_comment")), headers: [.page(1), .pageCount(1)], replace: true)
+            try await suite.mock(.GET, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_get_replies_for_comment")), headers: [.page(1), .pageCount(1)])
 
             let replies = try await traktManager.comment(id: 417)
                 .replies()
@@ -157,7 +157,7 @@ extension TraktTestSuite {
         }
 
         @Test func postReply() async throws {
-            try await suite.mock(.POST, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_post_reply_for_comment")), replace: true)
+            try await suite.mock(.POST, "https://api.trakt.tv/comments/417/replies", result: .success(jsonData(named: "test_post_reply_for_comment")))
 
             let body = TraktCommentPostBody(comment: "Couldn't agree more with your review!")
             let reply = try await traktManager.comment(id: 417)
