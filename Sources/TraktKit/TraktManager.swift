@@ -36,8 +36,6 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         case malformedURL
         case userNotAuthorized
         case couldNotParseData
-
-        // TODO: Move this enum
         case invalidRefreshToken
     }
 

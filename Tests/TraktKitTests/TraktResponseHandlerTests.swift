@@ -78,7 +78,7 @@ struct TraktResponseHandlerTests {
     func accountLocked() throws {
         let response = HTTPURLResponse(
             url: URL(string: "https://api.trakt.tv/test")!,
-            statusCode: StatusCodes.acountLocked,
+            statusCode: StatusCodes.accountLocked,
             httpVersion: nil,
             headerFields: nil
         )
@@ -228,7 +228,7 @@ struct TraktResponseHandlerTests {
     @Test("TraktAPIError.accountLocked has correct statusCode")
     func accountLockedStatusCode() {
         let error = TraktAPIError.accountLocked
-        #expect(error.statusCode == StatusCodes.acountLocked)
+        #expect(error.statusCode == StatusCodes.accountLocked)
         #expect(error.statusCode == 423)
     }
     

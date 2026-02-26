@@ -7,9 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.2.0] - 2026-02-25
 
+### Added
+- **Automatic token refresh support** - Tokens are now automatically refreshed when they expire within 1 hour or when requests fail with 401 errors
+  - Proactive refresh: Refreshes tokens before they expire (configurable threshold, default 1 hour)
+  - Reactive refresh: Automatically refreshes and retries on 401 Unauthorized errors
+  - Powered by SwiftAPIClient 1.3.0's `TokenRefreshHandler` protocol
+  - No code changes required - works automatically when authenticated
+
 ### Changed
 - **BREAKING**: Renamed `TraktSpecificError` to `TraktAPIError` for improved clarity
 - **BREAKING**: Renamed `TraktKitError` to `TraktClientError` for better distinction between client and API errors
+- Updated to SwiftAPIClient 1.3.2 for automatic token refresh support
+
+### Fixed
+- Fixed typo in internal `StatusCodes.accountLocked` constant (was `acountLocked`)
 
 **Migration Guide**: See [v3.1.x to v3.2.0](docs/migrations/v3.1-to-v3.2.md) for migration instructions.
 

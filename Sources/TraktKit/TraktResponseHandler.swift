@@ -36,7 +36,7 @@ public enum TraktAPIError: LocalizedError, Equatable {
     public var statusCode: Int {
         switch self {
         case .accountLimitExceeded: return StatusCodes.AccountLimitExceeded
-        case .accountLocked: return StatusCodes.acountLocked
+        case .accountLocked: return StatusCodes.accountLocked
         case .vipOnly: return StatusCodes.vipOnly
         case .cloudflareError(let code): return code
         }
@@ -63,7 +63,7 @@ struct TraktResponseHandler: ResponseHandler {
         case StatusCodes.AccountLimitExceeded:
             throw TraktAPIError.accountLimitExceeded
 
-        case StatusCodes.acountLocked:
+        case StatusCodes.accountLocked:
             throw TraktAPIError.accountLocked
 
         case StatusCodes.vipOnly:

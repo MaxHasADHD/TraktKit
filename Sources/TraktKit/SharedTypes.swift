@@ -8,45 +8,45 @@
 
 import Foundation
 
-public struct StatusCodes: Sendable {
+internal struct StatusCodes: Sendable {
     /// Success
-    public static let Success = 200
+    static let Success = 200
     /// Success - new resource created (POST)
-    public static let SuccessNewResourceCreated = 201
+    static let SuccessNewResourceCreated = 201
     /// Success - no content to return (DELETE)
-    public static let SuccessNoContentToReturn = 204
+    static let SuccessNoContentToReturn = 204
     /// Bad Request - request couldn't be parsed
-    public static let BadRequest = 400
+    static let BadRequest = 400
     /// Unauthorized - OAuth must be provided
-    public static let Unauthorized = 401
+    static let Unauthorized = 401
     /// Forbidden - invalid API key or unapproved app
-    public static let Forbidden = 403
+    static let Forbidden = 403
     /// Not Found - method exists, but no record found
-    public static let NotFound = 404
+    static let NotFound = 404
     /// Method Not Found - method doesn't exist
-    public static let MethodNotFound = 405
+    static let MethodNotFound = 405
     /// Conflict - resource already created
-    public static let Conflict = 409
+    static let Conflict = 409
     /// Precondition Failed - use application/json content type
-    public static let PreconditionFailed = 412
+    static let PreconditionFailed = 412
     /// Account Limit Exceeded - list count, item count, etc
-    public static let AccountLimitExceeded = 420
+    static let AccountLimitExceeded = 420
     /// Unprocessable Entity - validation errors
-    public static let UnprocessableEntity = 422
+    static let UnprocessableEntity = 422
     /// Trakt account locked. Have user contact Trakt https://github.com/trakt/api-help/issues/228
-    public static let acountLocked = 423
+    static let accountLocked = 423
     /// VIP Only - user must upgrade to VIP
-    public static let vipOnly = 426
+    static let vipOnly = 426
     /// Rate Limit Exceeded
-    public static let RateLimitExceeded = 429
+    static let RateLimitExceeded = 429
     /// Server Error
-    public static let ServerError = 500
+    static let ServerError = 500
     /// Service Unavailable - Cloudflare error
-    public static let CloudflareError = 520
+    static let CloudflareError = 520
     /// Service Unavailable - Cloudflare error
-    public static let CloudflareError2 = 521
+    static let CloudflareError2 = 521
     /// Service Unavailable - Cloudflare error
-    public static let CloudflareError3 = 522
+    static let CloudflareError3 = 522
 }
 
 /// What to search for
