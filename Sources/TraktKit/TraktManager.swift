@@ -14,6 +14,18 @@ public extension Notification.Name {
     static let TraktAccountStatusDidChange = Notification.Name(rawValue: "signedInToTrakt")
 }
 
+/// Wrapper class to allow TraktManager to reference itself as a TokenRefreshHandler
+private final class TraktTokenRefreshWrapper: TokenRefreshHandler, @unchecked Sendable {
+    weak var manager: TraktManager?
+    
+    func refreshToken(using refreshToken: String, client: APIClient) async throws -> AuthenticationState {
+        guard let manager else {
+            throw TraktManager.TraktClientError.userNotAuthorized
+        }
+        return try await manager.refreshToken(using: refreshToken, client: client)
+    }
+}
+
 public final class TraktManager: APIClient, @unchecked Sendable {
 
     // MARK: - Types
@@ -56,6 +68,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
     internal let redirectURI: String
 
     private let traktAuthStorage: any TraktAuthentication
+    private let tokenRefreshWrapper: TraktTokenRefreshWrapper
 
     internal static let jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
@@ -124,6 +137,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
         self.traktAuthStorage = authStorage
+        self.tokenRefreshWrapper = TraktTokenRefreshWrapper()
 
         let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
         let baseURL = URL(string: "https://\(apiHost)")!
@@ -135,10 +149,15 @@ public final class TraktManager: APIClient, @unchecked Sendable {
             ],
             paginationPageHeader: "x-pagination-page",
             paginationPageCountHeader: "x-pagination-page-count",
-            responseHandler: TraktResponseHandler()
+            responseHandler: TraktResponseHandler(),
+            tokenRefreshHandler: tokenRefreshWrapper,
+            tokenRefreshThreshold: 3600 // Refresh 1 hour before expiration (Trakt tokens last 24 hours)
         )
 
         super.init(configuration: config, session: session, authStorage: authStorage)
+        
+        // Set the wrapper's reference to self after super.init
+        tokenRefreshWrapper.manager = self
     }
 
     /// Initialize TraktManager and refreshes the auth state
@@ -162,6 +181,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
         self.traktAuthStorage = authStorage
+        self.tokenRefreshWrapper = TraktTokenRefreshWrapper()
 
         let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
         let baseURL = URL(string: "https://\(apiHost)")!
@@ -173,10 +193,15 @@ public final class TraktManager: APIClient, @unchecked Sendable {
             ],
             paginationPageHeader: "x-pagination-page",
             paginationPageCountHeader: "x-pagination-page-count",
-            responseHandler: TraktResponseHandler()
+            responseHandler: TraktResponseHandler(),
+            tokenRefreshHandler: tokenRefreshWrapper,
+            tokenRefreshThreshold: 3600 // Refresh 1 hour before expiration (Trakt tokens last 24 hours)
         )
 
         super.init(configuration: config, session: session, authStorage: authStorage)
+        
+        // Set the wrapper's reference to self after super.init
+        tokenRefreshWrapper.manager = self
 
         try? await refreshCurrentAuthState()
     }
@@ -299,3 +324,29 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         }
     }
 }
+// MARK: - TokenRefreshHandler
+
+extension TraktManager: TokenRefreshHandler {
+    /// Refreshes the access token using Trakt's OAuth refresh token endpoint
+    /// - Parameters:
+    ///   - refreshToken: The refresh token to use for obtaining a new access token
+    ///   - client: The APIClient instance (not used since we use our own auth() routes)
+    /// - Returns: A new AuthenticationState with updated tokens and expiration date
+    public func refreshToken(using refreshToken: String, client: APIClient) async throws -> AuthenticationState {
+        do {
+            let authInfo = try await auth().getAccessToken(from: refreshToken).perform()
+            
+            let expiresDate = Date(timeIntervalSince1970: authInfo.createdAt)
+                .addingTimeInterval(authInfo.expiresIn)
+            
+            return AuthenticationState(
+                accessToken: authInfo.accessToken,
+                refreshToken: authInfo.refreshToken,
+                expirationDate: expiresDate
+            )
+        } catch TraktError.unauthorized {
+            throw TraktClientError.invalidRefreshToken
+        }
+    }
+}
+
