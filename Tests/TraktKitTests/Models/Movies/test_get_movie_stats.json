@@ -1,8 +1,9 @@
 {
-  "comments" : 36,
-  "lists" : 4561,
-  "votes" : 7866,
-  "watchers" : 39204,
-  "plays" : 51033,
-  "collectors" : 27379
+    "watchers": 39204,
+    "plays": 51033,
+    "collectors": 27379,
+    "comments": 36,
+    "lists": 4561,
+    "votes": 7866,
+    "favorited": 54321
 }
