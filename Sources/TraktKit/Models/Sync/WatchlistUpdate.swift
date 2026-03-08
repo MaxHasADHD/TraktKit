@@ -5,6 +5,8 @@
 //  Created by Maximilian Litteral on 3/2/25.
 //
 
+import Foundation
+
 extension TraktManager {
     struct WatchlistUpdate: TraktObject {
         let description: String?

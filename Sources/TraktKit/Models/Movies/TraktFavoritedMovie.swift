@@ -5,6 +5,8 @@
 //  Created by Maximilian Litteral on 2/22/25.
 //
 
+import Foundation
+
 public struct TraktFavoritedMovie: TraktObject {
     public let userCount: Int
     public let movie: TraktMovie

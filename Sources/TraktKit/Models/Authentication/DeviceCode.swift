@@ -5,6 +5,8 @@
 //  Copyright © 2020 Maximilian Litteral. All rights reserved.
 //
 
+import Foundation
+
 public struct DeviceCode: TraktObject {
     public let deviceCode: String
     public let userCode: String

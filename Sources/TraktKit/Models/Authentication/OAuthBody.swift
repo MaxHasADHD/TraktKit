@@ -5,6 +5,8 @@
 //  Created by Maximilian Litteral on 3/5/25.
 //
 
+import Foundation
+
 struct OAuthBody: TraktObject {
     let code: String?
     let accessToken: String?
