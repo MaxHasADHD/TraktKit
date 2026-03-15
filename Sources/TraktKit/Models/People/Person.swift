@@ -20,21 +20,27 @@ public struct Person: TraktObject {
     public let birthplace: String?
     public let homepage: URL?
 
+    // Extended: Images
+    public let images: TraktImages?
+
     enum CodingKeys: String, CodingKey {
         case name
         case ids
-        
+
         case biography
         case birthday
         case death
         case birthplace
         case homepage
+
+        case images
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: CodingKeys.name)
         ids = try container.decode(ID.self, forKey: CodingKeys.ids)
+
         biography = try container.decodeIfPresent(String.self, forKey: CodingKeys.biography)
         birthday = try container.decodeIfPresent(Date.self, forKey: CodingKeys.birthday)
         death = try container.decodeIfPresent(Date.self, forKey: CodingKeys.death)
@@ -44,6 +50,8 @@ public struct Person: TraktObject {
         } catch {
             homepage = nil
         }
+
+        images = try container.decodeIfPresent(TraktImages.self, forKey: .images)
     }
 
 }
