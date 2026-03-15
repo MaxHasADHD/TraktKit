@@ -116,6 +116,22 @@ extension Route {
         return copy
     }
 
+    /// Add Trakt show-specific filter parameters
+    public func filter(_ filter: TraktManager.ShowFilter) -> Self {
+        var copy = self
+        let (key, value) = filter.value()
+        copy.queryItems[key] = value
+        return copy
+    }
+
+    /// Add Trakt movie-specific filter parameters
+    public func filter(_ filter: TraktManager.MovieFilter) -> Self {
+        var copy = self
+        let (key, value) = filter.value()
+        copy.queryItems[key] = value
+        return copy
+    }
+
     /// Add search type parameter
     public func type(_ type: SearchType?) -> Self {
         var copy = self
@@ -154,6 +170,22 @@ extension EmptyRoute {
 
     /// Add Trakt filter parameters
     public func filter(_ filter: TraktManager.Filter) -> Self {
+        var copy = self
+        let (key, value) = filter.value()
+        copy.queryItems[key] = value
+        return copy
+    }
+
+    /// Add Trakt show-specific filter parameters
+    public func filter(_ filter: TraktManager.ShowFilter) -> Self {
+        var copy = self
+        let (key, value) = filter.value()
+        copy.queryItems[key] = value
+        return copy
+    }
+
+    /// Add Trakt movie-specific filter parameters
+    public func filter(_ filter: TraktManager.MovieFilter) -> Self {
         var copy = self
         let (key, value) = filter.value()
         copy.queryItems[key] = value
