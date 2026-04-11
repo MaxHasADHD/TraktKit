@@ -23,6 +23,7 @@ final class TraktTestSuite {
             clientId: "",
             clientSecret: "",
             redirectURI: "",
+            userAgent: "myapp/1.0.0",
             authStorage: TraktMockAuthStorage(accessToken: "", refreshToken: "", expirationDate: .distantFuture)
         )
     }

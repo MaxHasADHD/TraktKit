@@ -21,6 +21,16 @@ extension TraktTestSuite {
             self.traktManager = await suite.traktManager()
         }
         
+        @Test("Configuration includes required additional headers")
+        func configurationIncludesRequiredHeaders() {
+            let expectedHeaders = [
+                "trakt-api-version": "2",
+                "trakt-api-key": "",
+                "User-Agent": "myapp/1.0.0"
+            ]
+            #expect(traktManager.configuration.additionalHeaders == expectedHeaders)
+        }
+
         @Test
         func pollForAccessTokenInvalidDeviceCode() async throws {
             try await suite.mock(.GET, "https://api.trakt.tv/oauth/device/token", result: .success(.init()), httpCode: 404)
@@ -238,6 +248,7 @@ extension TraktTestSuite {
                 clientId: "test_client",
                 clientSecret: "test_secret",
                 redirectURI: "test://redirect",
+                userAgent: "myapp/1.0.0",
                 authStorage: mockAuth
             )
             
@@ -302,6 +313,7 @@ extension TraktTestSuite {
                 clientId: "test_client",
                 clientSecret: "test_secret",
                 redirectURI: "test://redirect",
+                userAgent: "myapp/1.0.0",
                 authStorage: mockAuth
             )
             
@@ -369,6 +381,7 @@ extension TraktTestSuite {
                 clientId: "test_client",
                 clientSecret: "test_secret",
                 redirectURI: "test://redirect",
+                userAgent: "myapp/1.0.0",
                 authStorage: mockAuth
             )
             
@@ -406,6 +419,7 @@ extension TraktTestSuite {
                 clientId: "test_client",
                 clientSecret: "test_secret",
                 redirectURI: "test://redirect",
+                userAgent: "myapp/1.0.0",
                 authStorage: mockAuth
             )
             
@@ -455,6 +469,7 @@ extension TraktTestSuite {
                 clientId: "test_client",
                 clientSecret: "test_secret",
                 redirectURI: "test://redirect",
+                userAgent: "myapp/1.0.0",
                 authStorage: mockAuth
             )
             

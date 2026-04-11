@@ -120,6 +120,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
        - clientId: Your Trakt API client ID
        - clientSecret: Your Trakt API client secret (optional when using PKCE)
        - redirectURI: Your OAuth redirect URI
+       - userAgent: We suggest using your app and version like `MyAppName/1.0.0`
        - authStorage: Storage for authentication credentials
      */
     public init(
@@ -128,6 +129,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         clientId: String,
         clientSecret: String = "",
         redirectURI: String,
+        userAgent: String,
         authStorage: any TraktAuthentication = KeychainTraktAuthentication()
     ) {
         self.staging = staging
@@ -143,7 +145,8 @@ public final class TraktManager: APIClient, @unchecked Sendable {
             baseURL: baseURL,
             additionalHeaders: [
                 "trakt-api-version": "2",
-                "trakt-api-key": clientId
+                "trakt-api-key": clientId,
+                "User-Agent": userAgent
             ],
             paginationPageHeader: "x-pagination-page",
             paginationPageCountHeader: "x-pagination-page-count",
@@ -172,6 +175,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         clientId: String,
         clientSecret: String = "",
         redirectURI: String,
+        userAgent: String,
         authStorage: any TraktAuthentication = KeychainTraktAuthentication()
     ) async {
         self.staging = staging
@@ -187,7 +191,8 @@ public final class TraktManager: APIClient, @unchecked Sendable {
             baseURL: baseURL,
             additionalHeaders: [
                 "trakt-api-version": "2",
-                "trakt-api-key": clientId
+                "trakt-api-key": clientId,
+                "User-Agent": userAgent
             ],
             paginationPageHeader: "x-pagination-page",
             paginationPageCountHeader: "x-pagination-page-count",

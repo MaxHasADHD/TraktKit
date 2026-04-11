@@ -185,6 +185,7 @@ extension TraktTestSuite {
             clientId: "",
             clientSecret: "",
             redirectURI: "",
+            userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
         await #expect(throws: AuthenticationError.noStoredCredentials, performing: {
@@ -213,6 +214,7 @@ extension TraktTestSuite {
             clientId: "",
             clientSecret: "",
             redirectURI: "",
+            userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
         await #expect(throws: AuthenticationError.tokenExpired(refreshToken: refreshToken), performing: {
@@ -247,6 +249,7 @@ extension TraktTestSuite {
             clientId: "",
             clientSecret: "",
             redirectURI: "",
+            userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
         #expect(traktManager.isSignedIn == true)
@@ -272,6 +275,7 @@ extension TraktTestSuite {
             session: suite.mockSession.urlSession,
             clientId: "",
             redirectURI: "",
+            userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
         await #expect(throws: AuthenticationError.noStoredCredentials, performing: {
@@ -294,7 +298,8 @@ extension TraktTestSuite {
     @Test func generateOAuthURLWithPKCE() throws {
         let traktManager = TraktManager(
             clientId: "test_client_id",
-            redirectURI: "myapp://callback"
+            redirectURI: "myapp://callback",
+            userAgent: "myapp/1.0.0"
         )
         
         let codeChallenge = "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM"
@@ -324,6 +329,7 @@ extension TraktTestSuite {
             session: suite.mockSession.urlSession,
             clientId: "",
             redirectURI: "",
+            userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
         await #expect(throws: AuthenticationError.tokenExpired(refreshToken: refreshToken), performing: {
