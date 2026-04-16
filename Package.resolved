@@ -1,13 +1,13 @@
 {
-  "originHash" : "df0f539d70377904877bf59f694ac57a3ae2e428fed570b20cd36b9c94d2f0e8",
+  "originHash" : "5b71599e7b238fadae647cb889c57b544fa3259411af094f9cb9129d16828f25",
   "pins" : [
     {
       "identity" : "swiftapiclient",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MaxHasADHD/SwiftAPIClient.git",
       "state" : {
-        "revision" : "93b109e0f72de3717d7d6e5907894e443b052c3a",
-        "version" : "1.3.2"
+        "revision" : "9305b20717cdc57ed535971ab43068fa27e4885b",
+        "version" : "1.4.0"
       }
     }
   ],
