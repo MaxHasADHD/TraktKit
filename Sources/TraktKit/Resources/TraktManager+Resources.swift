@@ -81,6 +81,10 @@ extension TraktManager {
         EpisodeResource(showId: showId, seasonNumber: season, episodeNumber: episode, traktManager: self)
     }
 
+    public func episode(id: CustomStringConvertible) -> EpisodeByIdResource {
+        EpisodeByIdResource(id: id, traktManager: self)
+    }
+
     // MARK: - Calendars
 
     /// Endpoints for the authenticated user's personal calendar.
