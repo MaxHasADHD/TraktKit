@@ -61,6 +61,7 @@ public actor KeychainTraktAuthentication: TraktAuthentication {
         // Keep in memory
         accessToken = state.accessToken
         refreshToken = state.refreshToken
+        expirationDate = state.expirationDate
 
         // Save to keychain
         MLKeychain.setString(value: state.accessToken, forKey: Constants.accessTokenKey)
