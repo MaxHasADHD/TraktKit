@@ -5,6 +5,38 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] - 2026-05-26
+
+### Added
+- `TraktManager.init(..., sharedAuthCoordinator:)` — construct a sibling `TraktManager` that shares auth state and coalesces token refreshes with another manager. Useful when running a second `URLSession` against the same account (e.g., a dedicated session for background sync).
+
+### Changed
+- Updated to SwiftAPIClient 1.5.1. `TraktManager` now reads and writes credentials through the shared `AuthCoordinator` instead of holding its own storage reference. Internal change; no caller migration required.
+
+## [3.3.2] - 2026-04-20
+
+### Fixed
+- `KeychainTraktAuthentication.updateState` was not updating its in-memory `expirationDate`. After a token refresh the cached expiration could drift from what was written to UserDefaults until the next process restart, causing proactive-refresh decisions to be made against a stale value.
+
+### Changed
+- Updated to SwiftAPIClient 1.4.1.
+
+## [3.3.1] - 2026-04-16
+
+### Changed
+- Updated to SwiftAPIClient 1.4.0.
+- Switched `Package.swift` to declare `swiftLanguageModes: [.v6]`.
+
+## [3.3.0] - 2026-04-11
+
+### Added
+- **BREAKING**: `TraktManager.init` now requires a `userAgent` parameter. The value is sent as the `User-Agent` header on every request — Trakt asks API clients to identify themselves with something like `MyAppName/1.0.0`. Existing call sites will fail to compile until they supply the new argument.
+
+## [3.2.1] - 2026-03-08
+
+### Fixed
+- Added missing `import Foundation` to several model files (`DeviceCode`, `OAuthBody`, `TraktFavoritedMovie`, `TraktFavoritedShow`, `WatchlistUpdate`) that were transitively relying on other imports.
+
 ## [3.2.0] - 2026-02-25
 
 ### Added

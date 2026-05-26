@@ -65,7 +65,6 @@ public final class TraktManager: APIClient, @unchecked Sendable {
     internal let clientSecret: String
     internal let redirectURI: String
 
-    private let traktAuthStorage: any TraktAuthentication
     private let tokenRefreshWrapper: TraktTokenRefreshWrapper
 
     internal static let jsonEncoder: JSONEncoder = {
@@ -113,15 +112,24 @@ public final class TraktManager: APIClient, @unchecked Sendable {
      Initializes the TraktManager.
 
      > important: Call `refreshCurrentAuthState` shortly after initializing `TraktManager`, otherwise authenticated calls will fail.
-     
+
      - Parameters:
-       - session: URLSession to use for network requests
+       - session: URLSession to use for network requests. Pass a dedicated `URLSession`
+         here when constructing a sibling `TraktManager` that should run on isolated
+         network resources (e.g., to keep sync requests from contending with user-facing
+         requests for HTTP connections).
        - staging: Whether to use the staging API
        - clientId: Your Trakt API client ID
        - clientSecret: Your Trakt API client secret (optional when using PKCE)
        - redirectURI: Your OAuth redirect URI
        - userAgent: We suggest using your app and version like `MyAppName/1.0.0`
-       - authStorage: Storage for authentication credentials
+       - authStorage: Storage used to construct a default `AuthCoordinator` when
+         `sharedAuthCoordinator` is not provided. Ignored otherwise.
+       - sharedAuthCoordinator: An existing `AuthCoordinator` to share auth state with.
+         When provided, this manager will read/write tokens through the same coordinator
+         as the manager that originally created it, and refresh attempts are coalesced
+         across all sharing managers. Use this to construct a sibling manager whose
+         only difference is the underlying `URLSession`.
      */
     public init(
         session: URLSession = URLSession(configuration: .default),
@@ -130,13 +138,13 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         clientSecret: String = "",
         redirectURI: String,
         userAgent: String,
-        authStorage: any TraktAuthentication = KeychainTraktAuthentication()
+        authStorage: any TraktAuthentication = KeychainTraktAuthentication(),
+        sharedAuthCoordinator: AuthCoordinator? = nil
     ) {
         self.staging = staging
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
-        self.traktAuthStorage = authStorage
         self.tokenRefreshWrapper = TraktTokenRefreshWrapper()
 
         let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
@@ -150,14 +158,21 @@ public final class TraktManager: APIClient, @unchecked Sendable {
             ],
             paginationPageHeader: "x-pagination-page",
             paginationPageCountHeader: "x-pagination-page-count",
-            responseHandler: TraktResponseHandler(),
-            tokenRefreshHandler: tokenRefreshWrapper,
-            tokenRefreshThreshold: 3600 // Refresh 1 hour before expiration (Trakt tokens last 24 hours)
+            responseHandler: TraktResponseHandler()
         )
 
-        super.init(configuration: config, session: session, authStorage: authStorage)
-        
-        // Set the wrapper's reference to self after super.init
+        let coordinator = sharedAuthCoordinator ?? AuthCoordinator(
+            storage: authStorage,
+            refreshHandler: tokenRefreshWrapper,
+            refreshThreshold: 3600 // Refresh 1 hour before expiration (Trakt tokens last 24 hours)
+        )
+
+        super.init(configuration: config, session: session, authCoordinator: coordinator)
+
+        // Set the wrapper's reference to self after super.init.
+        // When `sharedAuthCoordinator` is provided, the coordinator's existing handler
+        // (bound to the original manager) drives refreshes; this wrapper is unused but
+        // harmless.
         tokenRefreshWrapper.manager = self
     }
 
@@ -168,7 +183,10 @@ public final class TraktManager: APIClient, @unchecked Sendable {
     ///   - clientId: Your Trakt API client ID
     ///   - clientSecret: Your Trakt API client secret (optional when using PKCE)
     ///   - redirectURI: Your OAuth redirect URI
-    ///   - authStorage: Storage for authentication credentials
+    ///   - authStorage: Storage used to construct a default `AuthCoordinator`
+    ///     when `sharedAuthCoordinator` is not provided. Ignored otherwise.
+    ///   - sharedAuthCoordinator: An existing `AuthCoordinator` to share auth state with.
+    ///     See the synchronous initializer for details.
     public init(
         session: URLSession = URLSession(configuration: .default),
         staging: Bool = false,
@@ -176,13 +194,13 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         clientSecret: String = "",
         redirectURI: String,
         userAgent: String,
-        authStorage: any TraktAuthentication = KeychainTraktAuthentication()
+        authStorage: any TraktAuthentication = KeychainTraktAuthentication(),
+        sharedAuthCoordinator: AuthCoordinator? = nil
     ) async {
         self.staging = staging
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
-        self.traktAuthStorage = authStorage
         self.tokenRefreshWrapper = TraktTokenRefreshWrapper()
 
         let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
@@ -196,14 +214,17 @@ public final class TraktManager: APIClient, @unchecked Sendable {
             ],
             paginationPageHeader: "x-pagination-page",
             paginationPageCountHeader: "x-pagination-page-count",
-            responseHandler: TraktResponseHandler(),
-            tokenRefreshHandler: tokenRefreshWrapper,
-            tokenRefreshThreshold: 3600 // Refresh 1 hour before expiration (Trakt tokens last 24 hours)
+            responseHandler: TraktResponseHandler()
         )
 
-        super.init(configuration: config, session: session, authStorage: authStorage)
-        
-        // Set the wrapper's reference to self after super.init
+        let coordinator = sharedAuthCoordinator ?? AuthCoordinator(
+            storage: authStorage,
+            refreshHandler: tokenRefreshWrapper,
+            refreshThreshold: 3600
+        )
+
+        super.init(configuration: config, session: session, authCoordinator: coordinator)
+
         tokenRefreshWrapper.manager = self
 
         try? await refreshCurrentAuthState()
@@ -288,7 +309,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
             refreshToken: authInfo.refreshToken,
             expirationDate: expiresDate
         )
-        await traktAuthStorage.updateState(authenticationState)
+        await authCoordinator?.storage.updateState(authenticationState)
         updateCachedAuthState(authenticationState)
 
         // Post notification
