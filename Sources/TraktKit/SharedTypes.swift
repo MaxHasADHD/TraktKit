@@ -209,6 +209,12 @@ public enum ExtendedType: String, CustomStringConvertible, Sendable {
     case Episodes = "episodes"
     /// Get watched shows without seasons. https://trakt.docs.apiary.io/#reference/users/watched/get-watched
     case noSeasons = "noseasons"
+    /// Watched-endpoint season progress (per-episode watched flags / counts).
+    /// Required on `/sync/watched/{type}` and `/users/{id}/watched/{type}` to receive
+    /// the `seasons` array — as of the May 2026 pagination/extended-info change, the
+    /// default `extended=full` response no longer includes seasons.
+    /// See https://github.com/trakt/trakt-api/discussions/775.
+    case progress
     /// For the show and season `/people` methods.
     case guestStars = "guest_stars"
     /// Get images for media objects. https://trakt.docs.apiary.io/introduction/images

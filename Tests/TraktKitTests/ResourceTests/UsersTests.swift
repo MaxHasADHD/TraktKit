@@ -432,6 +432,7 @@ extension TraktTestSuite {
             let watched = try await traktManager.user("sean")
                 .watched(type: "shows")
                 .perform()
+                .object
 
             #expect(watched.count > 0)
         }

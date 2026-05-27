@@ -156,8 +156,8 @@ public final class TraktManager: APIClient, @unchecked Sendable {
                 "trakt-api-key": clientId,
                 "User-Agent": userAgent
             ],
-            paginationPageHeader: "x-pagination-page",
-            paginationPageCountHeader: "x-pagination-page-count",
+            // Trakt's pagination header names match SwiftAPIClient's defaults.
+            paginationHeaders: .default,
             responseHandler: TraktResponseHandler()
         )
 
@@ -212,8 +212,8 @@ public final class TraktManager: APIClient, @unchecked Sendable {
                 "trakt-api-key": clientId,
                 "User-Agent": userAgent
             ],
-            paginationPageHeader: "x-pagination-page",
-            paginationPageCountHeader: "x-pagination-page-count",
+            // Trakt's pagination header names match SwiftAPIClient's defaults.
+            paginationHeaders: .default,
             responseHandler: TraktResponseHandler()
         )
 

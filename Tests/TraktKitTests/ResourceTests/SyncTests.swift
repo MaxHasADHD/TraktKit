@@ -125,6 +125,7 @@ extension TraktTestSuite {
                 .watchedMovies()
                 .extend(.Min)
                 .perform()
+                .object
             #expect(watchedMovies.count == 2)
         }
 
@@ -135,6 +136,7 @@ extension TraktTestSuite {
                 .watchedShows()
                 .extend(.Min)
                 .perform()
+                .object
             #expect(watchedShows.count == 2)
             #expect(watchedShows.allSatisfy { $0.seasons != nil })
         }
@@ -146,8 +148,26 @@ extension TraktTestSuite {
                 .watchedShows()
                 .extend(.noSeasons)
                 .perform()
+                .object
             #expect(watchedShows.count == 2)
             #expect(watchedShows.allSatisfy { $0.seasons == nil })
+        }
+
+        /// As of the May 2026 Trakt API change, `extended=full` no longer returns the
+        /// `seasons` array. Callers must add `.extend(.progress)` (alongside `.Full` if
+        /// they still want show info) to receive per-episode watched data.
+        ///
+        /// This test pins the URL TraktKit produces when both modifiers are applied.
+        @Test func getWatchedShowsWithFullAndProgress() async throws {
+            try await suite.mock(.GET, "https://api.trakt.tv/sync/watched/shows?extended=full,progress", result: .success(jsonData(named: "test_get_watched_shows")))
+
+            let watchedShows = try await traktManager.sync()
+                .watchedShows()
+                .extend(.Full, .progress)
+                .perform()
+                .object
+            #expect(watchedShows.count == 2)
+            #expect(watchedShows.allSatisfy { $0.seasons != nil })
         }
 
         // MARK: - History

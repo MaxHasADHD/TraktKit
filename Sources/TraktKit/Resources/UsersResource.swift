@@ -904,11 +904,17 @@ extension TraktManager {
 
          Each `show` object contains a `reset_at` timestamp. If not null, this is when the user started re-watching the show. Your app can adjust the progress by ignoring episodes with a `last_watched_at` prior to the `reset_at`.
          
+         Pagination became mandatory on this endpoint in May 2026. Use `.limit(_:)`
+         (max 250) with `.fetchAllPages()` or paginate explicitly.
+
+         For show types, add `.extend(.progress)` to receive the `seasons` array —
+         the May 2026 change removed `seasons` from the default `extended=full` response.
+
          **Endpoint:** `GET /users/{id}/watched/{type}`
 
-         🔓 OAuth Optional • ✨ Extended Info
+         🔓 OAuth Optional • ✨ Extended Info • 📄 Pagination Required
          */
-        public func watched(type: String) -> Route<[TraktWatchedItem]> {
+        public func watched(type: String) -> Route<PagedObject<[TraktWatchedItem]>> {
             Route(
                 paths: [path, "watched", type],
                 method: .GET,

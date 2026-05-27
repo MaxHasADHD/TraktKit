@@ -5,6 +5,48 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.0] - 2026-05-27
+
+### Added
+- `ExtendedType.progress` — sends `?extended=progress` on the watched endpoints. As of Trakt's May 2026 API change, `extended=full` no longer returns the `seasons` array on watched shows; combine `.extend(.Full, .progress)` to retain per-episode watched data.
+
+### Changed
+- **BREAKING**: The Trakt watched endpoints became paginated on May 30, 2026. Three route signatures changed accordingly:
+  - `SyncResource.watchedShows()` → `Route<PagedObject<[TraktWatchedShow]>>` (was `Route<[TraktWatchedShow]>`)
+  - `SyncResource.watchedMovies()` → `Route<PagedObject<[TraktWatchedMovie]>>` (was `Route<[TraktWatchedMovie]>`)
+  - `UsersResource.watched(type:)` → `Route<PagedObject<[TraktWatchedItem]>>` (was `Route<[TraktWatchedItem]>`)
+
+  Callers must now use `.fetchAllPages()` (or paginate explicitly) and access results via `.object`. Default page size is 100; max is 250. Trakt may serve fewer items than requested for `extended=progress` — `SwiftAPIClient.fetchAllPages` handles that automatically when both `X-Pagination-Limit` and `X-Pagination-Item-Count` are sent (which Trakt does).
+- Updated to SwiftAPIClient 1.6.0.
+
+### Migration Guide
+```swift
+// Before
+let shows = try await traktManager.sync()
+    .watchedShows()
+    .extend(.Full)
+    .perform()
+
+// After — paginated + .progress for seasons array
+let shows: Set<TraktWatchedShow> = try await traktManager.sync()
+    .watchedShows()
+    .extend(.Full, .progress)
+    .limit(100)
+    .fetchAllPages()
+
+// Single-page access is still possible
+let firstPage = try await traktManager.sync()
+    .watchedShows()
+    .extend(.Full, .progress)
+    .limit(100)
+    .page(1)
+    .perform()
+let shows = firstPage.object
+print("Page \(firstPage.currentPage) of \(firstPage.pageCount) — \(firstPage.itemCount ?? 0) total")
+```
+
+See https://github.com/trakt/trakt-api/discussions/775 for the upstream announcement.
+
 ## [3.4.0] - 2026-05-26
 
 ### Added

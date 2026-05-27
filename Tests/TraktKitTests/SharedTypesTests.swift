@@ -337,11 +337,19 @@ struct SharedTypesTests {
     @Test
     func extendedTypeNoSeasons() {
         let type = ExtendedType.noSeasons
-        
+
         #expect(type.rawValue == "noseasons")
         #expect(type.description == "noseasons")
     }
-    
+
+    @Test
+    func extendedTypeProgress() {
+        let type = ExtendedType.progress
+
+        #expect(type.rawValue == "progress")
+        #expect(type.description == "progress")
+    }
+
     @Test
     func extendedTypeGuestStars() {
         let type = ExtendedType.guestStars

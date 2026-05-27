@@ -170,33 +170,41 @@ extension TraktManager {
 
          - parameter type: Possible values:  `movies` , `shows` .
          */
-        private func watched<T: TraktObject>(type: String) -> Route<[T]> {
+        private func watched<T: TraktObject>(type: String) -> Route<PagedObject<[T]>> {
             Route(paths: [path, "watched", type], method: .GET, requiresAuthentication: true, traktManager: traktManager)
         }
 
         /**
          Returns all shows a user has watched sorted by most plays.
 
-         You add `?extended=noseasons` to the URL, it won't return season or episode info.
+         Pagination became mandatory on this endpoint in May 2026. Use `.limit(_:)`
+         (max 250) with `.fetchAllPages()` or paginate explicitly.
+
+         Add `.extend(.progress)` (alongside `.Full` if desired) to receive the
+         `seasons` array on each `TraktWatchedShow` — as of the May 2026 change,
+         `extended=full` alone no longer returns season data.
 
          Each `show` object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched episodes, it is possible for `last_watched_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the movies and shows if you see a newer timestamp.
 
          Each `show` object contains a `reset_at` timestamp. If not `null`, this is when the user started re-watching the show. Your app can adjust the progress by ignoring episodes with a `last_watched_at` prior to the `reset_at`.
 
-         🔒 OAuth Required ✨ Extended Info
+         🔒 OAuth Required ✨ Extended Info • 📄 Pagination Required
          */
-        public func watchedShows() -> Route<[TraktWatchedShow]> {
+        public func watchedShows() -> Route<PagedObject<[TraktWatchedShow]>> {
             watched(type: "shows")
         }
 
         /**
          Returns all movies a user has watched sorted by most plays.
 
+         Pagination became mandatory on this endpoint in May 2026. Use `.limit(_:)`
+         (max 250) with `.fetchAllPages()` or paginate explicitly.
+
          Each `movie` object contains `last_watched_at` and `last_updated_at` timestamps. Since users can set custom dates when they watched movies, it is possible for `last_watched_at` to be in the past. We also include `last_updated_at` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the movies and shows if you see a newer timestamp.
 
-         🔒 OAuth Required ✨ Extended Info
+         🔒 OAuth Required ✨ Extended Info • 📄 Pagination Required
          */
-        public func watchedMovies() -> Route<[TraktWatchedMovie]> {
+        public func watchedMovies() -> Route<PagedObject<[TraktWatchedMovie]>> {
             watched(type: "movies")
         }
 
