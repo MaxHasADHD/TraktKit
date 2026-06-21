@@ -28,10 +28,16 @@ public struct TraktMovie: TraktObject {
     public let language: String?
     public let availableTranslations: [String]?
     public let genres: [String]?
+    public let subgenres: [String]?
     public let certification: String?
+    public let afterCredits: Bool?
+    public let duringCredits: Bool?
 
     // Extended: Images
     public let images: TraktImages?
+
+    // Extended: Colors
+    public let colors: MediaColors?
 
     enum CodingKeys: String, CodingKey {
         case title
@@ -50,9 +56,14 @@ public struct TraktMovie: TraktObject {
         case language
         case availableTranslations = "available_translations"
         case genres
+        case subgenres
         case certification
+        case afterCredits = "after_credits"
+        case duringCredits = "during_credits"
 
         case images
+
+        case colors
     }
 
     public init(from decoder: Decoder) throws {
@@ -74,7 +85,12 @@ public struct TraktMovie: TraktObject {
         language = try container.decodeIfPresent(String.self, forKey: .language)
         availableTranslations = try container.decodeIfPresent([String].self, forKey: .availableTranslations)
         genres = try container.decodeIfPresent([String].self, forKey: .genres)
+        subgenres = try container.decodeIfPresent([String].self, forKey: .subgenres)
+        afterCredits = try container.decodeIfPresent(Bool.self, forKey: .afterCredits)
+        duringCredits = try container.decodeIfPresent(Bool.self, forKey: .duringCredits)
         images = try container.decodeIfPresent(TraktImages.self, forKey: .images)
+
+        colors = try container.decodeIfPresent(MediaColors.self, forKey: .colors)
     }
     
     public init(
@@ -93,8 +109,12 @@ public struct TraktMovie: TraktObject {
         language: String? = nil,
         availableTranslations: [String]? = nil,
         genres: [String]? = nil,
+        subgenres: [String]? = nil,
         certification: String? = nil,
-        images: TraktImages? = nil
+        afterCredits: Bool? = nil,
+        duringCredits: Bool? = nil,
+        images: TraktImages? = nil,
+        colors: MediaColors? = nil
     ) {
         self.title = title
         self.year = year
@@ -111,7 +131,11 @@ public struct TraktMovie: TraktObject {
         self.language = language
         self.availableTranslations = availableTranslations
         self.genres = genres
+        self.subgenres = subgenres
         self.certification = certification
+        self.afterCredits = afterCredits
+        self.duringCredits = duringCredits
         self.images = images
+        self.colors = colors
     }
 }

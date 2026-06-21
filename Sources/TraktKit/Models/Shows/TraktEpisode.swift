@@ -26,6 +26,8 @@ public struct TraktEpisode: TraktObject {
     public let absoluteNumber: Int?
     public let runtime: Int?
     public let commentCount: Int?
+    public let afterCredits: Bool?
+    public let duringCredits: Bool?
     /// When getting full extended info, the `episodeType` field can have a value of `standard`, `series_premiere` (season 1, episode 1), `season_premiere` (episode 1), `mid_season_finale`,` mid_season_premiere` (the next episode after the mid season finale), `season_finale`, or `series_finale` (last episode to air for an ended show).
     public let episodeType: String?
 
@@ -47,6 +49,8 @@ public struct TraktEpisode: TraktObject {
         case absoluteNumber = "number_abs"
         case runtime
         case commentCount = "comment_count"
+        case afterCredits = "after_credits"
+        case duringCredits = "during_credits"
         case episodeType = "episode_type"
 
         case images
@@ -66,6 +70,8 @@ public struct TraktEpisode: TraktObject {
         absoluteNumber: Int? = nil,
         runtime: Int? = nil,
         commentCount: Int? = nil,
+        afterCredits: Bool? = nil,
+        duringCredits: Bool? = nil,
         episodeType: String? = nil,
         images: TraktImages? = nil
     ) {
@@ -82,6 +88,8 @@ public struct TraktEpisode: TraktObject {
         self.absoluteNumber = absoluteNumber
         self.commentCount = commentCount
         self.runtime = runtime
+        self.afterCredits = afterCredits
+        self.duringCredits = duringCredits
         self.episodeType = episodeType
         self.images = images
     }
