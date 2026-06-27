@@ -322,29 +322,30 @@ public final class TraktManager: APIClient, @unchecked Sendable {
 
     // MARK: Refresh access token
 
+    /// Loads the current auth state, refreshing via the `AuthCoordinator` if the
+    /// access token has expired. The coordinator coalesces concurrent refreshes
+    /// into one, avoiding reuse of Trakt's now single-use refresh tokens.
     public func checkToRefresh() async throws {
+        let needsRefresh: Bool
         do throws(AuthenticationError) {
             try await refreshCurrentAuthState()
-        } catch .tokenExpired(let refreshToken) {
-            try await refreshAccessToken(with: refreshToken)
+            needsRefresh = false
+        } catch .tokenExpired {
+            needsRefresh = true
         } catch .noStoredCredentials {
             throw TraktClientError.userNotAuthorized
+        } catch .notConfigured {
+            throw TraktClientError.missingClientInfo
         }
-    }
 
-    /**
-     Use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. The `access_token` is valid for 24 hours before it needs to be refreshed again.
-     */
-    @discardableResult
-    private func refreshAccessToken(with refreshToken: String) async throws -> AuthenticationInfo {
+        guard needsRefresh else { return }
+        guard let authCoordinator else { throw TraktClientError.missingClientInfo }
         do {
-            let authenticationInfo = try await auth().getAccessToken(from: refreshToken).perform()
-            await saveCredentials(for: authenticationInfo)
-            return authenticationInfo
-        } catch TraktError.unauthorized { // 401 - Invalid refresh token
-            throw TraktClientError.invalidRefreshToken
-        } catch {
+            try await authCoordinator.performTokenRefresh(client: self)
+        } catch let error as TraktClientError {
             throw error
+        } catch APIError.unauthorized {
+            throw TraktClientError.userNotAuthorized
         }
     }
 }

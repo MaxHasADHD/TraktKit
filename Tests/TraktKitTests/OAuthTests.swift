@@ -355,6 +355,67 @@ extension TraktTestSuite {
         #expect(currentAuthState.accessToken == "new_access_token_from_pkce_refresh")
         #expect(traktManager.isSignedIn == true)
     }
+
+    @Test("checkToRefresh coalesces concurrent callers into a single refresh")
+    func concurrentCheckToRefreshRefreshesOnce() async throws {
+        // Expired access token forces every caller down the refresh path.
+        let authStorage = TraktMockAuthStorage(accessToken: "old", refreshToken: "old-rt", expirationDate: .distantPast)
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+
+        // A single, non-reusable refresh mock: a second concurrent refresh would
+        // find no mock and throw, so success across all callers proves the
+        // refresh was coalesced into one request through the coordinator.
+        let json: [String: Any] = [
+            "access_token": "new_access_token",
+            "token_type": "bearer",
+            "expires_in": 86400,
+            "refresh_token": "new_refresh_token",
+            "scope": "public",
+            "created_at": Date.now.timeIntervalSince1970
+        ]
+        let data = try JSONSerialization.data(withJSONObject: json)
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
+
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            for _ in 0..<8 {
+                group.addTask { try await traktManager.checkToRefresh() }
+            }
+            try await group.waitForAll()
+        }
+
+        let state = try await authStorage.getCurrentState()
+        #expect(state.accessToken == "new_access_token")
+        #expect(state.refreshToken == "new_refresh_token")
+        #expect(traktManager.isSignedIn == true)
+    }
+
+    @Test("checkToRefresh surfaces invalidRefreshToken when the refresh token is rejected")
+    func checkToRefreshInvalidGrantThrows() async throws {
+        let authStorage = TraktMockAuthStorage(accessToken: "old", refreshToken: "invalid-rt", expirationDate: .distantPast)
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+
+        // Trakt rejects a replayed/invalid refresh token with 401 invalid_grant.
+        let errorData = try JSONSerialization.data(withJSONObject: ["error": "invalid_grant"])
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 401)
+
+        await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
+            try await traktManager.checkToRefresh()
+        }
+    }
     
     @Test func revokeTokenBodyWithoutClientSecret() throws {
         // Test that revoke token body works without client_secret for PKCE tokens
