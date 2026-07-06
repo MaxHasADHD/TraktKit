@@ -227,7 +227,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
 
         tokenRefreshWrapper.manager = self
 
-        try? await refreshCurrentAuthState()
+        _ = try? await refreshCurrentAuthState()
     }
 
     // MARK: - Authentication
@@ -322,23 +322,32 @@ public final class TraktManager: APIClient, @unchecked Sendable {
 
     // MARK: Refresh access token
 
-    /// Loads the current auth state, refreshing via the `AuthCoordinator` if the
-    /// access token has expired. The coordinator coalesces concurrent refreshes
-    /// into one, avoiding reuse of Trakt's now single-use refresh tokens.
-    public func checkToRefresh() async throws {
-        let needsRefresh: Bool
+    /// Ensures the access token is valid before making authenticated requests,
+    /// refreshing via the `AuthCoordinator` if it has expired. The coordinator
+    /// coalesces concurrent refreshes into one, avoiding reuse of Trakt's now
+    /// single-use refresh tokens.
+    ///
+    /// Call this only for authenticated flows: it throws
+    /// ``TraktClientError/userNotAuthorized`` when no credentials are stored
+    /// (the user has never signed in or has signed out) and
+    /// ``TraktClientError/missingClientInfo`` when the client is misconfigured.
+    /// Non-authenticated requests work without calling this.
+    public func refreshTokenIfNeeded() async throws {
+        let state: AuthenticationState?
         do throws(AuthenticationError) {
-            try await refreshCurrentAuthState()
-            needsRefresh = false
-        } catch .tokenExpired {
-            needsRefresh = true
-        } catch .noStoredCredentials {
-            throw TraktClientError.userNotAuthorized
+            state = try await refreshCurrentAuthState()
         } catch .notConfigured {
             throw TraktClientError.missingClientInfo
         }
 
-        guard needsRefresh else { return }
+        // A nil state means the user has never authenticated (or signed out).
+        guard let state else {
+            throw TraktClientError.userNotAuthorized
+        }
+
+        // A non-expired state is good to go; only refresh when the token is past
+        // its expiration date.
+        guard state.isExpired else { return }
         guard let authCoordinator else { throw TraktClientError.missingClientInfo }
         do {
             try await authCoordinator.performTokenRefresh(client: self)

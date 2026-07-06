@@ -5,6 +5,78 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.0] - 2026-07-06
+
+Updated to SwiftAPIClient 1.7.0, which reworks the auth lifecycle so that an
+**expired token is now a signed-in state** rather than an error. This fixes a
+class of bugs where authenticated users were forced to re-authenticate (e.g.
+daily, once the 24-hour access token expired). See the
+[v3.6 → v3.7 migration guide](docs/migrations/v3.6-to-v3.7.md) for details.
+
+### Fixed
+- Authenticated users could be pushed back through the sign-in flow after their access token expired. Previously, loading an expired token threw, so the cached auth state never populated and the user appeared signed-out even though a valid (single-use) refresh token was stored. Expired-but-authenticated is now a first-class signed-in state (`isSignedIn == true`) that refreshes on demand via the `AuthCoordinator`.
+- Reinstall recovery: the Keychain survives an app reinstall but the UserDefaults expiration date does not. A missing expiration date is now treated as an expired state (`Date.distantPast`) that triggers a refresh, instead of throwing and signing the user out.
+
+### Changed
+- **BREAKING**: `Route.fetchAllPages()` now returns `PagedFetchResult<Element>` instead of `Set<Element>`. Access items via `.items`, and check `.isComplete` / `.failedPages` to detect partial fetches (a later-page failure now surfaces the partial data instead of being silently swallowed). A new `retryLimit:` parameter is forwarded to each page request — pass `0` to fail fast instead of sleeping through Trakt's rate-limit `retry-after`.
+- **BREAKING**: `TraktManager.checkToRefresh()` is renamed to `refreshTokenIfNeeded()`. The behavior is the same — refresh the access token if it has expired — but the name reflects that it's only for authenticated flows and that non-authenticated requests work without it.
+- **BREAKING**: Custom `TraktAuthentication` implementations must update `getCurrentState()`. It is now non-throwing and returns `AuthenticationState?` (`async -> AuthenticationState?`). Return whatever credentials exist — **even expired ones** — and return `nil` only when nothing is stored. Expiry is read from `AuthenticationState.isExpired`, not from an error.
+- **BREAKING**: `AuthenticationError.tokenExpired(refreshToken:)` and `.noStoredCredentials` are removed (both were re-exported through TraktKit's `AuthenticationError` typealias). Expiry is now `AuthenticationState.isExpired`; missing credentials are a `nil` state. `.notConfigured` is the only remaining case.
+- **BREAKING** (advanced): `TraktManager.mutableRequest(forPath:withQuery:isAuthorized:withHTTPMethod:body:)` is now `async` so it can await the coordinator's first storage load. Direct callers must add `await`.
+- `KeychainTraktAuthentication` now returns expired credentials as state instead of throwing, and treats a missing expiration date as an expired state (`Date.distantPast`) rather than an error.
+- Updated to SwiftAPIClient 1.7.0.
+
+### Migration Guide
+```swift
+// fetchAllPages — Before (3.6.x): returned Set<Element>
+let shows: Set<TraktWatchedShow> = try await traktManager.sync()
+    .watchedShows()
+    .limit(100)
+    .fetchAllPages()
+
+// fetchAllPages — After (3.7.0): returns PagedFetchResult<Element>
+let result = try await traktManager.sync()
+    .watchedShows()
+    .limit(100)
+    .fetchAllPages()
+let shows: Set<TraktWatchedShow> = result.items
+if !result.isComplete {
+    // Some pages failed; inspect result.failedPages before treating items as complete.
+}
+
+// Refresh — Before
+try await traktManager.checkToRefresh()
+// Refresh — After
+try await traktManager.refreshTokenIfNeeded()
+
+// Catching auth errors — Before
+do {
+    try await traktManager.refreshTokenIfNeeded()
+} catch AuthenticationError.tokenExpired {
+    // ...refresh path
+} catch AuthenticationError.noStoredCredentials {
+    // ...show sign-in
+}
+// Catching auth errors — After: expiry is no longer an error.
+// refreshTokenIfNeeded() refreshes an expired token internally and throws
+// TraktClientError.userNotAuthorized only when no credentials are stored.
+do {
+    try await traktManager.refreshTokenIfNeeded()
+} catch TraktClientError.userNotAuthorized {
+    // ...show sign-in (genuinely no stored credentials)
+}
+```
+
+## [3.6.1] - 2026-06-27
+
+### Fixed
+- Token refresh now consistently routes through the shared `AuthCoordinator`, so concurrent refreshes are coalesced into a single request. This avoids reusing Trakt's now single-use refresh tokens across siblings/instances that share a coordinator.
+
+## [3.6.0] - 2026-06-21
+
+### Added
+- Filled in missing properties on `TraktShow`, `TraktEpisode`, and `TraktMovie` to match the fields Trakt returns.
+
 ## [3.5.0] - 2026-05-27
 
 ### Added

@@ -100,7 +100,8 @@ extension TraktTestSuite {
             let mockTrendingRoute: Route<PagedObject<[TraktTrendingShow]>> = Route(path: path, method: .GET, traktManager: traktManager)
 
             let trending = try await mockTrendingRoute.limit(10).fetchAllPages()
-            #expect(trending.count == 20)
+            #expect(trending.isComplete)
+            #expect(trending.items.count == 20)
         }
 
         @Test func streamPaginatedResults() async throws {
@@ -293,7 +294,7 @@ extension TraktTestSuite {
             #expect(result.object.count == 1)
             
             // Verify token was updated in storage
-            let updatedState = try await mockAuth.getCurrentState()
+            let updatedState = try #require(await mockAuth.getCurrentState())
             #expect(updatedState.accessToken == "new_access_token")
             #expect(updatedState.refreshToken == "new_refresh_token")
         }
@@ -362,7 +363,7 @@ extension TraktTestSuite {
             #expect(result.object.count == 1)
             
             // Verify token was updated
-            let updatedState = try await mockAuth.getCurrentState()
+            let updatedState = try #require(await mockAuth.getCurrentState())
             #expect(updatedState.accessToken == "refreshed_access_token")
         }
         
@@ -449,7 +450,7 @@ extension TraktTestSuite {
             #expect(result.object.count == 1)
             
             // Verify token was NOT changed
-            let state = try await mockAuth.getCurrentState()
+            let state = try #require(await mockAuth.getCurrentState())
             #expect(state.accessToken == "valid_access_token")
             #expect(state.refreshToken == "valid_refresh_token")
         }
@@ -517,7 +518,7 @@ extension TraktTestSuite {
             #expect(userResult2.username == "testuser")
             
             // Token should be refreshed
-            let state = try await mockAuth.getCurrentState()
+            let state = try #require(await mockAuth.getCurrentState())
             #expect(state.accessToken == "new_access_token")
         }
     }

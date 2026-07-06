@@ -4,6 +4,7 @@ This directory contains detailed migration guides for major version upgrades of 
 
 ## Available Guides
 
+- [**v3.6.x to v3.7.0**](v3.6-to-v3.7.md) - Auth lifecycle rework (expired tokens stay signed-in) and paginated `fetchAllPages` result
 - [**v3.1.x to v3.2.0**](v3.1-to-v3.2.md) - Error type renames for improved clarity
 - [**v1.x to v2.0**](v1-to-v2.md) - Async/await migration and API restructure
 

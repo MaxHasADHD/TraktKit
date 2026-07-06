@@ -17,7 +17,7 @@ let package = Package(
             targets: ["TraktKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/MaxHasADHD/SwiftAPIClient.git", from: "1.6.2")
+        .package(url: "https://github.com/MaxHasADHD/SwiftAPIClient.git", from: "1.7.0")
     ],
     targets: [
         .target(

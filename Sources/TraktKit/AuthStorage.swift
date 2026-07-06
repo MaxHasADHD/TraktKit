@@ -24,36 +24,36 @@ public actor KeychainTraktAuthentication: TraktAuthentication {
         
     }
 
-    public func load() throws(AuthenticationError) -> AuthenticationState {
+    public func load() -> AuthenticationState? {
         guard
             let accessTokenData = MLKeychain.loadData(forKey: Constants.accessTokenKey),
             let accessTokenString = String(data: accessTokenData, encoding: .utf8),
             let refreshTokenData = MLKeychain.loadData(forKey: Constants.refreshTokenKey),
             let refreshTokenString = String(data: refreshTokenData, encoding: .utf8)
-        else { throw .noStoredCredentials }
+        else { return nil }
 
         accessToken = accessTokenString
         refreshToken = refreshTokenString
 
-        // Refresh auth if expiration is not found.
-        guard
-            let expiration = UserDefaults.standard.object(forKey: Constants.tokenExpirationDefaultsKey) as? Date
-        else { throw .tokenExpired(refreshToken: refreshTokenString) }
+        // A missing expiration date means the tokens exist but we can't prove
+        // they're still valid — surface that as an expired state (`distantPast`)
+        // so the caller refreshes, rather than treating the user as signed out.
+        let expiration = UserDefaults.standard.object(forKey: Constants.tokenExpirationDefaultsKey) as? Date ?? .distantPast
 
         expirationDate = expiration
 
         return AuthenticationState(accessToken: accessTokenString, refreshToken: refreshTokenString, expirationDate: expiration)
     }
 
-    public func getCurrentState() throws(AuthenticationError) -> AuthenticationState {
+    public func getCurrentState() -> AuthenticationState? {
         guard
             let accessToken,
             let refreshToken,
             let expirationDate
-        else { return try load() }
+        else { return load() }
 
-        guard expirationDate > .now else { throw .tokenExpired(refreshToken: refreshToken) }
-
+        // Return whatever credentials exist — even expired ones. The caller
+        // reads `AuthenticationState.isExpired` to decide whether to refresh.
         return AuthenticationState(accessToken: accessToken, refreshToken: refreshToken, expirationDate: expirationDate)
     }
 
@@ -94,25 +94,25 @@ public actor TraktMockAuthStorage: TraktAuthentication {
         self.expirationDate = expirationDate
     }
 
-    public func getCurrentState() async throws(AuthenticationError) -> AuthenticationState {
+    public func getCurrentState() -> AuthenticationState? {
         guard
             let accessToken,
             let refreshToken,
             let expirationDate
-        else { throw .noStoredCredentials }
+        else { return nil }
 
-        guard expirationDate > .now else { throw .tokenExpired(refreshToken: refreshToken) }
-
+        // Return whatever credentials exist — even expired ones. The caller
+        // reads `AuthenticationState.isExpired` to decide whether to refresh.
         return AuthenticationState(accessToken: accessToken, refreshToken: refreshToken, expirationDate: expirationDate)
     }
-    
-    public func updateState(_ state: AuthenticationState) async {
+
+    public func updateState(_ state: AuthenticationState) {
         accessToken = state.accessToken
         refreshToken = state.refreshToken
         expirationDate = state.expirationDate
     }
-    
-    public func clear() async {
+
+    public func clear() {
         accessToken = nil
         refreshToken = nil
         expirationDate = nil

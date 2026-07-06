@@ -159,7 +159,7 @@ extension TraktManager {
                 clientId: traktManager.clientId,
                 clientSecret: traktManager.clientSecret
             )
-            let request = try traktManager.mutableRequest(forPath: "oauth/device/token", isAuthorized: false, withHTTPMethod: .POST, body: body)
+            let request = try await traktManager.mutableRequest(forPath: "oauth/device/token", isAuthorized: false, withHTTPMethod: .POST, body: body)
 
             // Make response
             let (data, response) = try await traktManager.session.data(for: request)

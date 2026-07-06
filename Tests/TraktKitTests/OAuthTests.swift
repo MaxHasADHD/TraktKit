@@ -188,9 +188,8 @@ extension TraktTestSuite {
             userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
-        await #expect(throws: AuthenticationError.noStoredCredentials, performing: {
-            try await authStorage.getCurrentState()
-        })
+        // No credentials stored yet: an empty store returns nil, not an error.
+        #expect(await authStorage.getCurrentState() == nil)
 
         let code = "..."
         let authInfo = try await traktManager.getToken(authorizationCode: code)
@@ -199,7 +198,7 @@ extension TraktTestSuite {
         #expect(authInfo.refreshToken == "76ba4c5c75c96f6087f58a4de10be6c00b29ea1ddc3b2022ee2016d1363e3a7c")
         #expect(authInfo.scope == "public")
 
-        let currentAuthState = try await authStorage.getCurrentState()
+        let currentAuthState = try #require(await authStorage.getCurrentState())
         #expect(currentAuthState.accessToken == authInfo.accessToken)
         #expect(traktManager.isSignedIn == true)
     }
@@ -217,9 +216,10 @@ extension TraktTestSuite {
             userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
-        await #expect(throws: AuthenticationError.tokenExpired(refreshToken: refreshToken), performing: {
-            try await authStorage.getCurrentState()
-        })
+        // An expired token is still a signed-in state; it just needs refreshing.
+        let expiredState = try #require(await authStorage.getCurrentState())
+        #expect(expiredState.isExpired)
+        #expect(expiredState.refreshToken == refreshToken)
 
         // Mock
         let json: [String: Any] = [
@@ -234,9 +234,9 @@ extension TraktTestSuite {
         try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
 
         // Refresh token
-        try await traktManager.checkToRefresh()
+        try await traktManager.refreshTokenIfNeeded()
 
-        let currentAuthState = try await authStorage.getCurrentState()
+        let currentAuthState = try #require(await authStorage.getCurrentState())
         #expect(currentAuthState.accessToken == "dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781")
         #expect(traktManager.isSignedIn == true)
     }
@@ -278,9 +278,8 @@ extension TraktTestSuite {
             userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
-        await #expect(throws: AuthenticationError.noStoredCredentials, performing: {
-            try await authStorage.getCurrentState()
-        })
+        // No credentials stored yet: an empty store returns nil, not an error.
+        #expect(await authStorage.getCurrentState() == nil)
 
         let code = "..."
         let codeVerifier = PKCEUtilities.generateCodeVerifier()
@@ -290,7 +289,7 @@ extension TraktTestSuite {
         #expect(authInfo.refreshToken == "76ba4c5c75c96f6087f58a4de10be6c00b29ea1ddc3b2022ee2016d1363e3a7c")
         #expect(authInfo.scope == "public")
 
-        let currentAuthState = try await authStorage.getCurrentState()
+        let currentAuthState = try #require(await authStorage.getCurrentState())
         #expect(currentAuthState.accessToken == authInfo.accessToken)
         #expect(traktManager.isSignedIn == true)
     }
@@ -332,9 +331,10 @@ extension TraktTestSuite {
             userAgent: "myapp/1.0.0",
             authStorage: authStorage
         )
-        await #expect(throws: AuthenticationError.tokenExpired(refreshToken: refreshToken), performing: {
-            try await authStorage.getCurrentState()
-        })
+        // An expired token is still a signed-in state; it just needs refreshing.
+        let expiredState = try #require(await authStorage.getCurrentState())
+        #expect(expiredState.isExpired)
+        #expect(expiredState.refreshToken == refreshToken)
 
         // Mock
         let json: [String: Any] = [
@@ -349,14 +349,14 @@ extension TraktTestSuite {
         try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
 
         // Refresh token
-        try await traktManager.checkToRefresh()
+        try await traktManager.refreshTokenIfNeeded()
 
-        let currentAuthState = try await authStorage.getCurrentState()
+        let currentAuthState = try #require(await authStorage.getCurrentState())
         #expect(currentAuthState.accessToken == "new_access_token_from_pkce_refresh")
         #expect(traktManager.isSignedIn == true)
     }
 
-    @Test("checkToRefresh coalesces concurrent callers into a single refresh")
+    @Test("refreshTokenIfNeeded coalesces concurrent callers into a single refresh")
     func concurrentCheckToRefreshRefreshesOnce() async throws {
         // Expired access token forces every caller down the refresh path.
         let authStorage = TraktMockAuthStorage(accessToken: "old", refreshToken: "old-rt", expirationDate: .distantPast)
@@ -385,19 +385,19 @@ extension TraktTestSuite {
 
         try await withThrowingTaskGroup(of: Void.self) { group in
             for _ in 0..<8 {
-                group.addTask { try await traktManager.checkToRefresh() }
+                group.addTask { try await traktManager.refreshTokenIfNeeded() }
             }
             try await group.waitForAll()
         }
 
-        let state = try await authStorage.getCurrentState()
+        let state = try #require(await authStorage.getCurrentState())
         #expect(state.accessToken == "new_access_token")
         #expect(state.refreshToken == "new_refresh_token")
         #expect(traktManager.isSignedIn == true)
     }
 
-    @Test("checkToRefresh surfaces invalidRefreshToken when the refresh token is rejected")
-    func checkToRefreshInvalidGrantThrows() async throws {
+    @Test("refreshTokenIfNeeded surfaces invalidRefreshToken when the refresh token is rejected")
+    func refreshTokenIfNeededInvalidGrantThrows() async throws {
         let authStorage = TraktMockAuthStorage(accessToken: "old", refreshToken: "invalid-rt", expirationDate: .distantPast)
         let traktManager = await TraktManager(
             session: suite.mockSession.urlSession,
@@ -413,7 +413,7 @@ extension TraktTestSuite {
         try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 401)
 
         await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
-            try await traktManager.checkToRefresh()
+            try await traktManager.refreshTokenIfNeeded()
         }
     }
     
