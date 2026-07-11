@@ -1,0 +1,66 @@
+[
+  {
+    "type" : "show",
+    "score" : 1000,
+    "show" : {
+      "title" : "Mom",
+      "year" : 2013,
+      "ids" : {
+        "trakt" : 47940,
+        "slug" : "mom",
+        "tvdb" : 266967,
+        "imdb" : "tt2660806",
+        "tmdb" : 46533
+      },
+      "votes" : 8123,
+      "images" : {
+        "poster" : [
+          "https://walter-r2.trakt.tv/images/shows/000/047/940/posters/thumb/6296067c4b.jpg"
+        ],
+        "fanart" : [
+          "https://walter-r2.trakt.tv/images/shows/000/047/940/fanarts/thumb/da5952bdcf.jpg"
+        ]
+      }
+    }
+  },
+  {
+    "type" : "show",
+    "score" : 750.5,
+    "show" : {
+      "title" : "Mom and Dad",
+      "year" : 2018,
+      "ids" : {
+        "trakt" : 120233,
+        "slug" : "mom-and-dad",
+        "tvdb" : 338712,
+        "imdb" : "tt7220118",
+        "tmdb" : 77394
+      },
+      "votes" : 412,
+      "images" : {
+        "poster" : [
+          "https://walter-r2.trakt.tv/images/shows/000/120/233/posters/thumb/aa11bb22cc.jpg"
+        ]
+      }
+    }
+  },
+  {
+    "type" : "show",
+    "score" : 500.25,
+    "show" : {
+      "title" : "Bad Moms Club",
+      "year" : 2021,
+      "ids" : {
+        "trakt" : 171041,
+        "slug" : "bad-moms-club",
+        "tvdb" : 401555,
+        "imdb" : null,
+        "tmdb" : 118201
+      },
+      "votes" : 37,
+      "images" : {
+        "poster" : [ ]
+      }
+    }
+  }
+]

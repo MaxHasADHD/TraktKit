@@ -30,8 +30,30 @@ extension TraktTestSuite {
                 .search("tron", types: [.movie, .show, .episode, .person, .list])
                 .extend(.Min)
                 .perform()
+                .object
 
             #expect(searchResults.count == 5)
+        }
+
+        @Test func exactSearchQuery() async throws {
+            try await suite.mock(
+                .GET,
+                "https://api.trakt.tv/search/show/exact?query=mom&extended=full,images&page=1&limit=25",
+                result: .success(jsonData(named: "test_search_shows_paged")),
+                headers: [.contentType, .apiVersion, .apiKey(""), .page(1), .pageCount(3)]
+            )
+
+            let result = try await traktManager.search()
+                .exactSearch("mom", types: [.show])
+                .extend(.Full, .images)
+                .page(1)
+                .limit(25)
+                .perform()
+
+            #expect(result.object.count == 3)
+            #expect(result.currentPage == 1)
+            #expect(result.pageCount == 3)
+            #expect(result.object.allSatisfy { $0.type == "show" })
         }
 
         // MARK: - ID Lookup

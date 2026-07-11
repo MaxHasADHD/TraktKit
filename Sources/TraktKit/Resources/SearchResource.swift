@@ -29,11 +29,27 @@ public struct SearchResource {
     public func search(
         _ query: String,
         types: [SearchType]// = [.movie, .show, .episode, .person, .list]
-    ) -> Route<[TraktSearchResult]> {
+    ) -> Route<PagedObject<[TraktSearchResult]>> {
         let searchTypes = types.map { $0.rawValue }.joined(separator: ",")
         return Route(path: "search/\(searchTypes)", method: .GET, traktManager: traktManager).query(query)
     }
-    
+
+    /**
+     Search for movies, shows, episodes, people, and lists whose title exactly matches the query.
+
+     **Endpoint:** `GET /search/{types}/exact`
+
+     - parameter query: The exact title to match.
+     - parameter types: Media types to search (movie, show, episode, person, list).
+     */
+    public func exactSearch(
+        _ query: String,
+        types: [SearchType]
+    ) -> Route<PagedObject<[TraktSearchResult]>> {
+        let searchTypes = types.map { $0.rawValue }.joined(separator: ",")
+        return Route(path: "search/\(searchTypes)/exact", method: .GET, traktManager: traktManager).query(query)
+    }
+
     /**
      Get an item by its ID.
 
