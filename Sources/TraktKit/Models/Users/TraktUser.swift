@@ -48,7 +48,12 @@ public struct User: TraktObject {
     }
 
     public struct IDs: TraktObject {
-        public let slug: String
+        /// The user's URL slug. Almost always populated — the exception is the placeholder
+        /// account that owns Trakt's *official* lists (`"type": "official"`), whose ids are
+        /// `{"slug": null, "trakt": 0}`. Official lists can appear anywhere lists are returned
+        /// (search, trending, popular), so treat a missing slug as "not addressable by
+        /// username", not as bad data.
+        public let slug: String?
     }
 
     public struct Images: TraktObject {

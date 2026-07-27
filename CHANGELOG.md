@@ -5,6 +5,22 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.9.0] - 2026-07-27
+
+### Added
+- `TraktList.user` — the list's owner, returned by every list-reading endpoint (search,
+  trending, popular, a user's lists, list summary). Optional defensively for write-style
+  responses. Callers that previously decoded `/search/list` with a custom type just to reach
+  the owner can now use `TraktSearchResult.list?.user` directly.
+
+### Changed
+- **BREAKING**: `User.IDs.slug` is now `String?`, matching Trakt's own data: the placeholder
+  account that owns Trakt's *official* lists (`"type": "official"`) has
+  `"ids": {"slug": null, "trakt": 0}`. The field will be populated for real users; treat a
+  missing slug as "not addressable by username" (official lists can only be addressed by list
+  id, never as `users/{slug}/lists/{list}`). Without this, one official list in a response —
+  they appear throughout list search/trending/popular — failed the entire page's decode.
+
 ## [3.7.0] - 2026-07-06
 
 Updated to SwiftAPIClient 1.7.0, which reworks the auth lifecycle so that an

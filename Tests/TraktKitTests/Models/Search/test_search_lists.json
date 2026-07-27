@@ -1,0 +1,92 @@
+[
+  {
+    "type": "list",
+    "score": 578730123365189800,
+    "list": {
+      "name": "MARVEL Cinematic Universe",
+      "description": "Chronological order.",
+      "privacy": "public",
+      "share_link": "",
+      "type": "personal",
+      "display_numbers": true,
+      "allow_comments": true,
+      "sort_by": "rank",
+      "sort_how": "asc",
+      "created_at": "2015-07-16T14:59:57.000Z",
+      "updated_at": "2026-07-27T11:25:37.000Z",
+      "item_count": 215,
+      "comment_count": 36,
+      "likes": 5042,
+      "ids": {
+        "slug": "marvel-cinematic-universe",
+        "trakt": 1248149
+      },
+      "user": {
+        "ids": {
+          "slug": "donxy",
+          "trakt": 879337
+        },
+        "images": {
+          "avatar": {
+            "full": "https://media.trakt.tv/images/users/000/879/337/avatars/medium/467a0229e9.jpg"
+          }
+        },
+        "username": "Donxy",
+        "private": false,
+        "deleted": false,
+        "joined_at": "2015-02-11T08:50:52.000Z",
+        "location": "Sweden",
+        "about": "Just a guy who is addicted to TV-series and movies!",
+        "name": "Donxy",
+        "gender": "male",
+        "age": 31,
+        "vip": false,
+        "vip_ep": false,
+        "vip_cover_image": null,
+        "director": false
+      }
+    }
+  },
+  {
+    "type": "list",
+    "score": 578730123365189800,
+    "list": {
+      "name": "Marvel Animated Features",
+      "description": "Eight direct-to-video animated films.",
+      "privacy": "public",
+      "share_link": "",
+      "type": "official",
+      "display_numbers": false,
+      "allow_comments": true,
+      "sort_by": "rank",
+      "sort_how": "asc",
+      "created_at": "2019-03-08T18:24:44.000Z",
+      "updated_at": "2026-07-25T09:12:03.000Z",
+      "item_count": 8,
+      "comment_count": 0,
+      "likes": 112,
+      "ids": {
+        "slug": "marvel-animated-features",
+        "trakt": 2047
+      },
+      "user": {
+        "username": "Trakt",
+        "private": false,
+        "deleted": false,
+        "name": null,
+        "vip": false,
+        "vip_ep": false,
+        "director": false,
+        "ids": {
+          "slug": null,
+          "trakt": 0
+        },
+        "images": {
+          "avatar": {
+            "full": "https://media.trakt.tv/hotlink-ok/logos/logomark.circle.gradient.svg"
+          }
+        }
+      }
+    }
+  }
+]

@@ -107,7 +107,12 @@ public struct TraktList: TraktObject {
     public let privacy: ListPrivacy
     public let updatedAt: Date
     public let ids: ListId
-    
+    /// The list's owner. Returned by every list-reading endpoint (search, trending, popular, a
+    /// user's lists, list summary); optional defensively for write-style responses. Note that
+    /// Trakt's *official* lists are owned by a placeholder account whose `ids.slug` is `null` —
+    /// such lists can only be addressed by list id, never as `users/{slug}/lists/{list}`.
+    public let user: User?
+
     enum CodingKeys: String, CodingKey {
         case allowComments = "allow_comments"
         case commentCount = "comment_count"
@@ -120,6 +125,7 @@ public struct TraktList: TraktObject {
         case privacy
         case updatedAt = "updated_at"
         case ids
+        case user
     }
 }
 

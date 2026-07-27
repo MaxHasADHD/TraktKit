@@ -56,6 +56,29 @@ extension TraktTestSuite {
             #expect(result.object.allSatisfy { $0.type == "show" })
         }
 
+        /// Both real-world list shapes decode: a personal list carries its owner (with a slug),
+        /// and a Trakt *official* list carries the placeholder owner whose `ids.slug` is null —
+        /// which must not fail the page (it did, before `User.IDs.slug` became optional).
+        @Test func searchListsIncludesOwnersAndToleratesOfficialLists() async throws {
+            try await suite.mock(.GET, "https://api.trakt.tv/search/list?query=marvel", result: .success(jsonData(named: "test_search_lists")))
+
+            let searchResults = try await traktManager.search()
+                .search("marvel", types: [.list])
+                .perform()
+                .object
+
+            #expect(searchResults.count == 2)
+
+            let personal = try #require(searchResults[0].list)
+            #expect(personal.name == "MARVEL Cinematic Universe")
+            #expect(personal.user?.ids.slug == "donxy")
+
+            let official = try #require(searchResults[1].list)
+            #expect(official.name == "Marvel Animated Features")
+            #expect(official.user != nil)
+            #expect(official.user?.ids.slug == nil)
+        }
+
         // MARK: - ID Lookup
 
         @Test func idLookup() async throws {
