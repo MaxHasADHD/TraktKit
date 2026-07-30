@@ -19,12 +19,27 @@ public actor KeychainTraktAuthentication: TraktAuthentication {
     private var accessToken: String?
     private var refreshToken: String?
     private var expirationDate: Date?
+    private var didMigrateLegacyKeychainItems = false
 
     public init() {
-        
+
+    }
+
+    /// Tokens saved by a version of TraktKit that stored keychain items without a
+    /// service attribute are moved onto the scoped service before they're read,
+    /// so updating doesn't look like a sign-out. Every read path reaches `load()`,
+    /// either directly or as `getCurrentState()`'s fallback.
+    private func migrateLegacyKeychainItemsIfNeeded() {
+        guard !didMigrateLegacyKeychainItems else { return }
+        didMigrateLegacyKeychainItems = true
+
+        MLKeychain.migrateLegacyItem(forKey: Constants.accessTokenKey)
+        MLKeychain.migrateLegacyItem(forKey: Constants.refreshTokenKey)
     }
 
     public func load() -> AuthenticationState? {
+        migrateLegacyKeychainItemsIfNeeded()
+
         guard
             let accessTokenData = MLKeychain.loadData(forKey: Constants.accessTokenKey),
             let accessTokenString = String(data: accessTokenData, encoding: .utf8),
