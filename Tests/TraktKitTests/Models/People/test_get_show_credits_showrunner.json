@@ -1,0 +1,5277 @@
+{
+  "cast": [
+    {
+      "character": "Liam's Father",
+      "characters": [
+        "Liam's Father"
+      ],
+      "episode_count": 4,
+      "series_regular": false,
+      "show": {
+        "ids": {
+          "imdb": "tt37032234",
+          "plex": {
+            "guid": null,
+            "slug": null
+          },
+          "slug": "liam-and-michael",
+          "tmdb": 324649,
+          "tvdb": null,
+          "trakt": 325581
+        },
+        "airs": {
+          "day": null,
+          "time": null,
+          "timezone": "America/New_York"
+        },
+        "year": 2023,
+        "title": "Liam and Michael",
+        "votes": 0,
+        "colors": {
+          "poster": []
+        },
+        "genres": [
+          "crime",
+          "comedy",
+          "drama",
+          "action",
+          "adventure"
+        ],
+        "images": {
+          "logo": [],
+          "thumb": [],
+          "banner": [],
+          "fanart": [],
+          "poster": [],
+          "clearart": []
+        },
+        "rating": 0,
+        "status": "returning series",
+        "country": "us",
+        "network": null,
+        "runtime": 5,
+        "tagline": "",
+        "trailer": "https://youtube.com/watch?v=uJKsXIveBKE",
+        "homepage": "https://www.youtube.com/@LiamandMichaelOfficialTV",
+        "language": "en",
+        "overview": "Liam and Michael get into fights, get into trouble, and even get involved in a huge candy scandal. But when it counts, they are always there for each other.",
+        "languages": [
+          "en"
+        ],
+        "subgenres": [],
+        "social_ids": {
+          "twitter": null,
+          "facebook": null,
+          "instagram": null,
+          "wikipedia": null
+        },
+        "updated_at": "2026-08-04T09:18:34.000Z",
+        "first_aired": "2023-09-13T04:00:00.000Z",
+        "certification": null,
+        "comment_count": 0,
+        "total_runtime": 125,
+        "aired_episodes": 26,
+        "original_title": "Liam and Michael",
+        "available_translations": [
+          "en"
+        ]
+      }
+    },
+    {
+      "character": "Self",
+      "characters": [
+        "Self"
+      ],
+      "episode_count": 1,
+      "series_regular": false,
+      "show": {
+        "ids": {
+          "imdb": "tt3473134",
+          "plex": {
+            "guid": "5d9c08b36c3e37001ecd9295",
+            "slug": "off-camera-with-sam-jones"
+          },
+          "slug": "off-camera-with-sam-jones",
+          "tmdb": 102758,
+          "tvdb": 291758,
+          "trakt": 95891
+        },
+        "airs": {
+          "day": "Monday",
+          "time": "20:00",
+          "timezone": "America/New_York"
+        },
+        "year": 2014,
+        "title": "Off Camera with Sam Jones",
+        "votes": 14,
+        "colors": {
+          "poster": [
+            "#F5F4F0",
+            "#222221"
+          ]
+        },
+        "genres": [
+          "talk-show"
+        ],
+        "images": {
+          "logo": [],
+          "thumb": [],
+          "banner": [
+            "media.trakt.tv/images/shows/000/095/891/banners/medium/ce8edaf788.jpg.webp"
+          ],
+          "fanart": [
+            "media.trakt.tv/images/shows/000/095/891/fanarts/medium/56974005c6.jpg.webp"
+          ],
+          "poster": [
+            "media.trakt.tv/images/shows/000/095/891/posters/medium/41a89c4304.jpg.webp"
+          ],
+          "clearart": []
+        },
+        "rating": 5.285709857940674,
+        "status": "returning series",
+        "country": "us",
+        "network": "Audience",
+        "runtime": 58,
+        "tagline": "The best conversations happen off camera.",
+        "trailer": null,
+        "homepage": "https://offcamera.com",
+        "language": "en",
+        "overview": "Photographer and director Sam Jones sits down with the myriad professionals of television and movies, and other celebrities (great skateboarders, for example), to discuss their development before fame, their passions beyond their careers, and gives them a space to open up about their insight into their business and their own abilities. Filmed in black and white, with a few deep cushion chairs and sparse set, the show relies on Sam's ability to relate to the guests and their will to speak freely with him.",
+        "languages": [
+          "en"
+        ],
+        "subgenres": [],
+        "social_ids": {
+          "twitter": null,
+          "facebook": null,
+          "instagram": null,
+          "wikipedia": "Off_Camera"
+        },
+        "updated_at": "2025-07-07T10:26:40.000Z",
+        "first_aired": "2014-02-07T01:00:00.000Z",
+        "certification": "TV-14",
+        "comment_count": 0,
+        "total_runtime": 12654,
+        "aired_episodes": 218,
+        "original_title": "Off Camera with Sam Jones",
+        "available_translations": [
+          "en"
+        ]
+      }
+    },
+    {
+      "character": "The Shadowy Figure (voice) (uncredited)",
+      "characters": [
+        "The Shadowy Figure (voice) (uncredited)"
+      ],
+      "episode_count": 7,
+      "series_regular": false,
+      "show": {
+        "ids": {
+          "imdb": "tt0305011",
+          "plex": {
+            "guid": "5d9c087602391c001f58b5fc",
+            "slug": "clone-high"
+          },
+          "slug": "clone-high",
+          "tmdb": 2342,
+          "tvdb": 78560,
+          "trakt": 2328
+        },
+        "airs": {
+          "day": "Monday",
+          "time": "21:00",
+          "timezone": "America/Toronto"
+        },
+        "year": 2002,
+        "title": "Clone High",
+        "votes": 433,
+        "colors": {
+          "poster": [
+            "#C1D0AC",
+            "#654A33"
+          ]
+        },
+        "genres": [
+          "animation",
+          "comedy"
+        ],
+        "images": {
+          "logo": [
+            "media.trakt.tv/images/shows/000/002/328/logos/medium/56ec21f0de.png.webp"
+          ],
+          "thumb": [
+            "media.trakt.tv/images/shows/000/002/328/thumbs/medium/76d4161346.png.webp"
+          ],
+          "banner": [],
+          "fanart": [
+            "media.trakt.tv/images/shows/000/002/328/fanarts/medium/074853cc3b.jpg.webp"
+          ],
+          "poster": [
+            "media.trakt.tv/images/shows/000/002/328/posters/medium/495eaaa515.jpg.webp"
+          ],
+          "clearart": []
+        },
+        "rating": 7.660508155822754,
+        "status": "ended",
+        "country": "ca",
+        "network": "Teletoon",
+        "runtime": 23,
+        "tagline": "",
+        "trailer": null,
+        "homepage": "https://www.mtv.com/shows/clone-high",
+        "language": "en",
+        "overview": "A group of high-school teens are the products of government employees' secret experiment. They are the genetic clones of famous historical figures who have been dug up, re-created anew. Joan of Arc, Cleopatra, JFK, Gandhi, Abraham Lincoln and more are juxtaposed as teenagers dealing with teen issues in the 20th century.",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "subgenres": [
+          "high-school",
+          "parody",
+          "satire",
+          "historical-figure",
+          "experiment"
+        ],
+        "social_ids": {
+          "twitter": null,
+          "facebook": null,
+          "instagram": null,
+          "wikipedia": "Clone_High"
+        },
+        "updated_at": "2026-08-06T06:10:09.000Z",
+        "first_aired": "2002-11-03T02:00:00.000Z",
+        "certification": "TV-14",
+        "comment_count": 3,
+        "total_runtime": 299,
+        "aired_episodes": 13,
+        "original_title": "Clone High",
+        "available_translations": [
+          "en",
+          "es",
+          "fr",
+          "nl",
+          "pt",
+          "ru",
+          "zh"
+        ]
+      }
+    },
+    {
+      "character": "Cafeteria Client, Justice of the Peace, Janitor",
+      "characters": [
+        "Cafeteria Client",
+        "Justice of the Peace",
+        "Janitor"
+      ],
+      "episode_count": 3,
+      "series_regular": false,
+      "show": {
+        "ids": {
+          "imdb": "tt0285403",
+          "plex": {
+            "guid": "5d9c086bffd9ef001e994347",
+            "slug": "scrubs"
+          },
+          "slug": "scrubs",
+          "tmdb": 4556,
+          "tvdb": 76156,
+          "trakt": 4532
+        },
+        "airs": {
+          "day": "Wednesday",
+          "time": "20:00",
+          "timezone": "America/New_York"
+        },
+        "year": 2001,
+        "title": "Scrubs",
+        "votes": 10698,
+        "colors": {
+          "poster": [
+            "#B1AEA6",
+            "#222A32"
+          ]
+        },
+        "genres": [
+          "comedy"
+        ],
+        "images": {
+          "logo": [
+            "media.trakt.tv/images/shows/000/004/532/logos/medium/499ff3c9cf.png.webp"
+          ],
+          "thumb": [
+            "media.trakt.tv/images/shows/000/004/532/thumbs/medium/2c6b5775bb.jpg.webp"
+          ],
+          "banner": [
+            "media.trakt.tv/images/shows/000/004/532/banners/medium/533c0199a5.jpg.webp"
+          ],
+          "fanart": [
+            "media.trakt.tv/images/shows/000/004/532/fanarts/medium/0e2b69e727.jpg.webp"
+          ],
+          "poster": [
+            "media.trakt.tv/images/shows/000/004/532/posters/medium/414e6d57f9.jpg.webp"
+          ],
+          "clearart": [
+            "media.trakt.tv/images/shows/000/004/532/cleararts/medium/a0a2c8b67c.png.webp"
+          ]
+        },
+        "rating": 8.336885452270508,
+        "status": "canceled",
+        "country": "us",
+        "network": "NBC",
+        "runtime": 25,
+        "tagline": "Laughter is the best medicine... Especially when it's your first day as a doctor.",
+        "trailer": null,
+        "homepage": null,
+        "language": "en",
+        "overview": "In the unreal world of Sacred Heart Hospital, John \"J.D.\" Dorian learns the ways of medicine, friendship and life.",
+        "languages": [
+          "en",
+          "es"
+        ],
+        "subgenres": [
+          "friendship",
+          "sitcom",
+          "dramedy",
+          "workplace-comedy",
+          "doctor",
+          "hospital",
+          "medical-drama"
+        ],
+        "social_ids": {
+          "twitter": null,
+          "facebook": "",
+          "instagram": null,
+          "wikipedia": "Scrubs_(TV_series)"
+        },
+        "updated_at": "2026-08-06T07:10:42.000Z",
+        "first_aired": "2001-10-03T00:00:00.000Z",
+        "certification": "TV-14",
+        "comment_count": 37,
+        "total_runtime": 4155,
+        "aired_episodes": 181,
+        "original_title": "Scrubs",
+        "available_translations": [
+          "ar",
+          "bg",
+          "bs",
+          "cs",
+          "da",
+          "de",
+          "el",
+          "en",
+          "es",
+          "fa",
+          "fi",
+          "fr",
+          "he",
+          "hr",
+          "hu",
+          "it",
+          "ja",
+          "ka",
+          "ko",
+          "lt",
+          "nl",
+          "pl",
+          "pt",
+          "ro",
+          "ru",
+          "sk",
+          "sv",
+          "th",
+          "tr",
+          "uk",
+          "zh"
+        ]
+      }
+    },
+    {
+      "character": "",
+      "characters": [],
+      "episode_count": 1,
+      "series_regular": false,
+      "show": {
+        "ids": {
+          "imdb": "tt0463399",
+          "plex": {
+            "guid": "5d9c07ff3c3f87001f344695",
+            "slug": "e-true-hollywood-story"
+          },
+          "slug": "e-true-hollywood-story",
+          "tmdb": 3739,
+          "tvdb": 70877,
+          "trakt": 3716
+        },
+        "airs": {
+          "day": "Sunday",
+          "time": "22:00",
+          "timezone": "America/New_York"
+        },
+        "year": 1996,
+        "title": "E! True Hollywood Story",
+        "votes": 16,
+        "colors": {
+          "poster": [
+            "#F9EBEB",
+            "#010101"
+          ]
+        },
+        "genres": [
+          "documentary"
+        ],
+        "images": {
+          "logo": [
+            "media.trakt.tv/images/shows/000/003/716/logos/medium/28c78aa973.png.webp"
+          ],
+          "thumb": [],
+          "banner": [],
+          "fanart": [
+            "media.trakt.tv/images/shows/000/003/716/fanarts/medium/25ef2901b9.jpg.webp"
+          ],
+          "poster": [
+            "media.trakt.tv/images/shows/000/003/716/posters/medium/47d4c034c2.jpg.webp"
+          ],
+          "clearart": []
+        },
+        "rating": 5.5625,
+        "status": "returning series",
+        "country": "us",
+        "network": "E!",
+        "runtime": 60,
+        "tagline": "",
+        "trailer": null,
+        "homepage": "https://www.eonline.com/shows/true_hollywood_story",
+        "language": "en",
+        "overview": "E! True Hollywood Story is an American documentary series on E! that deals with famous Hollywood celebrities, movies, TV shows and also well-known public figures. Among the topics covered on the program include salacious re-tellings of Hollywood secrets, show-biz scandals, celebrity murders and mysteries, porn-star biographies, and \"where-are-they-now?\" investigations of former child stars. It frequently features in-depth interviews, actual courtroom footage, and dramatic reenactments. When aired on the E! network, episodes will be updated to reflect the current life or status of the subject.",
+        "languages": [
+          "en"
+        ],
+        "subgenres": [
+          "celebrity"
+        ],
+        "social_ids": {
+          "twitter": null,
+          "facebook": null,
+          "instagram": null,
+          "wikipedia": "E!_True_Hollywood_Story"
+        },
+        "updated_at": "2026-08-05T06:34:32.000Z",
+        "first_aired": "1996-08-22T02:00:00.000Z",
+        "certification": "TV-14",
+        "comment_count": 0,
+        "total_runtime": 29805,
+        "aired_episodes": 497,
+        "original_title": "E! True Hollywood Story",
+        "available_translations": [
+          "en",
+          "es",
+          "hu",
+          "ja",
+          "pt",
+          "ru"
+        ]
+      }
+    }
+  ],
+  "crew": {
+    "writing": [
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0108778",
+            "plex": {
+              "guid": "5d9c086d2192ba001f3101c6",
+              "slug": "friends-1"
+            },
+            "slug": "friends",
+            "tmdb": 1668,
+            "tvdb": 79168,
+            "trakt": 1657
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 1994,
+          "title": "Friends",
+          "votes": 32345,
+          "colors": {
+            "poster": [
+              "#BB9782",
+              "#2C2324"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/001/657/logos/medium/e501e8b481.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/001/657/thumbs/medium/76534d8848.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/001/657/banners/medium/fd7c731c91.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/001/657/fanarts/medium/bd96eb598c.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/001/657/posters/medium/77f73a63c8.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/001/657/cleararts/medium/279f666cf5.png.webp"
+            ]
+          },
+          "rating": 8.458154678344727,
+          "status": "ended",
+          "country": "us",
+          "network": "NBC",
+          "runtime": 25,
+          "tagline": "I'll be there for you.",
+          "trailer": "https://youtube.com/watch?v=H29XSxoKp80",
+          "homepage": null,
+          "language": "en",
+          "overview": "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "searching-for-love",
+            "young-adult"
+          ],
+          "social_ids": {
+            "twitter": "FriendsTV",
+            "facebook": "friends.tv",
+            "instagram": "friends",
+            "wikipedia": "Friends"
+          },
+          "updated_at": "2026-08-06T11:04:53.000Z",
+          "first_aired": "1994-09-23T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 119,
+          "total_runtime": 5452,
+          "aired_episodes": 228,
+          "original_title": "Friends",
+          "available_translations": [
+            "ar",
+            "bg",
+            "bs",
+            "ca",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "et",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hr",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "lv",
+            "mk",
+            "my",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sr",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "uz",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0105958",
+            "plex": {
+              "guid": "5d9c0871705e7a001e6dcf0b",
+              "slug": "boy-meets-world"
+            },
+            "slug": "boy-meets-world",
+            "tmdb": 1777,
+            "tvdb": 71889,
+            "trakt": 1765
+          },
+          "airs": {
+            "day": "Friday",
+            "time": "20:30",
+            "timezone": "America/New_York"
+          },
+          "year": 1993,
+          "title": "Boy Meets World",
+          "votes": 1179,
+          "colors": {
+            "poster": [
+              "#ABA4A8",
+              "#39393F"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama",
+            "family"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/001/765/logos/medium/030f2ab006.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/001/765/thumbs/medium/93ffdd319c.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/001/765/banners/medium/9f3270bb42.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/001/765/fanarts/medium/9de29d00a6.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/001/765/posters/medium/da050207d4.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/001/765/cleararts/medium/b35131d370.png.webp"
+            ]
+          },
+          "rating": 8.04240894317627,
+          "status": "ended",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 24,
+          "tagline": "His older brother likes girls. His younger sister likes dolls. His parents like rules. And he'd like to know where he fits in.",
+          "trailer": "https://youtube.com/watch?v=uaHKEc0mFXs",
+          "homepage": null,
+          "language": "en",
+          "overview": "The coming of age events and everyday life-lessons of Cory Matthews, a Philadelphian who grows up from a young boy to a married man.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "amused",
+            "friendship",
+            "high-school",
+            "coming-of-age",
+            "sitcom",
+            "family-relationships",
+            "school"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Boy_Meets_World"
+          },
+          "updated_at": "2026-08-06T06:15:17.000Z",
+          "first_aired": "1993-09-25T00:30:00.000Z",
+          "certification": "TV-G",
+          "comment_count": 12,
+          "total_runtime": 3792,
+          "aired_episodes": 158,
+          "original_title": "Boy Meets World",
+          "available_translations": [
+            "bs",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "it",
+            "ko",
+            "nl",
+            "no",
+            "pt",
+            "ro",
+            "ru",
+            "sv",
+            "tr",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0305011",
+            "plex": {
+              "guid": "5d9c087602391c001f58b5fc",
+              "slug": "clone-high"
+            },
+            "slug": "clone-high",
+            "tmdb": 2342,
+            "tvdb": 78560,
+            "trakt": 2328
+          },
+          "airs": {
+            "day": "Monday",
+            "time": "21:00",
+            "timezone": "America/Toronto"
+          },
+          "year": 2002,
+          "title": "Clone High",
+          "votes": 433,
+          "colors": {
+            "poster": [
+              "#C1D0AC",
+              "#654A33"
+            ]
+          },
+          "genres": [
+            "animation",
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/002/328/logos/medium/56ec21f0de.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/002/328/thumbs/medium/76d4161346.png.webp"
+            ],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/002/328/fanarts/medium/074853cc3b.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/002/328/posters/medium/495eaaa515.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 7.660508155822754,
+          "status": "ended",
+          "country": "ca",
+          "network": "Teletoon",
+          "runtime": 23,
+          "tagline": "",
+          "trailer": null,
+          "homepage": "https://www.mtv.com/shows/clone-high",
+          "language": "en",
+          "overview": "A group of high-school teens are the products of government employees' secret experiment. They are the genetic clones of famous historical figures who have been dug up, re-created anew. Joan of Arc, Cleopatra, JFK, Gandhi, Abraham Lincoln and more are juxtaposed as teenagers dealing with teen issues in the 20th century.",
+          "languages": [
+            "fr",
+            "en"
+          ],
+          "subgenres": [
+            "high-school",
+            "parody",
+            "satire",
+            "historical-figure",
+            "experiment"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Clone_High"
+          },
+          "updated_at": "2026-08-06T06:10:09.000Z",
+          "first_aired": "2002-11-03T02:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 3,
+          "total_runtime": 299,
+          "aired_episodes": 13,
+          "original_title": "Clone High",
+          "available_translations": [
+            "en",
+            "es",
+            "fr",
+            "nl",
+            "pt",
+            "ru",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0106080",
+            "plex": {
+              "guid": "5d9c0874e264b7001fc44cfe",
+              "slug": "the-nanny"
+            },
+            "slug": "the-nanny",
+            "tmdb": 2352,
+            "tvdb": 75675,
+            "trakt": 2338
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 1993,
+          "title": "The Nanny",
+          "votes": 1675,
+          "colors": {
+            "poster": [
+              "#EA4AA1",
+              "#7A584D"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "family"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/002/338/logos/medium/a273041a82.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/002/338/thumbs/medium/c60420904c.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/002/338/banners/medium/a3a35e82a2.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/002/338/fanarts/medium/c8f1def84e.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/002/338/posters/medium/d9d67a2b8b.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/002/338/cleararts/medium/ac17927826.png.webp"
+            ]
+          },
+          "rating": 7.5008955001831055,
+          "status": "ended",
+          "country": "us",
+          "network": "CBS",
+          "runtime": 24,
+          "tagline": "The flashy girl from Flushing, the Nanny named Fran.",
+          "trailer": "https://youtube.com/watch?v=OHK-1WTRQAM",
+          "homepage": null,
+          "language": "en",
+          "overview": "That flashy girl from Flushing with the heart of an angel (and the voice of a slighty more nasal angel). The comic misadventures of the sweet and sassy Fran Fine, her sophisticated employer, Broadway producer Mr. Sheffield, his boisterous brood and his wisecracking staff.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "sitcom",
+            "family-relationships",
+            "female-protagonist"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "The_Nanny"
+          },
+          "updated_at": "2026-08-06T06:55:37.000Z",
+          "first_aired": "1993-11-03T00:00:00.000Z",
+          "certification": "TV-PG",
+          "comment_count": 6,
+          "total_runtime": 3352,
+          "aired_episodes": 145,
+          "original_title": "The Nanny",
+          "available_translations": [
+            "ar",
+            "bg",
+            "bs",
+            "ca",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "lt",
+            "lv",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0115369",
+            "plex": {
+              "guid": "5d9c0873705e7a001e6dd90d",
+              "slug": "spin-city"
+            },
+            "slug": "spin-city",
+            "tmdb": 2359,
+            "tvdb": 73153,
+            "trakt": 2345
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "21:30",
+            "timezone": "America/New_York"
+          },
+          "year": 1996,
+          "title": "Spin City",
+          "votes": 724,
+          "colors": {
+            "poster": [
+              "#8298AD",
+              "#2F2C31"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/002/345/logos/medium/6d03ab7cba.png.webp"
+            ],
+            "thumb": [],
+            "banner": [
+              "media.trakt.tv/images/shows/000/002/345/banners/medium/d7a7d5fcdb.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/002/345/fanarts/medium/05be47249b.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/002/345/posters/medium/ca76eb8de6.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/002/345/cleararts/medium/e8624c7f5a.png.webp"
+            ]
+          },
+          "rating": 7.335635185241699,
+          "status": "ended",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 22,
+          "tagline": "",
+          "trailer": "https://youtube.com/watch?v=FNigmlUFack",
+          "homepage": null,
+          "language": "en",
+          "overview": "Workaholic Mike Flaherty is the Deputy Mayor of New York City, serving as Mayor Randall Winston's key strategist and much-needed handler. Mike runs the city with the help of his oddball staff: an anxious and insecure press secretary; a sexist, boorish chief of staff; an impeccably groomed gay activist running minority affairs; a sharp and efficient, man-crazy accountant; and an idealistic young speechwriter. Like Mike, they are all professionally capable but personally challenged.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "sitcom",
+            "politics",
+            "political-satire",
+            "usa-politics"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Spin_City"
+          },
+          "updated_at": "2026-08-06T06:56:29.000Z",
+          "first_aired": "1996-09-18T01:30:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 5,
+          "total_runtime": 3190,
+          "aired_episodes": 145,
+          "original_title": "Spin City",
+          "available_translations": [
+            "bg",
+            "bs",
+            "cs",
+            "da",
+            "de",
+            "en",
+            "es",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "nl",
+            "pt",
+            "ru",
+            "sk",
+            "sv",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer, Story",
+        "jobs": [
+          "Writer",
+          "Story"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0285403",
+            "plex": {
+              "guid": "5d9c086bffd9ef001e994347",
+              "slug": "scrubs"
+            },
+            "slug": "scrubs",
+            "tmdb": 4556,
+            "tvdb": 76156,
+            "trakt": 4532
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2001,
+          "title": "Scrubs",
+          "votes": 10698,
+          "colors": {
+            "poster": [
+              "#B1AEA6",
+              "#222A32"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/004/532/logos/medium/499ff3c9cf.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/004/532/thumbs/medium/2c6b5775bb.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/004/532/banners/medium/533c0199a5.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/004/532/fanarts/medium/0e2b69e727.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/004/532/posters/medium/414e6d57f9.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/004/532/cleararts/medium/a0a2c8b67c.png.webp"
+            ]
+          },
+          "rating": 8.336885452270508,
+          "status": "canceled",
+          "country": "us",
+          "network": "NBC",
+          "runtime": 25,
+          "tagline": "Laughter is the best medicine... Especially when it's your first day as a doctor.",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "In the unreal world of Sacred Heart Hospital, John \"J.D.\" Dorian learns the ways of medicine, friendship and life.",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "dramedy",
+            "workplace-comedy",
+            "doctor",
+            "hospital",
+            "medical-drama"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": "",
+            "instagram": null,
+            "wikipedia": "Scrubs_(TV_series)"
+          },
+          "updated_at": "2026-08-06T07:10:42.000Z",
+          "first_aired": "2001-10-03T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 37,
+          "total_runtime": 4155,
+          "aired_episodes": 181,
+          "original_title": "Scrubs",
+          "available_translations": [
+            "ar",
+            "bg",
+            "bs",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hr",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt1441109",
+            "plex": {
+              "guid": "5d9c082dba6eb9001fb9dc23",
+              "slug": "cougar-town"
+            },
+            "slug": "cougar-town",
+            "tmdb": 18202,
+            "tvdb": 94991,
+            "trakt": 18120
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "22:30",
+            "timezone": "America/New_York"
+          },
+          "year": 2009,
+          "title": "Cougar Town",
+          "votes": 1934,
+          "colors": {
+            "poster": [
+              "#B4C3D8",
+              "#486D71"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/018/120/logos/medium/e6099f0c20.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/018/120/thumbs/medium/74556130a5.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/018/120/banners/medium/cd0528bfbd.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/018/120/fanarts/medium/7b3d282f23.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/018/120/posters/medium/b7318ba1fc.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/018/120/cleararts/medium/a39464a6de.png.webp"
+            ]
+          },
+          "rating": 7.17476749420166,
+          "status": "ended",
+          "country": "us",
+          "network": "TBS",
+          "runtime": 22,
+          "tagline": "Bad title. Good comedy.",
+          "trailer": "https://youtube.com/watch?v=PcbSUvT51I8",
+          "homepage": "https://www.tbs.com/shows/cougar-town.html",
+          "language": "en",
+          "overview": "Jules Cobb is a mom in her forties facing the often humorous challenges, pitfalls and rewards of life's next chapter. Along for the journey is her son, her ex-husband, her husband/neighbor and her friends who together make up her dysfunctional, but supportive and caring extended family... even if they have a funny way of showing it sometimes.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "divorce"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Cougar_Town"
+          },
+          "updated_at": "2026-08-06T06:37:04.000Z",
+          "first_aired": "2009-09-24T02:30:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 11,
+          "total_runtime": 2213,
+          "aired_episodes": 102,
+          "original_title": "Cougar Town",
+          "available_translations": [
+            "bg",
+            "bs",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0115131",
+            "plex": {
+              "guid": null,
+              "slug": null
+            },
+            "slug": "champs",
+            "tmdb": 23649,
+            "tvdb": 76874,
+            "trakt": 23544
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "00:00",
+            "timezone": "America/New_York"
+          },
+          "year": 1996,
+          "title": "Champs",
+          "votes": 2,
+          "colors": {
+            "poster": []
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [],
+            "thumb": [],
+            "banner": [],
+            "fanart": [],
+            "poster": [],
+            "clearart": []
+          },
+          "rating": 1,
+          "status": "ended",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 30,
+          "tagline": "",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "Champs is an American sitcom that aired from January 9 until August 7, 1996.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "sitcom",
+            "male-friendship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Champs_(TV_series)"
+          },
+          "updated_at": "2026-07-27T15:16:24.000Z",
+          "first_aired": "1996-01-09T05:00:00.000Z",
+          "certification": null,
+          "comment_count": 0,
+          "total_runtime": 270,
+          "aired_episodes": 9,
+          "original_title": "Champs",
+          "available_translations": [
+            "en"
+          ]
+        }
+      },
+      {
+        "job": "Teleplay",
+        "jobs": [
+          "Teleplay"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt4085584",
+            "plex": {
+              "guid": "5d9c081602391c001f580ac8",
+              "slug": "rush-hour-2016"
+            },
+            "slug": "rush-hour-2016",
+            "tmdb": 65367,
+            "tvdb": 298368,
+            "trakt": 100597
+          },
+          "airs": {
+            "day": "Saturday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2016,
+          "title": "Rush Hour",
+          "votes": 277,
+          "colors": {
+            "poster": [
+              "#CEAA6D",
+              "#362A2A"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "crime",
+            "action",
+            "adventure"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/100/597/logos/medium/72e487ef4f.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/100/597/thumbs/medium/29139a430d.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/100/597/banners/medium/39b459834a.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/100/597/fanarts/medium/e74602e2e8.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/100/597/posters/medium/b3955439e5.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/100/597/cleararts/medium/adb6a4a829.png.webp"
+            ]
+          },
+          "rating": 6.09747314453125,
+          "status": "canceled",
+          "country": "us",
+          "network": "CBS",
+          "runtime": 42,
+          "tagline": "",
+          "trailer": null,
+          "homepage": "https://www.cbspressexpress.com/cbs-entertainment/shows/rush-hour/about",
+          "language": "en",
+          "overview": "The series follows Detective Carter, a radical LAPD detective, and Detective Lee, a by-the-book detective from Hong Kong, as they are forced into forming an unlikely partnership",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "based-on-movie",
+            "police-detective"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Rush_Hour_(American_TV_series)"
+          },
+          "updated_at": "2026-08-06T07:53:37.000Z",
+          "first_aired": "2016-04-01T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 7,
+          "total_runtime": 546,
+          "aired_episodes": 13,
+          "original_title": "Rush Hour",
+          "available_translations": [
+            "bg",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "no",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Teleplay, Story",
+        "jobs": [
+          "Teleplay",
+          "Story"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt10986410",
+            "plex": {
+              "guid": "5e204251072b9e003ca5c140",
+              "slug": "ted-lasso"
+            },
+            "slug": "ted-lasso",
+            "tmdb": 97546,
+            "tvdb": 383203,
+            "trakt": 162639
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2020,
+          "title": "Ted Lasso",
+          "votes": 18900,
+          "colors": {
+            "poster": [
+              "#807383",
+              "#266BDD"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/162/639/logos/medium/88da3c44fd.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/162/639/thumbs/medium/e6c093e710.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/162/639/banners/medium/a69591d799.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/162/639/fanarts/medium/51218d39b9.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/162/639/posters/medium/051ef4b02f.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/162/639/cleararts/medium/23194c0035.png.webp"
+            ]
+          },
+          "rating": 8.684920310974121,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 45,
+          "tagline": "Ted's back.",
+          "trailer": "https://youtube.com/watch?v=BwPcMIDFVKw",
+          "homepage": "https://tv.apple.com/show/umc.cmc.vtoh0mn0xn7t3c643xqonfzy",
+          "language": "en",
+          "overview": "Ted Lasso, an American football coach, moves to England when he's hired to manage a soccer team—despite having no experience. With cynical players and a doubtful town, will he get them to see the Ted Lasso Way?",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "male-friendship",
+            "workplace-comedy",
+            "football-soccer"
+          ],
+          "social_ids": {
+            "twitter": "TedLasso",
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Ted_Lasso"
+          },
+          "updated_at": "2026-08-06T10:28:13.000Z",
+          "first_aired": "2020-08-15T01:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 155,
+          "total_runtime": 1592,
+          "aired_episodes": 35,
+          "original_title": "Ted Lasso",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hr",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Teleplay, Writer",
+        "jobs": [
+          "Teleplay",
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt15203646",
+            "plex": {
+              "guid": "6112643cfc96b7002c11dbea",
+              "slug": "bad-monkey"
+            },
+            "slug": "bad-monkey",
+            "tmdb": 130853,
+            "tvdb": 408436,
+            "trakt": 185699
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2024,
+          "title": "Bad Monkey",
+          "votes": 1870,
+          "colors": {
+            "poster": [
+              "#CB9C2E",
+              "#34391F"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "crime"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/185/699/logos/medium/4cc29d0e94.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/185/699/thumbs/medium/5ae840ffff.jpg.webp"
+            ],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/185/699/fanarts/medium/3b17a2410c.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/185/699/posters/medium/f45f82e8c5.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/185/699/cleararts/medium/b52be972b4.png.webp"
+            ]
+          },
+          "rating": 7.258288860321045,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 45,
+          "tagline": "The shady side of paradise.",
+          "trailer": "https://youtube.com/watch?v=RokJ4M2UjNc",
+          "homepage": "https://tv.apple.com/show/umc.cmc.2qoep59s6qukjonprttysfs8x",
+          "language": "en",
+          "overview": "A detective turned restaurant inspector in Southern Florida is pulled into a world of greed and corruption after a tourist finds a severed arm while fishing. And yes, there's a monkey.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "detective",
+            "murder",
+            "murder-investigation"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Bad_Monkey_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:24:09.000Z",
+          "first_aired": "2024-08-14T01:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 28,
+          "total_runtime": 467,
+          "aired_episodes": 10,
+          "original_title": "Bad Monkey",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt15677150",
+            "plex": {
+              "guid": "6168243f1c627ddb697e2a46",
+              "slug": "shrinking"
+            },
+            "slug": "shrinking",
+            "tmdb": 136311,
+            "tvdb": 411364,
+            "trakt": 189764
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2023,
+          "title": "Shrinking",
+          "votes": 7248,
+          "colors": {
+            "poster": [
+              "#C1DCDB",
+              "#4B5354"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/189/764/logos/medium/e007d144d0.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/189/764/thumbs/medium/f461c3b444.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/189/764/banners/medium/02164ac19a.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/189/764/fanarts/medium/1b81e8b9fc.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/189/764/posters/medium/d248e1dd0b.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/189/764/cleararts/medium/36c02ee2e7.png.webp"
+            ]
+          },
+          "rating": 8.245308876037598,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 35,
+          "tagline": "Moving forward, together.",
+          "trailer": "https://youtube.com/watch?v=YjHfjQDWl1A",
+          "homepage": "https://tv.apple.com/show/umc.cmc.apzybj6eqf6pzccd97kev7bs",
+          "language": "en",
+          "overview": "Jimmy is struggling to grieve the loss of his wife while being a dad, friend, and therapist. He decides to try a new approach with everyone in his path: unfiltered, brutal honesty. Will it make things better—or unleash uproarious chaos?",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "dramedy",
+            "workplace-comedy",
+            "father-daughter-relationship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Shrinking_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:26:51.000Z",
+          "first_aired": "2023-01-27T02:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 53,
+          "total_runtime": 1166,
+          "aired_episodes": 33,
+          "original_title": "Shrinking",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "et",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "my",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sr",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Writer",
+        "jobs": [
+          "Writer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt32420734",
+            "plex": {
+              "guid": "664c912d9ecccd2ff053cd86",
+              "slug": "rooster"
+            },
+            "slug": "rooster",
+            "tmdb": 254953,
+            "tvdb": 457770,
+            "trakt": 240718
+          },
+          "airs": {
+            "day": "Sunday",
+            "time": "22:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2026,
+          "title": "Rooster",
+          "votes": 1748,
+          "colors": {
+            "poster": [
+              "#BBA998",
+              "#453E33"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/240/718/logos/medium/d84dd758de.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/240/718/fanarts/medium/2b9c17fddf.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/240/718/posters/medium/c08ac5592a.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 7.983409404754639,
+          "status": "returning series",
+          "country": "us",
+          "network": "HBO",
+          "runtime": 30,
+          "tagline": "He's here to learn.",
+          "trailer": "https://youtube.com/watch?v=L00r5BGgP64",
+          "homepage": "https://www.hbo.com/content/rooster",
+          "language": "en",
+          "overview": "On a college campus, an author navigates a complicated relationship with his daughter.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "father-daughter-relationship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Rooster_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:48:06.000Z",
+          "first_aired": "2026-03-09T02:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 17,
+          "total_runtime": 314,
+          "aired_episodes": 10,
+          "original_title": "Rooster",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ko",
+            "lt",
+            "nl",
+            "pt",
+            "ro",
+            "ru",
+            "sv",
+            "th",
+            "uk",
+            "zh"
+          ]
+        }
+      }
+    ],
+    "directing": [
+      {
+        "job": "Director",
+        "jobs": [
+          "Director"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0285403",
+            "plex": {
+              "guid": "5d9c086bffd9ef001e994347",
+              "slug": "scrubs"
+            },
+            "slug": "scrubs",
+            "tmdb": 4556,
+            "tvdb": 76156,
+            "trakt": 4532
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2001,
+          "title": "Scrubs",
+          "votes": 10698,
+          "colors": {
+            "poster": [
+              "#B1AEA6",
+              "#222A32"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/004/532/logos/medium/499ff3c9cf.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/004/532/thumbs/medium/2c6b5775bb.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/004/532/banners/medium/533c0199a5.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/004/532/fanarts/medium/0e2b69e727.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/004/532/posters/medium/414e6d57f9.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/004/532/cleararts/medium/a0a2c8b67c.png.webp"
+            ]
+          },
+          "rating": 8.336885452270508,
+          "status": "canceled",
+          "country": "us",
+          "network": "NBC",
+          "runtime": 25,
+          "tagline": "Laughter is the best medicine... Especially when it's your first day as a doctor.",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "In the unreal world of Sacred Heart Hospital, John \"J.D.\" Dorian learns the ways of medicine, friendship and life.",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "dramedy",
+            "workplace-comedy",
+            "doctor",
+            "hospital",
+            "medical-drama"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": "",
+            "instagram": null,
+            "wikipedia": "Scrubs_(TV_series)"
+          },
+          "updated_at": "2026-08-06T07:10:42.000Z",
+          "first_aired": "2001-10-03T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 37,
+          "total_runtime": 4155,
+          "aired_episodes": 181,
+          "original_title": "Scrubs",
+          "available_translations": [
+            "ar",
+            "bg",
+            "bs",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hr",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Director",
+        "jobs": [
+          "Director"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt1441109",
+            "plex": {
+              "guid": "5d9c082dba6eb9001fb9dc23",
+              "slug": "cougar-town"
+            },
+            "slug": "cougar-town",
+            "tmdb": 18202,
+            "tvdb": 94991,
+            "trakt": 18120
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "22:30",
+            "timezone": "America/New_York"
+          },
+          "year": 2009,
+          "title": "Cougar Town",
+          "votes": 1934,
+          "colors": {
+            "poster": [
+              "#B4C3D8",
+              "#486D71"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/018/120/logos/medium/e6099f0c20.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/018/120/thumbs/medium/74556130a5.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/018/120/banners/medium/cd0528bfbd.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/018/120/fanarts/medium/7b3d282f23.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/018/120/posters/medium/b7318ba1fc.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/018/120/cleararts/medium/a39464a6de.png.webp"
+            ]
+          },
+          "rating": 7.17476749420166,
+          "status": "ended",
+          "country": "us",
+          "network": "TBS",
+          "runtime": 22,
+          "tagline": "Bad title. Good comedy.",
+          "trailer": "https://youtube.com/watch?v=PcbSUvT51I8",
+          "homepage": "https://www.tbs.com/shows/cougar-town.html",
+          "language": "en",
+          "overview": "Jules Cobb is a mom in her forties facing the often humorous challenges, pitfalls and rewards of life's next chapter. Along for the journey is her son, her ex-husband, her husband/neighbor and her friends who together make up her dysfunctional, but supportive and caring extended family... even if they have a funny way of showing it sometimes.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "divorce"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Cougar_Town"
+          },
+          "updated_at": "2026-08-06T06:37:04.000Z",
+          "first_aired": "2009-09-24T02:30:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 11,
+          "total_runtime": 2213,
+          "aired_episodes": 102,
+          "original_title": "Cougar Town",
+          "available_translations": [
+            "bg",
+            "bs",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Director",
+        "jobs": [
+          "Director"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt15677150",
+            "plex": {
+              "guid": "6168243f1c627ddb697e2a46",
+              "slug": "shrinking"
+            },
+            "slug": "shrinking",
+            "tmdb": 136311,
+            "tvdb": 411364,
+            "trakt": 189764
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2023,
+          "title": "Shrinking",
+          "votes": 7248,
+          "colors": {
+            "poster": [
+              "#C1DCDB",
+              "#4B5354"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/189/764/logos/medium/e007d144d0.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/189/764/thumbs/medium/f461c3b444.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/189/764/banners/medium/02164ac19a.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/189/764/fanarts/medium/1b81e8b9fc.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/189/764/posters/medium/d248e1dd0b.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/189/764/cleararts/medium/36c02ee2e7.png.webp"
+            ]
+          },
+          "rating": 8.245308876037598,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 35,
+          "tagline": "Moving forward, together.",
+          "trailer": "https://youtube.com/watch?v=YjHfjQDWl1A",
+          "homepage": "https://tv.apple.com/show/umc.cmc.apzybj6eqf6pzccd97kev7bs",
+          "language": "en",
+          "overview": "Jimmy is struggling to grieve the loss of his wife while being a dad, friend, and therapist. He decides to try a new approach with everyone in his path: unfiltered, brutal honesty. Will it make things better—or unleash uproarious chaos?",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "dramedy",
+            "workplace-comedy",
+            "father-daughter-relationship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Shrinking_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:26:51.000Z",
+          "first_aired": "2023-01-27T02:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 53,
+          "total_runtime": 1166,
+          "aired_episodes": 33,
+          "original_title": "Shrinking",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "et",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "my",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sr",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      }
+    ],
+    "production": [
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0305011",
+            "plex": {
+              "guid": "5d9c087602391c001f58b5fc",
+              "slug": "clone-high"
+            },
+            "slug": "clone-high",
+            "tmdb": 2342,
+            "tvdb": 78560,
+            "trakt": 2328
+          },
+          "airs": {
+            "day": "Monday",
+            "time": "21:00",
+            "timezone": "America/Toronto"
+          },
+          "year": 2002,
+          "title": "Clone High",
+          "votes": 433,
+          "colors": {
+            "poster": [
+              "#C1D0AC",
+              "#654A33"
+            ]
+          },
+          "genres": [
+            "animation",
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/002/328/logos/medium/56ec21f0de.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/002/328/thumbs/medium/76d4161346.png.webp"
+            ],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/002/328/fanarts/medium/074853cc3b.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/002/328/posters/medium/495eaaa515.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 7.660508155822754,
+          "status": "ended",
+          "country": "ca",
+          "network": "Teletoon",
+          "runtime": 23,
+          "tagline": "",
+          "trailer": null,
+          "homepage": "https://www.mtv.com/shows/clone-high",
+          "language": "en",
+          "overview": "A group of high-school teens are the products of government employees' secret experiment. They are the genetic clones of famous historical figures who have been dug up, re-created anew. Joan of Arc, Cleopatra, JFK, Gandhi, Abraham Lincoln and more are juxtaposed as teenagers dealing with teen issues in the 20th century.",
+          "languages": [
+            "fr",
+            "en"
+          ],
+          "subgenres": [
+            "high-school",
+            "parody",
+            "satire",
+            "historical-figure",
+            "experiment"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Clone_High"
+          },
+          "updated_at": "2026-08-06T06:10:09.000Z",
+          "first_aired": "2002-11-03T02:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 3,
+          "total_runtime": 299,
+          "aired_episodes": 13,
+          "original_title": "Clone High",
+          "available_translations": [
+            "en",
+            "es",
+            "fr",
+            "nl",
+            "pt",
+            "ru",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0285403",
+            "plex": {
+              "guid": "5d9c086bffd9ef001e994347",
+              "slug": "scrubs"
+            },
+            "slug": "scrubs",
+            "tmdb": 4556,
+            "tvdb": 76156,
+            "trakt": 4532
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2001,
+          "title": "Scrubs",
+          "votes": 10698,
+          "colors": {
+            "poster": [
+              "#B1AEA6",
+              "#222A32"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/004/532/logos/medium/499ff3c9cf.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/004/532/thumbs/medium/2c6b5775bb.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/004/532/banners/medium/533c0199a5.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/004/532/fanarts/medium/0e2b69e727.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/004/532/posters/medium/414e6d57f9.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/004/532/cleararts/medium/a0a2c8b67c.png.webp"
+            ]
+          },
+          "rating": 8.336885452270508,
+          "status": "canceled",
+          "country": "us",
+          "network": "NBC",
+          "runtime": 25,
+          "tagline": "Laughter is the best medicine... Especially when it's your first day as a doctor.",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "In the unreal world of Sacred Heart Hospital, John \"J.D.\" Dorian learns the ways of medicine, friendship and life.",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "dramedy",
+            "workplace-comedy",
+            "doctor",
+            "hospital",
+            "medical-drama"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": "",
+            "instagram": null,
+            "wikipedia": "Scrubs_(TV_series)"
+          },
+          "updated_at": "2026-08-06T07:10:42.000Z",
+          "first_aired": "2001-10-03T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 37,
+          "total_runtime": 4155,
+          "aired_episodes": 181,
+          "original_title": "Scrubs",
+          "available_translations": [
+            "ar",
+            "bg",
+            "bs",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hr",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Producer",
+        "jobs": [
+          "Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt1441109",
+            "plex": {
+              "guid": "5d9c082dba6eb9001fb9dc23",
+              "slug": "cougar-town"
+            },
+            "slug": "cougar-town",
+            "tmdb": 18202,
+            "tvdb": 94991,
+            "trakt": 18120
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "22:30",
+            "timezone": "America/New_York"
+          },
+          "year": 2009,
+          "title": "Cougar Town",
+          "votes": 1934,
+          "colors": {
+            "poster": [
+              "#B4C3D8",
+              "#486D71"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/018/120/logos/medium/e6099f0c20.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/018/120/thumbs/medium/74556130a5.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/018/120/banners/medium/cd0528bfbd.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/018/120/fanarts/medium/7b3d282f23.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/018/120/posters/medium/b7318ba1fc.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/018/120/cleararts/medium/a39464a6de.png.webp"
+            ]
+          },
+          "rating": 7.17476749420166,
+          "status": "ended",
+          "country": "us",
+          "network": "TBS",
+          "runtime": 22,
+          "tagline": "Bad title. Good comedy.",
+          "trailer": "https://youtube.com/watch?v=PcbSUvT51I8",
+          "homepage": "https://www.tbs.com/shows/cougar-town.html",
+          "language": "en",
+          "overview": "Jules Cobb is a mom in her forties facing the often humorous challenges, pitfalls and rewards of life's next chapter. Along for the journey is her son, her ex-husband, her husband/neighbor and her friends who together make up her dysfunctional, but supportive and caring extended family... even if they have a funny way of showing it sometimes.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "divorce"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Cougar_Town"
+          },
+          "updated_at": "2026-08-06T06:37:04.000Z",
+          "first_aired": "2009-09-24T02:30:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 11,
+          "total_runtime": 2213,
+          "aired_episodes": 102,
+          "original_title": "Cougar Town",
+          "available_translations": [
+            "bg",
+            "bs",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt2395482",
+            "plex": {
+              "guid": "5d9c083cba6eb9001fb9f00a",
+              "slug": "surviving-jack"
+            },
+            "slug": "surviving-jack",
+            "tmdb": 60772,
+            "tvdb": 269587,
+            "trakt": 60336
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "21:30",
+            "timezone": "America/New_York"
+          },
+          "year": 2014,
+          "title": "Surviving Jack",
+          "votes": 198,
+          "colors": {
+            "poster": [
+              "#B1D9D9",
+              "#6C7C7A"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/060/336/logos/medium/41e52666d7.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/060/336/fanarts/medium/0e179f42d6.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/060/336/posters/medium/43f4d3f2e9.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/060/336/cleararts/medium/597f43e470.png.webp"
+            ]
+          },
+          "rating": 7.368686676025391,
+          "status": "canceled",
+          "country": "us",
+          "network": "FOX",
+          "runtime": 30,
+          "tagline": "",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "A boy becomes a man, and a man becomes a father, in a time before coming of age was something you could Google.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "sitcom",
+            "1990s"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Surviving_Jack"
+          },
+          "updated_at": "2026-07-16T15:06:28.000Z",
+          "first_aired": "2014-03-28T01:30:00.000Z",
+          "certification": null,
+          "comment_count": 7,
+          "total_runtime": 240,
+          "aired_episodes": 8,
+          "original_title": "Surviving Jack",
+          "available_translations": [
+            "bs",
+            "cs",
+            "en",
+            "fr",
+            "hu",
+            "ru"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt4085584",
+            "plex": {
+              "guid": "5d9c081602391c001f580ac8",
+              "slug": "rush-hour-2016"
+            },
+            "slug": "rush-hour-2016",
+            "tmdb": 65367,
+            "tvdb": 298368,
+            "trakt": 100597
+          },
+          "airs": {
+            "day": "Saturday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2016,
+          "title": "Rush Hour",
+          "votes": 277,
+          "colors": {
+            "poster": [
+              "#CEAA6D",
+              "#362A2A"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "crime",
+            "action",
+            "adventure"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/100/597/logos/medium/72e487ef4f.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/100/597/thumbs/medium/29139a430d.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/100/597/banners/medium/39b459834a.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/100/597/fanarts/medium/e74602e2e8.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/100/597/posters/medium/b3955439e5.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/100/597/cleararts/medium/adb6a4a829.png.webp"
+            ]
+          },
+          "rating": 6.09747314453125,
+          "status": "canceled",
+          "country": "us",
+          "network": "CBS",
+          "runtime": 42,
+          "tagline": "",
+          "trailer": null,
+          "homepage": "https://www.cbspressexpress.com/cbs-entertainment/shows/rush-hour/about",
+          "language": "en",
+          "overview": "The series follows Detective Carter, a radical LAPD detective, and Detective Lee, a by-the-book detective from Hong Kong, as they are forced into forming an unlikely partnership",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "based-on-movie",
+            "police-detective"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Rush_Hour_(American_TV_series)"
+          },
+          "updated_at": "2026-08-06T07:53:37.000Z",
+          "first_aired": "2016-04-01T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 7,
+          "total_runtime": 546,
+          "aired_episodes": 13,
+          "original_title": "Rush Hour",
+          "available_translations": [
+            "bg",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "no",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt7599942",
+            "plex": {
+              "guid": "5d9c090b02391c001f5947b9",
+              "slug": "whiskey-cavalier"
+            },
+            "slug": "whiskey-cavalier",
+            "tmdb": 82094,
+            "tvdb": 353521,
+            "trakt": 136974
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "22:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2019,
+          "title": "Whiskey Cavalier",
+          "votes": 641,
+          "colors": {
+            "poster": [
+              "#BEC2C7",
+              "#131725"
+            ]
+          },
+          "genres": [
+            "drama",
+            "crime",
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/136/974/logos/medium/1e3c418372.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/136/974/thumbs/medium/917468f0dd.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/136/974/banners/medium/5d615886c4.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/136/974/fanarts/medium/ed820a5c2c.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/136/974/posters/medium/1e034e0eb7.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/136/974/cleararts/medium/a600f27ff1.png.webp"
+            ]
+          },
+          "rating": 7.135725498199463,
+          "status": "canceled",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 43,
+          "tagline": "Danger just got fun.",
+          "trailer": "https://youtube.com/watch?v=dmrhOr9Md_Y",
+          "homepage": "https://abc.go.com/shows/whiskey-cavalier",
+          "language": "en",
+          "overview": "Following an emotional breakup, tough but tender FBI super-agent Will Chase (codename: “Whiskey Cavalier”) is assigned to work with badass CIA operative Frankie Trowbridge (codename: “Fiery Tribune”). Together, they lead an inter-agency team of flawed, funny and heroic spies who periodically save the world (and each other) while navigating the rocky roads of friendship, romance and office politics.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "spy"
+          ],
+          "social_ids": {
+            "twitter": "WhiskeyCav",
+            "facebook": "WhiskeyCavalierABC",
+            "instagram": "whiskeycavalierabc",
+            "wikipedia": "Whiskey_Cavalier"
+          },
+          "updated_at": "2026-08-05T08:27:33.000Z",
+          "first_aired": "2019-02-28T03:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 13,
+          "total_runtime": 559,
+          "aired_episodes": 13,
+          "original_title": "Whiskey Cavalier",
+          "available_translations": [
+            "bg",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ko",
+            "lt",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sl",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt10986410",
+            "plex": {
+              "guid": "5e204251072b9e003ca5c140",
+              "slug": "ted-lasso"
+            },
+            "slug": "ted-lasso",
+            "tmdb": 97546,
+            "tvdb": 383203,
+            "trakt": 162639
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2020,
+          "title": "Ted Lasso",
+          "votes": 18900,
+          "colors": {
+            "poster": [
+              "#807383",
+              "#266BDD"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/162/639/logos/medium/88da3c44fd.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/162/639/thumbs/medium/e6c093e710.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/162/639/banners/medium/a69591d799.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/162/639/fanarts/medium/51218d39b9.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/162/639/posters/medium/051ef4b02f.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/162/639/cleararts/medium/23194c0035.png.webp"
+            ]
+          },
+          "rating": 8.684920310974121,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 45,
+          "tagline": "Ted's back.",
+          "trailer": "https://youtube.com/watch?v=BwPcMIDFVKw",
+          "homepage": "https://tv.apple.com/show/umc.cmc.vtoh0mn0xn7t3c643xqonfzy",
+          "language": "en",
+          "overview": "Ted Lasso, an American football coach, moves to England when he's hired to manage a soccer team—despite having no experience. With cynical players and a doubtful town, will he get them to see the Ted Lasso Way?",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "male-friendship",
+            "workplace-comedy",
+            "football-soccer"
+          ],
+          "social_ids": {
+            "twitter": "TedLasso",
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Ted_Lasso"
+          },
+          "updated_at": "2026-08-06T10:28:13.000Z",
+          "first_aired": "2020-08-15T01:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 155,
+          "total_runtime": 1592,
+          "aired_episodes": 35,
+          "original_title": "Ted Lasso",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hr",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt15203646",
+            "plex": {
+              "guid": "6112643cfc96b7002c11dbea",
+              "slug": "bad-monkey"
+            },
+            "slug": "bad-monkey",
+            "tmdb": 130853,
+            "tvdb": 408436,
+            "trakt": 185699
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2024,
+          "title": "Bad Monkey",
+          "votes": 1870,
+          "colors": {
+            "poster": [
+              "#CB9C2E",
+              "#34391F"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "crime"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/185/699/logos/medium/4cc29d0e94.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/185/699/thumbs/medium/5ae840ffff.jpg.webp"
+            ],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/185/699/fanarts/medium/3b17a2410c.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/185/699/posters/medium/f45f82e8c5.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/185/699/cleararts/medium/b52be972b4.png.webp"
+            ]
+          },
+          "rating": 7.258288860321045,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 45,
+          "tagline": "The shady side of paradise.",
+          "trailer": "https://youtube.com/watch?v=RokJ4M2UjNc",
+          "homepage": "https://tv.apple.com/show/umc.cmc.2qoep59s6qukjonprttysfs8x",
+          "language": "en",
+          "overview": "A detective turned restaurant inspector in Southern Florida is pulled into a world of greed and corruption after a tourist finds a severed arm while fishing. And yes, there's a monkey.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "detective",
+            "murder",
+            "murder-investigation"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Bad_Monkey_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:24:09.000Z",
+          "first_aired": "2024-08-14T01:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 28,
+          "total_runtime": 467,
+          "aired_episodes": 10,
+          "original_title": "Bad Monkey",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt12708514",
+            "plex": {
+              "guid": "606688fea4950e002d5efd86",
+              "slug": "head-of-the-class-2021"
+            },
+            "slug": "head-of-the-class-2021",
+            "tmdb": 122197,
+            "tvdb": 382339,
+            "trakt": 162181
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "03:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2021,
+          "title": "Head of the Class",
+          "votes": 28,
+          "colors": {
+            "poster": [
+              "#A8A393",
+              "#1C1A24"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/162/181/fanarts/medium/6e0f2becf3.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/162/181/posters/medium/0702a485f6.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 5.0714287757873535,
+          "status": "canceled",
+          "country": "us",
+          "network": "HBO Max",
+          "runtime": 27,
+          "tagline": "They’re getting schooled on life.",
+          "trailer": null,
+          "homepage": "https://www.hbomax.com/series/urn:hbo:series:GYV-McAuLRnpuvQEAAAAb",
+          "language": "en",
+          "overview": "Teacher Alicia Adams wants her group of overachieving high school students to focus less on grades and more on experiencing life.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Head_of_the_Class_(2021_TV_series)"
+          },
+          "updated_at": "2026-07-31T08:52:45.000Z",
+          "first_aired": "2021-11-04T07:00:00.000Z",
+          "certification": "TV-PG",
+          "comment_count": 1,
+          "total_runtime": 270,
+          "aired_episodes": 10,
+          "original_title": "Head of the Class",
+          "available_translations": [
+            "cs",
+            "en",
+            "es",
+            "fa",
+            "fr",
+            "ko",
+            "nl",
+            "pt",
+            "ru",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt15677150",
+            "plex": {
+              "guid": "6168243f1c627ddb697e2a46",
+              "slug": "shrinking"
+            },
+            "slug": "shrinking",
+            "tmdb": 136311,
+            "tvdb": 411364,
+            "trakt": 189764
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2023,
+          "title": "Shrinking",
+          "votes": 7248,
+          "colors": {
+            "poster": [
+              "#C1DCDB",
+              "#4B5354"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/189/764/logos/medium/e007d144d0.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/189/764/thumbs/medium/f461c3b444.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/189/764/banners/medium/02164ac19a.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/189/764/fanarts/medium/1b81e8b9fc.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/189/764/posters/medium/d248e1dd0b.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/189/764/cleararts/medium/36c02ee2e7.png.webp"
+            ]
+          },
+          "rating": 8.245308876037598,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 35,
+          "tagline": "Moving forward, together.",
+          "trailer": "https://youtube.com/watch?v=YjHfjQDWl1A",
+          "homepage": "https://tv.apple.com/show/umc.cmc.apzybj6eqf6pzccd97kev7bs",
+          "language": "en",
+          "overview": "Jimmy is struggling to grieve the loss of his wife while being a dad, friend, and therapist. He decides to try a new approach with everyone in his path: unfiltered, brutal honesty. Will it make things better—or unleash uproarious chaos?",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "dramedy",
+            "workplace-comedy",
+            "father-daughter-relationship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Shrinking_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:26:51.000Z",
+          "first_aired": "2023-01-27T02:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 53,
+          "total_runtime": 1166,
+          "aired_episodes": 33,
+          "original_title": "Shrinking",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "et",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "my",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sr",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt14028208",
+            "plex": {
+              "guid": "62ab3986c64c7ce90124a9a5",
+              "slug": "clone-high-2023"
+            },
+            "slug": "clone-high-2023",
+            "tmdb": 118546,
+            "tvdb": 396626,
+            "trakt": 173549
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "03:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2023,
+          "title": "Clone High",
+          "votes": 172,
+          "colors": {
+            "poster": [
+              "#8EBA5B",
+              "#868A73"
+            ]
+          },
+          "genres": [
+            "animation",
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/173/549/logos/medium/213fc5a355.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/173/549/fanarts/medium/63ee99571b.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/173/549/posters/medium/8c4d3fd60e.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 6.116279125213623,
+          "status": "canceled",
+          "country": "us",
+          "network": "Max",
+          "runtime": 25,
+          "tagline": "One of the top clone-based high school shows on television. Period.",
+          "trailer": "https://youtube.com/watch?v=lTgoS7jY78Q",
+          "homepage": "https://www.max.com/shows/bd3ecf08-2ec6-4400-8c9a-06c0e6604740",
+          "language": "en",
+          "overview": "Twenty years after they were frozen, Abe, Cleo, JFK, and Joan suddenly find themselves thrust into the modern world, where they must navigate a fresh batch of historical clones, dramatic love triangles, and a formidable new foe.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "conspiracy",
+            "high-school",
+            "reboot",
+            "historical-figure"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Clone_High_(2023_TV_series)"
+          },
+          "updated_at": "2026-08-06T09:38:16.000Z",
+          "first_aired": "2023-05-23T07:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 3,
+          "total_runtime": 516,
+          "aired_episodes": 20,
+          "original_title": "Clone High",
+          "available_translations": [
+            "en",
+            "es",
+            "ko",
+            "nl",
+            "pt",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt32420734",
+            "plex": {
+              "guid": "664c912d9ecccd2ff053cd86",
+              "slug": "rooster"
+            },
+            "slug": "rooster",
+            "tmdb": 254953,
+            "tvdb": 457770,
+            "trakt": 240718
+          },
+          "airs": {
+            "day": "Sunday",
+            "time": "22:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2026,
+          "title": "Rooster",
+          "votes": 1748,
+          "colors": {
+            "poster": [
+              "#BBA998",
+              "#453E33"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/240/718/logos/medium/d84dd758de.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/240/718/fanarts/medium/2b9c17fddf.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/240/718/posters/medium/c08ac5592a.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 7.983409404754639,
+          "status": "returning series",
+          "country": "us",
+          "network": "HBO",
+          "runtime": 30,
+          "tagline": "He's here to learn.",
+          "trailer": "https://youtube.com/watch?v=L00r5BGgP64",
+          "homepage": "https://www.hbo.com/content/rooster",
+          "language": "en",
+          "overview": "On a college campus, an author navigates a complicated relationship with his daughter.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "father-daughter-relationship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Rooster_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:48:06.000Z",
+          "first_aired": "2026-03-09T02:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 17,
+          "total_runtime": 314,
+          "aired_episodes": 10,
+          "original_title": "Rooster",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ko",
+            "lt",
+            "nl",
+            "pt",
+            "ro",
+            "ru",
+            "sv",
+            "th",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt40197357",
+            "plex": {
+              "guid": "687d434c16e6d561559bef1e",
+              "slug": "scrubs-2026"
+            },
+            "slug": "scrubs-2026",
+            "tmdb": 295778,
+            "tvdb": 465690,
+            "trakt": 291441
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2026,
+          "title": "Scrubs",
+          "votes": 1255,
+          "colors": {
+            "poster": [
+              "#CDBBAA",
+              "#262F31"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/291/441/logos/medium/091e191384.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/291/441/fanarts/medium/988924129f.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/291/441/posters/medium/a061090ff1.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 8.091633796691895,
+          "status": "returning series",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 20,
+          "tagline": "Scrub back in.",
+          "trailer": "https://youtube.com/watch?v=dJq8WJ5lMec",
+          "homepage": "https://abc.com/show/b775fccd-63aa-4968-b23b-aec5de29d9e0",
+          "language": "en",
+          "overview": "J.D. & Turk scrub in together for the first time in a long time–medicine has changed, interns have changed, but their bromance has stood the test of time. Characters new and old navigate the waters of Sacred Heart with laughter, heart and some surprises along the way.",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "subgenres": [
+            "bromance",
+            "adoring",
+            "dramedy",
+            "workplace-comedy",
+            "doctor",
+            "dramatic",
+            "hospital",
+            "medical-drama"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": "scrubs",
+            "instagram": "scrubs",
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T09:53:26.000Z",
+          "first_aired": "2026-02-26T01:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 13,
+          "total_runtime": 198,
+          "aired_episodes": 9,
+          "original_title": "Scrubs",
+          "available_translations": [
+            "cs",
+            "da",
+            "de",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ko",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt39482372",
+            "plex": {
+              "guid": null,
+              "slug": null
+            },
+            "slug": "i-suck-at-girls",
+            "tmdb": 310513,
+            "tvdb": 472642,
+            "trakt": 313639
+          },
+          "airs": {
+            "day": "Friday",
+            "time": "00:00",
+            "timezone": "America/New_York"
+          },
+          "year": null,
+          "title": "I Suck at Girls",
+          "votes": 0,
+          "colors": {
+            "poster": []
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [],
+            "thumb": [],
+            "banner": [],
+            "fanart": [],
+            "poster": [],
+            "clearart": []
+          },
+          "rating": 0,
+          "status": "planned",
+          "country": "us",
+          "network": "Netflix",
+          "runtime": null,
+          "tagline": "",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "Three awkward high school sophomores stumble through the messy world of teenage romance and identity, learning that sucking at girls is just part of growing up.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "high-school",
+            "identity"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-07-10T15:24:28.000Z",
+          "first_aired": null,
+          "certification": null,
+          "comment_count": 0,
+          "total_runtime": 0,
+          "aired_episodes": 0,
+          "original_title": "I Suck at Girls",
+          "available_translations": [
+            "en"
+          ]
+        }
+      }
+    ],
+    "created by": [
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0305011",
+            "plex": {
+              "guid": "5d9c087602391c001f58b5fc",
+              "slug": "clone-high"
+            },
+            "slug": "clone-high",
+            "tmdb": 2342,
+            "tvdb": 78560,
+            "trakt": 2328
+          },
+          "airs": {
+            "day": "Monday",
+            "time": "21:00",
+            "timezone": "America/Toronto"
+          },
+          "year": 2002,
+          "title": "Clone High",
+          "votes": 433,
+          "colors": {
+            "poster": [
+              "#C1D0AC",
+              "#654A33"
+            ]
+          },
+          "genres": [
+            "animation",
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/002/328/logos/medium/56ec21f0de.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/002/328/thumbs/medium/76d4161346.png.webp"
+            ],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/002/328/fanarts/medium/074853cc3b.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/002/328/posters/medium/495eaaa515.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 7.660508155822754,
+          "status": "ended",
+          "country": "ca",
+          "network": "Teletoon",
+          "runtime": 23,
+          "tagline": "",
+          "trailer": null,
+          "homepage": "https://www.mtv.com/shows/clone-high",
+          "language": "en",
+          "overview": "A group of high-school teens are the products of government employees' secret experiment. They are the genetic clones of famous historical figures who have been dug up, re-created anew. Joan of Arc, Cleopatra, JFK, Gandhi, Abraham Lincoln and more are juxtaposed as teenagers dealing with teen issues in the 20th century.",
+          "languages": [
+            "fr",
+            "en"
+          ],
+          "subgenres": [
+            "high-school",
+            "parody",
+            "satire",
+            "historical-figure",
+            "experiment"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Clone_High"
+          },
+          "updated_at": "2026-08-06T06:10:09.000Z",
+          "first_aired": "2002-11-03T02:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 3,
+          "total_runtime": 299,
+          "aired_episodes": 13,
+          "original_title": "Clone High",
+          "available_translations": [
+            "en",
+            "es",
+            "fr",
+            "nl",
+            "pt",
+            "ru",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0115369",
+            "plex": {
+              "guid": "5d9c0873705e7a001e6dd90d",
+              "slug": "spin-city"
+            },
+            "slug": "spin-city",
+            "tmdb": 2359,
+            "tvdb": 73153,
+            "trakt": 2345
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "21:30",
+            "timezone": "America/New_York"
+          },
+          "year": 1996,
+          "title": "Spin City",
+          "votes": 724,
+          "colors": {
+            "poster": [
+              "#8298AD",
+              "#2F2C31"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/002/345/logos/medium/6d03ab7cba.png.webp"
+            ],
+            "thumb": [],
+            "banner": [
+              "media.trakt.tv/images/shows/000/002/345/banners/medium/d7a7d5fcdb.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/002/345/fanarts/medium/05be47249b.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/002/345/posters/medium/ca76eb8de6.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/002/345/cleararts/medium/e8624c7f5a.png.webp"
+            ]
+          },
+          "rating": 7.335635185241699,
+          "status": "ended",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 22,
+          "tagline": "",
+          "trailer": "https://youtube.com/watch?v=FNigmlUFack",
+          "homepage": null,
+          "language": "en",
+          "overview": "Workaholic Mike Flaherty is the Deputy Mayor of New York City, serving as Mayor Randall Winston's key strategist and much-needed handler. Mike runs the city with the help of his oddball staff: an anxious and insecure press secretary; a sexist, boorish chief of staff; an impeccably groomed gay activist running minority affairs; a sharp and efficient, man-crazy accountant; and an idealistic young speechwriter. Like Mike, they are all professionally capable but personally challenged.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "sitcom",
+            "politics",
+            "political-satire",
+            "usa-politics"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Spin_City"
+          },
+          "updated_at": "2026-08-06T06:56:29.000Z",
+          "first_aired": "1996-09-18T01:30:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 5,
+          "total_runtime": 3190,
+          "aired_episodes": 145,
+          "original_title": "Spin City",
+          "available_translations": [
+            "bg",
+            "bs",
+            "cs",
+            "da",
+            "de",
+            "en",
+            "es",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "nl",
+            "pt",
+            "ru",
+            "sk",
+            "sv",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0285403",
+            "plex": {
+              "guid": "5d9c086bffd9ef001e994347",
+              "slug": "scrubs"
+            },
+            "slug": "scrubs",
+            "tmdb": 4556,
+            "tvdb": 76156,
+            "trakt": 4532
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2001,
+          "title": "Scrubs",
+          "votes": 10698,
+          "colors": {
+            "poster": [
+              "#B1AEA6",
+              "#222A32"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/004/532/logos/medium/499ff3c9cf.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/004/532/thumbs/medium/2c6b5775bb.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/004/532/banners/medium/533c0199a5.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/004/532/fanarts/medium/0e2b69e727.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/004/532/posters/medium/414e6d57f9.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/004/532/cleararts/medium/a0a2c8b67c.png.webp"
+            ]
+          },
+          "rating": 8.336885452270508,
+          "status": "canceled",
+          "country": "us",
+          "network": "NBC",
+          "runtime": 25,
+          "tagline": "Laughter is the best medicine... Especially when it's your first day as a doctor.",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "In the unreal world of Sacred Heart Hospital, John \"J.D.\" Dorian learns the ways of medicine, friendship and life.",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "dramedy",
+            "workplace-comedy",
+            "doctor",
+            "hospital",
+            "medical-drama"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": "",
+            "instagram": null,
+            "wikipedia": "Scrubs_(TV_series)"
+          },
+          "updated_at": "2026-08-06T07:10:42.000Z",
+          "first_aired": "2001-10-03T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 37,
+          "total_runtime": 4155,
+          "aired_episodes": 181,
+          "original_title": "Scrubs",
+          "available_translations": [
+            "ar",
+            "bg",
+            "bs",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hr",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt1441109",
+            "plex": {
+              "guid": "5d9c082dba6eb9001fb9dc23",
+              "slug": "cougar-town"
+            },
+            "slug": "cougar-town",
+            "tmdb": 18202,
+            "tvdb": 94991,
+            "trakt": 18120
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "22:30",
+            "timezone": "America/New_York"
+          },
+          "year": 2009,
+          "title": "Cougar Town",
+          "votes": 1934,
+          "colors": {
+            "poster": [
+              "#B4C3D8",
+              "#486D71"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/018/120/logos/medium/e6099f0c20.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/018/120/thumbs/medium/74556130a5.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/018/120/banners/medium/cd0528bfbd.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/018/120/fanarts/medium/7b3d282f23.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/018/120/posters/medium/b7318ba1fc.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/018/120/cleararts/medium/a39464a6de.png.webp"
+            ]
+          },
+          "rating": 7.17476749420166,
+          "status": "ended",
+          "country": "us",
+          "network": "TBS",
+          "runtime": 22,
+          "tagline": "Bad title. Good comedy.",
+          "trailer": "https://youtube.com/watch?v=PcbSUvT51I8",
+          "homepage": "https://www.tbs.com/shows/cougar-town.html",
+          "language": "en",
+          "overview": "Jules Cobb is a mom in her forties facing the often humorous challenges, pitfalls and rewards of life's next chapter. Along for the journey is her son, her ex-husband, her husband/neighbor and her friends who together make up her dysfunctional, but supportive and caring extended family... even if they have a funny way of showing it sometimes.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "sitcom",
+            "divorce"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Cougar_Town"
+          },
+          "updated_at": "2026-08-06T06:37:04.000Z",
+          "first_aired": "2009-09-24T02:30:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 11,
+          "total_runtime": 2213,
+          "aired_episodes": 102,
+          "original_title": "Cougar Town",
+          "available_translations": [
+            "bg",
+            "bs",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "tr",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt2763286",
+            "plex": {
+              "guid": "5d9c08342192ba001f30a332",
+              "slug": "ground-floor"
+            },
+            "slug": "ground-floor",
+            "tmdb": 57815,
+            "tvdb": 269895,
+            "trakt": 57442
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "00:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2013,
+          "title": "Ground Floor",
+          "votes": 317,
+          "colors": {
+            "poster": [
+              "#EAEBEC",
+              "#3D383F"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/057/442/logos/medium/8a10a3cd99.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/057/442/thumbs/medium/fdb8c82fc6.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/057/442/banners/medium/2af2bd8804.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/057/442/fanarts/medium/2f5cd5295a.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/057/442/posters/medium/20a3744e73.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/057/442/cleararts/medium/3ce0909194.png.webp"
+            ]
+          },
+          "rating": 7.277599811553955,
+          "status": "canceled",
+          "country": "us",
+          "network": "TBS",
+          "runtime": 20,
+          "tagline": "",
+          "trailer": "https://youtube.com/watch?v=nCnHIjlel-0",
+          "homepage": "https://www.tbs.com/shows/ground-floor.html",
+          "language": "en",
+          "overview": "Brody, a young hot-shot banker at Whitestone Trust, thought he was just having a one-night stand with Jennifer, a beautiful woman he met at a bar. But when he discovers that she works in maintenance for the building where he works, their worlds begin to collide in the most unexpected way. Facing Brody’s critical boss, Mr. Mansfield, as well as annoyed colleagues, the pair must find a way to deal with their growing feelings for each other in this modern take on Romeo & Juliet.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "sitcom",
+            "workplace-comedy",
+            "office"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Ground_Floor"
+          },
+          "updated_at": "2026-07-31T15:24:43.000Z",
+          "first_aired": "2013-11-14T05:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 3,
+          "total_runtime": 400,
+          "aired_episodes": 20,
+          "original_title": "Ground Floor",
+          "available_translations": [
+            "bg",
+            "cs",
+            "en",
+            "es",
+            "fr",
+            "he",
+            "ko",
+            "pt",
+            "ru",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt4085584",
+            "plex": {
+              "guid": "5d9c081602391c001f580ac8",
+              "slug": "rush-hour-2016"
+            },
+            "slug": "rush-hour-2016",
+            "tmdb": 65367,
+            "tvdb": 298368,
+            "trakt": 100597
+          },
+          "airs": {
+            "day": "Saturday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2016,
+          "title": "Rush Hour",
+          "votes": 277,
+          "colors": {
+            "poster": [
+              "#CEAA6D",
+              "#362A2A"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "crime",
+            "action",
+            "adventure"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/100/597/logos/medium/72e487ef4f.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/100/597/thumbs/medium/29139a430d.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/100/597/banners/medium/39b459834a.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/100/597/fanarts/medium/e74602e2e8.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/100/597/posters/medium/b3955439e5.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/100/597/cleararts/medium/adb6a4a829.png.webp"
+            ]
+          },
+          "rating": 6.09747314453125,
+          "status": "canceled",
+          "country": "us",
+          "network": "CBS",
+          "runtime": 42,
+          "tagline": "",
+          "trailer": null,
+          "homepage": "https://www.cbspressexpress.com/cbs-entertainment/shows/rush-hour/about",
+          "language": "en",
+          "overview": "The series follows Detective Carter, a radical LAPD detective, and Detective Lee, a by-the-book detective from Hong Kong, as they are forced into forming an unlikely partnership",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "based-on-movie",
+            "police-detective"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Rush_Hour_(American_TV_series)"
+          },
+          "updated_at": "2026-08-06T07:53:37.000Z",
+          "first_aired": "2016-04-01T00:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 7,
+          "total_runtime": 546,
+          "aired_episodes": 13,
+          "original_title": "Rush Hour",
+          "available_translations": [
+            "bg",
+            "cs",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "no",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt10986410",
+            "plex": {
+              "guid": "5e204251072b9e003ca5c140",
+              "slug": "ted-lasso"
+            },
+            "slug": "ted-lasso",
+            "tmdb": 97546,
+            "tvdb": 383203,
+            "trakt": 162639
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2020,
+          "title": "Ted Lasso",
+          "votes": 18900,
+          "colors": {
+            "poster": [
+              "#807383",
+              "#266BDD"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/162/639/logos/medium/88da3c44fd.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/162/639/thumbs/medium/e6c093e710.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/162/639/banners/medium/a69591d799.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/162/639/fanarts/medium/51218d39b9.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/162/639/posters/medium/051ef4b02f.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/162/639/cleararts/medium/23194c0035.png.webp"
+            ]
+          },
+          "rating": 8.684920310974121,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 45,
+          "tagline": "Ted's back.",
+          "trailer": "https://youtube.com/watch?v=BwPcMIDFVKw",
+          "homepage": "https://tv.apple.com/show/umc.cmc.vtoh0mn0xn7t3c643xqonfzy",
+          "language": "en",
+          "overview": "Ted Lasso, an American football coach, moves to England when he's hired to manage a soccer team—despite having no experience. With cynical players and a doubtful town, will he get them to see the Ted Lasso Way?",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "friendship",
+            "male-friendship",
+            "workplace-comedy",
+            "football-soccer"
+          ],
+          "social_ids": {
+            "twitter": "TedLasso",
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Ted_Lasso"
+          },
+          "updated_at": "2026-08-06T10:28:13.000Z",
+          "first_aired": "2020-08-15T01:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 155,
+          "total_runtime": 1592,
+          "aired_episodes": 35,
+          "original_title": "Ted Lasso",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hr",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ka",
+            "ko",
+            "lt",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt14028208",
+            "plex": {
+              "guid": "62ab3986c64c7ce90124a9a5",
+              "slug": "clone-high-2023"
+            },
+            "slug": "clone-high-2023",
+            "tmdb": 118546,
+            "tvdb": 396626,
+            "trakt": 173549
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "03:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2023,
+          "title": "Clone High",
+          "votes": 172,
+          "colors": {
+            "poster": [
+              "#8EBA5B",
+              "#868A73"
+            ]
+          },
+          "genres": [
+            "animation",
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/173/549/logos/medium/213fc5a355.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/173/549/fanarts/medium/63ee99571b.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/173/549/posters/medium/8c4d3fd60e.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 6.116279125213623,
+          "status": "canceled",
+          "country": "us",
+          "network": "Max",
+          "runtime": 25,
+          "tagline": "One of the top clone-based high school shows on television. Period.",
+          "trailer": "https://youtube.com/watch?v=lTgoS7jY78Q",
+          "homepage": "https://www.max.com/shows/bd3ecf08-2ec6-4400-8c9a-06c0e6604740",
+          "language": "en",
+          "overview": "Twenty years after they were frozen, Abe, Cleo, JFK, and Joan suddenly find themselves thrust into the modern world, where they must navigate a fresh batch of historical clones, dramatic love triangles, and a formidable new foe.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "conspiracy",
+            "high-school",
+            "reboot",
+            "historical-figure"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Clone_High_(2023_TV_series)"
+          },
+          "updated_at": "2026-08-06T09:38:16.000Z",
+          "first_aired": "2023-05-23T07:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 3,
+          "total_runtime": 516,
+          "aired_episodes": 20,
+          "original_title": "Clone High",
+          "available_translations": [
+            "en",
+            "es",
+            "ko",
+            "nl",
+            "pt",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt0817942",
+            "plex": {
+              "guid": null,
+              "slug": null
+            },
+            "slug": "nobody-s-watching",
+            "tmdb": 479,
+            "tvdb": null,
+            "trakt": 185072
+          },
+          "airs": {
+            "day": "",
+            "time": "",
+            "timezone": null
+          },
+          "year": null,
+          "title": "Nobody's Watching",
+          "votes": 0,
+          "colors": {
+            "poster": []
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [],
+            "thumb": [],
+            "banner": [],
+            "fanart": [],
+            "poster": [],
+            "clearart": []
+          },
+          "rating": 0,
+          "status": "canceled",
+          "country": "us",
+          "network": "The WB",
+          "runtime": 22,
+          "tagline": "",
+          "trailer": null,
+          "homepage": null,
+          "language": "en",
+          "overview": "Nobody's Watching is a television program that was never aired. It originated with and was written by Scrubs creator Bill Lawrence, as well as Neil Goldman and Garrett Donovan, writers for Scrubs and Family Guy.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2024-12-07T15:06:39.000Z",
+          "first_aired": null,
+          "certification": null,
+          "comment_count": 0,
+          "total_runtime": 0,
+          "aired_episodes": 0,
+          "original_title": "Nobody's Watching",
+          "available_translations": [
+            "en"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt15203646",
+            "plex": {
+              "guid": "6112643cfc96b7002c11dbea",
+              "slug": "bad-monkey"
+            },
+            "slug": "bad-monkey",
+            "tmdb": 130853,
+            "tvdb": 408436,
+            "trakt": 185699
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2024,
+          "title": "Bad Monkey",
+          "votes": 1870,
+          "colors": {
+            "poster": [
+              "#CB9C2E",
+              "#34391F"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "crime"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/185/699/logos/medium/4cc29d0e94.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/185/699/thumbs/medium/5ae840ffff.jpg.webp"
+            ],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/185/699/fanarts/medium/3b17a2410c.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/185/699/posters/medium/f45f82e8c5.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/185/699/cleararts/medium/b52be972b4.png.webp"
+            ]
+          },
+          "rating": 7.258288860321045,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 45,
+          "tagline": "The shady side of paradise.",
+          "trailer": "https://youtube.com/watch?v=RokJ4M2UjNc",
+          "homepage": "https://tv.apple.com/show/umc.cmc.2qoep59s6qukjonprttysfs8x",
+          "language": "en",
+          "overview": "A detective turned restaurant inspector in Southern Florida is pulled into a world of greed and corruption after a tourist finds a severed arm while fishing. And yes, there's a monkey.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "detective",
+            "murder",
+            "murder-investigation"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Bad_Monkey_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:24:09.000Z",
+          "first_aired": "2024-08-14T01:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 28,
+          "total_runtime": 467,
+          "aired_episodes": 10,
+          "original_title": "Bad Monkey",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt1350342",
+            "plex": {
+              "guid": "5d9c08676c3e37001ecd6ea2",
+              "slug": "scrubs-interns"
+            },
+            "slug": "scrubs-interns",
+            "tmdb": 17486,
+            "tvdb": null,
+            "trakt": 188926
+          },
+          "airs": {
+            "day": "Tuesday",
+            "time": "00:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2009,
+          "title": "Scrubs: Interns",
+          "votes": 53,
+          "colors": {
+            "poster": [
+              "#A29C94",
+              "#2B2D2E"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/188/926/logos/medium/1ca427caf1.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/188/926/fanarts/medium/8109dc1eac.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/188/926/posters/medium/9f2a92fa8b.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 5.792452812194824,
+          "status": "ended",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 4,
+          "tagline": "",
+          "trailer": null,
+          "homepage": "https://abcstudiosmedianet.com/shows/scrubs/scrubs_lead.shtml",
+          "language": "en",
+          "overview": "Sunny, a whiz in both Pre-Med and Film, makes a video diary for her mother of her first year at Sacred Heart. She follows herself, Howie, Katie, Ed, and Denise and they learn the ropes at the hospital.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Scrubs:_Interns"
+          },
+          "updated_at": "2026-06-25T15:20:43.000Z",
+          "first_aired": "2009-01-01T05:00:00.000Z",
+          "certification": null,
+          "comment_count": 0,
+          "total_runtime": 35,
+          "aired_episodes": 10,
+          "original_title": "Scrubs: Interns",
+          "available_translations": [
+            "en",
+            "ru"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt15677150",
+            "plex": {
+              "guid": "6168243f1c627ddb697e2a46",
+              "slug": "shrinking"
+            },
+            "slug": "shrinking",
+            "tmdb": 136311,
+            "tvdb": 411364,
+            "trakt": 189764
+          },
+          "airs": {
+            "day": "Thursday",
+            "time": "21:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2023,
+          "title": "Shrinking",
+          "votes": 7248,
+          "colors": {
+            "poster": [
+              "#C1DCDB",
+              "#4B5354"
+            ]
+          },
+          "genres": [
+            "comedy",
+            "drama"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/189/764/logos/medium/e007d144d0.png.webp"
+            ],
+            "thumb": [
+              "media.trakt.tv/images/shows/000/189/764/thumbs/medium/f461c3b444.jpg.webp"
+            ],
+            "banner": [
+              "media.trakt.tv/images/shows/000/189/764/banners/medium/02164ac19a.jpg.webp"
+            ],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/189/764/fanarts/medium/1b81e8b9fc.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/189/764/posters/medium/d248e1dd0b.jpg.webp"
+            ],
+            "clearart": [
+              "media.trakt.tv/images/shows/000/189/764/cleararts/medium/36c02ee2e7.png.webp"
+            ]
+          },
+          "rating": 8.245308876037598,
+          "status": "returning series",
+          "country": "us",
+          "network": "Apple TV",
+          "runtime": 35,
+          "tagline": "Moving forward, together.",
+          "trailer": "https://youtube.com/watch?v=YjHfjQDWl1A",
+          "homepage": "https://tv.apple.com/show/umc.cmc.apzybj6eqf6pzccd97kev7bs",
+          "language": "en",
+          "overview": "Jimmy is struggling to grieve the loss of his wife while being a dad, friend, and therapist. He decides to try a new approach with everyone in his path: unfiltered, brutal honesty. Will it make things better—or unleash uproarious chaos?",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "dramedy",
+            "workplace-comedy",
+            "father-daughter-relationship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Shrinking_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:26:51.000Z",
+          "first_aired": "2023-01-27T02:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 53,
+          "total_runtime": 1166,
+          "aired_episodes": 33,
+          "original_title": "Shrinking",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "en",
+            "es",
+            "et",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "hu",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "lt",
+            "my",
+            "nl",
+            "no",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sk",
+            "sl",
+            "sr",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt32420734",
+            "plex": {
+              "guid": "664c912d9ecccd2ff053cd86",
+              "slug": "rooster"
+            },
+            "slug": "rooster",
+            "tmdb": 254953,
+            "tvdb": 457770,
+            "trakt": 240718
+          },
+          "airs": {
+            "day": "Sunday",
+            "time": "22:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2026,
+          "title": "Rooster",
+          "votes": 1748,
+          "colors": {
+            "poster": [
+              "#BBA998",
+              "#453E33"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/240/718/logos/medium/d84dd758de.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/240/718/fanarts/medium/2b9c17fddf.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/240/718/posters/medium/c08ac5592a.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 7.983409404754639,
+          "status": "returning series",
+          "country": "us",
+          "network": "HBO",
+          "runtime": 30,
+          "tagline": "He's here to learn.",
+          "trailer": "https://youtube.com/watch?v=L00r5BGgP64",
+          "homepage": "https://www.hbo.com/content/rooster",
+          "language": "en",
+          "overview": "On a college campus, an author navigates a complicated relationship with his daughter.",
+          "languages": [
+            "en"
+          ],
+          "subgenres": [
+            "father-daughter-relationship"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Rooster_(TV_series)"
+          },
+          "updated_at": "2026-08-06T09:48:06.000Z",
+          "first_aired": "2026-03-09T02:00:00.000Z",
+          "certification": "TV-MA",
+          "comment_count": 17,
+          "total_runtime": 314,
+          "aired_episodes": 10,
+          "original_title": "Rooster",
+          "available_translations": [
+            "ar",
+            "bg",
+            "cs",
+            "da",
+            "de",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ko",
+            "lt",
+            "nl",
+            "pt",
+            "ro",
+            "ru",
+            "sv",
+            "th",
+            "uk",
+            "zh"
+          ]
+        }
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "show": {
+          "ids": {
+            "imdb": "tt40197357",
+            "plex": {
+              "guid": "687d434c16e6d561559bef1e",
+              "slug": "scrubs-2026"
+            },
+            "slug": "scrubs-2026",
+            "tmdb": 295778,
+            "tvdb": 465690,
+            "trakt": 291441
+          },
+          "airs": {
+            "day": "Wednesday",
+            "time": "20:00",
+            "timezone": "America/New_York"
+          },
+          "year": 2026,
+          "title": "Scrubs",
+          "votes": 1255,
+          "colors": {
+            "poster": [
+              "#CDBBAA",
+              "#262F31"
+            ]
+          },
+          "genres": [
+            "comedy"
+          ],
+          "images": {
+            "logo": [
+              "media.trakt.tv/images/shows/000/291/441/logos/medium/091e191384.png.webp"
+            ],
+            "thumb": [],
+            "banner": [],
+            "fanart": [
+              "media.trakt.tv/images/shows/000/291/441/fanarts/medium/988924129f.jpg.webp"
+            ],
+            "poster": [
+              "media.trakt.tv/images/shows/000/291/441/posters/medium/a061090ff1.jpg.webp"
+            ],
+            "clearart": []
+          },
+          "rating": 8.091633796691895,
+          "status": "returning series",
+          "country": "us",
+          "network": "ABC",
+          "runtime": 20,
+          "tagline": "Scrub back in.",
+          "trailer": "https://youtube.com/watch?v=dJq8WJ5lMec",
+          "homepage": "https://abc.com/show/b775fccd-63aa-4968-b23b-aec5de29d9e0",
+          "language": "en",
+          "overview": "J.D. & Turk scrub in together for the first time in a long time–medicine has changed, interns have changed, but their bromance has stood the test of time. Characters new and old navigate the waters of Sacred Heart with laughter, heart and some surprises along the way.",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "subgenres": [
+            "bromance",
+            "adoring",
+            "dramedy",
+            "workplace-comedy",
+            "doctor",
+            "dramatic",
+            "hospital",
+            "medical-drama"
+          ],
+          "social_ids": {
+            "twitter": null,
+            "facebook": "scrubs",
+            "instagram": "scrubs",
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T09:53:26.000Z",
+          "first_aired": "2026-02-26T01:00:00.000Z",
+          "certification": "TV-14",
+          "comment_count": 13,
+          "total_runtime": 198,
+          "aired_episodes": 9,
+          "original_title": "Scrubs",
+          "available_translations": [
+            "cs",
+            "da",
+            "de",
+            "en",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "he",
+            "hu",
+            "it",
+            "ko",
+            "nl",
+            "pl",
+            "pt",
+            "ro",
+            "ru",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "zh"
+          ]
+        }
+      }
+    ]
+  }
+}

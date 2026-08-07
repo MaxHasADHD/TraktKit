@@ -5,6 +5,56 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.10.0] - 2026-08-07
+
+Aligns the people and credits models with what the API actually returns. Every change below was
+found by inspecting live responses — Trakt's documentation is behind the API in several places, and
+in one case a field the docs never mentioned had been silently dropped since it was added.
+
+### Fixed
+- **`/people/{id}/shows` no longer throws for anyone with a crew credit.** Trakt stopped sending
+  `episode_count` on that endpoint's crew entries. `PeopleTVCrewMember.episodeCount` was a
+  non-optional `Int` and `CastAndCrew.init(from:)` uses `try`, so a single missing key threw away
+  the **entire response** — including the person's cast credits. A person with one directing credit
+  decoded to nothing at all.
+- **`created by` is no longer discarded.** `CastAndCrew` decoded the `crew` object against eleven
+  hardcoded department keys taken from the documentation. Trakt returns a twelfth, `created by`, on
+  both `/shows/{id}/people` and `/people/{id}/shows`, and it is documented on neither — so a
+  series' creators were dropped at decode time. Crew is now decoded dynamically and any department
+  survives, known or not.
+- **Image URLs are loadable.** Trakt returns scheme-less paths (`media.trakt.tv/images/…`). These
+  parsed into `URL` values with `scheme == nil` — decoding succeeded and the request then failed at
+  load time. `TraktImages` now normalizes to `https://` while decoding; the type stays `[URL]`.
+
+### Added
+- `CastAndCrew.crewByDepartment: [String: [Crew]]`, with the eleven existing named accessors kept as
+  computed properties over it, plus `createdBy`.
+- `Person`: `socialIds` (new nested `SocialIDs` — `twitter`, `facebook`, `instagram`, `wikipedia`,
+  returned as bare handles and a wiki page title, not URLs), `gender`, `knownForDepartment`,
+  `updatedAt`, `images`, `height` (`Double?` — real values include `179.07`).
+- `ID.plex` (nested `Plex`, with individually-nullable `guid` and `slug`).
+- Credit-level fields, which differ per endpoint and are added only where Trakt sends them:
+  `TVCastMember` gains `character`, `order` and `images`; `TVCrewMember` gains `job` and `images`;
+  `PeopleTVCastMember` and `PeopleTVCrewMember` gain `character` / `job`. The singular forms are
+  Trakt's own "display this one" pick alongside the existing arrays.
+
+### Changed
+- **BREAKING**: `PeopleTVCrewMember.episodeCount`, `PeopleTVCastMember.episodeCount` and
+  `PeopleTVCastMember.seriesRegular` are now optional, matching responses that omit them.
+- `cast`, `guest_stars` and `crew` arrays decode element-wise through an internal failable wrapper,
+  so one malformed credit drops that row instead of the whole response. `characters` and `jobs`
+  default to `[]` rather than becoming optional, which gives the same never-lose-the-response
+  property without a source break.
+- `CastAndCrew.encode(to:)` is unchanged but now documented as lossy — it writes back only `cast`
+  and three crew departments, and does not round-trip.
+
+### Tests
+- Fixtures captured from live responses: a show and an episode with a `created by` department and
+  credit-level images, a show runner's credits whose crew entries have no `episode_count`, and a
+  person with every new field populated.
+- Key-canary tests assert the exact key set of each cast, crew and person node per fixture, so a
+  field Trakt adds fails a test **by name** rather than being silently ignored.
+
 ## [3.9.0] - 2026-07-27
 
 ### Added

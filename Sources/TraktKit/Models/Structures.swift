@@ -14,13 +14,27 @@ public typealias RawJSON = [String: Any] // Dictionary
 
 public struct ID: TraktObject {
 
+    /// Unlike every other id here, `plex` is an object rather than a scalar. Both members come back
+    /// null on shows Plex does not know.
+    public struct Plex: TraktObject {
+        public let guid: String?
+        public let slug: String?
+
+        public init(guid: String? = nil, slug: String? = nil) {
+            self.guid = guid
+            self.slug = slug
+        }
+    }
+
     public let trakt: Int
     public let slug: String
     public let tvdb: Int?
     public let imdb: String?
     public let tmdb: Int?
+    /// No longer returned by any endpoint; kept because old cached payloads still carry it.
     public let tvRage: Int?
-    
+    public let plex: Plex?
+
     enum CodingKeys: String, CodingKey {
         case trakt
         case slug
@@ -28,15 +42,17 @@ public struct ID: TraktObject {
         case imdb
         case tmdb
         case tvRage = "tvrage"
+        case plex
     }
-    
-    public init(trakt: Int, slug: String, tvdb: Int? = nil, imdb: String? = nil, tmdb: Int? = nil, tvRage: Int? = nil) {
+
+    public init(trakt: Int, slug: String, tvdb: Int? = nil, imdb: String? = nil, tmdb: Int? = nil, tvRage: Int? = nil, plex: Plex? = nil) {
         self.trakt = trakt
         self.slug = slug
         self.tvdb = tvdb
         self.imdb = imdb
         self.tmdb = tmdb
         self.tvRage = tvRage
+        self.plex = plex
     }
 }
 

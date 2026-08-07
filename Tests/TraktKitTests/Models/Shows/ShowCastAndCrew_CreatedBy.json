@@ -1,0 +1,3032 @@
+{
+  "cast": [
+    {
+      "character": "Ted Lasso",
+      "characters": [
+        "Ted Lasso"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm0837177",
+          "slug": "jason-sudeikis",
+          "tmdb": 58224,
+          "trakt": 297947
+        },
+        "name": "Jason Sudeikis",
+        "death": null,
+        "gender": "male",
+        "height": 185,
+        "images": {
+          "fanart": [
+            "media.trakt.tv/images/people/000/297/947/fanarts/medium/2de31b1257.jpg.webp"
+          ],
+          "headshot": [
+            "media.trakt.tv/images/people/000/297/947/headshots/medium/ad88102559.jpg.webp"
+          ]
+        },
+        "birthday": "1975-09-18",
+        "homepage": null,
+        "biography": "Daniel Jason Sudeikis (/sʊˈdeɪkɪs/ suu-DAY-kiss; born September 18, 1975) is an American actor, comedian, screenwriter, and producer. In the 1990s, he began his career in improv comedy. He performed with ComedySportz, iO Chicago (Improv Olympic), and The Second City. In 2003, Sudeikis was hired as a writer for the NBC sketch comedy series Saturday Night Live and later spent nine seasons as a cast member from 2005 to 2013, playing Joe Biden and Mitt Romney, among others.\n\nFrom 2020 to 2023, he co-created and played the title role in the Apple TV+ sports comedy series Ted Lasso, which earned him four Primetime Emmy Awards and two Golden Globe Awards. He was also one of the leading cast members in The Cleveland Show (2009-2013). Sudeikis has also acted in recurring roles in the comedy series 30 Rock (2007–2010), It's Always Sunny in Philadelphia (2010–2011), Portlandia (2011–2014), and The Last Man on Earth (2015–2018).\n\nHe had leading film roles in the comedies Horrible Bosses (2011) and its sequel, Horrible Bosses 2 (2014), and We're the Millers (2013), as well as the acclaimed independent films Drinking Buddies (2013), Sleeping with Other People (2015), and Colossal (2016), and supporting roles in Alexander Payne's Downsizing (2017) and Olivia Wilde's Booksmart (2019). He has also acted in voice roles for Epic (2013), The Angry Birds Movie (2016), The Angry Birds Movie 2 (2019), and Next Gen (2018).\n\nDescription above from the Wikipedia article Jason Sudeikis, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+        "birthplace": "Fairfax, Virginia, USA",
+        "social_ids": {
+          "twitter": null,
+          "facebook": null,
+          "instagram": "jasonsudeikis",
+          "wikipedia": "Jason_Sudeikis"
+        },
+        "updated_at": "2026-07-23T08:01:18.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/297/947/headshots/medium/ad88102559.jpg.webp"
+        ]
+      },
+      "episode_count": 35,
+      "order": 0
+    },
+    {
+      "character": "Rebecca Welton",
+      "characters": [
+        "Rebecca Welton"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm1821446",
+          "slug": "hannah-waddingham",
+          "tmdb": 1278487,
+          "trakt": 200480
+        },
+        "name": "Hannah Waddingham",
+        "death": null,
+        "gender": "female",
+        "height": 180,
+        "images": {
+          "fanart": [
+            "media.trakt.tv/images/people/000/200/480/fanarts/medium/9a83a2c401.jpg.webp"
+          ],
+          "headshot": [
+            "media.trakt.tv/images/people/000/200/480/headshots/medium/6528e83d16.jpg.webp"
+          ]
+        },
+        "birthday": "1974-07-28",
+        "homepage": null,
+        "biography": "Hannah Waddingham (born 28 July 1974) is an English actress, singer and television presenter. She is known for playing businesswoman Rebecca Welton in Ted Lasso (2020–2023), for which she won a Primetime Emmy Award for Outstanding Supporting Actress in a Comedy Series in 2021 and the Critics' Choice Television Award for Best Supporting Actress in a Comedy Series in both 2021 and 2022.\n\nShe has also appeared in several West End shows, including Spamalot, the 2010 Regent's Park revival of Into the Woods and The Wizard of Oz as the Wicked Witch of the West. She has received three Olivier Award nominations for her work.\n\nWaddingham's film work includes the film adaptation of Les Misérables (2012), the psychological thriller Winter Ridge (2018) and the action comedy The Fall Guy (2024). Other notable television roles include playing Tonya Dyke in Benidorm (2014), Septa Unella in the fifth season of the HBO series Game of Thrones(2015–2016), Jax-Ur in Krypton (2018–2019) and Sofia Marchetti in Sex Education (2019–2023). In 2023, she co-hosted the Eurovision Song Contest. Beginning in 2023, Waddingham began to expand into voice acting, portraying the snarky goddess Deliria in the animated series Krapopolis (2023-present) and earning a Primetime Emmy Award for Outstanding Character Voice-Over Performance nomination and Jinx in The Garfield Movie.\n\nDescription above from the Wikipedia article about Hannah Waddingham, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+        "birthplace": "Wandsworth, London, England, UK",
+        "social_ids": {
+          "twitter": "hanwaddingham",
+          "facebook": null,
+          "instagram": "hannah_waddingham",
+          "wikipedia": "Hannah_Waddingham"
+        },
+        "updated_at": "2026-07-28T15:52:22.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/200/480/headshots/medium/6528e83d16.jpg.webp"
+        ]
+      },
+      "episode_count": 35,
+      "order": 1
+    },
+    {
+      "character": "Leslie Higgins",
+      "characters": [
+        "Leslie Higgins"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm0842596",
+          "slug": "jeremy-swift",
+          "tmdb": 3555,
+          "trakt": 2781
+        },
+        "name": "Jeremy Swift",
+        "death": null,
+        "gender": "male",
+        "height": null,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/000/002/781/headshots/medium/d89bae184b.jpg.webp"
+          ]
+        },
+        "birthday": "1960-06-27",
+        "homepage": null,
+        "biography": "Jeremy Paul Swift (born 27 June 1960) is an English actor. He studied drama at Guildford School of Acting from 1978 to 1981. He worked almost exclusively in theatre throughout the 1980s, working with companies such as Deborah Warner's Kick Theatre and comedy performance-art group The People Show. During this period, he also appeared in numerous television commercials. In the 1990s, he acted at the National Theatre alongside David Tennant and Richard Wilson in Phyllida Lloyd's What the Butler Saw production.\n\nSwift has acted in films such as Robert Altman's murder mystery Gosford Park (2001), Michael Apted's historical drama Amazing Grace (2006), and the family adventure film Mary Poppins Returns (2018). He also appeared in Vanity Fair (1998), Foyle's War (2013-2015), Downton Abbey (2013-2015), The Durrells (2016), and National Treasure (2016). In 2021, he was nominated for a Primetime Emmy Award for Outstanding Supporting Actor in a Comedy Series for his performance in Ted Lasso for his portrayal of Leslie Higgins. In 2025, he appears as Mr Bosworth in the 5th series of All Creatures Great and Small.",
+        "birthplace": "Stockton-on-Tees, County Durham, England, UK",
+        "social_ids": {
+          "twitter": null,
+          "facebook": null,
+          "instagram": null,
+          "wikipedia": "Jeremy_Swift"
+        },
+        "updated_at": "2026-07-23T08:11:05.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/002/781/headshots/medium/d89bae184b.jpg.webp"
+        ]
+      },
+      "episode_count": 35,
+      "order": 2
+    },
+    {
+      "character": "Jamie Tartt",
+      "characters": [
+        "Jamie Tartt"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm4651633",
+          "slug": "phil-dunster",
+          "tmdb": 1502430,
+          "trakt": 555669
+        },
+        "name": "Phil Dunster",
+        "death": null,
+        "gender": "male",
+        "height": null,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/000/555/669/headshots/medium/40e97847ce.jpg.webp"
+          ]
+        },
+        "birthday": "1992-03-31",
+        "homepage": "https://phildunster.com",
+        "biography": "Philip James Dunster (born 31 March 1992) is an English actor. He is known for his roles in the Sky One drama Strike Back (2017–2018), the Channel 4 science fiction series Humans (2018), the ITV comedy-drama The Trouble with Maggie Cole (2020), the Apple TV+ sports series Ted Lasso (2020–2023), and the Amazon Prime thriller The Devil's Hour (2022). For his role in Ted Lasso, Dunster was nominated for a Primetime Emmy Award for Outstanding Supporting Actor in a Comedy Series in 2023.\n\nDescription above from the Wikipedia article Phil Dunster, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+        "birthplace": "Northampton, Northamptonshire, England, UK",
+        "social_ids": {
+          "twitter": "phildunster",
+          "facebook": null,
+          "instagram": "phildunster",
+          "wikipedia": "Phil_Dunster"
+        },
+        "updated_at": "2026-08-01T08:18:22.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/555/669/headshots/medium/40e97847ce.jpg.webp"
+        ]
+      },
+      "episode_count": 34,
+      "order": 3
+    },
+    {
+      "character": "Roy Kent",
+      "characters": [
+        "Roy Kent"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm2073429",
+          "slug": "brett-goldstein",
+          "tmdb": 21422,
+          "trakt": 18106
+        },
+        "name": "Brett Goldstein",
+        "death": null,
+        "gender": "male",
+        "height": 180,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/000/018/106/headshots/medium/6f4875bca9.jpg.webp"
+          ]
+        },
+        "birthday": "1980-07-17",
+        "homepage": "https://theb-side.co.uk/management/brett-goldstein/",
+        "biography": "Brett Goldstein (born 17 July 1980) is a British actor, comedian, writer, producer, and podcaster. Known for his role as Roy Kent in the Apple TV+ sports comedy series Ted Lasso, he received the Primetime Emmy Award for Outstanding Supporting Actor in a Comedy Series for each of the first two seasons. He is also the co-creator of the comedy series Shrinking (2023).\n\nDescription above from the Wikipedia article Brett Goldstein, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+        "birthplace": "Sutton, London, England, UK",
+        "social_ids": {
+          "twitter": "brettgoldstein",
+          "facebook": null,
+          "instagram": "mrbrettgoldstein",
+          "wikipedia": "Brett_Goldstein"
+        },
+        "updated_at": "2026-07-07T08:06:24.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/018/106/headshots/medium/6f4875bca9.jpg.webp"
+        ]
+      },
+      "episode_count": 35,
+      "order": 4
+    },
+    {
+      "character": "Coach Beard",
+      "characters": [
+        "Coach Beard"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm0402360",
+          "slug": "brendan-hunt",
+          "tmdb": 1113365,
+          "trakt": 734002
+        },
+        "name": "Brendan Hunt",
+        "death": null,
+        "gender": "male",
+        "height": 182.8800048828125,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/000/734/002/headshots/medium/1f89df8936.jpg.webp"
+          ]
+        },
+        "birthday": "1972-06-28",
+        "homepage": "https://www.sbvtalent.com/talent/brendan-hunt",
+        "biography": "Brendan Hunt (born June 28, 1972) is an American actor and writer known for roles in the films We're the Millers (2013) and Horrible Bosses 2 (2014) as well as voicing two characters in the video game Fallout 4 (2015). He is a co-creator of the Apple TV+ sitcom Ted Lasso, as well as a writer and regular cast member (Coach Willis Beard). In 1996, Hunt completed the theater program at Illinois State University. While there, he performed at the Illinois Shakespeare Festival and completed a week-long master class under the guidance of actress Judith Ivey. After getting his theater degree, Hunt studied with The Second City in Chicago before heading to Amsterdam and joining the Boom Chicago comedy troupe.\n\nAfter roles in episodes of the television series Reno 911!, Parks and Recreation, Community and How I Met Your Mother, Hunt made his major motion picture debut as the \"Sketchy Dude\" in 2013's We're the Millers, which featured his Boom Chicago castmate Jason Sudeikis. Hunt had a role in another Sudeikis vehicle, 2014's Horrible Bosses 2, playing a sex addiction group member. Hunt co-created the series Ted Lasso and appears as a regular cast member; the series launched on Apple TV+ in 2020.",
+        "birthplace": "Chicago, Illinois, USA",
+        "social_ids": {
+          "twitter": null,
+          "facebook": "brendanhunt",
+          "instagram": "brendanhunting",
+          "wikipedia": "Brendan_Hunt"
+        },
+        "updated_at": "2026-04-30T08:15:18.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/734/002/headshots/medium/1f89df8936.jpg.webp"
+        ]
+      },
+      "episode_count": 35,
+      "order": 5
+    },
+    {
+      "character": "Nathan Shelley",
+      "characters": [
+        "Nathan Shelley"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm2945137",
+          "slug": "nick-mohammed",
+          "tmdb": 1509615,
+          "trakt": 558178
+        },
+        "name": "Nick Mohammed",
+        "death": null,
+        "gender": "male",
+        "height": 164,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/000/558/178/headshots/medium/ef69eab20c.jpg.webp"
+          ]
+        },
+        "birthday": "1980-10-04",
+        "homepage": null,
+        "biography": "Nicholas George Mohammed (born 4 October 1980) is a British actor, comedian and writer. He is the creator of the Sky One comedy series Intelligence. Mohammed portrayed the character of Nathan Shelley in the Apple TV series Ted Lasso, for which he was nominated in the Outstanding Supporting Actor in a Comedy Series category at the 73rd and 74th Primetime Emmy Awards.",
+        "birthplace": "Leeds, West Yorkshire, England on the 4th of October 1980",
+        "social_ids": {
+          "twitter": "nickmohammed",
+          "facebook": null,
+          "instagram": "nickmohammedy",
+          "wikipedia": "Nick_Mohammed"
+        },
+        "updated_at": "2026-07-28T15:52:22.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/558/178/headshots/medium/ef69eab20c.jpg.webp"
+        ]
+      },
+      "episode_count": 34,
+      "order": 6
+    },
+    {
+      "character": "Dr. Sharon Fieldstone",
+      "characters": [
+        "Dr. Sharon Fieldstone"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm1502425",
+          "slug": "sarah-niles-66197aa9-cd07-4cb1-87a3-ad662c7b20d1",
+          "tmdb": 65447,
+          "trakt": 497679
+        },
+        "name": "Sarah Niles",
+        "death": null,
+        "gender": "female",
+        "height": null,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/000/497/679/headshots/medium/3d0c87f580.jpg.webp"
+          ]
+        },
+        "birthday": "1987-06-17",
+        "homepage": "https://www.sueterryvoices.com/artist/sarah-niles",
+        "biography": "Sarah Niles (born 17 June 1987) is a British film, television and theatre actress. She is best known for her roles in Fantastic Four: First Steps, F1: The Movie, and Heads of State (all 2025), as well her Emmy Award-nominated performance as Dr. Sharon Fieldstone in the Apple TV series Ted Lasso.\n\nHer other works include Mister Eleven and Beautiful People (2009), Thorne: Sleepyhead (2010), Spotless (2015), Catastrophe (2015–2019), Trust Me (2019), I May Destroy You and Trying (2020), Viewpoint (2021), and Riches and The Sandman (2022).",
+        "birthplace": "Thornton Heath, London, England, UK",
+        "social_ids": {
+          "twitter": "SarahNilestar",
+          "facebook": null,
+          "instagram": "sarahniles_",
+          "wikipedia": "Sarah_Niles"
+        },
+        "updated_at": "2026-01-12T07:32:28.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/497/679/headshots/medium/3d0c87f580.jpg.webp"
+        ]
+      },
+      "episode_count": 15,
+      "order": 7
+    },
+    {
+      "character": "Rupert Mannion",
+      "characters": [
+        "Rupert Mannion"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm0372117",
+          "slug": "anthony-stewart-head",
+          "tmdb": 34257,
+          "trakt": 9888
+        },
+        "name": "Anthony Stewart Head",
+        "death": "2026-06-01",
+        "gender": "male",
+        "height": 185.5,
+        "images": {
+          "fanart": [
+            "media.trakt.tv/images/people/000/009/888/fanarts/medium/52a0da839c.jpg.webp"
+          ],
+          "headshot": [
+            "media.trakt.tv/images/people/000/009/888/headshots/medium/d15071366a.jpg.webp"
+          ]
+        },
+        "birthday": "1954-02-20",
+        "homepage": "https://www.gordonandfrench.co.uk/artists-profile.php?ArtistID=1",
+        "biography": "Anthony Stewart Head (20 February 1954 – 1 June 2026), usually credited as Anthony Head, was an English actor and musician. He rose to fame in the UK following his role in television advertisements for Nescafé Gold Blend (Taster's Choice in the U.S.), and was best known for his roles as Rupert Giles on Buffy the Vampire Slayer (1997–2003), Uther Pendragon on Merlin (2008–12), and Nathan Wallace/Repo Man in Repo! The Genetic Opera (2008).",
+        "birthplace": "London, England, UK",
+        "social_ids": {
+          "twitter": "AnthonySHead",
+          "facebook": null,
+          "instagram": null,
+          "wikipedia": "Anthony_Head"
+        },
+        "updated_at": "2026-07-03T16:05:57.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/009/888/headshots/medium/d15071366a.jpg.webp"
+        ]
+      },
+      "episode_count": 18,
+      "order": 8
+    },
+    {
+      "character": "Sam Obisanya",
+      "characters": [
+        "Sam Obisanya"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm8504865",
+          "slug": "toheeb-jimoh",
+          "tmdb": 2519330,
+          "trakt": 1689231
+        },
+        "name": "Toheeb Jimoh",
+        "death": null,
+        "gender": "male",
+        "height": null,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/001/689/231/headshots/medium/28514d2b87.jpg.webp"
+          ]
+        },
+        "birthday": "1997-04-15",
+        "homepage": "https://theb-side.co.uk/management/toheeb-jimoh/",
+        "biography": "Toheeb Gbolabo O. Jimoh (born 15 April 1997) is an English actor. He earned a Primetime Emmy Award nomination for his performance as Sam Obisanya in the Apple TV+ series Ted Lasso (2020–2023). He is also known for his roles in the BBC One biographical film Anthony (2020) and the Amazon Prime series The Power (2023). Jimoh was born on 15 April 1997 in Brixton, South London to parents of Nigerian descent. He moved to Nigeria as a toddler and returned to London when he was seven. He attended The Norwood School before going on to train at the Guildhall School of Music and Drama, graduating in 2018.\n\nJimoh was a relative newcomer to acting when he was cast to play Anthony Walker, the victim of a 2005 racist attack, in BBC One's Anthony, which imagines Walker's life if he had not been killed. His portrayal was called \"utterly magnetic\". He then portrayed Marcus in the Amazon series The Feed.\n\nJimoh was in a stage production of A Midsummer Night's Dream at the Sheffield Crucible and in 2020, was one of six performers in the Almeida Theatre's Christmas Play Nine Lessons and Carols, the theatre's first production post London's COVID-19 lockdown.\n\nWhen Jimoh auditioned for Ted Lasso, the character of Sam Obisanya was written as Ghanaian, but his background was changed to Nigerian to match Jimoh's own. His performance has received praise, with his character called the \"heartbeat\" of the show.\n\nJimoh portrays another Nigerian character, journalist Tunde, in the Amazon thriller series The Power, based on Naomi Alderman's novel of the same name. He also has a small part in the Wes Anderson film The French Dispatch. Jimoh played Romeo in a summer 2023 production of Romeo and Juliet at the Almeida Theatre in London. In 2024, Jimoh played Hal in Player Kings, an adaption of Shakespeare's Henry IV part 1 and 2 by Robert Icke which also co-stars Ian McKellen and Richard Coyle.",
+        "birthplace": "Brixton, London, England, UK",
+        "social_ids": {
+          "twitter": "Toheeb_Jimoh",
+          "facebook": null,
+          "instagram": "toheeb.j",
+          "wikipedia": "Toheeb_Jimoh"
+        },
+        "updated_at": "2026-06-06T08:16:37.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/001/689/231/headshots/medium/28514d2b87.jpg.webp"
+        ]
+      },
+      "episode_count": 34,
+      "order": 9
+    },
+    {
+      "character": "Dani Rojas",
+      "characters": [
+        "Dani Rojas"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm9434831",
+          "slug": "cristo-fernandez",
+          "tmdb": 2627590,
+          "trakt": 1814952
+        },
+        "name": "Cristo Fernández",
+        "death": null,
+        "gender": "male",
+        "height": 175,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/001/814/952/headshots/medium/a75b9037e9.jpg.webp"
+          ]
+        },
+        "birthday": "1991-01-27",
+        "homepage": "https://www.e-talenta.eu/members/profile/cristo-fernandez",
+        "biography": "Cristóbal Fernández (born 27 January) is a Mexican actor. Cristóbal Fernández was born on 27 January 1991, in Guadalajara, Jalisco. He found a love for football at a young age. He joined Guadalajara's Club Deportivo Estudiantes Tecos at the age of 15, but a knee injury ultimately ended his career. Following the encouragement of his parents, he decided to pursue a second career, and fell in love with acting while in college.  After moving to London, Fernández further pursued acting. Following a stint in several indie films, he was cast in the Apple TV+ comedy series Ted Lasso.\n\nFernández is also the founder of film production company Espectro MX Films. Starting in 2024, Fernández has featured in the State Farm commercial \"Bundle is Life\" alongside Patrick Mahomes. He also played a small part in Sonic the Hedgehog 3.",
+        "birthplace": "Guadalajara, Jalisco, Mexico",
+        "social_ids": {
+          "twitter": "cristofernandez",
+          "facebook": "cristofernandez.mx",
+          "instagram": "cristofernandez.mx",
+          "wikipedia": "Cristo_Fernández"
+        },
+        "updated_at": "2026-06-05T08:25:40.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/001/814/952/headshots/medium/a75b9037e9.jpg.webp"
+        ]
+      },
+      "episode_count": 29,
+      "order": 10
+    },
+    {
+      "character": "Isaac McAdoo",
+      "characters": [
+        "Isaac McAdoo"
+      ],
+      "person": {
+        "ids": {
+          "imdb": "nm6703520",
+          "slug": "kola-bokinni",
+          "tmdb": 1711173,
+          "trakt": 741831
+        },
+        "name": "Kola Bokinni",
+        "death": null,
+        "gender": "male",
+        "height": 183,
+        "images": {
+          "fanart": [],
+          "headshot": [
+            "media.trakt.tv/images/people/000/741/831/headshots/medium/64153be05f.jpg.webp"
+          ]
+        },
+        "birthday": "1992-08-05",
+        "homepage": "https://www.unitedagents.co.uk/kola-bokinni",
+        "biography": "Kola Bokinni (born 5 August 1992) is an English actor. He is known for his role as Isaac McAdoo, the captain of AFC Richmond, in the Apple TV+ series Ted Lasso (2020–2023). He is also well known from Celebrity Bear Hunt (2025). Bokinni's mother is Irish, and his father is Nigerian. He attended the BRIT School, initially on Saturdays before an opportunity opened up to attend the main school. His first public performance was an original play, first performed at the Bussey in Peckham, before moving to the Royal Court Theatre in Sloane Square. Following good reviews for his performance he signed with his first agent.  Bokinni played Lennard in a 2016 episode of Black Mirror entitled \"Men Against Fire\". He also had a recurring role as Leyton on the television series Top Boy. From 2020 he played Isaac McAdoo, the AFC Richmond centre-back and vice-captain, and then captain on the Apple TV+ series Ted Lasso with his character maturing during his portrayal from immature and a \"bully\" to a leadership role. With members of the ensemble cast of Ted Lasso, he visited The White House and met President Biden and Vice-president Kamala Harris. Bokinni has spoken about the teamwork and camaraderie on the set of Ted Lasso. He described having his Ted Lasso character turned into a playable character with his likeness in the video game FIFA as \"something I don't think I'll ever be able to get over\" Bokinni is a football fan himself, and is a fan of Arsenal. He typically plays football more as an attacker than his defence-playing character from Ted Lasso. He is good friends with fellow actor Will Poulter, and his sister is broadcaster and DJ Yinka Bokinni.",
+        "birthplace": "Peckham, London, England, UK",
+        "social_ids": {
+          "twitter": "kolabokinni",
+          "facebook": "bokinnikola",
+          "instagram": "kolabokinni",
+          "wikipedia": "Kola_Bokinni"
+        },
+        "updated_at": "2026-05-27T08:16:30.000Z",
+        "known_for_department": "acting"
+      },
+      "images": {
+        "headshot": [
+          "media.trakt.tv/images/people/000/741/831/headshots/medium/64153be05f.jpg.webp"
+        ]
+      },
+      "episode_count": 34,
+      "order": 11
+    }
+  ],
+  "crew": {
+    "production": [
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm2073429",
+            "slug": "brett-goldstein",
+            "tmdb": 21422,
+            "trakt": 18106
+          },
+          "name": "Brett Goldstein",
+          "death": null,
+          "gender": "male",
+          "height": 180,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/018/106/headshots/medium/6f4875bca9.jpg.webp"
+            ]
+          },
+          "birthday": "1980-07-17",
+          "homepage": "https://theb-side.co.uk/management/brett-goldstein/",
+          "biography": "Brett Goldstein (born 17 July 1980) is a British actor, comedian, writer, producer, and podcaster. Known for his role as Roy Kent in the Apple TV+ sports comedy series Ted Lasso, he received the Primetime Emmy Award for Outstanding Supporting Actor in a Comedy Series for each of the first two seasons. He is also the co-creator of the comedy series Shrinking (2023).\n\nDescription above from the Wikipedia article Brett Goldstein, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+          "birthplace": "Sutton, London, England, UK",
+          "social_ids": {
+            "twitter": "brettgoldstein",
+            "facebook": null,
+            "instagram": "mrbrettgoldstein",
+            "wikipedia": "Brett_Goldstein"
+          },
+          "updated_at": "2026-07-07T08:06:24.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/018/106/headshots/medium/6f4875bca9.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0943035",
+            "slug": "bill-wrubel",
+            "tmdb": 58062,
+            "trakt": 43935
+          },
+          "name": "Bill Wrubel",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/043/935/headshots/medium/c774c4c749.jpg.webp"
+            ]
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "Bill Wrubel is an American television writer and producer.",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2023-11-23T11:54:43.000Z",
+          "known_for_department": null
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/043/935/headshots/medium/c774c4c749.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Casting Associate",
+        "jobs": [
+          "Casting Associate"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1683046",
+            "slug": "jeffrey-christopher-todd",
+            "tmdb": 1334126,
+            "trakt": 71861
+          },
+          "name": "Jeffrey Christopher Todd",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/071/861/headshots/medium/00f4092e6b.jpg.webp"
+            ]
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-01-12T10:51:55.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/071/861/headshots/medium/00f4092e6b.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Co-Executive Producer",
+        "jobs": [
+          "Co-Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0523276",
+            "slug": "declan-lowney",
+            "tmdb": 81809,
+            "trakt": 72847
+          },
+          "name": "Declan Lowney",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/072/847/headshots/medium/21020c4021.jpg.webp"
+            ]
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "Declan Lowney (born 1960) is an Irish director, known for his work in television and film. Among his work, he's directed shows by Penn & Teller, Father Ted, Alan Partridge: Alpha Papa, and Red Dwarf commercials for the AA.",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Declan_Lowney"
+          },
+          "updated_at": "2026-05-20T12:54:53.000Z",
+          "known_for_department": "directing"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/072/847/headshots/medium/21020c4021.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Casting",
+        "jobs": [
+          "Casting"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1142347",
+            "slug": "theo-park",
+            "tmdb": 1300064,
+            "trakt": 276895
+          },
+          "name": "Theo Park",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-04-02T23:34:27.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0837177",
+            "slug": "jason-sudeikis",
+            "tmdb": 58224,
+            "trakt": 297947
+          },
+          "name": "Jason Sudeikis",
+          "death": null,
+          "gender": "male",
+          "height": 185,
+          "images": {
+            "fanart": [
+              "media.trakt.tv/images/people/000/297/947/fanarts/medium/2de31b1257.jpg.webp"
+            ],
+            "headshot": [
+              "media.trakt.tv/images/people/000/297/947/headshots/medium/ad88102559.jpg.webp"
+            ]
+          },
+          "birthday": "1975-09-18",
+          "homepage": null,
+          "biography": "Daniel Jason Sudeikis (/sʊˈdeɪkɪs/ suu-DAY-kiss; born September 18, 1975) is an American actor, comedian, screenwriter, and producer. In the 1990s, he began his career in improv comedy. He performed with ComedySportz, iO Chicago (Improv Olympic), and The Second City. In 2003, Sudeikis was hired as a writer for the NBC sketch comedy series Saturday Night Live and later spent nine seasons as a cast member from 2005 to 2013, playing Joe Biden and Mitt Romney, among others.\n\nFrom 2020 to 2023, he co-created and played the title role in the Apple TV+ sports comedy series Ted Lasso, which earned him four Primetime Emmy Awards and two Golden Globe Awards. He was also one of the leading cast members in The Cleveland Show (2009-2013). Sudeikis has also acted in recurring roles in the comedy series 30 Rock (2007–2010), It's Always Sunny in Philadelphia (2010–2011), Portlandia (2011–2014), and The Last Man on Earth (2015–2018).\n\nHe had leading film roles in the comedies Horrible Bosses (2011) and its sequel, Horrible Bosses 2 (2014), and We're the Millers (2013), as well as the acclaimed independent films Drinking Buddies (2013), Sleeping with Other People (2015), and Colossal (2016), and supporting roles in Alexander Payne's Downsizing (2017) and Olivia Wilde's Booksmart (2019). He has also acted in voice roles for Epic (2013), The Angry Birds Movie (2016), The Angry Birds Movie 2 (2019), and Next Gen (2018).\n\nDescription above from the Wikipedia article Jason Sudeikis, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+          "birthplace": "Fairfax, Virginia, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": "jasonsudeikis",
+            "wikipedia": "Jason_Sudeikis"
+          },
+          "updated_at": "2026-07-23T08:01:18.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/297/947/headshots/medium/ad88102559.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Producer",
+        "jobs": [
+          "Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0912718",
+            "slug": "andrew-warren",
+            "tmdb": 1189235,
+            "trakt": 331193
+          },
+          "name": "Andrew Warren",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-04-06T08:30:57.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1918708",
+            "slug": "joe-kelly-3b2abca1-6f1c-4a5b-b2f9-eeb00b6cb80e",
+            "tmdb": 1222180,
+            "trakt": 399136
+          },
+          "name": "Joe Kelly",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": "1972-09-24",
+          "homepage": null,
+          "biography": "",
+          "birthplace": "Fairlawn, New Jersey, USA",
+          "social_ids": {
+            "twitter": "joekellyjk47",
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-07-30T08:01:51.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0492639",
+            "slug": "bill-lawrence-c228076a-632c-4380-9f14-ce5537434836",
+            "tmdb": 1216859,
+            "trakt": 400754
+          },
+          "name": "Bill Lawrence",
+          "death": null,
+          "gender": "male",
+          "height": 187.9600067138672,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/400/754/headshots/medium/8f6c1eeca4.jpg.webp"
+            ]
+          },
+          "birthday": "1968-12-26",
+          "homepage": null,
+          "biography": "",
+          "birthplace": "Ridgefield, Connecticut, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Bill_Lawrence_(TV_producer)"
+          },
+          "updated_at": "2026-08-06T08:05:48.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/400/754/headshots/medium/8f6c1eeca4.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0120994",
+            "slug": "jack-burditt",
+            "tmdb": 1213739,
+            "trakt": 401790
+          },
+          "name": "Jack Burditt",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/401/790/headshots/medium/6b911b97c1.jpg.webp"
+            ]
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "Jack Burditt is an American television writer and producer.",
+          "birthplace": "Cleveland, Ohio, USA",
+          "social_ids": {
+            "twitter": "jackburditt",
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Jack_Burditt"
+          },
+          "updated_at": "2025-07-27T16:11:01.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/401/790/headshots/medium/6b911b97c1.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1264835",
+            "slug": "jeff-ingold",
+            "tmdb": 1321773,
+            "trakt": 450523
+          },
+          "name": "Jeff Ingold",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Jeff_Ingold"
+          },
+          "updated_at": "2026-05-30T15:43:20.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Local Casting",
+        "jobs": [
+          "Local Casting"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0481962",
+            "slug": "heather-laird",
+            "tmdb": 1375922,
+            "trakt": 470193
+          },
+          "name": "Heather Laird",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-03-27T18:27:23.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Location Casting",
+        "jobs": [
+          "Location Casting"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0952917",
+            "slug": "bonnie-zane",
+            "tmdb": 1469340,
+            "trakt": 581527
+          },
+          "name": "Bonnie Zane",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-03-31T08:29:02.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0402360",
+            "slug": "brendan-hunt",
+            "tmdb": 1113365,
+            "trakt": 734002
+          },
+          "name": "Brendan Hunt",
+          "death": null,
+          "gender": "male",
+          "height": 182.8800048828125,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/734/002/headshots/medium/1f89df8936.jpg.webp"
+            ]
+          },
+          "birthday": "1972-06-28",
+          "homepage": "https://www.sbvtalent.com/talent/brendan-hunt",
+          "biography": "Brendan Hunt (born June 28, 1972) is an American actor and writer known for roles in the films We're the Millers (2013) and Horrible Bosses 2 (2014) as well as voicing two characters in the video game Fallout 4 (2015). He is a co-creator of the Apple TV+ sitcom Ted Lasso, as well as a writer and regular cast member (Coach Willis Beard). In 1996, Hunt completed the theater program at Illinois State University. While there, he performed at the Illinois Shakespeare Festival and completed a week-long master class under the guidance of actress Judith Ivey. After getting his theater degree, Hunt studied with The Second City in Chicago before heading to Amsterdam and joining the Boom Chicago comedy troupe.\n\nAfter roles in episodes of the television series Reno 911!, Parks and Recreation, Community and How I Met Your Mother, Hunt made his major motion picture debut as the \"Sketchy Dude\" in 2013's We're the Millers, which featured his Boom Chicago castmate Jason Sudeikis. Hunt had a role in another Sudeikis vehicle, 2014's Horrible Bosses 2, playing a sex addiction group member. Hunt co-created the series Ted Lasso and appears as a regular cast member; the series launched on Apple TV+ in 2020.",
+          "birthplace": "Chicago, Illinois, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": "brendanhunt",
+            "instagram": "brendanhunting",
+            "wikipedia": "Brendan_Hunt"
+          },
+          "updated_at": "2026-04-30T08:15:18.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/734/002/headshots/medium/1f89df8936.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Co-Producer",
+        "jobs": [
+          "Co-Producer",
+          "Unit Production Manager"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm4060805",
+            "slug": "kevin-mcgrail",
+            "tmdb": 1703233,
+            "trakt": 734312
+          },
+          "name": "Kevin McGrail",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T08:03:00.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Supervising Producer",
+        "jobs": [
+          "Supervising Producer",
+          "Co-Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm2541151",
+            "slug": "kip-kroeger",
+            "tmdb": 1773202,
+            "trakt": 837878
+          },
+          "name": "Kip Kroeger",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": "kipkroeger",
+            "facebook": "kip.kroeger",
+            "instagram": "kipkroeger",
+            "wikipedia": null
+          },
+          "updated_at": "2025-05-30T10:31:29.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm5426546",
+            "slug": "jane-becker",
+            "tmdb": 2166850,
+            "trakt": 1328501
+          },
+          "name": "Jane Becker",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-01-07T13:22:52.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm3960459",
+            "slug": "jamie-lee-72b69856-950f-4807-8022-8d4f0dac81a8",
+            "tmdb": 2205532,
+            "trakt": 1393821
+          },
+          "name": "Jamie Lee",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/001/393/821/headshots/medium/ad992b2154.jpg.webp"
+            ]
+          },
+          "birthday": "1983-03-15",
+          "homepage": null,
+          "biography": "Jamie Amanda Lee is an American comedian, actress, and writer best known for Ted Lasso, Girl Code, Crashing, I Love..., Ridiculousness, and The Wedding Coach. She is the author of the 2016 book Weddiculous: An Unfiltered Guide to Being a Bride.",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": "TheJamieLee",
+            "facebook": null,
+            "instagram": "reallyjamielee",
+            "wikipedia": "Jamie_Lee_(comedian)"
+          },
+          "updated_at": "2026-08-01T08:16:57.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/001/393/821/headshots/medium/ad992b2154.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm3344453",
+            "slug": "leann-bowen",
+            "tmdb": 2342625,
+            "trakt": 1526556
+          },
+          "name": "Leann Bowen",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "Leann Bowen is an award-winning writer.  With hard work and dedication, she has parlayed her work in improv to a successful career in television writing. Collectively as a member of the \"Ted Lasso\" writing staff, she has received both a WGA and PGA award. On the same series, she was Individually recognized with an NAACP Image Award nomination.",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": "@leannbowen",
+            "wikipedia": null
+          },
+          "updated_at": "2023-02-28T02:26:23.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Co-Executive Producer",
+        "jobs": [
+          "Co-Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm3521928",
+            "slug": "sarah-walker-4286e293-5547-47ad-b793-70494c521054",
+            "tmdb": 1520021,
+            "trakt": 1575061
+          },
+          "name": "Sarah Walker",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2024-04-05T08:01:21.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Executive Producer",
+        "jobs": [
+          "Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm3268507",
+            "slug": "liza-katzer",
+            "tmdb": 2505140,
+            "trakt": 1674863
+          },
+          "name": "Liza Katzer",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/001/674/863/headshots/medium/3e6394a460.jpg.webp"
+            ]
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-05-30T15:43:20.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/001/674/863/headshots/medium/3e6394a460.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Co-Executive Producer",
+        "jobs": [
+          "Co-Executive Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm5857107",
+            "slug": "phoebe-walsh",
+            "tmdb": 2452673,
+            "trakt": 1928841
+          },
+          "name": "Phoebe Walsh",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/001/928/841/headshots/medium/140eda8249.jpg.webp"
+            ]
+          },
+          "birthday": "1986-08-01",
+          "homepage": "https://hatchtalent.co.uk/creatives/phoebe-walsh/",
+          "biography": "Phoebe Walsh is a Writer, Story Editor and Actress known for Ted Lasso (2020), Behind the Filter (2020) and Life & Beth (2022).",
+          "birthplace": "Fitzrovia, London, England, UK",
+          "social_ids": {
+            "twitter": "phoebewalsh_",
+            "facebook": null,
+            "instagram": "phoebewalshx",
+            "wikipedia": null
+          },
+          "updated_at": "2026-04-01T10:30:25.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/001/928/841/headshots/medium/140eda8249.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Coordinating Producer",
+        "jobs": [
+          "Coordinating Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0357784",
+            "slug": "chip-hamilton",
+            "tmdb": 2897028,
+            "trakt": 2081095
+          },
+          "name": "Chip Hamilton",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-01-10T04:42:43.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Casting Associate",
+        "jobs": [
+          "Casting Associate"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm8766451",
+            "slug": "maisie-buck",
+            "tmdb": 3084712,
+            "trakt": 2265293
+          },
+          "name": "Maisie Buck",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T08:05:51.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Co-Producer",
+        "jobs": [
+          "Co-Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm2414616",
+            "slug": "melissa-mccoy",
+            "tmdb": 3170404,
+            "trakt": 2349113
+          },
+          "name": "Melissa McCoy",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": "1980-01-27",
+          "homepage": null,
+          "biography": "",
+          "birthplace": "Lansing, Michigan, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T08:05:51.000Z",
+          "known_for_department": "editing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Co-Producer",
+        "jobs": [
+          "Co-Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm5056426",
+            "slug": "sasha-garron",
+            "tmdb": 3170449,
+            "trakt": 2349125
+          },
+          "name": "Sasha Garron",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2025-03-17T08:01:13.000Z",
+          "known_for_department": "directing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Post Production Coordinator",
+        "jobs": [
+          "Post Production Coordinator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm12605187",
+            "slug": "alyssa-bravo",
+            "tmdb": 3959851,
+            "trakt": 3142681
+          },
+          "name": "Alyssa Bravo",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2023-03-14T08:06:01.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Location Manager",
+        "jobs": [
+          "Location Manager"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1005859",
+            "slug": "bryan-mangan",
+            "tmdb": 5412139,
+            "trakt": 4603851
+          },
+          "name": "Bryan Mangan",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T08:05:51.000Z",
+          "known_for_department": "art"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Co-Producer",
+        "jobs": [
+          "Co-Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm7169115",
+            "slug": "leah-pablo",
+            "tmdb": 6315914,
+            "trakt": 5501800
+          },
+          "name": "Leah Pablo",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-06-30T08:18:37.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "sound": [
+      {
+        "job": "Supervising Sound Editor",
+        "jobs": [
+          "Supervising Sound Editor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm2259990",
+            "slug": "brent-findley",
+            "tmdb": 80819,
+            "trakt": 71383
+          },
+          "name": "Brent Findley",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2024-12-15T08:09:03.000Z",
+          "known_for_department": "sound"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Sound Re-Recording Mixer",
+        "jobs": [
+          "Sound Re-Recording Mixer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1243354",
+            "slug": "sean-byrne-c873c5db-c475-4337-8847-3bfcae949d77",
+            "tmdb": 136346,
+            "trakt": 136642
+          },
+          "name": "Sean Byrne",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2023-07-23T08:04:59.000Z",
+          "known_for_department": "sound"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Original Music Composer",
+        "jobs": [
+          "Original Music Composer",
+          "Main Title Theme Composer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm3982464",
+            "slug": "marcus-mumford",
+            "tmdb": 1059011,
+            "trakt": 236778
+          },
+          "name": "Marcus Mumford",
+          "death": null,
+          "gender": "male",
+          "height": 182,
+          "images": {
+            "fanart": [
+              "media.trakt.tv/images/people/000/236/778/fanarts/medium/5bd462e13f.jpg.webp"
+            ],
+            "headshot": [
+              "media.trakt.tv/images/people/000/236/778/headshots/medium/4af6ec1856.jpg.webp"
+            ]
+          },
+          "birthday": "1987-01-31",
+          "homepage": "https://www.marcusmumford.com/",
+          "biography": "Marcus Oliver Johnstone Mumford (born 31 January 1987) is a British singer, songwriter, musician, and record producer. He is the lead singer of the folk band Mumford & Sons and also plays a number of instruments with the group, including guitar, drums and mandolin.\n\nDescription above from the Wikipedia article Marcus Mumford, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+          "birthplace": "Orange County, California, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": "marcusmumford",
+            "wikipedia": "Marcus_Mumford"
+          },
+          "updated_at": "2026-04-18T08:18:27.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/236/778/headshots/medium/4af6ec1856.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Music Supervisor",
+        "jobs": [
+          "Music Supervisor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0588096",
+            "slug": "christa-miller",
+            "tmdb": 212821,
+            "trakt": 422456
+          },
+          "name": "Christa Miller",
+          "death": null,
+          "gender": "female",
+          "height": 173.99000549316406,
+          "images": {
+            "fanart": [
+              "media.trakt.tv/images/people/000/422/456/fanarts/medium/b28b098434.jpg.webp"
+            ],
+            "headshot": [
+              "media.trakt.tv/images/people/000/422/456/headshots/medium/cd4b84ffb0.jpg.webp"
+            ]
+          },
+          "birthday": "1964-05-28",
+          "homepage": null,
+          "biography": "Christa Miller (born May 28, 1964) is an American actress who has achieved success in television comedy series. Her foremost roles include Kate O'Brien on The Drew Carey Show and Jordan Sullivan on Scrubs (which was created by her husband Bill Lawrence). She has also made appearances on Seinfeld and CSI: Miami. Since 2009, she has a starring role in the ABC sitcom Cougar Town, also created by husband Bill Lawrence.\n\nDescription above from the Wikipedia article Christa Miller, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+          "birthplace": "New York City, New York, USA",
+          "social_ids": {
+            "twitter": "ChristaBMiller",
+            "facebook": null,
+            "instagram": "christabmiller",
+            "wikipedia": "Christa_Miller"
+          },
+          "updated_at": "2026-01-10T15:02:34.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/422/456/headshots/medium/cd4b84ffb0.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Original Music Composer",
+        "jobs": [
+          "Original Music Composer",
+          "Main Title Theme Composer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1995968",
+            "slug": "tom-howe",
+            "tmdb": 1785135,
+            "trakt": 851827
+          },
+          "name": "Tom Howe",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/851/827/headshots/medium/338ab2f5bf.jpg.webp"
+            ]
+          },
+          "birthday": "1977-12-26",
+          "homepage": null,
+          "biography": "Tom Howe (born 26 December 1977) is a British composer and musician who has worked on over 100 films and television series. Growing up in a musical family, Tom was classically trained on piano, clarinet and guitar. In June 2020, Howe was made a member of the Academy of Motion Picture Arts and Sciences.",
+          "birthplace": "UK",
+          "social_ids": {
+            "twitter": "howe_tom",
+            "facebook": null,
+            "instagram": "tom.howe_music",
+            "wikipedia": "Tom_Howe_(musician)"
+          },
+          "updated_at": "2026-05-08T08:23:12.000Z",
+          "known_for_department": "sound"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/851/827/headshots/medium/338ab2f5bf.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Production Sound Mixer",
+        "jobs": [
+          "Production Sound Mixer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "danny-bowersox",
+            "tmdb": 2132293,
+            "trakt": 1275841
+          },
+          "name": "Danny Bowersox",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-05-12T21:20:19.000Z",
+          "known_for_department": "sound"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Sound Re-Recording Mixer",
+        "jobs": [
+          "Sound Re-Recording Mixer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm8014098",
+            "slug": "ryan-kennedy-8473937a-b166-453a-930d-efedac022f27",
+            "tmdb": 2744677,
+            "trakt": 1931053
+          },
+          "name": "Ryan Kennedy",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2024-08-16T08:01:31.000Z",
+          "known_for_department": "sound"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Music Supervisor",
+        "jobs": [
+          "Music Supervisor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm2271663",
+            "slug": "tony-von-pervieux",
+            "tmdb": 3170437,
+            "trakt": 2348780
+          },
+          "name": "Tony Von Pervieux",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2024-03-29T08:01:23.000Z",
+          "known_for_department": "sound"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Music Editor",
+        "jobs": [
+          "Music Editor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm9508238",
+            "slug": "richard-david-brown",
+            "tmdb": 4617788,
+            "trakt": 3799788
+          },
+          "name": "Richard David Brown",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2024-03-29T08:01:23.000Z",
+          "known_for_department": "sound"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "costume & make-up": [
+      {
+        "job": "Costume Design",
+        "jobs": [
+          "Costume Design"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1402712",
+            "slug": "jacky-levy",
+            "tmdb": 1319727,
+            "trakt": 253852
+          },
+          "name": "Jacky Levy",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-03-31T00:12:10.000Z",
+          "known_for_department": "costume & make-up"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Hair Department Head",
+        "jobs": [
+          "Hair Department Head"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm2664429",
+            "slug": "nicola-pope",
+            "tmdb": 1417173,
+            "trakt": 495831
+          },
+          "name": "Nicola Pope",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-05-29T08:32:42.000Z",
+          "known_for_department": "costume & make-up"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Makeup Department Head",
+        "jobs": [
+          "Makeup Department Head"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm3927157",
+            "slug": "nicky-austin",
+            "tmdb": 1721785,
+            "trakt": 1519891
+          },
+          "name": "Nicky Austin",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-02-14T08:20:19.000Z",
+          "known_for_department": null
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "created by": [
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0837177",
+            "slug": "jason-sudeikis",
+            "tmdb": 58224,
+            "trakt": 297947
+          },
+          "name": "Jason Sudeikis",
+          "death": null,
+          "gender": "male",
+          "height": 185,
+          "images": {
+            "fanart": [
+              "media.trakt.tv/images/people/000/297/947/fanarts/medium/2de31b1257.jpg.webp"
+            ],
+            "headshot": [
+              "media.trakt.tv/images/people/000/297/947/headshots/medium/ad88102559.jpg.webp"
+            ]
+          },
+          "birthday": "1975-09-18",
+          "homepage": null,
+          "biography": "Daniel Jason Sudeikis (/sʊˈdeɪkɪs/ suu-DAY-kiss; born September 18, 1975) is an American actor, comedian, screenwriter, and producer. In the 1990s, he began his career in improv comedy. He performed with ComedySportz, iO Chicago (Improv Olympic), and The Second City. In 2003, Sudeikis was hired as a writer for the NBC sketch comedy series Saturday Night Live and later spent nine seasons as a cast member from 2005 to 2013, playing Joe Biden and Mitt Romney, among others.\n\nFrom 2020 to 2023, he co-created and played the title role in the Apple TV+ sports comedy series Ted Lasso, which earned him four Primetime Emmy Awards and two Golden Globe Awards. He was also one of the leading cast members in The Cleveland Show (2009-2013). Sudeikis has also acted in recurring roles in the comedy series 30 Rock (2007–2010), It's Always Sunny in Philadelphia (2010–2011), Portlandia (2011–2014), and The Last Man on Earth (2015–2018).\n\nHe had leading film roles in the comedies Horrible Bosses (2011) and its sequel, Horrible Bosses 2 (2014), and We're the Millers (2013), as well as the acclaimed independent films Drinking Buddies (2013), Sleeping with Other People (2015), and Colossal (2016), and supporting roles in Alexander Payne's Downsizing (2017) and Olivia Wilde's Booksmart (2019). He has also acted in voice roles for Epic (2013), The Angry Birds Movie (2016), The Angry Birds Movie 2 (2019), and Next Gen (2018).\n\nDescription above from the Wikipedia article Jason Sudeikis, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+          "birthplace": "Fairfax, Virginia, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": "jasonsudeikis",
+            "wikipedia": "Jason_Sudeikis"
+          },
+          "updated_at": "2026-07-23T08:01:18.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/297/947/headshots/medium/ad88102559.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1918708",
+            "slug": "joe-kelly-3b2abca1-6f1c-4a5b-b2f9-eeb00b6cb80e",
+            "tmdb": 1222180,
+            "trakt": 399136
+          },
+          "name": "Joe Kelly",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": "1972-09-24",
+          "homepage": null,
+          "biography": "",
+          "birthplace": "Fairlawn, New Jersey, USA",
+          "social_ids": {
+            "twitter": "joekellyjk47",
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-07-30T08:01:51.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0492639",
+            "slug": "bill-lawrence-c228076a-632c-4380-9f14-ce5537434836",
+            "tmdb": 1216859,
+            "trakt": 400754
+          },
+          "name": "Bill Lawrence",
+          "death": null,
+          "gender": "male",
+          "height": 187.9600067138672,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/400/754/headshots/medium/8f6c1eeca4.jpg.webp"
+            ]
+          },
+          "birthday": "1968-12-26",
+          "homepage": null,
+          "biography": "",
+          "birthplace": "Ridgefield, Connecticut, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Bill_Lawrence_(TV_producer)"
+          },
+          "updated_at": "2026-08-06T08:05:48.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/400/754/headshots/medium/8f6c1eeca4.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Creator",
+        "jobs": [
+          "Creator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0402360",
+            "slug": "brendan-hunt",
+            "tmdb": 1113365,
+            "trakt": 734002
+          },
+          "name": "Brendan Hunt",
+          "death": null,
+          "gender": "male",
+          "height": 182.8800048828125,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/734/002/headshots/medium/1f89df8936.jpg.webp"
+            ]
+          },
+          "birthday": "1972-06-28",
+          "homepage": "https://www.sbvtalent.com/talent/brendan-hunt",
+          "biography": "Brendan Hunt (born June 28, 1972) is an American actor and writer known for roles in the films We're the Millers (2013) and Horrible Bosses 2 (2014) as well as voicing two characters in the video game Fallout 4 (2015). He is a co-creator of the Apple TV+ sitcom Ted Lasso, as well as a writer and regular cast member (Coach Willis Beard). In 1996, Hunt completed the theater program at Illinois State University. While there, he performed at the Illinois Shakespeare Festival and completed a week-long master class under the guidance of actress Judith Ivey. After getting his theater degree, Hunt studied with The Second City in Chicago before heading to Amsterdam and joining the Boom Chicago comedy troupe.\n\nAfter roles in episodes of the television series Reno 911!, Parks and Recreation, Community and How I Met Your Mother, Hunt made his major motion picture debut as the \"Sketchy Dude\" in 2013's We're the Millers, which featured his Boom Chicago castmate Jason Sudeikis. Hunt had a role in another Sudeikis vehicle, 2014's Horrible Bosses 2, playing a sex addiction group member. Hunt co-created the series Ted Lasso and appears as a regular cast member; the series launched on Apple TV+ in 2020.",
+          "birthplace": "Chicago, Illinois, USA",
+          "social_ids": {
+            "twitter": null,
+            "facebook": "brendanhunt",
+            "instagram": "brendanhunting",
+            "wikipedia": "Brendan_Hunt"
+          },
+          "updated_at": "2026-04-30T08:15:18.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/734/002/headshots/medium/1f89df8936.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      }
+    ],
+    "directing": [
+      {
+        "job": "Script Supervisor",
+        "jobs": [
+          "Script Supervisor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0999912",
+            "slug": "allison-hughes-stroud",
+            "tmdb": 1191093,
+            "trakt": 333268
+          },
+          "name": "Allison Hughes Stroud",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2022-02-21T08:06:43.000Z",
+          "known_for_department": null
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "art": [
+      {
+        "job": "Property Master",
+        "jobs": [
+          "Property Master"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0095944",
+            "slug": "ed-borasch-jr",
+            "tmdb": 1420151,
+            "trakt": 499097
+          },
+          "name": "Ed Borasch Jr.",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-06-26T08:23:00.000Z",
+          "known_for_department": "art"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Production Design",
+        "jobs": [
+          "Production Design"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0187915",
+            "slug": "paul-cripps",
+            "tmdb": 1426835,
+            "trakt": 506317
+          },
+          "name": "Paul Cripps",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-03-31T08:38:56.000Z",
+          "known_for_department": "art"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Set Decoration",
+        "jobs": [
+          "Set Decoration"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm1549144",
+            "slug": "kelsey-fowler-5aa3f287-cb0b-4b6a-9f18-79a7705998b6",
+            "tmdb": 4395735,
+            "trakt": 3570504
+          },
+          "name": "Kelsey Fowler",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": "https://www.kelseyafowler.com",
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": "kelseyafowler",
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T08:16:14.000Z",
+          "known_for_department": "art"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "visual effects": [
+      {
+        "job": "VFX Editor",
+        "jobs": [
+          "VFX Editor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm2820839",
+            "slug": "frank-openchowski",
+            "tmdb": 1453142,
+            "trakt": 534412
+          },
+          "name": "Frank Openchowski",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-02-07T08:39:17.000Z",
+          "known_for_department": "editing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Visual Effects Supervisor",
+        "jobs": [
+          "Visual Effects Supervisor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "james-maclachlan",
+            "tmdb": 2621061,
+            "trakt": 1807433
+          },
+          "name": "James MacLachlan",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2023-02-14T23:09:45.000Z",
+          "known_for_department": "visual effects"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Visual Effects Producer",
+        "jobs": [
+          "Visual Effects Producer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "danielle-malambri",
+            "tmdb": 4445279,
+            "trakt": 3622247
+          },
+          "name": "Danielle Malambri",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2023-12-24T08:04:16.000Z",
+          "known_for_department": "visual effects"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "crew": [
+      {
+        "job": "Stunt Coordinator",
+        "jobs": [
+          "Stunt Coordinator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "davis-lee-derock-jr",
+            "tmdb": 1606875,
+            "trakt": 611755
+          },
+          "name": "Davis Lee DeRock Jr.",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/000/611/755/headshots/medium/fc8308d6ae.jpg.webp"
+            ]
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-04-04T08:36:53.000Z",
+          "known_for_department": "acting"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/000/611/755/headshots/medium/fc8308d6ae.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Transportation Coordinator",
+        "jobs": [
+          "Transportation Coordinator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm0332992",
+            "slug": "jeffrey-gowing",
+            "tmdb": 2171843,
+            "trakt": 1333207
+          },
+          "name": "Jeffrey Gowing",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2023-04-03T08:07:05.000Z",
+          "known_for_department": "crew"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Post Production Supervisor",
+        "jobs": [
+          "Post Production Supervisor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm5865520",
+            "slug": "katelyn-hollenbeck",
+            "tmdb": 3170432,
+            "trakt": 2348474
+          },
+          "name": "Katelyn Hollenbeck",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2025-07-23T08:34:30.000Z",
+          "known_for_department": "production"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Other",
+        "jobs": [
+          "Other"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm12186984",
+            "slug": "rob-wadsworth",
+            "tmdb": 3185485,
+            "trakt": 2363274
+          },
+          "name": "Rob Wadsworth",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2023-02-14T23:09:45.000Z",
+          "known_for_department": null
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Post Production Supervisor",
+        "jobs": [
+          "Post Production Supervisor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "jillian-welker",
+            "tmdb": 6392147,
+            "trakt": 5576982
+          },
+          "name": "Jillian Welker",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-08-06T08:05:51.000Z",
+          "known_for_department": "crew"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "camera": [
+      {
+        "job": "\"A\" Camera Operator",
+        "jobs": [
+          "\"A\" Camera Operator",
+          "Second Unit Director of Photography"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "andrew-laboy",
+            "tmdb": 1728500,
+            "trakt": 767111
+          },
+          "name": "Andrew Laboy",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-04-05T08:27:47.000Z",
+          "known_for_department": "camera"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Key Grip",
+        "jobs": [
+          "Key Grip"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "dan-wyssmann",
+            "tmdb": 1821908,
+            "trakt": 903535
+          },
+          "name": "Dan Wyssmann",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2024-12-10T08:07:17.000Z",
+          "known_for_department": "camera"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "\"B\" Camera Operator",
+        "jobs": [
+          "\"B\" Camera Operator",
+          "Steadicam Operator"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "brad-jarvis",
+            "tmdb": 3680705,
+            "trakt": 2860977
+          },
+          "name": "Brad Jarvis",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2022-08-30T08:03:41.000Z",
+          "known_for_department": "camera"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Digital Imaging Technician",
+        "jobs": [
+          "Digital Imaging Technician"
+        ],
+        "person": {
+          "ids": {
+            "imdb": null,
+            "slug": "cody-jones-706fc2c6-2e55-4cc9-81a4-757e90a45df9",
+            "tmdb": 3769303,
+            "trakt": 2952176
+          },
+          "name": "Cody Jones",
+          "death": null,
+          "gender": "unknown",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": null,
+          "homepage": null,
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": null
+          },
+          "updated_at": "2026-03-27T20:33:50.000Z",
+          "known_for_department": "camera"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ],
+    "writing": [
+      {
+        "job": "Staff Writer",
+        "jobs": [
+          "Staff Writer"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm7103252",
+            "slug": "julia-lindon",
+            "tmdb": 3070853,
+            "trakt": 2251481
+          },
+          "name": "Julia Lindon",
+          "death": null,
+          "gender": "female",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": [
+              "media.trakt.tv/images/people/002/251/481/headshots/medium/46c8efd036.jpg.webp"
+            ]
+          },
+          "birthday": null,
+          "homepage": "https://www.julialindon.com",
+          "biography": "",
+          "birthplace": null,
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": "julialindon",
+            "wikipedia": null
+          },
+          "updated_at": "2026-04-30T08:15:08.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": [
+            "media.trakt.tv/images/people/002/251/481/headshots/medium/46c8efd036.jpg.webp"
+          ]
+        },
+        "episode_count": 35
+      },
+      {
+        "job": "Story Editor",
+        "jobs": [
+          "Story Editor"
+        ],
+        "person": {
+          "ids": {
+            "imdb": "nm5602930",
+            "slug": "dylan-marron-2cd6d826-a545-47ff-ae7c-e3f955763e2c",
+            "tmdb": 4029369,
+            "trakt": 3214375
+          },
+          "name": "Dylan Marron",
+          "death": null,
+          "gender": "male",
+          "height": null,
+          "images": {
+            "fanart": [],
+            "headshot": []
+          },
+          "birthday": "1988-05-31",
+          "homepage": null,
+          "biography": "",
+          "birthplace": "Caracas, Venezuela",
+          "social_ids": {
+            "twitter": null,
+            "facebook": null,
+            "instagram": null,
+            "wikipedia": "Dylan_Marron"
+          },
+          "updated_at": "2026-04-24T08:15:49.000Z",
+          "known_for_department": "writing"
+        },
+        "images": {
+          "headshot": []
+        },
+        "episode_count": 35
+      }
+    ]
+  }
+}
