@@ -68,12 +68,48 @@ struct TraktResponseHandlerTests {
             httpVersion: nil,
             headerFields: nil
         )
-        
-        #expect(throws: TraktAPIError.accountLimitExceeded) {
+
+        // No headers: nothing is known about the limit, and "unknown" must never
+        // be mistaken for a real value.
+        #expect(throws: TraktAPIError.accountLimitExceeded(limit: nil, isVIP: nil)) {
             try handler.handleResponse(response)
         }
     }
-    
+
+    @Test("Account limit exceeded (420) carries X-Account-Limit and X-VIP-User")
+    func accountLimitExceededWithHeaders() throws {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://api.trakt.tv/test")!,
+            statusCode: StatusCodes.AccountLimitExceeded,
+            httpVersion: nil,
+            headerFields: [
+                "X-Account-Limit": "5",
+                "X-VIP-User": "false"
+            ]
+        )
+
+        #expect(throws: TraktAPIError.accountLimitExceeded(limit: 5, isVIP: false)) {
+            try handler.handleResponse(response)
+        }
+    }
+
+    @Test("Account limit headers are read case-insensitively")
+    func accountLimitExceededHeaderCasing() throws {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://api.trakt.tv/test")!,
+            statusCode: StatusCodes.AccountLimitExceeded,
+            httpVersion: nil,
+            headerFields: [
+                "x-account-limit": "5000",
+                "x-vip-user": "true"
+            ]
+        )
+
+        #expect(throws: TraktAPIError.accountLimitExceeded(limit: 5000, isVIP: true)) {
+            try handler.handleResponse(response)
+        }
+    }
+
     @Test("Account locked (423) throws TraktAPIError.accountLocked")
     func accountLocked() throws {
         let response = HTTPURLResponse(
@@ -82,12 +118,68 @@ struct TraktResponseHandlerTests {
             httpVersion: nil,
             headerFields: nil
         )
-        
-        #expect(throws: TraktAPIError.accountLocked) {
+
+        #expect(throws: TraktAPIError.accountLocked(deactivated: false)) {
             try handler.handleResponse(response)
         }
     }
-    
+
+    @Test("Account locked (423) with X-Account-Locked reports a lock, not a deactivation")
+    func accountLockedHeader() throws {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://api.trakt.tv/test")!,
+            statusCode: StatusCodes.accountLocked,
+            httpVersion: nil,
+            headerFields: ["X-Account-Locked": "true"]
+        )
+
+        #expect(throws: TraktAPIError.accountLocked(deactivated: false)) {
+            try handler.handleResponse(response)
+        }
+    }
+
+    @Test("Account locked (423) with X-Account-Deactivated reports a deactivation")
+    func accountDeactivatedHeader() throws {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://api.trakt.tv/test")!,
+            statusCode: StatusCodes.accountLocked,
+            httpVersion: nil,
+            headerFields: ["X-Account-Deactivated": "true"]
+        )
+
+        #expect(throws: TraktAPIError.accountLocked(deactivated: true)) {
+            try handler.handleResponse(response)
+        }
+    }
+
+    @Test("Account deactivated header is read case-insensitively")
+    func accountDeactivatedHeaderCasing() throws {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://api.trakt.tv/test")!,
+            statusCode: StatusCodes.accountLocked,
+            httpVersion: nil,
+            headerFields: ["x-account-deactivated": "1"]
+        )
+
+        #expect(throws: TraktAPIError.accountLocked(deactivated: true)) {
+            try handler.handleResponse(response)
+        }
+    }
+
+    @Test("A false X-Account-Deactivated is not treated as a deactivation")
+    func accountDeactivatedFalse() throws {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://api.trakt.tv/test")!,
+            statusCode: StatusCodes.accountLocked,
+            httpVersion: nil,
+            headerFields: ["X-Account-Deactivated": "false"]
+        )
+
+        #expect(throws: TraktAPIError.accountLocked(deactivated: false)) {
+            try handler.handleResponse(response)
+        }
+    }
+
     @Test("VIP only (426) throws TraktAPIError.vipOnly")
     func vipOnly() throws {
         let response = HTTPURLResponse(
@@ -220,14 +312,14 @@ struct TraktResponseHandlerTests {
     
     @Test("TraktAPIError.accountLimitExceeded has correct statusCode")
     func accountLimitExceededStatusCode() {
-        let error = TraktAPIError.accountLimitExceeded
+        let error = TraktAPIError.accountLimitExceeded(limit: nil, isVIP: nil)
         #expect(error.statusCode == StatusCodes.AccountLimitExceeded)
         #expect(error.statusCode == 420)
     }
-    
+
     @Test("TraktAPIError.accountLocked has correct statusCode")
     func accountLockedStatusCode() {
-        let error = TraktAPIError.accountLocked
+        let error = TraktAPIError.accountLocked(deactivated: false)
         #expect(error.statusCode == StatusCodes.accountLocked)
         #expect(error.statusCode == 423)
     }
@@ -247,16 +339,30 @@ struct TraktResponseHandlerTests {
     
     @Test("TraktAPIError.accountLimitExceeded has error description")
     func accountLimitExceededDescription() {
-        let error = TraktAPIError.accountLimitExceeded
+        let error = TraktAPIError.accountLimitExceeded(limit: nil, isVIP: nil)
         #expect(error.errorDescription != nil)
         #expect(error.errorDescription?.contains("limit") == true)
     }
-    
+
+    @Test("TraktAPIError.accountLimitExceeded mentions the limit when it is known")
+    func accountLimitExceededDescriptionWithLimit() {
+        let error = TraktAPIError.accountLimitExceeded(limit: 5, isVIP: false)
+        #expect(error.errorDescription?.contains("5") == true)
+    }
+
     @Test("TraktAPIError.accountLocked has error description")
     func accountLockedDescription() {
-        let error = TraktAPIError.accountLocked
+        let error = TraktAPIError.accountLocked(deactivated: false)
         #expect(error.errorDescription != nil)
         #expect(error.errorDescription?.contains("locked") == true)
+        #expect(error.errorDescription?.contains("support@trakt.tv") == true)
+    }
+
+    @Test("TraktAPIError.accountLocked distinguishes a deactivated account")
+    func accountDeactivatedDescription() {
+        let error = TraktAPIError.accountLocked(deactivated: true)
+        #expect(error.errorDescription?.contains("deactivated") == true)
+        #expect(error.errorDescription?.contains("support@trakt.tv") == true)
     }
     
     @Test("TraktAPIError.vipOnly has error description")
@@ -278,12 +384,14 @@ struct TraktResponseHandlerTests {
     
     @Test("TraktAPIError equatable works correctly")
     func errorEquatable() {
-        #expect(TraktAPIError.accountLimitExceeded == TraktAPIError.accountLimitExceeded)
-        #expect(TraktAPIError.accountLocked == TraktAPIError.accountLocked)
+        #expect(TraktAPIError.accountLimitExceeded(limit: 5, isVIP: false) == TraktAPIError.accountLimitExceeded(limit: 5, isVIP: false))
+        #expect(TraktAPIError.accountLocked(deactivated: false) == TraktAPIError.accountLocked(deactivated: false))
         #expect(TraktAPIError.vipOnly == TraktAPIError.vipOnly)
         #expect(TraktAPIError.cloudflareError(statusCode: 520) == TraktAPIError.cloudflareError(statusCode: 520))
-        
-        #expect(TraktAPIError.accountLimitExceeded != TraktAPIError.accountLocked)
+
+        #expect(TraktAPIError.accountLimitExceeded(limit: nil, isVIP: nil) != TraktAPIError.accountLocked(deactivated: false))
+        #expect(TraktAPIError.accountLimitExceeded(limit: 5, isVIP: nil) != TraktAPIError.accountLimitExceeded(limit: 100, isVIP: nil))
+        #expect(TraktAPIError.accountLocked(deactivated: false) != TraktAPIError.accountLocked(deactivated: true))
         #expect(TraktAPIError.cloudflareError(statusCode: 520) != TraktAPIError.cloudflareError(statusCode: 521))
     }
 }

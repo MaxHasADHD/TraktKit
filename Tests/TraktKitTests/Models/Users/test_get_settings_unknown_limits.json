@@ -1,0 +1,73 @@
+{
+    "user": {
+        "username": "justin",
+        "private": false,
+        "name": "Justin Nemeth",
+        "vip": true,
+        "vip_ep": false,
+        "ids": {
+            "slug": "justin",
+            "uuid": "b6589fc6ab0dc82cf12099d1c2d40ab994e8410c"
+        },
+        "joined_at": "2010-09-25T17:49:25.000Z",
+        "location": "San Diego, CA",
+        "about": "Co-founder of trakt.",
+        "gender": "male",
+        "age": 32,
+        "images": {
+            "avatar": {
+                "full": "https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256"
+            }
+        },
+        "vip_og": true,
+        "vip_years": 5
+    },
+    "connections": {
+        "facebook": false,
+        "twitter": true,
+        "mastodon": true,
+        "google": true,
+        "tumblr": false,
+        "medium": false,
+        "slack": false,
+        "apple": false,
+        "dropbox": false,
+        "microsoft": false
+    },
+    "sharing_text": {
+        "watching": "I'm watching [item]",
+        "watched": "I just watched [item]",
+        "rated": "[item] [stars]"
+    },
+    "limits": {
+        "list": {
+            "count": 100,
+            "item_count": 5000,
+            "future_key": "unmodelled"
+        },
+        "watchlist": {
+            "item_count": 5000
+        },
+        "favorites": {
+            "item_count": 5000
+        },
+        "search": {
+            "recent_count": 5
+        },
+        "collection": {
+            "item_count": 5000
+        },
+        "notes": {
+            "item_count": 5000
+        },
+        "recommendations": {
+            "item_count": 100
+        },
+        "some_future_limit": {
+            "count": 1,
+            "nested": {
+                "deep": true
+            }
+        }
+    }
+}

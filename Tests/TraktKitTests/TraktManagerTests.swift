@@ -31,6 +31,37 @@ extension TraktTestSuite {
             #expect(traktManager.configuration.additionalHeaders == expectedHeaders)
         }
 
+        @Test("Every built request carries an identifying User-Agent")
+        func requestsCarryUserAgent() async throws {
+            // Trakt requires an identifying User-Agent (minimum shape `MyApp/1.0`);
+            // unidentified traffic risks being blocked. Every request TraktKit makes —
+            // authenticated, unauthenticated, and the OAuth token endpoints — is built
+            // by `mutableRequest`, so asserting there covers all of them.
+            let unauthenticated = try await traktManager.mutableRequest(
+                forPath: "movies/trending",
+                isAuthorized: false,
+                withHTTPMethod: .GET
+            )
+            let authenticated = try await traktManager.mutableRequest(
+                forPath: "sync/history",
+                isAuthorized: true,
+                withHTTPMethod: .GET
+            )
+            let oauth = try await traktManager.mutableRequest(
+                forPath: "oauth/device/token",
+                isAuthorized: false,
+                withHTTPMethod: .POST
+            )
+
+            for request in [unauthenticated, authenticated, oauth] {
+                let userAgent = try #require(request.value(forHTTPHeaderField: "User-Agent"))
+                #expect(userAgent == "myapp/1.0.0")
+                // Minimum `Product/Version` shape.
+                #expect(userAgent.contains("/"))
+                #expect(userAgent.isEmpty == false)
+            }
+        }
+
         @Test
         func pollForAccessTokenInvalidDeviceCode() async throws {
             try await suite.mock(.GET, "https://api.trakt.tv/oauth/device/token", result: .success(.init()), httpCode: 404)
@@ -149,20 +180,56 @@ extension TraktTestSuite {
 
             let route: Route<TraktList> = Route(path: "users/me/lists", method: .POST, traktManager: traktManager)
 
-            await #expect(throws: TraktAPIError.accountLimitExceeded) {
+            await #expect(throws: TraktAPIError.accountLimitExceeded(limit: nil, isVIP: nil)) {
+                try await route.perform()
+            }
+        }
+
+        @Test("A 420 response surfaces X-Account-Limit and X-VIP-User to the caller")
+        func accountLimitExceededWithHeaders() async throws {
+            let urlString = "https://api.trakt.tv/users/me/lists"
+            try await suite.mock(
+                .POST,
+                urlString,
+                result: .success(Data()),
+                httpCode: StatusCodes.AccountLimitExceeded,
+                headers: [.contentType, .apiVersion, .apiKey(""), .accountLimit(5), .vipUser(false)]
+            )
+
+            let route: Route<TraktList> = Route(path: "users/me/lists", method: .POST, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.accountLimitExceeded(limit: 5, isVIP: false)) {
                 try await route.perform()
             }
         }
 
         @Test("Mock request with 423 status throws TraktAPIError.accountLocked")
         func accountLocked() async throws {
-            
+
             let urlString = "https://api.trakt.tv/sync/collection"
             try await suite.mock(.POST, urlString, result: .success(Data()), httpCode: StatusCodes.accountLocked)
 
             let route: EmptyRoute = EmptyRoute(path: "sync/collection", method: .POST, traktManager: traktManager)
 
-            await #expect(throws: TraktAPIError.accountLocked) {
+            await #expect(throws: TraktAPIError.accountLocked(deactivated: false)) {
+                try await route.perform()
+            }
+        }
+
+        @Test("A 423 response surfaces X-Account-Deactivated to the caller")
+        func accountDeactivated() async throws {
+            let urlString = "https://api.trakt.tv/sync/collection"
+            try await suite.mock(
+                .POST,
+                urlString,
+                result: .success(Data()),
+                httpCode: StatusCodes.accountLocked,
+                headers: [.contentType, .apiVersion, .apiKey(""), .accountDeactivated(true)]
+            )
+
+            let route: EmptyRoute = EmptyRoute(path: "sync/collection", method: .POST, traktManager: traktManager)
+
+            await #expect(throws: TraktAPIError.accountLocked(deactivated: true)) {
                 try await route.perform()
             }
         }

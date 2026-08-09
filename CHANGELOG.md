@@ -5,6 +5,36 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.11.0] - 2026-08-09
+
+Hardening against Trakt's 2026 API changes: a `limits` schema that keeps moving, and the
+body-less 420/423 responses whose only detail arrives in headers.
+
+### Changed
+- **`AccountSettings.limits` is now `Optional`, and an undecodable `limits` object no longer fails
+  the whole settings call.** Trakt documents `limits` as nullable and every limit inside it as
+  required, so the members of `Limits` stay non-optional. But the schema is actively changing —
+  the published OpenAPI spec already omits keys the live API returns — so `AccountSettings` now
+  decodes the `limits` key leniently: a payload that breaks the documented contract degrades to
+  `nil` instead of taking `user`, `connections` and `sharing_text` down with it. The lenient path
+  is scoped to decoding failures of the `limits` sub-tree; every other key still decodes strictly.
+  Treat `nil` as "unknown" (and therefore "allow"), never as zero.
+- **BREAKING**: `TraktAPIError.accountLimitExceeded` now carries `(limit: Int?, isVIP: Bool?)`,
+  parsed from the `X-Account-Limit` and `X-VIP-User` headers a 420 sends in place of a body.
+  Callers can show the real limit and decide whether a VIP upsell makes sense. Pattern matches
+  that ignore the payload (`case .accountLimitExceeded:`) are unaffected; constructing or
+  equating the case is.
+- **BREAKING**: `TraktAPIError.accountLocked` now carries `(deactivated: Bool)`, from the
+  `X-Account-Deactivated` header, so apps can tell a locked account from a deactivated one.
+  Same source-compatibility note as above.
+- 423's `errorDescription` now follows Trakt's current guidance — email `support@trakt.tv` —
+  replacing the obsolete link to the archived api-help issue.
+
+### Added
+- Case-insensitive header helpers on `HTTPURLResponse` (`intHeaderValue(forName:)`,
+  `boolHeaderValue(forName:)`) used to read the 420/423 headers. Boolean headers accept
+  `true`/`false`, `1`/`0`, and `yes`/`no`; anything unrecognized reads as `nil` rather than a guess.
+
 ## [3.10.0] - 2026-08-07
 
 Aligns the people and credits models with what the API actually returns. Every change below was

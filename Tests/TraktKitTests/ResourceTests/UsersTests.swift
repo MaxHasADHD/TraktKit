@@ -27,8 +27,8 @@ extension TraktTestSuite {
             #expect(settings.user.gender == "male")
             #expect(settings.connections.twitter == true)
             #expect(settings.connections.slack == false)
-            #expect(settings.limits.list.count == 2)
-            #expect(settings.limits.list.itemCount == 100)
+            #expect(settings.limits?.list.count == 2)
+            #expect(settings.limits?.list.itemCount == 100)
         }
 
         // MARK: - Follow requests
