@@ -5,6 +5,34 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.11.1]
+
+### Fixed
+- **A refresh token rejected with HTTP 400 now surfaces as `TraktClientError.invalidRefreshToken`.**
+  Trakt documents `POST /oauth/token` as returning 200 or 400, and reports a dead grant with a 400
+  carrying `invalid_grant` — the refresh token was expired, revoked, de-authorized, or, since
+  Trakt's refresh tokens are single-use, already spent. `refreshToken(using:)` mapped only 401, so
+  that 400 escaped as a plain `APIError.badRequest`: indistinguishable from an ordinary request
+  failure, leaving callers to retry a token that could never work and never prompting the user to
+  sign in again. 401 is still mapped as well.
+
+  This covers all three refresh paths — the explicit `refreshTokenIfNeeded()`, the proactive refresh
+  before an authenticated request, and the 401-triggered refresh inside `fetchData` — the last two of
+  which rethrow out of the original request, where a caller cannot classify them.
+
+  Scoped by construction: `refreshToken(using:)` only ever calls `auth().getAccessToken(from:)`, so a
+  400 from any other endpoint is untouched.
+
+### Added
+- **Keychain write failures are logged.** `KeychainTraktAuthentication` discarded the `Bool` returned
+  by `MLKeychain.setString`. Because Trakt's refresh tokens are single-use, a save that fails after a
+  successful refresh loses the replacement for a token that is already spent, which locks the user
+  out of syncing until they sign in again. No cause for such a failure is known; this logs it so it
+  is visible rather than inferred.
+
+### Changed
+- Requires SwiftAPIClient 1.7.1, which fixes `Retry-After` parsing and logs error response bodies.
+
 ## [3.11.0] - 2026-08-09
 
 Hardening against Trakt's 2026 API changes: a `limits` schema that keeps moving, and the

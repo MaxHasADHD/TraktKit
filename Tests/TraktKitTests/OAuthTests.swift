@@ -416,7 +416,111 @@ extension TraktTestSuite {
             try await traktManager.refreshTokenIfNeeded()
         }
     }
-    
+
+    @Test("refreshTokenIfNeeded surfaces invalidRefreshToken when the grant is rejected with 400")
+    func refreshTokenIfNeededBadRequestThrows() async throws {
+        // Trakt documents `POST /oauth/token` as returning 200 or 400. A 400 carrying
+        // `invalid_grant` is how a dead refresh token is actually reported; mapping only
+        // 401 left it as a raw `badRequest`, indistinguishable from an ordinary request
+        // failure, so callers retried a token that could never work.
+        let authStorage = TraktMockAuthStorage(accessToken: "old", refreshToken: "invalid-rt", expirationDate: .distantPast)
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+
+        let errorData = try JSONSerialization.data(withJSONObject: [
+            "error": "invalid_grant",
+            "error_description": "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
+        ])
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400)
+
+        await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
+            try await traktManager.refreshTokenIfNeeded()
+        }
+    }
+
+    @Test("A 401 on an ordinary request surfaces invalidRefreshToken when the refresh is rejected with 400")
+    func rejectedGrantDuringAutomaticRefreshThrowsFromOriginalRequest() async throws {
+        // The 401-triggered refresh inside `APIClient.fetchData` rethrows the refresh's
+        // error out of the *original* request. Without the 400 mapping that arrives as a
+        // raw `badRequest` from an ordinary endpoint — the revoked-server-side case,
+        // which no caller can classify.
+        let authStorage = TraktMockAuthStorage(accessToken: "dead-at", refreshToken: "invalid-rt", expirationDate: .distantFuture)
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+        _ = try? await traktManager.refreshCurrentAuthState()
+
+        try await suite.mock(.GET, "https://api.trakt.tv/users/settings", result: .success(Data()), httpCode: 401, reusable: true)
+        let errorData = try JSONSerialization.data(withJSONObject: ["error": "invalid_grant"])
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400, reusable: true)
+
+        await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
+            _ = try await traktManager.currentUser().settings().perform()
+        }
+    }
+
+    @Test("A proactive refresh rejected with 400 surfaces invalidRefreshToken from the original request")
+    func rejectedGrantDuringProactiveRefreshThrowsFromOriginalRequest() async throws {
+        // `fetchData` refreshes before sending when the token is inside the
+        // coordinator's threshold, so a grant revoked while the access token is still
+        // valid fails here rather than on a 401.
+        let authStorage = TraktMockAuthStorage(
+            accessToken: "at",
+            refreshToken: "invalid-rt",
+            expirationDate: Date(timeIntervalSinceNow: 30 * 60)
+        )
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+        _ = try? await traktManager.refreshCurrentAuthState()
+
+        let errorData = try JSONSerialization.data(withJSONObject: ["error": "invalid_grant"])
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400, reusable: true)
+
+        await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
+            _ = try await traktManager.currentUser().settings().perform()
+        }
+    }
+
+    @Test("A 400 from a non-token endpoint stays a badRequest")
+    func badRequestFromOrdinaryEndpointIsNotAnAuthError() async throws {
+        // The safety half of the mapping: only the token endpoint's 400 means
+        // "re-authenticate". Every other 400 is an ordinary request failure and must
+        // not push the user back through sign-in.
+        let authStorage = TraktMockAuthStorage(accessToken: "at", refreshToken: "rt", expirationDate: .distantFuture)
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+        _ = try? await traktManager.refreshCurrentAuthState()
+
+        try await suite.mock(.GET, "https://api.trakt.tv/users/settings", result: .success(Data()), httpCode: 400)
+
+        await #expect(throws: TraktError.badRequest) {
+            _ = try await traktManager.currentUser().settings().perform()
+        }
+    }
+
     @Test func revokeTokenBodyWithoutClientSecret() throws {
         // Test that revoke token body works without client_secret for PKCE tokens
         let json: [String: String] = [

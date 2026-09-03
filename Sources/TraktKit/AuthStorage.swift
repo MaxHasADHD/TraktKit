@@ -5,11 +5,14 @@
 //  Created by Maximilian Litteral on 3/6/25.
 //
 import Foundation
+import os
 import SwiftAPIClient
 
 public protocol TraktAuthentication: APIAuthentication {}
 
 public actor KeychainTraktAuthentication: TraktAuthentication {
+    private static let logger = Logger(subsystem: "TraktKit", category: "KeychainTraktAuthentication")
+
     private enum Constants {
         static let tokenExpirationDefaultsKey = "accessTokenExpirationDate"
         static let accessTokenKey = "accessToken"
@@ -63,9 +66,14 @@ public actor KeychainTraktAuthentication: TraktAuthentication {
         refreshToken = state.refreshToken
         expirationDate = state.expirationDate
 
-        // Save to keychain
-        MLKeychain.setString(value: state.accessToken, forKey: Constants.accessTokenKey)
-        MLKeychain.setString(value: state.refreshToken, forKey: Constants.refreshTokenKey)
+        // Refresh tokens are single-use, so a failed write loses the replacement for a
+        // token that is already spent — unrecoverable, and silent without this log.
+        if !MLKeychain.setString(value: state.accessToken, forKey: Constants.accessTokenKey) {
+            Self.logger.error("Failed to save access token to the keychain.")
+        }
+        if !MLKeychain.setString(value: state.refreshToken, forKey: Constants.refreshTokenKey) {
+            Self.logger.error("Failed to save refresh token to the keychain. Syncing will fail until the user signs in again.")
+        }
 
         UserDefaults.standard.set(state.expirationDate, forKey: Constants.tokenExpirationDefaultsKey)
     }

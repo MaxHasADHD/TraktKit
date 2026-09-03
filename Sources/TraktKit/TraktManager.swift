@@ -378,7 +378,9 @@ extension TraktManager: TokenRefreshHandler {
                 refreshToken: authInfo.refreshToken,
                 expirationDate: expiresDate
             )
-        } catch TraktError.unauthorized {
+        } catch TraktError.unauthorized, TraktError.badRequest {
+            // Trakt reports a rejected grant as 400 `invalid_grant`; 401 is kept in
+            // case it is still sent. Only the token endpoint reaches this catch.
             throw TraktClientError.invalidRefreshToken
         }
     }
