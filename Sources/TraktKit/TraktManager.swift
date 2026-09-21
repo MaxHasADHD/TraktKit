@@ -378,9 +378,12 @@ extension TraktManager: TokenRefreshHandler {
                 refreshToken: authInfo.refreshToken,
                 expirationDate: expiresDate
             )
-        } catch TraktError.unauthorized, TraktError.badRequest {
+        } catch TraktError.unauthorized, TraktError.badRequest, TraktError.serverError {
             // Trakt reports a rejected grant as 400 `invalid_grant`; 401 is kept in
-            // case it is still sent. Only the token endpoint reaches this catch.
+            // case it is still sent. Some stale sessions instead fail with an
+            // undocumented 5xx on every attempt, leaving re-authentication as the only
+            // way out. Cloudflare's 520–522 are `TraktAPIError`s and pass through as
+            // outages. Only the token endpoint reaches this catch.
             throw TraktClientError.invalidRefreshToken
         }
     }

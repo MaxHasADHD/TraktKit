@@ -5,6 +5,20 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.11.2]
+
+### Fixed
+- **A refresh that fails with HTTP 5xx now surfaces as `TraktClientError.invalidRefreshToken`.**
+  Trakt can answer `POST /oauth/token` for a stale session with an undocumented `500` and an empty
+  `{}` body — observed for a session idle about four weeks — and does so on every attempt. As a raw
+  `APIError.serverError` it was not an auth error, so apps failed sync silently and never offered
+  sign-in, the only way out. Cloudflare's 520–522 still surface as `TraktAPIError.cloudflareError`.
+
+  `APIError.serverError` covers all of 500–599, so a genuine Trakt outage (502/503/504) during a
+  refresh also asks the user to sign in again.
+
+  Scoped by construction, like the 400 mapping: a 5xx from any other endpoint is untouched.
+
 ## [3.11.1]
 
 ### Fixed

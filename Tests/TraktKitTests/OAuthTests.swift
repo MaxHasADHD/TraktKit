@@ -498,6 +498,72 @@ extension TraktTestSuite {
         }
     }
 
+    @Test("A proactive refresh failing with 500 surfaces invalidRefreshToken from the original request")
+    func serverErrorDuringProactiveRefreshThrowsFromOriginalRequest() async throws {
+        // Seen in the wild: a session idle for weeks makes `POST /oauth/token` fail
+        // with an undocumented 500 on every attempt. As a raw `serverError` it is not
+        // an auth error, so sync failed silently and never offered sign-in.
+        let authStorage = TraktMockAuthStorage(
+            accessToken: "at",
+            refreshToken: "stale-rt",
+            expirationDate: Date(timeIntervalSinceNow: 30 * 60)
+        )
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+        _ = try? await traktManager.refreshCurrentAuthState()
+
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(Data()), httpCode: 500, reusable: true)
+
+        await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
+            _ = try await traktManager.currentUser().settings().perform()
+        }
+    }
+
+    @Test("A Cloudflare error from the token endpoint is not an auth error")
+    func cloudflareErrorDuringRefreshIsNotAnAuthError() async throws {
+        let authStorage = TraktMockAuthStorage(accessToken: "old", refreshToken: "rt", expirationDate: .distantPast)
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+
+        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(Data()), httpCode: 522)
+
+        await #expect(throws: TraktAPIError.cloudflareError(statusCode: 522)) {
+            try await traktManager.refreshTokenIfNeeded()
+        }
+    }
+
+    @Test("A 500 from a non-token endpoint stays a serverError")
+    func serverErrorFromOrdinaryEndpointIsNotAnAuthError() async throws {
+        let authStorage = TraktMockAuthStorage(accessToken: "at", refreshToken: "rt", expirationDate: .distantFuture)
+        let traktManager = await TraktManager(
+            session: suite.mockSession.urlSession,
+            clientId: "",
+            clientSecret: "",
+            redirectURI: "",
+            userAgent: "myapp/1.0.0",
+            authStorage: authStorage
+        )
+        _ = try? await traktManager.refreshCurrentAuthState()
+
+        try await suite.mock(.GET, "https://api.trakt.tv/users/settings", result: .success(Data()), httpCode: 500)
+
+        await #expect(throws: TraktError.serverError) {
+            _ = try await traktManager.currentUser().settings().perform()
+        }
+    }
+
     @Test("A 400 from a non-token endpoint stays a badRequest")
     func badRequestFromOrdinaryEndpointIsNotAnAuthError() async throws {
         // The safety half of the mapping: only the token endpoint's 400 means
