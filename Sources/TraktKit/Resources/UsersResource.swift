@@ -253,7 +253,7 @@ extension TraktManager {
         // MARK: - List Items
 
         /**
-         Get all items on a personal list. Items can be a `movie`, `show`, `season`, `episode`, or `person`. You can optionally specify the type parameter with a single value or comma delimited string for multiple item types.
+         Get all items on a personal list. Items can be a `movie`, `show`, `season`, or `episode`. You can optionally specify the type parameter with a single value or comma delimited string for multiple item types.
 
          **Notes**
 
@@ -271,7 +271,7 @@ extension TraktManager {
 
          - parameters:
          - listId: Trakt ID or Trakt slug
-         - type: Filter for a specific item type. Possible values:  `movie` , `show` , `season` , `episode` , `person` .
+         - type: Filter for a specific item type. Possible values:  `movie` , `show` , `season` , `episode` .
          - sortBy: Sort by a specific property. Possible values:  `rank` , `added` , `title` , `released` , `runtime` , `popularity` , `random` , `percentage` , `imdb_rating` , `tmdb_rating` , `rt_tomatometer` , `rt_audience` , `metascore` , `votes` , `imdb_votes` , `tmdb_votes` , `my_rating` , `watched` , `collected` .
          - sortHow: Sort direction. Possible values:  `asc` , `desc` .
          */
@@ -280,7 +280,7 @@ extension TraktManager {
         }
 
         /**
-         Add one or more items to a personal list. Items can be movies, shows, seasons, episodes, or people.
+         Add one or more items to a personal list. Items can be movies, shows, seasons, or episodes; Trakt no longer accepts people on lists.
 
          **Notes**
 
@@ -294,19 +294,19 @@ extension TraktManager {
 
          🔥 VIP Enhanced • 🔒 OAuth Required • 😁 Emojis
          */
-        public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<ListItemPostResult> {
-            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).addItemsToList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+        public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil) -> Route<ListItemPostResult> {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).addItemsToList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes)
         }
 
         /**
-         Remove one or more items from a personal list.
+         Remove one or more items from a personal list. Items can be movies, shows, seasons, or episodes; Trakt no longer accepts people on lists.
          
          **Endpoint:** `POST /users/me/lists/{id}/items/remove`
 
          🔒 OAuth Required
          */
-        public func removeItemsFromList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<RemoveListItemResult> {
-            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).removeItemsFromList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+        public func removeItemsFromList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil) -> Route<RemoveListItemResult> {
+            UsersResource(slug: Self.currentUserSlug, traktManager: traktManager).removeItemsFromList(listId, movies: movies, shows: shows, seasons: seasons, episodes: episodes)
         }
 
         /**
@@ -503,7 +503,7 @@ extension TraktManager {
         }
 
         /**
-         Get all items on a personal list. Items can be a `movie`, `show`, `season`, `episode`, or `person`. You can optionally specify the type parameter with a single value or comma delimited string for multiple item types.
+         Get all items on a personal list. Items can be a `movie`, `show`, `season`, or `episode`. You can optionally specify the type parameter with a single value or comma delimited string for multiple item types.
 
          **Notes**
 
@@ -521,7 +521,7 @@ extension TraktManager {
 
          - parameters:
             - listId: Trakt ID or Trakt slug
-            - type: Filter for a specific item type. Possible values:  `movie` , `show` , `season` , `episode` , `person` .
+            - type: Filter for a specific item type. Possible values:  `movie` , `show` , `season` , `episode` .
             - sortBy: Sort by a specific property. Possible values:  `rank` , `added` , `title` , `released` , `runtime` , `popularity` , `random` , `percentage` , `imdb_rating` , `tmdb_rating` , `rt_tomatometer` , `rt_audience` , `metascore` , `votes` , `imdb_votes` , `tmdb_votes` , `my_rating` , `watched` , `collected` .
             - sortHow: Sort direction. Possible values:  `asc` , `desc` .
          */
@@ -535,7 +535,7 @@ extension TraktManager {
         }
 
         /**
-         Add one or more items to a personal list. Items can be movies, shows, seasons, episodes, or people.
+         Add one or more items to a personal list. Items can be movies, shows, seasons, or episodes; Trakt no longer accepts people on lists.
 
          **Notes**
 
@@ -549,8 +549,8 @@ extension TraktManager {
 
          🔥 VIP Enhanced • 🔒 OAuth Required • 😁 Emojis
          */
-        public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<ListItemPostResult> {
-            let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+        public func addItemsToList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil) -> Route<ListItemPostResult> {
+            let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
             return Route(
                 paths: [path, "lists", listId, "items"],
                 body: body,
@@ -561,14 +561,14 @@ extension TraktManager {
         }
 
         /**
-         Remove one or more items from a personal list.
+         Remove one or more items from a personal list. Items can be movies, shows, seasons, or episodes; Trakt no longer accepts people on lists.
          
          **Endpoint:** `POST /users/{id}/lists/{list_id}/items/remove`
 
          🔒 OAuth Required
          */
-        public func removeItemsFromList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil, people: [SyncId]? = nil) -> Route<RemoveListItemResult> {
-            let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes, people: people)
+        public func removeItemsFromList(_ listId: CustomStringConvertible, movies: [SyncId]? = nil, shows: [SyncId]? = nil, seasons: [SyncId]? = nil, episodes: [SyncId]? = nil) -> Route<RemoveListItemResult> {
+            let body = TraktMediaBody(movies: movies, shows: shows, seasons: seasons, episodes: episodes)
             return Route(
                 paths: [path, "lists", listId, "items", "remove"],
                 body: body,

@@ -122,36 +122,5 @@ extension TraktManager {
         public func showCredits() -> Route<CastAndCrew<PeopleTVCastMember, PeopleTVCrewMember>> {
             Route(paths: [path, "shows"], method: .GET, traktManager: traktManager)
         }
-
-        // MARK: - Lists
-
-        /**
-         Returns all lists that contain this person. By default, `personal` lists are returned sorted by the most `popular`.
-
-         **Endpoint:** `GET /people/{id}/lists/{type}/{sort}`
-
-         📄 Pagination • 😁 Emojis
-
-         - parameter type: Filter for a specific list type. Possible values: `all`, `personal`, `official`.
-         - parameter sort: How to sort. Possible values: `popular`, `likes`, `comments`, `items`, `added`, `updated`.
-         */
-        public func containingLists(type: String? = nil, sort: String? = nil) -> Route<PagedObject<[TraktList]>> {
-            Route(paths: [path, "lists", type, sort], method: .GET, traktManager: traktManager)
-        }
-
-        // MARK: - Refresh
-
-        /**
-         Queue this person for a full metadata and image refresh. It might take up to 8 hours for the updated metadata to be available through the API.
-
-         > note: If this person is already queued, a `409` HTTP status code will be returned.
-
-         **Endpoint:** `POST /people/{id}/refresh`
-
-         🔥 VIP Only • 🔒 OAuth Required
-         */
-        public func refresh() -> EmptyRoute {
-            EmptyRoute(paths: [path, "refresh"], method: .POST, requiresAuthentication: true, traktManager: traktManager)
-        }
     }
 }

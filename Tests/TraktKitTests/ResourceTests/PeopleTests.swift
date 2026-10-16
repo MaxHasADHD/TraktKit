@@ -127,40 +127,5 @@ extension TraktTestSuite {
             #expect(credits.producers?.count == 4)
             #expect(credits.cast?.count == 54)
         }
-
-        // MARK: - Lists
-
-        @Test func getListsContainingPerson() async throws {
-            try await suite.mock(.GET, "https://api.trakt.tv/people/bryan-cranston/lists", result: .success(jsonData(named: "test_get_lists_containing_this_person")))
-
-            let lists = try await traktManager.person(id: "bryan-cranston")
-                .containingLists()
-                .perform()
-                .object
-
-            #expect(lists.count == 1)
-        }
-
-        // MARK: - Refresh
-
-        @Test func refreshPersonMetadata() async throws {
-            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()))
-
-            // A successful refresh returns 201 with no body — just confirm it doesn't throw.
-            try await traktManager.person(id: "bryan-cranston")
-                .refresh()
-                .perform()
-        }
-
-        @Test func refreshPersonMetadataAlreadyQueued() async throws {
-            try await suite.mock(.POST, "https://api.trakt.tv/people/bryan-cranston/refresh", result: .success(.init()), httpCode: 409)
-
-            // A 409 means the person is already queued — the manager should surface this as an error.
-            await #expect(throws: (any Error).self) {
-                try await traktManager.person(id: "bryan-cranston")
-                    .refresh()
-                    .perform()
-            }
-        }
     }
 }

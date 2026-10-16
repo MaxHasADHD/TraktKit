@@ -396,13 +396,6 @@ struct SharedTypesTests {
         #expect(type.rawValue == "episode")
     }
     
-    @Test
-    func listItemTypePeople() {
-        let type = ListItemType.people
-        
-        #expect(type.rawValue == "person")
-    }
-    
     // MARK: - Period Tests
     
     @Test

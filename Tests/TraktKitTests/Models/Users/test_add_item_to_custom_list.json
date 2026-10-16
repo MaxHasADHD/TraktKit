@@ -1,39 +1,24 @@
 {
-  "added" : {
-    "seasons" : 1,
-    "people" : 1,
-    "movies" : 1,
-    "shows" : 1,
-    "episodes" : 2
+  "added": {
+    "movies": 0,
+    "shows": 1,
+    "seasons": 0,
+    "episodes": 0
   },
-  "existing" : {
-    "seasons" : 0,
-    "people" : 0,
-    "movies" : 0,
-    "shows" : 0,
-    "episodes" : 0
+  "existing": {
+    "movies": 0,
+    "shows": 0,
+    "seasons": 0,
+    "episodes": 0
   },
-  "not_found" : {
-    "seasons" : [
-
-    ],
-    "people" : [
-
-    ],
-    "movies" : [
-      {
-        "ids" : {
-          "trakt" : 12345,
-          "slug" : "hello"
-        }
-      }
-    ],
-    "shows" : [
-
-    ],
-    "episodes" : [
-
-    ]
+  "not_found": {
+    "movies": [],
+    "shows": [],
+    "seasons": [],
+    "episodes": []
+  },
+  "list": {
+    "updated_at": "2026-10-16T10:27:10.000Z",
+    "item_count": 201
   }
 }
-

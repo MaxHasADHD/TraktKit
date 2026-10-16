@@ -78,7 +78,7 @@ extension TraktManager {
         // MARK: - Items
 
         /**
-         Returns all items on a list. Items can be a `movie`, `show`, `season`, `episode`, or `person`. You can optionally specify the `type` to limit what gets returned.
+         Returns all items on a list. Items can be a `movie`, `show`, `season`, or `episode`. You can optionally specify the `type` to limit what gets returned.
 
          Each list item contains a `notes` field with text entered by the user.
 
@@ -86,7 +86,7 @@ extension TraktManager {
 
          📄 Pagination • ✨ Extended Info • 😁 Emojis
 
-         - parameter type: Filter for a specific item type. Possible values: `movie`, `show`, `season`, `episode`, `person`.
+         - parameter type: Filter for a specific item type. Possible values: `movie`, `show`, `season`, `episode`.
          */
         public func items(type: ListItemType? = nil) -> Route<PagedObject<[TraktListItem]>> {
             Route(paths: [path, "items", type?.rawValue], method: .GET, traktManager: traktManager)

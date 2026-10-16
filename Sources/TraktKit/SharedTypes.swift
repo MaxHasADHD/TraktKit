@@ -237,7 +237,6 @@ public enum ListItemType: String, Sendable {
     case shows = "show"
     case seasons = "season"
     case episodes = "episode"
-    case people = "person"
 }
 
 public enum Period: String, Sendable, CustomStringConvertible {

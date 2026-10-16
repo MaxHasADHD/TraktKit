@@ -285,18 +285,5 @@ extension TraktManager {
         public func videos() -> Route<[TraktVideo]> {
             Route(paths: [path, "videos"], method: .GET, traktManager: traktManager)
         }
-
-        /**
-         Queue this movie for a full metadata and image refresh. It might take up to 8 hours for the updated metadata to be availabe through the API.
-
-         > note: If this movie is already queued, a 409 HTTP status code will returned.
-
-         **Endpoint:** `GET /movies/{id}/refresh`
-
-         🔥 VIP Only • 🔒 OAuth Required
-         */
-        public func refreshMetadata() -> EmptyRoute {
-            EmptyRoute(paths: [path, "refresh"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
-        }
     }
 }

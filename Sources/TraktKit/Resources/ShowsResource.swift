@@ -375,19 +375,6 @@ extension TraktManager {
         }
 
         /**
-         Queue this show for a full metadata and image refresh. It might take up to 8 hours for the updated metadata to be availabe through the API.
-
-         > note: If this show is already queued, a `409` HTTP status code will returned.
-
-         **Endpoint:** `GET /shows/{id}/refresh`
-
-         🔥 VIP Only • 🔒 OAuth Required
-         */
-        public func refreshMetadata() -> EmptyRoute {
-            EmptyRoute(paths: [path, "refresh"], method: .GET, requiresAuthentication: true, traktManager: traktManager)
-        }
-
-        /**
          Returns all seasons for a show including the number of episodes in each season.
 
          **Episodes**

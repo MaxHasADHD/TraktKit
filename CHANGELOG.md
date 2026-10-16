@@ -5,6 +5,31 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.12.0]
+
+### Removed
+- **Custom lists no longer support people.** Trakt dropped people from custom lists without
+  announcement: its replies to `POST /users/{id}/lists/{list_id}/items` and `.../items/remove` no
+  longer contain `people` anywhere, so `ListItemPostResult` and `RemoveListItemResult` failed to
+  decode with `DecodingError.keyNotFound` — every add to or removal from a list threw, even though
+  Trakt had applied it.
+
+  Breaking: `people` is gone from `ListItemPostResult.ObjectCount`, `ListItemPostResult.NotFound`,
+  `RemoveListItemResult.Deleted` and `RemoveListItemResult.NotFound`, and the `people:` parameter is
+  gone from `addItemsToList` and `removeItemsFromList` (both the current-user and the per-user
+  versions).
+
+  Lists no longer return people either, so `TraktListItem.person` and `ListItemType.people` are
+  removed too. `TraktListItem` is shared with the watchlist and favorites endpoints, which only
+  ever held movies, shows, seasons and episodes.
+
+- **`PeopleResource.containingLists(type:sort:)`** (`GET /people/{id}/lists/{type}/{sort}`): with no
+  lists able to hold people, Trakt answers it with an empty list.
+
+- **`PeopleResource.refresh()`, `MoviesResource.refreshMetadata()` and
+  `ShowsResource.refreshMetadata()`** (`POST /people|movies|shows/{id}/refresh`): Trakt removed these
+  endpoints on 2026-10-13 ([trakt/trakt-api#997](https://github.com/trakt/trakt-api/pull/997)).
+
 ## [3.11.2]
 
 ### Fixed

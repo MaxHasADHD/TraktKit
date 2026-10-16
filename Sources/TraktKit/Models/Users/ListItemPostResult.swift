@@ -18,7 +18,6 @@ public struct ListItemPostResult: TraktObject {
         public let shows: Int
         public let seasons: Int
         public let episodes: Int
-        public let people: Int
     }
     
     public struct NotFound: TraktObject {
@@ -26,7 +25,6 @@ public struct ListItemPostResult: TraktObject {
         public let shows: [NotFoundIds]
         public let seasons: [NotFoundIds]
         public let episodes: [NotFoundIds]
-        public let people: [NotFoundIds]
     }
     
     enum CodingKeys: String, CodingKey {

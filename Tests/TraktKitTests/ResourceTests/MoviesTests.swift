@@ -402,16 +402,5 @@ extension TraktTestSuite {
 
             #expect(movie.title == "TRON: Legacy")
         }
-
-        @Test func refreshMovieMetadata() async throws {
-            try await suite.mock(.GET, "https://api.trakt.tv/movies/tron-legacy-2010/refresh", result: .success(Data()))
-
-            try await traktManager.movie(id: "tron-legacy-2010")
-                .refreshMetadata()
-                .perform()
-
-            // Test passes if no error is thrown - refreshMetadata is a VIP-only endpoint
-            // that queues metadata refresh and returns empty response
-        }
     }
 }

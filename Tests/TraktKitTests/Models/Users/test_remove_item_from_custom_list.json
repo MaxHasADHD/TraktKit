@@ -1,31 +1,18 @@
 {
-  "deleted" : {
-    "seasons" : 1,
-    "people" : 1,
-    "movies" : 1,
-    "shows" : 1,
-    "episodes" : 2
+  "deleted": {
+    "movies": 0,
+    "shows": 1,
+    "seasons": 0,
+    "episodes": 0
   },
-  "not_found" : {
-    "seasons" : [
-
-    ],
-    "people" : [
-
-    ],
-    "movies" : [
-      {
-        "ids" : {
-          "trakt" : 12345,
-          "slug" : "hello"
-        }
-      }
-    ],
-    "shows" : [
-
-    ],
-    "episodes" : [
-
-    ]
+  "not_found": {
+    "movies": [],
+    "shows": [],
+    "seasons": [],
+    "episodes": []
+  },
+  "list": {
+    "updated_at": "2026-10-16T10:28:08.000Z",
+    "item_count": 200
   }
 }

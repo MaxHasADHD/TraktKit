@@ -18,7 +18,6 @@ public struct TraktListItem: TraktObject {
     public var season: TraktSeason? = nil
     public var episode: TraktEpisode? = nil
     public var movie: TraktMovie? = nil
-    public var person: Person? = nil
     
     enum CodingKeys: String, CodingKey {
         case rank
@@ -30,6 +29,5 @@ public struct TraktListItem: TraktObject {
         case season
         case episode
         case movie
-        case person
     }
 }
