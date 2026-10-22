@@ -5,6 +5,34 @@ All notable changes to TraktKit will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.13.0] - 2026-10-22
+
+### Changed
+- **Sign-in moves to `auth.trakt.tv`.** Trakt now serves every OAuth request from `auth.trakt.tv`:
+  the sign-in page, exchanging and refreshing tokens, revoking a token, and device authentication.
+  It starts enforcing this on February 1, 2027, after which apps still signing in through `trakt.tv`
+  or `api.trakt.tv` may fail to sign users in
+  ([announcement](https://github.com/trakt/trakt-api/discussions/1031)). `oauthURL`,
+  `oauthURL(codeChallenge:)` and every request in `AuthenticationResource`, including the token
+  refresh `AuthCoordinator` runs, now use it. Every other request stays on `api.trakt.tv`.
+- Requires SwiftAPIClient 1.8.0, for requests to a second host.
+
+### Added
+- **`TraktEnvironment`**, passed to `TraktManager(environment:…)`, says where requests go: an API URL
+  and an auth URL. Use `.production` (the default), or `.premium` (`apiz.trakt.tv`) for apps on
+  Trakt's Developer Premium plan. Any other server that speaks Trakt's API, such as a proxy, can be
+  given with `TraktEnvironment(apiURL:authURL:)`. The sign-in page takes its scheme, host, port and
+  path from the auth URL.
+
+### Removed
+- **`TraktManager(staging:…)`.** Trakt's documentation lists only production and premium, and its
+  staging hosts (`api-staging.trakt.tv`, `staging.trakt.tv`) no longer resolve. Drop the argument
+  for production. A server of your own can be given with `TraktEnvironment(apiURL:authURL:)`.
+
+### Fixed
+- Documentation matches Trakt's current authentication guide: access tokens last 7 days, and each
+  refresh token can only be used once. Token expiry still comes from each response's `expires_in`.
+
 ## [3.12.0]
 
 ### Removed

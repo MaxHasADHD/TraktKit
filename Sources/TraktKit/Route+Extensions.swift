@@ -19,6 +19,7 @@ extension Route {
         method: Method,
         requiresAuthentication: Bool = false,
         resultType: T.Type = T.self,
+        baseURL: URL? = nil,
         traktManager: TraktManager
     ) {
         self.init(
@@ -28,6 +29,7 @@ extension Route {
             method: method,
             requiresAuthentication: requiresAuthentication,
             resultType: resultType,
+            baseURL: baseURL,
             apiClient: traktManager
         )
     }
@@ -40,6 +42,7 @@ extension Route {
         method: Method,
         requiresAuthentication: Bool = false,
         resultType: T.Type = T.self,
+        baseURL: URL? = nil,
         traktManager: TraktManager
     ) {
         self.init(
@@ -49,6 +52,7 @@ extension Route {
             method: method,
             requiresAuthentication: requiresAuthentication,
             resultType: resultType,
+            baseURL: baseURL,
             apiClient: traktManager
         )
     }
@@ -63,6 +67,7 @@ extension EmptyRoute {
         body: (any Encodable & Hashable & Sendable)? = nil,
         method: Method,
         requiresAuthentication: Bool = false,
+        baseURL: URL? = nil,
         traktManager: TraktManager
     ) {
         self.init(
@@ -71,6 +76,7 @@ extension EmptyRoute {
             body: body,
             method: method,
             requiresAuthentication: requiresAuthentication,
+            baseURL: baseURL,
             apiClient: traktManager
         )
     }
@@ -82,6 +88,7 @@ extension EmptyRoute {
         body: (any Encodable & Hashable & Sendable)? = nil,
         method: Method,
         requiresAuthentication: Bool = false,
+        baseURL: URL? = nil,
         traktManager: TraktManager
     ) {
         self.init(
@@ -90,6 +97,7 @@ extension EmptyRoute {
             body: body,
             method: method,
             requiresAuthentication: requiresAuthentication,
+            baseURL: baseURL,
             apiClient: traktManager
         )
     }

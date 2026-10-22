@@ -24,7 +24,7 @@ extension TraktManager {
         /**
          Use the authorization `code` GET parameter sent back to your `redirect_uri` to get an `access_token`. Save the `access_token` so your app can authenticate the user by sending the `Authorization` header.
 
-         The `access_token` is valid for **24 hours**. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate.
+         The `access_token` is valid for **7 days**. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate.
 
          **Endpoint:** `POST /oauth/token`
          */
@@ -41,6 +41,7 @@ extension TraktManager {
                 body: body,
                 method: .POST,
                 requiresAuthentication: false,
+                baseURL: traktManager.environment.authURL,
                 traktManager: traktManager
             )
         }
@@ -50,7 +51,7 @@ extension TraktManager {
          
          This method uses PKCE instead of client secret, making it more secure for mobile and desktop applications where the client secret cannot be securely stored.
 
-         The `access_token` is valid for **24 hours**. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate.
+         The `access_token` is valid for **7 days**. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate.
 
          **Endpoint:** `POST /oauth/token`
          
@@ -72,12 +73,13 @@ extension TraktManager {
                 body: body,
                 method: .POST,
                 requiresAuthentication: false,
+                baseURL: traktManager.environment.authURL,
                 traktManager: traktManager
             )
         }
 
         /**
-         Use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. The `access_token` is valid for **24 hours** before it needs to be refreshed again.
+         Use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. The `access_token` is valid for **7 days** before it needs to be refreshed again. Each refresh token can only be used once: a successful refresh returns a new one.
          
          This method uses client_secret authentication. For tokens originally obtained via PKCE, the client_secret can be omitted.
 
@@ -96,6 +98,7 @@ extension TraktManager {
                 body: body,
                 method: .POST,
                 requiresAuthentication: false,
+                baseURL: traktManager.environment.authURL,
                 traktManager: traktManager
             )
         }
@@ -118,6 +121,7 @@ extension TraktManager {
                 body: body,
                 method: .POST,
                 requiresAuthentication: false,
+                baseURL: traktManager.environment.authURL,
                 traktManager: traktManager
             )
         }
@@ -140,6 +144,7 @@ extension TraktManager {
                 body: body,
                 method: .POST,
                 requiresAuthentication: false,
+                baseURL: traktManager.environment.authURL,
                 traktManager: traktManager
             )
         }
@@ -147,7 +152,7 @@ extension TraktManager {
         /**
          Use the `device_code` and poll at the `interval` (in seconds) to check if the user has authorized you app. Use `expires_in` to stop polling after that many seconds, and gracefully instruct the user to restart the process. **It is important to poll at the correct interval and also stop polling when expired.**
 
-         When you receive a `200` success response, save the `access_token` so your app can authenticate the user in methods that require it. The `access_token` is valid for 24 hours. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. Check below for all the error codes that you should handle.
+         When you receive a `200` success response, save the `access_token` so your app can authenticate the user in methods that require it. The `access_token` is valid for 7 days. Save and use the `refresh_token` to get a new `access_token` without asking the user to re-authenticate. Check below for all the error codes that you should handle.
 
          > important: This function does **NOT** poll for the access token. This makes a single request to the endpoint and returns authentication info if available, and the status code used for polling. Use ``../TraktManager/pollForAccessToken(deviceCode:)`` to poll for the access token.
 
@@ -159,7 +164,7 @@ extension TraktManager {
                 clientId: traktManager.clientId,
                 clientSecret: traktManager.clientSecret
             )
-            let request = try await traktManager.mutableRequest(forPath: "oauth/device/token", isAuthorized: false, withHTTPMethod: .POST, body: body)
+            let request = try await traktManager.mutableRequest(forPath: "oauth/device/token", baseURL: traktManager.environment.authURL, isAuthorized: false, withHTTPMethod: .POST, body: body)
 
             // Make response
             let (data, response) = try await traktManager.session.data(for: request)

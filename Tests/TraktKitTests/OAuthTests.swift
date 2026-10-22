@@ -176,7 +176,7 @@ extension TraktTestSuite {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(data))
 
         let authStorage = TraktMockAuthStorage()
 
@@ -231,7 +231,7 @@ extension TraktTestSuite {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(data))
 
         // Refresh token
         try await traktManager.refreshTokenIfNeeded()
@@ -267,7 +267,7 @@ extension TraktTestSuite {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(data))
 
         let authStorage = TraktMockAuthStorage()
 
@@ -307,7 +307,7 @@ extension TraktTestSuite {
         let components = try #require(URLComponents(url: url, resolvingAgainstBaseURL: false))
         
         #expect(components.scheme == "https")
-        #expect(components.host == "trakt.tv")
+        #expect(components.host == "auth.trakt.tv")
         #expect(components.path == "/oauth/authorize")
         
         let queryItems = try #require(components.queryItems)
@@ -346,7 +346,7 @@ extension TraktTestSuite {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(data))
 
         // Refresh token
         try await traktManager.refreshTokenIfNeeded()
@@ -381,7 +381,7 @@ extension TraktTestSuite {
             "created_at": Date.now.timeIntervalSince1970
         ]
         let data = try JSONSerialization.data(withJSONObject: json)
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(data))
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(data))
 
         try await withThrowingTaskGroup(of: Void.self) { group in
             for _ in 0..<8 {
@@ -410,7 +410,7 @@ extension TraktTestSuite {
 
         // Trakt rejects a replayed/invalid refresh token with 401 invalid_grant.
         let errorData = try JSONSerialization.data(withJSONObject: ["error": "invalid_grant"])
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 401)
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(errorData), httpCode: 401)
 
         await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
             try await traktManager.refreshTokenIfNeeded()
@@ -437,7 +437,7 @@ extension TraktTestSuite {
             "error": "invalid_grant",
             "error_description": "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
         ])
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400)
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400)
 
         await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
             try await traktManager.refreshTokenIfNeeded()
@@ -463,7 +463,7 @@ extension TraktTestSuite {
 
         try await suite.mock(.GET, "https://api.trakt.tv/users/settings", result: .success(Data()), httpCode: 401, reusable: true)
         let errorData = try JSONSerialization.data(withJSONObject: ["error": "invalid_grant"])
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400, reusable: true)
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400, reusable: true)
 
         await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
             _ = try await traktManager.currentUser().settings().perform()
@@ -491,7 +491,7 @@ extension TraktTestSuite {
         _ = try? await traktManager.refreshCurrentAuthState()
 
         let errorData = try JSONSerialization.data(withJSONObject: ["error": "invalid_grant"])
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400, reusable: true)
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(errorData), httpCode: 400, reusable: true)
 
         await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
             _ = try await traktManager.currentUser().settings().perform()
@@ -518,7 +518,7 @@ extension TraktTestSuite {
         )
         _ = try? await traktManager.refreshCurrentAuthState()
 
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(Data()), httpCode: 500, reusable: true)
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(Data()), httpCode: 500, reusable: true)
 
         await #expect(throws: TraktManager.TraktClientError.invalidRefreshToken) {
             _ = try await traktManager.currentUser().settings().perform()
@@ -537,7 +537,7 @@ extension TraktTestSuite {
             authStorage: authStorage
         )
 
-        try await suite.mock(.POST, "https://api.trakt.tv/oauth/token", result: .success(Data()), httpCode: 522)
+        try await suite.mock(.POST, "https://auth.trakt.tv/oauth/token", result: .success(Data()), httpCode: 522)
 
         await #expect(throws: TraktAPIError.cloudflareError(statusCode: 522)) {
             try await traktManager.refreshTokenIfNeeded()

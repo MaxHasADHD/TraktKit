@@ -60,7 +60,6 @@ public final class TraktManager: APIClient, @unchecked Sendable {
     static let logger = Logger(subsystem: "TraktKit", category: "TraktManager")
 
     // MARK: Internal
-    private let staging: Bool
     internal let clientId: String
     internal let clientSecret: String
     internal let redirectURI: String
@@ -75,35 +74,31 @@ public final class TraktManager: APIClient, @unchecked Sendable {
 
     // MARK: Public
 
+    /// The hosts this manager's requests go to.
+    public let environment: TraktEnvironment
+
     public var oauthURL: URL? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = staging ? "staging.trakt.tv" : "trakt.tv"
-        urlComponents.path = "/oauth/authorize"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "client_id", value: clientId),
-            URLQueryItem(name: "redirect_uri", value: redirectURI),
-        ]
-        return urlComponents.url
+        authorizationURL(adding: [])
     }
     
     /// Generates an OAuth URL with PKCE (Proof Key for Code Exchange) support
     /// - Parameter codeChallenge: The code challenge generated from the code verifier
     /// - Returns: The authorization URL to present to the user
     public func oauthURL(codeChallenge: String) -> URL? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = staging ? "staging.trakt.tv" : "trakt.tv"
-        urlComponents.path = "/oauth/authorize"
-        urlComponents.queryItems = [
+        authorizationURL(adding: [
+            URLQueryItem(name: "code_challenge", value: codeChallenge),
+            URLQueryItem(name: "code_challenge_method", value: "S256"),
+        ])
+    }
+
+    private func authorizationURL(adding queryItems: [URLQueryItem]) -> URL? {
+        var urlComponents = URLComponents(url: environment.authURL.appendingPathComponent("oauth/authorize"), resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = [
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "client_id", value: clientId),
             URLQueryItem(name: "redirect_uri", value: redirectURI),
-            URLQueryItem(name: "code_challenge", value: codeChallenge),
-            URLQueryItem(name: "code_challenge_method", value: "S256"),
-        ]
-        return urlComponents.url
+        ] + queryItems
+        return urlComponents?.url
     }
 
     // MARK: - Lifecycle
@@ -118,7 +113,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
          here when constructing a sibling `TraktManager` that should run on isolated
          network resources (e.g., to keep sync requests from contending with user-facing
          requests for HTTP connections).
-       - staging: Whether to use the staging API
+       - environment: The hosts to send requests to. Defaults to `.production`.
        - clientId: Your Trakt API client ID
        - clientSecret: Your Trakt API client secret (optional when using PKCE)
        - redirectURI: Your OAuth redirect URI
@@ -133,7 +128,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
      */
     public init(
         session: URLSession = URLSession(configuration: .default),
-        staging: Bool = false,
+        environment: TraktEnvironment = .production,
         clientId: String,
         clientSecret: String = "",
         redirectURI: String,
@@ -141,16 +136,14 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         authStorage: any TraktAuthentication = KeychainTraktAuthentication(),
         sharedAuthCoordinator: AuthCoordinator? = nil
     ) {
-        self.staging = staging
+        self.environment = environment
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
         self.tokenRefreshWrapper = TraktTokenRefreshWrapper()
 
-        let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
-        let baseURL = URL(string: "https://\(apiHost)")!
         let config = APIClient.Configuration(
-            baseURL: baseURL,
+            baseURL: environment.apiURL,
             additionalHeaders: [
                 "trakt-api-version": "2",
                 "trakt-api-key": clientId,
@@ -164,7 +157,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         let coordinator = sharedAuthCoordinator ?? AuthCoordinator(
             storage: authStorage,
             refreshHandler: tokenRefreshWrapper,
-            refreshThreshold: 3600 // Refresh 1 hour before expiration (Trakt tokens last 24 hours)
+            refreshThreshold: 3600 // Refresh 1 hour before expiration (Trakt tokens last 7 days)
         )
 
         super.init(configuration: config, session: session, authCoordinator: coordinator)
@@ -179,7 +172,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
     /// Initialize TraktManager and refreshes the auth state
     /// - Parameters:
     ///   - session: URLSession to use for network requests
-    ///   - staging: Whether to use the staging API
+    ///   - environment: The hosts to send requests to. Defaults to `.production`.
     ///   - clientId: Your Trakt API client ID
     ///   - clientSecret: Your Trakt API client secret (optional when using PKCE)
     ///   - redirectURI: Your OAuth redirect URI
@@ -189,7 +182,7 @@ public final class TraktManager: APIClient, @unchecked Sendable {
     ///     See the synchronous initializer for details.
     public init(
         session: URLSession = URLSession(configuration: .default),
-        staging: Bool = false,
+        environment: TraktEnvironment = .production,
         clientId: String,
         clientSecret: String = "",
         redirectURI: String,
@@ -197,16 +190,14 @@ public final class TraktManager: APIClient, @unchecked Sendable {
         authStorage: any TraktAuthentication = KeychainTraktAuthentication(),
         sharedAuthCoordinator: AuthCoordinator? = nil
     ) async {
-        self.staging = staging
+        self.environment = environment
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectURI = redirectURI
         self.tokenRefreshWrapper = TraktTokenRefreshWrapper()
 
-        let apiHost = staging ? "api-staging.trakt.tv" : "api.trakt.tv"
-        let baseURL = URL(string: "https://\(apiHost)")!
         let config = APIClient.Configuration(
-            baseURL: baseURL,
+            baseURL: environment.apiURL,
             additionalHeaders: [
                 "trakt-api-version": "2",
                 "trakt-api-key": clientId,

@@ -161,6 +161,7 @@ private extension URL {
 
         return components.scheme == urlComponents.scheme &&
         components.host == urlComponents.host &&
+        components.port == urlComponents.port &&
         components.path == urlComponents.path &&
         components.queryItems?.enumerated().compactMap { $0.element.name }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.name }.sorted() &&
         components.queryItems?.enumerated().compactMap { $0.element.value }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.value }.sorted()

@@ -64,7 +64,7 @@ extension TraktTestSuite {
 
         @Test
         func pollForAccessTokenInvalidDeviceCode() async throws {
-            try await suite.mock(.GET, "https://api.trakt.tv/oauth/device/token", result: .success(.init()), httpCode: 404)
+            try await suite.mock(.GET, "https://auth.trakt.tv/oauth/device/token", result: .success(.init()), httpCode: 404)
 
             let deviceCodeJSON: [String: Any] = [
                 "device_code": "d9c126a7706328d808914cfd1e40274b6e009f684b1aca271b9b3f90b3630d64",
@@ -321,7 +321,7 @@ extension TraktTestSuite {
             )
             
             // Mock the refresh token endpoint
-            let refreshTokenURL = "https://api.trakt.tv/oauth/token"
+            let refreshTokenURL = "https://auth.trakt.tv/oauth/token"
             let newTokenResponse: [String: Any] = [
                 "access_token": "new_access_token",
                 "token_type": "bearer",
@@ -390,7 +390,7 @@ extension TraktTestSuite {
             try await suite.mock(.GET, watchlistURL, result: .success(Data()), httpCode: 401)
             
             // Mock the refresh token endpoint
-            let refreshTokenURL = "https://api.trakt.tv/oauth/token"
+            let refreshTokenURL = "https://auth.trakt.tv/oauth/token"
             let newTokenResponse: [String: Any] = [
                 "access_token": "refreshed_access_token",
                 "token_type": "bearer",
@@ -454,7 +454,7 @@ extension TraktTestSuite {
             )
             
             // Mock refresh endpoint returning 401 (invalid refresh token)
-            let refreshTokenURL = "https://api.trakt.tv/oauth/token"
+            let refreshTokenURL = "https://auth.trakt.tv/oauth/token"
             let errorJSON: [String: Any] = ["error": "invalid_grant"]
             let errorData = try JSONSerialization.data(withJSONObject: errorJSON)
             try await suite.mock(.POST, refreshTokenURL, result: .success(errorData), httpCode: 401)
@@ -542,7 +542,7 @@ extension TraktTestSuite {
             )
             
             // Mock refresh endpoint - should only be called once
-            let refreshTokenURL = "https://api.trakt.tv/oauth/token"
+            let refreshTokenURL = "https://auth.trakt.tv/oauth/token"
             let newTokenResponse: [String: Any] = [
                 "access_token": "new_access_token",
                 "token_type": "bearer",
